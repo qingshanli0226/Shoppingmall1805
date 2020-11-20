@@ -52,6 +52,7 @@ public class WelcomActivity extends BaseActivity {
                 Intent intent = new Intent(WelcomActivity.this, MainActivity.class);
 
                 startActivity(intent);
+                finish();
             }
 
             @Override
