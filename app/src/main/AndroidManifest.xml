@@ -3,19 +3,24 @@
     package="com.shopmall.bawei.shopmall1805">
 
     <application
-        android:name=".ShopmallApplication"
+        android:name=".ShopMallApp"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:icon="@drawable/logo"
+        android:label="XXX商城"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.MainActivity">
+        <activity android:name=".splash.SplashActivity"
+            android:theme="@style/AppTheme.FullTheme"
+            >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".home.MainActivity">
+
         </activity>
     </application>
 

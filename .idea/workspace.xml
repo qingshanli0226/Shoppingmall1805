@@ -1,5 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AndroidLayouts">
+    <shared>
+      <config />
+    </shared>
+  </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
+    <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="01b5546a-7159-439d-9693-32dd3c19c31e" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,8 +41,20 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.shopmall.bawei.shopmall1805" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\java\com\shopmall\bawei\shopmall1805" />
+      <recent name="F:\five\Shoppingmall1805\framework\src\main" />
+      <recent name="F:\five\Shoppingmall1805\net\src\main\java\com\example\net" />
+    </key>
   </component>
   <component name="RunManager">
     <configuration default="true" type="AndroidJUnit" factoryName="Android JUnit">
@@ -107,5 +128,31 @@
       <updated>1605839445669</updated>
     </task>
     <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605848719221">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605848719221" />
+    <state width="1802" height="444" key="GridCell.Tab.0.bottom" timestamp="1605850151246">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state width="1802" height="444" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
+    <state width="1802" height="444" key="GridCell.Tab.0.center" timestamp="1605850151246">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state width="1802" height="444" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
+    <state width="1802" height="444" key="GridCell.Tab.0.left" timestamp="1605850151246">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state width="1802" height="444" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
+    <state width="1802" height="444" key="GridCell.Tab.0.right" timestamp="1605850151246">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state width="1802" height="444" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1605848493741">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605848493741" />
   </component>
 </project>
