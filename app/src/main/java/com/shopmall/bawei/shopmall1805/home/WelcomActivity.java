@@ -3,33 +3,45 @@ package com.shopmall.bawei.shopmall1805.home;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
+import android.widget.ImageView;
 
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ui.activity.MainActivity;
 
-import java.util.Timer;
-import java.util.TimerTask;
+public class WelcomActivity extends AppCompatActivity implements ViewPropertyAnimatorListener {
 
-public class WelcomActivity extends AppCompatActivity {
-     private int i=0;
+    private ImageView welcomImage;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcomactivity);
 
 
-        final Timer timer = new Timer();
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                i++;
-                if (i==4){
-                    startActivity(new Intent(WelcomActivity.this, MainActivity.class));
-                    timer.cancel();
-                }
-            }
-        },0,1000);
+        welcomImage = findViewById(R.id.welcom_image);
+
+
+
+
+        ViewCompat.animate(welcomImage).scaleX(1.0f).scaleY(1.0f).setListener(this).setDuration(5000);
+
+    }
+
+    @Override
+    public void onAnimationStart(View view) {
+
+    }
+
+    @Override
+    public void onAnimationEnd(View view) {
+        startActivity(new Intent(WelcomActivity.this, MainActivity.class));
+    }
+
+    @Override
+    public void onAnimationCancel(View view) {
 
     }
 }
