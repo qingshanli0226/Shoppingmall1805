@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shoppingmall1805.iml" filepath="$PROJECT_DIR$/.idea/modules/Shoppingmall1805.iml" group="Shoppingmall1805" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Shoppingmall1805/app" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/common.iml" group="Shoppingmall1805/common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/framework/framework.iml" filepath="$PROJECT_DIR$/.idea/modules/framework/framework.iml" group="Shoppingmall1805/framework" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/net/net.iml" filepath="$PROJECT_DIR$/.idea/modules/net/net.iml" group="Shoppingmall1805/net" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/order/order.iml" filepath="$PROJECT_DIR$/.idea/modules/order/order.iml" group="Shoppingmall1805/order" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/pay/pay.iml" filepath="$PROJECT_DIR$/.idea/modules/pay/pay.iml" group="Shoppingmall1805/pay" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/point/point.iml" filepath="$PROJECT_DIR$/.idea/modules/point/point.iml" group="Shoppingmall1805/point" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/shopcar/shopcar.iml" filepath="$PROJECT_DIR$/.idea/modules/shopcar/shopcar.iml" group="Shoppingmall1805/shopcar" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/user/user.iml" filepath="$PROJECT_DIR$/.idea/modules/user/user.iml" group="Shoppingmall1805/user" />
+    </modules>
+  </component>
+</project>
