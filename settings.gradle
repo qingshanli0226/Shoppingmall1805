@@ -1,1 +1,2 @@
-include ':app', ':user', ':shopcar', ':order', ':pay', ':point', ':framework', ':net', ':common'
+include ':app', ':common', ':framework', ':net', ':pay', ':point', ':shopcar', ':user', ':order'
+rootProject.name='shopmall'
