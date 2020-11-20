@@ -3,12 +3,17 @@ package com.shopmall.bawei.shopmall1805.splash;
 import android.content.Intent;
 import android.os.Handler;
 
-import com.example.framework.BaseActivity;
+import com.example.framework.base.BaseActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
 
 public class SplashActivity extends BaseActivity {
+
+    @Override
+    protected void initPresenter() {
+
+    }
 
     @Override
     protected void initData() {

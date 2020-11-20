@@ -29,6 +29,15 @@
       </state>
     </system>
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Kotlin Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
@@ -45,6 +54,9 @@
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.1219811837">
+      <recent name="com.shopmall.bawei.user" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.shopmall.bawei.shopmall1805" />
     </key>
@@ -130,29 +142,41 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1605871054679">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1605871054679" />
     <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605848719221">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605848719221" />
-    <state width="1802" height="444" key="GridCell.Tab.0.bottom" timestamp="1605850151246">
+    <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1605857538881">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="444" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
-    <state width="1802" height="444" key="GridCell.Tab.0.center" timestamp="1605850151246">
+    <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1605857538881" />
+    <state width="1802" height="627" key="GridCell.Tab.0.bottom" timestamp="1605871084010">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="444" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
-    <state width="1802" height="444" key="GridCell.Tab.0.left" timestamp="1605850151246">
+    <state width="1802" height="627" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
+    <state width="1802" height="627" key="GridCell.Tab.0.center" timestamp="1605871084010">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="444" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
-    <state width="1802" height="444" key="GridCell.Tab.0.right" timestamp="1605850151246">
+    <state width="1802" height="627" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
+    <state width="1802" height="627" key="GridCell.Tab.0.left" timestamp="1605871084009">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="444" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1605850151246" />
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1605848493741">
+    <state width="1802" height="627" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084009" />
+    <state width="1802" height="627" key="GridCell.Tab.0.right" timestamp="1605871084010">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605848493741" />
+    <state width="1802" height="627" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1605850979656">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605850979656" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1605869095650">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1605869095650" />
   </component>
 </project>
