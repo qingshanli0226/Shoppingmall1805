@@ -5,7 +5,6 @@ import java.lang.ref.SoftReference;
 public abstract class IPresenter<M extends IModel,V extends IView> {
 
     protected M iModel;
-
     private SoftReference<V> iView;
 
     public IPresenter(V v) {
