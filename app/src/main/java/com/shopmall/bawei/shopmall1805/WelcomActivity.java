@@ -18,8 +18,8 @@ public class WelcomActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(WelcomActivity.this, "点击", Toast.LENGTH_SHORT).show();
+                String sc = "123456";
             }
         });
-
     }
 }
