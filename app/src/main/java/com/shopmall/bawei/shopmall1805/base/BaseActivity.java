@@ -23,14 +23,14 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
 
     }
 
-    private void initData() {
+    protected void initData() {
 
     }
 
-    private void initPresenter() {
+    protected void initPresenter() {
     }
 
-    private void initView() {
+    protected void initView() {
     }
 
     protected abstract int getLayoutId();

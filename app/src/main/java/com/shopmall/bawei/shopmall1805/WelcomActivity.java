@@ -1,14 +1,32 @@
 package com.shopmall.bawei.shopmall1805;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
+import android.os.Handler;
 
-public class WelcomActivity extends AppCompatActivity {
+import com.shopmall.bawei.shopmall1805.base.BaseActivity;
+import com.shopmall.bawei.shopmall1805.base.IPresenter;
+import com.shopmall.bawei.shopmall1805.base.IView;
+import com.shopmall.bawei.shopmall1805.activity.MainActivity;
+
+public class WelcomActivity extends BaseActivity<IPresenter, IView> {
+
+
+    private Handler handler = new Handler();
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_welcome);
+    protected int getLayoutId() {
+        return R.layout.activity_welcome;
+    }
+
+
+    @Override
+    protected void initView() {
+        super.initView();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(WelcomActivity.this, MainActivity.class));
+            }
+        },5000);
     }
 }

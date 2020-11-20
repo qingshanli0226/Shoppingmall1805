@@ -4,15 +4,78 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.MainActivity">
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <FrameLayout
+       android:id="@+id/frame_layout"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"/>
+
+
+   <RadioGroup
+       android:id="@+id/group"
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:layout_height="70dp">
+
+       <RadioButton
+           android:id="@+id/rd1"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:button="@null"
+           android:textAlignment="center"
+           android:checked="true"
+           android:text="主页"
+           android:textSize="15sp"
+           android:drawableTop="@drawable/btn1_selecter"
+           android:layout_height="match_parent"/>
+
+       <RadioButton
+           android:id="@+id/rd2"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:textAlignment="center"
+           android:button="@null"
+           android:text="分类"
+           android:textSize="15sp"
+           android:drawableTop="@drawable/btn2_selecter"
+           android:layout_height="match_parent"/>
+       <RadioButton
+           android:id="@+id/rd3"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:textAlignment="center"
+           android:button="@null"
+           android:text="发现"
+           android:textSize="15sp"
+           android:drawableTop="@drawable/btn3_selecter"
+           android:layout_height="match_parent"/>
+
+       <RadioButton
+           android:id="@+id/rd4"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:textAlignment="center"
+           android:button="@null"
+           android:text="购物车"
+           android:textSize="15sp"
+           android:drawableTop="@drawable/btn4_selecter"
+           android:layout_height="match_parent"/>
+       <RadioButton
+           android:id="@+id/rd5"
+           android:layout_width="0dp"
+           android:layout_weight="1"
+           android:textAlignment="center"
+           android:button="@null"
+           android:text="个人中心"
+           android:textSize="15sp"
+           android:drawableTop="@drawable/btn5_selecter"
+           android:layout_height="match_parent"/>
+
+
+   </RadioGroup>
+
 
 </LinearLayout>
