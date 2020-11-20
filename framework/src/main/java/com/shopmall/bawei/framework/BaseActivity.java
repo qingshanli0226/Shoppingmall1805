@@ -5,7 +5,7 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity implements IView {
+public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity{
 
     protected P httpPresenter;
 
@@ -16,7 +16,7 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
         initView();
         initListener();
         initPresenter();
-        httpPresenter.attachView(this);
+        httpPresenter.attachView((V)this);
         initData();
     }
 
