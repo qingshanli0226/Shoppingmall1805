@@ -8,21 +8,27 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseFragment extends Fragment {
+public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
+    protected P httpresetnter;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(getlayoutid(),container,false);
+        View inflate = inflater.inflate(getlayoutid(), container, false);
+        initView(inflate);
+        initPreseter();
+        initdate();
+        httpresetnter.attchView((V)this);
+        return inflate;
     }
+    protected abstract void initPreseter();
+    protected abstract void initView(View inflate);
+    protected abstract void initdate();
+    protected abstract int getlayoutid();
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        //初始化数据
-        initdate();
+    public void onDestroy() {
+        super.onDestroy();
+        httpresetnter.ondechView();
     }
-
-    protected abstract void initdate();
-
-    protected abstract int getlayoutid();
 }
