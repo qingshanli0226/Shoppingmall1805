@@ -10,12 +10,18 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.example.framework.BaseActivity;
+import com.example.framework.IPresenter;
+import com.example.framework.IView;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
-public class WelcomActivity extends BaseActivity implements ViewPropertyAnimatorListener {
+public class WelcomActivity extends BaseActivity<IPresenter, IView> implements ViewPropertyAnimatorListener {
     private ImageView ivWelcom;
 
 
+    @Override
+    protected void initpreseter() {
+
+    }
 
     @Override
     protected void initdate() {
