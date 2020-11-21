@@ -25,6 +25,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+    implementation 'com.android.support:recyclerview-v7:28.0.0'//recyclerview
     implementation project(':user')
     implementation project(':shopcar')
     implementation project(':pay')
@@ -33,6 +35,6 @@ dependencies {
     implementation project(':point')
     implementation project(':net')
     implementation project(':common')
-
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'//flycotablayout
 
 }

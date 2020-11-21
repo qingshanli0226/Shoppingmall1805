@@ -4,20 +4,25 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+;import com.bawei.deom.countroller.UserIMPL;
 
-public abstract class BaseActivity extends AppCompatActivity {
 
+public abstract class BaseActivity<Prine extends IPrine,PView extends IView> extends AppCompatActivity {
+
+     public Prine prine;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getlayouview());
         intView();
+        inPresone();
         inData();
 
-
+       prine.attach((PView)this);
     }
 
+    protected abstract void inPresone();
 
 
     protected abstract void inData();
@@ -25,6 +30,5 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void intView();
 
     protected abstract int getlayouview();
-
 
 }

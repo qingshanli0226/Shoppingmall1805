@@ -3,6 +3,7 @@ package com.bawei.deom;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,9 +12,9 @@ import android.view.ViewGroup;
 
 
 
+public abstract class BaseFragment<Prine extends IPrine,PView extends IView> extends Fragment {
 
-public abstract class BaseFragment extends Fragment {
-
+   public Prine prine;
 
     @Nullable
     @Override
@@ -21,11 +22,12 @@ public abstract class BaseFragment extends Fragment {
         View view=inflater.inflate(getlayoutview(),null);
         initView(view);
         initData();
-
-
+        inPrine();
+        prine.attach((PView)this);
         return view;
     }
 
+    protected abstract void inPrine();
 
 
     protected abstract void initData();

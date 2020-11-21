@@ -5,18 +5,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.bawei.deom.BaseActivity;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
-import java.sql.Time;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public  class WelcomActivity extends BaseActivity {
-
+public  class WelcomActivity extends AppCompatActivity {
 
     @Override
-    protected void inData() {
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.welcom);
         Timer timer=new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -29,13 +28,7 @@ public  class WelcomActivity extends BaseActivity {
         },3000);
     }
 
-    @Override
-    protected void intView() {
-
-    }
-
-    @Override
-    protected int getlayouview() {
-        return R.layout.welcom;
-    }
 }
+
+
+
