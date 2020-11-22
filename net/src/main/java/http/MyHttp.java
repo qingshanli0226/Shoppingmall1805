@@ -2,6 +2,7 @@ package http;
 
 import java.util.concurrent.TimeUnit;
 
+import baseurl.UrlHelp;
 import okhttp3.OkHttpClient;
 
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -29,9 +30,8 @@ public class MyHttp {
                 //打印日志
                 .addInterceptor(httpLoggingInterceptor);
         Retrofit.Builder builder1 = new Retrofit.Builder();
-
         builder1
-                .baseUrl("需要的请求的网址")
+                .baseUrl(UrlHelp.BaseUrl)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
