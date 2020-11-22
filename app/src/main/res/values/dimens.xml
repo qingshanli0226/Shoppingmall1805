@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="home_edit_width">500dp</dimen>
+    <dimen name="home_edit_height">30dp</dimen>
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="toolbar_right_text_size">20sp</dimen>
+    <dimen name="toolbar_top_margin_size">15dp</dimen>
+    <dimen name="toolbar_left_margin_size">10dp</dimen>
+    <dimen name="toolbar_right_size">50dp</dimen>
+
+</resources>

@@ -6,7 +6,7 @@ import android.widget.ProgressBar;
 
 public abstract class BaseMVPActivity<T extends IPresenter, V extends IView> extends BaseActivity {
 
-    protected T iHttpPresenter;
+    protected T httpPresenter;
     protected ProgressBar loadingBar;//基类来定义加载的UI的形式
 
 
@@ -15,7 +15,7 @@ public abstract class BaseMVPActivity<T extends IPresenter, V extends IView> ext
         super.onCreate(savedInstanceState);
         loadingBar = findViewById(R.id.loadingBar);//在framwork里定义这个loadingbar控件，只是为了让编译器通过检查
         initPresenter();
-        iHttpPresenter.attachView((V)this);
+        httpPresenter.attachView((V)this);
         initData();
     }
 
@@ -25,6 +25,6 @@ public abstract class BaseMVPActivity<T extends IPresenter, V extends IView> ext
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        iHttpPresenter.detachView();
+        httpPresenter.detachView();
     }
 }

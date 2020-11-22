@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".home.view.MainActivity">
+
+    <com.shopmall.bawei.common.view.ToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:left_show="false"
+        app:title_show="false"
+        app:right_src="@mipmap/menu"
+        app:right_text="消息"
+        app:right_text_color="@android:color/white"
+        android:background="@android:color/holo_red_light">
+
+    </com.shopmall.bawei.common.view.ToolBar>
+
+    <RelativeLayout
+        android:layout_below="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/normalContent">
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/homeRv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </android.support.v7.widget.RecyclerView>
+
+        <ProgressBar android:layout_width="100dp" android:layout_height="100dp"
+            android:id="@+id/loadingBar"
+            android:layout_centerInParent="true"
+            android:visibility="gone"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/errorTv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        android:gravity="center"
+        android:textColor="@android:color/holo_red_dark"
+        android:textSize="20sp"/>
+
+    <EditText
+        android:layout_width="@dimen/home_edit_width"
+        android:layout_height="@dimen/home_edit_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="@dimen/toolbar_top_margin_size"
+        android:layout_marginLeft="@dimen/toolbar_left_margin_size"
+        android:background="@android:color/white"
+        android:hint="请输入搜索内容" />
+
+</RelativeLayout>

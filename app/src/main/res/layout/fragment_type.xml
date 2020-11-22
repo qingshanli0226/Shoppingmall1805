@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <com.shopmall.bawei.common.view.ToolBar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:right_src="@mipmap/search"
+        app:right_show_only_img="true"
+        android:id="@+id/toolbar">
+    </com.shopmall.bawei.common.view.ToolBar>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:text="分类"/>
+
+</LinearLayout>
