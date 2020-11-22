@@ -16,7 +16,9 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
         initView();
         initListener();
         initPresenter();
-        httpPresenter.attachView((V)this);
+        if(httpPresenter != null){
+            httpPresenter.attachView((V)this);
+        }
         initData();
     }
 
@@ -37,6 +39,8 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        httpPresenter.detachView();
+        if(httpPresenter != null) {
+            httpPresenter.detachView();
+        }
     }
 }

@@ -1,16 +1,14 @@
 package com.shopmall.bawei.shopmall1805;
 
 import android.content.Intent;
-import android.view.View;
 import android.widget.ImageView;
 
-import androidx.core.view.ViewCompat;
-import androidx.core.view.ViewPropertyAnimatorListener;
-
-import com.shopmall.bawei.framework.SimpleBaseActivity;
+import com.shopmall.bawei.framework.BaseActivity;
+import com.shopmall.bawei.framework.IPresenter;
+import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
-public class WelcomeActivity extends SimpleBaseActivity{
+public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
     private ImageView imgWel;
 
 
@@ -26,6 +24,10 @@ public class WelcomeActivity extends SimpleBaseActivity{
 
     @Override
     protected void initListener() {
+    }
+
+    @Override
+    protected void initPresenter() {
     }
 
     @Override

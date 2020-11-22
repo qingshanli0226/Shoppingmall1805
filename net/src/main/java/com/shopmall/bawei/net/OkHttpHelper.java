@@ -1,5 +1,9 @@
 package com.shopmall.bawei.net;
 
+import android.util.Log;
+
+import com.shopmall.bawei.common.UrlHelper;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -31,6 +35,7 @@ public class OkHttpHelper {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         MyNetApi api = retrofit.create(MyNetApi.class);
+        Log.i("TAG", "createNetApi: "+api);
         return api;
     }
 }
