@@ -77,6 +77,9 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
         homeAdapter.addOneData(homeBean.getResult().getBanner_info());
         homeAdapter.addOneData(homeBean.getResult().getChannel_info());
         homeAdapter.addOneData(homeBean.getResult().getAct_info());
+        homeAdapter.addOneData(homeBean.getResult().getSeckill_info());
+        homeAdapter.addOneData(homeBean.getResult().getRecommend_info());
+        homeAdapter.addOneData(homeBean.getResult().getHot_info());
     }
 
     @Override
