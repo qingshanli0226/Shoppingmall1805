@@ -34,6 +34,7 @@
       <list>
         <option value="Interface" />
         <option value="Kotlin Interface" />
+        <option value="layoutResourceFile" />
         <option value="Class" />
       </list>
     </option>
@@ -50,10 +51,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/res/mipmap" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.shopmall.bawei.shopmall1805.home" />
+    </key>
     <key name="android.template.1219811837">
       <recent name="com.shopmall.bawei.user" />
     </key>
@@ -61,11 +68,11 @@
       <recent name="com.shopmall.bawei.shopmall1805" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\common\src\main\res\mipmap" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\java\com\shopmall\bawei\shopmall1805" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main" />
-      <recent name="F:\five\Shoppingmall1805\net\src\main\java\com\example\net" />
     </key>
   </component>
   <component name="RunManager">
@@ -142,14 +149,18 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1605871054679">
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1606046254973">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1605871054679" />
-    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605848719221">
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606046254973" />
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606043233167">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605848719221" />
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/75.0.1845.1080@75.0.1845.1080" timestamp="1606043233167" />
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605918316080">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605918316080" />
     <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1605857538881">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -170,10 +181,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state width="1802" height="627" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1605850979656">
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606041364033">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605850979656" />
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606041364033" />
     <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1605869095650">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>

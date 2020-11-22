@@ -5,7 +5,7 @@ import android.os.Handler;
 
 import com.example.framework.base.BaseActivity;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.app.MainActivity;
 
 
 public class SplashActivity extends BaseActivity {

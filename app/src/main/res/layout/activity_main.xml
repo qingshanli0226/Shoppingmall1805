@@ -5,21 +5,23 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.MainActivity">
+    tools:context=".app.MainActivity">
 
-    <android.support.v4.view.ViewPager
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_weight="9"
         />
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/comm_main"
         app:tl_textUnselectColor="#535353"
         app:tl_textSelectColor="#ff4040"
         app:tl_textBold="true"
-        app:tl_textsize="20sp"
+        app:tl_textsize="15sp"
+
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/comm_bg_main"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 </LinearLayout>

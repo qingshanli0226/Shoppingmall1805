@@ -3,7 +3,7 @@
     package="com.shopmall.bawei.shopmall1805">
 
     <application
-        android:name=".ShopMallApp"
+        android:name=".app.ShopMallApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="XXX商城"
@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MainActivity">
+        <activity android:name=".app.MainActivity">
 
         </activity>
     </application>
