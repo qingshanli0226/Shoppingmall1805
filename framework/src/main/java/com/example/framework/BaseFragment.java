@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
+
     protected P httpresetnter;
 
     @Nullable
@@ -18,7 +19,9 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
         initView(inflate);
         initPreseter();
         initdate();
-        httpresetnter.attchView((V)this);
+        if (httpresetnter!=null) {
+            httpresetnter.attchView((V) this);
+        }
         return inflate;
     }
     protected abstract void initPreseter();
@@ -29,6 +32,9 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
     @Override
     public void onDestroy() {
         super.onDestroy();
-        httpresetnter.ondechView();
+        if (httpresetnter!=null){
+            httpresetnter.ondechView();
+        }
+
     }
 }

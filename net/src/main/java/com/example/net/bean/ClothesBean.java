@@ -4,14 +4,15 @@ import java.util.List;
 
 public class ClothesBean {
 
+
     /**
-     * p_catalog_id : 64
+     * p_catalog_id : 3
      * parent_id : 0
-     * name : 外套
+     * name : 小裙子
      * pic :
      * is_deleted : 0
-     * child : [{"p_catalog_id":"65","parent_id":"64","name":"日常","pic":"/product_catalog/1446017786075.jpg","is_deleted":"0"},{"p_catalog_id":"111","parent_id":"64","name":"汉风","pic":"/product_catalog/1465384012358.jpg","is_deleted":"0"},{"p_catalog_id":"67","parent_id":"64","name":"和风","pic":"/product_catalog/1446017802214.jpg","is_deleted":"0"},{"p_catalog_id":"68","parent_id":"64","name":"lolita","pic":"/product_catalog/1446017835551.jpg","is_deleted":"0"}]
-     * hot_product_list : [{"product_id":"6633","channel_id":"8","brand_id":"394","p_catalog_id":"67","supplier_type":"2","supplier_code":"1101037","name":"【画影】现货  小狐狸羽织 ","cover_price":"132.00","brief":"红黑款是现货哦·~现货不配送发带~~红黑款是现货哦·~现货不配送发带~~红黑款是现货哦·~现货不配送发带~~ 重要的事情说三次~","figure":"/1466759461799.jpg","sell_time_start":"1464019200","sell_time_end":"1464624000"},{"product_id":"2855","channel_id":"3","brand_id":"258","p_catalog_id":"65","supplier_type":"2","supplier_code":"2105003","name":"【宅漫周边店】柴犬doge周边 可爱萌 牛角扣学院风呢子大衣 动漫外套","cover_price":"168.00","brief":"","figure":"/1476170715116.jpg","sell_time_start":"1447776000","sell_time_end":"1448380800"},{"product_id":"5605","channel_id":"8","brand_id":"234","p_catalog_id":"67","supplier_type":"2","supplier_code":"2101001","name":"【古怪舍】原创 日本和风 招财猫和服浴衣 外套 空调开衫A8","cover_price":"99.00","brief":"","figure":"/1459131888532.jpg","sell_time_start":"1459094400","sell_time_end":"1459699200"},{"product_id":"2406","channel_id":"8","brand_id":"23","p_catalog_id":"65","supplier_type":"2","supplier_code":"1101004","name":"【绝对萌域】舰队Collection 北方酱 纯棉拉链连帽卫衣外套秋冬","cover_price":"139.92","brief":"已到货，发货中","figure":"/1445568698438.jpg","sell_time_start":"1478772000","sell_time_end":"1446134400"},{"product_id":"4226","channel_id":"8","brand_id":"5","p_catalog_id":"65","supplier_type":"2","supplier_code":"1801007","name":"【 三色瑾】美少女的冬天 长款风衣 LOLITA 日常 哥特风衣","cover_price":"280.60","brief":"","figure":"/1453477900441.jpg","sell_time_start":"1453392000","sell_time_end":"1453996800"},{"product_id":"2653","channel_id":"8","brand_id":"191","p_catalog_id":"65","supplier_type":"2","supplier_code":"1101004","name":"【绝对萌域】请问您今天要来点兔子吗 香风智乃 纯棉卫衣外套","cover_price":"128.00","brief":"","figure":"/1447036942992.jpg","sell_time_start":"1478772000","sell_time_end":"1447603200"}]
+     * child : [{"p_catalog_id":"10","parent_id":"3","name":"古风","pic":"/product_catalog/1446016297307.jpg","is_deleted":"0"},{"p_catalog_id":"11","parent_id":"3","name":"和风","pic":"/product_catalog/1446016509141.jpg","is_deleted":"0"},{"p_catalog_id":"12","parent_id":"3","name":"lolita","pic":"/product_catalog/1446016728621.jpg","is_deleted":"0"},{"p_catalog_id":"91","parent_id":"3","name":"日常","pic":"/product_catalog/1446444753067.jpg","is_deleted":"0"}]
+     * hot_product_list : [{"product_id":"2704","channel_id":"6","brand_id":"230","p_catalog_id":"3","supplier_type":"1","supplier_code":"0","name":"中华风lolita -山海经 凤凰图  JSK","cover_price":"300.00","brief":"","figure":"/1447239453626.jpg","sell_time_start":"1447171200","sell_time_end":"1447776000"},{"product_id":"3571","channel_id":"8","brand_id":"259","p_catalog_id":"12","supplier_type":"2","supplier_code":"1801005","name":"【INFANTA.婴梵塔】学院风尖领外套/大衣","cover_price":"287.00","brief":"","figure":"/1450433177397.jpg","sell_time_start":"1450368000","sell_time_end":"1450972800"},{"product_id":"589","channel_id":"8","brand_id":"266","p_catalog_id":"12","supplier_type":"2","supplier_code":"1801001","name":"定制【Neverland 原创】直发 烫金lolita 人鱼之歌 高腰JSK连衣裙","cover_price":"403.04","brief":"45天工期","figure":"/1438772068067.jpg","sell_time_start":"1478772000","sell_time_end":"1439308800"},{"product_id":"5970","channel_id":"8","brand_id":"356","p_catalog_id":"91","supplier_type":"2","supplier_code":"1101004","name":"【绝对萌域】 黑白猫咪 黑喵咪 短袖连衣裙","cover_price":"121.44","brief":"猫咪是神秘的小动物。传说它们能通灵和驱魔，给主人带来好运。可猫咪也被认为是女巫役使的邪恶精灵，是恶魔的化身。萌域为爱美又略微中二的宅MM们，设计了黑猫、白猫主题裙装，不同的风格、一样的可爱。白猫套装穿上性感俏皮，黑色连衣裙让你像猫咪一样优雅又有气质。","figure":"/1463385771450.jpg","sell_time_start":"1478772000","sell_time_end":"1461254400"},{"product_id":"5181","channel_id":"6","brand_id":"394","p_catalog_id":"10","supplier_type":"2","supplier_code":"1101037","name":"【画影】汉元素 古风日常\u2014\u2014 仲夏 ","cover_price":"250.00","brief":"","figure":"/1457504361484.jpg","sell_time_start":"1457452800","sell_time_end":"1458057600"},{"product_id":"7729","channel_id":"8","brand_id":"432","p_catalog_id":"91","supplier_type":"2","supplier_code":"1601008","name":"现货【TUMO】 雨库洛牌元素 软妹森女系短袖连衣裙","cover_price":"179.00","brief":"","figure":"/supplier/1467687105197.jpg","sell_time_start":"0","sell_time_end":"0"}]
      */
 
     private String p_catalog_id;
@@ -80,10 +81,10 @@ public class ClothesBean {
 
     public static class ChildBean {
         /**
-         * p_catalog_id : 65
-         * parent_id : 64
-         * name : 日常
-         * pic : /product_catalog/1446017786075.jpg
+         * p_catalog_id : 10
+         * parent_id : 3
+         * name : 古风
+         * pic : /product_catalog/1446016297307.jpg
          * is_deleted : 0
          */
 
@@ -136,18 +137,18 @@ public class ClothesBean {
 
     public static class HotProductListBean {
         /**
-         * product_id : 6633
-         * channel_id : 8
-         * brand_id : 394
-         * p_catalog_id : 67
-         * supplier_type : 2
-         * supplier_code : 1101037
-         * name : 【画影】现货  小狐狸羽织
-         * cover_price : 132.00
-         * brief : 红黑款是现货哦·~现货不配送发带~~红黑款是现货哦·~现货不配送发带~~红黑款是现货哦·~现货不配送发带~~ 重要的事情说三次~
-         * figure : /1466759461799.jpg
-         * sell_time_start : 1464019200
-         * sell_time_end : 1464624000
+         * product_id : 2704
+         * channel_id : 6
+         * brand_id : 230
+         * p_catalog_id : 3
+         * supplier_type : 1
+         * supplier_code : 0
+         * name : 中华风lolita -山海经 凤凰图  JSK
+         * cover_price : 300.00
+         * brief :
+         * figure : /1447239453626.jpg
+         * sell_time_start : 1447171200
+         * sell_time_end : 1447776000
          */
 
         private String product_id;

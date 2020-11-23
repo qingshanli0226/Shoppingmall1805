@@ -2,9 +2,11 @@ package com.example.net;
 
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.ClothesBean;
+import com.example.net.bean.HomeBean;
 import com.example.net.bean.LoginBean;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
 import retrofit2.http.FieldMap;
@@ -72,7 +74,7 @@ public interface INetPresetenterWork {
 
     //主页Fragment路径
     @GET("HOME_URL.json")
-    Observable<BaseBean<ClothesBean>> home();
+    Observable<BaseBean<HomeBean>> home();
     //分类Fragment里面的标签Fragment页面数据
     @GET("TAG_URL.json")
     Observable<BaseBean<ClothesBean>> tag();
