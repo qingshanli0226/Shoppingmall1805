@@ -23,12 +23,33 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
-
-
+    implementation 'androidx.coordinatorlayout:coordinatorlayout:1.0.0'
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar'//flycotablayout
+    implementation 'com.youth.banner:banner:1.4.10'//轮播图
+    //网络框架
+    api 'com.squareup.okhttp3:okhttp:3.11.0'
+    //日志拦截器
+    api 'com.squareup.okhttp3:logging-interceptor:3.10.0'
+    //网络请求封装框架
+    api 'com.squareup.retrofit2:retrofit:2.4.0'
+    //网络请求对象解析器
+    api 'com.squareup.retrofit2:converter-gson:2.4.0'
+    //线程异常任务调度
+    api 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    //异步线程
+    api 'io.reactivex.rxjava2:rxjava:2.2.6'
+    api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    //异步线程生命周期管理
+    api 'com.trello.rxlifecycle2:rxlifecycle-components:2.2.1'
+    //权限动态申请
+    api 'com.tbruyelle.rxpermissions2:rxpermissions:+'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+    implementation 'com.android.support:recyclerview-v7:30.0.0'//recyclerview
+    implementation 'com.github.bumptech.glide:glide:4.9.0'//glide依赖
     implementation project(':user')
     implementation project(':shopcar')
     implementation project(':pay')
@@ -37,5 +58,4 @@ dependencies {
     implementation project(':point')
     implementation project(':net')
     implementation project(':common')
-
 }

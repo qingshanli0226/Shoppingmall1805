@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.app;
+package com.shopmall.bawei.shopmall1805.app.ui;
 
 import android.content.Intent;
 
@@ -40,7 +40,5 @@ public class FirstActivity extends BaseActivity {
     protected void createPresenter() {
 
     }
-
-
 
 }

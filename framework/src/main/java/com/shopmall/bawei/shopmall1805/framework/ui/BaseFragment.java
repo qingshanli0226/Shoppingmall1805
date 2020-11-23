@@ -27,7 +27,6 @@ public abstract class BaseFragment<P extends IPresenter> extends Fragment {
         initData();
         initEvent();
     }
-
     protected abstract void initEvent();
 
     protected abstract void createPresenter();

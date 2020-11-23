@@ -5,18 +5,54 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".app.MainActivity">
+    tools:context=".app.ui.MainActivity">
 
     <FrameLayout
+        android:id="@+id/framlayout"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_weight="10"
         >
     </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="10dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#E7E7E7"
+            android:layout_marginTop="9dp"
+            >
+        </TextView>
+        <ImageView
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:src="@drawable/home_bottom_parent_bg"
+            android:scaleType="fitXY"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="1dp"
+            android:layout_height="1dp"
+            android:layout_weight="1"
+            android:background="#E7E7E7"
+            android:layout_marginTop="9dp"
+            >
+        </TextView>
+    </LinearLayout>
     <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/commons"
         android:layout_width="match_parent"
         android:layout_height="1dp"
         android:layout_weight="1"
+        app:tl_textSelectColor="@color/text_down_select"
+        app:tl_textUnselectColor="@color/text_down_un_select"
+        app:tl_iconHeight="35dp"
+        app:tl_iconWidth="35dp"
         >
     </com.flyco.tablayout.CommonTabLayout>
 </LinearLayout>

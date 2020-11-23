@@ -25,7 +25,7 @@ public class RetrofitUtils {
         return retrofitUtils;
     }
     public static Retrofit retrofit;
-    public static Retrofit getRetrofit(String head) {
+    public  Retrofit getRetrofit(String head) {
         if(retrofit == null){
             createRetrofit(head);
         }
