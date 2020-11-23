@@ -31,7 +31,7 @@ public class MyHttp {
                 .addInterceptor(httpLoggingInterceptor);
         Retrofit.Builder builder1 = new Retrofit.Builder();
         builder1
-                .baseUrl(UrlHelp.BaseUrl)
+                .baseUrl(UrlHelp.BASE)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
