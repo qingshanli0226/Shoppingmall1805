@@ -9,6 +9,11 @@ import framework.BaseFragment;
 public
 class item_point extends BaseFragment {
     @Override
+    protected void createPresenter() {
+
+    }
+
+    @Override
     protected void OnClickListener() {
 
     }

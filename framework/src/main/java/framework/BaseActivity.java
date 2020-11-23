@@ -8,7 +8,7 @@ import android.widget.Toast;
 
 
 public abstract
-class BaseActivity extends AppCompatActivity {
+class BaseActivity extends AppCompatActivity implements  Contact.CenterUserIview {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

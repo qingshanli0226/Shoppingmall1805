@@ -7,7 +7,12 @@ import com.shopmall.bawei.shopmall1805.R;
 import framework.BaseFragment;
 
 public
-class item_shopcar extends BaseFragment {
+class item_shopcar extends BaseFragment  {
+    @Override
+    protected void createPresenter() {
+
+    }
+
     @Override
     protected void OnClickListener() {
 

@@ -29,11 +29,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void OnClickListener() {
-        fragmentlist.add(new item_shopcar());//主页面
-        fragmentlist.add(new item_order());//分类
+        fragmentlist.add(new item_order());//主页
+        fragmentlist.add(new item_shopcar());//分类
         fragmentlist.add(new item_pay());//购物车
         fragmentlist.add(new item_point());//个人中心
-
         tiltelist.add(new tliteUser("主页",0,0));
         tiltelist.add(new tliteUser("分类",0,0));
         tiltelist.add(new tliteUser("购物车",0,0));

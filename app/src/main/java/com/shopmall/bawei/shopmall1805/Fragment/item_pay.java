@@ -9,6 +9,11 @@ import framework.BaseFragment;
 public
 class item_pay extends BaseFragment {
     @Override
+    protected void createPresenter() {
+
+    }
+
+    @Override
     protected void OnClickListener() {
 
     }
@@ -22,4 +27,6 @@ class item_pay extends BaseFragment {
     protected int getlayoutId() {
         return R.layout.item_pay;
     }
+
+
 }

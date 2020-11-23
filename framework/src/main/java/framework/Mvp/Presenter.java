@@ -10,6 +10,8 @@ class Presenter <R extends Repository,V extends Iview> {
     public Presenter(V v) {
         iview = new SoftReference<>(v);
         createRepostory();
+
+
     }
 
     protected abstract void createRepostory();

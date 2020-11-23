@@ -13,17 +13,18 @@ interface Contact {
     }
 
     interface centerUserImodel extends Imodel {
-
+         void gethomeurl();
     }
 
     abstract class centerUserRepostory extends Repository<centerUserImodel> {
-
+         public abstract void getHomeur();
     }
 
-    abstract class centetUserRepostory extends Presenter<centerUserRepostory,CenterUserIview> {
+    abstract class centetUserpepostory extends Presenter<centerUserRepostory,CenterUserIview> {
 
-        public centetUserRepostory(CenterUserIview centerUserIview) {
+        public centetUserpepostory(CenterUserIview centerUserIview) {
             super(centerUserIview);
         }
+        public abstract void getHomeurl(Userc userc);
     }
 }

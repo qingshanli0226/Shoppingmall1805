@@ -8,8 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import framework.mvpc.jsonPresenter;
+
 public abstract
-class BaseFragment extends Fragment {
+class BaseFragment<P extends jsonPresenter> extends Fragment implements Contact.CenterUserIview {
+    protected  P Presenter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        createPresenter();
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -18,6 +28,9 @@ class BaseFragment extends Fragment {
         OnClickListener();
         return inflate;
     }
+
+    protected abstract void createPresenter();
+
 
     protected abstract void OnClickListener();
 
