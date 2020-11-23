@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
 
     public Context context;
@@ -23,8 +24,12 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return initView();
+        View view = inflater.inflate(getLayoutId(), null);
+        initView(view);
+        return view;
     }
+
+    protected abstract int getLayoutId();
 
 
     @Override
@@ -38,13 +43,13 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
         }
     }
 
-    private void initPresenter() {
+    protected void initPresenter() {
     }
 
-    private void initData() {
+    protected void initData() {
     }
 
-    protected abstract View initView();
+    protected abstract void initView(View view);
 
 
 }
