@@ -54,7 +54,6 @@ public class Fragment_Primere extends BaseFragment<PrimerePresenter, PrimereCont
 
     @Override
     public void onskerk(HomeBean homeBeanList) {
-        Toast.makeText(getContext(), ""+homeBeanList.getHot_info().size(), Toast.LENGTH_SHORT).show();
         primereAdpter.addOneData(homeBeanList.getBanner_info());
         primereAdpter.addOneData(homeBeanList.getChannel_info());
         primereAdpter.addOneData(homeBeanList.getAct_info());

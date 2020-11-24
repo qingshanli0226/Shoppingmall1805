@@ -36,12 +36,13 @@ public class Fragment_Classfid extends BaseFragment {
         btFen = inflate.findViewById(R.id.bt_fen);
         btBiao = inflate.findViewById(R.id.bt_biao);
         vrFen = inflate.findViewById(R.id.vr_fen);
+        list.add(fragment_fen);
+        list.add(fragment_biao);
     }
 
     @Override
     protected void initdate() {
-        list.add(fragment_fen);
-        list.add(fragment_biao);
+
         fragment_fen_adpter = new Fragment_fen_Adpter(getActivity().getSupportFragmentManager(),list);
         vrFen.setAdapter(fragment_fen_adpter);
         btFen.setBackgroundResource(R.drawable.biao_fe_fen);

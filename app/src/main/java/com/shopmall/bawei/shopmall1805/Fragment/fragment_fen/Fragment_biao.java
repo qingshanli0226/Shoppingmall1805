@@ -1,30 +1,61 @@
 package com.shopmall.bawei.shopmall1805.Fragment.fragment_fen;
 
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.view.ViewGroup;
+import android.widget.Toast;
 
+import com.example.framework.BaseActivity;
+import com.example.framework.BaseFragment;
+import com.example.framework.IPresenter;
+import com.example.framework.IView;
+import com.example.net.bean.Biaobean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.adpter.BiaoAdpter;
+import com.shopmall.bawei.shopmall1805.contract.BiaoContract;
+import com.shopmall.bawei.shopmall1805.presenter.BiaoPresenter;
 
-/**
- * A simple {@link Fragment} subclass.
- */
-public class Fragment_biao extends Fragment {
+import java.util.List;
+
+public class Fragment_biao extends BaseFragment<BiaoPresenter, BiaoContract.biaoView> implements BiaoContract.biaoView {
 
 
-    public Fragment_biao() {
-        // Required empty public constructor
+    private RecyclerView rvBiao;
+    private BiaoAdpter biaoAdpter = new BiaoAdpter();
+    @Override
+    protected void initPreseter() {
+        httpresetnter = new BiaoPresenter();
+    }
+
+    @Override
+    protected void initView(View inflate) {
+        //初始化控件
+        rvBiao = inflate.findViewById(R.id.rv_biao);
+        rvBiao.setLayoutManager(new GridLayoutManager(getContext(),3));
+        rvBiao.setAdapter(biaoAdpter);
+    }
+
+    @Override
+    protected void initdate() {
+        httpresetnter.getbiao();
     }
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_biao, container, false);
+    protected int getlayoutid() {
+        return R.layout.fragment_fragment_biao;
     }
 
+    @Override
+    public void onbiao(List<Biaobean.ResultBean> beans) {
+        Toast.makeText(getContext(), ""+beans.get(0).getName(), Toast.LENGTH_SHORT).show();
+        biaoAdpter.updataData(beans);
+        biaoAdpter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onErroy(String message) {
+
+    }
 }

@@ -24,7 +24,7 @@ public class Retrofitcreators {
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         Retrofit build = new Retrofit.Builder()
-                .baseUrl(Confing.BASE_JSON)
+                .baseUrl(Confing.BASE_URL)
                 .client(okHttpClient)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
