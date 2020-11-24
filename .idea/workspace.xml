@@ -16,6 +16,9 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
   <component name="ExecutionTargetManager" SELECTED_TARGET="Pixel_3_XL_API_24" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
@@ -32,9 +35,10 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Interface" />
         <option value="Kotlin Interface" />
         <option value="layoutResourceFile" />
+        <option value="resourceFile" />
+        <option value="Interface" />
         <option value="Class" />
       </list>
     </option>
@@ -51,10 +55,16 @@
   </component>
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/common/src/main/res/mipmap" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/layout" />
+    <property name="project.structure.last.edited" value="Dependencies" />
+    <property name="project.structure.proportion" value="0.17" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
   </component>
   <component name="RecentsManager">
+    <key name="ExtractSuperBase.RECENT_KEYS">
+      <recent name="com.shoppmall.common.adapter" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
     </key>
@@ -64,15 +74,15 @@
     <key name="android.template.1219811837">
       <recent name="com.shopmall.bawei.user" />
     </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="com.shopmall.bawei.shopmall1805" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\five\Shoppingmall1805\common\src\main\res\mipmap" />
-      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
+      <recent name="F:\five\Shoppingmall1805\common\src\main\res\mipmap" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\java\com\shopmall\bawei\shopmall1805" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.shopmall.bawei.shopmall1805" />
     </key>
   </component>
   <component name="RunManager">
@@ -149,45 +159,65 @@
     <servers />
   </component>
   <component name="WindowStateProjectService">
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1606046254973">
+    <state x="367" y="414" key="#PSD" timestamp="1606177540571">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606046254973" />
-    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606043233167">
+    <state x="367" y="414" key="#PSD/75.0.1845.1080@75.0.1845.1080" timestamp="1606177540571" />
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1606182670748">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/75.0.1845.1080@75.0.1845.1080" timestamp="1606043233167" />
+    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606182670748" />
+    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606127332784">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606127332784" />
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606177748038">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/75.0.1845.1080@75.0.1845.1080" timestamp="1606177748038" />
     <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1605918316080">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1605918316080" />
+    <state x="1039" y="298" key="AndroidCreateResourceFileDialog" timestamp="1606131807402">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1039" y="298" key="AndroidCreateResourceFileDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606131807402" />
     <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1605857538881">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1605857538881" />
-    <state width="1802" height="627" key="GridCell.Tab.0.bottom" timestamp="1605871084010">
+    <state width="876" height="401" key="GridCell.Tab.0.bottom" timestamp="1606181171991">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="627" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
-    <state width="1802" height="627" key="GridCell.Tab.0.center" timestamp="1605871084010">
+    <state width="876" height="401" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606181171991" />
+    <state width="876" height="401" key="GridCell.Tab.0.center" timestamp="1606181171991">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="627" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
-    <state width="1802" height="627" key="GridCell.Tab.0.left" timestamp="1605871084009">
+    <state width="876" height="401" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606181171991" />
+    <state width="876" height="401" key="GridCell.Tab.0.left" timestamp="1606181171991">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="627" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084009" />
-    <state width="1802" height="627" key="GridCell.Tab.0.right" timestamp="1605871084010">
+    <state width="876" height="401" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606181171991" />
+    <state width="876" height="401" key="GridCell.Tab.0.right" timestamp="1606181171991">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="627" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1605871084010" />
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606041364033">
+    <state width="876" height="401" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606181171991" />
+    <state x="1258" y="320" key="chooseDestDirectoryDialog" timestamp="1606129655596">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606041364033" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1605869095650">
+    <state x="1258" y="320" key="chooseDestDirectoryDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606129655596" />
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606176729149">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1605869095650" />
+    <state x="1139" y="367" key="com.intellij.ide.util.TipDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606176729149" />
+    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension" timestamp="1606177538183">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension/75.0.1845.1080@75.0.1845.1080" timestamp="1606177538183" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1606133777658">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606133777658" />
   </component>
 </project>

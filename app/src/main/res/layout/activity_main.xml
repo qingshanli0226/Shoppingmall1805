@@ -7,21 +7,23 @@
     android:orientation="vertical"
     tools:context=".app.MainActivity">
 
-    <androidx.viewpager.widget.ViewPager
+    <com.shopmall.bawei.shopmall1805.MyVP
         android:id="@+id/vp_main"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="9"
         />
     <com.flyco.tablayout.CommonTabLayout
+        android:background="@drawable/home_bottom_parent_bg"
         android:id="@+id/comm_main"
+        app:tl_iconHeight="30dp"
+        app:tl_iconWidth="30dp"
+        android:paddingTop="15dp"
         app:tl_textUnselectColor="#535353"
         app:tl_textSelectColor="#ff4040"
         app:tl_textBold="true"
-        app:tl_textsize="15sp"
-
+        app:tl_textsize="10sp"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
+        android:layout_height="60dp"
         />
 </LinearLayout>

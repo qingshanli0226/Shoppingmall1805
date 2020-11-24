@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.adapter;
+package com.shoppmall.common.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

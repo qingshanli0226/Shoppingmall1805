@@ -1,8 +1,6 @@
 package com.shopmall.bawei.shopmall1805.app;
 
 
-import android.os.Bundle;
-
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
@@ -10,14 +8,15 @@ import com.example.framework.base.BaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.shopmall.bawei.shopmall1805.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adapter.FragmentAdapter;
 import com.shopmall.bawei.shopmall1805.bean.VPTab;
 import com.shopmall.bawei.shopmall1805.find.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.shoppingcar.ShoppingCarFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.user.UserFragment;
+import com.shoppmall.common.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +29,7 @@ public class MainActivity extends BaseActivity {
     private List<Fragment> fragments=new ArrayList<>();
 
     @BindView(R.id.vp_main)
-    ViewPager vpMain;
+    MyVP vpMain;
     @BindView(R.id.comm_main)
     CommonTabLayout commMain;
 
@@ -52,6 +51,7 @@ public class MainActivity extends BaseActivity {
         fragments.add(new FindFragment());
         fragments.add(new ShoppingCarFragment());
         fragments.add(new UserFragment());
+        vpMain.setScanScroll(false);
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
         commMain.setOnTabSelectListener(new OnTabSelectListener() {
             @Override

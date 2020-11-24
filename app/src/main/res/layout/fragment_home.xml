@@ -3,18 +3,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".home.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
+        android:background="#ed3f3f"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
        <RelativeLayout
-
            android:layout_width="match_parent"
            android:layout_height="match_parent">
-           
+           <LinearLayout
+               android:background="@drawable/item"
+               android:layout_width="320dp"
+               android:layout_centerVertical="true"
+               android:layout_height="40dp"
+               android:orientation="horizontal"
+               android:layout_margin="5dp"
+               >
+               <ImageView
+                   android:id="@+id/search_btn_home"
+                   android:layout_marginLeft="10dp"
+                   android:layout_gravity="center_vertical"
+                   android:src="@drawable/home_search_icon"
+                   android:layout_width="20dp"
+                   android:layout_height="20dp"
+                   />
+               <EditText
+                   android:hint="输入搜索信息"
+                   android:paddingLeft="10dp"
+                   android:textSize="13sp"
+                   android:singleLine="true"
+                   android:focusable="true"
+                   android:focusableInTouchMode="true"
+                   android:layout_gravity="bottom"
+                   android:id="@+id/search_et_home"
+                   android:layout_width="280dp"
+                   android:layout_height="match_parent"
+                   android:background="@drawable/item"
+                   />
+           </LinearLayout>
+           <LinearLayout
+               android:id="@+id/new_message"
+               android:layout_alignParentRight="true"
+               android:layout_centerVertical="true"
+               android:layout_width="50dp"
+               android:layout_height="50dp"
+               android:layout_marginRight="10dp"
+               android:gravity="center"
+               android:orientation="vertical"
+               >
+               <ImageView
+                   android:src="@drawable/new_message_icon"
+                   android:layout_width="30dp"
+                   android:layout_height="30dp"
+                   />
+               <TextView
+                   android:layout_width="wrap_content"
+                   android:layout_height="wrap_content"
+                   android:text="消息"
+                   android:textColor="#ffffff"
+                   android:textSize="15sp"
+                   />
+           </LinearLayout>
        </RelativeLayout>
     </androidx.appcompat.widget.Toolbar>
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_home_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        />
 </LinearLayout>

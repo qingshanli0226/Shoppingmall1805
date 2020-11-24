@@ -19,6 +19,7 @@ public class FindFragment extends BaseFragment {
 
     }
 
+
     @Override
     protected void initLisenter() {
 
