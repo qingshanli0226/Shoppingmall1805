@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.shopmall.bawei.shopmall1805"
-        minSdkVersion 15
+        minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -25,6 +25,8 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+    implementation 'com.android.support:recyclerview-v7:28.0.0'//recyclerview
     implementation project(':user')
     implementation project(':shopcar')
     implementation project(':pay')
@@ -33,27 +35,7 @@ dependencies {
     implementation project(':point')
     implementation project(':net')
     implementation project(':common')
-
-    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
-    implementation 'com.android.support:recyclerview-v7:28.0.0'//recyclerview
-    implementation 'com.youth.banner:banner:1.4.10'//轮播图
     implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'//flycotablayout
-
-
-
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.8'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-
-    //Retrofit依赖
-    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
-    //Gson converter gson解析
-    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
-
-    //RxJava2 Adapter
-    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
-    //okhttp
-    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
-
-    implementation 'com.github.bumptech.glide:glide:4.3.1'
+    implementation 'com.youth.banner:banner:1.4.10'//轮播图
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
 }

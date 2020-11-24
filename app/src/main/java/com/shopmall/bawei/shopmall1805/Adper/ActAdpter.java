@@ -10,6 +10,7 @@ import com.shopmall.bawei.shopmall1805.R;
 
 import java.util.List;
 
+import framework.BaseRVAdapter;
 import mode.HomeBean;
 import view.Constants;
 
@@ -25,7 +26,7 @@ class ActAdpter extends BaseQuickAdapter<HomeBean.ResultBean.HotInfoBean, BaseVi
         Glide.with(mContext).load(Constants.BASE_URl_IMAGE+item.getFigure())
                 .into((ImageView)helper.getView(R.id.hot_Image_one));
 
-        //helper.setText(R.id.hot_text_one,item.getCover_price());
+        helper.setText(R.id.hot_text_one,item.getCover_price());
         helper.setText(R.id.hot_text_one,item.getName());
     }
 }

@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
         android:layout_weight="0.5"
         android:orientation="horizontal"
         android:background="#C60505">
@@ -28,39 +31,75 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         android:layout_weight="1">
         <com.youth.banner.Banner
             android:id="@+id/Banner_FragMent"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="150dp"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.2">
+        android:layout_height="170dp"
+        android:layout_weight="1">
+
         <android.support.v7.widget.RecyclerView
             android:id="@+id/Wang_rv"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="170dp" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="150dp"
         android:layout_weight="1">
+
         <com.youth.banner.Banner
             android:id="@+id/Banner_FragMent2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="150dp" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="3">
+        android:layout_height="230dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="26sp"
+            android:text="今日限购"/>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/Seck_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="450dp"
+        android:layout_weight="1"
+        android:orientation="vertical">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="新品推荐"
+            android:textSize="26sp"/>
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rece_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="1500dp"
+        android:layout_weight="5">
         <android.support.v7.widget.RecyclerView
             android:id="@+id/zhu_rv"
             android:layout_width="match_parent"
             android:layout_height="match_parent"/>
     </LinearLayout>
+    </LinearLayout>
 
-</LinearLayout>
+</ScrollView>

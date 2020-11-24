@@ -1,5 +1,6 @@
 package framework;
 
+import mode.ClothesBean;
 import mode.HomeBean;
 
 public

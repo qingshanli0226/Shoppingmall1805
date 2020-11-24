@@ -104,6 +104,8 @@ public class HomeBean {
             this.recommend_info = recommend_info;
         }
 
+
+
         public static class SeckillInfoBean {
             /**
              * end_time : 1479052800
@@ -193,6 +195,26 @@ public class HomeBean {
                 public void setProduct_id(String product_id) {
                     this.product_id = product_id;
                 }
+
+                @Override
+                public String toString() {
+                    return "ListBean{" +
+                            "cover_price='" + cover_price + '\'' +
+                            ", figure='" + figure + '\'' +
+                            ", name='" + name + '\'' +
+                            ", origin_price='" + origin_price + '\'' +
+                            ", product_id='" + product_id + '\'' +
+                            '}';
+                }
+            }
+
+            @Override
+            public String toString() {
+                return "SeckillInfoBean{" +
+                        "end_time='" + end_time + '\'' +
+                        ", start_time='" + start_time + '\'' +
+                        ", list=" + list +
+                        '}';
             }
         }
 
@@ -229,6 +251,15 @@ public class HomeBean {
 
             public void setUrl(String url) {
                 this.url = url;
+            }
+
+            @Override
+            public String toString() {
+                return "ActInfoBean{" +
+                        "icon_url='" + icon_url + '\'' +
+                        ", name='" + name + '\'' +
+                        ", url='" + url + '\'' +
+                        '}';
             }
         }
 
@@ -291,6 +322,16 @@ public class HomeBean {
                 public void setUrl(String url) {
                     this.url = url;
                 }
+            }
+
+            @Override
+            public String toString() {
+                return "BannerInfoBean{" +
+                        "image='" + image + '\'' +
+                        ", option=" + option +
+                        ", type=" + type +
+                        ", value=" + value +
+                        '}';
             }
         }
 
@@ -364,6 +405,17 @@ public class HomeBean {
                     this.channel_id = channel_id;
                 }
             }
+
+            @Override
+            public String toString() {
+                return "ChannelInfoBean{" +
+                        "channel_name='" + channel_name + '\'' +
+                        ", image='" + image + '\'' +
+                        ", option=" + option +
+                        ", type=" + type +
+                        ", value=" + value +
+                        '}';
+            }
         }
 
         public static class HotInfoBean {
@@ -409,6 +461,16 @@ public class HomeBean {
 
             public void setProduct_id(String product_id) {
                 this.product_id = product_id;
+            }
+
+            @Override
+            public String toString() {
+                return "HotInfoBean{" +
+                        "cover_price='" + cover_price + '\'' +
+                        ", figure='" + figure + '\'' +
+                        ", name='" + name + '\'' +
+                        ", product_id='" + product_id + '\'' +
+                        '}';
             }
         }
 
@@ -456,6 +518,38 @@ public class HomeBean {
             public void setProduct_id(String product_id) {
                 this.product_id = product_id;
             }
+
+
+            @Override
+            public String toString() {
+                return "RecommendInfoBean{" +
+                        "cover_price='" + cover_price + '\'' +
+                        ", figure='" + figure + '\'' +
+                        ", name='" + name + '\'' +
+                        ", product_id='" + product_id + '\'' +
+                        '}';
+            }
         }
+
+        @Override
+        public String toString() {
+            return "ResultBean{" +
+                    "seckill_info=" + seckill_info +
+                    ", act_info=" + act_info +
+                    ", banner_info=" + banner_info +
+                    ", channel_info=" + channel_info +
+                    ", hot_info=" + hot_info +
+                    ", recommend_info=" + recommend_info +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "HomeBean{" +
+                "code=" + code +
+                ", msg='" + msg + '\'' +
+                ", result=" + result +
+                '}';
     }
 }

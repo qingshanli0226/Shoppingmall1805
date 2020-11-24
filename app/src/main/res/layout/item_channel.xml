@@ -1,21 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="80dp"
     android:layout_height="80dp">
     <ImageView
         android:id="@+id/channel_Image_one"
-        android:layout_width="match_parent"
-        android:layout_height="100dp"/>
-    <LinearLayout
-        android:layout_alignBottom="@+id/channel_Image_one"
-        android:layout_width="match_parent"
-        android:layout_height="30dp"
-        android:orientation="vertical">
+        android:layout_width="80dp"
+        android:layout_height="50dp"/>
         <TextView
             android:id="@+id/channel_text_tow"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_width="80dp"
+            android:layout_height="30dp"
+            android:layout_weight="0.5"
             android:gravity="center"/>
-    </LinearLayout>
-</RelativeLayout>
+</LinearLayout>

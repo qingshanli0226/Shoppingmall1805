@@ -1,5 +1,8 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Constants {
 //    public static final String BASE = "http://192.168.51.104:8080";
     //系统默认的模拟器就用这个ip
