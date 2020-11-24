@@ -3,6 +3,8 @@ package com.shopmall.bawei.shopmall1805.home;
 import android.Manifest;
 import android.os.Build;
 import android.os.Bundle;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,14 +19,31 @@ import com.shopmall.bawei.framework.IPresenter;
 import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.view.HomeFragment;
+import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends BaseActivity<IPresenter, IView> {
 
-    private Fragment[] fragments = new Fragment[] {
-            new HomeFragment()
-    };
+    private List<Fragment> fragments = new ArrayList();
+
+    private TypeTagFragment typeTagFragment;
+
+
+    private int position;
+    private RadioGroup rgMain;
+    private RadioButton rbHome;
+    private RadioButton rbType;
+    private RadioButton rbCommunity;
+    private RadioButton rbCart;
+    private RadioButton rbUser;
+
+    private FragmentManager manager;
+
+
+    private Fragment mContext;
+
 
     private Fragment currentFragment;
 
@@ -35,24 +54,86 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initListener() {
+        rgMain.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                FragmentTransaction transaction = manager.beginTransaction();
+                switch (checkedId){
+                    case R.id.rb_home:
 
+
+                        position = 0;
+                        break;
+                    case R.id.rb_type:
+                        position = 1;
+                        break;
+                    case R.id.rb_community:
+//                        position = 2;
+                        break;
+                    case R.id.rb_cart:
+//                        position = 3;
+                        break;
+                    case R.id.rb_user:
+//                        position = 4;
+                        break;
+
+                }
+                for (int i = 0; i < fragments.size() ; i++) {
+                    if(position == i){
+                        transaction.show(fragments.get(position));
+                    }else{
+                        transaction.hide(fragments.get(i));
+                    }
+                }
+                transaction.commit();
+            }
+
+        });
+        rgMain.check(R.id.rb_home);
     }
+
+
+
+//    private Fragment getFragment(int position) {
+//        if(fragments != null && fragments.size() > 0){
+//            Fragment fragment = fragments.get(position);
+//            return fragment;
+//        }
+//        return null;
+//    }
 
     @Override
     protected void initView() {
+        fragments.add(new HomeFragment());
+        rgMain = (RadioGroup) findViewById(R.id.rg_main);
+        rbHome = (RadioButton) findViewById(R.id.rb_home);
+        rbType = (RadioButton) findViewById(R.id.rb_type);
+        rbCommunity = (RadioButton) findViewById(R.id.rb_community);
+        rbCart = (RadioButton) findViewById(R.id.rb_cart);
+        rbUser = (RadioButton) findViewById(R.id.rb_user);
+        manager = getSupportFragmentManager();
+
         initPermission();
-        Fragment fragment = fragments[0];
+        Fragment fragment = fragments.get(0);
+
+        typeTagFragment = new TypeTagFragment();
+        fragments.add(typeTagFragment);
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        if(currentFragment != null){
-            fragmentTransaction.hide(currentFragment);
-        }
-        if(fragment.isAdded()){
-            fragmentTransaction.show(fragment).commit();
-        } else {
-            fragmentTransaction.add(R.id.frameLayoutId,fragment,fragment.getClass().getSimpleName()).commit();
-        }
-        currentFragment = fragment;
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(0));
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
+        fragmentTransaction.commit();
+
+//        if(currentFragment != null){
+//            fragmentTransaction.hide(currentFragment);
+//        }
+//        if(fragment.isAdded()){
+//            fragmentTransaction.show(fragment).commit();
+//        } else {
+//            fragmentTransaction.add(R.id.frameLayoutId,fragment,fragment.getClass().getSimpleName()).commit();
+//        }
+//        currentFragment = fragment;
     }
 
     private void initPermission() {

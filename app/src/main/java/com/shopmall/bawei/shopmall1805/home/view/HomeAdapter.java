@@ -25,9 +25,9 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     private final int BANNER_TYPE = 0;
     private final int CHANNEL_TYPE = 1;
     private final int ACT_TYPE = 2;
-    private final int HOT_TYPE = 5;
-    private final int RECOMMEND_TYPE = 4;
     private final int SECKILL_TYPE = 3;
+    private final int RECOMMEND_TYPE = 4;
+    private final int HOT_TYPE = 5;
 
     @Override
     protected int getLayoutId(int viewType) {
@@ -38,12 +38,12 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                 return R.layout.channel_item;
             case ACT_TYPE:
                 return R.layout.home_view_act;
-            case HOT_TYPE:
-                return R.layout.hot_item;
-            case RECOMMEND_TYPE:
-                return R.layout.recommend_item;
             case SECKILL_TYPE:
                 return R.layout.seckill_item;
+            case RECOMMEND_TYPE:
+                return R.layout.recommend_item;
+            case HOT_TYPE:
+                return R.layout.hot_item;
             default:return R.layout.banner_viewpager;
         }
     }
@@ -54,9 +54,9 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
             case 0: displayBanner(itemData, baseViewHolder);break;
             case 1: displayChannel(itemData, baseViewHolder);break;
             case 2: displayAct(itemData, baseViewHolder);break;
-            case 5: displayHot(itemData, baseViewHolder);break;
-            case 4: displayRecommend(itemData, baseViewHolder);break;
             case 3: displaySeckill(itemData, baseViewHolder);break;
+            case 4: displayRecommend(itemData, baseViewHolder);break;
+            case 5: displayHot(itemData, baseViewHolder);break;
             default:displayBanner(itemData,baseViewHolder);
         }
     }
@@ -197,9 +197,9 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
             case 0:return BANNER_TYPE;
             case 1:return CHANNEL_TYPE;
             case 2: return ACT_TYPE;
-            case 5: return HOT_TYPE;
-            case 4: return RECOMMEND_TYPE;
             case 3: return SECKILL_TYPE;
+            case 4: return RECOMMEND_TYPE;
+            case 5: return HOT_TYPE;
             default:
                 return BANNER_TYPE;
         }

@@ -41,7 +41,9 @@ public abstract class BaseFragment<P extends BasePresenter,V extends IView> exte
         initView();
         initListener();
         initPresenter();
-        httpPresenter.attachView((V)this);
+        if(httpPresenter != null) {
+            httpPresenter.attachView((V) this);
+        }
         initData();
     }
 
@@ -62,6 +64,8 @@ public abstract class BaseFragment<P extends BasePresenter,V extends IView> exte
     @Override
     public void onDestroy() {
         super.onDestroy();
-        httpPresenter.detachView();
+        if(httpPresenter != null) {
+            httpPresenter.detachView();
+        }
     }
 }
