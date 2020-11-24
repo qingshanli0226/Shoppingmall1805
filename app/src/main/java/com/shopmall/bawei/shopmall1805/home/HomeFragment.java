@@ -1,19 +1,15 @@
 package com.shopmall.bawei.shopmall1805.home;
 
-import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.contract.HomeContract;
+import com.shopmall.bawei.shopmall1805.home.adapter.HomeFragmentAdapter;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
-import com.youth.banner.Banner;
-import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,11 +17,11 @@ import java.util.List;
 
 public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.HomeView> implements com.shopmall.bawei.shopmall1805.home.contract.HomeContract.IHomeView {
 
-    private Banner banner;
-    private List<Integer> images = new ArrayList<>();
+
     private RecyclerView homeRv;
-    private List<HomeFragmentBean.ResultBean> list = new ArrayList<>();
-    private HomeListAdapter homeListAdapter;
+    private List<Object> list =new ArrayList<>();
+    private  HomeFragmentAdapter homeFragmentAdapter;
+
 
 
     @Override
@@ -35,28 +31,14 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.HomeV
 
     @Override
     protected void initView(View view) {
-        banner = view.findViewById(R.id.banner);
         homeRv = view.findViewById(R.id.rv);
-
-
-
-        images.add(R.drawable.ic_launcher_background);
-        images.add(R.drawable.ic_launcher_background);
-        images.add(R.drawable.ic_launcher_background);
-        images.add(R.drawable.ic_launcher_background);
-        banner.setImages(images);
-        banner.setImageLoader(new ImageLoader() {
-            @Override
-            public void displayImage(Context context, Object path, ImageView imageView) {
-                Glide.with(context).load(path).into(imageView);
-            }
-        });
-        banner.start();
-
-
-        homeListAdapter = new HomeListAdapter(list);
-        homeRv.setAdapter(homeListAdapter);
+//        homeListAdapter = new HomeListAdapter();
+//        homeRv.setAdapter(homeListAdapter);
         homeRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        homeFragmentAdapter = new HomeFragmentAdapter();
+        homeRv.setAdapter(homeFragmentAdapter);
+
+
     }
 
     @Override
@@ -73,8 +55,14 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.HomeV
 
     @Override
     public void onOk(HomeFragmentBean homeFragmentBean) {
-        list.add(homeFragmentBean.getResult());
-        homeListAdapter.notifyDataSetChanged();
+//        list.add(homeFragmentBean.getResult());
+        list.add(homeFragmentBean.getResult().getBanner_info());
+        list.add(homeFragmentBean.getResult().getChannel_info());
+        list.add(homeFragmentBean.getResult().getAct_info());
+        list.add(homeFragmentBean.getResult().getRecommend_info());
+        list.add(homeFragmentBean.getResult().getSeckill_info().getList());
+        list.add(homeFragmentBean.getResult().getHot_info());
+        homeFragmentAdapter.updataData(list);
     }
 
     @Override

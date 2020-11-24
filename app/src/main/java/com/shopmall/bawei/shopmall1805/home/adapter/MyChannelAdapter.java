@@ -24,6 +24,6 @@ public class MyChannelAdapter extends BaseQuickAdapter<HomeFragmentBean.ResultBe
     protected void convert(BaseViewHolder helper, HomeFragmentBean.ResultBean.ChannelInfoBean item) {
         ImageView imageView = helper.getView(R.id.channel_image);
         Glide.with(mContext).load(Contants.BASE_URl_IMAGE+item.getImage()).into(imageView);
-        helper.setText(R.id.channel_title,item.getChannel_name()+"-----");
+        helper.setText(R.id.channel_title,item.getChannel_name()+"");
     }
 }

@@ -44,7 +44,7 @@ public class HomeFragmentBean {
     }
 
 
-    public static class ResultBean implements MultiItemEntity {
+    public static class ResultBean  {
         /**
          * act_info : [{"icon_url":"/operation/img/1478169868/1478761370286.png","name":"尚硅谷福利专区之111.1专区","url":"/oper/1478169868app.html"},{"icon_url":"/operation/img/1478763176/1478762941492.png","name":"尚硅谷福利专区 黄金狗粮限量11.1元抢","url":"/oper/1478763176app.html"}]
          * banner_info : [{"image":"/1478770583834.png","option":3,"type":0,"value":{"url":"/act20161111?cyc_app=1"}},{"image":"/1478770583835.png","option":2,"type":0,"value":{"url":"/act20161111?cyc_app=1"}},{"image":"/1478770583836.png","option":1,"type":0,"value":{"url":"/act20161111?cyc_app=1"}}]
@@ -62,17 +62,7 @@ public class HomeFragmentBean {
         private List<ChannelInfoBean> channel_info;
         private List<HotInfoBean> hot_info;
         private List<RecommendInfoBean> recommend_info;
-        private int type;
 
-        public ResultBean(int type) {
-            this.type = type;
-        }
-
-
-        @Override
-        public int getItemType() {
-            return type;
-        }
 
 
         public SeckillInfoBean getSeckill_info() {
