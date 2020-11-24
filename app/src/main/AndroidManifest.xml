@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopmall.bawei.shopmall1805">
-
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
+       android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:name=".ShopmallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/atguigu_logo"

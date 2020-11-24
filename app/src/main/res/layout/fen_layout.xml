@@ -2,12 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-   <com.youth.banner.Banner
+   <androidx.recyclerview.widget.RecyclerView
        android:layout_width="match_parent"
-       android:layout_height="130dp"
-       android:id="@+id/m_banner"
-      ></com.youth.banner.Banner>
-
-
+       android:layout_height="match_parent"
+      android:id="@+id/fen_rv"
+      ></androidx.recyclerview.widget.RecyclerView>
 
 </LinearLayout>

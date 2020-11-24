@@ -15,10 +15,10 @@ public class UrlHelp {
 //    public static final String BASE = "http://192.168.191.1:8080";
 
     // 请求Json数据基本URL
-    public static final String BASE_URL_JSON = BASE+"/atguigu/json/";
+    public static final String BASE_URL_JSON = "/atguigu/json/";
 
     // 请求图片基本URL
-    public static final String BASE_URl_IMAGE = BASE+"/atguigu/img";
+    public static final String BASE_URl_IMAGE = "/atguigu/img";
 
 
     //小裙子
