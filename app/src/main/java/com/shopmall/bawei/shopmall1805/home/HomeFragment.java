@@ -6,16 +6,17 @@ import android.view.View;
 
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
+
 import com.shopmall.bawei.shopmall1805.base.BaseFragment;
-import com.shopmall.bawei.shopmall1805.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomeFragmentAdapter;
+import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.HomeView> implements com.shopmall.bawei.shopmall1805.home.contract.HomeContract.IHomeView {
+public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHomeView> implements HomeContract.IHomeView {
 
 
     private RecyclerView homeRv;

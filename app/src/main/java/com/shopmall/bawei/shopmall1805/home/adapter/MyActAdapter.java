@@ -8,7 +8,6 @@ import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
 
-import java.util.List;
 
 public class MyActAdapter extends BaseAdapter<HomeFragmentBean.ResultBean.ActInfoBean> {
     @Override
