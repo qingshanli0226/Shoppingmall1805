@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.apter;
+package com.shopmall.bawei.shopmall1805.apter.zhuyeapter;
 
 import com.flyco.tablayout.listener.CustomTabEntity;
 

@@ -5,13 +5,24 @@ import com.bawei.deom.IView;
 
 import java.util.List;
 
+import bean.BaseBean;
+import bean.ClothesBean;
+import bean.HomeBean;
+import bean.TAGBean;
+import bean.typebean.SkirtBean;
+
 public class UserCountroller {
+//    RecommendInfoBean
     public interface UserView extends IView {
-      void   RecommendedView();
+
+     void ChannelInfoBean(BaseBean<HomeBean> listBaseBean);
+     void TagBiew(List<TAGBean.ResultBean> resultBeanList);
+
     }
     public abstract static class UserShow extends BaseAroute<UserView>{
-       public abstract  void RecommendedShow();
 
-        ;
+      public  abstract  void  channelInfosSHow();
+        public  abstract  void  TagShow();
+
     }
 }

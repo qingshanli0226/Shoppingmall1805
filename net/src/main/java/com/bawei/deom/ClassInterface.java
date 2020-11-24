@@ -26,7 +26,6 @@ public  class ClassInterface {
         OkHttpClient build = new OkHttpClient.Builder()
                 .writeTimeout(5000, TimeUnit.SECONDS)
                 .readTimeout(5000, TimeUnit.SECONDS)
-//                .addInterceptor(getheard(""))
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         Retrofit retrofit=new Retrofit.Builder()

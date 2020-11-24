@@ -21,8 +21,8 @@ public abstract class BaseFragment<Prine extends IPrine,PView extends IView> ext
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view=inflater.inflate(getlayoutview(),null);
         initView(view);
-        initData();
         inPrine();
+        initData();
         prine.attach((PView)this);
         return view;
     }
