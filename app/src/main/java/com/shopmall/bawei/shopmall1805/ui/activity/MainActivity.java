@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Fragment3 fragment3;
     private Fragment4 fragment4;
     private Fragment5 fragment5;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,6 +110,10 @@ public class MainActivity extends AppCompatActivity {
 
         viewpagerMain = findViewById(R.id.viewpager_main);
         commonMain = findViewById(R.id.common_main);
+
+
+
+
 
     }
 }

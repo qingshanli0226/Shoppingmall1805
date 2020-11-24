@@ -14,9 +14,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class HttpsFactory {
 
-      private HttpsFactory httpsFactory=null;
+      private static HttpsFactory httpsFactory=null;
 
-      public HttpsFactory getHttpsFactory(){
+      public static HttpsFactory getHttpsFactory(){
           if (httpsFactory==null){
               httpsFactory=new HttpsFactory();
           }
@@ -34,7 +34,7 @@ public class HttpsFactory {
     private void ctreateRetorfit() {
 
         retrofit=new Retrofit.Builder()
-                 .baseUrl("")
+                 .baseUrl("http://49.233.0.68:8080")
                  .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(createclient())
@@ -51,7 +51,7 @@ public class HttpsFactory {
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
                 .addNetworkInterceptor(createhttplogging())
-                .addInterceptor(createceptor())
+//                .addInterceptor(createceptor())
                 .build();
         return build;
     }
@@ -66,7 +66,7 @@ public class HttpsFactory {
               public Response intercept(Chain chain) throws IOException {
                   Request request = chain.request();
                   request.newBuilder()
-                          .addHeader("","")
+                          .addHeader("token","1")
                           .build();
 
                   Response proceed = chain.proceed(request);
