@@ -33,7 +33,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onSkirt(typeBean);
+                        iView.onType(typeBean);
                     }
 
                     @Override
@@ -59,7 +59,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onJacket(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -83,7 +83,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onPants(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -107,7 +107,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onOvercoat(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -131,7 +131,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onAccessory(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -155,7 +155,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onBag(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -179,7 +179,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onDress(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -203,7 +203,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onProduct(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -227,7 +227,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onStationery(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -251,7 +251,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onDigit(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override
@@ -275,7 +275,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onNext(TypeBean typeBean) {
-                    iView.onGame(typeBean);
+                    iView.onType(typeBean);
                 }
 
                 @Override

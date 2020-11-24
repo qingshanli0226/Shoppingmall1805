@@ -1,8 +1,14 @@
 package com.shopmall.bawei.shopmall1805.type.view;
 
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
+
+import java.util.List;
 
 public class TypeAdapter extends BaseRvAdapter<Object> {
     private final int HOT = 0;
@@ -28,10 +34,22 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayOrdinary(Object itemData, BaseViewHolder baseViewHolder) {
+        List<TypeBean.ResultBean.ChildBean> childBeans = (List<TypeBean.ResultBean.ChildBean>) itemData;
+        RecyclerView rvOrdinary = baseViewHolder.getView(R.id.rv_ordinary_right);
+        ChildAdapter childAdapter = new ChildAdapter();
+        rvOrdinary.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
+        rvOrdinary.setAdapter(childAdapter);
+        childAdapter.updateData(childBeans);
+        childAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+            }
+        });
     }
 
     private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
+        List<TypeBean.ResultBean.HotProductListBean> hots = (List<TypeBean.ResultBean.HotProductListBean>) itemData;
 
     }
 

@@ -28,6 +28,16 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
         notifyDataSetChanged();
     }
 
+//    public void replaceData(T dataBean){
+//        dataList.clear();
+//        dataList.add(dataBean);
+//        notifyDataSetChanged();
+//    }
+
+    public void clearData(){
+        dataList.clear();
+    }
+
     public void removeOneData(T dataBean){
         dataList.remove(dataBean);
         notifyDataSetChanged();

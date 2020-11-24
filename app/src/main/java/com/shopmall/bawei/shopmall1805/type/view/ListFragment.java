@@ -28,8 +28,17 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     private List<String> list = new ArrayList<>();
 
+
+
+
+
+
+
+
     private TypeAdapter adapter;
     private ListAdapter lvAdapter;
+
+    private TypeBean.ResultBean resultBean;
 
 
 
@@ -57,17 +66,17 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     protected void initData() {
-        httpPresenter.getSkirt();
-        httpPresenter.getJacket();
-        httpPresenter.getPants();
-        httpPresenter.getOvercoat();
-        httpPresenter.getAccessory();
-        httpPresenter.getBag();
-        httpPresenter.getDress();
-        httpPresenter.getProduct();
-        httpPresenter.getStationery();
-        httpPresenter.getDigit();
-        httpPresenter.getGame();
+//        httpPresenter.getSkirt();
+//        httpPresenter.getJacket();
+//        httpPresenter.getPants();
+//        httpPresenter.getOvercoat();
+//        httpPresenter.getAccessory();
+//        httpPresenter.getBag();
+//        httpPresenter.getDress();
+//        httpPresenter.getProduct();
+//        httpPresenter.getStationery();
+//        httpPresenter.getDigit();
+//        httpPresenter.getGame();
     }
 
     @Override
@@ -82,6 +91,56 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lvAdapter.changeSelected(position);
                 lvAdapter.notifyDataSetChanged();
+            }
+        });
+        lvLeft.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                lvAdapter.changeSelected(position);
+                switch (position){
+                    case 0:
+                        httpPresenter.getSkirt();
+                        break;
+                    case 1:
+                        httpPresenter.getJacket();
+                        break;
+                    case 2:
+                        httpPresenter.getPants();
+                        break;
+                    case 3:
+                        httpPresenter.getOvercoat();
+                        break;
+                    case 4:
+                        httpPresenter.getAccessory();
+                        break;
+                    case 5:
+                        httpPresenter.getBag();
+                        break;
+                    case 6:
+                        httpPresenter.getDress();
+                        break;
+                    case 7:
+                        httpPresenter.getProduct();
+                        break;
+                    case 8:
+                        httpPresenter.getStationery();
+                        break;
+                    case 9:
+                        httpPresenter.getDigit();
+                        break;
+                    case 10:
+                        httpPresenter.getGame();
+                        break;
+                    default:
+                        httpPresenter.getSkirt();
+                        break;
+                }
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
@@ -116,91 +175,19 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     }
 
-    @Override
-    public void onSkirt(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
+
+    public void updateAdapter(TypeBean.ResultBean resultBean){
+        adapter.clearData();
+        adapter.addOneData(resultBean.getHot_product_list());
+        adapter.addOneData(resultBean.getChild());
     }
 
     @Override
-    public void onJacket(TypeBean typeBean) {
+    public void onType(TypeBean typeBean) {
         List<TypeBean.ResultBean> result = typeBean.getResult();
+        updateAdapter(result.get(0));
         for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onPants(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onOvercoat(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onAccessory(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onBag(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onDress(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onProduct(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onStationery(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onDigit(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
-        }
-    }
-
-    @Override
-    public void onGame(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onSkirt: "+item.getName());
+            Log.i("TAG", "onType: "+item.getName());
         }
     }
 }
