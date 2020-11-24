@@ -3,6 +3,8 @@
     package="com.shopmall.bawei.shopmall1805">
     <uses-permission android:name="android.permission.INTERNET"/>
     <application
+        android:usesCleartextTraffic="true"
+        android:requestLegacyExternalStorage="true"
         android:name=".app.ShopMallApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"

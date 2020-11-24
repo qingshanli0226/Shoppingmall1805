@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.framework.mvp.IPresenter;
@@ -19,12 +20,17 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(getLayoutID(), container, false);
         initView(inflate);
-        initDate();
-        initLisenter();
         if(presenter!=null){
             presenter.attchView((V)this);
         }
         return inflate;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initDate();
+        initLisenter();
     }
 
     protected abstract   void initDate();

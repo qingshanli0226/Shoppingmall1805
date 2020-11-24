@@ -26,6 +26,6 @@ public class RecommendAdapter extends BaseQuickAdapter<MainBean.ResultBean.Recom
     protected void convert(BaseViewHolder helper, MainBean.ResultBean.RecommendInfoBean item) {
         Glide.with(context).load(Constants.BASE_URl_IMAGE+item.getFigure()).into((ImageView) helper.getView(R.id.iv_recommend));
         helper.setText(R.id.tv_name,item.getName());
-        helper.setText(R.id.tv_price,item.getCover_price());
+        helper.setText(R.id.tv_price,"¥"+item.getCover_price());
     }
 }

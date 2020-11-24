@@ -3,7 +3,6 @@ package com.shopmall.bawei.shopmall1805.home;
 import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -20,6 +19,7 @@ import com.example.net.Constants;
 import com.example.net.bean.MainBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.ChannelAdapter;
+import com.shopmall.bawei.shopmall1805.adapter.HotAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.RecommendAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.SeckillAdapter;
 import com.shoppmall.common.adapter.BaseRvAdapter;
@@ -75,9 +75,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                 List<MainBean.ResultBean.ChannelInfoBean> channelInfoBeans = (List<MainBean.ResultBean.ChannelInfoBean>) o;
                 RecyclerView rv = baseViewHoder.getView(R.id.rv_channel);
                 rv.setLayoutManager(new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL));
-                for (MainBean.ResultBean.ChannelInfoBean channelInfoBean : channelInfoBeans) {
-                    Log.i("Yoyo", channelInfoBean.getChannel_name());
-                }
                 ChannelAdapter adapter = new ChannelAdapter(channelInfoBeans,context);
                 rv.setAdapter(adapter);
                 break;
@@ -142,9 +139,9 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
             case 5:
                 List<MainBean.ResultBean.HotInfoBean> hotInfoBeans = (List<MainBean.ResultBean.HotInfoBean>) o;
                 RecyclerView hotrv = baseViewHoder.getView(R.id.rv_hot);
-                hotrv.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
-
-//                hotrv.setAdapter();
+                hotrv.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+                HotAdapter hotAdapter = new HotAdapter(hotInfoBeans, context);
+                hotrv.setAdapter(hotAdapter);
                 break;
         }
     }

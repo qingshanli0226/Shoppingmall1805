@@ -11,12 +11,15 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         >
-       <RelativeLayout
+       <LinearLayout
+           android:orientation="horizontal"
            android:layout_width="match_parent"
            android:layout_height="match_parent">
            <LinearLayout
                android:background="@drawable/item"
-               android:layout_width="320dp"
+               android:layout_width="0dp"
+               android:layout_gravity="center"
+               android:layout_weight="9"
                android:layout_centerVertical="true"
                android:layout_height="40dp"
                android:orientation="horizontal"
@@ -39,7 +42,7 @@
                    android:focusableInTouchMode="true"
                    android:layout_gravity="bottom"
                    android:id="@+id/search_et_home"
-                   android:layout_width="280dp"
+                   android:layout_width="match_parent"
                    android:layout_height="match_parent"
                    android:background="@drawable/item"
                    />
@@ -48,7 +51,9 @@
                android:id="@+id/new_message"
                android:layout_alignParentRight="true"
                android:layout_centerVertical="true"
-               android:layout_width="50dp"
+               android:layout_width="0dp"
+               android:layout_weight="1"
+               android:layout_gravity="center"
                android:layout_height="50dp"
                android:layout_marginRight="10dp"
                android:gravity="center"
@@ -67,7 +72,7 @@
                    android:textSize="15sp"
                    />
            </LinearLayout>
-       </RelativeLayout>
+       </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_home_main"

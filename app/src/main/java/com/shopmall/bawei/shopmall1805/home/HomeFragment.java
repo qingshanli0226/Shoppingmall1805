@@ -54,6 +54,7 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
 
     @Override
     public void onOk(MainBean bean) {
+        list.clear();
         MainBean.ResultBean result = bean.getResult();
         list.add(result.getBanner_info());
         list.add(result.getChannel_info());

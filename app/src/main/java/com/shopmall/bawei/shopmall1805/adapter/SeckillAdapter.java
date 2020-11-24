@@ -24,8 +24,8 @@ public class SeckillAdapter extends BaseQuickAdapter<MainBean.ResultBean.Seckill
 
     @Override
     protected void convert(BaseViewHolder helper, MainBean.ResultBean.SeckillInfoBean.ListBean item) {
-        helper.setText(R.id.tv_cover_price,item.getCover_price());
-        helper.setText(R.id.tv_origin_price,item.getOrigin_price());
+        helper.setText(R.id.tv_cover_price,"¥"+item.getCover_price());
+        helper.setText(R.id.tv_origin_price,"¥"+item.getOrigin_price());
         Glide.with(context).load(Constants.BASE_URl_IMAGE+item.getFigure()).into((ImageView) helper.getView(R.id.iv_figure));
 
     }
