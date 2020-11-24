@@ -114,7 +114,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         manager = getSupportFragmentManager();
 
         initPermission();
-        Fragment fragment = fragments.get(0);
+//        Fragment fragment = fragments.get(0);
 
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
@@ -123,6 +123,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(0));
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
+        fragmentTransaction.hide(fragments.get(1));
         fragmentTransaction.commit();
 
 //        if(currentFragment != null){

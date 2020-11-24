@@ -30,6 +30,8 @@
             >
 
             <RadioButton
+                android:textSize="12sp"
+                android:textColor="#fff"
                 android:checked="true"
                 android:gravity="center"
                 android:text="分类"
@@ -40,6 +42,8 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"/>
             <RadioButton
+                android:textSize="12sp"
+                android:textColor="#f00"
                 android:gravity="center"
                 android:text="标签"
                 android:button="@null"
@@ -53,12 +57,12 @@
 
         <ImageView
             android:id="@+id/iv_type_search"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/icon_search_white" />
+            android:src="@drawable/icon_search_white" />
 
         <View
             android:layout_width="match_parent"
@@ -67,7 +71,7 @@
             android:background="#e4e4e4" />
     </RelativeLayout>
 
-    <androidx.viewpager.widget.ViewPager
+    <FrameLayout
         android:id="@+id/fl_type"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>

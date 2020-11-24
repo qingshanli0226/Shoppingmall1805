@@ -21,60 +21,56 @@
 
 
     <RadioGroup
-        android:gravity="bottom|center_horizontal"
         android:scaleY="0.7"
         android:id="@+id/rg_main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="75dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/home_bottom_parent_bg"
         android:layout_gravity="bottom"
-        android:orientation="horizontal">
+        android:background="@drawable/home_bottom_parent_bg"
+        android:gravity="bottom|center_horizontal"
+        android:orientation="horizontal"
+        >
 
         <RadioButton
-            android:gravity="bottom|center_horizontal"
             android:scaleX="0.7"
+            style="@style/MainButtonStyle"
+            android:id="@+id/rb_home"
             android:layout_weight="1"
             android:checked="true"
-            android:id="@+id/rb_home"
-            style="@style/MainButtonStyle"
             android:drawableTop="@drawable/home_button_selector"
             android:text="首页" />
 
         <RadioButton
-            android:gravity="bottom|center_horizontal"
             android:scaleX="0.7"
-            android:layout_weight="1"
-            android:id="@+id/rb_type"
             style="@style/MainButtonStyle"
+            android:id="@+id/rb_type"
+            android:layout_weight="1"
             android:drawableTop="@drawable/type_button_selector"
             android:text="分类" />
 
         <RadioButton
-            android:gravity="bottom|center_horizontal"
             android:scaleX="0.7"
-            android:layout_weight="1"
-            android:id="@+id/rb_community"
             style="@style/MainButtonStyle"
+            android:id="@+id/rb_community"
+            android:layout_weight="1"
             android:drawableTop="@drawable/community_button_selector"
             android:paddingTop="10dp"
             android:text="发现" />
 
         <RadioButton
-            android:gravity="bottom|center_horizontal"
             android:scaleX="0.7"
-            android:layout_weight="1"
-            android:id="@+id/rb_cart"
             style="@style/MainButtonStyle"
+            android:id="@+id/rb_cart"
+            android:layout_weight="1"
             android:drawableTop="@drawable/cart_button_selector"
             android:text="购物车" />
 
         <RadioButton
-            android:gravity="bottom|center_horizontal"
             android:scaleX="0.7"
-            android:layout_weight="1"
-            android:id="@+id/rb_user"
             style="@style/MainButtonStyle"
+            android:id="@+id/rb_user"
+            android:layout_weight="1"
             android:drawableTop="@drawable/user_button_selector"
             android:text="个人中心" />
     </RadioGroup>
