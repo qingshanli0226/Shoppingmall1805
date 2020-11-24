@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="20dp"
+    android:layout_marginRight="10dp"
+    >
+    <ImageView
+        android:id="@+id/recomend_item_img"
+        android:layout_width="100dp"
+        android:layout_height="150dp"
+        android:src="@mipmap/ic_launcher"
+        android:layout_marginTop="10dp"
+        android:scaleY="1.4"
+        android:scaleX="1.3"
+        >
+    </ImageView>
+    <TextView
+        android:id="@+id/recomend_item_tv_new"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:text="$20.asdadsada45645asdasdasasdasdsadadd6456dada"
+
+        android:layout_below="@id/recomend_item_img"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="5dp"
+        android:lines="2"
+        android:ellipsize="end"
+        >
+    </TextView>
+    <TextView
+        android:id="@+id/recomend_item_tv_old"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$20.00"
+        android:layout_below="@id/recomend_item_tv_new"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="1dp"
+        android:textColor="#FB0505"
+        >
+    </TextView>
+</RelativeLayout>

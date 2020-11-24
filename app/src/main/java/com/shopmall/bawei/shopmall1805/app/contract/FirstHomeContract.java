@@ -12,7 +12,7 @@ import io.reactivex.Observer;
 public interface FirstHomeContract {
 
     interface BannerHomeModel extends IModel{
-        void getHomeData(Observer<BaseBean<HomeBean>> observer);
+        void getHomeData(Observer<HomeBean> observer);
     }
     abstract class BannerHomePresenter extends IPresenter<BannerHomeModel,BannerHomeView>{
         public BannerHomePresenter(BannerHomeView bannerHomeView) {
@@ -21,6 +21,6 @@ public interface FirstHomeContract {
         public abstract void getHomeDatas();
     }
     interface BannerHomeView extends IView{
-        void setHomeData(HomeBean bannerInfoBeans);
+        void setHomeData(HomeBean homeData);
     }
 }

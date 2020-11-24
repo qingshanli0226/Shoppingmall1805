@@ -1,7 +1,5 @@
 package com.shopmall.bawei.shopmall1805.app.model;
 
-import android.util.Log;
-
 import com.shopmall.bawei.shopmall1805.app.contract.FirstHomeContract;
 import com.shopmall.bawei.shopmall1805.common.BaseBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
@@ -20,7 +18,7 @@ public class BannerModel implements FirstHomeContract.BannerHomeModel {
 
     }
     @Override
-    public void getHomeData(Observer<BaseBean<HomeBean>> observer) {
+    public void getHomeData(Observer<HomeBean> observer) {
         RetrofitUtils.getInstance().getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
                 .home()

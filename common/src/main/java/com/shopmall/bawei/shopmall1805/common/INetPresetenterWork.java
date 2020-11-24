@@ -10,7 +10,6 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
-
 public interface INetPresetenterWork {
     //注册 接口
     @POST("register")
@@ -67,7 +66,7 @@ public interface INetPresetenterWork {
 
     //主页Fragment路径
     @GET("atguigu/json/HOME_URL.json")
-    Observable<BaseBean<HomeBean>> home();
+    Observable<HomeBean> home();
     //分类Fragment里面的标签Fragment页面数据
     @GET("TAG_URL.json")
     Observable<BaseBean<ClothesBean>> tag();

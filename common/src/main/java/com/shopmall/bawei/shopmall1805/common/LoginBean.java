@@ -13,7 +13,6 @@ public class LoginBean {
          * avatar : /img/1438946011155.jpg
          * token : 0ee7d6c6-7d88-479c-823d-6bbd18372887AND1605878199766
          */
-
         private String id;
         private String name;
         private String password;
