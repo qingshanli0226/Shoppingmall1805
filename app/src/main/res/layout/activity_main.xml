@@ -4,12 +4,30 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.MainActivity">
+    tools:context=".ui.activity.MainActivity"
+    android:orientation="vertical">
 
+    <FrameLayout
+        android:id="@+id/viewpager_main"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="9"
+
+        ></FrameLayout>
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="梁小宾"
-         />
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:background="#F0F0F0"
+        ></TextView>
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:id="@+id/common_main"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        app:tl_textUnselectColor="#999999"
+        app:tl_textSelectColor="#DD001B"
+        ></com.flyco.tablayout.CommonTabLayout>
+
+
 
 </LinearLayout>
