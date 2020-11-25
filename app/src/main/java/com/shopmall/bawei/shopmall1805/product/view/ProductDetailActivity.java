@@ -7,6 +7,7 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.shopmall.shopcar.view.ShopcarActivity;
 import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.framework.BaseMVPActivity;
@@ -136,7 +137,7 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
             case R.id.addProduct:
                 //第一步先判断用户是否登录，没有登录的话，跳转到登录页面
                 if (!ShopUserManager.getInstance().isUserLogin()) {
-                    launchActivity(LoginRegisterActivity.class, null);
+                    ARouter.getInstance().build(ShopmallConstant.LOGIN_ACTIVITY_PATH).withInt(ShopmallConstant.TO_LOGIN_KEY,ShopmallConstant.TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR).navigation(this,100);
                     return;
                 }
                 //第二步判断仓库是否有足够的产品
@@ -144,7 +145,7 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
                 break;
             case R.id.productDetailShopcar:
                 if (!ShopUserManager.getInstance().isUserLogin()) {
-                    launchActivity(LoginRegisterActivity.class, null);
+                    ARouter.getInstance().build(ShopmallConstant.LOGIN_ACTIVITY_PATH).withInt(ShopmallConstant.TO_LOGIN_KEY,ShopmallConstant.TO_LOGIN_FROM_GOODS_DETAIL_SHOPCAR_PIC).navigation();
                     return;
                 }
                 launchActivity(ShopcarActivity.class, null);

@@ -9,6 +9,7 @@ import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
@@ -26,6 +27,7 @@ import java.util.List;
 import java.util.Map;
 
 
+@Route(path = "/shopcar/ShopcarActivity")
 public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, ShopcarContract.IShopcarView> implements ShopcarContract.IShopcarView, View.OnClickListener {
 
     private RecyclerView shopcarRv;

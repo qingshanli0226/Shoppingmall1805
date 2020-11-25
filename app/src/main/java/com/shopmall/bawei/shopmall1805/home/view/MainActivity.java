@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.shopmall.shopcar.view.ShopcarFragment;
+import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.ShopUserManager;
@@ -35,8 +36,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setBottomBarSelectListener(this);
 
-        switchFragment(BottomBar.HOME_INDEX);//MainAcitivity默认进入HomeFragment
 
+        switchFragmentByIndex(getIntent());
         initPermission();
         showMessage("onCreate");
         //ARouter注入
@@ -90,9 +91,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         super.onNewIntent(intent);
         showMessage("onNewIntent");
         setIntent(intent);//这个方法是将intent设置成默认创建的intent
-        int index = getIntent().getIntExtra("index", -1);
+        switchFragmentByIndex(intent);
+    }
+
+    private void switchFragmentByIndex(Intent intent) {
+        int index = intent.getIntExtra("index", 0);
+        if (index == BottomBar.SHOPCAR_INDEX) {
+            bottomBar.selectShopcar();
+        } else if (index == BottomBar.HOME_INDEX) {
+            bottomBar.selectHome();//让bottomBar和Fragment对应显示
+        } else if (index == BottomBar.TYPE_INDEX) {
+            bottomBar.selectType();
+        } else {
+            bottomBar.selectMine();
+        }
         switchFragment(index);//切换到参数指定的Fragment页面
-        bottomBar.selectHome();//让bottomBar和Fragment对应显示
+
     }
 
     private void initPermission() {
@@ -122,7 +136,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onBottomBarSelected(int selectIndex) {
         if (selectIndex == BottomBar.SHOPCAR_INDEX && !ShopUserManager.getInstance().isUserLogin()) {//如果当前用户没有登录，则跳转到登录界面
             showMessage("请先登录");
-            ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();//跳转到loginActivity
+            //通过key来表明，从哪个地方进入到登录页面的，方便我们登录成功时，根据这个key做具体的跳转
+            ARouter.getInstance().build(ShopmallConstant.LOGIN_ACTIVITY_PATH).withInt(ShopmallConstant.TO_LOGIN_KEY, ShopmallConstant.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT).navigation();//跳转到loginActivity
+            //finish();
             return;
         }
         switchFragment(selectIndex);//MainActivity监听BottomBar的点击事件，根据点击Button的位置去切换到对应的Fragment
