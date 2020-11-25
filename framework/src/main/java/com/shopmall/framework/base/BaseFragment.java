@@ -8,7 +8,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public abstract class BaseFragment extends Fragment {
+import com.shopmall.framework.constart.Constart;
+
+public abstract class BaseFragment<S extends Constart.SortConstartPresenter> extends Fragment {
 
     @Nullable
     @Override
