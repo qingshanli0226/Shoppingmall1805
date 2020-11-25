@@ -8,6 +8,7 @@ import android.widget.ListView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.view.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.TypeBean;
@@ -71,17 +72,6 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     protected void initData() {
-//        httpPresenter.getSkirt();
-//        httpPresenter.getJacket();
-//        httpPresenter.getPants();
-//        httpPresenter.getOvercoat();
-//        httpPresenter.getAccessory();
-//        httpPresenter.getBag();
-//        httpPresenter.getDress();
-//        httpPresenter.getProduct();
-//        httpPresenter.getStationery();
-//        httpPresenter.getDigit();
-//        httpPresenter.getGame();
 
         httpPresenter.getSkirt();
     }
@@ -98,7 +88,7 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lvAdapter.changeSelected(position);
                 lvAdapter.notifyDataSetChanged();
-                lvAdapter.changeSelected(position);
+
                 switch (position){
                     case 0:
                         httpPresenter.getSkirt();
@@ -137,13 +127,13 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
                         httpPresenter.getSkirt();
                         break;
                 }
+
             }
         });
         lvLeft.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
+                lvAdapter.changeSelected(position);
             }
 
             @Override
@@ -174,13 +164,19 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     }
 
     @Override
-    public void showLoading() {
-
+    public void showEmpty() {
+        showEmpty();
     }
 
     @Override
-    public void hideLoading() {
+    public void showLoaDing() {
+        showLoading();
+    }
 
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
     }
 
 
@@ -198,4 +194,7 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
             Log.i("TAG", "onType: "+item.getName());
         }
     }
+
+
+
 }

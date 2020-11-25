@@ -44,6 +44,7 @@ public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
                     @Override
                     public void run() {
                         startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        finish();
                     }
                 });
             }

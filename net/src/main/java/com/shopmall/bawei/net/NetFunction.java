@@ -2,12 +2,12 @@ package com.shopmall.bawei.net;
 
 
 
-import com.shopmall.bawei.common.NetBusinessException;
 import com.shopmall.bawei.net.mode.BaseBean;
 
 import io.reactivex.functions.Function;
 
-public class NetFunction<R extends BaseBean<T>,T> implements Function<R,T> {
+
+public class NetFunction<R extends BaseBean<T>,T> implements Function<R, T> {
     @Override
     public T apply(R r) throws Exception {
         if(r.getCode().equals("200")){

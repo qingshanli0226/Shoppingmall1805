@@ -1,5 +1,15 @@
 <resources>
-    <string name="app_name">Shopmall1805</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">电商项目</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+
+
+
+
+    <!--toolbar-->
+    <string name="homeToolbarRightText">消息</string>
+
+
+
 </resources>

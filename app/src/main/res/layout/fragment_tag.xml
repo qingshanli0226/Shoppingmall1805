@@ -6,14 +6,11 @@
     tools:context=".type.view.TagFragment">
 
     <com.shopmall.bawei.framework.view.MyToolBar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/BaseToolbarStyle"
+        android:id="@+id/toolbar"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        style="@style/RecyclerViewStyle"
+        android:id="@+id/rv_tag"/>
 
 </FrameLayout>

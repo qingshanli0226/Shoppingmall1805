@@ -5,14 +5,25 @@ import android.os.Bundle;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity{
+import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.framework.view.LoadingPage;
+import com.shopmall.bawei.framework.view.MyToolBar;
+
+public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity implements MyToolBar.IToolBarClickListner {
 
     protected P httpPresenter;
+    protected LoadingPage loadingPage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(layoutId());
+        loadingPage = new LoadingPage(this) {
+            @Override
+            protected int getSuccessLayoutId() {
+                return layoutId();
+            }
+        };
+        setContentView(loadingPage);
         initView();
         initListener();
         initPresenter();
@@ -35,6 +46,45 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     protected void initData(){
 
     }
+
+    public void showLoading(){
+        loadingPage.showLoadingPage();
+    }
+
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean){
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
+    }
+    public void showError(String errorMessage) {
+        loadingPage.showErrorPage(errorMessage);
+    }
+
+    public void showSuccess() {
+        loadingPage.showSuccessView();
+    }
+    public void hideLoadingPage(boolean isSuccess, ErrorBean errorBean) {
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
+    }
+
+    @Override
+    public void onLeftClick() {
+        finish();
+    }
+
+    @Override
+    public void onRightClick() {
+    }
+
+
+
+
 
     @Override
     protected void onDestroy() {

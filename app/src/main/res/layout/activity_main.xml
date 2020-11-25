@@ -8,10 +8,8 @@
     tools:context=".home.MainActivity">
 
     <com.shopmall.bawei.framework.view.MyToolBar
-        android:id="@+id/myToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/BaseToolbarStyle"
+        android:id="@+id/myToolbar" />
 
     <FrameLayout
         android:layout_weight="1"
@@ -21,56 +19,40 @@
 
 
     <RadioGroup
-        android:scaleY="0.7"
+        style="@style/MainRadioGroupStyle"
         android:id="@+id/rg_main"
-        android:layout_width="match_parent"
-        android:layout_height="75dp"
         android:layout_alignParentBottom="true"
-        android:layout_gravity="bottom"
-        android:background="@drawable/home_bottom_parent_bg"
-        android:gravity="bottom|center_horizontal"
-        android:orientation="horizontal"
-        >
+        android:background="@drawable/home_bottom_parent_bg">
 
         <RadioButton
-            android:scaleX="0.7"
-            style="@style/MainButtonStyle"
+            style="@style/WidthWeightStyle.widthMainButtonStyle"
             android:id="@+id/rb_home"
-            android:layout_weight="1"
             android:checked="true"
             android:drawableTop="@drawable/home_button_selector"
             android:text="首页" />
 
         <RadioButton
-            android:scaleX="0.7"
-            style="@style/MainButtonStyle"
+            style="@style/WidthWeightStyle.widthMainButtonStyle"
             android:id="@+id/rb_type"
-            android:layout_weight="1"
             android:drawableTop="@drawable/type_button_selector"
             android:text="分类" />
 
         <RadioButton
-            android:scaleX="0.7"
-            style="@style/MainButtonStyle"
+            style="@style/WidthWeightStyle.widthMainButtonStyle"
             android:id="@+id/rb_community"
-            android:layout_weight="1"
             android:drawableTop="@drawable/community_button_selector"
             android:paddingTop="10dp"
             android:text="发现" />
 
         <RadioButton
-            android:scaleX="0.7"
-            style="@style/MainButtonStyle"
+            style="@style/WidthWeightStyle.widthMainButtonStyle"
             android:id="@+id/rb_cart"
-            android:layout_weight="1"
             android:drawableTop="@drawable/cart_button_selector"
             android:text="购物车" />
 
         <RadioButton
-            android:scaleX="0.7"
-            style="@style/MainButtonStyle"
+            style="@style/WidthWeightStyle.widthMainButtonStyle"
             android:id="@+id/rb_user"
-            android:layout_weight="1"
             android:drawableTop="@drawable/user_button_selector"
             android:text="个人中心" />
     </RadioGroup>

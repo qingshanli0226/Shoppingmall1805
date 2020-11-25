@@ -7,16 +7,11 @@
 
 
     <ImageView
-        android:id="@+id/channelImg"
-        android:layout_width="50dp"
-        android:layout_height="50dp"/>
+        style="@style/channelItemImgStyle"
+        android:id="@+id/channelImg"/>
     <TextView
+        style="@style/channelItemTvStyle"
         android:id="@+id/tv_channel"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
-        android:textColor="#000"
-        android:textSize="12sp"/>
+        android:gravity="center_horizontal"/>
 
 </LinearLayout>

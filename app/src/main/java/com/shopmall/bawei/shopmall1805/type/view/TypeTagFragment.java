@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.BasePresenter;
 import com.shopmall.bawei.framework.IView;
@@ -120,13 +121,19 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     }
 
     @Override
-    public void showLoading() {
-
+    public void showEmpty() {
+        showEmpty();
     }
 
     @Override
-    public void hideLoading() {
+    public void showLoaDing() {
+        showLoading();
+    }
 
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
     }
 
     class VpAdapter extends FragmentPagerAdapter{

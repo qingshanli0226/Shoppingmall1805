@@ -1,6 +1,7 @@
 package com.shopmall.bawei.net;
 
 import com.shopmall.bawei.common.UrlHelper;
+import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;

@@ -6,10 +6,6 @@
     android:orientation="vertical">
 
     <com.youth.banner.Banner
-        android:id="@+id/banner"
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        app:indicator_height="5dp"
-        app:indicator_width="5dp"
-        app:is_auto_play="true" />
+        style="@style/bannerStyle"
+        android:id="@+id/banner"/>
 </LinearLayout>

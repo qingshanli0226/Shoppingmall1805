@@ -10,24 +10,64 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.framework.view.LoadingPage;
 import com.shopmall.bawei.framework.view.MyToolBar;
 
 public abstract class BaseFragment<P extends BasePresenter,V extends IView> extends Fragment implements MyToolBar.IToolBarClickListner {
-    private View view;
     protected P httpPresenter;
     private ProgressBar loadingBar;
     private MyToolBar toolBar;
 
+    protected LoadingPage loadingPage;
+
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        view = inflater.inflate(layoutId(),container,false);
-        return view;
+    public View onCreateView(@NonNull final LayoutInflater inflater, @Nullable final ViewGroup container, @Nullable Bundle savedInstanceState) {
+        loadingPage = new LoadingPage(getContext()) {
+//            @Override
+//            protected int getSuccessLayoutId() {
+//                return layoutId();
+//            }
+
+            @Override
+            protected View getSuccessLayoutView() {
+                return inflater.inflate(layoutId(),container,false);
+            }
+        };
+
+        return loadingPage;
     }
 
     protected <T extends View> T findViewById(int id){
-        return view.findViewById(id);
+        return loadingPage.getSuccessView().findViewById(id);
+    }
+
+    public void showLoading(){
+        loadingPage.showLoadingPage();
+    }
+
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean){
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
+    }
+    public void showError(String errorMessage) {
+        loadingPage.showErrorPage(errorMessage);
+    }
+
+    public void showSuccess() {
+        loadingPage.showSuccessView();
+    }
+    public void hideLoadingPage(boolean isSuccess, ErrorBean errorBean) {
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
     }
 
     protected abstract int layoutId();

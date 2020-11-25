@@ -9,62 +9,46 @@
 
 
     <com.shopmall.bawei.framework.view.MyToolBar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone"/>
+        style="@style/BaseToolbarStyle"
+        android:id="@+id/toolbar"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:padding="5dp">
+        android:layout_height="@dimen/headerBarHeight"
+        android:padding="@dimen/smallPadding">
 
         <RadioGroup
-            android:orientation="horizontal"
+            style="@style/MainRadioGroupStyle"
             android:id="@+id/rg"
+            android:scaleY="1"
             android:layout_width="150dp"
             android:layout_height="35dp"
             android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            >
+            android:layout_marginTop="10dp">
 
             <RadioButton
-                android:textSize="12sp"
-                android:textColor="#fff"
+                style="@style/headerBarRadioButtonStyle"
                 android:checked="true"
-                android:gravity="center"
                 android:text="分类"
-                android:button="@null"
-                android:layout_weight="1"
                 android:background="@drawable/select_sl"
-                android:id="@+id/rbl"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
+                android:id="@+id/rbl"/>
             <RadioButton
-                android:textSize="12sp"
-                android:textColor="#f00"
-                android:gravity="center"
+                style="@style/headerBarRadioButtonStyle"
                 android:text="标签"
-                android:button="@null"
-                android:layout_weight="1"
                 android:background="@drawable/select_sr"
-                android:id="@+id/rbr"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"/>
+                android:id="@+id/rbr"/>
 
         </RadioGroup>
 
         <ImageView
+            style="@style/searchImgStyle"
             android:id="@+id/iv_type_search"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
             android:src="@drawable/icon_search_white" />
 
         <View
+            style="@style/line_horizontal"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_alignParentBottom="true"

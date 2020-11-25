@@ -2,18 +2,15 @@ package com.shopmall.bawei.shopmall1805.home;
 
 import android.Manifest;
 import android.os.Build;
-import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
 import com.shopmall.bawei.framework.IView;
@@ -24,7 +21,7 @@ import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<IPresenter, IView> {
+public class MainActivity extends BaseActivity<IPresenter, IView> implements IView {
 
     private List<Fragment> fragments = new ArrayList();
 
@@ -93,15 +90,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     }
 
 
-
-//    private Fragment getFragment(int position) {
-//        if(fragments != null && fragments.size() > 0){
-//            Fragment fragment = fragments.get(position);
-//            return fragment;
-//        }
-//        return null;
-//    }
-
     @Override
     protected void initView() {
         fragments.add(new HomeFragment());
@@ -114,7 +102,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         manager = getSupportFragmentManager();
 
         initPermission();
-//        Fragment fragment = fragments.get(0);
 
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
@@ -126,15 +113,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         fragmentTransaction.hide(fragments.get(1));
         fragmentTransaction.commit();
 
-//        if(currentFragment != null){
-//            fragmentTransaction.hide(currentFragment);
-//        }
-//        if(fragment.isAdded()){
-//            fragmentTransaction.show(fragment).commit();
-//        } else {
-//            fragmentTransaction.add(R.id.frameLayoutId,fragment,fragment.getClass().getSimpleName()).commit();
-//        }
-//        currentFragment = fragment;
     }
 
     private void initPermission() {
@@ -154,7 +132,27 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
 
     @Override
+    public void onError(String msg) {
+
+    }
+    @Override
     protected void initPresenter() {
 
+    }
+
+    @Override
+    public void showLoaDing() {
+        showLoading();
+    }
+
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEmpty();
     }
 }

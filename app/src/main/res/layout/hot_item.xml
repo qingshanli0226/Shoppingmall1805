@@ -35,6 +35,7 @@
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
+        style="@style/RecyclerViewStyle"
         android:id="@+id/gv_hot"
         android:layout_width="match_parent"
         android:layout_height="1020dp"

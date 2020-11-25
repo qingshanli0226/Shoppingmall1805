@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.view.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.HomeBean;
@@ -18,34 +19,21 @@ import com.shopmall.bawei.shopmall1805.home.contract.HomeImpl;
 public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
     private MyToolBar toolbar;
-    private RelativeLayout normalContent;
     private RecyclerView homeRv;
-    private ProgressBar loadingBar;
-    private TextView errorTv;
 
     private HomeAdapter homeAdapter;
 
 
     @Override
     protected void initView() {
-        normalContent = (RelativeLayout) findViewById(R.id.normalContent);
         homeRv = (RecyclerView) findViewById(R.id.homeRv);
         homeRv.setLayoutManager(new LinearLayoutManager(getContext()));
         homeAdapter = new HomeAdapter();
         homeRv.setAdapter(homeAdapter);
-        loadingBar = (ProgressBar) findViewById(R.id.loadingBar);
-        errorTv = (TextView) findViewById(R.id.errorTv);
-        errorTv.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.errorTv:
-                httpPresenter.getHomeData();
-                break;
-            default:break;
-        }
     }
 
 
@@ -80,24 +68,41 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
         homeAdapter.addOneData(homeBean.getResult().getHot_info());
     }
 
+//    @Override
+//    public void onError(String msg) {
+//        errorTv.setVisibility(View.VISIBLE);
+//        normalContent.setVisibility(View.GONE);
+//        errorTv.setText(msg + "点击刷新数据");
+//    }
+
+//    @Override
+//    public void showLoaDing() {
+//        errorTv.setVisibility(View.GONE);
+//        normalContent.setVisibility(View.VISIBLE);
+//        loadingBar.setVisibility(View.VISIBLE);
+//        errorTv.setVisibility(View.GONE);
+//    }
+
+
     @Override
     public void onError(String msg) {
-        errorTv.setVisibility(View.VISIBLE);
-        normalContent.setVisibility(View.GONE);
-        errorTv.setText(msg + "点击刷新数据");
+
     }
 
     @Override
-    public void showLoading() {
-        errorTv.setVisibility(View.GONE);
-        normalContent.setVisibility(View.VISIBLE);
-        loadingBar.setVisibility(View.VISIBLE);
-        errorTv.setVisibility(View.GONE);
+    public void showLoaDing() {
+        showLoading();
+    }
+
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
     }
 
     @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
+    public void showEmpty() {
+        showEmpty();
     }
 
     @Override

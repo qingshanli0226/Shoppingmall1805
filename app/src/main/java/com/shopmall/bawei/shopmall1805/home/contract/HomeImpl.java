@@ -2,7 +2,11 @@ package com.shopmall.bawei.shopmall1805.home.contract;
 
 import android.util.Log;
 
+import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.common.ExceptionUtil;
+import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.OkHttpHelper;
+import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
 
 import java.util.concurrent.TimeUnit;
@@ -24,13 +28,13 @@ public class HomeImpl extends HomeContract.HomePresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iView.showLoading();
+                        iView.showLoaDing();
                     }
                 })
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        iView.hideLoading();
+
                     }
                 })
                 .subscribe(new Observer<HomeBean>() {
@@ -41,13 +45,19 @@ public class HomeImpl extends HomeContract.HomePresenter {
 
                     @Override
                     public void onNext(HomeBean homeBean) {
-                        Log.i("TAG", "onNext: "+homeBean);
-                        iView.onHomeData(homeBean);
+                        if (homeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            Log.i("homeBean", "onNext: "+homeBean);
+                            iView.onHomeData(homeBean);
+                            iView.hideLoading(true, null);
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
