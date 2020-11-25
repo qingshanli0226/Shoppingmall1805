@@ -3,6 +3,8 @@ package com.shopmall.bawei.shopmall1805.type.view;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,7 +16,13 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.contract.TagContract;
 import com.shopmall.bawei.shopmall1805.type.contract.TagImpl;
 
-public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> extends BaseFragment implements TagContract.ITagView {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> extends BaseFragment<P,V> implements TagContract.ITagView {
+    private RecyclerView rvTag;
+    private TagAdapter adapter;
+    private List<TagBean.ResultBean> list = new ArrayList<>();
 
     @Override
     protected int layoutId() {
@@ -27,8 +35,21 @@ public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> exte
     }
 
     @Override
-    protected void initPresenter() {
+    protected void initView() {
+        rvTag = (RecyclerView) findViewById(R.id.rv_tag);
+        rvTag.setLayoutManager(new GridLayoutManager(getContext(),3,GridLayoutManager.VERTICAL,false));
+        rvTag.setAdapter(adapter = new TagAdapter());
+        adapter.updateData(list);
+    }
 
+    @Override
+    protected void initData() {
+        httpPresenter.tag();
+    }
+
+    @Override
+    protected void initPresenter() {
+        httpPresenter = (P) new TagImpl();
     }
 
     @Override
@@ -43,7 +64,8 @@ public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> exte
 
     @Override
     public void onTag(TagBean tagBean) {
-
+        list.addAll(tagBean.getResult());
+        adapter.updateData(list);
     }
 
     @Override
