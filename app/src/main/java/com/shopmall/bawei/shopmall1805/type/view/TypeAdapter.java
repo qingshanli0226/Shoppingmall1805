@@ -50,7 +50,17 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
 
     private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
         List<TypeBean.ResultBean.HotProductListBean> hots = (List<TypeBean.ResultBean.HotProductListBean>) itemData;
+        RecyclerView rvOrdinary = baseViewHolder.getView(R.id.rv_hot_right);
+        HotAdapter hotAdapter = new HotAdapter();
+        rvOrdinary.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
+        rvOrdinary.setAdapter(hotAdapter);
+        hotAdapter.updateData(hots);
+        hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
 
+            }
+        });
     }
 
     @Override

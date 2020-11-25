@@ -41,13 +41,20 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     private TypeBean.ResultBean resultBean;
 
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        Log.i("TAG", "onResume: "+rvRight);
+        rvRight.setAdapter(adapter);
+    }
 
     @Override
     protected void initView() {
         lvLeft = (ListView) findViewById(R.id.lv_left);
         rvRight = (RecyclerView) findViewById(R.id.rv_right);
-        adapter = new TypeAdapter();
         rvRight.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        adapter = new TypeAdapter();
+        Log.i("TAG", "initView: "+rvRight);
         rvRight.setAdapter(adapter);
         list.add("小裙子");
         list.add("上衣");
@@ -62,6 +69,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
         list.add("游戏专区");
         lvAdapter = new ListAdapter(getContext(),list);
         lvLeft.setAdapter(lvAdapter);
+
     }
 
     @Override
@@ -77,6 +85,8 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 //        httpPresenter.getStationery();
 //        httpPresenter.getDigit();
 //        httpPresenter.getGame();
+
+        httpPresenter.getSkirt();
     }
 
     @Override
@@ -91,11 +101,6 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 lvAdapter.changeSelected(position);
                 lvAdapter.notifyDataSetChanged();
-            }
-        });
-        lvLeft.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 lvAdapter.changeSelected(position);
                 switch (position){
                     case 0:
@@ -135,6 +140,12 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
                         httpPresenter.getSkirt();
                         break;
                 }
+            }
+        });
+        lvLeft.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
             }
 
@@ -162,7 +173,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     public void onError(String msg) {
-
+        Log.i("TAG", "onError: "+msg);
     }
 
     @Override
