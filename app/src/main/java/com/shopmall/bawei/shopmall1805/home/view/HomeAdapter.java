@@ -117,7 +117,7 @@ public class HomeAdapter extends BaseRVAdapter<Object> {
             imageUrls.add(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+item.getImage());
         }
         banner.setImages(imageUrls);
-        banner.setDelayTime(5);
+        banner.setDelayTime(5000);
         banner.start();
     }
 

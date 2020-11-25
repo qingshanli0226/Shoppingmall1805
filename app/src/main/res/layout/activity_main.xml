@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context=".home.view.MainActivity">
 
-    <com.shopmall.bawei.common.view.ToolBar
+    <com.shopmall.bawei.framework.view.ToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:visibility="gone">
-    </com.shopmall.bawei.common.view.ToolBar>
+    </com.shopmall.bawei.framework.view.ToolBar>
 
     <FrameLayout
         android:layout_below="@+id/toolbar"
@@ -22,12 +22,12 @@
         android:layout_above="@+id/bottomBar">
     </FrameLayout>
 
-    <com.shopmall.bawei.common.view.BottomBar
+    <com.shopmall.bawei.framework.view.BottomBar
         android:id="@+id/bottomBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:select_color="@android:color/holo_red_dark">
-    </com.shopmall.bawei.common.view.BottomBar>
+    </com.shopmall.bawei.framework.view.BottomBar>
 
 </RelativeLayout>

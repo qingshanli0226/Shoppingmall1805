@@ -2,7 +2,7 @@ package com.shopmall.bawei.common;
 
 public class ShopmallConstant {
 
-    public static String BASE_URL = "http://49.233.93.155:8080/";
+    public static String BASE_URL = "http://49.233.0.68:8080/";
     //public static String BASE_URL = "http://192.168.3.4:8080/";
 
     public static String BASE_RESOURCE_URL = BASE_URL+"atguigu";

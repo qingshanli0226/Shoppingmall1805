@@ -6,13 +6,13 @@
     android:layout_height="match_parent">
 
 
-    <com.shopmall.bawei.common.view.ToolBar
+    <com.shopmall.bawei.framework.view.ToolBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:right_src="@mipmap/search"
         app:right_show_only_img="true"
         android:id="@+id/toolbar">
-    </com.shopmall.bawei.common.view.ToolBar>
+    </com.shopmall.bawei.framework.view.ToolBar>
 
 
     <TextView
