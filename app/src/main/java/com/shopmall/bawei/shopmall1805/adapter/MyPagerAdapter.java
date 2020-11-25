@@ -23,4 +23,6 @@ public class MyPagerAdapter extends FragmentPagerAdapter {
     public int getCount() {
         return fs.size();
     }
+
+
 }

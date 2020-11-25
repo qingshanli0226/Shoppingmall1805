@@ -11,6 +11,7 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.MyPagerAdapter;
+import com.shopmall.bawei.shopmall1805.adapter.MyVp;
 import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
 import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.fragment.FirstFragment;
@@ -24,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private ArrayList<String> titleRes = new ArrayList<>();                 //tab标题集合
     private ArrayList<Fragment> fsRes = new ArrayList<>();                  //fragment集合
     private List<CustomTabEntity> data = new ArrayList<>();                 //CommonTabLayout 所需数据集合
-    private ViewPager mPager;
+    private MyVp mPager;
     private CommonTabLayout mLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,7 +37,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        mPager = (ViewPager) findViewById(R.id.m_pager);
+        mPager = (MyVp) findViewById(R.id.m_pager);
+        mPager.setscrollable(false);
         mLayout = (CommonTabLayout) findViewById(R.id.m_layout);
 
     }

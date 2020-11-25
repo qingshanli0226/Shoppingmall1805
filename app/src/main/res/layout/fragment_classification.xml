@@ -4,11 +4,89 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragment.ClassificationFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginRight="20dp"
+                android:layout_height="wrap_content"
+
+                    >
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_weight="10"
+                        android:gravity="center"
+                        android:layout_height="wrap_content"
+                        >
+                       <RadioGroup
+                           android:layout_width="130dp"
+                           android:layout_height="wrap_content"
+                           android:orientation="horizontal"
+                           android:id="@+id/rg"
+                           >
+                           <RadioButton
+                               android:textColor="@drawable/text_select"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:layout_height="wrap_content"
+                               android:button="@null"
+                               android:checked="true"
+                               android:padding="@dimen/dp_10"
+                               android:id="@+id/radio_left"
+                               android:background="@drawable/l_select_fen"
+                               android:text="分类"
+
+                               ></RadioButton>
+                           <RadioButton
+                               android:textColor="@drawable/text_select"
+                               android:background="@drawable/r_select_fen"
+                               android:layout_width="0dp"
+                               android:layout_weight="1"
+                               android:gravity="center"
+                               android:layout_height="wrap_content"
+                               android:button="@null"
+                               android:padding="@dimen/dp_10"
+                               android:id="@+id/radio_regit"
+
+                               android:text="标签"
+                               ></RadioButton>
+                       </RadioGroup>
+                    </LinearLayout>
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"
+
+                        android:src="@drawable/home_search_icon"
+                        android:layout_gravity="right"
+                        ></ImageView>
+
+                </LinearLayout>
+
+
+
+        </androidx.appcompat.widget.Toolbar>
+        <View
+            android:layout_width="match_parent"
+            android:background="#DFDBDB"
+            android:layout_height="1dp"
+            ></View>
+        <com.shopmall.bawei.shopmall1805.adapter.MyVp
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/class_vp"
+            ></com.shopmall.bawei.shopmall1805.adapter.MyVp>
+    </LinearLayout>
+
+
 
 </FrameLayout>

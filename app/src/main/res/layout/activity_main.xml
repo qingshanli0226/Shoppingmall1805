@@ -6,56 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".home.MainActivity">
-   <androidx.appcompat.widget.Toolbar
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:background="#F64B4B"
-      >
-      <RelativeLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:layout_marginRight="10dp"
-         >
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:background="#000"
-             android:layout_marginTop="3dp"
-             android:layout_height="wrap_content"
-             android:layout_marginRight="35dp"
-            >
-            <ImageView
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:layout_margin="10dp"
-                android:layout_gravity="center"
-                android:src="@drawable/home_search_icon"
-               >
-            </ImageView>
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="35dp"
-                android:textColor="#fff"
-                android:layout_gravity="center"
-                android:textSize="12dp"
-                android:textColorHint="#fff"
-                android:hint="请输入搜索信息"
-               >
-            </EditText>
-         </LinearLayout>
-         <RadioButton
-             android:layout_alignParentRight="true"
-             android:layout_width="wrap_content"
-             android:layout_height="wrap_content"
-             android:drawableTop="@drawable/emailimg"
-             android:button="@null"
-             android:text="消息"
-             android:id="@+id/emailbutton"
-             android:textColor="#fff"
-             >
-         </RadioButton>
-      </RelativeLayout>
 
-   </androidx.appcompat.widget.Toolbar>
 
    <LinearLayout
        android:layout_width="match_parent"
@@ -65,15 +16,16 @@
       <LinearLayout
           android:layout_width="match_parent"
           android:layout_height="0dp"
-          android:layout_weight="10"
+          android:layout_weight="12"
          >
-         <androidx.viewpager.widget.ViewPager
+         <com.shopmall.bawei.shopmall1805.adapter.MyVp
              android:layout_width="match_parent"
              android:layout_height="match_parent"
             android:id="@+id/m_pager"
+
              >
 
-         </androidx.viewpager.widget.ViewPager>
+         </com.shopmall.bawei.shopmall1805.adapter.MyVp>
       </LinearLayout>
       <LinearLayout
           android:layout_width="match_parent"
@@ -116,7 +68,7 @@
              app:tl_iconWidth="30dp"
              app:tl_textSelectColor="#383838"
              app:tl_textUnselectColor="#929292"
-             app:tl_textsize="18sp"
+             app:tl_textsize="10sp"
              >
 
          </com.flyco.tablayout.CommonTabLayout>

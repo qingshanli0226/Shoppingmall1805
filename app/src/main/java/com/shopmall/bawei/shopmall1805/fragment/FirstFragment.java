@@ -31,6 +31,8 @@ public class FirstFragment extends BaseFragment<HPresenter> implements HContract
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+
        view= inflater.inflate(bandlayout(), container, false);
 
         return view;
@@ -52,6 +54,7 @@ public class FirstFragment extends BaseFragment<HPresenter> implements HContract
     @Override
     public void initview() {
 
+        h_data.clear();
         main_rv = view.findViewById(R.id.main_rv);
         main_rv.setLayoutManager(new LinearLayoutManager(getContext()));
 
