@@ -49,7 +49,7 @@ public class Fragment_biao extends BaseFragment<BiaoPresenter, BiaoContract.biao
 
     @Override
     public void onbiao(List<Biaobean.ResultBean> beans) {
-        Toast.makeText(getContext(), ""+beans.get(0).getName(), Toast.LENGTH_SHORT).show();
+        //Toast.makeText(getContext(), ""+beans.get(0).getName(), Toast.LENGTH_SHORT).show();
         biaoAdpter.updataData(beans);
         biaoAdpter.notifyDataSetChanged();
     }

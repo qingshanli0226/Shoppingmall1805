@@ -1,5 +1,8 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.content.Intent;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.example.framework.BaseActivity;
@@ -54,12 +57,18 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     }
 
+
     @Override
     protected void initview() {
         //初始化控件
         vr = findViewById(R.id.vr);
         common = findViewById(R.id.common);
 
+        fragmentArrayList.add(new Fragment_Primere());
+        fragmentArrayList.add(new Fragment_Classfid());
+        fragmentArrayList.add(new Fragment_find());
+        fragmentArrayList.add(new Fragment_shopping());
+        fragmentArrayList.add(new Fragment_user());
         //添加数据
         tabEntitys.add(new TabEntity("首页",R.mipmap.select_1,R.mipmap.default_1));
         tabEntitys.add(new TabEntity("分类",R.mipmap.select_2,R.mipmap.default_2));
@@ -67,12 +76,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         tabEntitys.add(new TabEntity("购物车",R.mipmap.select_4,R.mipmap.default_4));
         tabEntitys.add(new TabEntity("个人中心",R.mipmap.select_1,R.mipmap.default_1));
 
-        //添加fragment
-        fragmentArrayList.add(new Fragment_Primere());
-        fragmentArrayList.add(new Fragment_Classfid());
-        fragmentArrayList.add(new Fragment_find());
-        fragmentArrayList.add(new Fragment_shopping());
-        fragmentArrayList.add(new Fragment_user());
+
 
     }
 

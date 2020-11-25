@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.Fragment.fragment_fen;
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,16 +10,22 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.framework.BaseFragment;
+import com.example.framework.BaseRVAdapter;
+import com.example.net.Confing;
 import com.example.net.bean.ClothesBean;
+import com.shopmall.bawei.shopmall1805.GoodinfoActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adpter.Clother_RAdpter;
 import com.shopmall.bawei.shopmall1805.adpter.Colother_CAdpter;
+import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
 import com.shopmall.bawei.shopmall1805.contract.ClothesContract;
 import com.shopmall.bawei.shopmall1805.presenter.ClothesPresenter;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -33,6 +40,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
     private Colother_CAdpter colother_cAdpter;
     private List<ClothesBean.ResultBean.HotProductListBean> hotProductListBeans = new ArrayList<>();
     private List<ClothesBean.ResultBean.ChildBean> childBeans = new ArrayList<>();
+    private String[] data = null;
     @Override
     protected void initPreseter() {
         httpresetnter = new ClothesPresenter();
@@ -43,6 +51,8 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
         rvFen = inflate.findViewById(R.id.rv_fen);
         rvFenRe = inflate.findViewById(R.id.rv_fen_re);
         rvFenChang = inflate.findViewById(R.id.rv_fen_chang);
+        //点击事件
+
     }
 
     @Override
@@ -50,7 +60,10 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
         //默认显示小裙子
         skirt();
         //添加数据
-        final String[] data = {"小裙子","上衣","下装","外套","配件","包包","装","居家展评","办公文具","数码周边","游戏专区"};
+        if (data!=null){
+            data.clone();
+        }
+        data = new String[]{"小裙子","上衣","下装","外套","配件","包包","装","居家展评","办公文具","数码周边","游戏专区"};
         adapter = new ArrayAdapter<>(getContext(),R.layout.support_simple_spinner_dropdown_item,data);
         rvFen.setAdapter(adapter);
         //点击判断分支对应的数据源
@@ -109,6 +122,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
 
         clother_rAdpter.updataData(hotProductListBeans);
         colother_cAdpter.updataData(childBeans);
+
     }
 
     @Override
@@ -128,7 +142,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
         clothes(skertbean);
     }
 
-    private void clothes(List<ClothesBean.ResultBean> skertbean) {
+    private void clothes(final List<ClothesBean.ResultBean> skertbean) {
         hotProductListBeans.addAll(skertbean.get(0).getHot_product_list());
         childBeans.addAll(skertbean.get(0).getChild());
         if (clother_rAdpter == null && colother_cAdpter == null) {
@@ -145,6 +159,28 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
 
             clother_rAdpter.notifyDataSetChanged();
             colother_cAdpter.notifyDataSetChanged();
+            //hot点击跳转页面
+            clother_rAdpter.setiRecyclerViewItemClickListener(new BaseRVAdapter.IRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getHot_product_list().get(position).getProduct_id(),skertbean.get(0).getHot_product_list().get(position).getName(),skertbean.get(0).getHot_product_list().get(position).getCover_price(), Confing.BASE_IMAGE + skertbean.get(0).getHot_product_list().get(position).getFigure());
+
+                    Intent intent = new Intent(getContext(), GoodinfoActivity.class);
+                    intent.putExtra("goods_bean", goodsBean);
+                    getContext().startActivity(intent);
+                }
+            });
+            //child点击跳转页面
+            colother_cAdpter.setiRecyclerViewItemClickListener(new BaseRVAdapter.IRecyclerViewItemClickListener() {
+                @Override
+                public void onItemClick(int position) {
+                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getChild().get(position).getParent_id(),skertbean.get(0).getChild().get(position).getName(),skertbean.get(0).getChild().get(position).getParent_id(), Confing.BASE_IMAGE + skertbean.get(0).getChild().get(position).getPic());
+
+                    Intent intent = new Intent(getContext(), GoodinfoActivity.class);
+                    intent.putExtra("goods_bean", goodsBean);
+                    getContext().startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -2,6 +2,8 @@ package com.shopmall.bawei.shopmall1805.Fragment;
 
 
 import android.graphics.Color;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.view.View;
@@ -31,19 +33,25 @@ public class Fragment_Classfid extends BaseFragment {
     protected void initPreseter() {
     }
 
+
     @Override
     protected void initView(View inflate) {
         btFen = inflate.findViewById(R.id.bt_fen);
         btBiao = inflate.findViewById(R.id.bt_biao);
         vrFen = inflate.findViewById(R.id.vr_fen);
+        //添加fragment
+        if (list !=null||list.size()!=0){
+           list.clear();
+        }
         list.add(fragment_fen);
         list.add(fragment_biao);
+
     }
 
     @Override
     protected void initdate() {
 
-        fragment_fen_adpter = new Fragment_fen_Adpter(getActivity().getSupportFragmentManager(),list);
+        fragment_fen_adpter = new Fragment_fen_Adpter(getChildFragmentManager(),list);
         vrFen.setAdapter(fragment_fen_adpter);
         btFen.setBackgroundResource(R.drawable.biao_fe_fen);
         //点击切换对应的fragment
@@ -51,6 +59,7 @@ public class Fragment_Classfid extends BaseFragment {
             @Override
             public void onClick(View v) {
                 vrFen.setCurrentItem(0);
+
                 btFen.setBackgroundResource(R.drawable.biao_fe_fen);
                 btBiao.setBackgroundResource(R.drawable.biao_bi);
             }
