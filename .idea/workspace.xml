@@ -6,8 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Yoyo" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -33,12 +32,15 @@
       </state>
     </system>
   </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Shoppingmall1805" />
+  </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Kotlin Interface" />
-        <option value="layoutResourceFile" />
         <option value="resourceFile" />
+        <option value="layoutResourceFile" />
         <option value="Interface" />
         <option value="Class" />
       </list>
@@ -58,7 +60,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectedDevice" value="Pixel_3_XL_API_24" />
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-24T06:43:40.336Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
-    <property name="last_opened_file_path" value="$USER_HOME$/Desktop/Shoppingmall1805" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -78,8 +80,8 @@
       <recent name="com.shopmall.bawei.user" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
       <recent name="F:\five\Shoppingmall1805\common\src\main\res\mipmap" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\java\com\shopmall\bawei\shopmall1805" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main" />
@@ -179,10 +181,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="367" y="414" key="#PSD/75.0.1845.1080@75.0.1845.1080" timestamp="1606177540571" />
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser" timestamp="1606221752339">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1606307700008">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1264" y="251" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606221752339" />
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606307700008" />
     <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606127332784">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -199,26 +201,26 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1039" y="298" key="AndroidCreateResourceFileDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606131807402" />
-    <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606205723088">
+    <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606287390952">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606205723088" />
-    <state width="1802" height="708" key="GridCell.Tab.0.bottom" timestamp="1606199379490">
+    <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606287390952" />
+    <state width="1802" height="7" key="GridCell.Tab.0.bottom" timestamp="1606308044243">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="708" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606199379490" />
-    <state width="1802" height="708" key="GridCell.Tab.0.center" timestamp="1606199379489">
+    <state width="1802" height="7" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606308044243" />
+    <state width="1802" height="7" key="GridCell.Tab.0.center" timestamp="1606308044243">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="708" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606199379489" />
-    <state width="1802" height="708" key="GridCell.Tab.0.left" timestamp="1606199379489">
+    <state width="1802" height="7" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606308044243" />
+    <state width="1802" height="7" key="GridCell.Tab.0.left" timestamp="1606308044243">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="708" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606199379489" />
-    <state width="1802" height="708" key="GridCell.Tab.0.right" timestamp="1606199379490">
+    <state width="1802" height="7" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606308044243" />
+    <state width="1802" height="7" key="GridCell.Tab.0.right" timestamp="1606308044243">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="708" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606199379490" />
+    <state width="1802" height="7" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606308044243" />
     <state x="1258" y="320" key="chooseDestDirectoryDialog" timestamp="1606129655596">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -235,5 +237,16 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606220785985" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/type/TypeFragment.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

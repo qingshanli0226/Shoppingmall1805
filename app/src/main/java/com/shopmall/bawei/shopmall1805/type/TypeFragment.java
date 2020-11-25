@@ -8,10 +8,10 @@ import androidx.fragment.app.Fragment;
 import com.example.framework.base.BaseFragment;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.MyVP;
+import com.shopmall.bawei.shopmall1805.view.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.type.typefragment.ListFragment;
-import com.shopmall.bawei.shopmall1805.type.typefragment.TagFragment;
+import com.shopmall.bawei.shopmall1805.type.list.ListFragment;
+import com.shopmall.bawei.shopmall1805.type.tag.TagFragment;
 import com.shoppmall.common.adapter.FragmentAdapter;
 
 import java.util.ArrayList;

@@ -8,7 +8,7 @@ import com.example.framework.base.BaseActivity;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.MyVP;
+import com.shopmall.bawei.shopmall1805.view.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.VPTab;
 import com.shopmall.bawei.shopmall1805.find.FindFragment;
@@ -53,6 +53,7 @@ public class MainActivity extends BaseActivity {
         fragments.add(new UserFragment());
         vpMain.setScanScroll(false);
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
+        vpMain.setOffscreenPageLimit(5);
         commMain.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

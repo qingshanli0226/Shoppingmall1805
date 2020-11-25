@@ -46,7 +46,7 @@
         </RelativeLayout>
 
     </androidx.appcompat.widget.Toolbar>
-    <com.shopmall.bawei.shopmall1805.MyVP
+    <com.shopmall.bawei.shopmall1805.view.MyVP
         android:id="@+id/vp_type"
         android:layout_width="match_parent"
         android:layout_height="0dp"
