@@ -6,7 +6,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseRvAdapter;
-import com.shopmall.bawei.net.TypeBean;
+import com.shopmall.bawei.net.mode.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
 public class ChildAdapter extends BaseRvAdapter<TypeBean.ResultBean.ChildBean> {

@@ -1,4 +1,4 @@
-package com.shopmall.bawei.net;
+package com.shopmall.bawei.net.mode;
 
 import java.util.List;
 

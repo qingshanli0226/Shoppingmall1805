@@ -1,4 +1,4 @@
-package com.shopmall.bawei.common;
+package com.shopmall.bawei.framework.view;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -51,11 +51,11 @@ public class MyToolBar extends RelativeLayout {
 
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(R.layout.toolbar_layout,this);
-        toolbarLeftImg = (ImageView) findViewById(R.id.toolbarLeftImg);
-        toolbarTitleTv = (TextView) findViewById(R.id.toolbarTitleTv);
-        toolbarRightImg = (ImageView) findViewById(R.id.toolbarRightImg);
-        toolbarRightTv = (TextView) findViewById(R.id.toolbarRightTv);
+        inflater.inflate(com.shopmall.bawei.common.R.layout.toolbar_layout,this);
+        toolbarLeftImg = (ImageView) findViewById(com.shopmall.bawei.common.R.id.toolbarLeftImg);
+        toolbarTitleTv = (TextView) findViewById(com.shopmall.bawei.common.R.id.toolbarTitleTv);
+        toolbarRightImg = (ImageView) findViewById(com.shopmall.bawei.common.R.id.toolbarRightImg);
+        toolbarRightTv = (TextView) findViewById(com.shopmall.bawei.common.R.id.toolbarRightTv);
 
         if(!isShowLeft) showNotLeft();
         if(!isShowTitle) showNotTitle();
@@ -75,18 +75,18 @@ public class MyToolBar extends RelativeLayout {
 
     private void initToolBarAttrs(Context context, AttributeSet attrs) {
         //获取Toolbar在布局中定义的属性值
-        TypedArray typedArray = context.obtainStyledAttributes(attrs,R.styleable.MyToolBar);
-        isShowLeft = typedArray.getBoolean(R.styleable.MyToolBar_left_show,true);
-        isShowTitle = typedArray.getBoolean(R.styleable.MyToolBar_title_show,true);
-        rightText = typedArray.getString(R.styleable.MyToolBar_right_text);
-        rightImgId = typedArray.getResourceId(R.styleable.MyToolBar_right_src,0);
-        leftImgId = typedArray.getResourceId(R.styleable.MyToolBar_left_src,0);
-        rightTextColor = typedArray.getColor(R.styleable.MyToolBar_right_text_color, Color.BLACK);
-        rightTextSize = typedArray.getInt(R.styleable.MyToolBar_right_text_size, 0);
-        titleText = typedArray.getString(R.styleable.MyToolBar_title_text);
-        isShowRight = typedArray.getBoolean(R.styleable.MyToolBar_right_show, true);
-        isRightOnlyText = typedArray.getBoolean(R.styleable.MyToolBar_right_show_only_text, false);
-        isRightOnlyImg = typedArray.getBoolean(R.styleable.MyToolBar_right_show_only_img, false);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, com.shopmall.bawei.common.R.styleable.MyToolBar);
+        isShowLeft = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_left_show,true);
+        isShowTitle = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_title_show,true);
+        rightText = typedArray.getString(com.shopmall.bawei.common.R.styleable.MyToolBar_right_text);
+        rightImgId = typedArray.getResourceId(com.shopmall.bawei.common.R.styleable.MyToolBar_right_src,0);
+        leftImgId = typedArray.getResourceId(com.shopmall.bawei.common.R.styleable.MyToolBar_left_src,0);
+        rightTextColor = typedArray.getColor(com.shopmall.bawei.common.R.styleable.MyToolBar_right_text_color, Color.BLACK);
+        rightTextSize = typedArray.getInt(com.shopmall.bawei.common.R.styleable.MyToolBar_right_text_size, 0);
+        titleText = typedArray.getString(com.shopmall.bawei.common.R.styleable.MyToolBar_title_text);
+        isShowRight = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_right_show, true);
+        isRightOnlyText = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_right_show_only_text, false);
+        isRightOnlyImg = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_right_show_only_img, false);
 
     }
 

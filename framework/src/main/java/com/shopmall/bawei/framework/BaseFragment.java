@@ -10,7 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import com.shopmall.bawei.common.MyToolBar;
+import com.shopmall.bawei.framework.view.MyToolBar;
 
 public abstract class BaseFragment<P extends BasePresenter,V extends IView> extends Fragment implements MyToolBar.IToolBarClickListner {
     private View view;

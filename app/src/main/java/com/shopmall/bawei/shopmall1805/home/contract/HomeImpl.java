@@ -2,9 +2,7 @@ package com.shopmall.bawei.shopmall1805.home.contract;
 
 import android.util.Log;
 
-import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.OkHttpHelper;
-import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
 
 import java.util.concurrent.TimeUnit;

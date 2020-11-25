@@ -3,8 +3,7 @@ package com.shopmall.bawei.shopmall1805.type.contract;
 import android.util.Log;
 
 import com.shopmall.bawei.net.OkHttpHelper;
-import com.shopmall.bawei.net.TagBean;
-import com.shopmall.bawei.net.TypeBean;
+import com.shopmall.bawei.net.mode.TagBean;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

@@ -8,9 +8,9 @@ import android.widget.ListView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shopmall.bawei.common.MyToolBar;
+import com.shopmall.bawei.framework.view.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
-import com.shopmall.bawei.net.TypeBean;
+import com.shopmall.bawei.net.mode.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.contract.TypeContract;
 import com.shopmall.bawei.shopmall1805.type.contract.TypeImpl;

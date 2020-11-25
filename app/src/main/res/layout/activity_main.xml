@@ -7,7 +7,7 @@
     android:background="#fff"
     tools:context=".home.MainActivity">
 
-    <com.shopmall.bawei.common.MyToolBar
+    <com.shopmall.bawei.framework.view.MyToolBar
         android:id="@+id/myToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

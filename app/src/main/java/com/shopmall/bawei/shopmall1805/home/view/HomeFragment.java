@@ -1,16 +1,14 @@
 package com.shopmall.bawei.shopmall1805.home.view;
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shopmall.bawei.common.MyToolBar;
+import com.shopmall.bawei.framework.view.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;

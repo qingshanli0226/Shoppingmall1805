@@ -4,7 +4,7 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shopmall.bawei.framework.BaseFragment;
-import com.shopmall.bawei.net.TagBean;
+import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.contract.TagContract;
 import com.shopmall.bawei.shopmall1805.type.contract.TagImpl;

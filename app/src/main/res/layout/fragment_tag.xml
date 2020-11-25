@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     tools:context=".type.view.TagFragment">
 
-    <com.shopmall.bawei.common.MyToolBar
+    <com.shopmall.bawei.framework.view.MyToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

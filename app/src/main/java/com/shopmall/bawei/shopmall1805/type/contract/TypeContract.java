@@ -3,7 +3,7 @@ package com.shopmall.bawei.shopmall1805.type.contract;
 import com.shopmall.bawei.framework.BasePresenter;
 import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.net.MyNetApi;
-import com.shopmall.bawei.net.TypeBean;
+import com.shopmall.bawei.net.mode.TypeBean;
 
 public class TypeContract {
     public interface ITypeView extends IView {

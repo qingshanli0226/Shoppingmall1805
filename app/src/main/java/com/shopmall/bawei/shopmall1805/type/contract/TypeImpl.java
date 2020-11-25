@@ -4,14 +4,11 @@ import android.util.Log;
 
 import com.shopmall.bawei.net.MyNetApi;
 import com.shopmall.bawei.net.OkHttpHelper;
-import com.shopmall.bawei.net.TypeBean;
+import com.shopmall.bawei.net.mode.TypeBean;
 
-import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class TypeImpl extends TypeContract.ITypePresenter {

@@ -4,10 +4,8 @@ import android.graphics.Color;
 import android.widget.TextView;
 
 import com.shopmall.bawei.framework.BaseRvAdapter;
-import com.shopmall.bawei.net.TagBean;
+import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
-
-import java.util.List;
 
 public class TagAdapter extends BaseRvAdapter<TagBean.ResultBean> {
     private int[] colors = {Color.parseColor("#f0a420"), Color.parseColor("#4ba5e2"), Color.parseColor("#f0839a"),
