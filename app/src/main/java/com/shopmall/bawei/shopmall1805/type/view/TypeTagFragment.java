@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.viewpager.widget.ViewPager;
 
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.BasePresenter;
@@ -51,8 +50,8 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
 
 
 
-        list.add(new ListFragment<>());
         list.add(new TypeFragment<>());
+        list.add(new TagFragment<>());
 
         fm = getActivity().getSupportFragmentManager();
         FragmentTransaction fmts = fm.beginTransaction();

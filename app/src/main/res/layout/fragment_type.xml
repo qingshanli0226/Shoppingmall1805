@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".type.view.TypeFragment">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <com.shopmall.bawei.common.MyToolBar
         android:id="@+id/toolbar"
@@ -11,9 +9,19 @@
         android:layout_height="wrap_content"
         android:visibility="gone"/>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_tag"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+    <ListView
+        android:id="@+id/lv_left"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:background="#11000000"
+        android:scrollbars="none"
+        android:layout_weight="22"/>
 
-</FrameLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_right"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_toRightOf="@id/lv_left"
+        android:layout_weight="78"/>
+
+</LinearLayout>
