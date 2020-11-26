@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Fullquan"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".Fragment.goShopActivity"></activity>
+        <activity android:name=".fragment.goShopActivity"></activity>
         <activity android:name=".WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

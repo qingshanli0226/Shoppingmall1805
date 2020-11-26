@@ -6,6 +6,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import view.loadinPage.LoadIngPagec;
+
 
 public abstract
 class BaseActivity extends AppCompatActivity implements  Contact.CenterUserIview {

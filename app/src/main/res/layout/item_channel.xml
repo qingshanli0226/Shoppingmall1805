@@ -5,7 +5,7 @@
     <ImageView
         android:id="@+id/channel_Image_one"
         android:layout_width="80dp"
-        android:layout_height="50dp"/>
+        android:layout_height="@dimen/com_public_heightfour"/>
         <TextView
             android:id="@+id/channel_text_tow"
             android:layout_width="80dp"

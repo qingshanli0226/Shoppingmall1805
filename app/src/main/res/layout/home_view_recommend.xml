@@ -31,9 +31,9 @@
             android:gravity="end"
             android:text="查看更多" />
     </LinearLayout>
+
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_recommen"
         android:layout_width="match_parent"
-        android:layout_height="370dp"
-        ></android.support.v7.widget.RecyclerView>
+        android:layout_height="370dp"/>
 </LinearLayout>

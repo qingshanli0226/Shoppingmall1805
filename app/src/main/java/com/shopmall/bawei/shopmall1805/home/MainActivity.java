@@ -7,10 +7,10 @@ import android.support.v4.view.ViewPager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_homepage;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_shop;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_personage;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_classify;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmenthomepage;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentshop;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentpersonage;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentclassify;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.tliteUser;
 
@@ -27,10 +27,10 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void OnClickListener() {
-        fragmentlist.add(new Fragment_homepage());//主页
-        fragmentlist.add(new Fragment_classify());//分类
-        fragmentlist.add(new Fragment_shop());//购物车
-        fragmentlist.add(new Fragment_personage());//个人中心
+        fragmentlist.add(new Fragmenthomepage());//主页
+        fragmentlist.add(new Fragmentclassify());//分类
+        fragmentlist.add(new Fragmentshop());//购物车
+        fragmentlist.add(new Fragmentpersonage());//个人中心
         tiltelist.add(new tliteUser("主页",0,0));
         tiltelist.add(new tliteUser("分类",0,0));
         tiltelist.add(new tliteUser("购物车",0,0));

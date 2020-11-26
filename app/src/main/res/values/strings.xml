@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">Shopmall1805</string>
+    <string name="classIfs_name_biao">标签</string>
+    <string name="classIfs_name_fen">分类</string>
+    <string name="classIfs2_name_fen1">小裙子</string>
+    <string name="classIfs2_name_fen2">上衣</string>
+    <string name="classIfs2_name_fen3">夏装</string>
+    <string name="classIfs2_name_fen4">外套</string>
+    <string name="classIfs2_name_fen5">配件</string>
+    <string name="classIfs2_name_fen6">包包</string>
+    <string name="classIfs2_name_fen7">装扮</string>
+    <string name="classIfs2_name_fen8">居家宅品</string>
+    <string name="classIfs2_name_fen9">办公文具</string>
+    <string name="classIfs2_name_fen10">数码周边</string>
+    <string name="classIfs2_name_fen11">游戏专区</string>
 </resources>

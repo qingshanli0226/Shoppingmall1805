@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <dimen name="Height_odp">0dp</dimen>
+    <dimen name="Witdh_odp">0dp</dimen>
+
+    <dimen name="layout_weight_viewpager">10</dimen>
+    <dimen name="layout_weight_commont">1</dimen>
+
+    <dimen name="com_public_heightone">200dp</dimen>
+    <dimen name="com_public_heighttow">150dp</dimen>
+    <dimen name="com_public_heightthree">100dp</dimen>
+    <dimen name="com_public_heightfour">60dp</dimen>
+
+    <dimen name="com_public_widthtone">200dp</dimen>
+    <dimen name="com_public_widthtow">150dp</dimen>
+    <dimen name="com_public_widththree">100dp</dimen>
+    <dimen name="com_public_widthfour">60dp</dimen>
+
+    <dimen name="home_edit_height">35dp</dimen>
+    <dimen name="Recy_height">100dp</dimen>
+    <dimen name="text_height_height">20dp</dimen>
+    <dimen name="text_classtlite_height">50dp</dimen>
+    <dimen name="text_size_max">26sp</dimen>
+    <dimen name="text_size_min">20sp</dimen>
+    <dimen name="text_match_0dp">0dp</dimen>
+
+</resources>

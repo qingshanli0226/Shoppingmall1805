@@ -3,4 +3,7 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="tablayout_select">#1B0101</color>
+    <color name="tablayout_unselect">#F80C0C</color>
+    <color name="tablayout_backgrount">#F6ECEC</color>
 </resources>

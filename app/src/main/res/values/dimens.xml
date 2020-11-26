@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <!--
+    <item name="android:layout_width">match_parent</item>
+    <item name="android:layout_height">match_parent</item>
+    <item name="android:gravity">center</item>
+    -->
+
+    <!--布局-->
+    <style name="LinearLayoutSV">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="LinearLayoutSH">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+
+
+    <!--框架控件-->
+    <!--viewPager-->
+    <style name="ViewPager">
+        <item name="android:layout_height">@dimen/Height_odp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">@dimen/layout_weight_viewpager</item>
+    </style>
+    <!--commontablayout-->
+    <style name="CommontTablayout">
+        <item name="android:layout_height">@dimen/Height_odp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_weight">@dimen/layout_weight_commont</item>
+        <item name="tl_textSelectColor">@color/tablayout_select</item>
+        <item name="tl_textUnselectColor">@color/tablayout_unselect</item>
+        <item name="tl_textsize">@dimen/text_size_max</item>
+        <item name="background">@color/tablayout_backgrount</item>
+    </style>
+ 
+    <!--RecyclerView-->
+    <style name="recyclerView">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+
+
+    
+    <!--影响范围很小控件-->
+    <!--textview-->
+    <style name="textviewS">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <style name="textViewmax">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_height_height</item>
+        <item name="android:textSize">@dimen/text_size_max</item>
+        <item name="android:gravity">center</item>
+        <item name="background">@color/colorPrimaryDark</item>
+    </style>
+    <style name="textViewmin">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/text_height_height</item>
+        <item name="android:textSize">@dimen/text_size_min</item>
+        <item name="android:gravity">center</item>
+    </style>
+    <style name="textView_whith_0dp">
+        <item name="android:layout_width">@dimen/text_match_0dp</item>
+        <item name="android:textSize">@dimen/text_size_min</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+    <!--imageview-->
+    <style name="ImageS">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+    <style name="ImagePushMap">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="background">@mipmap/oen</item>
+    </style>
+
+
+</resources>

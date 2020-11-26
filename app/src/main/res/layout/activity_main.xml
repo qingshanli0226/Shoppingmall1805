@@ -11,12 +11,12 @@
         android:id="@+id/ViewPager"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"/>
+        android:layout_weight="10"/>
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/commont"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="0.1"
+        android:layout_weight="1"
         app:tl_textUnselectColor="#1B0101"
         app:tl_textSelectColor="#F80C0C"
         app:tl_textsize="26sp"
