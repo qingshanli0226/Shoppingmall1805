@@ -75,7 +75,7 @@
         <item name="android:layout_height">130dp</item>
         <item name="indicator_height">5dp</item>
         <item name="indicator_width">5dp</item>
-        <item name="is_auto_play">false</item>
+        <item name="is_auto_play">true</item>
     </style>
 
     <style name="RecyclerViewStyle">

@@ -186,7 +186,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
             imageUrls.add(UrlHelper.BASE_RESOURCE_IMAGE_URL+item.getImage());
         }
         banner.setImages(imageUrls);
-        banner.setDelayTime(5000);
+        banner.setDelayTime(3000);
         banner.start();
 
     }
