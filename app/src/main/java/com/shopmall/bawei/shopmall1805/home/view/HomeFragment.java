@@ -8,6 +8,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPFragment;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
@@ -63,24 +64,20 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         homeAdapter.addOneData(homeBean.getSeckill_info());
     }
 
-    @Override
-    public void showError(String code, String message) {
-        errorTv.setVisibility(View.VISIBLE);
-        normalContent.setVisibility(View.GONE);
-        errorTv.setText(message + " 点击刷新数据");
-    }
 
     @Override
     public void showLoaing() {
-        errorTv.setVisibility(View.GONE);
-        normalContent.setVisibility(View.VISIBLE);
-        loadingBar.setVisibility(View.VISIBLE);
-        errorTv.setVisibility(View.GONE);
+       showLoading();
     }
 
     @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+       hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
     @Override

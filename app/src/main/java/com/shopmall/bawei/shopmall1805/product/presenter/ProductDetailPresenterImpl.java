@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.product.presenter;
 
+import com.shopmall.bawei.common.ExceptionUtil;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.RetroCreator;
 import com.shopmall.bawei.net.ShopmallObserver;
@@ -36,12 +37,6 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -50,7 +45,8 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
+
                     }
                 });
 
@@ -81,12 +77,7 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
+
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -95,7 +86,7 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                       iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
 
@@ -125,12 +116,6 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -139,7 +124,8 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
+
                     }
                 });
 

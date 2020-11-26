@@ -1,7 +1,5 @@
 package com.shopmall.bawei.common;
 
-import java.net.PortUnreachableException;
-
 public class ShopmallConstant {
 
     public static String BASE_URL = "http://49.233.0.68:8080/";
@@ -42,7 +40,5 @@ public class ShopmallConstant {
     public static final String TO_LOGIN_KEY = "toLogin";
 
     public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
-
-
 
 }

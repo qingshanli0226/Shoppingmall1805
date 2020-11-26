@@ -14,6 +14,7 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.bawei.shopmall.shopcar.contract.ShopcarContract;
 import com.bawei.shopmall.shopcar.presenter.ShopcarPresenterImpl;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPFragment;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.view.BottomBar;
@@ -272,19 +273,20 @@ public class ShopcarFragment extends BaseMVPFragment<ShopcarPresenterImpl,Shopca
     };
 
     @Override
-    public void showError(String code, String message) {
-
-    }
-
-    @Override
     public void showLoaing() {
 
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
 
     @Override
     public void onDestroy() {

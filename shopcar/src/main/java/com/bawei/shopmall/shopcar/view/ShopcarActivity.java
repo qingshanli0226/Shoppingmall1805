@@ -15,6 +15,7 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.bawei.shopmall.shopcar.contract.ShopcarContract;
 import com.bawei.shopmall.shopcar.presenter.ShopcarPresenterImpl;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPActivity;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.view.BottomBar;
@@ -241,10 +242,6 @@ public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
         thread.start();
     }
 
-    @Override
-    public void showError(String code, String message) {
-
-    }
 
     private Handler handler = new Handler() {
         @Override
@@ -279,9 +276,15 @@ public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
 
     @Override
     protected void destroy() {

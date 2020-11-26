@@ -1,6 +1,7 @@
 package com.bawei.shopmall.shopcar.presenter;
 
 import com.bawei.shopmall.shopcar.contract.ShopcarContract;
+import com.shopmall.bawei.common.ExceptionUtil;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.RetroCreator;
@@ -50,21 +51,17 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
+
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
                         iHttpView.onProductNumChange(s, position, newNum);
+                        iHttpView.hideLoading(true,null);
                     }
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
 
@@ -95,12 +92,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
+
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -109,7 +101,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
     }
@@ -135,12 +127,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
+
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -149,7 +136,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                       iHttpView.showError(errorCode,errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
     }
@@ -182,12 +169,6 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
@@ -196,7 +177,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode, errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
     }
@@ -229,12 +210,6 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
                 .subscribe(new ShopmallObserver<List<InventoryBean>>() {
                     @Override
                     public void onNext(List<InventoryBean> inventoryBeans) {
@@ -243,7 +218,8 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode,errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
+
                     }
                 });
 
@@ -285,12 +261,6 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                         iHttpView.showLoaing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iHttpView.hideLoading();
-                    }
-                })
                 .subscribe(new ShopmallObserver<OrderInfoBean>() {
                     @Override
                     public void onNext(OrderInfoBean orderInfoBean) {
@@ -299,7 +269,7 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode,errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode, errorMessage));
                     }
                 });
     }

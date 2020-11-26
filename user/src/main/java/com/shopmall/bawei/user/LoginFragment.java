@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.framework.BaseMVPFragment;
 import com.shopmall.bawei.framework.ShopUserManager;
@@ -67,23 +68,20 @@ public class LoginFragment extends BaseMVPFragment<LoginPresenterImpl, LoginCont
     }
 
     @Override
-    public void showError(String code, String message) {
-        if (code.equals(ShopmallConstant.USER_NOT_REGISTER_ERROR)) {
-            switchRegisterFragment();
-        }
-        showMessage(code + ":" + message);
-
-    }
-
-    @Override
     public void showLoaing() {
-
+        showLoading();
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
+
 
     @Override
     public void setName(String name) {

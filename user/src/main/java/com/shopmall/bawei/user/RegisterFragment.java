@@ -3,6 +3,7 @@ package com.shopmall.bawei.user;
 import android.view.View;
 import android.widget.EditText;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPFragment;
 import com.shopmall.bawei.user.contract.RegisterContract;
 import com.shopmall.bawei.user.presenter.RegisterPresenterImpl;
@@ -48,17 +49,17 @@ public class RegisterFragment extends BaseMVPFragment<RegisterPresenterImpl, Reg
     }
 
     @Override
-    public void showError(String code, String message) {
-
-    }
-
-    @Override
     public void showLoaing() {
-
+        showLoading();
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 

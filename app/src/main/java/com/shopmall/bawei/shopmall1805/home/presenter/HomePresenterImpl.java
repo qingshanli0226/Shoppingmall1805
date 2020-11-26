@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.home.presenter;
 
+import com.shopmall.bawei.common.ExceptionUtil;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.RetroCreator;
 import com.shopmall.bawei.net.ShopmallObserver;
@@ -32,22 +33,17 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
                         iHttpView.showLoaing();//显示加载的UI
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        //该方法是在通过RxJava获取网络数据后在主线程中调用的一个方法
-                        iHttpView.hideLoading();//隐藏加载的UI
-                    }
-                })
+
                 .subscribe(new ShopmallObserver<HomeBean>() {
                     @Override
                     public void onNext(HomeBean homeBean) {
                         iHttpView.onHomeData(homeBean);
+                        iHttpView.hideLoading(true,null);
                     }
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode,errorMessage);
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(errorCode,errorMessage));
                     }
                 });
     }

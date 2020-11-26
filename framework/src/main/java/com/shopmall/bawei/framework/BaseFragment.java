@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.view.LoadingPage;
 import com.shopmall.bawei.framework.view.ToolBar;
 

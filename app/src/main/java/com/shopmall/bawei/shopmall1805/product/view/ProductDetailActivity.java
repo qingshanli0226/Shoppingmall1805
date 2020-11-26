@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.shopmall.shopcar.view.ShopcarActivity;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.framework.BaseMVPActivity;
 import com.shopmall.bawei.framework.CacheManager;
@@ -116,10 +117,6 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
         CacheManager.getInstance().updateProductNum(productId, String.valueOf(newNum));
     }
 
-    @Override
-    public void showError(String code, String message) {
-        showMessage(code + message);
-    }
 
     @Override
     public void showLoaing() {
@@ -127,9 +124,15 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
     }
 
     @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
     }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
 
     @Override
     public void onClick(View v) {
