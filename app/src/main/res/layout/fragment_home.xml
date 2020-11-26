@@ -13,7 +13,7 @@
         android:visibility="visible"
         app:left_show="false"
         app:right_src="@mipmap/menu"
-        app:right_text="消息"
+        app:right_text="@string/message"
         app:right_text_color="@android:color/white"
         app:title_show="false" />
 
@@ -45,6 +45,6 @@
         style="@style/HomeEditStyle"
         android:background="@drawable/search_home_shape"
         android:drawableLeft="@drawable/home_search_icon"
-        android:hint="输入搜索信息" />
+        android:hint="@string/search" />
 
 </RelativeLayout>

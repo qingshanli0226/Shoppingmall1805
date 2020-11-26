@@ -14,5 +14,5 @@
     <TextView
         android:id="@+id/tv_ordinary_right"
         style="@style/hot_item_image.ordinary_text"
-        android:text="古风" />
+        android:text="@string/Ancientstyle" />
 </LinearLayout>

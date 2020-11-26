@@ -14,6 +14,6 @@
     <TextView
         android:id="@+id/tv_price2"
         style="@style/item_hot_text"
-        android:text="￥88.00" />
+        android:text="@string/money" />
 
 </LinearLayout>

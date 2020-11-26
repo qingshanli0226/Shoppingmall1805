@@ -6,45 +6,30 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+    <LinearLayout style="@style/seckill_item_linear">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/seckill_item_linear_image"
             android:src="@drawable/home_arrow_left_flash" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="今日闪购 距·结束"
-            android:textColor="#000" />
+            style="@style/seckill_item_linear_uptext"
+            android:text="@string/dayEnd" />
 
         <TextView
             android:id="@+id/tv_time_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            style="@style/seckill_item_linear_centertext"
             android:background="@drawable/time_shape"
-            android:padding="2dp"
-            android:text="00:00:00"
-            android:textColor="#fff" />
+            android:text="00:00:00" />
 
         <TextView
             android:id="@+id/tv_more_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawablePadding="5dp"
+            style="@style/seckill_item_linear_text"
             android:drawableRight="@drawable/home_arrow_right"
-            android:gravity="end"
-            android:text="查看更多" />
+            android:text="@string/more" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_seckill"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        style="@style/seckill_item_recycler" />
 </LinearLayout>

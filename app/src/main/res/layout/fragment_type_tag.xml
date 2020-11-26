@@ -12,38 +12,31 @@
         android:id="@+id/toolbar"
         style="@style/BannerStyle.MyToolBarStyle" />
 
-    <RelativeLayout style="@style/BaseStyle.Type_Tag_RelativeLayoutStyle">
+    <RelativeLayout style="@style/Type_Tag_RelativeLayoutStyle">
 
         <RadioGroup
             android:id="@+id/rg"
-            style="@style/RadioGroupStyle"
-            android:layout_width="150dp"
-            android:layout_height="35dp"
-            android:layout_alignParentBottom="false"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
-            android:scaleY="1">
+            style="@style/Type_Tag_RadioGroupStyle">
 
             <RadioButton
                 android:id="@+id/rbl"
                 style="@style/Type_Tag_RadioButton"
                 android:background="@drawable/select_sl"
                 android:checked="true"
-                android:text="分类" />
+                android:text="@string/type" />
 
             <RadioButton
                 android:id="@+id/rbr"
                 style="@style/Type_Tag_RadioButton"
                 android:background="@drawable/select_sr"
-                android:text="标签"
+                android:text="@string/label"
                 android:textColor="#f00" />
 
         </RadioGroup>
 
         <ImageView
             android:id="@+id/iv_type_search"
-            style="@style/BaseStyle.Type_tag_ImageStyle"
+            style="@style/Type_tag_ImageStyle"
             android:src="@drawable/icon_search_white" />
 
         <View style="@style/Type_Tag_ViewStyle" />

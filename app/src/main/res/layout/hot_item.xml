@@ -16,15 +16,15 @@
             android:src="@drawable/home_arrow_left_hot" />
 
         <TextView
-            style="@style/hot_item_image.text"
-            android:text="这里都是买的棒棒哒" />
+            style="@style/hot_item_text"
+            android:text="@string/hot_item_text" />
 
         <TextView
             android:id="@+id/tv_more_hot"
-            style="@style/hot_item_image.textTwo"
+            style="@style/hot_item_textTwo"
             android:drawableRight="@drawable/home_arrow_right"
             android:drawablePadding="@dimen/drawablePadding"
-            android:text="查看更多" />
+            android:text="@string/more" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView

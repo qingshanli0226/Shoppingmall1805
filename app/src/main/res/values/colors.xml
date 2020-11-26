@@ -11,4 +11,5 @@
     <color name="black">#000</color>
     <color name="item_hot_textcolor">#ff4242</color>
     <color name="item_hot_right_color">#788188</color>
+    <color name="item_seckill_relative_text">#9a9a9a</color>
 </resources>

@@ -8,37 +8,21 @@
 
     <ImageView
         android:id="@+id/iv_figure"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        style="@style/recommend_grid_image"
         android:background="@drawable/new_img_loading_2" />
 
     <TextView
         android:id="@+id/tv_cover_price"
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:gravity="center_horizontal"
-        android:text="￥102.00"
-        android:textColor="#ff4c4c"
-        android:textSize="15sp" />
+        style="@style/item_seckill_uptext"
+        android:text="@string/newPrice" />
 
-    <RelativeLayout
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="2dp">
+    <RelativeLayout style="@style/item_seckill_RelativeLayout">
 
         <TextView
             android:id="@+id/tv_origin_price"
-            android:layout_width="100dp"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="￥159.00"
-            android:textColor="#9a9a9a" />
+            style="@style/item_seckill_relative_text"
+            android:text="@string/oldPrice" />
 
-        <View
-            android:layout_width="70dp"
-            android:layout_height="1dp"
-            android:layout_centerInParent="true"
-            android:background="@color/gray_dark_bg" />
+        <View style="@style/item_seckill_relative_view" />
     </RelativeLayout>
 </LinearLayout>

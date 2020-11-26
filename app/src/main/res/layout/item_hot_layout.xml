@@ -6,6 +6,6 @@
 
     <ImageView
         android:id="@+id/hotImg"
-        style="@style/BaseStyle.hotlayout_image" />
+        style="@style/hotlayout_image" />
 
 </LinearLayout>

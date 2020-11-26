@@ -15,13 +15,13 @@
     <TextView
         android:id="@+id/tv_name"
         style="@style/item_hot_grid_text"
-        android:text="【智趣屋】DIY小屋盒子剧场 手工拼装房子 模型玩具创意礼品 送工具" />
+        android:text="@string/item_hot_grid_text" />
 
     <TextView
         android:id="@+id/tv_price"
         style="@style/item_hot_grid_text"
         android:layout_gravity="left"
         android:layout_marginTop="@dimen/dp_3"
-        android:text="￥88.00"
+        android:text="@string/money"
         android:textColor="@drawable/type_item_background_selector" />
 </LinearLayout>

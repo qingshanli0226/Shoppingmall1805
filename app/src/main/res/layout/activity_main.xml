@@ -26,31 +26,31 @@
             style="@style/MainButtonStyle"
             android:checked="true"
             android:drawableTop="@drawable/home_button_selector"
-            android:text="首页" />
+            android:text="@string/home" />
 
         <RadioButton
             android:id="@+id/rb_type"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/type_button_selector"
-            android:text="分类" />
+            android:text="@string/type" />
 
         <RadioButton
             android:id="@+id/rb_community"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/community_button_selector"
-            android:text="发现" />
+            android:text="@string/community" />
 
         <RadioButton
             android:id="@+id/rb_cart"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/cart_button_selector"
-            android:text="购物车" />
+            android:text="@string/shoppingcar" />
 
         <RadioButton
             android:id="@+id/rb_user"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/user_button_selector"
-            android:text="个人中心" />
+            android:text="@string/user" />
     </RadioGroup>
 
 

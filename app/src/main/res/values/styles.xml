@@ -13,33 +13,33 @@
         <item name="android:windowFullscreen">true</item>
     </style>
 
-    <style name="WelcomImageStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:scaleType">centerCrop</item>
-    </style>
-
     <style name="BaseStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
     </style>
 
+    <style name="BaseWrapStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="WelcomImageStyle" parent="BaseStyle">
+        <item name="android:scaleType">centerCrop</item>
+    </style>
+
     <style name="MainButtonStyle">
-        <!-- Customize your theme here. -->
         <item name="android:layout_width">0dp</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:paddingTop">10dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:scaleX">0.7</item>
         <item name="android:button">@null</item>
-        <!--   <item name="android:drawablePadding">3dp</item>-->
         <item name="android:textColor">@drawable/bottom_button_text_selector</item>
         <item name="android:textSize">10dp</item>
         <item name="android:gravity">center_horizontal|bottom</item>
     </style>
 
-    <style name="WebViewStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="WebViewStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/webview_height</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginLeft">@dimen/webview_layout_marginLeft</item>
@@ -47,20 +47,17 @@
         <item name="android:clipChildren">false</item>
     </style>
 
-    <style name="BannerStyle.MyToolBarStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="BannerStyle.MyToolBarStyle" parent="BaseStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:visibility">gone</item>
     </style>
 
-    <style name="FragmentStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="FragmentStyle" parent="BaseStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
     </style>
 
-    <style name="RadioGroupStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="RadioGroupStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/radiogroup_width</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:layout_gravity">bottom</item>
@@ -69,31 +66,24 @@
         <item name="android:scaleY">0.7</item>
     </style>
 
-    <style name="BannerStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="BannerStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/banner_height</item>
     </style>
 
-    <style name="ChannelRecyclerStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="ChannelRecyclerStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/channel_item_recycler_height</item>
     </style>
 
-    <style name="RecyclerViewStyle">
-        <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">match_parent</item>
-    </style>
+    <style name="RecyclerViewStyle" parent="BaseStyle" />
 
 
-    <style name="ErrorTextStyle">
-        <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">match_parent</item>
+    <style name="ErrorTextStyle" parent="BaseStyle">
         <item name="android:gravity">center</item>
         <item name="android:textColor">@android:color/holo_red_dark</item>
         <item name="android:visibility">gone</item>
     </style>
 
-    <style name="HomeEditStyle">
+    <style name="HomeEditStyle" parent="BaseStyle">
         <item name="android:layout_width">@dimen/home_edit_width</item>
         <item name="android:layout_height">@dimen/home_edit_height</item>
         <item name="android:layout_gravity">center_vertical</item>
@@ -106,29 +96,26 @@
         <item name="android:textSize">@dimen/home_edit_textsize</item>
     </style>
 
-    <style name="Type_List_ListViweStyle">
+    <style name="Type_List_ListViweStyle" parent="BaseStyle">
         <item name="android:layout_width">@dimen/Zero</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">20</item>
         <item name="android:background">@color/transparent</item>
         <item name="android:scrollbars">none</item>
     </style>
 
-    <style name="Type_List_RecyclerViewStyle">
+    <style name="Type_List_RecyclerViewStyle" parent="BaseStyle">
         <item name="android:layout_width">@dimen/Zero</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">80</item>
     </style>
 
-    <style name="BaseStyle.Type_Tag_RelativeLayoutStyle">
+    <style name="Type_Tag_RelativeLayoutStyle" parent="BaseStyle">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/type_tag_relative_height</item>
         <item name="android:padding">@dimen/type_tag_relative_padding</item>
     </style>
 
-    <style name="Type_Tag_RadioButton">
+    <style name="Type_Tag_RadioButton" parent="BaseStyle">
         <item name="android:layout_width">@dimen/Zero</item>
-        <item name="android:layout_height">match_parent</item>
         <item name="android:layout_weight">1</item>
         <item name="android:button">@null</item>
         <item name="android:gravity">center</item>
@@ -136,7 +123,7 @@
         <item name="android:textSize">@dimen/type_tag_radiobutton_textsize</item>
     </style>
 
-    <style name="BaseStyle.Type_tag_ImageStyle">
+    <style name="Type_tag_ImageStyle" parent="BaseStyle">
         <item name="android:layout_width">@dimen/type_tag_imagesize</item>
         <item name="android:layout_height">@dimen/type_tag_imagesize</item>
         <item name="android:layout_alignParentRight">true</item>
@@ -144,58 +131,51 @@
         <item name="android:layout_marginRight">@dimen/type_tag_imagepadding</item>
     </style>
 
-    <style name="Type_Tag_ViewStyle">
-        <item name="android:layout_width">match_parent</item>
+    <style name="Type_Tag_ViewStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/type_tag_view_height</item>
         <item name="android:layout_alignParentBottom">true</item>
         <item name="android:background">@color/ewhite</item>
     </style>
 
-    <style name="hot_item_image">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
-    </style>
+    <style name="hot_item_image" parent="BaseWrapStyle" />
 
-    <style name="hot_item_image.text">
+    <style name="hot_item_text" parent="BaseWrapStyle">
         <item name="android:layout_marginLeft">@dimen/webview_layout_marginLeft</item>
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="hot_item_image.textTwo">
+    <style name="hot_item_textTwo" parent="BaseWrapStyle">
         <item name="android:layout_marginLeft">@dimen/webview_layout_marginLeft</item>
         <item name="android:layout_weight">1</item>
         <item name="android:gravity">end</item>
     </style>
 
-    <style name="RecyclerViewStyle.hot">
+    <style name="RecyclerViewStyle.hot" parent="BaseStyle">
         <item name="android:layout_marginTop">@dimen/home_edit_margintop</item>
         <item name="android:horizontalSpacing">@dimen/horizontalSpacing</item>
         <item name="android:numColumns">2</item>
         <item name="android:verticalSpacing">@dimen/verticalSpacing</item>
     </style>
 
-    <style name="channel_item_image">
+    <style name="channel_item_image" parent="BaseStyle">
         <item name="android:layout_width">@dimen/channel_item_image</item>
         <item name="android:layout_height">@dimen/channel_item_image</item>
     </style>
 
-    <style name="channel_item_text">
-        <item name="android:layout_width">wrap_content</item>
-        <item name="android:layout_height">wrap_content</item>
+    <style name="channel_item_text" parent="BaseWrapStyle">
         <item name="android:layout_marginTop">@dimen/channel_item_layout_marginTop</item>
         <item name="android:gravity">center_horizontal</item>
         <item name="android:textColor">@color/black</item>
         <item name="android:textSize">@dimen/type_tag_radiobutton_textsize</item>
     </style>
 
-    <style name="item_hot_image">
+    <style name="item_hot_image" parent="BaseStyle">
         <item name="android:layout_width">@dimen/item_hot_layout_width</item>
         <item name="android:layout_height">@dimen/item_hot_layout_height</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="item_hot_text">
-        <item name="android:layout_width">match_parent</item>
+    <style name="item_hot_text" parent="BaseStyle">
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">left</item>
         <item name="android:gravity">center</item>
@@ -203,15 +183,14 @@
         <item name="android:textSize">@dimen/BASETEXTSIZE</item>
     </style>
 
-    <style name="item_hot_grid_image">
+    <style name="item_hot_grid_image" parent="BaseStyle">
         <item name="android:layout_width">@dimen/item_hot_grid_image_size</item>
         <item name="android:layout_height">@dimen/item_hot_grid_image_size</item>
         <item name="android:layout_gravity">center</item>
     </style>
 
-    <style name="item_hot_grid_text">
+    <style name="item_hot_grid_text" parent="BaseWrapStyle">
         <item name="android:layout_width">@dimen/dp_180</item>
-        <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">@dimen/dp_10</item>
         <item name="android:ellipsize">end</item>
         <item name="android:lines">2</item>
@@ -219,7 +198,7 @@
         <item name="android:textColor">@color/black</item>
     </style>
 
-    <style name="BaseStyle.hotlayout_image">
+    <style name="hotlayout_image" parent="BaseStyle">
         <item name="android:scaleType">centerCrop</item>
     </style>
 
@@ -232,7 +211,7 @@
         <item name="android:textColor">@color/item_hot_right_color</item>
     </style>
 
-    <style name="item_ordinary">
+    <style name="item_ordinary" parent="BaseStyle">
         <item name="android:layout_width">@dimen/ordinary_image</item>
         <item name="android:layout_height">@dimen/ordinary_image</item>
     </style>
@@ -246,8 +225,130 @@
         <item name="android:layout_marginLeft">@dimen/orinary_marginLeft</item>
     </style>
 
-    <style name="recommend_grid_image">
+    <style name="recommend_grid_image" parent="BaseStyle">
         <item name="android:layout_width">@dimen/recommend_grid_image_size</item>
         <item name="android:layout_height">@dimen/recommend_grid_image_size</item>
     </style>
+
+    <style name="recommend_grid_uptext" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/recommend_grid_uptext_width</item>
+        <item name="android:layout_marginTop">@dimen/recommend_grid_uptext</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:lines">2</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="item_seckill_uptext" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/recommend_grid_uptext_width</item>
+        <item name="android:layout_marginTop">@dimen/TEXT_CENTER_SIZE</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/item_hot_textcolor</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+
+    <style name="hot_item_image.recommend_grid_text">
+        <item name="android:textColor">@color/item_hot_textcolor</item>
+    </style>
+
+    <style name="Type_Tag_RadioGroupStyle" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/Type_Tag_RadioGroup_Width</item>
+        <item name="android:layout_height">@dimen/Type_Tag_RadioGroup_Height</item>
+        <item name="android:layout_alignParentBottom">false</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:layout_marginTop">@dimen/Type_Tag_RadioGroup_marginTop</item>
+        <item name="android:scaleY">1</item>
+    </style>
+
+    <style name="item_seckill_RelativeLayout" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/item_seckill_relativelayout_width</item>
+        <item name="android:layout_marginTop">@dimen/item_seckill_relativelayout_layout_marginTop
+        </item>
+    </style>
+
+    <style name="item_seckill_relative_text" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/item_seckill_relative_text</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textColor">@color/item_seckill_relative_text</item>
+    </style>
+
+    <style name="item_seckill_relative_view" parent="BaseWrapStyle">
+        <item name="android:layout_width">@dimen/seckill_view_width</item>
+        <item name="android:layout_height">@dimen/seckill_view_height</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:textColor">@color/gray_dark_bg</item>
+    </style>
+
+    <style name="item_type_text" parent="BaseWrapStyle">
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">@dimen/item_type_text</item>
+    </style>
+
+    <style name="recommend_item_linear" parent="BaseStyle">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/recommend_item_linear</item>
+    </style>
+
+    <style name="recommend_item_linear_image" parent="BaseWrapStyle" />
+
+    <style name="recommend_item_linear_uptext" parent="BaseWrapStyle">
+        <item name="android:layout_marginLeft">@dimen/recommend_item_linear_uptext</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="recommend_item_linear_text" parent="BaseWrapStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/recommend_item_linear_text</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="recommend_item_recycler" parent="BaseStyle">
+        <item name="android:layout_height">@dimen/recommend_item_recycler_hieght</item>
+        <item name="android:numColumns">3</item>
+    </style>
+
+    <style name="seckill_item_linear" parent="BaseStyle">
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="seckill_item_linear_image" parent="BaseWrapStyle" />
+
+    <style name="seckill_item_linear_uptext" parent="BaseWrapStyle">
+        <item name="android:layout_marginLeft">@dimen/seckill_item_uptext_marginLeft</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="seckill_item_linear_centertext" parent="BaseWrapStyle">
+        <item name="android:layout_marginLeft">@dimen/seckill_item_centertext_marginLeft</item>
+        <item name="android:padding">@dimen/seckill_item_centertext_padding</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="seckill_item_linear_text" parent="BaseWrapStyle">
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/seckill_item_text_padding</item>
+        <item name="android:gravity">end</item>
+    </style>
+
+    <style name="seckill_item_recycler" parent="BaseStyle" />
+
+    <style name="titlebar_uptext" parent="BaseWrapStyle">
+        <item name="android:layout_height">@dimen/titlebar_uptext_height</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_marginLeft">@dimen/titlebar_uptext_marginLeft</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:drawablePadding">@dimen/titlebar_uptext_drawablePadding</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/titlebar_uptext_padding</item>
+        <item name="android:textSize">@dimen/tilebar_uptext_textsize</item>
+    </style>
+
+    <style name="titlebar_text" parent="BaseWrapStyle">
+        <item name="android:layout_margin">@dimen/titlbar_text_margin</item>
+        <item name="android:textColor">@color/white</item>
+    </style>
+
 </resources>
