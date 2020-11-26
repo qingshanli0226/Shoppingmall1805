@@ -70,7 +70,7 @@ public class TagFragment<P extends TagImpl,V extends TagContract.ITagView> exten
 
     @Override
     public void showEmpty() {
-        showEmpty();
+
     }
 
     @Override

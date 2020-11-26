@@ -2,6 +2,11 @@ package com.shopmall.bawei.common;
 
 public class UrlHelper {
 
+    public static final String REGISTER = "register";
+
+    public static final String LOGIN = "login";
+
+    public static final String AUTO_LOGIN = "autoLogin";
 
     public static String BASE_URL = "http://49.233.0.68:8080/";
     //public static String BASE_URL = "http://192.168.3.4:8080/";
@@ -10,7 +15,7 @@ public class UrlHelper {
     public static String BASE_RESOURCE_IMAGE_URL = BASE_URL+"atguigu/img";
 
 
-    public static final String JSCON_ERROR_CODE = "10000";
+    public static final String JSON_ERROR_CODE = "10000";
     public static final String JSON_ERROR_MESSAGE = "服务端范湖数据解析错误";
 
     public static final String HTTP_ERROR_CODE = "20000";

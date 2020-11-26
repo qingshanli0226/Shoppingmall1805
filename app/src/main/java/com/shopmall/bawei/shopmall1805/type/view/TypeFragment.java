@@ -165,7 +165,6 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     public void showEmpty() {
-        showEmpty();
     }
 
     @Override

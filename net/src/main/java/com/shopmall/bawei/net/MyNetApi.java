@@ -1,17 +1,41 @@
 package com.shopmall.bawei.net;
 
 import com.shopmall.bawei.common.UrlHelper;
+import com.shopmall.bawei.net.mode.AutoLogBean;
 import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
+import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;
 
+import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
+import retrofit2.http.Field;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 public interface MyNetApi {
+
+    @POST(UrlHelper.REGISTER)
+    @FormUrlEncoded
+    Observable<BaseBean<String>> register(@FieldMap HashMap<String,String> map);
+
+    @POST(UrlHelper.LOGIN)
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String,String> map);
+
+    @POST(UrlHelper.AUTO_LOGIN)
+    @FormUrlEncoded
+    Observable<BaseBean<AutoLogBean>> autoLogin(@Field("token") String token);
+
+
+
+
+
 
     @GET(UrlHelper.HOME_URL)
     Observable<BaseBean<HomeBean>> getHomeData();

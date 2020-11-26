@@ -102,7 +102,6 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void showEmpty() {
-        showEmpty();
     }
 
     @Override

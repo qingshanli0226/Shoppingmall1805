@@ -25,7 +25,7 @@ public abstract class ShopMallObserver<T> implements Observer<T> {
     public void onError(Throwable e) {//该函数可以扩展处理各种类型的错误
         Log.d("error message-----", e.getMessage());
         if (e instanceof JSONException) {
-            onRequestError(UrlHelper.JSCON_ERROR_CODE, UrlHelper.JSON_ERROR_MESSAGE);
+            onRequestError(UrlHelper.JSON_ERROR_CODE, UrlHelper.JSON_ERROR_MESSAGE);
         } else if (e instanceof HttpException) {
             onRequestError(UrlHelper.HTTP_ERROR_CODE, UrlHelper.HTTP_ERROR_MESSAGE);
         } else if (e instanceof SocketTimeoutException) {
