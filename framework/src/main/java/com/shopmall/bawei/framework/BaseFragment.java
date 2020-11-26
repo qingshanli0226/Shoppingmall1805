@@ -12,11 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.shopmall.bawei.framework.view.LoadingPage;
 import com.shopmall.bawei.framework.view.ToolBar;
 
 
 public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarClickListner {
-    private View rootView;
+    private LoadingPage loadingPage;
     private String TAG;
 
     protected ToolBar toolbar;
@@ -27,10 +28,16 @@ public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarC
          super.onCreateView(inflater, container, savedInstanceState);
          TAG = "LQS:" + getClass().getSimpleName();
 
-         rootView = inflater.inflate(getLayoutId(), container, false);
+         loadingPage = new LoadingPage(getActivity()) {
+             @Override
+             protected int getSuccessLayoutId() {
+                 return getLayoutId();
+             }
+         };
          toolbar = findViewById(R.id.toolbar);//在这里实例化toolbar
          toolbar.setToolBarClickListner(this);
-         return rootView;
+
+         return loadingPage;
     }
 
     protected abstract int getLayoutId();
@@ -48,7 +55,7 @@ public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarC
 
     //注解。表示一个资源id，不能随便传递一个整型
     public <T extends View> T findViewById(@IdRes int id) {
-        return rootView.findViewById(id);
+        return loadingPage.findViewById(id);
     }
 
     protected void printLog(String message) {
@@ -73,5 +80,26 @@ public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarC
 
     @Override
     public void onRightClick() {//右侧不能确定点击之后，子类的行为，所以在基类中没必要定义一个默认实现，具体实现让子类完成.
+    }
+
+    public void showLoading() {
+        loadingPage.showLoadingPage();
+    }
+    public void hideLoadingPage(boolean isSuccess, ErrorBean errorBean) {
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
+    }
+    public void showError(String errorMsg) {
+        loadingPage.showErrorPage(errorMsg);
+    }
+    public void showSuccess() {
+        loadingPage.showSuccessView();
+    }
+
+    public void showEmptyPage() {
+        loadingPage.showEmptyPage();
     }
 }
