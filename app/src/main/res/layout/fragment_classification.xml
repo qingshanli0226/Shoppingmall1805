@@ -80,11 +80,11 @@
             android:background="#DFDBDB"
             android:layout_height="1dp"
             ></View>
-        <com.shopmall.bawei.shopmall1805.adapter.MyVp
+        <com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:id="@+id/class_vp"
-            ></com.shopmall.bawei.shopmall1805.adapter.MyVp>
+            ></com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter>
     </LinearLayout>
 
 

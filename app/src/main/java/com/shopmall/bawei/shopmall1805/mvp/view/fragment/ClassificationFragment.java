@@ -10,9 +10,9 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adapter.ClassificationAdapter;
-import com.shopmall.bawei.shopmall1805.adapter.MyVp;
-import com.shopmall.bawei.shopmall1805.mvp.view.classificationfragment.Classification_smallFragment;
+import com.shopmall.bawei.shopmall1805.adapter.ClassificationSmallPagerAdapter;
+import com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter;
+import com.shopmall.bawei.shopmall1805.mvp.view.classificationfragment.ClassificationSmallFragment;
 import com.shopmall.bawei.shopmall1805.mvp.view.classificationfragment.LabelFragment;
 
 import java.util.ArrayList;
@@ -21,8 +21,8 @@ import java.util.List;
 
 public class ClassificationFragment extends Fragment {
 
-  private List<Fragment> list=new ArrayList<>();
-private View view;
+    private List<Fragment> list = new ArrayList<>();
+    private View view;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -35,11 +35,11 @@ private View view;
                              Bundle savedInstanceState) {
 
 
-        if ( null != view) {
+        if (null != view) {
 
             ViewGroup parent = (ViewGroup) view.getParent();
 
-            if ( null != parent) {
+            if (null != parent) {
                 parent.removeView(view);
             }
         } else {
@@ -51,21 +51,20 @@ private View view;
         return view;
 
 
-
     }
 
     private void initView(View view) {
-        list.add(new Classification_smallFragment());
+        list.add(new ClassificationSmallFragment());
         list.add(new LabelFragment());
-        ClassificationAdapter classAdapter = new ClassificationAdapter(getFragmentManager(), list);
-        final MyVp viewById = view.findViewById(R.id.class_vp);
+        ClassificationSmallPagerAdapter classAdapter = new ClassificationSmallPagerAdapter(getFragmentManager(), list);
+        final BaseVpAdapter viewById = view.findViewById(R.id.class_vp);
         RadioGroup rg = view.findViewById(R.id.rg);
         viewById.setAdapter(classAdapter);
         viewById.setscrollable(false);
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.radio_left:
                         viewById.setCurrentItem(0);
                         break;

@@ -12,10 +12,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adapter.HomeAdapter;
-import com.shopmall.bawei.shopmall1805.mvp.contract.HContract;
-import com.shopmall.bawei.shopmall1805.mvp.model.HModel;
-import com.shopmall.bawei.shopmall1805.mvp.prsenter.HPresenter;
+import com.shopmall.bawei.shopmall1805.adapter.HomeMultiLayoutAdapter;
+import com.shopmall.bawei.shopmall1805.mvp.contract.HomeContract;
+import com.shopmall.bawei.shopmall1805.mvp.model.HomeModel;
+import com.shopmall.bawei.shopmall1805.mvp.prsenter.HomePresenter;
 
 import baseurl.HomeBean;
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 import mvp.view.BaseFragment;
 
-public class FirstFragment extends BaseFragment<HPresenter> implements HContract.geteview {
+public class FirstFragment extends BaseFragment<HomePresenter> implements HomeContract.geteview {
     private View view;
     private RecyclerView main_rv;
     private List<Object> h_data=new ArrayList<>();
@@ -65,7 +65,7 @@ public class FirstFragment extends BaseFragment<HPresenter> implements HContract
     @Override
     public void initdata() {
 
-        ipresenter = new HPresenter(new HModel(),this);
+        ipresenter = new HomePresenter(new HomeModel(),this);
         ipresenter.inithomedata();
 
 
@@ -96,9 +96,9 @@ public class FirstFragment extends BaseFragment<HPresenter> implements HContract
         h_data.add(hot_info);
         Log.i("TAG", "getdata2: "+recommend_info);
 
-        HomeAdapter homeAdapter = new HomeAdapter(getContext());
-        main_rv.setAdapter(homeAdapter);
-        homeAdapter.updataData(h_data);
+        HomeMultiLayoutAdapter homeMultiLayoutAdapter = new HomeMultiLayoutAdapter(getContext());
+        main_rv.setAdapter(homeMultiLayoutAdapter);
+        homeMultiLayoutAdapter.updataData(h_data);
 
 
     }
