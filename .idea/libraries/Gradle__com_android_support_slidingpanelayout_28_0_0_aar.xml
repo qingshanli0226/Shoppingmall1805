@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:slidingpanelayout:28.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/c84caa6d5301276a7357602368c03f2c/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/c84caa6d5301276a7357602368c03f2c/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/c84caa6d5301276a7357602368c03f2c/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/3a4f488a1baa332881f8348a59fcace4/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/3a4f488a1baa332881f8348a59fcace4/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/slidingpanelayout-28.0.0.aar/3a4f488a1baa332881f8348a59fcace4/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -48,7 +48,7 @@ class BaseRvAdper <T> extends  RecyclerView.Adapter<BaseRvAdper.BaseviewHoder>  
     protected abstract int getlayourId(int i);
 
     @Override
-    public void onBindViewHolder(@NonNull BaseviewHoder holder, final int position, @NonNull List<Object> payloads) {
+    public void onBindViewHolder(@NonNull BaseviewHoder holder, final int position) {
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +66,9 @@ class BaseRvAdper <T> extends  RecyclerView.Adapter<BaseRvAdper.BaseviewHoder>  
     //？？
     protected abstract void convert(T itemData, BaseviewHoder holder, int position);
 
-    protected abstract T getItemData(int position);
+    public T getItemData(int position) {
+        return dataList.get(position);
+    }
 
     @Override
     public int getItemCount() {
