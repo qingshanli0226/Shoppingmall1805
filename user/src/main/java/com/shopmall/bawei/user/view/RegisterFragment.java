@@ -64,6 +64,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
     @Override
     public void onregister(RegisterBean registerBean) {
         Toast.makeText(getContext(), ""+registerBean.getResult(), Toast.LENGTH_SHORT).show();
+        //跳转登录界面
+        LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
     }
 
     @Override

@@ -8,13 +8,12 @@
 
     <TextView
         android:id="@+id/tv_tag"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/dp_100"
+        android:layout_height="@dimen/dp_80"
         android:background="@drawable/tag_bg"
         android:gravity="center"
         android:lines="2"
-        android:padding="10dp"
-        android:text="张丽东"
-        android:textColor="#f0a420"
-        android:textSize="20sp" />
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/color_Yellow"
+        android:textSize="@dimen/sp_20" />
 </LinearLayout>

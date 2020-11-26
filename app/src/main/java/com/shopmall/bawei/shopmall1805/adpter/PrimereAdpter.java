@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 
 import android.widget.ImageView;
 
@@ -13,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.net.Confing;
 import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
-import com.shopmall.bawei.shopmall1805.GoodinfoActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
 import com.youth.banner.Banner;

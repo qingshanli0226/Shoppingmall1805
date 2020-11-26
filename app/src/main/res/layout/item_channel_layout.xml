@@ -5,8 +5,7 @@
 
     <ImageView
         android:id="@+id/channelImg"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/Base_Layout_Match_Match"
         android:scaleType="centerCrop"/>
 
 </LinearLayout>

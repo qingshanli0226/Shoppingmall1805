@@ -4,9 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CallcenterActivity">
+    tools:context=".ui.activity.CallcenterActivity">
     <WebView
         android:id="@+id/web"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></WebView>
+        style="@style/Base_Layout_Match_Match"></WebView>
 </LinearLayout>

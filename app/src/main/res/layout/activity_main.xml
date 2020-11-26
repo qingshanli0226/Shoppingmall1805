@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".home.MainActivity">
+    tools:context=".ui.activity.MainActivity">
     <com.example.framework.MyViewPager
         android:id="@+id/vr"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_0"
         android:layout_weight="10"></com.example.framework.MyViewPager>
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/common"
-        android:layout_width="match_parent"
-        app:tl_iconMargin="-5dp"
-        app:tl_iconWidth="40dp"
-        app:tl_iconHeight="40dp"
-        app:tl_textSelectColor="#1CD9F1"
-        app:tl_textUnselectColor="#000"
-        android:layout_height="0dp"
-        android:layout_weight="1"></com.flyco.tablayout.CommonTabLayout>
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1"
+        app:tl_iconMargin="@dimen/dp_5f"
+        app:tl_iconWidth="@dimen/dp_40"
+        app:tl_iconHeight="@dimen/dp_40"
+        app:tl_textSelectColor="@color/color_Blue"
+        app:tl_textUnselectColor="@color/color_Black"
+       ></com.flyco.tablayout.CommonTabLayout>
 
 </LinearLayout>

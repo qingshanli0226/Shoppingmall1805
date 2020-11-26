@@ -12,11 +12,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".CallcenterActivity"></activity>
-        <activity android:name=".GoodinfoActivity" />
-        <activity android:name=".home.MainActivity" />
+        <activity android:name=".ui.activity.CallcenterActivity"></activity>
+        <activity android:name=".ui.activity.GoodinfoActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
         <activity
-            android:name=".WelcomActivity"
+            android:name=".ui.activity.WelcomActivity"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

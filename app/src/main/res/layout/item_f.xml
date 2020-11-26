@@ -4,9 +4,8 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/text_f"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="游戏专区"
-        android:textSize="25dp"
-        android:textColor="#000"></TextView>
+        style="@style/Base_Layout_Wrap_Wrap"
+        android:text="@string/Game"
+        android:textSize="@dimen/dp_25"
+        android:textColor="@color/color_Black"></TextView>
 </LinearLayout>

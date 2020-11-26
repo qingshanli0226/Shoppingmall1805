@@ -4,8 +4,7 @@
     android:layout_height="match_parent">
     <ImageView
         android:id="@+id/iv_welcom"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+       style="@style/Base_Layout_Match_Match"
         android:scaleX="1.5"
         android:scaleY="1.5"
         android:src="@drawable/shpping"

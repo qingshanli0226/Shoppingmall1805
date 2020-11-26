@@ -4,44 +4,39 @@
     android:layout_height="230dp"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        style="@style/Base_Layout_Match_Wrap">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Base_Layout_Wrap_Wrap"
             android:src="@drawable/home_arrow_left_flash" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="今日闪购 距·结束"
-            android:textColor="#000" />
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/end"
+            android:textColor="@color/color_Black" />
 
         <TextView
             android:id="@+id/tv_time_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:layout_marginLeft="@dimen/dp_10"
             android:background="@drawable/time_shape"
-            android:padding="2dp"
-            android:text="00:00:00"
-            android:textColor="#fff" />
+            android:padding="@dimen/dp_2"
+            android:text="@string/Time"
+            android:textColor="@color/colorWhite" />
 
         <TextView
             android:id="@+id/tv_more_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/Base_Layout_Wrap_Wrap"
             android:layout_weight="1"
-            android:drawablePadding="5dp"
+            android:drawablePadding="@dimen/dp_5"
             android:drawableRight="@drawable/home_arrow_right"
             android:gravity="end"
-            android:text="查看更多" />
+            android:text="@string/Many" />
     </LinearLayout>
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rv_seck"
-        android:layout_width="match_parent"
-        android:layout_height="200dp"
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_200"
         ></android.support.v7.widget.RecyclerView>
 </LinearLayout>

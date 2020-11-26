@@ -11,28 +11,25 @@
 
     <ImageView
         android:id="@+id/iv_hot"
-        android:layout_width="180dp"
-        android:layout_height="180dp"
+        android:layout_width="@dimen/dp_180"
+        android:layout_height="@dimen/dp_180"
         android:layout_gravity="center"
         android:background="@mipmap/ic_launcher" />
 
     <TextView
         android:id="@+id/tv_hot_name"
-        android:layout_width="180dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_width="@dimen/dp_180"
+       style="@style/Base_Layout_Wrap_Wrap"
+        android:layout_marginTop="@dimen/dp_10"
         android:ellipsize="end"
         android:lines="2"
-        android:padding="10dp"
-        android:text="【智趣屋】DIY小屋盒子剧场 手工拼装房子 模型玩具创意礼品 送工具"
-        android:textColor="#000" />
+        android:padding="@dimen/dp_10"
+        android:textColor="@color/color_Black" />
 
     <TextView
         android:id="@+id/tv_hot_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/Base_Layout_Wrap_Wrap"
         android:layout_gravity="left"
-        android:layout_marginTop="3dp"
-        android:text="￥88.00"
-        android:textColor="#ff4242" />
+        android:layout_marginTop="@dimen/dp_3"
+        android:textColor="@color/GoodInfo_Tv_Price_Color" />
 </LinearLayout>

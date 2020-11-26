@@ -4,7 +4,6 @@
     android:layout_height="150dp">
     <com.youth.banner.Banner
         android:id="@+id/bannerContainer"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/Base_Layout_Match_Match">
     </com.youth.banner.Banner>
 </LinearLayout>

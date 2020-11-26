@@ -3,4 +3,16 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="colorWhite">#fff</color>
+    <color name="colorOrange">#FF5722</color>
+    <color name="GoodInfo_TooBar_NameColor">#000</color>
+    <color name="GoodInfo_Tv_Name_Color">#323427</color>
+    <color name="GoodInfo_Tv_Desc_Color">#767f86</color>
+    <color name="GoodInfo_Tv_Price_Color">#ed3f3f</color>
+    <color name="GoodInfo_View">#eeee</color>
+    <color name="color_Black" >#000</color>
+    <color name="color_Yellow" >#FFC107</color>
+    <color name="color_Blue" >#1CD9F1</color>
+    <color name="color_Gray" >#ccc</color>
+    <color name="GoodInfo_Tv_Style_Color">#3c3d40</color>
 </resources>
