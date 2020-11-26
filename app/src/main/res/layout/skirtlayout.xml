@@ -11,8 +11,7 @@
         android:id="@+id/reimage"
         ></ImageView>
        <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           style="@style/TextStyle"
            android:id="@+id/retext"
            android:layout_gravity="center"
            android:gravity="center"

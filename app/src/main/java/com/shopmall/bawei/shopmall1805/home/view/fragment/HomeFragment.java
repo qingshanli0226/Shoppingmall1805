@@ -10,12 +10,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shopmall.bawei.common.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
-import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomeImpl;
-import com.shopmall.bawei.shopmall1805.home.view.HomeAdapter;
+import com.shopmall.bawei.shopmall1805.home.view.adapter.HomeAdapter;
 
 public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 

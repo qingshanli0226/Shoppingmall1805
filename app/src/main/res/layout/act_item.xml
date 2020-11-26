@@ -5,12 +5,12 @@
     android:clipChildren="false">
 
     <WebView
-        android:id="@+id/act_viewpager"
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:layout_gravity="center"
-        android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:clipChildren="false" />
-
+        android:layout_marginLeft="20dp"
+        android:clipChildren="false"
+        android:id="@+id/act_viewpager"
+        />
 </FrameLayout>

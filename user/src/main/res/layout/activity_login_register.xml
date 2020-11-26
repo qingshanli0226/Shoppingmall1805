@@ -17,13 +17,12 @@
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        style="@style/FullLayoutStyle">
     </androidx.viewpager.widget.ViewPager>
 
-    <ProgressBar android:layout_width="100dp" android:layout_height="100dp"
+    <ProgressBar
+        style="@style/LoadingBarStyle"
         android:id="@+id/loadingBar"
-        android:layout_centerInParent="true"
-        android:visibility="gone"/>
+        />
 
 </LinearLayout>

@@ -14,28 +14,25 @@
         app:left_src="@mipmap/back">
     </com.shopmall.bawei.common.MyToolBar>
 
-    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+    <RelativeLayout
+        style="@style/FullLayoutStyle">
 
         <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
                       android:orientation="vertical">
             <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    style="@style/EditTextStyle"
                     android:hint="用户名"
                     android:id="@+id/name"
             />
 
             <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="50dp"
+                    style="@style/EditTextStyle"
                     android:hint="密码"
                     android:id="@+id/password"
             />
 
             <Button
-                    android:layout_marginTop="50dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                   style="@style/ButtonStyle"
                     android:id="@+id/btnRegister"
                     android:text="注册"/>
 
@@ -47,12 +44,11 @@
                     android:textColor="@android:color/holo_red_dark"
                     android:id="@+id/errorTv"
                     android:visibility="gone"/>
-
         </LinearLayout>
-        <ProgressBar android:layout_width="100dp" android:layout_height="100dp"
-                     android:id="@+id/loadingBar"
-                     android:layout_centerInParent="true"
-                     android:visibility="gone"/>
+        <ProgressBar
+            style="@style/LoadingBarStyle"
+            android:id="@+id/loadingBar"
+                     />
 
 
     </RelativeLayout>

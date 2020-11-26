@@ -10,8 +10,6 @@ import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
 public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
     private ImageView imgWel;
-
-
     @Override
     protected int layoutId() {
         return R.layout.activity_welcome;

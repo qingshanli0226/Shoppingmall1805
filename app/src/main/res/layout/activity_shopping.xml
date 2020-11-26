@@ -50,7 +50,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-            <com.shopmall.bawei.shopmall1805.home.view.ScrollViewContainer
+            <com.shopmall.bawei.shopmall1805.home.view.adapter.ScrollViewContainer
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
@@ -188,7 +188,7 @@
 
                 </ScrollView>
 
-            </com.shopmall.bawei.shopmall1805.home.view.ScrollViewContainer>
+            </com.shopmall.bawei.shopmall1805.home.view.adapter.ScrollViewContainer>
         </LinearLayout>
 
         <LinearLayout
@@ -245,7 +245,6 @@
                 android:text="加入购物车"
                 android:textColor="#fff" />
         </LinearLayout>
-
         <include layout="@layout/more_layout" />
     </FrameLayout>
 

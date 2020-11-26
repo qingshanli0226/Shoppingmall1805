@@ -1,10 +1,9 @@
-package com.shopmall.bawei.shopmall1805.home.view;
+package com.shopmall.bawei.shopmall1805.home.view.adapter;
 
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,7 +14,6 @@ import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
 import com.shopmall.bawei.shopmall1805.home.ShoppingActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;

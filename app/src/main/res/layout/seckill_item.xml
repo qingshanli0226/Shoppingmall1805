@@ -16,16 +16,14 @@
             android:src="@drawable/home_arrow_left_flash" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_marginLeft="10dp"
             android:text="今日闪购 距·结束"
             android:textColor="#000" />
 
         <TextView
             android:id="@+id/tv_time_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+             style="@style/TextStyle"
             android:layout_marginLeft="10dp"
             android:background="@drawable/time_shape"
             android:padding="2dp"
@@ -34,8 +32,7 @@
 
         <TextView
             android:id="@+id/tv_more_seckill"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_weight="1"
             android:drawablePadding="5dp"
             android:drawableRight="@drawable/home_arrow_right"
@@ -45,6 +42,5 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_seckill"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        style="@style/RecyclerView" />
 </LinearLayout>

@@ -13,35 +13,26 @@
         app:left_src="@mipmap/back" />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/EditTextStyle"
         android:hint="用户名"
         android:id="@+id/name"
         />
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
+        style="@style/EditTextStyle"
         android:hint="密码"
         android:id="@+id/password"
         />
 
     <Button
-        android:layout_marginTop="50dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/ButtonStyle"
         android:id="@+id/loginButton"
         android:background="@color/cardview_dark_background"
         android:text="登录"/>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:gravity="left"
-        android:textSize="15sp"
+        style="@style/TextStyle"
         android:text="注册"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="15dp"
         android:id="@+id/registerTv"/>
 
 

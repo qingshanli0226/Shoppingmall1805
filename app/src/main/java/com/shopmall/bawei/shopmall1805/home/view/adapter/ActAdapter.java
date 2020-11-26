@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.home.view;
+package com.shopmall.bawei.shopmall1805.home.view.adapter;
 
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
