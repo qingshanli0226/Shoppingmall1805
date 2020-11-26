@@ -8,7 +8,10 @@ import com.shopmall.bawei.net.MyNetApi;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.OkHttpHelper;
 import com.shopmall.bawei.net.mode.BaseBean;
+import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;
+
+import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -25,6 +28,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
     public void getSkirt() {
         type().getSkirt()
+                .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -33,18 +37,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .subscribe(new Observer<TypeBean>() {
+                .subscribe(new Observer<List<TypeBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(TypeBean typeBean) {
-                        if (typeBean == null) {
+                    public void onNext(List<TypeBean> typeBeans) {
+                        if (typeBeans == null) {
                             iView.showEmpty();
                         } else {
-                            iView.onType(typeBean);
+                            iView.onType(typeBeans.get(0));
                             iView.hideLoading(true, null);
                         }
                     }
@@ -63,6 +67,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
     }
     public void getJacket(){
         type().getJacket()
+                .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -71,18 +76,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -99,6 +104,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getPants(){type().getPants()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -107,18 +113,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -135,6 +141,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getOvercoat(){type().getOvercoat()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -143,18 +150,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -171,6 +178,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getAccessory(){type().getAccessory()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -179,18 +187,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -207,6 +215,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getBag(){type().getBag()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -215,18 +224,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -243,6 +252,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getDress(){type().getDress()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -251,18 +261,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -279,6 +289,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getProduct(){type().getProduct()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -287,18 +298,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -315,6 +326,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getStationery(){type().getStationery()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -323,18 +335,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -351,6 +363,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getDigit(){type().getDigit()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -359,18 +372,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }
@@ -387,6 +400,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                 }
             });}
     public void getGame(){type().getGame()
+            .map(new NetFunction<BaseBean<List<TypeBean>>,List<TypeBean>>())
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .doOnSubscribe(new Consumer<Disposable>() {
@@ -395,18 +409,18 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                     iView.showLoaDing();
                 }
             })
-            .subscribe(new Observer<TypeBean>() {
+            .subscribe(new Observer<List<TypeBean>>() {
                 @Override
                 public void onSubscribe(Disposable d) {
 
                 }
 
                 @Override
-                public void onNext(TypeBean typeBean) {
-                    if (typeBean == null) {
+                public void onNext(List<TypeBean> typeBeans) {
+                    if (typeBeans == null) {
                         iView.showEmpty();
                     } else {
-                        iView.onType(typeBean);
+                        iView.onType(typeBeans.get(0));
                         iView.hideLoading(true, null);
                     }
                 }

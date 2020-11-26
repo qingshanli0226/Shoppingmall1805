@@ -9,14 +9,14 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class HotAdapter extends BaseRvAdapter<TypeBean.ResultBean.HotProductListBean> {
+public class HotAdapter extends BaseRvAdapter<TypeBean.HotProductListBean> {
     @Override
     protected int getLayoutId(int viewType) {
         return R.layout.item_hot;
     }
 
     @Override
-    protected void convert(TypeBean.ResultBean.HotProductListBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(TypeBean.HotProductListBean itemData, BaseViewHolder baseViewHolder, int position) {
         Glide.with(baseViewHolder.itemView.getContext())
                 .load(UrlHelper.BASE_RESOURCE_IMAGE_URL+itemData.getFigure())
                 .into((ImageView)baseViewHolder.getView(R.id.iv_hot2));

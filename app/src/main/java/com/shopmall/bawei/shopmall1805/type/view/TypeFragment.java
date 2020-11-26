@@ -36,7 +36,7 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     private TypeAdapter adapter;
     private ListAdapter lvAdapter;
 
-    private TypeBean.ResultBean resultBean;
+    private TypeBean resultBean;
 
 
     @Override
@@ -180,7 +180,7 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     }
 
 
-    public void updateAdapter(TypeBean.ResultBean resultBean){
+    public void updateAdapter(TypeBean resultBean){
         adapter.clearData();
         adapter.addOneData(resultBean.getHot_product_list());
         adapter.addOneData(resultBean.getChild());
@@ -188,11 +188,10 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     public void onType(TypeBean typeBean) {
-        List<TypeBean.ResultBean> result = typeBean.getResult();
-        updateAdapter(result.get(0));
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onType: "+item.getName());
-        }
+        updateAdapter(typeBean);
+//        for (TypeBean.ResultBean item:result) {
+//            Log.i("TAG", "onType: "+item.getName());
+//        }
     }
 
 

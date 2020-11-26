@@ -16,7 +16,7 @@ import java.util.List;
 public class TagFragment<P extends TagImpl,V extends TagContract.ITagView> extends BaseFragment<P,V> implements TagContract.ITagView {
     private RecyclerView rvTag;
     private TagAdapter adapter;
-    private List<TagBean.ResultBean> list = new ArrayList<>();
+    private List<TagBean> list = new ArrayList<>();
 
     @Override
     protected int layoutId() {
@@ -57,8 +57,8 @@ public class TagFragment<P extends TagImpl,V extends TagContract.ITagView> exten
     }
 
     @Override
-    public void onTag(TagBean tagBean) {
-        list.addAll(tagBean.getResult());
+    public void onTag(List<TagBean> tagBeans) {
+        list.addAll(tagBeans);
         adapter.updateData(list);
     }
 

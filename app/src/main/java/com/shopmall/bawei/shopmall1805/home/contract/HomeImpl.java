@@ -23,6 +23,7 @@ public class HomeImpl extends HomeContract.HomePresenter {
     public void getHomeData() {
         OkHttpHelper.getApi().getHomeData()
                 .delay(1, TimeUnit.SECONDS)
+                .map(new NetFunction<BaseBean<HomeBean>,HomeBean>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {

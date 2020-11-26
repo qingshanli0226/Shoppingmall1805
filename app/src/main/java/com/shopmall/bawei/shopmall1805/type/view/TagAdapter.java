@@ -7,7 +7,7 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class TagAdapter extends BaseRvAdapter<TagBean.ResultBean> {
+public class TagAdapter extends BaseRvAdapter<TagBean> {
     private int[] colors = {Color.parseColor("#f0a420"), Color.parseColor("#4ba5e2"), Color.parseColor("#f0839a"),
             Color.parseColor("#4ba5e2"), Color.parseColor("#f0839a"), Color.parseColor("#f0a420"),
             Color.parseColor("#f0839a"), Color.parseColor("#f0a420"), Color.parseColor("#4ba5e2")
@@ -19,7 +19,7 @@ public class TagAdapter extends BaseRvAdapter<TagBean.ResultBean> {
     }
 
     @Override
-    protected void convert(TagBean.ResultBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(TagBean itemData, BaseViewHolder baseViewHolder, int position) {
         TextView tv_tag = baseViewHolder.getView(R.id.tv_tag);
         tv_tag.setText(itemData.getName());
         tv_tag.setTextColor(colors[position % colors.length]);

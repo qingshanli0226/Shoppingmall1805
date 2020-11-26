@@ -10,14 +10,14 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class RecommendAdapter extends BaseRvAdapter<HomeBean.ResultBean.RecommendInfoBean> {
+public class RecommendAdapter extends BaseRvAdapter<HomeBean.RecommendInfoBean> {
     @Override
     protected int getLayoutId(int viewType) {
         return R.layout.item_recommend_grid_view;
     }
 
     @Override
-    protected void convert(HomeBean.ResultBean.RecommendInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(HomeBean.RecommendInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
         String url = UrlHelper.BASE_RESOURCE_IMAGE_URL + itemData.getFigure();
         Glide.with(baseViewHolder.itemView.getContext())
                 .load(UrlHelper.BASE_RESOURCE_IMAGE_URL+itemData.getFigure())

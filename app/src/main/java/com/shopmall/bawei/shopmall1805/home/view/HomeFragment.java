@@ -60,12 +60,12 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onHomeData(HomeBean homeBean) {
-        homeAdapter.addOneData(homeBean.getResult().getBanner_info());
-        homeAdapter.addOneData(homeBean.getResult().getChannel_info());
-        homeAdapter.addOneData(homeBean.getResult().getAct_info());
-        homeAdapter.addOneData(homeBean.getResult().getSeckill_info());
-        homeAdapter.addOneData(homeBean.getResult().getRecommend_info());
-        homeAdapter.addOneData(homeBean.getResult().getHot_info());
+        homeAdapter.addOneData(homeBean.getBanner_info());
+        homeAdapter.addOneData(homeBean.getChannel_info());
+        homeAdapter.addOneData(homeBean.getAct_info());
+        homeAdapter.addOneData(homeBean.getSeckill_info());
+        homeAdapter.addOneData(homeBean.getRecommend_info());
+        homeAdapter.addOneData(homeBean.getHot_info());
     }
 
 //    @Override

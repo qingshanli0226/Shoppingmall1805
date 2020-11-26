@@ -12,7 +12,6 @@ import com.bumptech.glide.Glide;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
-import com.shopmall.bawei.net.mode.HomeBean.ResultBean.RecommendInfoBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;
@@ -62,7 +61,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayRecommend(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.ResultBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.ResultBean.RecommendInfoBean>)itemData;
+        List<HomeBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.RecommendInfoBean>)itemData;
         RecyclerView recommendRv = baseViewHolder.getView(R.id.gv_recommend);
         Log.i("TAG", "displayRecommend: "+recommendInfoBeans);
         recommendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
@@ -83,8 +82,8 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displaySeckill(Object itemData, BaseViewHolder baseViewHolder) {
-        HomeBean.ResultBean.SeckillInfoBean seckillInfoBean = (HomeBean.ResultBean.SeckillInfoBean)itemData;
-        List<HomeBean.ResultBean.SeckillInfoBean.ListBean> list = seckillInfoBean.getList();
+        HomeBean.SeckillInfoBean seckillInfoBean = (HomeBean.SeckillInfoBean)itemData;
+        List<HomeBean.SeckillInfoBean.ListBean> list = seckillInfoBean.getList();
         RecyclerView secKillRv = baseViewHolder.getView(R.id.rv_seckill);
         secKillRv.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
         SecKillRvAdapter secKillRvAdapter = new SecKillRvAdapter();
@@ -105,7 +104,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.ResultBean.HotInfoBean> hotInfoBeans = (List<HomeBean.ResultBean.HotInfoBean>)itemData;
+        List<HomeBean.HotInfoBean> hotInfoBeans = (List<HomeBean.HotInfoBean>)itemData;
         RecyclerView hotRv = baseViewHolder.getView(R.id.gv_hot);
         hotRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),2,GridLayoutManager.VERTICAL,false));
         HotAdapter hotAdapter = new HotAdapter();
@@ -126,7 +125,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayAct(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.ResultBean.ActInfoBean> actInfoBeans = (List<HomeBean.ResultBean.ActInfoBean>)itemData;
+        List<HomeBean.ActInfoBean> actInfoBeans = (List<HomeBean.ActInfoBean>)itemData;
         RecyclerView actRv = baseViewHolder.getView(R.id.actRv);
         actRv.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
         ActAdapter actAdapter = new ActAdapter();
@@ -146,7 +145,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayChannel(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.ResultBean.ChannelInfoBean> channelInfoBeans = (List<HomeBean.ResultBean.ChannelInfoBean>) itemData;
+        List<HomeBean.ChannelInfoBean> channelInfoBeans = (List<HomeBean.ChannelInfoBean>) itemData;
         RecyclerView channelRv = baseViewHolder.getView(R.id.channelRv);
         channelRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),5));
         ChannelAdapter channelAdapter = new ChannelAdapter();
@@ -171,7 +170,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
 
     private void displayBanner(Object itemData, BaseViewHolder baseViewHolder) {
 
-        List<HomeBean.ResultBean.BannerInfoBean> bannerInfoBeans = (List<HomeBean.ResultBean.BannerInfoBean>)itemData;//强转成我们需要的类型
+        List<HomeBean.BannerInfoBean> bannerInfoBeans = (List<HomeBean.BannerInfoBean>)itemData;//强转成我们需要的类型
 
         Banner banner = baseViewHolder.getView(R.id.banner);
         banner.setBannerAnimation(Transformer.Accordion);
@@ -182,7 +181,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
             }
         });
         List<String> imageUrls = new ArrayList<>();
-        for (HomeBean.ResultBean.BannerInfoBean item : bannerInfoBeans){
+        for (HomeBean.BannerInfoBean item : bannerInfoBeans){
             imageUrls.add(UrlHelper.BASE_RESOURCE_IMAGE_URL+item.getImage());
         }
         banner.setImages(imageUrls);

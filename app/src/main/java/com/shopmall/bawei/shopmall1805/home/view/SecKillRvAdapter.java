@@ -9,14 +9,14 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class SecKillRvAdapter extends BaseRvAdapter<HomeBean.ResultBean.SeckillInfoBean.ListBean> {
+public class SecKillRvAdapter extends BaseRvAdapter<HomeBean.SeckillInfoBean.ListBean> {
     @Override
     protected int getLayoutId(int viewType) {
         return R.layout.item_seckill;
     }
 
     @Override
-    protected void convert(HomeBean.ResultBean.SeckillInfoBean.ListBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(HomeBean.SeckillInfoBean.ListBean itemData, BaseViewHolder baseViewHolder, int position) {
         Glide.with(baseViewHolder.itemView.getContext())
                 .load(UrlHelper.BASE_RESOURCE_IMAGE_URL+itemData.getFigure())
                 .into((ImageView)baseViewHolder.getView(R.id.iv_figure));

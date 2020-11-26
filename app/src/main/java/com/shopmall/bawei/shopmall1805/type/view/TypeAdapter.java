@@ -34,7 +34,7 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayOrdinary(Object itemData, BaseViewHolder baseViewHolder) {
-        List<TypeBean.ResultBean.ChildBean> childBeans = (List<TypeBean.ResultBean.ChildBean>) itemData;
+        List<TypeBean.ChildBean> childBeans = (List<TypeBean.ChildBean>) itemData;
         RecyclerView rvOrdinary = baseViewHolder.getView(R.id.rv_ordinary_right);
         ChildAdapter childAdapter = new ChildAdapter();
         rvOrdinary.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
@@ -49,7 +49,7 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
     }
 
     private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
-        List<TypeBean.ResultBean.HotProductListBean> hots = (List<TypeBean.ResultBean.HotProductListBean>) itemData;
+        List<TypeBean.HotProductListBean> hots = (List<TypeBean.HotProductListBean>) itemData;
         RecyclerView rvOrdinary = baseViewHolder.getView(R.id.rv_hot_right);
         HotAdapter hotAdapter = new HotAdapter();
         rvOrdinary.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));

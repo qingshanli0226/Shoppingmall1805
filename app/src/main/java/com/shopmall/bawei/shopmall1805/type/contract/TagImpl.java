@@ -10,6 +10,7 @@ import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.net.mode.TagBean;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
@@ -24,6 +25,7 @@ public class TagImpl extends TagContract.ITagPresenter {
         OkHttpHelper.getApi()
                 .getTag()
                 .delay(1, TimeUnit.SECONDS)
+                .map(new NetFunction<BaseBean<List<TagBean>>,List<TagBean>>())
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
@@ -32,18 +34,18 @@ public class TagImpl extends TagContract.ITagPresenter {
                         iView.showLoaDing();
                     }
                 })
-                .subscribe(new Observer<TagBean>() {
+                .subscribe(new Observer<List<TagBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(TagBean tagBean) {
-                        if(tagBean == null){
+                    public void onNext(List<TagBean> tagBeans) {
+                        if(tagBeans == null){
                             iView.showEmpty();
                         }else{
-                            iView.onTag(tagBean);
+                            iView.onTag(tagBeans);
                             iView.hideLoading(true,null);
                         }
                     }

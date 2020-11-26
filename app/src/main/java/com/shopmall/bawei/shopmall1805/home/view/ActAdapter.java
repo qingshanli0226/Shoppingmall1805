@@ -12,14 +12,14 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class ActAdapter extends BaseRvAdapter<HomeBean.ResultBean.ActInfoBean> {
+public class ActAdapter extends BaseRvAdapter<HomeBean.ActInfoBean> {
     @Override
     protected int getLayoutId(int viewType) {
         return R.layout.act_item;
     }
 
     @Override
-    protected void convert(HomeBean.ResultBean.ActInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(HomeBean.ActInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
         WebView webView = baseViewHolder.getView(R.id.act_viewpager);
         webView.setWebViewClient(new WebViewClient());
         webView.setWebChromeClient(new WebChromeClient());

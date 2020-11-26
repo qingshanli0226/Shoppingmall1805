@@ -1,7 +1,5 @@
 package com.shopmall.bawei.net;
 
-
-
 import com.shopmall.bawei.net.mode.BaseBean;
 
 import io.reactivex.functions.Function;

@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
 
 //自定义一个observer，让presenter实现类更清晰，干净
-public abstract class ShopmallObserver<T> implements Observer<T> {
+public abstract class ShopMallObserver<T> implements Observer<T> {
     @Override
     public void onSubscribe(Disposable d) {
     }
