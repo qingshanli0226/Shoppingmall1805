@@ -9,9 +9,9 @@ import com.shopmall.bawei.shopmall1805.base.BaseActivity;
 import com.shopmall.bawei.shopmall1805.base.IPresenter;
 import com.shopmall.bawei.shopmall1805.base.IView;
 import com.shopmall.bawei.shopmall1805.fragment.CardFragment;
-import com.shopmall.bawei.shopmall1805.find.FindFragment;
+import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
-import com.shopmall.bawei.shopmall1805.fragment.TypeFragment;
+import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.fragment.UserFragment;
 
 public class MainActivity extends BaseActivity<IPresenter, IView> {

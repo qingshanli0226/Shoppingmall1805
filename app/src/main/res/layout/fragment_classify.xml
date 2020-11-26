@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="horizontal"
+    style="@style/FragmentStyle">
+
+    <ListView
+        android:id="@+id/item_lv"
+        android:layout_width="80dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent"/>
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/find_rv"
+        style="@style/RecyclerViewStyle"/>
+</LinearLayout>

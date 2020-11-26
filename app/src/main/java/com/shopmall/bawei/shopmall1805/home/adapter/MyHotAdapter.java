@@ -20,7 +20,7 @@ public class MyHotAdapter extends BaseAdapter<HomeFragmentBean.ResultBean.HotInf
         ImageView imageView = baseViewHoder.itemView.findViewById(R.id.hot_image);
         TextView textView = baseViewHoder.itemView.findViewById(R.id.hot_title);
         Glide.with(baseViewHoder.itemView.getContext()).load(Contants.BASE_URl_IMAGE+hotInfoBean.getFigure()).into(imageView);
-        textView.setText(hotInfoBean.getCover_price());
+        textView.setText(hotInfoBean.getName());
     }
 
     @Override

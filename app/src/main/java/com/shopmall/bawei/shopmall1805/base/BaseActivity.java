@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.base;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity {
 
@@ -34,5 +35,9 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     }
 
     protected abstract int getLayoutId();
+
+    private void myToast(String message){
+        Toast.makeText(this,message+"",Toast.LENGTH_SHORT).show();
+    }
 
 }

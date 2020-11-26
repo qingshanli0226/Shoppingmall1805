@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
@@ -51,5 +52,7 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
 
     protected abstract void initView(View view);
 
-
+    protected  void myToast(String message){
+        Toast.makeText(getContext(),message+"",Toast.LENGTH_SHORT).show();
+    }
 }

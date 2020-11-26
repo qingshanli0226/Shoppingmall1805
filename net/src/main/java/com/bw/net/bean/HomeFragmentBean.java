@@ -4,6 +4,7 @@ package com.bw.net.bean;
 
 import com.chad.library.adapter.base.entity.MultiItemEntity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class HomeFragmentBean {
@@ -151,7 +152,7 @@ public class HomeFragmentBean {
                 this.list = list;
             }
 
-            public static class ListBean {
+            public static class ListBean implements Serializable{
                 /**
                  * cover_price : 20.00
                  * figure : /1478489000522.png
@@ -208,7 +209,7 @@ public class HomeFragmentBean {
             }
         }
 
-        public static class ActInfoBean {
+        public static class ActInfoBean implements Serializable{
             /**
              * icon_url : /operation/img/1478169868/1478761370286.png
              * name : 尚硅谷福利专区之111.1专区
@@ -244,7 +245,7 @@ public class HomeFragmentBean {
             }
         }
 
-        public static class BannerInfoBean {
+        public static class BannerInfoBean implements Serializable{
             /**
              * image : /1478770583834.png
              * option : 3
@@ -306,7 +307,7 @@ public class HomeFragmentBean {
             }
         }
 
-        public static class ChannelInfoBean {
+        public static class ChannelInfoBean implements Serializable{
             /**
              * channel_name : 服饰
              * image : /app/img/menu-cyc.png
@@ -378,7 +379,7 @@ public class HomeFragmentBean {
             }
         }
 
-        public static class HotInfoBean {
+        public static class HotInfoBean implements Serializable {
             /**
              * cover_price : 159.00
              * figure : /1477984921265.jpg
@@ -424,7 +425,7 @@ public class HomeFragmentBean {
             }
         }
 
-        public static class RecommendInfoBean {
+        public static class RecommendInfoBean implements Serializable{
             /**
              * cover_price : 138.00
              * figure : /supplier/1478873740576.jpg

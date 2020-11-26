@@ -1,3 +1,5 @@
 <resources>
-    <string name="app_name">Shopmall1805</string>
+    <string name="app_name">商城</string>
+    <string name="getDataError">请求数据错误</string>
+
 </resources>
