@@ -1,1 +1,2 @@
+include ':bb'
 include ':app', ':user', ':shopcar', ':order', ':pay', ':point', ':framework', ':net', ':common'

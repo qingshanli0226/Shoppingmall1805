@@ -4,15 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".home.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.shopmall.bawei.shopmall1805.ui.NoScrollViewPager
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="8"
+        android:id="@+id/viewpager"
+        />
+
+    <com.flyco.tablayout.CommonTabLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/commontablayout"
+        app:tl_iconWidth="40dp"
+        app:tl_iconHeight="40dp"
+        app:tl_iconMargin="-5dp"
+        app:tl_textUnselectColor="#FF5722"
+        app:tl_textSelectColor="#03A9F4"
+        />
 
 </LinearLayout>
