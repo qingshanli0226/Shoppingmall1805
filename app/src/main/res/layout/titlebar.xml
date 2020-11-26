@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="#ed3f3f"
+    android:background="@color/itemRed"
     android:orientation="horizontal">
 
     <TextView
@@ -27,5 +27,5 @@
         android:layout_margin="10dp"
         android:drawableTop="@drawable/new_message_icon"
         android:text="消息"
-        android:textColor="#fff" />
+        android:textColor="@android:color/white" />
 </LinearLayout>

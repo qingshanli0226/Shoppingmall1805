@@ -8,8 +8,8 @@
 
     <TextView
         android:id="@+id/tv_tag"
-        android:layout_width="100dp"
-        android:layout_height="80dp"
+        android:layout_width="@dimen/nyaNyaPlantManWidth"
+        android:layout_height="@dimen/nyaNyaPlantManHeight"
         android:background="@drawable/tag_bg"
         android:gravity="center"
         android:lines="2"

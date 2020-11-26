@@ -14,4 +14,17 @@
 
     <dimen name="home_channel_recyclerViewHeight">200dp</dimen>
 
+    <dimen name="bigGoodsWidth">180dp</dimen>
+
+    <dimen name="ordinaryItemWidth">70dp</dimen>
+
+    <dimen name="recommendItemWidth">100dp</dimen>
+
+    <dimen name="secKillItemWidth">100dp</dimen>
+
+    <dimen name="nyaNyaPlantManWidth">100dp</dimen>
+    <dimen name="nyaNyaPlantManHeight">80dp</dimen>
+
+
+
 </resources>

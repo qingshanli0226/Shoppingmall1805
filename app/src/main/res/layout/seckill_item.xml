@@ -20,7 +20,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:text="今日闪购 距·结束"
-            android:textColor="#000" />
+            android:textColor="@android:color/black" />
 
         <TextView
             android:id="@+id/tv_time_seckill"

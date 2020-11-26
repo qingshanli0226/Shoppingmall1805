@@ -7,5 +7,9 @@
     <color name="gray_dark_bg">#ffbababa</color>
     <color name="transparent">#00000000</color>
     <color name="listGray">#11000000</color>
+    <color name="recyclerGray">#788188</color>
+
+    <color name="itemRed">#ff4242</color>
+    <color name="secKillGray">#9a9a9a</color>
 
 </resources>
