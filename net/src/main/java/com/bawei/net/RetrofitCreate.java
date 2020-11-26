@@ -2,7 +2,7 @@ package com.bawei.net;
 
 import android.util.Log;
 
-import com.bawei.common.view.UrlHelper;
+import com.bawei.common.view.NetConfig;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,7 +12,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class OkHttpHelper {
+public class RetrofitCreate {
     private static MyNetApi api;
 
     public static MyNetApi getApi() {
@@ -30,7 +30,7 @@ public class OkHttpHelper {
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(UrlHelper.BASE_URL)
+                .baseUrl(NetConfig.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();

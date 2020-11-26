@@ -3,7 +3,7 @@ package com.bawei.shopmall.type.contract;
 import android.util.Log;
 
 import com.bawei.net.MyNetApi;
-import com.bawei.net.OkHttpHelper;
+import com.bawei.net.RetrofitCreate;
 import com.bawei.net.TypeBean;
 
 import io.reactivex.Observer;
@@ -15,7 +15,7 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
     @Override
     public MyNetApi type() {
-        return OkHttpHelper.getApi();
+        return RetrofitCreate.getApi();
     }
 
     public void getSkirt() {
@@ -35,7 +35,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("TAG", "onError: "+e.getMessage());
                     }
 
                     @Override
@@ -61,7 +60,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onError(Throwable e) {
-                    Log.i("TAG", "onError: "+e.getMessage());
                 }
 
                 @Override
@@ -85,7 +83,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onError(Throwable e) {
-                    Log.i("TAG", "onError: "+e.getMessage());
                 }
 
                 @Override
@@ -109,7 +106,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onError(Throwable e) {
-                    Log.i("TAG", "onError: "+e.getMessage());
                 }
 
                 @Override
@@ -133,7 +129,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                 @Override
                 public void onError(Throwable e) {
-                    Log.i("TAG", "onError: "+e.getMessage());
                 }
 
                 @Override

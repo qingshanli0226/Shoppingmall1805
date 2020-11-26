@@ -1,14 +1,13 @@
 package com.bawei.shopmall.home.view;
 
 import android.content.Context;
-import android.util.Log;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bawei.common.view.UrlHelper;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseRvAdapter;
 import com.bawei.net.mode.HomeBean;
 import com.bumptech.glide.Glide;
@@ -63,7 +62,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
     private void displayRecommend(Object itemData, BaseViewHolder baseViewHolder) {
         List<HomeBean.ResultBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.ResultBean.RecommendInfoBean>)itemData;
         RecyclerView recommendRv = baseViewHolder.getView(R.id.gv_recommend);
-        Log.i("TAG", "displayRecommend: "+recommendInfoBeans);
         recommendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
         RecommendAdapter recommendAdapter = new RecommendAdapter();
         recommendRv.setAdapter(recommendAdapter);
@@ -71,12 +69,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         recommendAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /**
-                 *
-                 *
-                 *
-                 *
-                 */
             }
         });
     }
@@ -92,13 +84,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         secKillRvAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
             }
         });
     }
@@ -113,13 +98,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
             }
         });
     }
@@ -134,12 +112,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         actAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /**
-                 *
-                 *
-                 *
-                 *
-                 */
+
             }
         });
     }
@@ -154,15 +127,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         channelAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                /**
-                 *
-                 *
-                 *
-                 *
-                 *
-                 *
-                 *
-                 */
             }
         });
 
@@ -182,7 +146,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         });
         List<String> imageUrls = new ArrayList<>();
         for (HomeBean.ResultBean.BannerInfoBean item : bannerInfoBeans){
-            imageUrls.add(UrlHelper.BASE_RESOURCE_IMAGE_URL+item.getImage());
+            imageUrls.add(NetConfig.BASE_RESOURCE_IMAGE_URL+item.getImage());
         }
         banner.setImages(imageUrls);
         banner.setDelayTime(5000);

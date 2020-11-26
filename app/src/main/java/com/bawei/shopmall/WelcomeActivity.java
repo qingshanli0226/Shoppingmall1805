@@ -1,6 +1,7 @@
 package com.bawei.shopmall;
 
 import android.content.Intent;
+import android.os.Handler;
 import android.widget.ImageView;
 
 import com.bawei.framework.BaseActivity;
@@ -11,7 +12,6 @@ import com.shopmall.bawei.shopmall1805.R;
 
 public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
     private ImageView imgWel;
-
 
     @Override
     protected int layoutId() {
@@ -33,21 +33,19 @@ public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initData() {
-        new Thread(new Runnable() {
+
+        Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                try {
-                    Thread.sleep(2000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                        finish();
                     }
                 });
             }
-        }).start();
+        }, 3000);
     }
 }

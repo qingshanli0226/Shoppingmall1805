@@ -3,7 +3,7 @@ package com.bawei.shopmall.type.view;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bawei.common.view.UrlHelper;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseRvAdapter;
 import com.bawei.net.TypeBean;
 import com.bumptech.glide.Glide;
@@ -18,7 +18,7 @@ public class ChildAdapter extends BaseRvAdapter<TypeBean.ResultBean.ChildBean> {
     @Override
     protected void convert(TypeBean.ResultBean.ChildBean itemData, BaseViewHolder baseViewHolder, int position) {
         Glide.with(baseViewHolder.itemView.getContext())
-                .load(UrlHelper.BASE_RESOURCE_IMAGE_URL + itemData.getPic())
+                .load(NetConfig.BASE_RESOURCE_IMAGE_URL + itemData.getPic())
                 .into((ImageView)baseViewHolder.getView(R.id.iv_ordinary_right));
         TextView tv = baseViewHolder.getView(R.id.tv_ordinary_right);
         tv.setText(itemData.getName());

@@ -32,12 +32,11 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     private VpAdapter adapter;
 
 
-    private String[] titles = {"分类","标签"};
+    private String[] titles = {getActivity().getString(R.string.type), getActivity().getString(R.string.label)};
 
     private List<Fragment> list = new ArrayList<>();
 
     private FragmentManager fm;
-
 
 
     @Override
@@ -49,14 +48,13 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
         rbr = (RadioButton) findViewById(R.id.rbr);
 
 
-
         list.add(new ListFragment<>());
         list.add(new TypeFragment<>());
 
         fm = getActivity().getSupportFragmentManager();
         FragmentTransaction fmts = fm.beginTransaction();
-        fmts.add(R.id.fl_type,list.get(0));
-        fmts.add(R.id.fl_type,list.get(1));
+        fmts.add(R.id.fl_type, list.get(0));
+        fmts.add(R.id.fl_type, list.get(1));
         fmts.show(list.get(0));
         fmts.hide(list.get(1));
         fmts.commit();
@@ -65,7 +63,7 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 FragmentTransaction fmts = fm.beginTransaction();
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rbl:
                         fmts.show(list.get(0));
                         fmts.hide(list.get(1));
@@ -129,7 +127,7 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
 
     }
 
-    class VpAdapter extends FragmentPagerAdapter{
+    class VpAdapter extends FragmentPagerAdapter {
         public VpAdapter(@NonNull FragmentManager fm) {
             super(fm);
         }

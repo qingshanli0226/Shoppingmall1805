@@ -14,10 +14,10 @@
     <TextView
         android:id="@+id/tv_name"
         style="@style/recommend_grid_uptext"
-        android:text="@string/item_recommend_grid_textone" />
+        android:text="@string/item_recommend_grid_text_one" />
 
     <TextView
         android:id="@+id/tv_price"
         style="@style/hot_item_image.recommend_grid_text"
-        android:text="@string/money" />
+        android:text="@string/RMB" />
 </LinearLayout>

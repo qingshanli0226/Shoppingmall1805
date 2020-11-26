@@ -1,10 +1,10 @@
 package com.bawei.common.view;
 
-public class UrlHelper {
+public class NetConfig {
     public static final String BASE_URL = "http://49.233.0.68:8080/";
 
-    public static final String BASE_RESOURCE_URL = BASE_URL+"atguigu";
-    public static final String BASE_RESOURCE_IMAGE_URL = BASE_URL+"atguigu/img";
+    public static final String BASE_RESOURCE_URL = BASE_URL + "atguigu";
+    public static final String BASE_RESOURCE_IMAGE_URL = BASE_URL + "atguigu/img";
 
 
     public static final String JSCON_ERROR_CODE = "10000";
@@ -32,10 +32,10 @@ public class UrlHelper {
     public static final String LOGIN_ACTION = "com.bawei.shopmall.LOGIN_ACTION";
 
     // 请求Json数据基本URL
-    public static final String BASE_URL_JSON = BASE_URL +"atguigu/json/";
+    public static final String BASE_URL_JSON = BASE_URL + "atguigu/json/";
 
     // 请求图片基本URL
-    public static final String BASE_URl_IMAGE = BASE_URL +"atguigu/img";
+    public static final String BASE_URl_IMAGE = BASE_URL + "atguigu/img";
 
 
     //小裙子
@@ -57,13 +57,9 @@ public class UrlHelper {
     //办公文具
     public static final String STATIONERY_URL = BASE_URL_JSON + "STATIONERY_URL.json";
     //数码周边
-    public static final String DIGIT_URL = BASE_URL_JSON +  "DIGIT_URL.json";
+    public static final String DIGIT_URL = BASE_URL_JSON + "DIGIT_URL.json";
     //游戏专区
     public static final String GAME_URL = BASE_URL_JSON + "GAME_URL.json";
-
-
-
-
 
 
     //主页Fragment路径
@@ -99,13 +95,14 @@ public class UrlHelper {
     public static final String SHOUSHI_STORE = BASE_URL_JSON + "SHOUSHI_STORE.json";
 
 
-
     public static Boolean isBackHome = false;
-
 
 
     //客服数据
     public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";
 
 
+    //用户操作URL
+    public static final String USER_REGISTER_URL = BASE_URL + "register";
+    public static final String USER_LOGIN_URL = BASE_URL + "login";
 }

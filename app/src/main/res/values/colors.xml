@@ -7,9 +7,11 @@
     <color name="gray_dark_bg">#ffbababa</color>
     <color name="transparent">#00000000</color>
     <color name="white">#fff</color>
-    <color name="ewhite">#e4e4e4</color>
+    <color name="e_white">#e4e4e4</color>
     <color name="black">#000</color>
-    <color name="item_hot_textcolor">#ff4242</color>
+    <color name="item_hot_text_color">#ff4242</color>
     <color name="item_hot_right_color">#788188</color>
-    <color name="item_seckill_relative_text">#9a9a9a</color>
+    <color name="item_sec_kill_relative_text">#9a9a9a</color>
+    <color name="type_list_selected">#fd3f3f</color>
+    <color name="type_list_background">#323437</color>
 </resources>

@@ -5,7 +5,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.bawei.common.view.UrlHelper;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseRvAdapter;
 import com.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
@@ -25,7 +25,7 @@ public class ActAdapter extends BaseRvAdapter<HomeBean.ResultBean.ActInfoBean> {
         settings.setUseWideViewPort(true);
         settings.setLoadWithOverviewMode(true);
         settings.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.SINGLE_COLUMN);
-        webView.loadUrl(UrlHelper.BASE_RESOURCE_IMAGE_URL + itemData.getIcon_url());
+        webView.loadUrl(NetConfig.BASE_RESOURCE_IMAGE_URL + itemData.getIcon_url());
     }
 
     @Override

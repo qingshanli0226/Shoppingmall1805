@@ -134,7 +134,7 @@
     <style name="Type_Tag_ViewStyle" parent="BaseStyle">
         <item name="android:layout_height">@dimen/type_tag_view_height</item>
         <item name="android:layout_alignParentBottom">true</item>
-        <item name="android:background">@color/ewhite</item>
+        <item name="android:background">@color/e_white</item>
     </style>
 
     <style name="hot_item_image" parent="BaseWrapStyle" />
@@ -179,7 +179,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">left</item>
         <item name="android:gravity">center</item>
-        <item name="android:textColor">@color/item_hot_textcolor</item>
+        <item name="android:textColor">@color/item_hot_text_color</item>
         <item name="android:textSize">@dimen/BASETEXTSIZE</item>
     </style>
 
@@ -242,12 +242,12 @@
         <item name="android:layout_width">@dimen/recommend_grid_uptext_width</item>
         <item name="android:layout_marginTop">@dimen/TEXT_CENTER_SIZE</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/item_hot_textcolor</item>
+        <item name="android:textColor">@color/item_hot_text_color</item>
         <item name="android:textSize">15sp</item>
     </style>
 
     <style name="hot_item_image.recommend_grid_text">
-        <item name="android:textColor">@color/item_hot_textcolor</item>
+        <item name="android:textColor">@color/item_hot_text_color</item>
     </style>
 
     <style name="Type_Tag_RadioGroupStyle" parent="BaseWrapStyle">
@@ -270,7 +270,7 @@
     <style name="item_seckill_relative_text" parent="BaseWrapStyle">
         <item name="android:layout_width">@dimen/item_seckill_relative_text</item>
         <item name="android:gravity">center_horizontal</item>
-        <item name="android:textColor">@color/item_seckill_relative_text</item>
+        <item name="android:textColor">@color/item_sec_kill_relative_text</item>
     </style>
 
     <style name="item_seckill_relative_view" parent="BaseWrapStyle">

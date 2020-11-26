@@ -7,7 +7,7 @@
 
     <TextView
         style="@style/hot_item_image.right_uptext"
-        android:text="@string/item_hot_right_textone" />
+        android:text="@string/item_hot_right_text_one" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_hot_right"
@@ -15,5 +15,5 @@
 
     <TextView
         style="@style/hot_item_image.right_text"
-        android:text="@string/item_hot_right_texttwo" />
+        android:text="@string/item_hot_right_text_two" />
 </LinearLayout>

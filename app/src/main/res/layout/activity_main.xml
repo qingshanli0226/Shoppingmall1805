@@ -44,7 +44,7 @@
             android:id="@+id/rb_cart"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/cart_button_selector"
-            android:text="@string/shoppingcar" />
+            android:text="@string/shopping_car" />
 
         <RadioButton
             android:id="@+id/rb_user"

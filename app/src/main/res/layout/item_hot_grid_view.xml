@@ -22,6 +22,6 @@
         style="@style/item_hot_grid_text"
         android:layout_gravity="left"
         android:layout_marginTop="@dimen/dp_3"
-        android:text="@string/money"
+        android:text="@string/RMB"
         android:textColor="@drawable/type_item_background_selector" />
 </LinearLayout>

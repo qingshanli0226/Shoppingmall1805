@@ -4,7 +4,7 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bawei.common.view.UrlHelper;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseRvAdapter;
 import com.bawei.net.mode.HomeBean;
 import com.bumptech.glide.Glide;
@@ -18,9 +18,9 @@ public class RecommendAdapter extends BaseRvAdapter<HomeBean.ResultBean.Recommen
 
     @Override
     protected void convert(HomeBean.ResultBean.RecommendInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
-        String url = UrlHelper.BASE_RESOURCE_IMAGE_URL + itemData.getFigure();
+        String url = NetConfig.BASE_RESOURCE_IMAGE_URL + itemData.getFigure();
         Glide.with(baseViewHolder.itemView.getContext())
-                .load(UrlHelper.BASE_RESOURCE_IMAGE_URL+itemData.getFigure())
+                .load(NetConfig.BASE_RESOURCE_IMAGE_URL+itemData.getFigure())
                 .into((ImageView) baseViewHolder.getView(R.id.iv_recommend));
         Log.i("TAG", "convert: "+url);
         TextView tv_name = baseViewHolder.getView(R.id.tv_name);

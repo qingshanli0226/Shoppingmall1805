@@ -18,19 +18,12 @@ import com.shopmall.bawei.shopmall1805.R;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> extends BaseFragment<P,V> implements TypeContract.ITypeView {
+public class ListFragment<P extends TypeImpl, V extends TypeContract.ITypeView> extends BaseFragment<P, V> implements TypeContract.ITypeView {
     private MyToolBar toolbar;
     private ListView lvLeft;
     private RecyclerView rvRight;
 
     private List<String> list = new ArrayList<>();
-
-
-
-
-
-
-
 
     private TypeAdapter adapter;
     private ListAdapter lvAdapter;
@@ -41,7 +34,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     @Override
     public void onResume() {
         super.onResume();
-        Log.i("TAG", "onResume: "+rvRight);
+        Log.i("TAG", "onResume: " + rvRight);
         rvRight.setAdapter(adapter);
     }
 
@@ -49,22 +42,22 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     protected void initView() {
         lvLeft = (ListView) findViewById(R.id.lv_left);
         rvRight = (RecyclerView) findViewById(R.id.rv_right);
-        rvRight.setLayoutManager(new LinearLayoutManager(getActivity(),LinearLayoutManager.VERTICAL,false));
+        rvRight.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
         adapter = new TypeAdapter();
-        Log.i("TAG", "initView: "+rvRight);
+        Log.i("TAG", "initView: " + rvRight);
         rvRight.setAdapter(adapter);
-        list.add("小裙子");
-        list.add("上衣");
-        list.add("下装");
-        list.add("外套");
-        list.add("配件");
-        list.add("包包");
-        list.add("装扮");
-        list.add("居家宅品");
-        list.add("办公文具");
-        list.add("数码周边");
-        list.add("游戏专区");
-        lvAdapter = new ListAdapter(getContext(),list);
+        list.add(getActivity().getString(R.string.skirt));
+        list.add(getActivity().getString(R.string.jacket));
+        list.add(getActivity().getString(R.string.Bottoms));
+        list.add(getActivity().getString(R.string.loose_coat));
+        list.add(getActivity().getString(R.string.parts));
+        list.add(getActivity().getString(R.string.Bag));
+        list.add(getActivity().getString(R.string.Dress_up));
+        list.add(getActivity().getString(R.string.Home_furnishings));
+        list.add(getActivity().getString(R.string.Office_stationery));
+        list.add(getActivity().getString(R.string.Digital_perimeter));
+        list.add(getActivity().getString(R.string.Game_Zone));
+        lvAdapter = new ListAdapter(getContext(), list);
         lvLeft.setAdapter(lvAdapter);
 
     }
@@ -87,7 +80,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
                 lvAdapter.changeSelected(position);
                 lvAdapter.notifyDataSetChanged();
                 lvAdapter.changeSelected(position);
-                switch (position){
+                switch (position) {
                     case 0:
                         httpPresenter.getSkirt();
                         break;
@@ -158,7 +151,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
 
     @Override
     public void onError(String msg) {
-        Log.i("TAG", "onError: "+msg);
+        Log.i("TAG", "onError: " + msg);
     }
 
     @Override
@@ -172,7 +165,7 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     }
 
 
-    public void updateAdapter(TypeBean.ResultBean resultBean){
+    public void updateAdapter(TypeBean.ResultBean resultBean) {
         adapter.clearData();
         adapter.addOneData(resultBean.getHot_product_list());
         adapter.addOneData(resultBean.getChild());
@@ -182,8 +175,8 @@ public class ListFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
     public void onType(TypeBean typeBean) {
         List<TypeBean.ResultBean> result = typeBean.getResult();
         updateAdapter(result.get(0));
-        for (TypeBean.ResultBean item:result) {
-            Log.i("TAG", "onType: "+item.getName());
+        for (TypeBean.ResultBean item : result) {
+            Log.i("TAG", "onType: " + item.getName());
         }
     }
 }

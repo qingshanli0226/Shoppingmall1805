@@ -1,7 +1,6 @@
 package com.bawei.shopmall.type.view;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -52,10 +51,10 @@ public class ListAdapter extends BaseAdapter {
         holder.tv_name.setText(list.get(position));
         if(selected == position){
             convertView.setBackgroundResource(R.drawable.type_item_background_selector);
-            holder.tv_name.setTextColor(Color.parseColor("#fd3f3f"));
+            holder.tv_name.setTextColor(context.getColor(R.color.type_list_selected));
         } else {
             convertView.setBackgroundResource(R.drawable.bg2);
-            holder.tv_name.setTextColor(Color.parseColor("#323437"));
+            holder.tv_name.setTextColor(context.getColor(R.color.type_list_background));
         }
 
 

@@ -40,11 +40,12 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.errorTv:
                 httpPresenter.getHomeData();
                 break;
-            default:break;
+            default:
+                break;
         }
     }
 
@@ -84,7 +85,7 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     public void onError(String msg) {
         errorTv.setVisibility(View.VISIBLE);
         normalContent.setVisibility(View.GONE);
-        errorTv.setText(msg + "点击刷新数据");
+        errorTv.setText(msg + getActivity().getString(R.string.reflation));
     }
 
     @Override

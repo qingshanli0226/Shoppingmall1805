@@ -8,5 +8,5 @@
     <TextView
         android:id="@+id/tv_title"
         style="@style/item_type_text"
-        android:text="@string/drice" />
+        android:text="@string/skirt" />
 </RelativeLayout>
