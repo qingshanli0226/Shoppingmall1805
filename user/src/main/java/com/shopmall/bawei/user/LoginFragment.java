@@ -13,6 +13,7 @@ import com.shopmall.bawei.framework.view.BottomBar;
 import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.user.contract.LoginContract;
 import com.shopmall.bawei.user.presenter.LoginPresenterImpl;
+import org.greenrobot.eventbus.EventBus;
 
 
 public class LoginFragment extends BaseMVPFragment<LoginPresenterImpl, LoginContract.ILoginView>
@@ -94,6 +95,7 @@ public class LoginFragment extends BaseMVPFragment<LoginPresenterImpl, LoginCont
         showMessage("登录成功");
         //实现跳转到MainActivity，显示HomeFragment,Activity的启动模式问题.
         ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
+        EventBus.getDefault().post(loginBean);
         /*Intent intent = new Intent();
         intent.setAction("com.bawei.1801.HOME");//通过隐式方式启动主页面
         intent.putExtra("index", BottomBar.HOME_INDEX);

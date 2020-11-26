@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import com.alibaba.android.arouter.launcher.ARouter;
 
 public class WelcomActivity extends AppCompatActivity {
 
@@ -12,5 +13,7 @@ public class WelcomActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
+        ARouter.getInstance().build("/main/MainActivity").navigation();
+        finish();
     }
 }

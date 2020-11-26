@@ -7,6 +7,10 @@ import android.content.SharedPreferences;
 import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.net.mode.LoginBean;
 
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 public class ShopUserManager {
 
     private LoginBean loginBean;
@@ -14,6 +18,7 @@ public class ShopUserManager {
     private static ShopUserManager instance;
 
     private Context context;
+    private List<IUserLoginChangedListener> listeners = new LinkedList<>();
 
 
     private SharedPreferences sharedPreferences;
@@ -26,6 +31,7 @@ public class ShopUserManager {
     public static ShopUserManager getInstance() {
         if (instance == null) {
             instance = new ShopUserManager();
+
         }
 
         return instance;
@@ -45,16 +51,24 @@ public class ShopUserManager {
         editor.putString(ShopmallConstant.tokenName, loginBean.getToken());
         editor.commit();
 
-        //发送广播，通知当前应用用户已经登录成功
-        Intent intent = new Intent();
-        intent.setAction(ShopmallConstant.LOGIN_ACTION);
-        context.sendBroadcast(intent);
+        //通过接口回调通知其他模块的页面，当前用户已经登录
+        for(IUserLoginChangedListener listener:listeners) {
+            listener.onUserLogin(loginBean);
+        }
     }
 
 
     //判断当前用户是否登录
     public boolean isUserLogin() {
         return loginBean != null;//如果loginBean不为空则代表已经登录
+    }
+
+    public String getName() {
+        if (loginBean!=null) {
+            return loginBean.getName();
+        } else {
+            return null;
+        }
     }
 
     public String getToken() {
@@ -64,6 +78,25 @@ public class ShopUserManager {
             return "";
         }
     }
+
+    public void registerUserLoginChangeListener(IUserLoginChangedListener listener) {
+        if (!listeners.contains(listener)) {
+            listeners.add(listener);
+        }
+    }
+
+    public void unRegisterUserLoginChangeListener(IUserLoginChangedListener listener) {
+        if (listeners.contains(listener)) {
+            listeners.remove(listener);
+        }
+    }
+
+    public interface IUserLoginChangedListener {
+        void onUserLogin(LoginBean loginBean);
+        void onUserLogout();
+    }
+
+
 
 
 
