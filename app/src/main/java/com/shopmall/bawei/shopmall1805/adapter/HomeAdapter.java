@@ -1,23 +1,18 @@
 package com.shopmall.bawei.shopmall1805.adapter;
-
 import android.content.Context;
 import android.util.Log;
 import android.widget.ImageView;
-
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
-
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.bean.HomeBean;
+import baseurl.HomeBean;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
-
 import java.util.List;
-
 import baseurl.UrlHelp;
 
-public class HomeAdapter extends BaseRvAdapter {
+public class HomeAdapter extends BaseRvAdapter  {
     private Context context;
 
 
@@ -69,7 +64,7 @@ public class HomeAdapter extends BaseRvAdapter {
                 case 1:
                     List<HomeBean.ResultBean.ChannelInfoBean> h_2 = (List<HomeBean.ResultBean.ChannelInfoBean>)o;
                     RecyclerView rv = baseViewHoder.getView(R.id.fen_rv);
-                    ClassificationAdapter fenAdapter = new ClassificationAdapter(R.layout.fenitem_layout, h_2);
+                    FenAdapter fenAdapter = new FenAdapter(R.layout.fenitem_layout, h_2);
                     rv.setAdapter(fenAdapter);
                     rv.setLayoutManager(new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL));
                     break;

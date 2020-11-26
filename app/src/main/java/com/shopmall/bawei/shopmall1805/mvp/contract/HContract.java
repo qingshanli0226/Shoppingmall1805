@@ -1,10 +1,8 @@
 package com.shopmall.bawei.shopmall1805.mvp.contract;
 
 
-import java.util.List;
-
 import io.reactivex.Observer;
-import com.shopmall.bawei.shopmall1805.bean.HomeBean;
+import baseurl.HomeBean;
 import mvp.moudel.IMoudel;
 import mvp.view.IView;
 

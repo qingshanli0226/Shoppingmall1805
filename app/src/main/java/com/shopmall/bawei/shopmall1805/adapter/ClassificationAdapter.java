@@ -1,33 +1,29 @@
 package com.shopmall.bawei.shopmall1805.adapter;
 
-import android.view.View;
-import android.widget.ImageView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 
-import androidx.annotation.Nullable;
-
-import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
-import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.bean.HomeBean;
-
+import java.util.ArrayList;
 import java.util.List;
 
-import baseurl.UrlHelp;
+public class ClassificationAdapter extends FragmentPagerAdapter {
+    private List<Fragment> fs;
 
-public class ClassificationAdapter extends BaseQuickAdapter<HomeBean.ResultBean.ChannelInfoBean, BaseViewHolder> {
-
-
-    public ClassificationAdapter(int layoutResId, @Nullable List<HomeBean.ResultBean.ChannelInfoBean> data) {
-        super(layoutResId, data);
+    public ClassificationAdapter(FragmentManager fm, List<Fragment> fs) {
+        super(fm);
+        this.fs = fs;
     }
-
-
 
     @Override
-    protected void convert(BaseViewHolder helper, HomeBean.ResultBean.ChannelInfoBean item) {
-        ImageView helperView = helper.getView(R.id.fen_im);
-        Glide.with(mContext).load(UrlHelp.BASE+UrlHelp.BASE_URl_IMAGE+item.getImage()).into(helperView);
-        helper.setText(R.id.fen_te,item.getChannel_name());
+    public Fragment getItem(int i) {
+        return fs.get(i);
     }
+
+    @Override
+    public int getCount() {
+        return fs.size();
+    }
+
+
 }

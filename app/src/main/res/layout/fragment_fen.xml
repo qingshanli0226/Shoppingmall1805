@@ -3,12 +3,33 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fenfragment.Classification_smallFragment">
+    tools:context=".mvp.view.classificationfragment.Classification_smallFragment">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_height="match_parent"
+  >
+  <ListView
+      android:background="#C5C1C1"
+      android:layout_width="0dp"
+      android:listSelector="#fff"
+      android:layout_weight="1"
 
-   <TextView
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
-       android:text="分类"
-       ></TextView>
+      android:layout_height="match_parent"
+      android:id="@+id/clothes_lv"
+      >
+
+  </ListView>
+  <androidx.recyclerview.widget.RecyclerView
+      android:layout_width="0dp"
+      android:layout_weight="4"
+      android:layout_height="match_parent"
+      android:id="@+id/content_rv"
+      >
+
+  </androidx.recyclerview.widget.RecyclerView>
+</LinearLayout>
+
+
 
 </FrameLayout>

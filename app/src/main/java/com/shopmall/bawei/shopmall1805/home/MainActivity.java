@@ -12,11 +12,11 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.MyPagerAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.MyVp;
-import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
-import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
-import com.shopmall.bawei.shopmall1805.fragment.FirstFragment;
-import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
-import com.shopmall.bawei.shopmall1805.fragment.ShopFragment;
+import com.shopmall.bawei.shopmall1805.mvp.view.fragment.ClassificationFragment;
+import com.shopmall.bawei.shopmall1805.mvp.view.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.mvp.view.fragment.FirstFragment;
+import com.shopmall.bawei.shopmall1805.mvp.view.fragment.MyFragment;
+import com.shopmall.bawei.shopmall1805.mvp.view.fragment.ShopFragment;
 import java.util.ArrayList;
 import java.util.List;
 public class MainActivity extends AppCompatActivity {

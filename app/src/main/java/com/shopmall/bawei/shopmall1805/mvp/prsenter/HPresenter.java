@@ -4,12 +4,9 @@ import android.util.Log;
 
 import com.shopmall.bawei.shopmall1805.mvp.contract.HContract;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
-import com.shopmall.bawei.shopmall1805.bean.HomeBean;
+import baseurl.HomeBean;
 import mvp.presenter.BasePresenter;
 
 public class HPresenter extends BasePresenter<HContract.getmodel,HContract.geteview> {

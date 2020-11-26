@@ -9,7 +9,7 @@ import http.MyHttp;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import com.shopmall.bawei.shopmall1805.bean.HomeBean;
+import baseurl.HomeBean;
 import mvp.moudel.BaseModel;
 
 public class HModel extends BaseModel implements HContract.getmodel {
