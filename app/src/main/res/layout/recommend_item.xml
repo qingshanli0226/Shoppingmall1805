@@ -12,21 +12,18 @@
         android:padding="10dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/ImageViewStyle"
             android:src="@drawable/home_arrow_left_new" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_marginLeft="10dp"
             android:text="新品推荐"
             android:textColor="#000" />
 
         <TextView
             android:id="@+id/tv_more_recommend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/TextStyle"
             android:layout_weight="1"
             android:drawablePadding="5dp"
             android:drawableRight="@drawable/home_arrow_right"
@@ -36,7 +33,6 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gv_recommend"
-        android:layout_width="match_parent"
-        android:layout_height="380dp"
+        style="@style/RecyclerView"
         android:numColumns="3"></androidx.recyclerview.widget.RecyclerView>
 </LinearLayout>

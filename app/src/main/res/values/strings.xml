@@ -2,4 +2,9 @@
     <string name="app_name">Shopmall1805</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="MainRadioButtonH">首页</string>
+    <string name="MainRadioButtonT">分类</string>
+    <string name="MainRadioButtonSc">购物车</string>
+    <string name="MainRadioButtonMy">个人中心</string>
+    <string name="MainRadioButtonMg">消息</string>
 </resources>

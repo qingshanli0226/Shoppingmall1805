@@ -180,12 +180,10 @@
                 <ScrollView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
-
                     <WebView
                         android:id="@+id/wb_good_info_more"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"></WebView>
-
                 </ScrollView>
 
             </com.shopmall.bawei.shopmall1805.home.view.adapter.ScrollViewContainer>

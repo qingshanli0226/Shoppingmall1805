@@ -5,13 +5,11 @@
     android:orientation="vertical"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        style="@style/ImageViewStyle"
         android:id="@+id/reimage"
         ></ImageView>
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/TextStyle"
         android:id="@+id/retext"
         ></TextView>
 </LinearLayout>
