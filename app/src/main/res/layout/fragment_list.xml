@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <com.bawei.common.view.MyToolBar
+        android:id="@+id/toolbar"
+        style="@style/BannerStyle.MyToolBarStyle" />
+
+    <ListView
+        android:id="@+id/lv_left"
+        style="@style/Type_List_ListViweStyle" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_right"
+        style="@style/Type_List_RecyclerViewStyle"
+        android:layout_toRightOf="@id/lv_left" />
+
+</LinearLayout>

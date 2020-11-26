@@ -1,38 +1,12 @@
 package com.bawei.shopmall.type.view;
 
+import com.bawei.framework.BaseFragment;
+import com.bawei.net.TagBean;
+import com.bawei.shopmall.type.contract.TagContract;
+import com.bawei.shopmall.type.contract.TagImpl;
+import com.shopmall.bawei.shopmall1805.R;
 
-import android.view.View;
-import android.widget.ProgressBar;
-
-import com.bawei.common.view.MyToolBar;
-import com.bawei.framework.base.BaseFragment;
-import com.bawei.net.bean.HomeBean;
-import com.bawei.shopmall.R;
-import com.bawei.shopmall.home.contract.HomeContract;
-import com.bawei.shopmall.home.contract.HomeImpl;
-
-public class TypeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
-
-    private MyToolBar toolbar;
-    private ProgressBar loadingBar;
-
-
-
-    @Override
-    protected void initView() {
-        toolbar = findViewById(R.id.toolbar);
-        loadingBar = (ProgressBar) findViewById(R.id.loadingBar);
-        toolbar.setToolBarClickListner(this);
-    }
-
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()){
-            case R.id.myToolbar:
-                break;
-        }
-    }
-
+public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> extends BaseFragment implements TagContract.ITagView {
 
     @Override
     protected int layoutId() {
@@ -45,32 +19,8 @@ public class TypeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     }
 
     @Override
-    protected void initData() {
-        httpPresenter.getHomeData();
-    }
-
-    @Override
     protected void initPresenter() {
-        httpPresenter = new HomeImpl();
 
-    }
-
-    @Override
-    public void onHomeData(HomeBean homeBean) {
-    }
-
-    @Override
-    public void onError(String msg) {
-    }
-
-    @Override
-    public void showLoading() {
-        loadingBar.setVisibility(View.VISIBLE);
-    }
-
-    @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -80,5 +30,26 @@ public class TypeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onRightClick() {
+
+    }
+
+    @Override
+    public void onTag(TagBean tagBean) {
+
+    }
+
+    @Override
+    public void onError(String msg) {
+
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
     }
 }

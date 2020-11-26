@@ -5,10 +5,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bawei.common.view.UrlHelper;
-import com.bawei.framework.base.BaseRvAdapter;
-import com.bawei.net.bean.HomeBean;
-import com.bawei.shopmall.R;
+import com.bawei.framework.BaseRvAdapter;
+import com.bawei.net.mode.HomeBean;
 import com.bumptech.glide.Glide;
+import com.shopmall.bawei.shopmall1805.R;
 
 public class RecommendAdapter extends BaseRvAdapter<HomeBean.ResultBean.RecommendInfoBean> {
     @Override

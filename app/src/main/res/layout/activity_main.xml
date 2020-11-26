@@ -1,35 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.MainActivity"
-    android:orientation="vertical">
+    android:background="#fff"
+    android:orientation="vertical"
+    tools:context="com.bawei.shopmall.home.MainActivity">
 
     <com.bawei.common.view.MyToolBar
         android:id="@+id/myToolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        style="@style/BannerStyle.MyToolBarStyle" />
 
     <FrameLayout
         android:id="@+id/frameLayoutId"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        style="@style/FragmentStyle" />
+
 
     <RadioGroup
         android:id="@+id/rg_main"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/home_bottom_parent_bg"
-        android:orientation="horizontal">
+        style="@style/RadioGroupStyle"
+        android:background="@drawable/home_bottom_parent_bg">
 
         <RadioButton
             android:id="@+id/rb_home"
             style="@style/MainButtonStyle"
+            android:checked="true"
             android:drawableTop="@drawable/home_button_selector"
             android:text="首页" />
 
@@ -43,7 +38,6 @@
             android:id="@+id/rb_community"
             style="@style/MainButtonStyle"
             android:drawableTop="@drawable/community_button_selector"
-            android:paddingTop="10dp"
             android:text="发现" />
 
         <RadioButton

@@ -119,6 +119,8 @@
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.9.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.9.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.1.1@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.greenrobot:greendao:3.2.2@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.greenrobot:greendao-api:3.2.2@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.google.android.material:material:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.zhy:autolayout:1.4.5@aar" level="project" />
@@ -164,6 +166,22 @@
     <orderEntry type="library" name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.youth.banner:banner:1.4.10@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.scwang.smartrefresh:SmartRefreshLayout:1.1.0@aar" level="project" />
+    <orderEntry type="module" module-name="order" />
+    <orderEntry type="module" module-name="shopcar" />
+    <orderEntry type="module" module-name="point" />
+    <orderEntry type="module" module-name="pay" />
+    <orderEntry type="module" module-name="user" />
+    <orderEntry type="module" module-name="framework" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="net" />
+    <orderEntry type="module" module-name="order" />
+    <orderEntry type="module" module-name="shopcar" />
+    <orderEntry type="module" module-name="point" />
+    <orderEntry type="module" module-name="pay" />
+    <orderEntry type="module" module-name="user" />
+    <orderEntry type="module" module-name="framework" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="net" />
     <orderEntry type="module" module-name="order" />
     <orderEntry type="module" module-name="shopcar" />
     <orderEntry type="module" module-name="point" />

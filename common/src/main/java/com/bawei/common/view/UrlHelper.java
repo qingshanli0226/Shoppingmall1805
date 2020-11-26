@@ -1,13 +1,10 @@
 package com.bawei.common.view;
 
 public class UrlHelper {
+    public static final String BASE_URL = "http://49.233.0.68:8080/";
 
-
-    public static String BASE_URL = "http://49.233.0.68:8080/";
-    //public static String BASE_URL = "http://192.168.3.4:8080/";
-
-    public static String BASE_RESOURCE_URL = BASE_URL+"atguigu";
-    public static String BASE_RESOURCE_IMAGE_URL = BASE_URL+"atguigu/img";
+    public static final String BASE_RESOURCE_URL = BASE_URL+"atguigu";
+    public static final String BASE_RESOURCE_IMAGE_URL = BASE_URL+"atguigu/img";
 
 
     public static final String JSCON_ERROR_CODE = "10000";
@@ -33,18 +30,6 @@ public class UrlHelper {
     public static final String tokenName = "token";
 
     public static final String LOGIN_ACTION = "com.bawei.shopmall.LOGIN_ACTION";
-//    public static final String BASE_URL = "http://49.233.0.68:8080/";
-//    public static final String BASE = "http://192.168.51.104:8080";
-    //系统默认的模拟器就用这个ip
-//    public static final String BASE_URL = "http://49.233.0.68:8080";
-    //使用第三方模拟器--当前电脑的ip地址
-//    public static final String BASE = "http://192.168.51.104:8080";
-    //运行到自己的真实手机上：
-    //1.装一个共享wifi的软件-猎豹wifi-把本地电脑分享出一个wifi
-    //2.tomcat是开启的
-    //3.ip地址修改成wifi的ip地址
-    //4.手机一定要连接电脑分享的wifi
-//    public static final String BASE = "http://192.168.191.1:8080";
 
     // 请求Json数据基本URL
     public static final String BASE_URL_JSON = BASE_URL +"atguigu/json/";

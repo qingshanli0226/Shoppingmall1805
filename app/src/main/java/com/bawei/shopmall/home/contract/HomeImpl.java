@@ -2,8 +2,8 @@ package com.bawei.shopmall.home.contract;
 
 import android.util.Log;
 
-import com.bawei.net.RetorfitCreate;
-import com.bawei.net.bean.HomeBean;
+import com.bawei.net.OkHttpHelper;
+import com.bawei.net.mode.HomeBean;
 
 import java.util.concurrent.TimeUnit;
 
@@ -17,7 +17,7 @@ import io.reactivex.schedulers.Schedulers;
 public class HomeImpl extends HomeContract.HomePresenter {
     @Override
     public void getHomeData() {
-        RetorfitCreate.getUserInterface().getHomeData()
+        OkHttpHelper.getApi().getHomeData()
                 .delay(1, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

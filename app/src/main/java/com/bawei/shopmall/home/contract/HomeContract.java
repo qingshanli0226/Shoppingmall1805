@@ -1,8 +1,8 @@
 package com.bawei.shopmall.home.contract;
 
-import com.bawei.framework.base.BasePresenter;
-import com.bawei.framework.base.IView;
-import com.bawei.net.bean.HomeBean;
+import com.bawei.framework.BasePresenter;
+import com.bawei.framework.IView;
+import com.bawei.net.mode.HomeBean;
 
 public class HomeContract {
     public interface IHomeView extends IView {

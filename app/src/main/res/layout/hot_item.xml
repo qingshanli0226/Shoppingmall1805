@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="1200dp"
+    android:layout_height="1100dp"
     android:background="#eeee"
     android:orientation="vertical"
     android:padding="10dp">
@@ -12,34 +12,22 @@
         android:gravity="center_vertical">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/hot_item_image"
             android:src="@drawable/home_arrow_left_hot" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
-            android:text="这里都是买的棒棒哒"
-            android:textColor="#000" />
+            style="@style/hot_item_image.text"
+            android:text="这里都是买的棒棒哒" />
 
         <TextView
             android:id="@+id/tv_more_hot"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:drawablePadding="5dp"
+            style="@style/hot_item_image.textTwo"
             android:drawableRight="@drawable/home_arrow_right"
-            android:gravity="end"
+            android:drawablePadding="@dimen/drawablePadding"
             android:text="查看更多" />
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/gv_hot"
-        android:layout_width="match_parent"
-        android:layout_height="1020dp"
-        android:layout_marginTop="10dp"
-        android:horizontalSpacing="10dp"
-        android:numColumns="2"
-        android:verticalSpacing="10dp"></androidx.recyclerview.widget.RecyclerView>
+        style="@style/RecyclerViewStyle" />
 </LinearLayout>

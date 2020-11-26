@@ -6,10 +6,9 @@ import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
 import com.bawei.common.view.UrlHelper;
-import com.bawei.framework.base.BaseRvAdapter;
-import com.bawei.net.bean.HomeBean;
-import com.bawei.shopmall.R;
-
+import com.bawei.framework.BaseRvAdapter;
+import com.bawei.net.mode.HomeBean;
+import com.shopmall.bawei.shopmall1805.R;
 
 public class ActAdapter extends BaseRvAdapter<HomeBean.ResultBean.ActInfoBean> {
     @Override

@@ -9,12 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.common.view.MyToolBar;
-import com.bawei.framework.base.BaseFragment;
-import com.bawei.net.bean.HomeBean;
-import com.bawei.shopmall.R;
+import com.bawei.framework.BaseFragment;
+import com.bawei.net.mode.HomeBean;
 import com.bawei.shopmall.home.contract.HomeContract;
 import com.bawei.shopmall.home.contract.HomeImpl;
-
+import com.shopmall.bawei.shopmall1805.R;
 
 public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
@@ -41,12 +40,11 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
+        switch (v.getId()){
             case R.id.errorTv:
                 httpPresenter.getHomeData();
                 break;
-            default:
-                break;
+            default:break;
         }
     }
 
