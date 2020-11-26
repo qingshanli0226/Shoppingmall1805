@@ -9,31 +9,30 @@ import mode.javabean;
 import retrofit2.http.GET;
 
 import static view.Constants.BASE_URL_JSON2;
-import static view.Constants.TAG_URL;
 
 public
 interface FoodService {
     @GET("/atguigu/json/HOME_URL.json")
-    Observable<HomeBean> getfood();
+    Observable<HomeBean> getHome();
 
     //小裙子
     @GET("/atguigu/json/SKIRT_URL.json")
-    Observable<ClothesBean> getsharFood();
+    Observable<ClothesBean> getSkirt();
 
     //上衣
     @GET("/atguigu/json/JACKET_URL.json")
-    Observable<ClothesBean> getsharFoodshang();
-    //上衣
+    Observable<ClothesBean> getjacket();
+    //下装
     @GET("/atguigu/json/PANTS_URL.json")
-    Observable<ClothesBean> getsharFoodxiq();
-    //夏装
+    Observable<ClothesBean> getTrouser();
+    //外套
     @GET("/atguigu/json/OVERCOAT_URL.json")
-    Observable<ClothesBean> getsharFoodwai();
+    Observable<ClothesBean> getCoat();
     //配件
     @GET("/atguigu/json/ACCESSORY_URL.json")
-    Observable<ClothesBean> getsharFoodpei();
+    Observable<ClothesBean> getAccessries();
 
     @GET(BASE_URL_JSON2+"TAG_URL.json")
-    Observable<javabean> getbiao();
+    Observable<javabean> getLabel();
 
 }

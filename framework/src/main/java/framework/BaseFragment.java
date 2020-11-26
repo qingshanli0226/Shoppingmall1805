@@ -9,10 +9,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import framework.mvpc.jsonPresenter;
+import view.loadinPage.ErrorBean;
+import view.loadinPage.LoadIngPagec;
 
 public abstract
 class BaseFragment<P extends jsonPresenter> extends Fragment implements Contact.CenterUserIview {
     protected  P Presenter;
+
+    protected LoadIngPagec loadIngPagec;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -23,21 +27,61 @@ class BaseFragment<P extends jsonPresenter> extends Fragment implements Contact.
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(getlayoutId(), null);
-        InitData(inflate);
-        OnClickListener();
-        return inflate;
+
+        loadIngPagec = new LoadIngPagec(getContext()) {
+            @Override
+            protected int getSuccessLayoutId() {
+                return getlayoutId();
+            }
+        };
+
+        return loadIngPagec;
     }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        InitData();
+        OnClickListener();
+    }
+
+    public <T extends View> T findViewById(int id){
+        return loadIngPagec.getSuccessView().findViewById(id);
+    }
+
+
+
 
     protected abstract void createPresenter();
 
 
     protected abstract void OnClickListener();
 
-    protected abstract void InitData(View inflate);
+    protected abstract void InitData();
 
 
     protected abstract int getlayoutId();
 
 
+    public void  shwoLoading(){
+        loadIngPagec.showLoadingpage();
+    }
+
+    public void hideLoadingPage(boolean isSuccess, ErrorBean errorBean) {
+        if (isSuccess) {
+            showSuccess();
+        } else {
+            showError(errorBean.getErrorMessage());
+        }
+    }
+    public void showError(String errorMsg) {
+        loadIngPagec.showErrorPage(errorMsg);
+    }
+    public void showSuccess() {
+        loadIngPagec.showSuccessView();
+    }
+
+    public void showEmptyPage() {
+        loadIngPagec.showEmptyPage();
+    }
 }

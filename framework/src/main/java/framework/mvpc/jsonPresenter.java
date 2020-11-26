@@ -2,12 +2,11 @@ package framework.mvpc;
 
 import android.util.Log;
 
-import java.util.List;
-
 import framework.Contact;
 import framework.User2;
-import framework.User3;
-import framework.Userc;
+import framework.mvpc.ExtractObserver.TypeHome;
+import framework.mvpc.ExtractObserver.TypeLable;
+import framework.mvpc.ExtractObserver.TypecloBean;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import mode.ClothesBean;
@@ -18,86 +17,51 @@ public class jsonPresenter extends Contact.centetUserpepostory{
     public jsonPresenter(Contact.CenterUserIview centerUserIview) {
         super(centerUserIview);
     }
-    public static Observer<HomeBean> observer;
-    public static Observer<ClothesBean> observer2;
-    public static Observer<javabean> observer3;
-    @Override
-    public void getHomeurl(final Userc userc) {
-        Repostory.getHomeur();
 
-        observer = new Observer<HomeBean>() {
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(HomeBean homeBean) {
-                Log.i("====","首页获取到的数据是"+homeBean.getResult().toString());
-                userc.Susses(homeBean);
-            }
-
-            @Override
-            public void onError(Throwable e) {
-                    userc.Error(e.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-        };
-    }
+    public static Observer<javabean> javabeanObserver;
+    public static Observer<ClothesBean> clothesBeanObserver;
+    public static Observer<HomeBean> homeBeanObserver;
 
     @Override
     public void getshopcal(int count,final User2 userc) {
         Repostory.getshopcal(count);
-        observer2 = new Observer<ClothesBean>() {
+        javabeanObserver = new TypeLable(){
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onNext(javabean javabean) {
+                Log.i("====","获取到的javabean数据"+javabean.toString());
+                userc.successLable(javabean);
 
-            }
-            @Override
-            public void onNext(ClothesBean homeBean) {
-                userc.Susses(homeBean);
             }
 
             @Override
             public void onError(Throwable e) {
-                userc.Error(e.getMessage());
-            }
-
-            @Override
-            public void onComplete() {
-
             }
         };
-    }
 
-    @Override
-    public void getBaiocal(final User3 user3) {
-        Repostory.getBaiocal();
-        observer3 = new Observer<javabean>() {
+        clothesBeanObserver = new TypecloBean(){
             @Override
-            public void onSubscribe(Disposable d) {
+            public void onNext(ClothesBean clothesBean) {
+                userc.successClassifs(clothesBean);
 
-            }
-            @Override
-            public void onNext(javabean homeBean) {
-                user3.Susses(homeBean);
             }
 
             @Override
             public void onError(Throwable e) {
-                user3.Error(e.getMessage());
+            }
+        };
+        homeBeanObserver = new TypeHome(){
+            @Override
+            public void onNext(HomeBean homeBean) {
+                Log.i("====","这是home的数据"+homeBean.toString());
+                userc.successHome(homeBean);
             }
 
             @Override
-            public void onComplete() {
-
+            public void onError(Throwable e) {
             }
         };
     }
+
 
     @Override
     protected void createRepostory() {

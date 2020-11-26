@@ -29,14 +29,14 @@ class Fragmentshop extends BaseFragment {
     }
 
     @Override
-    protected void InitData(View inflate) {
-        toobar = (Toolbar) inflate.findViewById(R.id.toobar);
-        GoRv = (RecyclerView) inflate.findViewById(R.id.Go_rv);
+    protected void InitData() {
+        toobar = (Toolbar) findViewById(R.id.toobar);
+        GoRv = (RecyclerView) findViewById(R.id.Go_rv);
         List<usernv> usernvs = RxGreen.getInstance(getContext(), "user.db")
                 .SeekAllUser();
         list.addAll(usernvs);
-
     }
+
 
     @Override
     protected int getlayoutId() {

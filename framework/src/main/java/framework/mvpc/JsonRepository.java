@@ -12,18 +12,7 @@ class JsonRepository extends Contact.centerUserRepostory {
     }
 
     @Override
-    public void getHomeur() {
-        Log.i("====","这是repostory层");
-        model.gethomeurl();
-    }
-
-    @Override
     public void getshopcal(int count) {
         model.getshopcal(count);
-    }
-
-    @Override
-    public void getBaiocal() {
-        model.getBiaoCal();
     }
 }

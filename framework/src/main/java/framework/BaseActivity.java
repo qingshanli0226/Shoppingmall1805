@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import view.loadinPage.ErrorBean;
 import view.loadinPage.LoadIngPagec;
 
 
 public abstract
 class BaseActivity extends AppCompatActivity implements  Contact.CenterUserIview {
+    private LoadIngPagec ingPagec;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,5 +33,7 @@ class BaseActivity extends AppCompatActivity implements  Contact.CenterUserIview
     public void setLog(String settype, String setmsg){
         Log.i(settype,settype+"--->"+setmsg);
     }
+
+
 
 }

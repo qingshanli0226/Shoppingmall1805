@@ -3,8 +3,10 @@ package com.shopmall.bawei.shopmall1805.fragment.classIfys;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
-import android.view.View;
+import android.webkit.JavascriptInterface;
 
+import com.google.gson.Gson;
+import com.shopmall.bawei.shopmall1805.Adper.JsonCallbackInterface;
 import com.shopmall.bawei.shopmall1805.Adper.lableAdper;
 import com.shopmall.bawei.shopmall1805.R;
 
@@ -12,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseFragment;
-import framework.User3;
+import framework.User2;
 import framework.mvpc.jsonPresenter;
 import mode.javabean;
 
@@ -32,25 +34,18 @@ class Fragment_lable extends BaseFragment {
     }
 
     @Override
-    protected void InitData(View inflate) {
-        Log.i("====","标签");
-        Rvc = (RecyclerView) inflate.findViewById(R.id.Rvc);
+    protected void InitData() {
+        Rvc = (RecyclerView) findViewById(R.id.Rvc);
 
         Rvc.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
 
-        Presenter.getBaiocal(new User3() {
+        Presenter.getshopcal(5,new JsonCallbackInterface(){
             @Override
-            public void Susses(javabean e) {
-                Log.i("====","标签获取到的数据是"+e.toString());
-                resultBeans.addAll(e.getResult());
-                Log.i("====","打印标签集合尺寸"+resultBeans.size());
+            public void successLable(javabean javabean) {
+                resultBeans.addAll(javabean.getResult());
                 biaoAdper.notifyDataSetChanged();
             }
 
-            @Override
-            public void Error(String error) {
-
-            }
         });
 
         biaoAdper = new lableAdper(R.layout.item_biao,resultBeans);

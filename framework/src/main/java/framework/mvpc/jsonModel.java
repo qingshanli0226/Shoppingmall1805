@@ -7,6 +7,9 @@ import net.FoodService;
 import net.RxjavaRetortUlis;
 
 import framework.Contact;
+import framework.mvpc.ExtractObserver.TypeHome;
+import framework.mvpc.ExtractObserver.TypeLable;
+import framework.mvpc.ExtractObserver.TypecloBean;
 import io.reactivex.Observable;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -19,138 +22,74 @@ import mode.javabean;
 public
 class jsonModel implements Contact.centerUserImodel {
 
-    @Override
-    public void gethomeurl() {
-        Log.i("====","这是model层");
-        FoodService foodService = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<HomeBean> getfood = foodService.getfood();
 
-
-        getfood.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<HomeBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(final HomeBean homeBean) {
-                        Log.i("====","homebean"+homeBean.getResult().toString());
-                            Observable<HomeBean> observable = new Observable<HomeBean>() {
-                                @Override
-                                protected void subscribeActual(Observer<? super HomeBean> observer) {
-                                    observer.onNext(homeBean);
-                                    observer.onComplete();
-                                }
-                            };
-                            observable.subscribe(jsonPresenter.observer);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-
-
-    }
 
     @Override
     public void getshopcal(int count) {
         Log.i("====","count"+count);
         FoodService foodService  = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<ClothesBean> getfood = null;
+        Observable<ClothesBean> clothesBeanJson = null;
+        Observable<javabean> javaBeanJson = null;
+        Observable<HomeBean> homeBeanJson = null;
         if (count==0){
-            Log.i("====","当前点击是0");
-             getfood = foodService.getsharFood();
+            clothesBeanJson = foodService.getSkirt();
         }else if (count==1){
-            getfood = foodService.getsharFoodshang();
+            clothesBeanJson = foodService.getjacket();
         }else if (count==2){
-            Log.i("====","当前点击是2");
-            getfood = foodService.getsharFoodxiq();
+            clothesBeanJson = foodService.getTrouser();
         }else if (count==3){
-            getfood = foodService.getsharFoodpei();
+            clothesBeanJson = foodService.getCoat();
         }else if (count==4){
-            getfood = foodService.getsharFood();
+            clothesBeanJson = foodService.getAccessries();
+        }else if (count == 5 ){
+            javaBeanJson = foodService.getLabel();//标签
+        }else if (count == 6 ){
+            homeBeanJson = foodService.getHome();//首页
         }
-        getfood.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ClothesBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        if (clothesBeanJson!=null){
+            clothesBeanJson.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new TypecloBean(){
+                        @Override
+                        public void onNext(ClothesBean clothesBean) {
+                            jsonPresenter.clothesBeanObserver.onNext(clothesBean);
+                        }
 
-                    }
+                        @Override
+                        public void onError(Throwable e) {
 
-                    @Override
-                    public void onNext(final ClothesBean homeBean) {
-                        Log.i("====","model===="+homeBean.toString());
-                        Observable<ClothesBean> observable = new Observable<ClothesBean>() {
-                            @Override
-                            protected void subscribeActual(Observer<? super ClothesBean> observer) {
-                                observer.onNext(homeBean);
-                                observer.onComplete();
-                            }
-                        };
-                        observable.subscribe(jsonPresenter.observer2);
-                    }
+                        }
+                    });
+        }
+        if (javaBeanJson!=null){
+            javaBeanJson.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new TypeLable(){
+                        @Override
+                        public void onNext(javabean javabean) {
+                            jsonPresenter.javabeanObserver.onNext(javabean);
+                        }
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+                    });
+        }
+        if (homeBeanJson!=null){
+            homeBeanJson.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new TypeHome(){
+                        @Override
+                        public void onNext(HomeBean homeBean) {
+                            Log.i("====","这儿请求到的数据"+homeBean.toString());
+                            jsonPresenter.homeBeanObserver.onNext(homeBean);
+                        }
 
-                    @Override
-                    public void onError(Throwable e) {
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+                    });
+        }
 
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
     }
 
-    @Override
-    public void getBiaoCal() {
-        FoodService foodService = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<javabean> getfood = foodService.getbiao();
-
-
-        getfood.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<javabean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(final javabean homeBean) {
-                        Log.i("====","homebean"+homeBean.getResult().toString());
-                        Observable<javabean> observable = new Observable<javabean>() {
-                            @Override
-                            protected void subscribeActual(Observer<? super javabean> observer) {
-                                observer.onNext(homeBean);
-                                observer.onComplete();
-                            }
-                        };
-                        observable.subscribe(jsonPresenter.observer3);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 }

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--布局-->
+    <style name="ULinearLayoutSV">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <style name="ULinearLayoutSH">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+
+    <!--影响范围很小控件-->
+    <!--textview-->
+    <style name="UtextviewS">
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_width">match_parent</item>
+    </style>
+
+    <style name="UtextView_height_0dp">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:textSize">@dimen/Utext_size_min</item>
+        <item name="android:layout_height">@dimen/Utext_match_0dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+
+</resources>

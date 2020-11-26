@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ULinearLayoutSV"
+    android:gravity="center">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ucom_public_heightone"
+        android:orientation="vertical">
+        <EditText
+            android:id="@+id/registerUser"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Ucom_public_heightfour"
+            android:layout_marginLeft="20dp"
+            android:hint="请输要输入的注册账号"/>
+        <EditText
+            android:id="@+id/registerPassword"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Ucom_public_heightfour"
+            android:layout_marginLeft="@dimen/UView_left_space"
+            android:hint="请输要输入的注册密码"/>
+        <Button
+            android:id="@+id/registerLoginButton"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/Ucom_public_heightfour"
+            android:layout_marginLeft="@dimen/UView_left_space"
+            android:layout_marginRight="@dimen/UView_reght_space"
+            android:textSize="@dimen/toolbar_right_text_size"
+            android:text="注册"/>
+        <TextView
+            android:id="@+id/registerSumpLogin"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="登录"
+            android:layout_marginLeft="@dimen/UView_left_space"/>
+
+    </LinearLayout>
+</LinearLayout>

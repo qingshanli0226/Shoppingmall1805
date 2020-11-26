@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="UcolorPrimary">#008577</color>
+    <color name="UcolorPrimaryDark">#00574B</color>
+    <color name="UcolorAccent">#D81B60</color>
+    <color name="Utablayout_select">#1B0101</color>
+    <color name="Utablayout_unselect">#F80C0C</color>
+    <color name="Utablayout_backgrount">#F6ECEC</color>
+</resources>

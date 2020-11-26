@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
+
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -13,8 +14,9 @@ import java.util.Random;
 
 import framework.BaseActivity;
 import framework.greendao.RxGreen;
-import framework.greendao.userBean;
+import framework.greendao.UserBeanc;
 import framework.greendao.usernv;
+import view.Constants;
 
 public
 class goShopActivity extends BaseActivity {
@@ -22,7 +24,7 @@ class goShopActivity extends BaseActivity {
     private TextView tliteGoshop;
     private TextView PriceShop;
     private Button TextGo;
-    private  userBean userBean;
+    private UserBeanc userBean;
     @Override
     protected void OnClickListener() {
         final int i1 = new Random().nextInt(5000);
@@ -43,11 +45,11 @@ class goShopActivity extends BaseActivity {
         PriceShop = (TextView) findViewById(R.id.Price_shop);
         TextGo = (Button) findViewById(R.id.Text_go);
 
-         userBean = (framework.greendao.userBean) getIntent().getSerializableExtra("user");
+         userBean = (UserBeanc) getIntent().getSerializableExtra("user");
 
         Log.i("=====","这是跳转过来接受到的数据 -》"+userBean.toString());
 
-        Glide.with(goShopActivity.this).load(userBean.getUrl()).into(ImageGoShop);
+        Glide.with(goShopActivity.this).load(Constants.BASE_URl_IMAGE+userBean.getUrl()).into(ImageGoShop);
         tliteGoshop.setText(userBean.getName()+"");
         PriceShop.setText(userBean.getPrice()+"");
 

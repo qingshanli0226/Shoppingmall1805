@@ -20,12 +20,16 @@ class LoadIngPagec  extends FrameLayout {
     private View emptyView;
     private View successView;
     private TextView errorTv;
+
+
+    public View getSuccessView() {
+        return successView;
+    }
+
     public LoadIngPagec(@NonNull Context context) {
         super(context);
         init(context);
     }
-
-
 
     public LoadIngPagec(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -40,7 +44,7 @@ class LoadIngPagec  extends FrameLayout {
 
         errorView = layoutInflater.inflate(R.layout.view_error,null);
         addView(errorView,params);
-        errorTv = errorTv.findViewById(R.id.errorTvc);
+        errorTv = errorView.findViewById(R.id.errorTvc);
 
         emptyView = layoutInflater.inflate(R.layout.view_empty,null);
         addView(emptyView,params);
@@ -58,7 +62,7 @@ class LoadIngPagec  extends FrameLayout {
 
     protected abstract int getSuccessLayoutId();
 
-    private void showLoadingpage(){
+    public void showLoadingpage(){
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(VISIBLE);
         errorView.setVisibility(GONE);
@@ -66,7 +70,7 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(GONE);
     }
 
-    private void showErrorPage(String Errormsg){
+    public void showErrorPage(String Errormsg){
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(VISIBLE);
@@ -74,7 +78,7 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(GONE);
     }
 
-    private void showEmptyPage(){
+    public void showEmptyPage(){
         emptyView.setVisibility(VISIBLE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
@@ -82,33 +86,11 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(GONE);
     }
     //显示正确页面
-    private void showSuccessView() {
+    public void showSuccessView() {
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
 
         successView.setVisibility(VISIBLE);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 }
