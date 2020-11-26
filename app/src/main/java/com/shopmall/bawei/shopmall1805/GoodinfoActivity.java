@@ -82,7 +82,7 @@ public class GoodinfoActivity extends BaseActivity<IPresenter, IView> implements
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.tv_good_info_cart:
-                ARouter.getInstance().build("/goodcar/MainActivity").navigation();
+                ARouter.getInstance().build("/goodcar/Shpping_car_Activity").navigation();
                 break;
             case R.id.tv_good_info_callcenter:
                 Intent intent = new Intent(GoodinfoActivity.this, CallcenterActivity.class);

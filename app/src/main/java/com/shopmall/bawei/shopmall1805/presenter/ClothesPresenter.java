@@ -28,7 +28,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -56,7 +58,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -84,7 +88,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -112,7 +118,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -140,7 +148,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -168,7 +178,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -196,7 +208,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -224,7 +238,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -252,7 +268,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -280,7 +298,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override
@@ -308,7 +328,9 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.onjscket(clothesBean.getResult());
+                        if (iView!=null) {
+                            iView.onjscket(clothesBean.getResult());
+                        }
                     }
 
                     @Override

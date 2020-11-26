@@ -32,7 +32,10 @@ public class PrimerePresenter extends PrimereContract.SlerakPresenter {
                     @Override
                     public void onNext(BaseBean<HomeBean> homeBeanBaseBean) {
                         HomeBean result = homeBeanBaseBean.getResult();
-                        iView.onskerk(result);
+                        if (iView!=null){
+                            iView.onskerk(result);
+                        }
+
                     }
 
                     @Override

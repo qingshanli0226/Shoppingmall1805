@@ -38,6 +38,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
     private ArrayAdapter<String> adapter ;
     private Clother_RAdpter clother_rAdpter;
     private Colother_CAdpter colother_cAdpter;
+
     private List<ClothesBean.ResultBean.HotProductListBean> hotProductListBeans = new ArrayList<>();
     private List<ClothesBean.ResultBean.ChildBean> childBeans = new ArrayList<>();
     private String[] data = null;

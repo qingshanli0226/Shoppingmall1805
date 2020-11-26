@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Fragment.Fragment_Classfid">
+    tools:context=".Fragment.TypeFragment">
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
@@ -38,12 +38,12 @@
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:background="#ccc"></LinearLayout>
-    <com.shopmall.bawei.shopmall1805.bean.MyViewPager
+    <com.example.framework.MyViewPager
         android:id="@+id/vr_fen"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="10">
-    </com.shopmall.bawei.shopmall1805.bean.MyViewPager>
+    </com.example.framework.MyViewPager>
 
 
 

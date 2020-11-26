@@ -1,26 +1,22 @@
 package com.shopmall.bawei.shopmall1805.Fragment;
 
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
 import com.example.framework.BaseFragment;
 import com.shopmall.bawei.shopmall1805.Fragment.fragment_fen.Fragment_biao;
 import com.shopmall.bawei.shopmall1805.Fragment.fragment_fen.Fragment_fen;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adpter.Fragment_fen_Adpter;
-import com.shopmall.bawei.shopmall1805.bean.MyViewPager;
+import com.example.framework.MyViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment_Classfid extends BaseFragment {
+public class TypeFragment extends BaseFragment {
     private Button btFen;
     private Button btBiao;
     private MyViewPager vrFen;

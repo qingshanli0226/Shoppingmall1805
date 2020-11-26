@@ -32,9 +32,6 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
     private final int SECKILL_TYPE = 3;
     private final int RECOMMEND_TYPE = 4;
     private final int HOT_TYPE = 5;
-
-
-
     @Override
     protected int getLayoutId(int viewType) {
         switch (viewType) {
@@ -44,19 +41,15 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                 return R.layout.home_view_channel;
             case ACT_TYPE:
                 return R.layout.home_view_act;
-
             case SECKILL_TYPE:
                 return R.layout.home_view_seckill;
             case RECOMMEND_TYPE:
                 return R.layout.home_view_recommend;
             case HOT_TYPE:
                 return R.layout.home_view_hot;
-
-
             default:return R.layout.home_view_banner;
         }
     }
-
     @Override
     protected void convert(Object itemData, BaseViewHolder baseViewHolder, int position) {
         switch (position) {
@@ -81,15 +74,14 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
                 PrimereBean goodsBean = new PrimereBean(hotInfoBeans.get(position).getProduct_id(), hotInfoBeans.get(position).getName(), hotInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + hotInfoBeans.get(position).getFigure());
-
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
             }
         });
     }
-    private void displayRecommend(Object itemData, final BaseViewHolder baseViewHolder) {
 
+    private void displayRecommend(Object itemData, final BaseViewHolder baseViewHolder) {
         final List<HomeBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.RecommendInfoBean>)itemData;//强转成我们需要的类型
         RecyclerView commendRv = baseViewHolder.getView(R.id.rv_recommen);
         commendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3));
@@ -108,8 +100,8 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             }
         });
     }
-    private void displaySeckill(Object itemData, final BaseViewHolder baseViewHolder) {
 
+    private void displaySeckill(Object itemData, final BaseViewHolder baseViewHolder) {
         final List<HomeBean.SeckillInfoBean.ListBean> seckillInfoBeans = (List<HomeBean.SeckillInfoBean.ListBean>)itemData;//强转成我们需要的类型
         RecyclerView seckRv = baseViewHolder.getView(R.id.rv_seck);
         seckRv.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -121,7 +113,6 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
                 PrimereBean goodsBean = new PrimereBean(seckillInfoBeans.get(position).getProduct_id(), seckillInfoBeans.get(position).getName(), seckillInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + seckillInfoBeans.get(position).getFigure());
-
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -129,17 +120,13 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         });
     }
 
-
     private void displayAct(Object itemData, final BaseViewHolder baseViewHolder) {
         final List<HomeBean.ActInfoBean> actInfoBeans = (List<HomeBean.ActInfoBean>)itemData;//强转成我们需要的类型
         RecyclerView actRv = baseViewHolder.getView(R.id.actRv);
         actRv.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL, false));
-
         ActAdapter actAdapter = new ActAdapter();
         actRv.setAdapter(actAdapter);
         actAdapter.updataData(actInfoBeans);
-
-
         //点击跳转页面
         actAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
@@ -167,8 +154,8 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             }
         });
     }
+
     private void displayChannel(Object itemData, final BaseViewHolder baseViewHolder) {
-        Log.d("LQS", "displayChannel...");
         List<HomeBean.ChannelInfoBean> channelInfoBeans = (List<HomeBean.ChannelInfoBean>)itemData;//强转成我们需要的类型
         RecyclerView channelRv = baseViewHolder.getView(R.id.channelRv);
         channelRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),5));
@@ -185,7 +172,6 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
 //            }
 //        });
     }
-
     private void displayBanner(final Object itemData, final BaseViewHolder baseViewHolder) {
         final List<HomeBean.BannerInfoBean> bannerInfoBeans = (List<HomeBean.BannerInfoBean>) itemData;//强转成我们需要的类型
 
@@ -245,8 +231,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             case 2: return ACT_TYPE;
             case 3: return SECKILL_TYPE;
             case 4: return RECOMMEND_TYPE;
-             case 5: return HOT_TYPE;
-
+            case 5: return HOT_TYPE;
             default:
                 return BANNER_TYPE;
         }

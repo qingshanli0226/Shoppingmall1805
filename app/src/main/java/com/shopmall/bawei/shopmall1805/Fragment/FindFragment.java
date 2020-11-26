@@ -12,10 +12,10 @@ import com.shopmall.bawei.shopmall1805.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_shopping extends Fragment {
+public class FindFragment extends Fragment {
 
 
-    public Fragment_shopping() {
+    public FindFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +24,7 @@ public class Fragment_shopping extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fragment_shopping, container, false);
+        return inflater.inflate(R.layout.fragment_fragment_find, container, false);
     }
 
 }

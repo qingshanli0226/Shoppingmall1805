@@ -19,7 +19,7 @@ import com.shopmall.bawei.shopmall1805.presenter.PrimerePresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Fragment_Primere extends BaseFragment<PrimerePresenter, PrimereContract.SkerakView> implements PrimereContract.SkerakView {
+public class HomeFragment extends BaseFragment<PrimerePresenter, PrimereContract.SkerakView> implements PrimereContract.SkerakView {
     private RecyclerView rv;
     private PrimereAdpter primereAdpter;
     @Override

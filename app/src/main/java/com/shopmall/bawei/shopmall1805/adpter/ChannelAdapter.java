@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.adpter;
 
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +23,7 @@ public class ChannelAdapter extends BaseRVAdapter<HomeBean.ChannelInfoBean> {
     protected void convert(HomeBean.ChannelInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
         ImageView imageView = baseViewHolder.getView(R.id.iv_channel);
         Glide.with(baseViewHolder.itemView.getContext()).load(Confing.BASE_IMAGE + itemData.getImage()).into(imageView);
+        TextView viewById = baseViewHolder.itemView.findViewById(R.id.iv_channel);
         TextView textview = baseViewHolder.getView(R.id.tv_channel);
         textview.setText(""+itemData.getChannel_name());
     }

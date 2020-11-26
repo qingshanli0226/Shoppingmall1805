@@ -24,7 +24,9 @@ public class BiaoPresenter extends BiaoContract.biaoPresenter {
 
                     @Override
                     public void onNext(Biaobean biaobean) {
-                        iView.onbiao(biaobean.getResult());
+                        if (iView!=null) {
+                            iView.onbiao(biaobean.getResult());
+                        }
                     }
 
                     @Override

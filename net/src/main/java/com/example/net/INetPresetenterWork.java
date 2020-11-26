@@ -5,6 +5,7 @@ import com.example.net.bean.Biaobean;
 import com.example.net.bean.ClothesBean;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.LoginBean;
+import com.example.net.bean.RegisterBean;
 
 import java.util.HashMap;
 import java.util.List;
@@ -19,7 +20,7 @@ public interface INetPresetenterWork {
     //注册 接口
     @POST("register")
     @FormUrlEncoded
-    Observable<BaseBean<String>> register(@FieldMap HashMap<String, String> map);
+    Observable<RegisterBean> register(@FieldMap HashMap<String, String> map);
     //登录  接口
     @POST("login")
     @FormUrlEncoded

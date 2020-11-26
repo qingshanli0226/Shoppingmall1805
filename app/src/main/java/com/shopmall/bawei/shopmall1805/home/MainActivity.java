@@ -1,8 +1,5 @@
 package com.shopmall.bawei.shopmall1805.home;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 
 import com.example.framework.BaseActivity;
@@ -11,14 +8,14 @@ import com.example.framework.IView;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_Classfid;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_Primere;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_find;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_shopping;
-import com.shopmall.bawei.shopmall1805.Fragment.Fragment_user;
+import com.shopmall.bawei.shopmall1805.Fragment.TypeFragment;
+import com.shopmall.bawei.shopmall1805.Fragment.HomeFragment;
+import com.shopmall.bawei.shopmall1805.Fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.Fragment.ShopCarFragment;
+import com.shopmall.bawei.shopmall1805.Fragment.UserFragment;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adpter.FragmentAdpter;
-import com.shopmall.bawei.shopmall1805.bean.MyViewPager;
+import com.example.framework.MyViewPager;
 import com.shopmall.bawei.shopmall1805.bean.TabEntity;
 
 import java.util.ArrayList;
@@ -64,11 +61,11 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         vr = findViewById(R.id.vr);
         common = findViewById(R.id.common);
 
-        fragmentArrayList.add(new Fragment_Primere());
-        fragmentArrayList.add(new Fragment_Classfid());
-        fragmentArrayList.add(new Fragment_find());
-        fragmentArrayList.add(new Fragment_shopping());
-        fragmentArrayList.add(new Fragment_user());
+        fragmentArrayList.add(new HomeFragment());
+        fragmentArrayList.add(new TypeFragment());
+        fragmentArrayList.add(new FindFragment());
+        fragmentArrayList.add(new ShopCarFragment());
+        fragmentArrayList.add(new UserFragment());
         //添加数据
         tabEntitys.add(new TabEntity("首页",R.mipmap.select_1,R.mipmap.default_1));
         tabEntitys.add(new TabEntity("分类",R.mipmap.select_2,R.mipmap.default_2));

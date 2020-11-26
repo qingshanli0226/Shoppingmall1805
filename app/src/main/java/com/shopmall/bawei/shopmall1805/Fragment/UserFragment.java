@@ -12,10 +12,10 @@ import com.shopmall.bawei.shopmall1805.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Fragment_user extends Fragment {
+public class UserFragment extends Fragment {
 
 
-    public Fragment_user() {
+    public UserFragment() {
         // Required empty public constructor
     }
 

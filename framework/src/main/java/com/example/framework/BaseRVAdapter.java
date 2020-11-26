@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-//定义一个万能适配器,支持多布局的，可以适配不同类型的数据，又能适配不同ItemView
 public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapter.BaseViewHolder> {
     private IRecyclerViewItemClickListener iRecyclerViewItemClickListener;
     private ArrayList<T> dataList = new ArrayList<>();

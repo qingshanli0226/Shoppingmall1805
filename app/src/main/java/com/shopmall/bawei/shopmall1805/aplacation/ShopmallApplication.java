@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805;
+package com.shopmall.bawei.shopmall1805.aplacation;
 
 import android.app.Application;
 
