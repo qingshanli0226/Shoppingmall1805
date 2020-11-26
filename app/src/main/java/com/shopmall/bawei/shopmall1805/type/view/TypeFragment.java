@@ -54,17 +54,17 @@ public class TypeFragment<P extends TypeImpl,V extends TypeContract.ITypeView> e
         adapter = new TypeAdapter();
         Log.i("TAG", "initView: "+rvRight);
         rvRight.setAdapter(adapter);
-        list.add("小裙子");
-        list.add("上衣");
-        list.add("下装");
-        list.add("外套");
-        list.add("配件");
-        list.add("包包");
-        list.add("装扮");
-        list.add("居家宅品");
-        list.add("办公文具");
-        list.add("数码周边");
-        list.add("游戏专区");
+        list.add(getString(R.string.skirt));
+        list.add(getString(R.string.jacket));
+        list.add(getString(R.string.pants));
+        list.add(getString(R.string.overcoat));
+        list.add(getString(R.string.accessory));
+        list.add(getString(R.string.bag));
+        list.add(getString(R.string.dress));
+        list.add(getString(R.string.products));
+        list.add(getString(R.string.stationery));
+        list.add(getString(R.string.digit));
+        list.add(getString(R.string.game));
         lvAdapter = new ListAdapter(getContext(),list);
         lvLeft.setAdapter(lvAdapter);
 

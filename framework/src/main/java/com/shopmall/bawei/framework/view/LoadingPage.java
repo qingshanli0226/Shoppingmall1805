@@ -3,6 +3,7 @@ package com.shopmall.bawei.framework.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -87,6 +88,7 @@ public abstract class LoadingPage extends FrameLayout {
     //显示错误页面
     public void showErrorPage(String errorMsg) {
         errorTv.setText(errorMsg);
+        errorTv.setGravity(Gravity.CENTER);
         errorView.setVisibility(VISIBLE);
         loadingView.setVisibility(GONE);
         successView.setVisibility(GONE);

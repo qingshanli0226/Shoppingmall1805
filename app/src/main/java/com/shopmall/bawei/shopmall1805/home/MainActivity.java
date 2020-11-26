@@ -117,10 +117,10 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
 
     private void initPermission() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//判断当前系统版本是不是大于等于23
-            Toast.makeText(this, "系统版本大于23，需动态申请权限", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.permissions), Toast.LENGTH_SHORT).show();
             requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
         } else {
-            Toast.makeText(this, "系统版本低于23，所以无需动态申请权限", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, getString(R.string.permissions2), Toast.LENGTH_SHORT).show();
         }//这个就是在代码里做了版本适配(兼容适配),确保了应用程序在15到29之间，动态权限申请不会出现找不到方法的错误
 
     }

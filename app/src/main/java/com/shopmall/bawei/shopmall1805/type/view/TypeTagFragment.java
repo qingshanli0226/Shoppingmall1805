@@ -33,7 +33,6 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     private VpAdapter adapter;
 
 
-    private String[] titles = {"分类","标签"};
 
     private List<Fragment> list = new ArrayList<>();
 

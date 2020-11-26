@@ -1,15 +1,26 @@
 <resources>
     <string name="app_name">电商项目</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
-
-
-
-
-
     <!--toolbar-->
     <string name="homeToolbarRightText">消息</string>
+    <!--tag-->
+    <string name="skirt">小裙子</string>
+    <string name="jacket">上衣</string>
+    <string name="pants">下装</string>
+    <string name="overcoat">外套</string>
+    <string name="accessory">配件</string>
+    <string name="bag">包包</string>
+    <string name="dress">装扮</string>
+    <string name="products">居家宅品</string>
+    <string name="stationery">办公文具</string>
+    <string name="digit">数码周边</string>
+    <string name="game">游戏专区</string>
 
+    <string name="kind">分类</string>
+    <string name="tag">标签</string>
 
+    <!--permissionsError-->
+    <string name="permissions">系统版本大于23，需动态申请权限</string>
+    <string name="permissions2">系统版本低于23，所以无需动态申请权限</string>
 
 </resources>

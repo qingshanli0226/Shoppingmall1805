@@ -29,12 +29,12 @@
             <RadioButton
                 style="@style/headerBarRadioButtonStyle"
                 android:checked="true"
-                android:text="分类"
+                android:text="@string/kind"
                 android:background="@drawable/select_sl"
                 android:id="@+id/rbl"/>
             <RadioButton
                 style="@style/headerBarRadioButtonStyle"
-                android:text="标签"
+                android:text="@string/tag"
                 android:background="@drawable/select_sr"
                 android:id="@+id/rbr"/>
 
