@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -10,4 +9,79 @@
     <style name="AppTheme.FullTheme" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
     </style>
+    <style name="Base" >
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+<!--  ViewPager  -->
+    <style name="Base.VP">
+        <item name="android:layout_height">@dimen/Weight_DP</item>
+    </style>
+    <style name="Base.VP.Main_VP">
+        <item name="android:layout_weight">9</item>
+    </style>
+    <style name="Base.VP.Act_Item_VP">
+        <item name="android:layout_height">120dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginLeft">@dimen/Item_VP_Margin</item>
+        <item name="android:layout_marginRight">@dimen/Item_VP_Margin</item>
+        <item name="android:layout_marginTop">@dimen/Item_VP_Margin</item>
+        <item name="android:clipChildren">false</item>
+    </style>
+<!--  Tab  -->
+    <style name="Base.Tab">
+        <item name="tl_textBold">true</item>
+    </style>
+<!--  Image  -->
+    <style name="Base.Splash_Image">
+        <item name="android:scaleType">centerCrop</item>
+        <item name="android:src">@drawable/splash</item>
+    </style>
+    <style name="Base.Home_Search_IV">
+        <item name="android:layout_height">@dimen/Icon_l</item>
+        <item name="android:layout_width">@dimen/Icon_l</item>
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:src">@drawable/home_search_icon</item>
+        <item name="android:layout_marginLeft">@dimen/Home_Search_IV_MarginLeft</item>
+    </style>
+<!-- ToolBar -->
+    <style name="Base.ToolBar">
+        <item name="android:layout_height">@dimen/ToolBar_Height</item>
+    </style>
+    <style name="Base.ToolBar.Home">
+        <item name="android:background">@color/MainBarColor</item>
+    </style>
+<!--  LinearLayout  -->
+    <style name="Base.VLinear">
+        <item name="android:orientation">vertical</item>
+    </style>
+    <style name="Base.HLinear">
+        <item name="android:orientation">horizontal</item>
+    </style>
+    <style name="Base.HLinear.Home">
+        <item name="android:layout_weight">9</item>
+        <item name="android:layout_width">@dimen/Weight_DP</item>
+        <item name="android:layout_height">@dimen/Linear_Home_Height</item>
+        <item name="android:layout_marginTop">@dimen/Linear_Home_MarginTop</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:background">@drawable/item</item>
+    </style>
+    <style name="Base.VLinear.New_Message">
+        <item name="android:layout_width">@dimen/Weight_DP</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+<!--  EditText  -->
+    <style name="Base.EditText">
+        <item name="android:background">@drawable/item</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    <style name="Base.EditText.Home_Search_Edit">
+        <item name="android:hint">@string/Search_edit</item>
+        <item name="android:paddingLeft">@dimen/Edit_Padding_Left</item>
+        <item name="android:textSize">@dimen/Edit_s_Size</item>
+        <item name="android:layout_gravity">bottom</item>
+    </style>
 </resources>
+

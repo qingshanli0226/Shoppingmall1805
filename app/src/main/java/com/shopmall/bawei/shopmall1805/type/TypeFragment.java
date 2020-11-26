@@ -25,14 +25,6 @@ public class TypeFragment extends BaseFragment {
     private List<Fragment> fragments=new ArrayList<>();
     @Override
     protected void initDate() {
-
-
-
-
-    }
-
-    @Override
-    protected void initLisenter() {
         tl1.setTabData(new String[]{"分类","标签"});
         if(fragments.size()!=0){
             fragments.clear();
@@ -41,6 +33,12 @@ public class TypeFragment extends BaseFragment {
         fragments.add(new TagFragment());
         vpType.setScanScroll(false);
         vpType.setAdapter(new FragmentAdapter(getChildFragmentManager(),fragments));
+    }
+
+    @Override
+    protected void initLisenter() {
+
+
         tl1.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {

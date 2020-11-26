@@ -1,14 +1,17 @@
 package com.shopmall.bawei.shopmall1805.app;
 
 
+import android.content.Intent;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
 import com.example.framework.base.BaseActivity;
+import com.example.framework.user.UserManager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.view.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.VPTab;
 import com.shopmall.bawei.shopmall1805.find.FindFragment;
@@ -16,6 +19,8 @@ import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.shoppingcar.ShoppingCarFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.user.UserFragment;
+import com.shopmall.bawei.shopmall1805.view.MyVP;
+import com.shopmall.bawei.user.login.LoginActivity;
 import com.shoppmall.common.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -54,10 +59,24 @@ public class MainActivity extends BaseActivity {
         vpMain.setScanScroll(false);
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
         vpMain.setOffscreenPageLimit(5);
+
+    }
+
+    @Override
+    protected void initListener() {
+        super.initListener();
         commMain.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                vpMain.setCurrentItem(position);
+                if(UserManager.isLogin()){
+                    vpMain.setCurrentItem(position);
+                }else {
+                    Toast.makeText(MainActivity.this, "请先登录账户", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    commMain.setCurrentTab(0);
+                    startActivity(intent);
+                }
+
             }
 
             @Override

@@ -2,6 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopmall.bawei.user">
 
-    <application></application>
+    <application>
+        <activity android:name=".register.RegisterActivity"></activity>
+        <activity android:name=".login.LoginActivity" />
+        <activity
+            android:name=".ui.login.LoginActivity"
+            android:label="@string/title_activity_login" />
+    </application>
 
 </manifest>

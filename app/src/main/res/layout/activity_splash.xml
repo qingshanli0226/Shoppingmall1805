@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".splash.SplashActivity">
     <ImageView
-        android:scaleType="centerCrop"
-        android:src="@drawable/splash"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        style="@style/Base.Splash_Image"
         />
 </RelativeLayout>

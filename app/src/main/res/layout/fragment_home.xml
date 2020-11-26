@@ -7,53 +7,29 @@
     tools:context=".home.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
-        android:background="#ed3f3f"
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
+       style="@style/Base.ToolBar.Home"
         >
        <LinearLayout
-           android:orientation="horizontal"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent">
+          style="@style/Base.HLinear"
+           >
            <LinearLayout
-               android:background="@drawable/item"
-               android:layout_width="0dp"
-               android:layout_gravity="center"
-               android:layout_weight="9"
-               android:layout_centerVertical="true"
-               android:layout_height="40dp"
-               android:orientation="horizontal"
-               android:layout_margin="5dp"
+               style="@style/Base.HLinear.Home"
                >
                <ImageView
                    android:id="@+id/search_btn_home"
-                   android:layout_marginLeft="10dp"
-                   android:layout_gravity="center_vertical"
-                   android:src="@drawable/home_search_icon"
-                   android:layout_width="20dp"
-                   android:layout_height="20dp"
+                   style="@style/Base.Home_Search_IV"
                    />
                <EditText
-                   android:hint="输入搜索信息"
-                   android:paddingLeft="10dp"
-                   android:textSize="13sp"
-                   android:singleLine="true"
-                   android:focusable="true"
-                   android:focusableInTouchMode="true"
-                   android:layout_gravity="bottom"
                    android:id="@+id/search_et_home"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:background="@drawable/item"
+                   style="@style/Base.EditText.Home_Search_Edit"
                    />
            </LinearLayout>
            <LinearLayout
                android:id="@+id/new_message"
                android:layout_alignParentRight="true"
                android:layout_centerVertical="true"
-               android:layout_width="0dp"
-               android:layout_weight="1"
-               android:layout_gravity="center"
+               style="@style/Base.VLinear.New_Message"
+
                android:layout_height="50dp"
                android:layout_marginRight="10dp"
                android:gravity="center"

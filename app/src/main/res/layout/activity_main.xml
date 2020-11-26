@@ -9,9 +9,7 @@
 
     <com.shopmall.bawei.shopmall1805.view.MyVP
         android:id="@+id/vp_main"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="9"
+        style="@style/Base.VP.Main_VP"
         />
     <com.flyco.tablayout.CommonTabLayout
         android:background="@drawable/home_bottom_parent_bg"
@@ -19,8 +17,8 @@
         app:tl_iconHeight="30dp"
         app:tl_iconWidth="30dp"
         android:paddingTop="15dp"
-        app:tl_textUnselectColor="#535353"
-        app:tl_textSelectColor="#ff4040"
+        app:tl_textUnselectColor="@color/MainUnSelectColor"
+        app:tl_textSelectColor="@color/MainSelectColor"
         app:tl_textBold="true"
         app:tl_textsize="10sp"
         android:layout_width="match_parent"

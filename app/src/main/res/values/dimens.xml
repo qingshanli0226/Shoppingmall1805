@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--  字体大小  -->
+    <dimen name="Text_s_Size">10sp</dimen>
+    <dimen name="Text_m_Size">15sp</dimen>
+    <dimen name="Text_l_Size">20sp</dimen>
+    <dimen name="Text_xl_Size">30sp</dimen>
+    <dimen name="Edit_s_Size">13sp</dimen>
+<!--  控件DP  -->
+    <dimen name="Weight_DP">0dp</dimen>
+    <dimen name="Comm_Padding_Top">15dp</dimen>
+    <dimen name="Edit_Padding_Left">10dp</dimen>
+    <dimen name="Icon_s">20dp</dimen>
+    <dimen name="Icon_l">30dp</dimen>
+
+    <dimen name="Item_VP_Margin">20dp</dimen>
+
+    <dimen name="Linear_Home_Height">40dp</dimen>
+    <dimen name="Linear_Home_MarginTop">5dp</dimen>
+    <dimen name="Home_Search_IV_MarginLeft">10dp</dimen>
+
+    <dimen name="ToolBar_Height">60dp</dimen>
+</resources>
