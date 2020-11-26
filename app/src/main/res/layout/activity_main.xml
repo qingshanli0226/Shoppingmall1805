@@ -4,15 +4,89 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".home.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.shopmall.bawei.common.MyToolBar
+        android:id="@+id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone"/>
+
+    <FrameLayout
+        android:layout_below="@id/myToolbar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:id="@+id/frameLayoutId"/>
+    <RadioGroup
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/rg"
+        android:orientation="horizontal"
+        >
+
+        <RadioButton
+            android:checked="true"
+            style="@style/MainButtonStyle"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:id="@+id/rb1"
+            android:drawableTop="@drawable/select_home"
+            android:text="首页"
+            android:layout_gravity="center"
+            android:button="@null"
+            />
+        <RadioButton
+            style="@style/MainButtonStyle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/rb2"
+            android:text="分类"
+            android:drawableTop="@drawable/select_type"
+            android:button="@null"
+            />
+        <RadioButton
+            style="@style/MainButtonStyle"
+            android:drawableTop="@drawable/select_communit"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/rb3"
+            android:text="发现"
+            android:button="@null"
+            />
+        <RadioButton
+            style="@style/MainButtonStyle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:drawableTop="@drawable/select_cart"
+            android:layout_height="match_parent"
+            android:id="@+id/rb4"
+            android:text="购物车"
+            android:layout_gravity="center"
+            android:button="@null"
+            />
+        <RadioButton
+            android:drawableTop="@drawable/select_user"
+            style="@style/MainButtonStyle"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:id="@+id/rb5"
+            android:text="首页"
+            android:layout_gravity="center"
+            android:button="@null"
+            />
+
+
+    </RadioGroup>
+
+
+
 
 </LinearLayout>
