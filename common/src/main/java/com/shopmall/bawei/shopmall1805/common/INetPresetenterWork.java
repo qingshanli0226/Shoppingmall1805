@@ -10,6 +10,8 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Url;
+
 public interface INetPresetenterWork {
     //注册 接口
     @POST("register")
@@ -21,8 +23,8 @@ public interface INetPresetenterWork {
     Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> map);
 
     //小裙子 接口
-    @GET("atguigu/json/SKIRT_URL.json")
-    Observable<BaseBean<ClothesBean>> skirt();
+    @GET()
+    Observable<ClothesBean> skirt(@Url String url);
 
     //上衣 接口
     @GET("atguigu/json/JACKET_URL.json")
@@ -68,8 +70,8 @@ public interface INetPresetenterWork {
     @GET("atguigu/json/HOME_URL.json")
     Observable<HomeBean> home();
     //分类Fragment里面的标签Fragment页面数据
-    @GET("TAG_URL.json")
-    Observable<BaseBean<ClothesBean>> tag();
+    @GET("atguigu/json/TAG_URL.json")
+    Observable<FenLeiVpTwoEntity> tag();
     //发现Fragment里面的新帖
     @GET("NEW_POST_URL.json")
     Observable<BaseBean<ClothesBean>> new_post();

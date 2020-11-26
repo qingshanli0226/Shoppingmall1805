@@ -25,7 +25,6 @@ public class BannerPresenter extends FirstHomeContract.BannerHomePresenter {
                 public void onSubscribe(Disposable d) {
 
                 }
-
                 @Override
                 public void onNext(HomeBean homeBean) {
                     if(homeBean!=null){

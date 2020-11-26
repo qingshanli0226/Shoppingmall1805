@@ -4,14 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:layout_marginLeft="20dp"
-    android:layout_marginRight="20dp"
-
     >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
+        android:layout_marginLeft="30dp"
         >
         <ImageView
             android:layout_width="25dp"
@@ -35,7 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="查看更多>"
-            android:layout_marginLeft="200dp"
+            android:layout_marginLeft="210dp"
             android:layout_gravity="center"
             android:textSize="15sp"
             >
@@ -45,6 +43,7 @@
         android:id="@+id/recomend_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
         >
     </androidx.recyclerview.widget.RecyclerView>
 

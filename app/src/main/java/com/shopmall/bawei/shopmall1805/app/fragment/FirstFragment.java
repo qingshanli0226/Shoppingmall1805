@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.View;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.adapter.BaseHomeAdapter;
+import com.shopmall.bawei.shopmall1805.app.adapter.home.BaseHomeAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.FirstHomeContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.BannerPresenter;
 import com.shopmall.bawei.shopmall1805.common.HomeBean;

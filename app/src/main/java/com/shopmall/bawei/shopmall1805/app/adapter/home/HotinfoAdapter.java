@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.app.adapter;
+package com.shopmall.bawei.shopmall1805.app.adapter.home;
 
 import android.widget.ImageView;
 
