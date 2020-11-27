@@ -9,12 +9,15 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.user.UserManager;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.user.R;
-import com.shopmall.bawei.user.register.RegisterActivity;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
+@Route(path = "/user/LoginActivity")
 public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContract.LoginView> implements LoginContract.LoginView {
     private ImageButton ibLoginBack;
     private EditText etLoginPhone;
@@ -27,6 +30,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     private ImageButton ibQq;
     private ImageButton ibWechat;
     private boolean flag=false;
+    private String key;
     @Override
     protected void initPresenter() {
         presenter=new LoginPresenterImpl();
@@ -38,7 +42,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         ibLoginBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                finish();
+                arouter();
             }
         });
         ibLoginVisible.setOnClickListener(new View.OnClickListener() {
@@ -81,8 +85,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         tvLoginRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                aroutertoregister();
             }
         });
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -100,9 +103,15 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         });
     }
 
+    private void aroutertoregister() {
+        ARouter.getInstance().build("/user/RegisterActivity").withString("key",key).navigation();
+        finish();
+    }
+
     @Override
     protected void initData() {
-
+        Intent intent = getIntent();
+        key = intent.getStringExtra("key");
     }
 
     @Override
@@ -141,14 +150,38 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
             user.setPoint(result.getPoint());
             user.setAvatar(result.getAvatar());
             UserManager.getInstance().bindUser(user);
-            finish();
+            arouter();
         }else {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            etLoginPhone.setText("");
+            etLoginPwd.setText("");
+        }
+    }
+
+    private void arouter() {
+
+        if(key.equals("main")){
+            ARouter.getInstance().build("/main/MainActivity").navigation();
         }
     }
 
     @Override
     public void onError(String msg) {
+        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showloading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

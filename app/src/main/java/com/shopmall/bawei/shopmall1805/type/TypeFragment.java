@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment;
 import com.example.framework.base.BaseFragment;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.view.MyVP;
+import com.example.framework.view.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.list.ListFragment;
 import com.shopmall.bawei.shopmall1805.type.tag.TagFragment;

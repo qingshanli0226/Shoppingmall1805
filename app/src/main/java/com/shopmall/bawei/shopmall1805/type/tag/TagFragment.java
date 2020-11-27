@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.type.tag;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.framework.base.BaseFragment;
 import com.example.net.bean.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,12 +47,26 @@ public class TagFragment extends BaseFragment<TagPresenterImpl, TagContract.TagV
         list.clear();
         List<TagBean.ResultBean> result = bean.getResult();
         list.addAll(result);
-        Log.i("You", "onOk: "+list.size());
         tagDapter.updataData(list);
     }
 
     @Override
     public void onError(String msg) {
         Toast.makeText(getContext(), ""+msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showloading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

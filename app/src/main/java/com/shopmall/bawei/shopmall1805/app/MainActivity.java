@@ -1,12 +1,13 @@
 package com.shopmall.bawei.shopmall1805.app;
 
 
-import android.content.Intent;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.user.UserManager;
 import com.flyco.tablayout.CommonTabLayout;
@@ -19,8 +20,7 @@ import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.shoppingcar.ShoppingCarFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.user.UserFragment;
-import com.shopmall.bawei.shopmall1805.view.MyVP;
-import com.shopmall.bawei.user.login.LoginActivity;
+import com.example.framework.view.MyVP;
 import com.shoppmall.common.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -28,7 +28,7 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-
+@Route(path = "/main/MainActivity")
 public class MainActivity extends BaseActivity {
     private ArrayList<CustomTabEntity> tabs=new ArrayList<>();
     private List<Fragment> fragments=new ArrayList<>();
@@ -72,9 +72,8 @@ public class MainActivity extends BaseActivity {
                     vpMain.setCurrentItem(position);
                 }else {
                     Toast.makeText(MainActivity.this, "请先登录账户", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                    ARouter.getInstance().build("/user/LoginActivity").withString("key","main").navigation();
                     commMain.setCurrentTab(0);
-                    startActivity(intent);
                 }
 
             }

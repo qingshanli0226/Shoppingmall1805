@@ -62,8 +62,7 @@
         <item name="android:layout_weight">9</item>
         <item name="android:layout_width">@dimen/Weight_DP</item>
         <item name="android:layout_height">@dimen/Linear_Home_Height</item>
-        <item name="android:layout_marginTop">@dimen/Linear_Home_MarginTop</item>
-        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_gravity">center_vertical</item>
         <item name="android:layout_centerVertical">true</item>
         <item name="android:background">@drawable/item</item>
     </style>

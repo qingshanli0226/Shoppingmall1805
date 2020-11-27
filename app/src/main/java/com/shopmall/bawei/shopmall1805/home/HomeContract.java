@@ -7,7 +7,6 @@ import com.example.net.bean.MainBean;
 public interface HomeContract {
     public interface HomeView extends IView {
         void onOk(MainBean bean);
-        void onEorror(String msg);
     }
 
     public static abstract class HomePresenter extends BasePresenter<HomeView> {

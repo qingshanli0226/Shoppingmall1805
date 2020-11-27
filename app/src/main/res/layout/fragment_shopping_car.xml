@@ -149,8 +149,6 @@
                     android:textSize="15sp" />
             </LinearLayout>
         </LinearLayout>
-
-        <include layout="@layout/empty_cart" />
     </RelativeLayout>
 
 </LinearLayout>

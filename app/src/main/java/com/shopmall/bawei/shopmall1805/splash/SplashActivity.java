@@ -1,11 +1,10 @@
 package com.shopmall.bawei.shopmall1805.splash;
 
-import android.content.Intent;
 import android.os.Handler;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.MainActivity;
 
 
 public class SplashActivity extends BaseActivity {
@@ -20,7 +19,7 @@ public class SplashActivity extends BaseActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashActivity.this, MainActivity.class));
+                ARouter.getInstance().build("/main/MainActivity").navigation();
                 finish();
             }
         },2000);

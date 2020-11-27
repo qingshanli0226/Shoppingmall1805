@@ -1,7 +1,6 @@
 package com.shopmall.bawei.shopmall1805.type.list;
 
 import android.content.Context;
-import android.util.Log;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -23,10 +22,8 @@ public class ListGoodAdapter extends BaseRvAdapter<Object> {
     protected int getLayoutId(int viewType) {
         switch (viewType) {
             case 0:
-                Log.i("Yoyo", "0");
                 return R.layout.item_hot_right;
             case 1:
-                Log.i("Yoyo", "1");
                 return R.layout.item_goods_right;
         }
         return R.layout.item_hot_right;
@@ -44,7 +41,6 @@ public class ListGoodAdapter extends BaseRvAdapter<Object> {
                 HotGoodAdapter adapter = new HotGoodAdapter(context);
                 hotrv.setAdapter(adapter);
                 adapter.addData(hotProductListBeans);
-                Log.i("Yoyo", "q");
                 break;
             case 1:
                 List<GoodsBean.ResultBean.ChildBean> childBeans = (List<GoodsBean.ResultBean.ChildBean>) o;
@@ -53,14 +49,12 @@ public class ListGoodAdapter extends BaseRvAdapter<Object> {
                 GoodAdapter goodAdapter = new GoodAdapter(context);
                 goodsrv.setAdapter(goodAdapter);
                 goodAdapter.addData(childBeans);
-                Log.i("Yoyo", "e");
                 break;
         }
     }
 
     @Override
     public int getViewType(int position) {
-        Log.i("Yoyo", position+"");
         return position;
     }
 }

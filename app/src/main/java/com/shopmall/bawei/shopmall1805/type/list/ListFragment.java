@@ -12,6 +12,7 @@ import com.example.framework.base.BaseFragment;
 import com.example.net.Constants;
 import com.example.net.bean.GoodsBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,13 +69,26 @@ public class ListFragment extends BaseFragment<ListPresenterImpl, ListContract.L
         List<GoodsBean.ResultBean.HotProductListBean> hots = result.get(0).getHot_product_list();
         list.add(hots);
         list.add(child);
-        Log.i("Yoyo", hots.get(0).getName());
-        Log.i("Yoyo", list.size()+"");
         listGoodAdapter.updataData(list);
     }
 
     @Override
     public void onError(String msg) {
         Log.i("Yoyo", msg);
+    }
+
+    @Override
+    public void showloading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

@@ -1,10 +1,10 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.framework.base.BaseFragment;
 import com.example.net.bean.MainBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -62,11 +63,24 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
         list.add(result.getSeckill_info());
         list.add(result.getRecommend_info());
         list.add(result.getHot_info());
+        Log.i("Yoyo", "onOk: "+result.getAct_info());
         homeAdapter.addData(list);
     }
 
     @Override
-    public void onEorror(String msg) {
-        Toast.makeText(getContext(), ""+msg, Toast.LENGTH_SHORT).show();
+    public void showloading() {
+
+        showLoading();
     }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEmpty();
+    }
+
 }

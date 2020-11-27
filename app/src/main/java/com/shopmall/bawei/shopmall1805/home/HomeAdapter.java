@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.net.Constants;
 import com.example.net.bean.MainBean;
@@ -68,6 +69,12 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                     public void displayImage(Context context, Object path, ImageView imageView) {
                         MainBean.ResultBean.BannerInfoBean bean = (MainBean.ResultBean.BannerInfoBean) path;
                         Glide.with(context).load(Constants.BASE_URl_IMAGE+bean.getImage()).into(imageView);
+                        imageView.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                ARouter.getInstance().build("/detailpage/DetailActivity").withObject("good",bean).navigation();
+                            }
+                        });
                     }
                 }).start();
                 break;

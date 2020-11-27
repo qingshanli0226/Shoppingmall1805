@@ -16,7 +16,6 @@
     <dimen name="Item_VP_Margin">20dp</dimen>
 
     <dimen name="Linear_Home_Height">40dp</dimen>
-    <dimen name="Linear_Home_MarginTop">5dp</dimen>
     <dimen name="Home_Search_IV_MarginLeft">10dp</dimen>
 
     <dimen name="ToolBar_Height">60dp</dimen>

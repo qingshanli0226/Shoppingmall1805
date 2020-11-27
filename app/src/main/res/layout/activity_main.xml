@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".app.MainActivity">
 
-    <com.shopmall.bawei.shopmall1805.view.MyVP
+    <com.example.framework.view.MyVP
         android:id="@+id/vp_main"
         style="@style/Base.VP.Main_VP"
         />

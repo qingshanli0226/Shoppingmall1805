@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.view;
+package com.example.framework.view;
 
 import android.content.Context;
 import android.util.AttributeSet;

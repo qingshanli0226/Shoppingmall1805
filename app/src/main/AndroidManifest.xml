@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopmall.bawei.shopmall1805">
-    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:usesCleartextTraffic="true"
-        android:requestLegacyExternalStorage="true"
         android:name=".app.ShopMallApp"
         android:allowBackup="true"
         android:icon="@drawable/logo"
         android:label="XXX商城"
+        android:requestLegacyExternalStorage="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".splash.SplashActivity"
-            android:theme="@style/AppTheme.FullTheme"
-            android:launchMode="singleTask"
-            >
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".detailpage.DetailActivity"></activity>
+        <activity
+            android:name=".splash.SplashActivity"
+            android:theme="@style/AppTheme.FullTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".app.MainActivity">
-
-        </activity>
+        <activity
+            android:name=".app.MainActivity"
+            android:launchMode="singleTask"></activity>
     </application>
 
 </manifest>
