@@ -28,59 +28,19 @@ import retrofit2.http.Url;
 
 public interface UserInterface {
     //注册 接口
-    @POST("register")
+    @POST("/register")
     @FormUrlEncoded
     Observable<RegisterBean> register(@FieldMap HashMap<String, String> map);
     //登录  接口
-    @POST("login")
+    @POST("/login")
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
 
-//    //小裙子 接口
-//    @GET("/atguigu/json/SKIRT_URL.json")
-//    Observable<SkirtBean> skirt();
-//
-//    //上衣 接口
-//    @GET("atguigu/json/JACKET_URL.json")
-//    Observable<JackBean> jacket();
-//
-//    //裤子 接口
-//    @GET("atguigu/json/PANTS_URL.json")
-//    Observable<Pants> pants();
-//
-//    //外衣 接口
-//    @GET("atguigu/json/OVERCOAT_URL.json")
-//    Observable<OverCoat> overcoat();
-//
-//    //配件 接口
-//    @GET("atguigu/json/ACCESSORY_URL.json")
-//    Observable<BaseBean<ClothesBean>> accessory();
+
+
     @GET
     Observable<BugBean> getbug(@Url String url);
-//    //包包 接口
-//    @GET("atguigu/json/BAG_URL.json")
-//    Observable<BugBean> bag();
-//
-//    //装扮 接口
-//    @GET("atguigu/json/DRESS_UP_URL.json")
-//    Observable<DressupBean> dressup();
-//
-//
-//    //居家宅品 接口
-//    @GET("atguigu/json/HOME_PRODUCTS_URL.json")
-//    Observable<HomproductsBean> home_products();
-//
-//    //办公文具 接口
-//    @GET("atguigu/json/STATIONERY_URL.json")
-//    Observable<StationeryBean> stationery();
-//
-//    //数码周边 接口
-//    @GET("atguigu/json/DIGIT_URL.json")
-//    Observable<DigitBean> digit();
-//
-//    //游戏专区 接口
-//    @GET("atguigu/json/GAME_URL.json")
-//    Observable<GameBean> game();
+
 
     //主页Fragment路径
     @GET("atguigu/json/HOME_URL.json")

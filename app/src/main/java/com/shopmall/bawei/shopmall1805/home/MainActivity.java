@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -13,11 +14,11 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.apter.zhuyeapter.CoutomEntiy;
 import com.shopmall.bawei.shopmall1805.apter.zhuyeapter.MyFragmentPager;
-import com.shopmall.bawei.shopmall1805.fragment.FaxianFragment;
-import com.shopmall.bawei.shopmall1805.fragment.FirstFragment;
+import com.shopmall.bawei.shopmall1805.fragment.FoundFragment;
+import com.shopmall.bawei.shopmall1805.fragment.HomepageFragment;
 import com.shopmall.bawei.shopmall1805.fragment.Myfragment;
 import com.shopmall.bawei.shopmall1805.fragment.ShoppingFragment;
-import com.shopmall.bawei.shopmall1805.fragment.TypeFragment;
+import com.shopmall.bawei.shopmall1805.fragment.SpeciesFragment;
 
 import java.util.ArrayList;
 
@@ -40,7 +41,8 @@ public class MainActivity extends AppCompatActivity {
             arrayList.clear();
         }
         indata();
-
+        String string = getSharedPreferences("login", MODE_PRIVATE).getString("logintoken", "123");
+        Log.e("token",string);
         myFragmentPager=new MyFragmentPager(getSupportFragmentManager(),arrayList);
         pager.setAdapter(myFragmentPager);
         com.setTabData(tabEntitys);
@@ -81,9 +83,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void indata() {
-        arrayList.add(new FirstFragment());
-        arrayList.add(new TypeFragment());
-        arrayList.add(new FaxianFragment());
+        arrayList.add(new HomepageFragment());
+        arrayList.add(new SpeciesFragment());
+        arrayList.add(new FoundFragment());
         arrayList.add(new ShoppingFragment());
         arrayList.add(new Myfragment());
         tabEntitys.add(new CoutomEntiy("首页",R.mipmap.top_bar_right_home_btn,R.mipmap.top_bar_right_home_btn));

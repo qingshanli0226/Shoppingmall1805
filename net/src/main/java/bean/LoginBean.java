@@ -1,9 +1,45 @@
 package bean;
 
 public class LoginBean {
+
+    /**
+     * code : 200
+     * message : 登录成功
+     * result : {"id":"cq21","name":"cq21","password":"123","email":null,"phone":null,"point":null,"address":null,"money":null,"avatar":"/img/1438946011155.jpg","token":"a708047a-6122-4cda-ad60-4ace99c96a8cAND1606489772039"}
+     */
+
+    private String code;
+    private String message;
+    private ResultBean result;
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public ResultBean getResult() {
+        return result;
+    }
+
+    public void setResult(ResultBean result) {
+        this.result = result;
+    }
+
+    public static class ResultBean {
         /**
-         * id : 123
-         * name : 123
+         * id : cq21
+         * name : cq21
          * password : 123
          * email : null
          * phone : null
@@ -11,7 +47,7 @@ public class LoginBean {
          * address : null
          * money : null
          * avatar : /img/1438946011155.jpg
-         * token : 0ee7d6c6-7d88-479c-823d-6bbd18372887AND1605878199766
+         * token : a708047a-6122-4cda-ad60-4ace99c96a8cAND1606489772039
          */
 
         private String id;
@@ -105,4 +141,5 @@ public class LoginBean {
             this.token = token;
         }
     }
+}
 

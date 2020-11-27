@@ -6,6 +6,7 @@ import com.bawei.deom.ClassInterface;
 
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import bean.BaseBean;
 import bean.ClothesBean;
@@ -23,7 +24,9 @@ public class UserIMPL extends UserCountroller.UserShow {
     @Override
     public void getskerak() {
         ClassInterface.getUserInterface().home()
+                .delay(3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
+
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BaseBean<HomeBean>>() {
                     @Override
@@ -36,8 +39,7 @@ public class UserIMPL extends UserCountroller.UserShow {
                         HomeBean result = homeBeanBaseBean.getResult();
 
                             pView.onskerk(result);
-
-
+                            pView.showSuccessView2();
                     }
 
                     @Override

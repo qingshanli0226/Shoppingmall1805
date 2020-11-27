@@ -177,6 +177,26 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
     }
 
     @Override
+    public void showLoadingPage2() {
+        showLoadingPage();
+    }
+
+    @Override
+    public void showErrorPage2(String errorMsg) {
+      showErrorPage(errorMsg);
+    }
+
+    @Override
+    public void showEmptyPage2() {
+showEmptyPage();
+    }
+
+    @Override
+    public void showSuccessView2() {
+     showSuccessView();
+    }
+
+    @Override
     public void UserView(final List<BugBean.ResultBean> list) {
 
         Toast.makeText(getContext(), ""+list.get(0).getName(), Toast.LENGTH_SHORT).show();

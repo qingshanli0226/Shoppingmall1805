@@ -2,8 +2,45 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
+   <ImageView
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:background="@mipmap/new_user_icon"
+       android:layout_gravity="center"
+       ></ImageView>
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/username"
+          android:hint="请输入账号"
+          ></EditText>
+      <EditText
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:id="@+id/password"
+          android:password="true"
+          android:hint="请输入密码"
+          ></EditText>
+      <Button
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:layout_gravity="center"
+          android:id="@+id/loginbutton"
+          android:text="登录"
+          ></Button>
+   </LinearLayout>
    <TextView
-        style="@style/Liner"
-       android:text="登录"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:text="去注册"
+       android:id="@+id/goregister"
+         android:textSize="20dp"
+       android:textColor="#F10A0A"
+            android:gravity="right"
        ></TextView>
 </LinearLayout>

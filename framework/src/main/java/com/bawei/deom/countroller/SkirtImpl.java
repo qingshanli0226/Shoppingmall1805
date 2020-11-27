@@ -8,6 +8,7 @@ import com.bawei.deom.ClassInterface;
 import com.bawei.deom.IPrine;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import bean.BaseBean;
 import bean.ClothesBean;
@@ -30,6 +31,7 @@ public class SkirtImpl extends SkirtCommuntroller.UsShow {
     @Override
     public void UserShow(String url) {
         ClassInterface.getUserInterface().getbug(url)
+                .delay(3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                .subscribe(new Observer<BugBean>() {
@@ -41,6 +43,7 @@ public class SkirtImpl extends SkirtCommuntroller.UsShow {
                    @Override
                    public void onNext(BugBean bugBean) {
                                  pView.UserView(bugBean.getResult());
+                                 pView.showSuccessView2();
                    }
 
                    @Override

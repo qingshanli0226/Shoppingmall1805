@@ -10,19 +10,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.bawei.deom.BaseFragment;
+import com.bawei.deom.IPrine;
+import com.bawei.deom.IView;
 import com.shopmall.bawei.shopmall1805.login.LoginActivity;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class Myfragment  extends  Fragment {
-    private TextView tvUsername;
+public class Myfragment  extends BaseFragment<IPrine,IView> {
 
+    TextView tvUsername;
 
-
-
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View  view=inflater.inflate(R.layout.myfragment,null);
+    protected void inPrine() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void initView(View view) {
         tvUsername=view.findViewById(R.id.tv_username);
         tvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,6 +40,11 @@ public class Myfragment  extends  Fragment {
                 startActivity(intent);
             }
         });
-        return view;
     }
+
+    @Override
+    protected int getlayoutview() {
+        return R.layout.myfragment;
+    }
+
 }
