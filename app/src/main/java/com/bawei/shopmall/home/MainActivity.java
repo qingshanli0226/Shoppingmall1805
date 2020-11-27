@@ -12,6 +12,7 @@ import com.bawei.framework.IPresenter;
 import com.bawei.framework.IView;
 import com.bawei.shopmall.home.view.HomeFragment;
 import com.bawei.shopmall.type.view.TypeTagFragment;
+import com.bawei.shopmall.user.UserFragment;
 import com.shopmall.bawei.shopmall1805.R;
 
 import java.util.ArrayList;
@@ -96,11 +97,13 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
+        fragments.add(new UserFragment());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(0));
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(2));
         fragmentTransaction.hide(fragments.get(1));
         fragmentTransaction.commit();
     }

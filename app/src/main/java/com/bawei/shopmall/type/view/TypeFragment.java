@@ -1,6 +1,7 @@
 package com.bawei.shopmall.type.view;
 
 
+import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.net.mode.TagBean;
@@ -48,22 +49,18 @@ public class TypeFragment<P extends TagImpl, V extends TagContract.ITagView> ext
     }
 
     @Override
-    public void onError(String msg) {
-
-    }
-
-    @Override
     public void showLoaDing() {
-
+        showloading();
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess, errorBean);
     }
+
 
     @Override
     public void showEmpty() {
-
+        showEmptyPage();
     }
 }

@@ -1,5 +1,7 @@
 package com.bawei.shopmall.type.contract;
 
+import com.bawei.common.view.ErrorBean;
+import com.bawei.common.view.ExceptionUtil;
 import com.bawei.net.MyNetApi;
 import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.TypeBean;
@@ -7,7 +9,6 @@ import com.bawei.net.mode.TypeBean;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -28,12 +29,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -42,12 +37,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -67,12 +69,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -81,12 +77,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -106,12 +109,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -120,12 +117,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -145,12 +149,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -159,12 +157,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -184,12 +189,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -198,12 +197,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -223,12 +229,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -237,12 +237,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -262,12 +269,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -276,12 +277,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -301,12 +309,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -315,12 +317,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -340,12 +349,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -354,12 +357,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -379,12 +389,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -393,12 +397,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
@@ -418,12 +429,6 @@ public class TypeImpl extends TypeContract.ITypePresenter {
                         iView.showLoaDing();
                     }
                 })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
-                    }
-                })
                 .subscribe(new Observer<TypeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -432,12 +437,19 @@ public class TypeImpl extends TypeContract.ITypePresenter {
 
                     @Override
                     public void onNext(TypeBean typeBean) {
-                        iView.onType(typeBean);
+                        if (typeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onType(typeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override

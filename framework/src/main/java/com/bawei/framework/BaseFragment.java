@@ -42,6 +42,11 @@ public abstract class BaseFragment<P extends BasePresenter, V extends IView> ext
     }
 
     public void hideLoadingPage(boolean isSuccess, ErrorBean errorBean) {
+        if (errorBean == null){
+            errorBean = new ErrorBean();
+            errorBean.setErrorCode("0");
+            errorBean.setErrorMessage("1");
+        }
         if (isSuccess) {
             showSuccess();
         } else {

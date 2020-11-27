@@ -8,6 +8,7 @@ import android.widget.ListView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.net.mode.TypeBean;
@@ -151,23 +152,18 @@ public class ListFragment<P extends TypeImpl, V extends TypeContract.ITypeView> 
     }
 
     @Override
-    public void onError(String msg) {
-        Log.i("TAG", "onError: " + msg);
-    }
-
-    @Override
     public void showLoaDing() {
-
+        showloading();
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess, errorBean);
     }
 
     @Override
     public void showEmpty() {
-
+        showEmptyPage();
     }
 
 

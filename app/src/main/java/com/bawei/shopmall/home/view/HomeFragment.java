@@ -81,25 +81,18 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     }
 
     @Override
-    public void onError(String msg) {
-        errorTv.setVisibility(View.VISIBLE);
-        normalContent.setVisibility(View.GONE);
-        errorTv.setText(msg + getActivity().getString(R.string.reflation));
-    }
-
-    @Override
     public void showLoaDing() {
         showloading();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-        hideLoadingPage(isSuccess,errorBean);
+        hideLoadingPage(isSuccess, errorBean);
     }
 
     @Override
     public void showEmpty() {
-
+        showEmptyPage();
     }
 
     @Override

@@ -1,8 +1,10 @@
 package com.bawei.user.contact;
 
 import com.bawei.common.view.ErrorBean;
+import com.bawei.common.view.ExceptionUtil;
 import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.RegisterBean;
 
 import java.util.HashMap;
 
@@ -39,18 +41,15 @@ public class UserContractImpl extends UserContract.UserPresenter {
                         if (loginBean == null) {
                             iView.showEmpty();
                         } else {
-                            iView.hideLoading(true, null);
+                            iView.hideLoading(false, null);
                             iView.login(loginBean);
                         }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        ErrorBean err = new ErrorBean();
-                        err.setErrorCode("100");
-                        err.setErrorMessage(e.getMessage());
-                        iView.hideLoading(false, err);
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(true, errorBean);
                     }
 
                     @Override
@@ -63,6 +62,44 @@ public class UserContractImpl extends UserContract.UserPresenter {
 
     @Override
     public void registerUser(String username, String password) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("name", username);
+        map.put("password", password);
+        RetrofitCreate.getApi().registerUser(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showLoaDing();
+                    }
+                })
+                .subscribe(new Observer<RegisterBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
+                    }
+
+                    @Override
+                    public void onNext(RegisterBean registerBean) {
+                        if (registerBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(false, null);
+                            iView.register(registerBean);
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(true, errorBean);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
@@ -27,12 +28,7 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     private RadioGroup rg;
     private RadioButton rbl;
     private RadioButton rbr;
-    //String type;
-    //String label;
     private VpAdapter adapter;
-
-
-    //private String[] titles = {type, label};
 
     private List<Fragment> list = new ArrayList<>();
 
@@ -46,9 +42,6 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
         rg = (RadioGroup) findViewById(R.id.rg);
         rbl = (RadioButton) findViewById(R.id.rbl);
         rbr = (RadioButton) findViewById(R.id.rbr);
-
-        //type = getActivity().getString(R.string.type);
-        //label = getActivity().getString(R.string.label);
 
         list.add(new ListFragment<>());
         list.add(new TypeFragment<>());
@@ -114,24 +107,21 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
 
     }
 
-    @Override
-    public void onError(String msg) {
-
-    }
 
     @Override
     public void showLoaDing() {
-
+        showloading();
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess, errorBean);
     }
+
 
     @Override
     public void showEmpty() {
-
+        showEmptyPage();
     }
 
     class VpAdapter extends FragmentPagerAdapter {

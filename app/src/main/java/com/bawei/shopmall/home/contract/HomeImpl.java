@@ -1,14 +1,13 @@
 package com.bawei.shopmall.home.contract;
 
+import com.bawei.common.view.ErrorBean;
+import com.bawei.common.view.ExceptionUtil;
 import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.HomeBean;
-
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
-import io.reactivex.functions.Action;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
@@ -16,19 +15,12 @@ public class HomeImpl extends HomeContract.HomePresenter {
     @Override
     public void getHomeData() {
         RetrofitCreate.getApi().getHomeData()
-                .delay(1, TimeUnit.MINUTES)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
                         iView.showLoaDing();
-                    }
-                })
-                .doFinally(new Action() {
-                    @Override
-                    public void run() throws Exception {
-                        iView.hideLoading();
                     }
                 })
                 .subscribe(new Observer<HomeBean>() {
@@ -39,12 +31,19 @@ public class HomeImpl extends HomeContract.HomePresenter {
 
                     @Override
                     public void onNext(HomeBean homeBean) {
-                        iView.onHomeData(homeBean);
+                        if (homeBean == null) {
+                            iView.showEmpty();
+                        } else {
+                            iView.hideLoading(true, null);
+                            iView.onHomeData(homeBean);
+                        }
+
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.onError(e.getMessage());
+                        ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
+                        iView.hideLoading(false, errorBean);
                     }
 
                     @Override
