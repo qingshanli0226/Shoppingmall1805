@@ -2,13 +2,12 @@ package com.shopmall.bawei.shopmall1805.app.ui.fragment;
 
 import androidx.fragment.app.Fragment;
 
-import android.view.View;
 import android.widget.FrameLayout;
 
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.framework.ui.BaseFragment;
+import com.shopmall.bawei.shopmall1805.framework.BaseFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +20,10 @@ public class ClassifyFragment extends BaseFragment {
     private List<Fragment> list=new ArrayList<>();
     private ClassifyLeftFragment oneFragment;
     private ClassifyRightFragment twoFragment;
-    @Override
-    protected void initEvent() {
 
-    }
     @Override
-    protected void createPresenter() {
-
+    protected int getLayoutId() {
+        return R.layout.fragment_classify;
     }
     @Override
     protected void initData() {
@@ -62,15 +58,12 @@ public class ClassifyFragment extends BaseFragment {
         });
     }
     @Override
-    protected void initView(View iView) {
-        tl1 = iView.findViewById(R.id.tl_1);
-        framelt = iView.findViewById(R.id.framelt);
-
+    protected void initView() {
+        tl1 =  findViewById(R.id.tl_1);
+        framelt = findViewById(R.id.framelt);
         oneFragment=new ClassifyLeftFragment();
         twoFragment = new ClassifyRightFragment();
     }
-    @Override
-    protected int bandLyoaut() {
-        return R.layout.fragment_classify;
-    }
+
+
 }

@@ -5,22 +5,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
 
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.fenlei.ClassifyRightAdapter;
 import com.shopmall.bawei.shopmall1805.app.adapter.fenlei.ClassifyLeftAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyLeftContract;
-import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyLeftPresenter;
+import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyLeftPresenterImpl;
 import com.shopmall.bawei.shopmall1805.common.ClothesBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
-import com.shopmall.bawei.shopmall1805.framework.ui.BaseFragment;
+import com.shopmall.bawei.shopmall1805.framework.BaseFragment;
+import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
+import com.shopmall.bawei.shopmall1805.framework.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClassifyLeftFragment extends BaseFragment<ClassifyLeftContract.FenleiPresenter> implements ClassifyLeftContract.FenleiView {
+public class ClassifyLeftFragment extends BaseMVPFragment<ClassifyLeftPresenterImpl,ClassifyLeftContract.FenleiView> implements ClassifyLeftContract.FenleiView {
     private RecyclerView fenRvOne;
     private RecyclerView fenRvTwo;
     private List<String> list=new ArrayList<>();
@@ -28,14 +29,10 @@ public class ClassifyLeftFragment extends BaseFragment<ClassifyLeftContract.Fenl
     private List<Object> list_up=new ArrayList<>();
     private ClassifyRightAdapter fenleiAdapters=new ClassifyRightAdapter(getContext());
     private String url=ConfigUrl.SKIRT_URL;
-    @Override
-    protected void initEvent() {
 
-    }
     @Override
-    protected void createPresenter() {
-        iPresenter=new ClassifyLeftPresenter(this);
-        iPresenter.getFenSkirt();
+    protected int getLayoutId() {
+        return R.layout.fragment_classify_left;
     }
     @Override
     protected void initData() {
@@ -58,39 +55,20 @@ public class ClassifyLeftFragment extends BaseFragment<ClassifyLeftContract.Fenl
                 fenLeiAdapter.notifyDataSetChanged();
                 changerData(position);
             }
-
-
         });
         fenRvOne.setAdapter(fenLeiAdapter);
     }
     @Override
-    protected void initView(View iView) {
-        fenRvOne = iView.findViewById(R.id.fen_rv_one);
+    protected void initView() {
+        fenRvOne = findViewById(R.id.fen_rv_one);
         fenRvOne.setLayoutManager(new LinearLayoutManager(getContext()));
         fenRvOne.addItemDecoration(new DividerItemDecoration(getContext(),DividerItemDecoration.VERTICAL));
 
-        fenRvTwo = iView.findViewById(R.id.fen_rv_two);
+        fenRvTwo = findViewById(R.id.fen_rv_two);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(LinearLayoutManager.VERTICAL);
         fenRvTwo.setLayoutManager(manager);
         fenRvTwo.setAdapter(fenleiAdapters);
-    }
-    @Override
-    protected int bandLyoaut() {
-        return R.layout.fragment_classify_left;
-    }
-    @Override
-    public void setSkirtData(List<ClothesBean.ResultBean> resultBeanList) {
-        list_up.clear();
-        List<ClothesBean.ResultBean.HotProductListBean> hot_product_list = resultBeanList.get(0).getHot_product_list();
-        List<ClothesBean.ResultBean.ChildBean> child = resultBeanList.get(0).getChild();
-        list_up.add(hot_product_list);
-        list_up.add(child);
-        fenleiAdapters.upDataText(list_up);
-    }
-    @Override
-    public String setUrl() {
-        return url;
     }
     private void changerData(int position) {
         Log.i("TAG", "changerData: "+position);
@@ -129,6 +107,35 @@ public class ClassifyLeftFragment extends BaseFragment<ClassifyLeftContract.Fenl
                 url = ConfigUrl.GAME_URL;
                 break;
         }
-        iPresenter.getFenSkirt();
+        ihttpPresenter.getFenLeiView(url);
+    }
+    @Override
+    public void onFenleiData(List<ClothesBean.ResultBean> resultBeanList) {
+        list_up.clear();
+        List<ClothesBean.ResultBean.HotProductListBean> hot_product_list = resultBeanList.get(0).getHot_product_list();
+        List<ClothesBean.ResultBean.ChildBean> child = resultBeanList.get(0).getChild();
+        list_up.add(hot_product_list);
+        list_up.add(child);
+        fenleiAdapters.upDataText(list_up);
+    }
+    @Override
+    public void showLoaing() {
+
+    }
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+    @Override
+    public void showEmpty() {
+
+    }
+    @Override
+    protected void initHttpData() {
+        ihttpPresenter.getFenLeiView(url);
+    }
+    @Override
+    protected void initPresenter() {
+        ihttpPresenter =new  ClassifyLeftPresenterImpl();
     }
 }

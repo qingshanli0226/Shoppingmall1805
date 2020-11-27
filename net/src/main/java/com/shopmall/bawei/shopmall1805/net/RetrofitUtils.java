@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.net;
 
 import com.shopmall.bawei.shopmall1805.common.AllParameter;
+import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 
 import java.util.concurrent.TimeUnit;
 
@@ -12,44 +13,28 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitUtils {
-    public RetrofitUtils() { }
-    private static volatile RetrofitUtils retrofitUtils;
-    public static RetrofitUtils getInstance() {
-        if(retrofitUtils == null){
-            synchronized (RetrofitUtils.class){
-                if(retrofitUtils == null){
-                    retrofitUtils = new RetrofitUtils();
-                }
-            }
+   private static INetPresetenterWork iNetPresetenterWork;
+    public static INetPresetenterWork getiNetPresetenterWork() {
+        if(iNetPresetenterWork == null){
+            iNetPresetenterWork = createRetrofit();
         }
-        return retrofitUtils;
+        return iNetPresetenterWork;
     }
-    public static Retrofit retrofit;
-    public Retrofit getRetrofit(String head) {
-        if(retrofit == null){
-            createRetrofit(head);
-    }
-        return retrofit;
-    }
-    private static void createRetrofit(String head) {
-        Retrofit build = new Retrofit.Builder()
-                .baseUrl(head)
-                .client(createHttp())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        retrofit = build;
-    }
-    private static OkHttpClient createHttp() {
-        OkHttpClient build = new OkHttpClient.Builder()
+    private static INetPresetenterWork createRetrofit() {
+
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(AllParameter.READ_TIME, TimeUnit.SECONDS)
                 .writeTimeout(AllParameter.WRITE_TIME,TimeUnit.SECONDS)
                 .connectTimeout(AllParameter.CONNECT_TIME,TimeUnit.SECONDS)
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
-        return build;
-    }
-    private static Interceptor createInterceptor() {
-        return null;
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl(ConfigUrl.BASE_URL)
+                .client(okHttpClient)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        return retrofit.create(INetPresetenterWork.class);
     }
 }

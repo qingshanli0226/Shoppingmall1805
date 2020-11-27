@@ -16,7 +16,7 @@ import com.shopmall.bawei.shopmall1805.app.ui.fragment.HomeFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.PeoPleCenterFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.SendFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.ShopCarFragment;
-import com.shopmall.bawei.shopmall1805.framework.ui.BaseActivity;
+import com.shopmall.bawei.shopmall1805.framework.BaseActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,14 +31,15 @@ public class MainActivity extends BaseActivity {
     private SendFragment sendFragment;
     private ShopCarFragment shopCarFragment;
     private PeoPleCenterFragment peoPleFragment;
-    @Override
-    protected int bandLayout() {
-        return R.layout.activity_main;
-    }
+
     @Override
     protected void initView() {
         framlayout = findViewById(R.id.framlayout);
         commons = findViewById(R.id.commons);
+    }
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
     @Override
     protected void initData() {
@@ -74,62 +75,56 @@ public class MainActivity extends BaseActivity {
                 .hide(shopCarFragment)
                 .hide(peoPleFragment)
                 .commit();
-    }
-    @Override
-    protected void initEvent() {
+
         commons.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                    if(position == 0){
-                        getSupportFragmentManager().beginTransaction()
-                                .show(firstFragment)
-                                .hide(fenLeiFragment)
-                                .hide(sendFragment)
-                                .hide(shopCarFragment)
-                                .hide(peoPleFragment)
-                                .commit();
-                    }else if(position == 1){
-                        getSupportFragmentManager().beginTransaction()
-                                .show(fenLeiFragment)
-                                .hide(firstFragment)
-                                .hide(sendFragment)
-                                .hide(shopCarFragment)
-                                .hide(peoPleFragment)
-                                .commit();
-                    }else if(position == 2){
-                        getSupportFragmentManager().beginTransaction()
-                                .show(sendFragment)
-                                .hide(fenLeiFragment)
-                                .hide(firstFragment)
-                                .hide(shopCarFragment)
-                                .hide(peoPleFragment)
-                                .commit();
-                    }else if(position == 3){
-                        getSupportFragmentManager().beginTransaction()
-                                .show(shopCarFragment)
-                                .hide(fenLeiFragment)
-                                .hide(sendFragment)
-                                .hide(firstFragment)
-                                .hide(peoPleFragment)
-                                .commit();
-                    }else if(position == 4){
-                        getSupportFragmentManager().beginTransaction()
-                                .show(peoPleFragment)
-                                .hide(fenLeiFragment)
-                                .hide(sendFragment)
-                                .hide(shopCarFragment)
-                                .hide(firstFragment)
-                                .commit();
-                    }
+                if(position == 0){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(firstFragment)
+                            .hide(fenLeiFragment)
+                            .hide(sendFragment)
+                            .hide(shopCarFragment)
+                            .hide(peoPleFragment)
+                            .commit();
+                }else if(position == 1){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(fenLeiFragment)
+                            .hide(firstFragment)
+                            .hide(sendFragment)
+                            .hide(shopCarFragment)
+                            .hide(peoPleFragment)
+                            .commit();
+                }else if(position == 2){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(sendFragment)
+                            .hide(fenLeiFragment)
+                            .hide(firstFragment)
+                            .hide(shopCarFragment)
+                            .hide(peoPleFragment)
+                            .commit();
+                }else if(position == 3){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(shopCarFragment)
+                            .hide(fenLeiFragment)
+                            .hide(sendFragment)
+                            .hide(firstFragment)
+                            .hide(peoPleFragment)
+                            .commit();
+                }else if(position == 4){
+                    getSupportFragmentManager().beginTransaction()
+                            .show(peoPleFragment)
+                            .hide(fenLeiFragment)
+                            .hide(sendFragment)
+                            .hide(shopCarFragment)
+                            .hide(firstFragment)
+                            .commit();
+                }
             }
             @Override
             public void onTabReselect(int position) {
 
             }
         });
-    }
-    @Override
-    protected void createPresenter() {
-
     }
 }

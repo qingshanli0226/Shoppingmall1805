@@ -4,52 +4,63 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import android.util.Log;
-import android.view.View;
 
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.fenlei.ClassifyTagAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
-import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyRightPresenter;
-import com.shopmall.bawei.shopmall1805.common.FenLeiVpTwoEntity;
-import com.shopmall.bawei.shopmall1805.framework.ui.BaseFragment;
+import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyRightPresenterImpl;
+import com.shopmall.bawei.shopmall1805.common.ClassifyTagEntity;
+import com.shopmall.bawei.shopmall1805.framework.BaseFragment;
+import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
+import com.shopmall.bawei.shopmall1805.framework.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class ClassifyRightFragment extends BaseFragment<ClassifyRightContract.FenleiTwoPresenter> implements ClassifyRightContract.FenleiTwoView {
+public class ClassifyRightFragment extends BaseMVPFragment<ClassifyRightPresenterImpl,ClassifyRightContract.FenleiTwoView> implements ClassifyRightContract.FenleiTwoView {
     private RecyclerView fenleiTwoRv;
     private ClassifyTagAdapter fenLeiTwoAdapter;
-    private List<FenLeiVpTwoEntity.ResultBean> list=new ArrayList<>();
+    private List<ClassifyTagEntity.ResultBean> list=new ArrayList<>();
     @Override
-    protected void initEvent() {
-
-    }
-    @Override
-    protected void createPresenter() {
-        iPresenter=new ClassifyRightPresenter(this);
-        iPresenter.setFenTwoData();
+    protected int getLayoutId() {
+        return R.layout.fragment_classify_right;
     }
     @Override
     protected void initData() {
-
-    }
-    @Override
-    protected void initView(View iView) {
-        fenleiTwoRv = iView.findViewById(R.id.fenlei_two_rv);
         fenleiTwoRv.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
         fenLeiTwoAdapter=new ClassifyTagAdapter(R.layout.classify_tag_item,list);
         fenleiTwoRv.setAdapter(fenLeiTwoAdapter);
     }
     @Override
-    protected int bandLyoaut() {
-        return R.layout.fragment_classify_right;
-    }
+    protected void initView() {
+        fenleiTwoRv =findViewById(R.id.fenlei_two_rv);
 
+    }
     @Override
-    public void setSkirtData(List<FenLeiVpTwoEntity.ResultBean> resultBeanList) {
+    public void onFenleiRightData(List<ClassifyTagEntity.ResultBean> resultBeanList) {
         Log.i("TAG", "setSkirtData: "+resultBeanList.get(0).getName().toString());
         list.addAll(resultBeanList);
         fenLeiTwoAdapter.notifyDataSetChanged();
+    }
+    @Override
+    protected void initHttpData() {
+        ihttpPresenter.getFenLeiRightView();
+    }
+    @Override
+    protected void initPresenter() {
+        ihttpPresenter = new ClassifyRightPresenterImpl();
+    }
+    @Override
+    public void showLoaing() {
+
+    }
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+    @Override
+    public void showEmpty() {
+
     }
 }
