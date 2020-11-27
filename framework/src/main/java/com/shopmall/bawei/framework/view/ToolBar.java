@@ -9,8 +9,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import com.shopmall.bawei.framework.R;
 
-import com.shopmall.bawei.common.R;
 
 //定义一个自定义View组件，将系统控件管理起来，对外提供统一的接口
 public class ToolBar extends RelativeLayout {

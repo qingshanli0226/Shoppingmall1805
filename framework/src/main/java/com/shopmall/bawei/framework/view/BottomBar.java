@@ -11,8 +11,8 @@ import android.view.LayoutInflater;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import com.shopmall.bawei.framework.R;
 
-import com.shopmall.bawei.common.R;
 
 public class BottomBar extends FrameLayout {
 
