@@ -23,6 +23,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
 
     @Override
     protected void initView(View inflate) {
+
         rv = inflate.findViewById(R.id.rv);
         primereAdpter = new PrimereAdpter();
         rv.setAdapter(primereAdpter);
@@ -44,6 +45,27 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
     @Override
     public void onErroy(String message) {
         Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showsloading() {
+        showloading();
+    }
+
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
     }
 
     @Override

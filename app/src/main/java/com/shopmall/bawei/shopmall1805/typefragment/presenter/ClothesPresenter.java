@@ -4,9 +4,12 @@ import com.example.net.Retrofitcreators;
 import com.example.net.bean.ClothesBean;
 import com.shopmall.bawei.shopmall1805.typefragment.contract.ClothesContract;
 
+import java.util.concurrent.TimeUnit;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class ClothesPresenter extends ClothesContract.SkertPresenter {
@@ -14,8 +17,15 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
     @Override
     public void getskert() {
         Retrofitcreators.getiNetPresetenterWork().skirt()
+                .delay(2, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
                 .subscribe(new Observer<ClothesBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -24,6 +34,7 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
+                        iView.hideloading();
                         if (iView!=null) {
                             iView.onjscket(clothesBean.getResult());
                         }

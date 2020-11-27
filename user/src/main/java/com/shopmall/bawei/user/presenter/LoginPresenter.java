@@ -11,6 +11,7 @@ import java.util.HashMap;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class LoginPresenter extends LoginContact.LoginPresenter {
@@ -22,6 +23,12 @@ public class LoginPresenter extends LoginContact.LoginPresenter {
         Retrofitcreators.getiNetPresetenterWork().login(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
                 .subscribe(new Observer<BaseBean<LoginBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -30,6 +37,7 @@ public class LoginPresenter extends LoginContact.LoginPresenter {
 
                     @Override
                     public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
+                        iView.hideloading();
                             if (loginBeanBaseBean.getCode().equals("200")){
                                 iView.onlogin(loginBeanBaseBean.getResult());
                             }else {

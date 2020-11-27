@@ -7,6 +7,7 @@ import com.shopmall.bawei.shopmall1805.typefragment.contract.LableContract;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class LablePresenter extends LableContract.biaoPresenter {
@@ -15,6 +16,12 @@ public class LablePresenter extends LableContract.biaoPresenter {
         Retrofitcreators.getiNetPresetenterWork().tag()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
                 .subscribe(new Observer<Biaobean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -23,8 +30,10 @@ public class LablePresenter extends LableContract.biaoPresenter {
 
                     @Override
                     public void onNext(Biaobean biaobean) {
+
                         if (iView!=null) {
                             iView.onbiao(biaobean.getResult());
+                            iView.hideloading();
                         }
                     }
 

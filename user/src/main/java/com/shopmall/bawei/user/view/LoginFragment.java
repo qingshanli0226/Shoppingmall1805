@@ -92,4 +92,24 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     public void onErroy(String message) {
         Toast.makeText(getContext(), "登陆失败", Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void showsloading() {
+        showloading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
+    }
 }

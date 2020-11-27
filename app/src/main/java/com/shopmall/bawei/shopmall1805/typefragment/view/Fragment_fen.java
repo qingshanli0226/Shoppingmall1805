@@ -134,6 +134,26 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
 
     }
 
+    @Override
+    public void showsloading() {
+        showloading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
+    }
+
     //请求到的各个接口数据，并且进行适配
     @Override
     public void onjscket(List<ClothesBean.ResultBean> skertbean) {

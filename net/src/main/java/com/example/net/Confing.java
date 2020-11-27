@@ -6,4 +6,6 @@ public class Confing {
     public static final String BASE_JSON=BASE_URL +"atguigu/json/";
     //请求图片的Url
     public static final String BASE_IMAGE = BASE_URL+"atguigu/img";
+
+    public static final String spName = "shallname";
 }

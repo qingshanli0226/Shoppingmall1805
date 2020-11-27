@@ -52,6 +52,26 @@ public class Fragment_Lable extends BaseFragment<LablePresenter, LableContract.b
 
     @Override
     public void onErroy(String message) {
+        showerror(message);
+    }
 
+    @Override
+    public void showsloading() {
+        showloading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
     }
 }

@@ -18,7 +18,7 @@ import com.shopmall.bawei.user.view.RegisterFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path="/goodcar/Shpping_car_Activity")
+@Route(path="/user/LoginRegisterActivity")
 public class LoginRegisterActivity extends BaseActivity<IPresenter,IView> {
     public static MyViewPager vrLoginRegister;
     private LoginFragment loginFragment = new LoginFragment();

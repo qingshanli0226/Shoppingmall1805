@@ -8,27 +8,53 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.framework.view.LogingPage;
+
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
 
     protected P httpresetnter;
-
+    protected LogingPage logingPage;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(getlayoutid(), container, false);
-        initView(inflate);
+
+        logingPage = new LogingPage(getContext()) {
+            @Override
+            protected int getsuccessId() {
+                return getlayoutid();
+            }
+        };
+        return logingPage;
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView(logingPage.getSucessView());
         initPreseter();
-        initdate();
         if (httpresetnter!=null) {
             httpresetnter.attchView((V) this);
         }
-        return inflate;
+        initdate();
+
     }
+
     protected abstract void initPreseter();
     protected abstract void initView(View inflate);
     protected abstract void initdate();
     protected abstract int getlayoutid();
-
+    public void showloading(){
+        logingPage.loadingPage();
+    }
+    public void hideLoading(){
+        logingPage.showsucessPage();
+    }
+    public void showerror(String errorName){
+        logingPage.showError(errorName);
+    }
+    public void showEnpty(){
+        logingPage.showEnptyPage();
+    }
     @Override
     public void onDestroy() {
         super.onDestroy();

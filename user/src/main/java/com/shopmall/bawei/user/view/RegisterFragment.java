@@ -74,6 +74,26 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
     }
 
     @Override
+    public void showsloading() {
+        showloading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
+    }
+
+    @Override
     public void onClick(View v) {
         if (v ==tvRegisterLogin){
             LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
