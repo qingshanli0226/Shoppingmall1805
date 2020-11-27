@@ -43,8 +43,6 @@ public class ShoppingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopping);
 
-
-
         mIbGoodInfoBack = findViewById(R.id.ib_good_info_back);
         mIbGoodInfoMore = findViewById(R.id.ib_good_info_more);
         mIvGoodInfoImage = findViewById(R.id.iv_good_info_image);
@@ -79,7 +77,6 @@ public class ShoppingActivity extends AppCompatActivity {
                 Intent intent1 = new Intent(ShoppingActivity.this, MainActivity.class);
                 startActivity(intent1);
                 finish();
-
             }
         });
 

@@ -8,8 +8,7 @@
     tools:context=".home.view.fragment.ListFragment">
 
     <com.shopmall.bawei.common.MyToolBar
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        style="@style/MyToolBar"
         android:id="@+id/toolbar"
         app:left_show="false"
         app:title_show="false"

@@ -13,7 +13,7 @@
     </style>
     <style name="EditTextStyle">
         <item name="android:layout_width">match_parent</item>
-        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_height">55dp</item>
     </style>
     <style name="ButtonStyle">
         <item name="android:layout_width">match_parent</item>

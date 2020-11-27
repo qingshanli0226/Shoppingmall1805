@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".home.MainActivity">
-
     <com.shopmall.bawei.common.MyToolBar
         style="@style/MyToolBar"
+        android:visibility="gone"
         android:id="@+id/myToolbar"
-        android:visibility="gone"/>
-
+        app:left_show="false"
+        app:title_show="false"
+        app:right_src="@mipmap/menu"
+        app:right_text="消息"
+        app:right_text_color="@android:color/white"
+        android:background="@android:color/holo_red_light"/>
     <FrameLayout
         style="@style/FrameStlys"
         android:layout_below="@id/myToolbar"
@@ -55,8 +59,6 @@
             android:text="@string/MainRadioButtonMy"
             />
     </RadioGroup>
-
-
 
 
 </LinearLayout>

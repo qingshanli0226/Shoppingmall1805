@@ -11,6 +11,9 @@
         app:right_show="false"
         app:title_text="登录"
         app:left_src="@mipmap/back" />
+    <LinearLayout
+        style="@style/FullLayoutStyle"
+        android:orientation="vertical">
 
     <EditText
         style="@style/EditTextStyle"
@@ -34,6 +37,8 @@
         style="@style/TextStyle"
         android:text="注册"
         android:id="@+id/registerTv"/>
+
+    </LinearLayout>
 
 
 
