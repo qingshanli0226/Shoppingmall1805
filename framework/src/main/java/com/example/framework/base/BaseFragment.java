@@ -20,14 +20,14 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View inflate = inflater.inflate(getLayoutID(), container, false);
-        initView(inflate);
+
         loadingPage=new LoadingPage(getActivity()) {
             @Override
             protected int getSuccessLayoutId() {
                 return getLayoutID();
             }
         };
+        initView(loadingPage);
         if(presenter!=null){
             presenter.attchView((V)this);
         }
