@@ -28,6 +28,7 @@ public abstract class LoadingPage extends FrameLayout {
         return successView;
     }
 
+
     public LoadingPage(@NonNull Context context) {
         super(context);
         init(context);
@@ -102,6 +103,9 @@ public abstract class LoadingPage extends FrameLayout {
         successView.setVisibility(GONE);
         emptyView.setVisibility(VISIBLE);
     }
+
+    //protected  abstract int getSuccessLayoutId();
+
 
     protected int getSuccessLayoutId(){
         return 0;

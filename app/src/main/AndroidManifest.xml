@@ -35,11 +35,7 @@
         android:theme="@style/AppTheme">
         <activity android:name=".WelcomeActivity"
             android:theme="@style/AppTheme.FullScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".home.MainActivity" android:launchMode="singleTask">
 

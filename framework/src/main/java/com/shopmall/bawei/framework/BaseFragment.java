@@ -48,6 +48,10 @@ public abstract class BaseFragment<P extends BasePresenter,V extends IView> exte
         loadingPage.showLoadingPage();
     }
 
+    public void showEmptyPa(){
+        loadingPage.showEmptyPage();
+    }
+
     public void hideLoading(boolean isSuccess, ErrorBean errorBean){
         if (isSuccess) {
             showSuccess();

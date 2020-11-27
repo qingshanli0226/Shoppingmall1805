@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
@@ -21,6 +22,7 @@ import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = "/app/MainActivity")
 public class MainActivity extends BaseActivity<IPresenter, IView> implements IView {
 
     private List<Fragment> fragments = new ArrayList();

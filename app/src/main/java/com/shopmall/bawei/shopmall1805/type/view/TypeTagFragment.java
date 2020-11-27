@@ -121,7 +121,7 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
 
     @Override
     public void showEmpty() {
-        showEmpty();
+        showEmptyPa();
     }
 
     @Override
