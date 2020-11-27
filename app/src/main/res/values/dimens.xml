@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="txt_sizetwentyfive">25sp</dimen>
+    <dimen name="txt_sizethirty">30sp</dimen>
+    <dimen name="txt_sizefourty">40sp</dimen>
+    <dimen name="txt_sizefifty">50sp</dimen>
+    <dimen name="txt_sizesixty">60sp</dimen>
+    <dimen name="txt_sizeseventy">70sp</dimen>
+    <dimen name="txt_sizeeighty">80sp</dimen>
+    <dimen name="txt_sizeninty">90sp</dimen>
+    <dimen name="txt_sizeone_hundred">100sp</dimen>
+</resources>
