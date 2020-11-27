@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.fragment;
+package com.shopmall.bawei.shopmall1805.ui.fragment;
 
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
@@ -15,19 +15,17 @@ import com.example.framework.BaseFragment;
 import com.example.net.ClothesBean;
 import com.example.net.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.XiangActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.XiangActivity;
 import com.shopmall.bawei.shopmall1805.adapter.BottomAdapter;
-import com.shopmall.bawei.shopmall1805.adapter.LeftAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.RightAdapter;
 import com.shopmall.bawei.shopmall1805.contract.SmallskirtContract;
-import com.shopmall.bawei.shopmall1805.entity.NameEntitiy;
 import com.shopmall.bawei.shopmall1805.presenter.SmallPresenter;
 
 import java.util.ArrayList;
 import java.util.List;
 
 
-public class BlankFragment extends BaseFragment<SmallPresenter, SmallskirtContract.SmallskirtView> implements SmallskirtContract.SmallskirtView{
+public class ListFragment extends BaseFragment<SmallPresenter, SmallskirtContract.SmallskirtView> implements SmallskirtContract.SmallskirtView{
 
     private RecyclerView recyclerView2,recyclerView3;
     private ListView listView;
@@ -161,8 +159,30 @@ public class BlankFragment extends BaseFragment<SmallPresenter, SmallskirtContra
         });
     }
 
+
+
     @Override
-    public void onError(String message) {
+    public void onErroy(String message) {
+
+    }
+
+    @Override
+    public void showsloading() {
+
+    }
+
+    @Override
+    public void hideloading() {
+
+    }
+
+    @Override
+    public void showErroy(String message) {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

@@ -7,11 +7,19 @@ import android.support.v7.app.AppCompatActivity;
 public abstract class BaseActivity<P extends IPresenter,V extends IVIew> extends AppCompatActivity {
 
     protected P httpPresenter;
-
+    protected LogingPage logingPage;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        logingPage = new LogingPage(this) {
+            @Override
+            protected int getsuccessId() {
+                return getLayoutId();
+            }
+        };
+
         setContentView(getLayoutId());
         initView();
         initData();
@@ -27,7 +35,18 @@ public abstract class BaseActivity<P extends IPresenter,V extends IVIew> extends
 
     protected abstract void initData();
 
-
+    public void showloading(){
+        logingPage.loadingPage();
+    }
+    public void hideLoading(){
+        logingPage.showsucessPage();
+    }
+    public void showerror(String errorName){
+        logingPage.showError(errorName);
+    }
+    public void showEnpty(){
+        logingPage.showEnptyPage();
+    }
 
     @Override
     protected void onDestroy() {

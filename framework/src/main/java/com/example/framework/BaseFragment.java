@@ -11,22 +11,33 @@ import android.view.ViewGroup;
 public abstract class BaseFragment<P extends IPresenter,V extends IVIew> extends Fragment {
 
     protected P httpPresenter;
+    protected LogingPage logingPage;
+
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(getLayoutId(),container,false);
 
-        initView(inflate);
+        logingPage = new LogingPage(getContext()) {
+            @Override
+            protected int getsuccessId() {
+                return getLayoutId();
+            }
+        };
+        return logingPage;
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        initView(logingPage.getSucessView());
         initPresenter();
-        initData();
         if (httpPresenter!=null){
             httpPresenter.attchView((V)this);
         }
-        return inflate;
+        initData();
     }
-
-
 
     protected abstract void initView(View inflate);
 
@@ -35,7 +46,20 @@ public abstract class BaseFragment<P extends IPresenter,V extends IVIew> extends
 
     protected abstract int getLayoutId();
 
+    public void showLoading(){
+        logingPage.loadingPage();
+    };
 
+    public void hideLoading(){
+        logingPage.showsucessPage();
+    };
+
+    public void showError(String errorName){
+        logingPage.showError(errorName);
+    };
+    public void showEnpty(){
+        logingPage.showEnptyPage();
+    };
 
     protected abstract void initData();
 

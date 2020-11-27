@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.fragment;
+package com.shopmall.bawei.shopmall1805.ui.fragment;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -51,10 +51,7 @@ public class PrimereFragment extends BaseFragment<PriPresenter, PrimereContract.
 
 
 
-    @Override
-    public void onError(String message) {
 
-    }
 
 
 
@@ -73,6 +70,32 @@ public class PrimereFragment extends BaseFragment<PriPresenter, PrimereContract.
             Toast.makeText(getContext(), ""+"1", Toast.LENGTH_SHORT).show();
             primereAdapter.notifyDataSetChanged();
         }
+
+    }
+
+
+    @Override
+    public void onErroy(String message) {
+
+    }
+
+    @Override
+    public void showsloading() {
+        showLoading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

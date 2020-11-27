@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.home;
+package com.shopmall.bawei.shopmall1805.ui.activity;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
@@ -12,17 +12,17 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.entity.CommonEntity;
-import com.shopmall.bawei.shopmall1805.fragment.ClassfiyFragment;
-import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
-import com.shopmall.bawei.shopmall1805.fragment.PersonalFragment;
-import com.shopmall.bawei.shopmall1805.fragment.PrimereFragment;
-import com.shopmall.bawei.shopmall1805.fragment.ShoppingFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.ClassfiyFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.PersonalFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.PrimereFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.ShoppingFragment;
 import com.shopmall.bawei.shopmall1805.ui.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity<IPresenter, IVIew> {
+public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
 
     private CommonTabLayout commonTabLayout;
     private NoScrollViewPager viewPager;
@@ -65,7 +65,7 @@ public class MainActivity extends BaseActivity<IPresenter, IVIew> {
                 viewPager.setCurrentItem(position);
                 if (position==3){
                     ARouter.getInstance()
-                            .build("/ld/ld")
+                            .build("/duoduo/shopcar")
                             .navigation();
                 }
             }

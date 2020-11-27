@@ -14,7 +14,7 @@ import com.shopmall.bawei.user.fragment.RegisterFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = "/ld/ld")
+@Route(path = "/duoduo/user")
 public class LoginRegisterActivity extends AppCompatActivity {
 
     public static MyViewPager vrLoginRegister;

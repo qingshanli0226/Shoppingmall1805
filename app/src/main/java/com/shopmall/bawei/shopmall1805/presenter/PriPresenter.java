@@ -14,6 +14,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class PriPresenter extends PrimereContract.PrimerePresenter {
@@ -27,6 +28,12 @@ public class PriPresenter extends PrimereContract.PrimerePresenter {
                 .home()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
                 .subscribe(new Observer<BaseBean<HomeBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -36,7 +43,9 @@ public class PriPresenter extends PrimereContract.PrimerePresenter {
                     @Override
                     public void onNext(BaseBean<HomeBean> homeBeanBaseBean) {
                         Log.i("wft","123");
+
                         if (iView!=null){
+                            iView.hideloading();
                             iView.getViewData(homeBeanBaseBean);
                         }
                     }

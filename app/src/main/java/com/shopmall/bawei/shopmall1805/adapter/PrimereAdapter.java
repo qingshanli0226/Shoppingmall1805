@@ -2,11 +2,6 @@ package com.shopmall.bawei.shopmall1805.adapter;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
-import android.support.v4.app.FragmentStatePagerAdapter;
-import android.support.v4.view.ViewPager;
-import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -20,14 +15,13 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.net.ConfigUrl;
 import com.example.net.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.XiangActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.XiangActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseViewHolder> {
 

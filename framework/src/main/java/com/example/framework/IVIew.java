@@ -1,5 +1,9 @@
 package com.example.framework;
 
 public interface IVIew {
-    void onError(String message);
+    void onErroy(String message);
+    void showsloading();
+    void hideloading();
+    void showErroy(String message);
+    void showEmpty();
 }

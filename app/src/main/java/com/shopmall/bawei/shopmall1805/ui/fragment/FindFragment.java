@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.fragment;
+package com.shopmall.bawei.shopmall1805.ui.fragment;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;

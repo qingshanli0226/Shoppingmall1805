@@ -1,16 +1,13 @@
-package com.shopmall.bawei.shopmall1805;
+package com.shopmall.bawei.shopmall1805.ui.activity;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPropertyAnimatorListener;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.example.framework.BaseActivity;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.R;
 
 public class WelcomActivity extends BaseActivity implements ViewPropertyAnimatorListener {
 
@@ -40,7 +37,7 @@ public class WelcomActivity extends BaseActivity implements ViewPropertyAnimator
 
     @Override
     public void onAnimationEnd(View view) {
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, HomeActivity.class));
     }
 
     @Override

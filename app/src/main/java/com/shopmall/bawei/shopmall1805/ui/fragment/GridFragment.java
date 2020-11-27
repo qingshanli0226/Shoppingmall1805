@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.fragment;
+package com.shopmall.bawei.shopmall1805.ui.fragment;
 
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class BlankFragment2 extends BaseFragment<ClassPresenter, ClassfiyContract.ClassfiyView> implements ClassfiyContract.ClassfiyView {
+public class GridFragment extends BaseFragment<ClassPresenter, ClassfiyContract.ClassfiyView> implements ClassfiyContract.ClassfiyView {
 
     private RecyclerView recyclerView;
     private NameAdapter nameAdapter;
@@ -52,8 +52,30 @@ public class BlankFragment2 extends BaseFragment<ClassPresenter, ClassfiyContrac
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
     }
 
+
+
     @Override
-    public void onError(String message) {
+    public void onErroy(String message) {
+
+    }
+
+    @Override
+    public void showsloading() {
+
+    }
+
+    @Override
+    public void hideloading() {
+
+    }
+
+    @Override
+    public void showErroy(String message) {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

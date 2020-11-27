@@ -8,7 +8,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".ShopmallApplication"
+        android:name=".application.ShopmallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,10 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".XiangActivity"></activity>
-        <activity android:name=".home.MainActivity"></activity>
+        <activity android:name=".ui.activity.XiangActivity"></activity>
+        <activity android:name=".ui.activity.HomeActivity"></activity>
         <activity
-            android:name=".WelcomActivity"
+            android:name=".ui.activity.WelcomActivity"
             android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

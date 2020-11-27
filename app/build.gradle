@@ -1,5 +1,5 @@
 apply plugin: 'com.android.application'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 30
     defaultConfig {
@@ -63,5 +63,7 @@ dependencies {
     implementation 'com.youth.banner:banner:1.4.10'//轮播图
     implementation ('com.alibaba:arouter-api:1.4.1')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation 'org.greenrobot:greendao:3.3.0' // add library
+
 
 }
