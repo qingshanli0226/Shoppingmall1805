@@ -55,9 +55,7 @@ public abstract class BaseFragment extends Fragment {
         loadingPage.showLoadingPage();
     }
     public void hideLoadingPage(boolean isSuccess) {
-        if (isSuccess) {
-            showSuccess();
-        }
+        showSuccess();
     }
     public void showError(String errorMsg) {
         loadingPage.showErrorPage(errorMsg);

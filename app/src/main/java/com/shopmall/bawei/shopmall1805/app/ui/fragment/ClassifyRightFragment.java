@@ -56,7 +56,7 @@ public class ClassifyRightFragment extends BaseMVPFragment<ClassifyRightPresente
 
     }
     @Override
-    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+    public void hideLoading() {
 
     }
     @Override

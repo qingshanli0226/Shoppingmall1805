@@ -120,11 +120,11 @@ public class ClassifyLeftFragment extends BaseMVPFragment<ClassifyLeftPresenterI
     }
     @Override
     public void showLoaing() {
-
+        showLoading();
     }
     @Override
-    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+    public void hideLoading() {
+        hideLoadingPage(true);
     }
     @Override
     public void showEmpty() {
