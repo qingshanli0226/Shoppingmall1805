@@ -3,11 +3,10 @@
     android:layout_width="match_parent"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:layout_marginRight="5dp"
+    style="@style/Classification_MarginRight"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        style="@style/Classification_Image"
         android:id="@+id/often_class_im"
         android:layout_gravity="center"
         >

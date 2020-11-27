@@ -5,8 +5,7 @@
     android:layout_height="match_parent"
     >
     <ImageView
-        android:scaleX="1.5"
-        android:scaleY="1.5"
+        style="@style/WelcomActivity_Image"
         android:id="@+id/im"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

@@ -19,5 +19,41 @@
         <item name="android:padding">10dp</item>
         <item name="android:textColor">#5d5d5d</item>
     </style>
+    <!--分类Text-->
+    <style name="Classification_Text">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15dp</item>
+    </style>
+    <!--分类Image-->
+    <style name="Classification_Image">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">100dp</item>
+    </style>
+    <!--分类Itme-->
+    <style name="Classification_MarginRight">
+        <item name="android:layout_marginRight">5dp</item>
+    </style>
+    <!--欢迎页-->
+    <style name="WelcomActivity_Image">
+        <item name="android:scaleX">1.5</item>
+        <item name="android:scaleY">1.5</item>
+    </style>
+    <!--Home_ToolBar-->
+    <style name="Home_LinearLayout">
+        <item name="android:layout_marginTop">3dp</item>
+        <item name="android:layout_marginRight">35dp</item>
+    </style>
+    <style name="Home_Image">
+        <item name="android:layout_width">25dp</item>
+        <item name="android:layout_height">25dp</item>
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="Home_EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">35dp</item>
+        <item name="android:textSize">12dp</item>
+    </style>
+
 
 </resources>

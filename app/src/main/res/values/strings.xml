@@ -2,4 +2,11 @@
     <string name="app_name">电商App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="Classification_Hot_Text">热卖推荐</string>
+    <string name="Classification_Often_Text">常用分类</string>
+    <string name="Classification">分类</string>
+    <string name="Label">标签</string>
+    <string name="Message">消息</string>
+    <string name="EditText_Message">请输入搜索信息</string>
+
 </resources>

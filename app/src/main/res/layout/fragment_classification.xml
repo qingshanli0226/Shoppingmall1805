@@ -43,7 +43,7 @@
                                android:padding="@dimen/dp_10"
                                android:id="@+id/radio_left"
                                android:background="@drawable/l_select_fen"
-                               android:text="分类"
+                               android:text="@string/Classification"
 
                                ></RadioButton>
                            <RadioButton
@@ -57,7 +57,7 @@
                                android:padding="@dimen/dp_10"
                                android:id="@+id/radio_regit"
 
-                               android:text="标签"
+                               android:text="@string/Label"
                                ></RadioButton>
                        </RadioGroup>
                         <ImageView
