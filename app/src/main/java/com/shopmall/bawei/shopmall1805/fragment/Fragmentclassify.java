@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.fragment.classIfys.Fragment_classify2;
+import com.shopmall.bawei.shopmall1805.fragment.classIfys.Fragment_classify;
 import com.shopmall.bawei.shopmall1805.fragment.classIfys.Fragment_lable;
 
 import java.util.ArrayList;
@@ -26,7 +26,7 @@ class Fragmentclassify extends BaseFragment {
     private TextView textOne;
     private TextView textTow;
     private android.support.v4.view.ViewPager ViewPager;
-    private boolean isshow = true;
+    private boolean isshow = false;
     private List<Fragment> list = new ArrayList<>();
     @Override
     protected void createPresenter() {
@@ -54,12 +54,12 @@ class Fragmentclassify extends BaseFragment {
     }
 
     @Override
-    protected void InitData(View inflate) {
-        linnerButton = (LinearLayout) inflate.findViewById(R.id.linner_button);
-        textOne = (TextView) inflate.findViewById(R.id.text_one);
-        textTow = (TextView) inflate.findViewById(R.id.text_tow);
-        ViewPager = (android.support.v4.view.ViewPager) inflate.findViewById(R.id.View_pager);
-        list.add(new Fragment_classify2());
+    protected void InitData() {
+        linnerButton = (LinearLayout) findViewById(R.id.linner_button);
+        textOne = (TextView) findViewById(R.id.text_one);
+        textTow = (TextView) findViewById(R.id.text_tow);
+        ViewPager = (android.support.v4.view.ViewPager) findViewById(R.id.View_pager);
+        list.add(new Fragment_classify());
         list.add(new Fragment_lable());
 
          FragmentPagerAdapter pagerAdapter = new FragmentPagerAdapter(getActivity().getSupportFragmentManager()) {
@@ -73,6 +73,7 @@ class Fragmentclassify extends BaseFragment {
                 return list.get(i);
             }
         };
+
          ViewPager.setAdapter(pagerAdapter);
     }
 

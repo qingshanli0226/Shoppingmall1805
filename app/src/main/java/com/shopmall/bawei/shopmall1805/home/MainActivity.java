@@ -4,14 +4,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
+
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.fragment.Fragmenthomepage;
-import com.shopmall.bawei.shopmall1805.fragment.Fragmentshop;
-import com.shopmall.bawei.shopmall1805.fragment.Fragmentpersonage;
-import com.shopmall.bawei.shopmall1805.fragment.Fragmentclassify;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentclassify;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmenthomepage;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentpersonage;
+import com.shopmall.bawei.shopmall1805.fragment.Fragmentshop;
 import com.shopmall.bawei.shopmall1805.tliteUser;
 
 import java.util.ArrayList;

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Ucom_public_heightone">200dp</dimen>
+    <dimen name="Ucom_public_heighttow">150dp</dimen>
+    <dimen name="Ucom_public_heightthree">100dp</dimen>
+    <dimen name="Ucom_public_heightfour">60dp</dimen>
+
+    <dimen name="Ucom_public_widthtone">200dp</dimen>
+    <dimen name="Ucom_public_widthtow">150dp</dimen>
+    <dimen name="Ucom_public_widththree">100dp</dimen>
+    <dimen name="Ucom_public_widthfour">60dp</dimen>
+
+    <dimen name="UView_left_space">20dp</dimen>
+    <dimen name="UView_reght_space">20dp</dimen>
+</resources>

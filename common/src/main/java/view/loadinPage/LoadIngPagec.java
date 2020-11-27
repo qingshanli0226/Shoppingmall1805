@@ -40,7 +40,7 @@ class LoadIngPagec  extends FrameLayout {
 
         errorView = layoutInflater.inflate(R.layout.view_error,null);
         addView(errorView,params);
-        errorTv = errorTv.findViewById(R.id.errorTvc);
+        errorTv = errorView.findViewById(R.id.errorTvc);
 
         emptyView = layoutInflater.inflate(R.layout.view_empty,null);
         addView(emptyView,params);
@@ -90,25 +90,9 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(VISIBLE);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public View getSuccessView() {
+        return successView;
+    }
 
 
 }

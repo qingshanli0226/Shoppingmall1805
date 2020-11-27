@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.shopmall.bawei.shopmall1805.Adper.homeadper.PrimereAdper;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.fragment.jsonCallBack.JsonDataBack;
 
 import android.widget.Toast;
 
 import framework.BaseFragment;
-import framework.Userc;
 import framework.mvpc.jsonPresenter;
 import mode.HomeBean;
 
@@ -30,9 +30,9 @@ class Fragmenthomepage extends BaseFragment {
     }
 
     @Override
-    protected void InitData(View inflate) {
+    protected void InitData() {
         JsonData();
-        rv = (RecyclerView)inflate.findViewById(R.id.rv);
+        rv = (RecyclerView)findViewById(R.id.rv);
         primereAdpter = new PrimereAdper();
         rv.setAdapter(primereAdpter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -40,16 +40,15 @@ class Fragmenthomepage extends BaseFragment {
     }
 
     private void JsonData() {
-        Presenter.getHomeurl(new Userc() {
+        Presenter.getshopcal(11,new JsonDataBack() {
             @Override
-            public void Susses(HomeBean homeBeanList) {
-                Toast.makeText(getContext(), "数据添加成功", Toast.LENGTH_SHORT).show();
-                primereAdpter.addOneData(homeBeanList.getResult().getBanner_info());
-                primereAdpter.addOneData(homeBeanList.getResult().getChannel_info());
-                primereAdpter.addOneData(homeBeanList.getResult().getAct_info());
-                primereAdpter.addOneData(homeBeanList.getResult().getSeckill_info().getList());
-                primereAdpter.addOneData(homeBeanList.getResult().getRecommend_info());
-                primereAdpter.addOneData(homeBeanList.getResult().getHot_info());
+            public void homeBean(HomeBean homeBean) {
+                primereAdpter.addOneData(homeBean.getResult().getBanner_info());
+                primereAdpter.addOneData(homeBean.getResult().getChannel_info());
+                primereAdpter.addOneData(homeBean.getResult().getAct_info());
+                primereAdpter.addOneData(homeBean.getResult().getSeckill_info().getList());
+                primereAdpter.addOneData(homeBean.getResult().getRecommend_info());
+                primereAdpter.addOneData(homeBean.getResult().getHot_info());
             }
 
             @Override

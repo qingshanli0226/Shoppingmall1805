@@ -19,7 +19,7 @@ class Fragmentpersonage extends BaseFragment {
     }
 
     @Override
-    protected void InitData(View inflate) {
+    protected void InitData() {
 
     }
 

@@ -7,150 +7,97 @@ import net.FoodService;
 import net.RxjavaRetortUlis;
 
 import framework.Contact;
+import framework.mvpc.CallBaceObserver.ClothesBeanObserver;
+import framework.mvpc.CallBaceObserver.HomeBeanObserver;
+import framework.mvpc.CallBaceObserver.JavaBeanObserver;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import mode.ClothesBean;
 import mode.HomeBean;
-import mode.javabean;
+import mode.LableBean;
 
 public
 class jsonModel implements Contact.centerUserImodel {
 
     @Override
-    public void gethomeurl() {
-        Log.i("====","这是model层");
-        FoodService foodService = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<HomeBean> getfood = foodService.getfood();
-
-
-        getfood.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<HomeBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(final HomeBean homeBean) {
-                        Log.i("====","homebean"+homeBean.getResult().toString());
-                            Observable<HomeBean> observable = new Observable<HomeBean>() {
-                                @Override
-                                protected void subscribeActual(Observer<? super HomeBean> observer) {
-                                    observer.onNext(homeBean);
-                                    observer.onComplete();
-                                }
-                            };
-                            observable.subscribe(jsonPresenter.observer);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-
-
-
-    }
-
-    @Override
     public void getshopcal(int count) {
         Log.i("====","count"+count);
         FoodService foodService  = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<ClothesBean> getfood = null;
+        Observable<ClothesBean> clothesBeanObservable = null;
+        Observable<LableBean> javabeanObservable = null;
+        Observable<HomeBean> homeBeanObservable = null;
         if (count==0){
-            Log.i("====","当前点击是0");
-             getfood = foodService.getsharFood();
+            clothesBeanObservable = foodService.getSkirt();
         }else if (count==1){
-            getfood = foodService.getsharFoodshang();
+            clothesBeanObservable = foodService.getJacket();
         }else if (count==2){
-            Log.i("====","当前点击是2");
-            getfood = foodService.getsharFoodxiq();
+            clothesBeanObservable = foodService.getTrouser();
         }else if (count==3){
-            getfood = foodService.getsharFoodpei();
+            clothesBeanObservable = foodService.getCoat();
         }else if (count==4){
-            getfood = foodService.getsharFood();
+            clothesBeanObservable = foodService.getAccessories();
+        }else if (count==5){
+            clothesBeanObservable = foodService.getBagUrl();//包
+        }else if (count==6){
+            clothesBeanObservable = foodService.getDressUpUrl();
+        }else if (count==7){
+            clothesBeanObservable = foodService.getAreLife();
+        }else if (count==8){
+            clothesBeanObservable = foodService.getOfficeSupplies();
+        }else if (count==9){
+            clothesBeanObservable = foodService.getNumericalCode();
+        }else if (count==10){
+            clothesBeanObservable = foodService.getTheGameZone();
+        }else if (count==11){//首页
+            homeBeanObservable = foodService.getHome();
+        }else if (count==12){
+            javabeanObservable = foodService.getLable();
         }
-        getfood.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<ClothesBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
+        if (clothesBeanObservable!=null){
+            clothesBeanObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new ClothesBeanObserver(){
+                        @Override
+                        public void onNext(ClothesBean clothesBean) {
+                            jsonPresenter.clothesBeanObserver.onNext(clothesBean);
+                        }
 
-                    }
+                        @Override
+                        public void onError(Throwable e) {
+                            super.onError(e);
+                        }
+                    });
+        }
+        if (javabeanObservable!=null){
+            javabeanObservable.subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new JavaBeanObserver(){
+                        @Override
+                        public void onNext(LableBean javabean) {
+                            jsonPresenter.javabeanObserver.onNext(javabean);
+                        }
 
-                    @Override
-                    public void onNext(final ClothesBean homeBean) {
-                        Log.i("====","model===="+homeBean.toString());
-                        Observable<ClothesBean> observable = new Observable<ClothesBean>() {
-                            @Override
-                            protected void subscribeActual(Observer<? super ClothesBean> observer) {
-                                observer.onNext(homeBean);
-                                observer.onComplete();
-                            }
-                        };
-                        observable.subscribe(jsonPresenter.observer2);
-                    }
+                        @Override
+                        public void onError(Throwable e) {
+                        }
+                    });
 
-                    @Override
-                    public void onError(Throwable e) {
+        }
+        if (homeBeanObservable!=null){
+            homeBeanObservable.subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new HomeBeanObserver(){
+                      @Override
+                      public void onNext(HomeBean homeBean) {
+                          jsonPresenter.homeBeanObserver.onNext(homeBean);
+                      }
 
-                    }
+                      @Override
+                      public void onError(Throwable e) {
+                      }
+                  });
+        }
 
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
-
-    @Override
-    public void getBiaoCal() {
-        FoodService foodService = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        Observable<javabean> getfood = foodService.getbiao();
-
-
-        getfood.observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Observer<javabean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(final javabean homeBean) {
-                        Log.i("====","homebean"+homeBean.getResult().toString());
-                        Observable<javabean> observable = new Observable<javabean>() {
-                            @Override
-                            protected void subscribeActual(Observer<? super javabean> observer) {
-                                observer.onNext(homeBean);
-                                observer.onComplete();
-                            }
-                        };
-                        observable.subscribe(jsonPresenter.observer3);
-
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
     }
 }
