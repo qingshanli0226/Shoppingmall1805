@@ -7,16 +7,20 @@ import android.content.IntentFilter;
 import android.widget.Toast;
 
 import com.shopmall.bawei.common.ShopmallConstant;
+import com.shopmall.bawei.framework.service.ShopmallService;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.RetroCreator;
+import com.shopmall.bawei.net.ShopmallApiService;
 import com.shopmall.bawei.net.ShopmallObserver;
 import com.shopmall.bawei.net.mode.BaseBean;
+import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.net.mode.ShopcarBean;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
@@ -51,6 +55,25 @@ public class CacheManager {
     public void init(Context context) {
         this.context = context;
         initReceiver();
+        initService();
+    }
+
+    //初始化service,完成自动登录功能
+    private void initService() {
+         Intent intent = new Intent(context,ShopmallService.class);
+         context.startService(intent);//通过start启动service
+        //监听登录事件
+        ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangedListener() {
+            @Override
+            public void onUserLogin(LoginBean loginBean) {
+                getShopcarDataFromServer();//获取购物车数据。
+            }
+
+            @Override
+            public void onUserLogout() {
+
+            }
+        });
     }
 
     //注册广播，监听当前用户的登录状态
@@ -67,6 +90,7 @@ public class CacheManager {
         }, intentFilter);
     }
 
+    //从服务端获取购物车的数据
     private void getShopcarDataFromServer() {
         RetroCreator.getShopmallApiServie().getShortcartProducts()
                 .subscribeOn(Schedulers.io())

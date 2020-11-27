@@ -120,12 +120,12 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
 
     @Override
     public void showLoaing() {
-        loadingBar.setVisibility(View.VISIBLE);
+        showLoading();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+        hideLoading(isSuccess,errorBean);
     }
 
     @Override

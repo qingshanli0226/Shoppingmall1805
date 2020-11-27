@@ -51,7 +51,7 @@ public class MineFragment extends Fragment implements ShopUserManager.IUserLogin
 
     @Subscribe(threadMode = ThreadMode.POSTING)
     public void onLogin(LoginBean loginBean) {
-        Log.d("LQS", "onEventBus........");
+            Log.d("LQS", "onEventBus........");
     }
 
     @Override

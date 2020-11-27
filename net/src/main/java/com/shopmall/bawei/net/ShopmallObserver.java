@@ -23,7 +23,9 @@ public abstract class ShopmallObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {//该函数可以扩展处理各种类型的错误
-        Log.d("LQS error message-----", e.getMessage());
+        if (e==null) {
+            return;
+        }
         if (e instanceof JSONException) {
             onRequestError(ShopmallConstant.JSCON_ERROR_CODE, ShopmallConstant.JSON_ERROR_MESSAGE);
         } else if (e instanceof HttpException) {

@@ -75,7 +75,7 @@ public class ShopUserManager {
         if (loginBean!=null) {
             return loginBean.getToken();
         } else {
-            return "";
+            return sharedPreferences.getString(ShopmallConstant.tokenName, "");//如果用户没有登录的话，从sp中拿token
         }
     }
 

@@ -7,6 +7,7 @@ import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Toast;
 
@@ -39,7 +40,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         switchFragmentByIndex(getIntent());
         initPermission();
-        showMessage("onCreate");
+       // showMessage("onCreate");
         //ARouter注入
         ARouter.getInstance().inject(this);
 
@@ -81,7 +82,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         //如果用户登录了，才可以刷新购物车数据，否则购物车数据并没有初始化，没必要刷新
         if (ShopUserManager.getInstance().isUserLogin()) {
             int count = CacheManager.getInstance().getShopcarBeanList().size();
-            bottomBar.setShopcarCount(String.valueOf(count));
+            if (count != 0) {
+                bottomBar.setShopcarCount(String.valueOf(count));
+            }
+        } else {
+            Toast.makeText(this,"当前用户没有登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -89,7 +94,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
-        showMessage("onNewIntent");
+        //showMessage("onNewIntent");
         setIntent(intent);//这个方法是将intent设置成默认创建的intent
         switchFragmentByIndex(intent);
     }
@@ -112,10 +117,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initPermission() {
         //该Api（方法）在23版本之前系统是没有的。例如15版本的系统就没有该API
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {//判断当前系统版本是不是大于等于23
-            Toast.makeText(this, "系统版本大于23，需动态申请权限", Toast.LENGTH_SHORT).show();
             requestPermissions(new String[] {Manifest.permission.WRITE_EXTERNAL_STORAGE}, 100);
         } else {
-            Toast.makeText(this, "系统版本低于23，所以无需动态申请权限", Toast.LENGTH_SHORT).show();
+           // Toast.makeText(this, "系统版本低于23，所以无需动态申请权限", Toast.LENGTH_SHORT).show();
         }//这个就是在代码里做了版本适配(兼容适配),确保了应用程序在15到29之间，动态权限申请不会出现找不到方法的错误
     }
 

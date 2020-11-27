@@ -33,6 +33,9 @@ public interface ShopmallApiService {
     @POST("login")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> params);
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String, String> params);
 
     @POST("checkOneProductInventory")
     @FormUrlEncoded

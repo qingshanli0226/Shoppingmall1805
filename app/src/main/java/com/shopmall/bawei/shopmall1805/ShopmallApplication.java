@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.ShopUserManager;
 import com.shopmall.bawei.net.NetModule;
 
@@ -21,5 +22,6 @@ public class ShopmallApplication extends Application {
 
         NetModule.init(this);
         ShopUserManager.getInstance().init(this);
+        CacheManager.getInstance().init(this);
     }
 }

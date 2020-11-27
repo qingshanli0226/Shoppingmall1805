@@ -21,6 +21,8 @@
         <activity android:name=".product.view.ProductDetailActivity"/>
         <activity android:name=".home.view.MainActivity"
         android:launchMode="singleTask"/>
+
+        <service android:name="com.shopmall.bawei.framework.service.ShopmallService"/>
     </application>
 
 </manifest>

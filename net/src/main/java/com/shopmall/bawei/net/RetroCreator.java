@@ -26,9 +26,9 @@ public class RetroCreator {
 
     private static ShopmallApiService createKSApiService() {
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .connectTimeout(5,TimeUnit.SECONDS)
-                .readTimeout(5,TimeUnit.SECONDS)
-                .writeTimeout(5, TimeUnit.SECONDS)
+                .connectTimeout(15,TimeUnit.SECONDS)
+                .readTimeout(15,TimeUnit.SECONDS)
+                .writeTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new TokenInterceptor())
                 .build();
