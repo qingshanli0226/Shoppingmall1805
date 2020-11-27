@@ -5,38 +5,26 @@
     android:orientation="vertical"
     android:layout_height="match_parent">
         <RadioGroup
-            android:layout_width="200dp"
-            android:layout_height="wrap_content"
+           style="@style/TypefragmentRadioGroup"
             android:orientation="horizontal"
             android:background="@drawable/yuan2"
+               android:gravity="center"
             android:layout_gravity="center"
             >
             <RadioButton
-                android:layout_marginLeft="30dp"
-                android:gravity="center"
-                       android:id="@+id/fenlei"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="分类"
-                android:textSize="25dp"
-                android:button="@null"
-                android:layout_gravity="center"
-
+                android:id="@+id/fenlei"
+                android:text="@string/typefragmentRadioButton1"
+                style="@style/TypefragmentRadioButton"
                 ></RadioButton>
             <RadioButton
-                android:gravity="center"
-                android:layout_marginLeft="20dp"
+                style="@style/TypefragmentRadioButton"
                 android:id="@+id/biaoqian"
                 android:textSize="25dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="|标签"
-                android:button="@null"
+                android:text="@string/typefragmentRadioButton2"
                 ></RadioButton>
         </RadioGroup>
     <android.support.v4.view.ViewPager
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/MainactivityViewPager"
         android:id="@+id/pager"
         ></android.support.v4.view.ViewPager>
 </LinearLayout>

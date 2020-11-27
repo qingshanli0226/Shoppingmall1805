@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/skilllayout_height"
+    android:orientation="vertical">
+    <LinearLayout
+    style="@style/Liner"
+        >
+        <ImageView
+           style="@style/hotimage"
+            android:src="@mipmap/home_arrow_left_flash" />
+
+        <TextView
+            style="@style/hotimage"
+            android:layout_marginLeft="@dimen/skilllayout_marginLeft"
+            android:text="@string/seckilltext"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_time_seckill"
+            style="@style/hotimage"
+            android:layout_marginLeft="@dimen/skilllayout_marginLeft"
+            android:background="@drawable/time_shape"
+            android:padding="@dimen/skillpadding"
+            android:text="@string/seckilltext2"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_more_seckill"
+            style="@style/hotimage"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/hotviewlayout_drawablePadding"
+            android:drawableRight="@mipmap/home_arrow_right"
+            android:gravity="end"
+            android:text="查看更多" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_seck"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/skirtrecyleheight"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

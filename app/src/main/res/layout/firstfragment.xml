@@ -6,95 +6,47 @@
     android:layout_height="match_parent">
 
     <android.support.v7.widget.Toolbar
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:background="#FF5722"
+            style="@style/firstToolbar"
         >
         <LinearLayout
-
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+        style="@style/Liner"
             android:orientation="horizontal"
-           android:layout_marginLeft="50dp"
+           android:layout_marginLeft="@dimen/MarginLeft"
             >
             <EditText
-                android:layout_width="450dp"
-                android:layout_height="50dp"
+                android:layout_width="@dimen/FirstEDtextWidth"
+                android:layout_height="@dimen/FirstEDtexHeight"
                 android:drawableLeft="@mipmap/home_search_icon"
                 android:src="@drawable/yuan"
                 android:layout_gravity="center"
                 android:background="#fff"
-                android:hint="请输入"
+                android:hint="@string/edtext"
                 ></EditText>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                style="@style/Liner"
                 android:orientation="vertical"
                 >
                 <ImageView
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
+                    android:layout_marginTop="@dimen/FirstImageMarginTop"
+                    android:layout_marginLeft="@dimen/FirstImageMarginLeft"
+                    android:layout_width="@dimen/FirstImageWidth"
+                    android:layout_height="@dimen/FirstEDtexHeight"
                     android:background="@mipmap/community_message_icon"
                     ></ImageView>
                 <TextView
-                    android:layout_marginLeft="30dp"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:text="消息"
+                    android:layout_marginLeft="@dimen/FirstTextMarginLeft"
+                    android:layout_width="@dimen/FirstTextWidth"
+                    android:layout_height="@dimen/FirstTextHeight"
+                    android:text="@string/fisettext"
                     ></TextView>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>
-    <com.youth.banner.Banner
-        android:layout_width="match_parent"
-        android:layout_height="130dp"
-        android:id="@+id/bann"
-        ></com.youth.banner.Banner>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv"
+        style="@style/typeRecyle"
+        ></android.support.v7.widget.RecyclerView>
 
-     <ScrollView
-         android:layout_width="match_parent"
-         android:layout_height="match_parent"
-
-         >
-         <LinearLayout
-             android:layout_width="match_parent"
-             android:layout_height="wrap_content"
-             android:orientation="vertical"
-             >
-             <android.support.v7.widget.RecyclerView
-                 android:layout_weight="1"
-                 android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:id="@+id/recyle"
-                 ></android.support.v7.widget.RecyclerView>
-                  <com.youth.banner.Banner
-                      android:layout_width="match_parent"
-                      android:layout_height="100dp"
-                      android:id="@+id/ban"
-                      ></com.youth.banner.Banner>
-             <android.support.v7.widget.RecyclerView
-                 android:layout_weight="1"
-                 android:id="@+id/seckill_recyle"
-                 android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 ></android.support.v7.widget.RecyclerView>
-                 <android.support.v7.widget.RecyclerView
-                     android:layout_weight="1"
-                     android:layout_width="match_parent"
-                     android:layout_height="0dp"
-                       android:id="@+id/recyle_recommend"
-                     ></android.support.v7.widget.RecyclerView>
-             <android.support.v7.widget.RecyclerView
-                 android:layout_width="match_parent"
-                 android:layout_height="0dp"
-                 android:layout_weight="1"
-                 android:id="@+id/hot_info_recyle"
-                 ></android.support.v7.widget.RecyclerView>
-         </LinearLayout>
-
-     </ScrollView>
 
 
 </LinearLayout>

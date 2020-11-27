@@ -8,17 +8,16 @@
     tools:context=".home.MainActivity">
 
    <android.support.v4.view.ViewPager
-       android:layout_width="match_parent"
-       android:layout_height="900dp"
+      style="@style/MainactivityViewPager"
        android:id="@+id/pager"
        ></android.support.v4.view.ViewPager>
       <com.flyco.tablayout.CommonTabLayout
           android:layout_width="match_parent"
-          android:layout_height="100dp"
-          app:tl_textSelectColor="#000"
-          app:tl_underline_color="#000"
+          android:layout_height="@dimen/CommonTabLayout"
+          app:tl_textSelectColor="@color/color_black"
+          app:tl_underline_color="@color/color_black"
           android:id="@+id/com"
-          app:tl_iconWidth="50dp"
-          app:tl_iconHeight="50dp"
+          app:tl_iconWidth="@dimen/CommonTabLayouticon"
+          app:tl_iconHeight="@dimen/CommonTabLayouticon"
           ></com.flyco.tablayout.CommonTabLayout>
 </LinearLayout>

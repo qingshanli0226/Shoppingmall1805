@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/hotimage"
+    android:layout_marginLeft="@dimen/itemhotlayout_marginLeft"
+    android:layout_marginTop="@dimen/itemhotlayout_marginLeft"
+    android:background="#fff"
+    android:gravity="center"
+
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/iv_hot"
+        android:layout_width="@dimen/itemhotlayout_width"
+        android:layout_height="@dimen/itemhotlayout_width"
+        android:layout_gravity="center"
+        android:background="@mipmap/ic_launcher" />
+
+    <TextView
+        android:id="@+id/tv_hot_name"
+        android:layout_width="@dimen/itemhotlayout_width"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/itemhotlayout_marginTop"
+        android:ellipsize="end"
+        android:lines="2"
+        android:padding="@dimen/itemhotlayout_marginTop"
+        android:text="@string/itemhottext"
+        android:textColor="#000" />
+
+    <TextView
+        android:id="@+id/tv_hot_price"
+        style="@style/hotimage"
+        android:layout_gravity="left"
+        android:layout_marginTop="@dimen/itemhotlayout_marginTop2"
+        android:text="@string/commontext2"
+        android:textColor="#ff4242" />
+</LinearLayout>

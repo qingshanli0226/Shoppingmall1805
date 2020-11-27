@@ -15,13 +15,13 @@ public class UserCountroller {
 //    RecommendInfoBean
     public interface UserView extends IView {
 
-     void ChannelInfoBean(BaseBean<HomeBean> listBaseBean);
+    void onskerk(HomeBean homeBeanList);
      void TagBiew(List<TAGBean.ResultBean> resultBeanList);
 
     }
     public abstract static class UserShow extends BaseAroute<UserView>{
 
-      public  abstract  void  channelInfosSHow();
+        public abstract void getskerak();
         public  abstract  void  TagShow();
 
     }

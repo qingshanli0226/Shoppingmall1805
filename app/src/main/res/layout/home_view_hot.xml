@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeee"
+    android:orientation="vertical"
+    android:padding="@dimen/hotLinearLayout">
+
+    <LinearLayout
+         style="@style/Liner"
+        android:gravity="center_vertical">
+
+        <ImageView
+             style="@style/hotimage"
+            android:src="@mipmap/home_arrow_left_hot" />
+
+        <TextView
+            style="@style/hotimage"
+            android:layout_marginLeft="@dimen/hotviewlayout_marginLeft"
+            android:text="@string/hottext"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_more_hot"
+            style="@style/hotimage"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/hotviewlayout_drawablePadding"
+            android:drawableRight="@mipmap/home_arrow_right"
+            android:gravity="end"
+            android:text="@string/hottext2" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="#E7E7E7"
+        android:id="@+id/gv_hot"
+         style="@style/typeRecyle"
+        android:layout_marginTop="@dimen/hotImageMarginTop"
+        android:horizontalSpacing="@dimen/hothorizontalSpacing"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/hotverticalSpacing"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

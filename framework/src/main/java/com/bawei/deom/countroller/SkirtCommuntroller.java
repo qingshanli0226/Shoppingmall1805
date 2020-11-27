@@ -22,13 +22,10 @@ import bean.typebean.StationeryBean;
 
 public class SkirtCommuntroller {
     public interface UsView extends IView {
-        void UserView(List<BugBean.ResultBean.ChildBean> list);
-        void UserRe(List<BugBean.ResultBean.HotProductListBean> list);
-
+        void UserView(List<BugBean.ResultBean> list);
     }
     public abstract static class UsShow extends BaseAroute<UsView> {
         public abstract void UserShow(String url);
-        public abstract void UserReShow(String url);
 
     }
 }

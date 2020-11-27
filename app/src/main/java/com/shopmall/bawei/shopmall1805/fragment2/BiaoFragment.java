@@ -47,8 +47,10 @@ public class BiaoFragment extends BaseFragment<UserIMPL, UserCountroller.UserVie
         return R.layout.biaoqian;
     }
 
+
+
     @Override
-    public void ChannelInfoBean(BaseBean<HomeBean> listBaseBean) {
+    public void onskerk(HomeBean homeBeanList) {
 
     }
 

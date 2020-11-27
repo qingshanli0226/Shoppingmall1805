@@ -4,40 +4,36 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
    <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
+       style="@style/Liner"
        android:orientation="horizontal"
        >
-      <android.support.v7.widget.RecyclerView
-          android:layout_width="100dp"
-          android:layout_height="wrap_content"
+      <ListView
+          android:layout_weight="3.5"
+         style="@style/ListView"
           android:id="@+id/zhonglei"
-          ></android.support.v7.widget.RecyclerView>
+          ></ListView>
        <LinearLayout
+           android:layout_weight="1"
            android:orientation="vertical"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+           style="@style/Liner"
            >
            <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="热卖"
+               style="@style/fenTextView"
+               android:text="@string/fenhot"
                ></TextView>
         <android.support.v7.widget.RecyclerView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+          style="@style/fenRecyle"
             android:id="@+id/remai"
             ></android.support.v7.widget.RecyclerView>
            <TextView
-               android:layout_width="match_parent"
-               android:layout_height="wrap_content"
-               android:text="常用"
+            style="@style/fenTextView"
+               android:text="@string/fenchang"
                ></TextView>
        <android.support.v7.widget.RecyclerView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
+         style="@style/fenRecyle"
            android:id="@+id/changyong"
            ></android.support.v7.widget.RecyclerView>
        </LinearLayout>
+
    </LinearLayout>
 </LinearLayout>

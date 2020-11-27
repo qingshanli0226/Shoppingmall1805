@@ -3,9 +3,53 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="购物车"
-        ></TextView>
+   <LinearLayout
+        style="@style/Liner"
+       android:orientation="horizontal"
+       >
+       <ImageView
+           android:layout_width="@dimen/shoppImageViewwidth"
+           android:layout_height="@dimen/shoppImageViewheight"
+           android:id="@+id/pic"
+           ></ImageView>
+       <LinearLayout
+
+           style="@style/hotimage"
+           android:orientation="vertical"
+           >
+           <TextView
+               style="@style/hotimage"
+               android:id="@+id/name"
+               android:text="123"
+               ></TextView>
+           <TextView
+               style="@style/hotimage"
+               android:id="@+id/price"
+               android:text="123"
+               ></TextView>
+       </LinearLayout>
+       <LinearLayout
+           android:layout_marginTop="@dimen/shoppImagelayout_marginTop"
+           style="@style/hotimage"
+           android:orientation="horizontal"
+           >
+            <Button
+                android:id="@+id/jia"
+                android:layout_width="@dimen/shoppButtonlayout_marginTop"
+                android:layout_height="@dimen/shoppButtonlayout_marginTop"
+                android:text="+"
+                ></Button>
+           <TextView
+               style="@style/hotimage"
+               android:id="@+id/num"
+               android:text="1"
+               ></TextView>
+           <Button
+               android:id="@+id/jian"
+               android:layout_width="@dimen/shoppButtonlayout_marginTop"
+               android:layout_height="@dimen/shoppButtonlayout_marginTop"
+               android:text="-"
+               ></Button>
+       </LinearLayout>
+   </LinearLayout>
 </LinearLayout>

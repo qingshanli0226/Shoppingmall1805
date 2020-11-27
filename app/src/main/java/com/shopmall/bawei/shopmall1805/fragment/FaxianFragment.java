@@ -55,8 +55,10 @@ public class FaxianFragment extends BaseFragment<UserIMPL,UserCountroller.UserVi
     }
 
 
+
+
     @Override
-    public void ChannelInfoBean(BaseBean<HomeBean> listBaseBean) {
+    public void onskerk(HomeBean homeBeanList) {
 
     }
 
@@ -64,7 +66,4 @@ public class FaxianFragment extends BaseFragment<UserIMPL,UserCountroller.UserVi
     public void TagBiew(List<TAGBean.ResultBean> resultBeanList) {
 
     }
-
-
-
 }

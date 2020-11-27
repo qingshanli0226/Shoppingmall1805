@@ -40,7 +40,7 @@ public class SkirtImpl extends SkirtCommuntroller.UsShow {
 
                    @Override
                    public void onNext(BugBean bugBean) {
-                                 pView.UserView(bugBean.getResult().get(0).getChild());
+                                 pView.UserView(bugBean.getResult());
                    }
 
                    @Override
@@ -56,33 +56,6 @@ public class SkirtImpl extends SkirtCommuntroller.UsShow {
         ;
     }
 
-    @Override
-    public void UserReShow(String url) {
-        ClassInterface.getUserInterface().getbug(url)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BugBean>() {
-                    @Override
-                    public void onSubscribe(Disposable d) {
-
-                    }
-
-                    @Override
-                    public void onNext(BugBean bugBean) {
-                        pView.UserRe(bugBean.getResult().get(0).getHot_product_list());
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
-
-                    }
-                });
-    }
 
 
 

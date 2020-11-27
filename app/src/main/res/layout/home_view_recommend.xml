@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+    <LinearLayout
+          style="@style/Liner"
+        android:gravity="center_vertical"
+        android:padding="@dimen/recommendpadding">
+
+        <ImageView
+           style="@style/hotimage"
+            android:src="@mipmap/home_arrow_left_new" />
+
+        <TextView
+            style="@style/hotimage"
+            android:layout_marginLeft="@dimen/recommendmarginLeft"
+            android:text="@string/recommendtext"
+            android:textColor="#000" />
+
+        <TextView
+            android:id="@+id/tv_more_recommend"
+            style="@style/hotimage"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/recommenddrawablePadding"
+            android:drawableRight="@mipmap/home_arrow_right"
+            android:gravity="end"
+            android:text="@string/recommendtext2" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_recommen"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/recommendRecyclerViewlayout_height"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

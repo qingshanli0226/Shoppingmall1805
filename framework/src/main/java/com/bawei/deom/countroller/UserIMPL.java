@@ -19,33 +19,38 @@ import io.reactivex.schedulers.Schedulers;
 
 public class UserIMPL extends UserCountroller.UserShow {
 
+
     @Override
-    public void channelInfosSHow() {
+    public void getskerak() {
         ClassInterface.getUserInterface().home()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(new Observer<BaseBean<HomeBean>>() {
-                     @Override
-                     public void onSubscribe(Disposable d) {
+                .subscribe(new Observer<BaseBean<HomeBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
 
-                     }
+                    }
 
-                     @Override
-                     public void onNext(BaseBean<HomeBean> homeBeans) {
+                    @Override
+                    public void onNext(BaseBean<HomeBean> homeBeanBaseBean) {
+                        HomeBean result = homeBeanBaseBean.getResult();
 
-                          pView.ChannelInfoBean(homeBeans);
-                     }
+                            pView.onskerk(result);
 
-                     @Override
-                     public void onError(Throwable e) {
 
-                     }
+                    }
 
-                     @Override
-                     public void onComplete() {
+                    @Override
+                    public void onError(Throwable e) {
 
-                     }
-                 });
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 
     @Override

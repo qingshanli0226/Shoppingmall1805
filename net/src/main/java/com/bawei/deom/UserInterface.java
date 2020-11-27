@@ -7,6 +7,7 @@ import bean.BaseBean;
 import bean.ClothesBean;
 import bean.HomeBean;
 import bean.LoginBean;
+import bean.RegisterBean;
 import bean.TAGBean;
 import bean.typebean.BugBean;
 import bean.typebean.DigitBean;
@@ -29,11 +30,11 @@ public interface UserInterface {
     //注册 接口
     @POST("register")
     @FormUrlEncoded
-    Observable<BaseBean<String>> register(@FieldMap HashMap<String, String> map);
+    Observable<RegisterBean> register(@FieldMap HashMap<String, String> map);
     //登录  接口
     @POST("login")
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> map);
+    Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
 
 //    //小裙子 接口
 //    @GET("/atguigu/json/SKIRT_URL.json")

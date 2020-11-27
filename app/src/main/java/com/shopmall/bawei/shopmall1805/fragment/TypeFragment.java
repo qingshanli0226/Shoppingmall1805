@@ -32,6 +32,9 @@ public class TypeFragment extends Fragment {
         fenlei = (RadioButton) view.findViewById(R.id.fenlei);
         biaoqian = (RadioButton) view.findViewById(R.id.biaoqian);
         pager = (ViewPager) view.findViewById(R.id.pager);
+        if (arrayList!=null||arrayList.size()!=0){
+            arrayList.clear();
+        }
         arrayList.add(new FenFragment());
         arrayList.add(new BiaoFragment());
         myFragmentPager=new MyFragmentPager(getChildFragmentManager(),arrayList);
