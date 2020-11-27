@@ -1,11 +1,16 @@
 package com.shopmall.bawei.net;
 
 import com.shopmall.bean.HomeData;
+import com.shopmall.bean.Loginbean;
+import com.shopmall.bean.Registbean;
 import com.shopmall.bean.SortData;
 import com.shopmall.bean.TagData;
 
+import java.util.HashMap;
+
 import io.reactivex.Observable;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Url;
 
 public interface Https {
@@ -30,5 +35,25 @@ public interface Https {
      */
     @GET
     Observable<TagData> getTag(@Url String url);
+
+    /**
+     * 登陆
+     * @param url
+     * @param map
+     * @return
+     */
+    @POST
+    Observable<Loginbean> getlogin(@Url String url, HashMap<String,String> map);
+
+
+    /**
+     * 注册
+     * @param url
+     * @param map
+     * @return
+     */
+    @POST
+    Observable<Registbean> getregist(@Url String url, HashMap<String,String> map);
+
 
 }

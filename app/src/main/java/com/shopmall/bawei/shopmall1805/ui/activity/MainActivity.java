@@ -5,15 +5,16 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.Fragment1;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.Fragment2;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.Fragment3;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.Fragment4;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.Fragment5;
+import com.shopmall.bawei.shopmall1805.ui.fragment_main.FindFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment_main.HomeFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment_main.IndividualFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment_main.ShopCarFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment_main.SortFragment;
 import com.shopmall.bean.Cus;
 
 import java.util.ArrayList;
@@ -23,16 +24,18 @@ public class MainActivity extends AppCompatActivity {
     private CommonTabLayout commonMain;
     private ArrayList<CustomTabEntity> custom=new ArrayList<>();
     private ArrayList<Fragment> fragments=new ArrayList<>();
-    private Fragment1 fragment1;
-    private Fragment2 fragment2;
-    private Fragment3 fragment3;
-    private Fragment4 fragment4;
-    private Fragment5 fragment5;
+    private HomeFragment homeFragment;
+    private SortFragment sortFragment;
+    private FindFragment findFragment;
+    private ShopCarFragment shopCarFragment;
+    private IndividualFragment individualFragment;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         initviewid();
 
         initfragment();
@@ -68,34 +71,34 @@ public class MainActivity extends AppCompatActivity {
      * 添加fragment页面
      */
     private void initfragment() {
-         fragment1=new Fragment1();
-         fragment2=new Fragment2();
-        fragment3= new Fragment3();
-        fragment4= new Fragment4();
-        fragment5= new Fragment5();
-        fragments.add(fragment1);
-        fragments.add(fragment2);
-        fragments.add(fragment3);
-        fragments.add(fragment4);
-        fragments.add(fragment5);
+        homeFragment=new HomeFragment();
+        sortFragment=new SortFragment();
+        findFragment= new FindFragment();
+        shopCarFragment= new ShopCarFragment();
+        individualFragment= new IndividualFragment();
+        fragments.add(homeFragment);
+        fragments.add(sortFragment);
+        fragments.add(findFragment);
+        fragments.add(shopCarFragment);
+        fragments.add(individualFragment);
         getSupportFragmentManager().beginTransaction()
-                .add(R.id.viewpager_main,fragment1)
-                .add(R.id.viewpager_main,fragment2)
-                .add(R.id.viewpager_main,fragment3)
-                .add(R.id.viewpager_main,fragment4)
-                .add(R.id.viewpager_main,fragment5)
+                .add(R.id.viewpager_main,homeFragment)
+                .add(R.id.viewpager_main,sortFragment)
+                .add(R.id.viewpager_main,findFragment)
+                .add(R.id.viewpager_main,shopCarFragment)
+                .add(R.id.viewpager_main,individualFragment)
                 .commit();
-       setfragment(fragment1);
+       setfragment(homeFragment);
     }
 
 
     private void setfragment(Fragment fragment){
         getSupportFragmentManager().beginTransaction()
-                .hide(fragment1)
-                .hide(fragment2)
-                .hide(fragment3)
-                .hide(fragment4)
-                .hide(fragment5)
+                .hide(homeFragment)
+                .hide(sortFragment)
+                .hide(findFragment)
+                .hide(shopCarFragment)
+                .hide(individualFragment)
                 .show(fragment)
                 .commit();
 

@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Shopmall1805</string>
+    <string name="shop_details">商品详情</string>
+
 </resources>

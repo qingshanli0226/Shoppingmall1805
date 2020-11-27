@@ -94,8 +94,10 @@ public class Constants {
     public static final String FOOD_STORE = BASE_URL_JSON + "FOOD_STORE.json";
     //首饰厂
     public static final String SHOUSHI_STORE = BASE_URL_JSON + "SHOUSHI_STORE.json";
-
-
+     //登陆
+    public static final String LOGIN_URL="login";
+    //注册
+    public static final String REGIST_URL="register";
 
     public static Boolean isBackHome = false;
 

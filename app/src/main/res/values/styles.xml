@@ -8,4 +8,93 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="sort_item_styles">
+        <item name="android:textSize">@dimen/sp_15</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_marginTop">@dimen/dp_10</item>
+        <item name="android:width">@dimen/dp_40</item>
+        <item name="height">@dimen/dp_20</item>
+    </style>
+
+
+    <style name="view_width_height_match">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+
+    <style name="view_width_height_warp">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+
+    <style name="view_match_wrap">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <!-- 登陆back-->
+    <style name="back_style" parent="view_width_height_warp">
+        <item name="android:background">@mipmap/top_bar_left_back</item>
+    </style>
+
+
+    <style name="nmae_style" parent="view_width_height_warp" >
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:text">@string/login</item>
+        <item name="android:textSize">@dimen/dp_20</item>
+        <item name="android:textColor">@color/color_black_5</item>
+    </style>
+
+
+
+    <style name="logo_style" parent="view_width_height_warp" >
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:layout_marginBottom">@dimen/dp_50</item>
+        <item name="android:layout_marginTop">@dimen/dp_50</item>
+
+    </style>
+
+    <style name="login_user_layout" parent="view_match_wrap">
+        <item name="android:layout_marginLeft">@dimen/dp_10</item>
+        <item name="android:layout_marginRight">@dimen/dp_10</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:padding">@dimen/dp_10</item>
+
+    </style>
+
+
+    <style name="title_style" parent="view_width_height_warp" >
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:text">@string/regist</item>
+        <item name="android:textSize">@dimen/dp_20</item>
+        <item name="android:textColor">@color/color_black_5</item>
+    </style>
+
+
+    <style name="button_style">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_40</item>
+        <item name="android:layout_margin">@dimen/dp_10</item>
+        <item name="android:background">@color/color_red</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:text">@string/regist</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+
+
+
+    <style name="button">
+
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dp_40</item>
+        <item name="android:layout_margin">@dimen/dp_10</item>
+        <item name="android:background">@color/color_red</item>
+        <item name="android:padding">@dimen/dp_10</item>
+        <item name="android:text">@string/login</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>
+
+
 </resources>

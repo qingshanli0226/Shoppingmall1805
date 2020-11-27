@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="230dp"
+    android:orientation="vertical">
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_15"
+        android:layout_marginBottom="@dimen/dp_15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/home_arrow_left_flash" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="今日闪购 距·结束"
+            android:textColor="@color/color_black" />
+
+        <TextView
+            android:id="@+id/tv_time_seckill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:background="@color/color_red"
+            android:padding="2dp"
+            android:text="00:00:00"
+            android:textColor="#fff" />
+
+        <TextView
+            android:id="@+id/tv_more_seckill"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawablePadding="5dp"
+            android:drawableRight="@mipmap/home_arrow_right"
+            android:gravity="end"
+            android:text="查看更多" />
+    </LinearLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_seck"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_200"
+        ></android.support.v7.widget.RecyclerView>
+</LinearLayout>

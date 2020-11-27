@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_70"
+        android:background="#DD001B"
+        android:gravity="center"
+        >
+        <LinearLayout
+             android:layout_margin="@dimen/dp_20"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_40"
+            android:background="#ffffff"
+            android:gravity="center"
+            >
+
+            <EditText
+                android:paddingLeft="@dimen/dp_5"
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:layout_height="50dp"
+                 android:drawableLeft="@mipmap/home_search_icon"
+                 android:singleLine="true"
+                android:background="#ffffff"
+                android:hint="输入搜索信息"
+                android:textSize="@dimen/sp_20"
+                ></EditText>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:drawableTop="@mipmap/new_message_icon"
+                android:textColor="#ffffff"
+                android:background="#DD001B"
+                android:textSize="@dimen/sp_15"
+                android:gravity="center"
+                android:text="消息"
+                ></TextView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+       <android.support.v7.widget.RecyclerView
+           android:id="@+id/recycleHome"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+
+           ></android.support.v7.widget.RecyclerView>
+
+</LinearLayout>

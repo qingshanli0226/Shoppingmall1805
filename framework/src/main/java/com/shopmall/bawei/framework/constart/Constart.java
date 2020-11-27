@@ -1,6 +1,8 @@
 package com.shopmall.bawei.framework.constart;
 
 import com.shopmall.bawei.framework.callback.Home;
+import com.shopmall.bawei.framework.callback.ILogin;
+import com.shopmall.bawei.framework.callback.IRegist;
 import com.shopmall.bawei.framework.callback.Sort;
 import com.shopmall.bawei.framework.callback.Tag;
 import com.shopmall.bawei.framework.mvp.IModel;
@@ -8,15 +10,28 @@ import com.shopmall.bawei.framework.mvp.Iview;
 import com.shopmall.bawei.framework.mvp.Presenter;
 import com.shopmall.bawei.framework.mvp.Repository;
 
+import java.util.HashMap;
+
 /**
  * 服务，管理层
  */
 public interface Constart {
 
     /**
-     * V 层
+     * Login V 层
      */
-    interface LoginConstartView extends Iview { }
+    interface LoginConstartView extends Iview {
+        void Success(Object...objects);
+        void Error(String s);
+    }
+
+    /**
+     * regist V 层
+     */
+    interface RegistConstartView extends Iview {
+        void Success(Object...objects);
+        void Error(String s);
+    }
     /**
      * home主页 V 层
      */
@@ -46,9 +61,20 @@ public interface Constart {
 
 
     /**
-     * M 层
+     * Login M 层
      */
-    interface LoginConstartModel extends IModel{ }
+    interface LoginConstartModel extends IModel{
+            void login(String url, HashMap<String,String> map, ILogin iLogin);
+    }
+
+
+
+    /**
+     * regist M 层
+     */
+    interface RegistConstartModel extends IModel{
+          void regist(String url, HashMap<String,String> map, IRegist iRegist);
+    }
 
     /**
      * home主页M 层
@@ -74,10 +100,18 @@ public interface Constart {
 
 
     /**
-     * 仓库层
+     * Login 仓库层
      */
     abstract class LoginConstartRepository extends Repository<LoginConstartModel>{
+        public abstract void login(String url, HashMap<String,String> map, ILogin iLogin);
+    }
 
+
+    /**
+     *regist 仓库层
+     */
+    abstract class RegistConstartRepository extends Repository<RegistConstartModel>{
+       public abstract void regist(String url, HashMap<String,String> map, IRegist iRegist);
     }
 
     /**
@@ -107,7 +141,7 @@ public interface Constart {
 
 
     /**
-     * P 层
+     * Login P 层
      */
     abstract class LoginConstartPresenter extends Presenter<LoginConstartView,LoginConstartRepository>{
 
@@ -115,7 +149,21 @@ public interface Constart {
             super(loginConstartView);
         }
 
+       public abstract void login(String url, HashMap<String,String> map);
+    }
 
+
+
+    /**
+     * regist P 层
+     */
+    abstract class RegistConstartPresenter extends Presenter<RegistConstartView,RegistConstartRepository>{
+
+
+        public RegistConstartPresenter(RegistConstartView registConstartView) {
+            super(registConstartView);
+        }
+        public abstract void regist(String url, HashMap<String,String> map);
     }
 
     /**

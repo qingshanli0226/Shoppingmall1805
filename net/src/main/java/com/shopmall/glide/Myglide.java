@@ -20,6 +20,15 @@ public class Myglide {
     }
 
 
+
+    public void tupian(Context context,ImageView imageView, Object object){
+        Glide.with(context)
+                .load(object)
+                .placeholder(R.mipmap.new_img_loading_2)
+                .into(imageView);
+    }
+
+
     public void circenglide(Context context,ImageView imageView, Object object){
         Glide.with(context)
                 .load(object)

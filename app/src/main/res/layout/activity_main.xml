@@ -16,15 +16,15 @@
         ></FrameLayout>
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="2dp"
+        android:layout_height="@dimen/dp_2"
         android:background="#F0F0F0"
         ></TextView>
 
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/common_main"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        app:tl_textUnselectColor="#999999"
+        android:layout_height="@dimen/dp_60"
+        app:tl_textUnselectColor="@color/color_gray"
         app:tl_textSelectColor="#DD001B"
         ></com.flyco.tablayout.CommonTabLayout>
 
