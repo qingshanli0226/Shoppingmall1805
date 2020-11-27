@@ -10,9 +10,8 @@
     android:layout_height="match_parent"
   >
   <ListView
-      android:background="#C5C1C1"
+      android:background="@color/colorGRAY"
       android:layout_width="0dp"
-      android:listSelector="#fff"
       android:layout_weight="1"
 
       android:layout_height="match_parent"

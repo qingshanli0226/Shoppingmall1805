@@ -73,13 +73,14 @@ public class ClassificationSmallFragment extends BaseFragment<ClassificationPres
         list.add("数码周边");
         list.add("游戏专区");
         uri = UrlHelp.SKIRT_URL;
-        MyAdapter myAdapter = new MyAdapter();
+        final MyAdapter myAdapter = new MyAdapter();
         clothesLv.setAdapter(myAdapter);
         uri = UrlHelp.SKIRT_URL;
         clothesLv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                TextView te = view.findViewById(R.id.class_te);
+            myAdapter.changeSelect(position);
+
 
                 switch (position) {
                     case 0:
@@ -131,7 +132,7 @@ public class ClassificationSmallFragment extends BaseFragment<ClassificationPres
 
 
                 }
-                te.setTextColor(Color.RED);
+
                 ipresenter.inithomedata();
             }
         });
@@ -181,7 +182,7 @@ public class ClassificationSmallFragment extends BaseFragment<ClassificationPres
     }
 
     class MyAdapter extends BaseAdapter {
-
+        private int isselect=0;
         @Override
         public int getCount() {
             return list.size();
@@ -209,10 +210,24 @@ public class ClassificationSmallFragment extends BaseFragment<ClassificationPres
                 vh = (VH) convertView.getTag();
 
             }
+            if(position==isselect){
+             convertView.setBackgroundColor(Color.WHITE);
+             vh.class_te.setTextColor(Color.RED);
+            }else {
+                convertView.setBackgroundColor(Color.LTGRAY);
+                vh.class_te.setTextColor(Color.BLACK);
+            }
             vh.class_te.setText(list.get(position));
 
             return convertView;
         }
+        public void changeSelect(int position){
+            if (position !=isselect){
+                isselect = position;
+                notifyDataSetChanged();
+            }
+        }
+
     }
 
     class VH {
