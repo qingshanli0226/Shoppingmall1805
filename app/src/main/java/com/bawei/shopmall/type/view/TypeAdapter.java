@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.framework.BaseRvAdapter;
-import com.bawei.net.TypeBean;
+import com.bawei.net.mode.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
 
 import java.util.List;

@@ -3,6 +3,10 @@ package com.bawei.net;
 
 import com.bawei.common.view.NetConfig;
 import com.bawei.net.mode.HomeBean;
+import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.RegisterBean;
+import com.bawei.net.mode.TagBean;
+import com.bawei.net.mode.TypeBean;
 
 import java.util.HashMap;
 

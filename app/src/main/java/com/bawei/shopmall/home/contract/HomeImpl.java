@@ -16,13 +16,13 @@ public class HomeImpl extends HomeContract.HomePresenter {
     @Override
     public void getHomeData() {
         RetrofitCreate.getApi().getHomeData()
-                .delay(1, TimeUnit.SECONDS)
+                .delay(1, TimeUnit.MINUTES)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iView.showLoading();
+                        iView.showLoaDing();
                     }
                 })
                 .doFinally(new Action() {

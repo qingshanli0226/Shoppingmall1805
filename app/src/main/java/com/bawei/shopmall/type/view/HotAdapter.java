@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseRvAdapter;
-import com.bawei.net.TypeBean;
+import com.bawei.net.mode.TypeBean;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
 

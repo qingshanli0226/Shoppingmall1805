@@ -2,7 +2,7 @@ package com.bawei.shopmall.type.contract;
 
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
-import com.bawei.net.TagBean;
+import com.bawei.net.mode.TagBean;
 
 public class TagContract {
     public interface ITagView extends IView {

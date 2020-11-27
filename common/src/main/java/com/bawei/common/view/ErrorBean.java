@@ -1,8 +1,9 @@
 package com.bawei.common.view;
 
-public class ErrorBen {
+public class ErrorBean {
     public String errorcode;
     private String errorMessage;
+
     public String getErrorCode() {
         return errorcode;
     }

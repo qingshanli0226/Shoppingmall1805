@@ -1,13 +1,13 @@
 package com.bawei.shopmall.home.view;
 
 import android.view.View;
-import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.net.mode.HomeBean;
@@ -20,7 +20,6 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     private MyToolBar toolbar;
     private RelativeLayout normalContent;
     private RecyclerView homeRv;
-    private ProgressBar loadingBar;
     private TextView errorTv;
 
     private HomeAdapter homeAdapter;
@@ -28,12 +27,12 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     protected void initView() {
+        toolbar = findViewById(R.id.toolbar);
         normalContent = (RelativeLayout) findViewById(R.id.normalContent);
         homeRv = (RecyclerView) findViewById(R.id.homeRv);
         homeRv.setLayoutManager(new LinearLayoutManager(getContext()));
         homeAdapter = new HomeAdapter();
         homeRv.setAdapter(homeAdapter);
-        loadingBar = (ProgressBar) findViewById(R.id.loadingBar);
         errorTv = (TextView) findViewById(R.id.errorTv);
         errorTv.setOnClickListener(this);
     }
@@ -89,16 +88,18 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     }
 
     @Override
-    public void showLoading() {
-        errorTv.setVisibility(View.GONE);
-        normalContent.setVisibility(View.VISIBLE);
-        loadingBar.setVisibility(View.VISIBLE);
-        errorTv.setVisibility(View.GONE);
+    public void showLoaDing() {
+        showloading();
     }
 
     @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
     @Override
@@ -108,7 +109,5 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onRightClick() {
-//        Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
-//        getActivity().startActivity(intent);
     }
 }

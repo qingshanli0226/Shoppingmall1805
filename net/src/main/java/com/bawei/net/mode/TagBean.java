@@ -1,4 +1,4 @@
-package com.bawei.net;
+package com.bawei.net.mode;
 
 import java.util.List;
 

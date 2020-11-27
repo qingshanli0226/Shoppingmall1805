@@ -27,12 +27,12 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     private RadioGroup rg;
     private RadioButton rbl;
     private RadioButton rbr;
-
-
+    //String type;
+    //String label;
     private VpAdapter adapter;
 
 
-    private String[] titles = {getActivity().getString(R.string.type), getActivity().getString(R.string.label)};
+    //private String[] titles = {type, label};
 
     private List<Fragment> list = new ArrayList<>();
 
@@ -47,6 +47,8 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
         rbl = (RadioButton) findViewById(R.id.rbl);
         rbr = (RadioButton) findViewById(R.id.rbr);
 
+        //type = getActivity().getString(R.string.type);
+        //label = getActivity().getString(R.string.label);
 
         list.add(new ListFragment<>());
         list.add(new TypeFragment<>());
@@ -118,12 +120,17 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     }
 
     @Override
-    public void showLoading() {
+    public void showLoaDing() {
 
     }
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 

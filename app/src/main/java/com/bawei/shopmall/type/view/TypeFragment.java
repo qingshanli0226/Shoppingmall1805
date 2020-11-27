@@ -1,16 +1,25 @@
 package com.bawei.shopmall.type.view;
 
+
+import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
-import com.bawei.net.TagBean;
+import com.bawei.net.mode.TagBean;
 import com.bawei.shopmall.type.contract.TagContract;
 import com.bawei.shopmall.type.contract.TagImpl;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> extends BaseFragment implements TagContract.ITagView {
+public class TypeFragment<P extends TagImpl, V extends TagContract.ITagView> extends BaseFragment<P, V> implements TagContract.ITagView {
+
+    private MyToolBar toolBar;
 
     @Override
     protected int layoutId() {
         return R.layout.fragment_type;
+    }
+
+    @Override
+    protected void initView() {
+        toolBar = findViewById(R.id.toolbar);
     }
 
     @Override
@@ -44,12 +53,17 @@ public class TypeFragment<P extends TagImpl,V extends TagContract.ITagView> exte
     }
 
     @Override
-    public void showLoading() {
+    public void showLoaDing() {
 
     }
 
     @Override
     public void hideLoading() {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }
