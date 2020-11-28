@@ -18,6 +18,7 @@ import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.view.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
+import com.shopmall.bawei.shopmall1805.user.view.UserFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,13 +68,13 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
                         position = 1;
                         break;
                     case R.id.rb_community:
-//                        position = 2;
+                        position = 2;
                         break;
                     case R.id.rb_cart:
-//                        position = 3;
+                        position = 3;
                         break;
                     case R.id.rb_user:
-//                        position = 4;
+                        position = 4;
                         break;
 
                 }
@@ -107,12 +108,21 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
 
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
+        fragments.add(new HomeFragment());
+        fragments.add(new HomeFragment());
+        fragments.add(new UserFragment());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(0));
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(2));
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(3));
+        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(4));
         fragmentTransaction.hide(fragments.get(1));
+        fragmentTransaction.hide(fragments.get(2));
+        fragmentTransaction.hide(fragments.get(3));
+        fragmentTransaction.hide(fragments.get(4));
         fragmentTransaction.commit();
 
     }

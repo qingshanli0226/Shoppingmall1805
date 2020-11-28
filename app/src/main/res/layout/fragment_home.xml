@@ -12,7 +12,7 @@
         android:id="@+id/toolbar"
         app:left_show="false"
         app:title_show="false"
-        app:right_src="@mipmap/menu"
+        app:right_src="@drawable/new_message_icon"
         app:right_text="@string/homeToolbarRightText"
         app:right_text_color="@android:color/white"
         android:background="@android:color/holo_red_light"/>
