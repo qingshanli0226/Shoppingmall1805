@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#fff"
+    tools:context=".ui.activity.GoodinfoActivity">
+    <LinearLayout
+        style="@style/Base_Layout_Match_Wrap"
+        android:padding="@dimen/dp_10">
+
+        <ImageButton
+            android:id="@+id/ib_good_info_back"
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:background="@drawable/top_bar_left_back" />
+
+        <TextView
+            android:id="@+id/tv_Good_xiang"
+            style="@style/Layout_GoodInfo_TooBar_Info"
+            />
+
+        <ImageButton
+            android:id="@+id/ib_good_info_more"
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:background="@drawable/icon_more" />
+
+    </LinearLayout>
+    <ScrollView
+        style="@style/Layout_GoodInfo_Screen"
+        android:scrollbars="none">
+        <LinearLayout
+            style="@style/Base_Layout_Match_Match"
+            android:background="@color/colorWhite"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/iv_good_info_image"
+                style="@style/Layout_GoodInfo_Image"/>
+            <TextView
+                android:id="@+id/tv_good_info_name"
+                style="@style/Layout_GoodInfo_Tv_Name"/>
+            <TextView
+                android:id="@+id/tv_good_info_desc"
+                style="@style/Layout_GoodInfo_Tv_Desc"
+              />
+
+            <TextView
+                android:id="@+id/tv_good_info_price"
+                style="@style/Layout_GoodInfo_Tv_Price" />
+
+            <TextView
+                style="@style/Layout_GoodInfo_View" />
+
+            <LinearLayout
+                style="@style/Layout_GoodInfo_Linear_Layout">
+
+                <TextView
+                    style="@style/Base_Layout_Wrap_Wrap"
+                    android:text="@string/Good_Info_You"
+                    android:textColor="@color/color_Black" />
+
+                <TextView
+                    android:id="@+id/tv_good_info_store"
+                    style="@style/Base_Layout_Wrap_Wrap"
+                    android:text="@string/Good_Info_Tao"
+                    android:textColor="@color/GoodInfo_Tv_Price_Color" />
+
+                <TextView
+                    style="@style/Base_Layout_Wrap_Wrap"
+                    android:text="@string/Good_Info_Seed"
+                    android:textColor="@color/color_Black" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/Layout_GoodInfo_View_TWO"/>
+
+            <TextView
+                android:id="@+id/tv_good_info_style"
+                style="@style/Layout_GoodInfo_Tv_Style" />
+
+            <TextView
+                style="@style/Layout_GoodInfo_View_TWO"/>
+
+            <TextView
+                style="@style/Layout_GoodInfo_Ti" />
+
+            <TextView
+                style="@style/Layout_GoodInfo_View_TWO"/>
+        </LinearLayout>
+
+    </ScrollView>
+    <LinearLayout
+        android:id="@+id/ll_goods_root"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:background="@color/colorWhite">
+
+        <TextView
+            android:id="@+id/tv_good_info_callcenter"
+            style="@style/Layout_GoodInfo_Root"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_callserver_unpressed"
+            android:text="@string/Good_Info_Call_Server"
+            android:textColor="@color/GoodInfo_Tv_Name_Color" />
+
+        <TextView
+            android:id="@+id/tv_good_info_collection"
+            style="@style/Layout_GoodInfo_Root"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:textColor="@color/GoodInfo_Tv_Name_Color"
+            android:drawableTop="@drawable/good_uncollected"
+            android:text="@string/Good_Info_Cun"
+            />
+        <TextView
+            android:id="@+id/tv_good_info_cart"
+            style="@style/Layout_GoodInfo_Root"
+            android:layout_width="@dimen/dp_0"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/icon_good_detail_cart"
+            android:text="@string/Good_Info_shopping_Car"
+            android:textColor="@color/GoodInfo_Tv_Name_Color" />
+        <Button
+            style="@style/Layout_GoodInfo_Add_Car"
+            android:id="@+id/btn_good_info_addcart"
+            android:layout_width="@dimen/dp_120"
+            android:layout_height="@dimen/dp_51"
+            />
+    </LinearLayout>
+
+</LinearLayout>

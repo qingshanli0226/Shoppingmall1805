@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</android.support.constraint.ConstraintLayout>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="#aaa"
+    android:layout_width="match_parent"
+    android:layout_height="150dp">
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_channel"
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_150"></android.support.v7.widget.RecyclerView>
+</LinearLayout>

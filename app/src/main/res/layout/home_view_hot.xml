@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#eeee"
+    android:orientation="vertical"
+    android:padding="10dp">
+
+    <LinearLayout
+        style="@style/Base_Layout_Match_Wrap"
+        android:gravity="center_vertical">
+
+        <ImageView
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:src="@drawable/home_arrow_left_hot" />
+
+        <TextView
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:text="@string/Bang_bang"
+            android:textColor="@color/color_Black" />
+
+        <TextView
+            android:id="@+id/tv_more_hot"
+            style="@style/Base_Layout_Wrap_Wrap"
+            android:layout_weight="1"
+            android:drawablePadding="@dimen/dp_0"
+            android:drawableRight="@drawable/home_arrow_right"
+            android:gravity="end"
+            android:text="@string/Many" />
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/colorWhite"
+        android:id="@+id/gv_hot"
+        style="@style/Base_Layout_Match_Wrap"
+        android:layout_marginTop="@dimen/dp_10"
+        android:horizontalSpacing="@dimen/dp_10"
+        android:numColumns="2"
+        android:verticalSpacing="@dimen/dp_10"></android.support.v7.widget.RecyclerView>
+</LinearLayout>
