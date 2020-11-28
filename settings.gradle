@@ -1,1 +1,1 @@
-include ':app', ':user', ':shopcar', ':order', ':pay', ':point', ':framework', ':net', ':common'
+include ':app', ':user', ':shopercar', ':point', ':pay', ':order', ':net', ':framwork', ':common', ':app'
