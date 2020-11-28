@@ -38,6 +38,7 @@ public class WelcomActivity extends AppCompatActivity implements ViewPropertyAni
     @Override
     public void onAnimationEnd(View view) {
         startActivity(new Intent(WelcomActivity.this, MainActivity.class));
+        finish();
     }
 
     @Override

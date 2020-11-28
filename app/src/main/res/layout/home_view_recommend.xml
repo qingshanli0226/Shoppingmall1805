@@ -4,27 +4,23 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/view_match_wrap"
         android:gravity="center_vertical"
         android:padding="@dimen/dp_10">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+           style="@style/view_width_height_warp"
             android:src="@mipmap/home_arrow_left_new" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/view_width_height_warp"
             android:layout_marginLeft="@dimen/dp_10"
             android:text="新品推荐"
             android:textColor="@color/color_black" />
 
         <TextView
             android:id="@+id/tv_more_recommend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/view_width_height_warp"
             android:layout_weight="1"
             android:drawablePadding="5dp"
             android:drawableRight="@mipmap/home_arrow_right"

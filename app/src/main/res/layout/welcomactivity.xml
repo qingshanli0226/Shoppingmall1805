@@ -5,8 +5,7 @@
 
     <ImageView
         android:id="@+id/welcom_image"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+       style="@style/view_width_height_match"
 
         android:src="@mipmap/huanyingye"
         android:scaleType="centerCrop"

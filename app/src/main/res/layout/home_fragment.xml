@@ -26,7 +26,7 @@
                  android:drawableLeft="@mipmap/home_search_icon"
                  android:singleLine="true"
                 android:background="#ffffff"
-                android:hint="输入搜索信息"
+                android:hint="@string/edit_hit"
                 android:textSize="@dimen/sp_20"
                 ></EditText>
 
@@ -39,7 +39,7 @@
                 android:background="#DD001B"
                 android:textSize="@dimen/sp_15"
                 android:gravity="center"
-                android:text="消息"
+                android:text="@string/title_msg"
                 ></TextView>
 
         </LinearLayout>
@@ -49,8 +49,7 @@
 
        <android.support.v7.widget.RecyclerView
            android:id="@+id/recycleHome"
-           android:layout_width="match_parent"
-           android:layout_height="match_parent"
+          style="@style/view_width_height_match"
 
            ></android.support.v7.widget.RecyclerView>
 

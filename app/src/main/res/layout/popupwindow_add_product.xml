@@ -4,8 +4,8 @@
     android:layout_height="match_parent"
     android:background="@android:color/white"
     android:orientation="vertical"
-    android:paddingLeft="5dp"
-    android:paddingRight="5dp">
+    android:paddingLeft="@dimen/dp_5"
+    android:paddingRight="@dimen/dp_5">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -14,46 +14,46 @@
 
         <ImageView
             android:id="@+id/shop_image"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
+            android:layout_width="@dimen/dp_60"
+            android:layout_height="@dimen/dp_60"
             android:src="@mipmap/tag_bg" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="5dp"
+            android:layout_marginLeft="@dimen/dp_5"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/add_shop_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="zhonghua中华风-山海经 凤凰图 jsk 类别：山海经 凤凰图 JSK"
-                android:textSize="15sp" />
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="@string/detils_nmae"
+                android:textSize="@dimen/sp_15" />
 
             <TextView
                 android:id="@+id/add_shop_money"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
-                android:text="￥300"
+                android:layout_marginTop="@dimen/dp_2"
+                android:text="@string/detils_money"
                 android:textColor="@android:color/holo_red_light"
-                android:textSize="15sp" />
+                android:textSize="@dimen/sp_15" />
         </LinearLayout>
     </LinearLayout>
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
-        android:text="款式"
-        android:textSize="15sp" />
+        android:layout_marginTop="@dimen/dp_5"
+        android:text="@string/shop_kuan"
+        android:textSize="@dimen/sp_15" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/dp_5">
 
         <TextView
             android:layout_width="wrap_content"
@@ -63,13 +63,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
             android:text="L" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="@dimen/dp_10"
             android:text="XL"
             android:textColor="@android:color/holo_red_light" />
     </LinearLayout>
@@ -77,13 +77,13 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
+        android:layout_marginTop="@dimen/dp_5">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:text="数量" />
+            android:text="@string/shop_num" />
 
        <TextView
            android:id="@+id/shop_jian"
@@ -129,7 +129,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
-            android:text="取消" />
+            android:text="@string/button_no" />
 
         <Button
             android:id="@+id/add_shop_yes"
@@ -137,7 +137,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@android:color/holo_red_light"
-            android:text="确定"
+            android:text="@string/button_yes"
             android:textColor="@android:color/white" />
     </LinearLayout>
 </LinearLayout>

@@ -5,7 +5,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.FrameLayout;
 
-import com.alibaba.android.arouter.launcher.ARouter;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -18,7 +18,7 @@ import com.shopmall.bawei.shopmall1805.ui.fragment_main.SortFragment;
 import com.shopmall.bean.Cus;
 
 import java.util.ArrayList;
-
+@Route(path = "/app/MainActivity")
 public class MainActivity extends AppCompatActivity {
     private FrameLayout viewpagerMain;
     private CommonTabLayout commonMain;

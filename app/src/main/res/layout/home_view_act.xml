@@ -4,8 +4,7 @@
     android:layout_height="140dp">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/actRv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+       style="@style/view_match_wrap">
     </android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

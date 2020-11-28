@@ -1,16 +1,20 @@
 package com.shopmall.bawei.fragment;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.bawei.user.R;
+import com.shopmall.bean.Loginbean;
 
 import java.util.HashMap;
 
@@ -22,7 +26,7 @@ public class UserLoginFragment extends BaseFragment<LoginPresenter> implements C
 
     @Override
     protected void createViewid(View inflate) {
-
+         ARouter.getInstance().inject(this);
 
         etLoginPhone = inflate.findViewById(R.id.et_login_phone);
         etLoginPwd = inflate.findViewById(R.id.et_login_pwd);
@@ -73,11 +77,21 @@ public class UserLoginFragment extends BaseFragment<LoginPresenter> implements C
 
     @Override
     public void Success(Object... objects) {
+        Loginbean loginbean=(Loginbean) objects[0];
+        Toast.makeText(getContext(), ""+loginbean.getMessage(), Toast.LENGTH_SHORT).show();
+        if (loginbean.getCode().equals("200")){
+            Log.e("logintoken",""+loginbean.getResult().getToken());
+            ShopUserManager.getInstance().init(getContext());
+            ShopUserManager.getInstance().setLogin(loginbean);
+            ARouter.getInstance().build("/app/MainActivity").navigation();
+        }
+
+
 
     }
 
     @Override
     public void Error(String s) {
-
+        Toast.makeText(getContext(), "Error:"+s, Toast.LENGTH_SHORT).show();
     }
 }

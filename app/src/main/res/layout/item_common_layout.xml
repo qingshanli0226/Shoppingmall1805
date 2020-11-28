@@ -19,13 +19,12 @@
         android:layout_marginTop="@dimen/dp_10"
         android:ellipsize="end"
         android:lines="2"
-        android:text="全款预售【喵鹿酱】樱桃蜜语 毛呢绣花 小高腰半裙"
+        android:text="@string/detils_nmae"
         android:textColor="@color/color_black" />
 
     <TextView
         android:id="@+id/tv_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+       style="@style/view_width_height_warp"
         android:text="￥88.00"
         android:textColor="#ff4242" />
 </LinearLayout>

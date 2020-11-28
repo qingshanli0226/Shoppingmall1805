@@ -19,7 +19,9 @@ public class LoginPresenter extends Constart.LoginConstartPresenter {
           mRepository.login(url, map, new ILogin() {
               @Override
               public void Ok(Object... objects) {
+
                     if (objects!=null){
+
                         mView.get().Success(objects);
                     }
               }

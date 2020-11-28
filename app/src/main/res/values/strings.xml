@@ -1,5 +1,13 @@
 <resources>
     <string name="app_name">Shopmall1805</string>
     <string name="shop_details">商品详情</string>
+    <string name="shop_kuan">款式</string>
+    <string name="shop_num">数量</string>
+    <string name="button_no">取消</string>
+    <string name="button_yes">确认</string>
+    <string name="edit_hit">输入搜索信息</string>
+    <string name="title_msg">消息</string>
+    <string name="class_hot_tui">热卖推荐</string>
+    <string name="class_fen">常用分类</string>
 
 </resources>

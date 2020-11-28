@@ -42,27 +42,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Constar
 
     @Override
     protected void createEnvent() {
-//          bannerF1.setOnBannerListener(new OnBannerListener() {
-//              @Override
-//              public void OnBannerClick(int position) {
-//                  Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
-//              }
-//          });
+
     }
 
     @Override
     protected void createData() {
-//            image.add(R.mipmap.main_home);
-//            image.add(R.mipmap.comm_share);
-//            image.add(R.mipmap.huanyingye);
-//            image.add(R.mipmap.main_home);
 
 
-            mPresenter.homec(Constants.HOME_URL2);
-//            titleF1.setLayoutManager(new StaggeredGridLayoutManager(5,StaggeredGridLayoutManager.VERTICAL));
-//            homeRecycleGou.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-//            homeRecycleNew.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
-//            homeRecycleShopping.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+            mPresenter.homec(Constants.HOME_URL2,logingPage);
+
         recycleHome.setLayoutManager(new LinearLayoutManager(getContext()));
 
 
@@ -77,11 +65,11 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Constar
     protected void createPresenter() {
            mPresenter=new HomePresenter(this);
 
+
     }
 
     @Override
     public void Success(Object... objects) {
-
 
            HomeData homeData = (HomeData) objects[0];
            primereAdpter=new PrimereAdpter();

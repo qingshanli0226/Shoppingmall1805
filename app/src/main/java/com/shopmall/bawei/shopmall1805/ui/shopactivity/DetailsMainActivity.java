@@ -12,6 +12,7 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.DetailsData;
 import com.shopmall.glide.Myglide;
@@ -19,7 +20,7 @@ import com.shopmall.glide.Myglide;
 public class DetailsMainActivity extends AppCompatActivity {
     private ImageView backDetails;
 
-
+    private TextView shopCar;
     private ImageView imageDetails;
     private TextView nameDetails;
     private TextView moneyDetails;
@@ -136,16 +137,30 @@ public class DetailsMainActivity extends AppCompatActivity {
             }
         });
 
+        /***
+         * 点击跳转购物车模块
+         */
+        shopCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/shopcar/ShopCarMainActivity").navigation();
+            }
+        });
+
     }
     /**
      * 获取popuwindow内的控件id
      * @param inflate
      */
     private void getpopuViewid(View inflate) {
+        ARouter.getInstance().inject(this);
         shop_image = inflate.findViewById(R.id.shop_image);
         shop_num = inflate.findViewById(R.id.shop_num);
         add_shop_name = inflate.findViewById(R.id.add_shop_name);
 
+
+
+        shopCar = findViewById(R.id.shop_car);
 
 
         addShopNo = inflate.findViewById(R.id.add_shop_no);

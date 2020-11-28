@@ -8,12 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvp.Presenter;
 
 public abstract class BaseFragment<P extends Presenter> extends Fragment {
 
          protected P mPresenter;
-
+         protected LogingPage logingPage;
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,9 +25,16 @@ public abstract class BaseFragment<P extends Presenter> extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(fragmentid(), null);
-         createViewid(inflate);
-        return inflate;
+       // View inflate = inflater.inflate(fragmentid(), null);
+
+         logingPage=new LogingPage(getContext()) {
+             @Override
+             protected int getsuccessId() {
+                 return fragmentid();
+             }
+         };
+        return logingPage;
+
     }
 
 
@@ -35,6 +43,7 @@ public abstract class BaseFragment<P extends Presenter> extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        createViewid(logingPage);
         createData();
         createEnvent();
     }

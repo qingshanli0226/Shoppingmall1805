@@ -5,6 +5,7 @@ import com.shopmall.bawei.framework.callback.ILogin;
 import com.shopmall.bawei.framework.callback.IRegist;
 import com.shopmall.bawei.framework.callback.Sort;
 import com.shopmall.bawei.framework.callback.Tag;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvp.IModel;
 import com.shopmall.bawei.framework.mvp.Iview;
 import com.shopmall.bawei.framework.mvp.Presenter;
@@ -80,7 +81,7 @@ public interface Constart {
      * home主页M 层
      */
     interface HomeConstartModel extends IModel{
-           void homec(String url, Home home);
+           void homec(String url, LogingPage logingPage, Home home);
     }
 
     /**
@@ -118,7 +119,7 @@ public interface Constart {
      * home主页仓库 层
      */
     abstract class HomeConstartRepository extends Repository<HomeConstartModel>{
-        public abstract void homec(String url, Home home);
+        public abstract void homec(String url,LogingPage logingPage, Home home);
     }
 
 
@@ -176,7 +177,7 @@ public interface Constart {
             super(homeConstartView);
         }
 
-        public abstract void homec(String url);
+        public abstract void homec(String url,LogingPage logingPage);
     }
 
 

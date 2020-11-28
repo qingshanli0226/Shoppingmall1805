@@ -62,15 +62,19 @@ public class UserRegistFragment extends BaseFragment<RegistPresenter> implements
     @Override
     protected void createPresenter() {
         mPresenter=new RegistPresenter(this);
+
     }
 
     @Override
     public void Success(Object... objects) {
+        Toast.makeText(getContext(), ""+objects[0], Toast.LENGTH_SHORT).show();
+
+
 
     }
 
     @Override
     public void Error(String s) {
-        Toast.makeText(getContext(), ""+s, Toast.LENGTH_SHORT).show();
+        Toast.makeText(getContext(), "Error:"+s, Toast.LENGTH_SHORT).show();
     }
 }

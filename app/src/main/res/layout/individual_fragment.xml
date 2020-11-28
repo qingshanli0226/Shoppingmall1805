@@ -10,8 +10,7 @@
         >
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+           style="@style/view_width_height_match"
             android:orientation="vertical"
             >
             <RelativeLayout
@@ -20,8 +19,7 @@
 
                 >
                 <ImageView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                   style="@style/view_width_height_match"
                     android:src="@mipmap/new_user_icon_background"
                     android:scaleType="fitXY"
                     ></ImageView>
@@ -39,8 +37,7 @@
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_centerInParent="true"
                     android:layout_below="@id/log_my"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                   style="@style/view_width_height_warp"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/dp_20"
                     android:text="登陆/注册"
@@ -62,8 +59,7 @@
                <TextView
                    android:layout_marginLeft="@dimen/dp_10"
                    android:gravity="center"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
+                  style="@style/view_warp_height"
                    android:textSize="@dimen/dp_15"
                    android:text="我的订单"
                    ></TextView>
@@ -71,8 +67,7 @@
                <TextView
                    android:layout_marginRight="@dimen/dp_10"
                    android:layout_alignParentRight="true"
-                   android:layout_width="wrap_content"
-                   android:layout_height="match_parent"
+                   style="@style/view_warp_height"
                    android:textSize="@dimen/dp_15"
                    android:text="查看全部订单"
                    android:gravity="center"
@@ -87,8 +82,7 @@
                 ></View>
 
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+               style="@style/view_match_wrap"
                 android:padding="@dimen/dp_10"
                 >
 
@@ -156,8 +150,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/fahuo_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_address"
@@ -175,8 +168,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/shoucang_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_collect"
@@ -194,8 +186,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/view_width_height_warp"
                 android:id="@+id/youhui_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_coupon"
@@ -213,8 +204,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/guazi_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_score"
@@ -232,8 +222,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/view_width_height_warp"
                 android:id="@+id/jiangpin_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_coupon"
@@ -251,8 +240,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/dianzi_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_icon_ticket"
@@ -270,8 +258,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+               style="@style/view_width_height_warp"
                 android:id="@+id/share_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_invitation"
@@ -290,8 +277,7 @@
 
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/kefu_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_callcenter"
@@ -309,8 +295,7 @@
                 ></View>
 
             <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:id="@+id/kefu_fankui_my"
                 android:padding="13dp"
                 android:drawableLeft="@mipmap/user_channel_icon_feedback"

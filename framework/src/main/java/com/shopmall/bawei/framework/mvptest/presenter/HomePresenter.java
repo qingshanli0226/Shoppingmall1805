@@ -3,6 +3,7 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.Home;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.HpmeRepository;
 
 public class HomePresenter extends Constart.HomeConstartPresenter {
@@ -13,8 +14,8 @@ public class HomePresenter extends Constart.HomeConstartPresenter {
     }
 
     @Override
-    public void homec(String url) {
-        mRepository.homec(url, new Home() {
+    public void homec(String url, final LogingPage logingPage) {
+        mRepository.homec(url,logingPage, new Home() {
             @Override
             public void Ok(Object... objects) {
                  if (objects!=null){
@@ -25,6 +26,8 @@ public class HomePresenter extends Constart.HomeConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+
+                    logingPage.showError(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
 

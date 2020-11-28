@@ -3,6 +3,7 @@ package com.shopmall.bawei.framework.mvptest.repository;
 
 import com.shopmall.bawei.framework.callback.Home;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.model.HomeModel;
 
 public class HpmeRepository extends Constart.HomeConstartRepository{
@@ -14,8 +15,8 @@ public class HpmeRepository extends Constart.HomeConstartRepository{
     }
 
     @Override
-    public void homec(String url, Home home) {
-        mModel.homec(url,home);
+    public void homec(String url, LogingPage logingPage, Home home) {
+        mModel.homec(url,logingPage,home);
 
     }
 }

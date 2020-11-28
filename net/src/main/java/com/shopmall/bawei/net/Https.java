@@ -11,6 +11,7 @@ import java.util.HashMap;
 import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface Https {
@@ -42,8 +43,9 @@ public interface Https {
      * @param map
      * @return
      */
+
     @POST
-    Observable<Loginbean> getlogin(@Url String url, HashMap<String,String> map);
+    Observable<Loginbean> getlogin(@Url String url,@QueryMap HashMap<String,String> map);
 
 
     /**
@@ -52,8 +54,9 @@ public interface Https {
      * @param map
      * @return
      */
+
     @POST
-    Observable<Registbean> getregist(@Url String url, HashMap<String,String> map);
+    Observable<Registbean> getregist(@Url String url,@QueryMap HashMap<String,String> map);
 
 
 }

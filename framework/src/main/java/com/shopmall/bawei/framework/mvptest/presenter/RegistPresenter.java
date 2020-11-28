@@ -3,6 +3,7 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 import com.shopmall.bawei.framework.callback.IRegist;
 import com.shopmall.bawei.framework.constart.Constart;
 import com.shopmall.bawei.framework.mvptest.repository.RegistRepository;
+import com.shopmall.bean.Registbean;
 
 import java.util.HashMap;
 
@@ -17,7 +18,8 @@ public class RegistPresenter extends Constart.RegistConstartPresenter {
             @Override
             public void Ok(Object... objects) {
                   if (objects!=null){
-                      mView.get().Success(objects);
+                      Registbean registbean=(Registbean)objects[0];
+                      mView.get().Success(registbean.getMessage());
                   }
             }
 

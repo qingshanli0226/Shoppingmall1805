@@ -13,15 +13,14 @@
         ></ListView>
 
    <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="match_parent"
+      style="@style/view_width_height_match"
         android:orientation="vertical"
        >
        <TextView
            android:paddingLeft="@dimen/dp_10"
            android:layout_width="match_parent"
            android:layout_height="@dimen/dp_30"
-           android:text="热卖推荐"
+           android:text="@string/class_hot_tui"
            android:textSize="@dimen/sp_15"
            android:gravity="center_vertical"
            ></TextView>
@@ -29,24 +28,21 @@
 
        <android.support.v7.widget.RecyclerView
            android:id="@+id/recycle_sort"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-
+          style="@style/view_match_wrap"
            ></android.support.v7.widget.RecyclerView>
 
        <TextView
            android:paddingLeft="@dimen/dp_10"
            android:layout_width="match_parent"
            android:layout_height="@dimen/dp_40"
-           android:text="常用分类"
+           android:text="@string/class_fen"
            android:textSize="@dimen/sp_15"
            android:gravity="center_vertical"
            ></TextView>
 
        <android.support.v7.widget.RecyclerView
            android:id="@+id/recycle2_sort"
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
+           style="@style/view_match_wrap"
 
            ></android.support.v7.widget.RecyclerView>
    </LinearLayout>
