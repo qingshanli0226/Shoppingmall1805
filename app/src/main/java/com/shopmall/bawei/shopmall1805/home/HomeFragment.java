@@ -4,17 +4,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
 
+import com.bw.common.BaseFragment;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
-import com.shopmall.bawei.shopmall1805.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomeFragmentAdapter;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
-import com.shopmall.bawei.shopmall1805.util.ToolBarManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,7 +23,6 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     private RecyclerView homeRv;
     private List<Object> list =new ArrayList<>();
     private  HomeFragmentAdapter homeFragmentAdapter;
-    private Toolbar toolbar;
 
 
     @Override
@@ -44,8 +40,6 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
         homeRv.setAdapter(homeFragmentAdapter);
 
 
-        toolbar = view.findViewById(R.id.toolbar);
-        toolbar.setTitle("11111111");
 
 
 
@@ -80,5 +74,20 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     @Override
     public void onError(String message) {
         myToast(R.string.getDataError+message);
+    }
+
+    @Override
+    public void showLoaing() {
+        showLoaing();
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess) {
+        hideLoadingPage(isSuccess);
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

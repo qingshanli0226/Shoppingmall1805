@@ -3,10 +3,11 @@ package com.shopmall.bawei.shopmall1805.activity;
 import android.content.Intent;
 import android.os.Handler;
 
+import com.bw.common.BaseActivity;
+import com.bw.common.IPresenter;
+import com.bw.common.IView;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseActivity;
-import com.shopmall.bawei.shopmall1805.base.IPresenter;
-import com.shopmall.bawei.shopmall1805.base.IView;
+
 
 public class WelcomActivity extends BaseActivity<IPresenter, IView> {
 
@@ -22,6 +23,7 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> {
     @Override
     protected void initView() {
         super.initView();
+
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {

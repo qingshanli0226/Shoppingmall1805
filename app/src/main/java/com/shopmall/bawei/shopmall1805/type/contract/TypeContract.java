@@ -1,18 +1,9 @@
 package com.shopmall.bawei.shopmall1805.type.contract;
 
-import com.bw.net.bean.AccessoryBean;
-import com.bw.net.bean.BagBean;
-import com.bw.net.bean.DigitBean;
-import com.bw.net.bean.DressBean;
-import com.bw.net.bean.GameBean;
-import com.bw.net.bean.HomeProductsBean;
-import com.bw.net.bean.JacketBean;
-import com.bw.net.bean.OverCoatBean;
-import com.bw.net.bean.PantsBean;
+
+import com.bw.common.BasePresenter;
+import com.bw.common.IView;
 import com.bw.net.bean.SkirtBean;
-import com.bw.net.bean.StationeryBean;
-import com.shopmall.bawei.shopmall1805.base.BasePresenter;
-import com.shopmall.bawei.shopmall1805.base.IView;
 
 public abstract class TypeContract {
 

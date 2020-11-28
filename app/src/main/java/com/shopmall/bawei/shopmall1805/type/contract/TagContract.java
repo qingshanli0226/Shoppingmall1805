@@ -1,8 +1,9 @@
 package com.shopmall.bawei.shopmall1805.type.contract;
 
+import com.bw.common.BasePresenter;
+import com.bw.common.IView;
 import com.bw.net.bean.TagBean;
-import com.shopmall.bawei.shopmall1805.base.BasePresenter;
-import com.shopmall.bawei.shopmall1805.base.IView;
+
 
 public class TagContract {
 

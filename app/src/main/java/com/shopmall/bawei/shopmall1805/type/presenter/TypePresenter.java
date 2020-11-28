@@ -10,15 +10,21 @@ import java.util.concurrent.TimeUnit;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class TypePresenter extends TypeContract.ITypePresenter {
     @Override
     public void getSkirt() {
         RetraficCreator.getiNetWorkApiService().getSkirt()
-                .delay(5, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showLoaing();
+                    }
+                })
                 .subscribe(new Observer<SkirtBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -29,10 +35,12 @@ public class TypePresenter extends TypeContract.ITypePresenter {
                     public void onNext(SkirtBean skirtBean) {
                             iView.onGetSkirtOk(skirtBean);
 
+                            iView.hideLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        iView.hideLoading(false);
                         iView.onError(e.getMessage());
                     }
 

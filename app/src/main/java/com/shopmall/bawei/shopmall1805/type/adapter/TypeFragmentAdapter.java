@@ -2,12 +2,11 @@ package com.shopmall.bawei.shopmall1805.type.adapter;
 
 
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
+import com.bw.common.BaseAdapter;
 import com.bw.net.bean.SkirtBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
 
 import java.util.List;
 

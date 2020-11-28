@@ -4,11 +4,11 @@ import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.bw.common.BaseActivity;
+import com.bw.common.IPresenter;
+import com.bw.common.IView;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseActivity;
-import com.shopmall.bawei.shopmall1805.base.IPresenter;
-import com.shopmall.bawei.shopmall1805.base.IView;
-import com.shopmall.bawei.shopmall1805.fragment.CardFragment;
 import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
@@ -22,7 +22,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     private HomeFragment homeFragment;
     private FindFragment findFragment;
     private TypeFragment typeFragment;
-    private CardFragment cardFragment;
     private UserFragment userFragment;
 
     @Override
@@ -33,6 +32,8 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     @Override
     protected void initView() {
         super.initView();
+
+        ARouter.getInstance().inject(this);
 
         frameLayout = findViewById(R.id.frame_layout);
         group = findViewById(R.id.group);
@@ -45,61 +46,44 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         homeFragment = new HomeFragment();
         typeFragment = new TypeFragment();
         findFragment = new FindFragment();
-        cardFragment = new CardFragment();
         userFragment = new UserFragment();
 
          getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, homeFragment)
                 .add(R.id.frame_layout, typeFragment)
                 .add(R.id.frame_layout, findFragment)
-                .add(R.id.frame_layout, cardFragment)
                 .add(R.id.frame_layout, userFragment).commit();
 
          getSupportFragmentManager().beginTransaction().show(homeFragment)
                  .hide(typeFragment)
                  .hide(findFragment)
-                 .hide(cardFragment)
                  .hide(userFragment).commit();
 
-        group.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                switch (checkedId){
-                    case R.id.rd1:
-                        getSupportFragmentManager().beginTransaction().show(homeFragment)
-                                .hide(typeFragment)
-                                .hide(findFragment)
-                                .hide(cardFragment)
-                                .hide(userFragment).commit();
-                        break;
-                    case R.id.rd2:
-                        getSupportFragmentManager().beginTransaction().show(typeFragment)
-                                .hide(homeFragment)
-                                .hide(findFragment)
-                                .hide(cardFragment)
-                                .hide(userFragment).commit();
-                        break;
-                    case R.id.rd3:
-                        getSupportFragmentManager().beginTransaction().show(findFragment)
-                                .hide(typeFragment)
-                                .hide(homeFragment)
-                                .hide(cardFragment)
-                                .hide(userFragment).commit();
-                        break;
-                    case R.id.rd4:
-                        getSupportFragmentManager().beginTransaction().show(cardFragment)
-                                .hide(typeFragment)
-                                .hide(findFragment)
-                                .hide(homeFragment)
-                                .hide(userFragment).commit();
-                        break;
-                    case R.id.rd5:
-                        getSupportFragmentManager().beginTransaction().show(userFragment)
-                                .hide(typeFragment)
-                                .hide(findFragment)
-                                .hide(cardFragment)
-                                .hide(homeFragment).commit();
-                        break;
-                }
+        group.setOnCheckedChangeListener((group, checkedId) -> {
+            switch (checkedId){
+                case R.id.rd1:
+                    getSupportFragmentManager().beginTransaction().show(homeFragment)
+                            .hide(typeFragment)
+                            .hide(findFragment)
+                            .hide(userFragment).commit();
+                    break;
+                case R.id.rd2:
+                    getSupportFragmentManager().beginTransaction().show(typeFragment)
+                            .hide(homeFragment)
+                            .hide(findFragment)
+                            .hide(userFragment).commit();
+                    break;
+                case R.id.rd3:
+                    getSupportFragmentManager().beginTransaction().show(findFragment)
+                            .hide(typeFragment)
+                            .hide(homeFragment)
+                            .hide(userFragment).commit();
+                    break;
+                case R.id.rd4:
+                    ARouter.getInstance().build("/activity/activity_shopCart").navigation();
+                    break;
+                case R.id.rd5:
+                    ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
+                    break;
             }
         });
 

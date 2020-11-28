@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <com.bw.framework.ToorBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:right_show="false"
+        app:title_text="注册"
+        app:left_src="@mipmap/back">
+    </com.bw.framework.ToorBar>
+
+    <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
+                      android:orientation="vertical">
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="用户名"
+                    android:id="@+id/name"
+            />
+
+            <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:hint="密码"
+                    android:id="@+id/password"
+            />
+
+            <Button
+                    android:layout_marginTop="50dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/btnRegister"
+                    android:text="注册"/>
+
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="left"
+                    android:textSize="20sp"
+                    android:textColor="@android:color/holo_red_dark"
+                    android:id="@+id/errorTv"
+                    android:visibility="gone"/>
+
+        </LinearLayout>
+        <ProgressBar android:layout_width="100dp" android:layout_height="100dp"
+                     android:id="@+id/loadingBar"
+                     android:layout_centerInParent="true"
+                     android:visibility="gone"/>
+
+
+    </RelativeLayout>
+
+
+
+</LinearLayout>

@@ -13,12 +13,10 @@
         android:layout_height="100dp"/>
 
     <TextView
+        style="@style/TextStyle"
         android:layout_gravity="center"
         android:id="@+id/userfal_title"
         android:layout_width="100dp"
-        android:textAlignment="center"
-        android:text="11111"
-        android:textSize="13sp"
         android:layout_height="wrap_content"/>
 
 </LinearLayout>

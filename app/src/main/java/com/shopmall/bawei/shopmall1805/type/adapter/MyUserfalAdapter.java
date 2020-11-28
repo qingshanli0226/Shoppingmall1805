@@ -4,10 +4,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bw.common.BaseAdapter;
 import com.bw.net.Contants;
 import com.bw.net.bean.SkirtBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
 
 public class MyUserfalAdapter extends BaseAdapter<SkirtBean.ResultBean.ChildBean> {
     @Override

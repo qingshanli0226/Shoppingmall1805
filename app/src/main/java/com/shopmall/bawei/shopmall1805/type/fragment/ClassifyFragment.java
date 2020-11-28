@@ -6,19 +6,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 
-import com.bw.net.bean.AccessoryBean;
-import com.bw.net.bean.BagBean;
-import com.bw.net.bean.DigitBean;
-import com.bw.net.bean.DressBean;
-import com.bw.net.bean.GameBean;
-import com.bw.net.bean.HomeProductsBean;
-import com.bw.net.bean.JacketBean;
-import com.bw.net.bean.OverCoatBean;
-import com.bw.net.bean.PantsBean;
+
+import com.bw.common.BaseFragment;
 import com.bw.net.bean.SkirtBean;
-import com.bw.net.bean.StationeryBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.type.adapter.MyListAdapter;
 import com.shopmall.bawei.shopmall1805.type.adapter.TypeFragmentAdapter;
 import com.shopmall.bawei.shopmall1805.type.contract.TypeContract;
@@ -137,5 +128,20 @@ public class ClassifyFragment extends BaseFragment<TypePresenter, TypeContract.T
     @Override
     public void onError(String message) {
         myToast(R.string.getDataError+message);
+    }
+
+    @Override
+    public void showLoaing() {
+        showLoading();
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess) {
+        hideLoadingPage(isSuccess);
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

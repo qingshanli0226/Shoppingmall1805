@@ -4,9 +4,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
+import com.bw.common.BaseFragment;
 import com.bw.net.bean.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseFragment;
+
 import com.shopmall.bawei.shopmall1805.type.adapter.MyTagAdapter;
 import com.shopmall.bawei.shopmall1805.type.contract.TagContract;
 import com.shopmall.bawei.shopmall1805.type.presenter.TagPresenter;
@@ -55,5 +56,21 @@ public class TagFragment extends BaseFragment<TagPresenter, TagContract.TagView>
     @Override
     public void onError(String message) {
         myToast(R.string.getDataError+message);
+    }
+
+    @Override
+    public void showLoaing() {
+        showLoading();
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess) {
+
+        hideLoadingPage(isSuccess);
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

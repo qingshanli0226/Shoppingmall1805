@@ -1,7 +1,6 @@
 package com.shopmall.bawei.shopmall1805.activity;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -10,11 +9,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bw.common.BaseActivity;
 import com.bw.net.Contants;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseActivity;
-
 import java.io.Serializable;
 
 public class DetailsActivity extends BaseActivity {

@@ -13,7 +13,8 @@
             android:text="超值热卖"
             android:textSize="@dimen/sp_20"
             android:textColor="@color/colorItem"
-            style="@style/ItemStyleM"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
     </LinearLayout>
 
     <android.support.v7.widget.RecyclerView

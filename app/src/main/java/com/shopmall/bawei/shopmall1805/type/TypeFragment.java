@@ -1,16 +1,13 @@
 package com.shopmall.bawei.shopmall1805.type;
 
-import android.support.design.widget.TabLayout;
+
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
-
+import com.bw.common.BaseFragment;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.type.adapter.MyPagerAdapter;
 import com.shopmall.bawei.shopmall1805.type.fragment.ClassifyFragment;
 import com.shopmall.bawei.shopmall1805.type.fragment.TagFragment;

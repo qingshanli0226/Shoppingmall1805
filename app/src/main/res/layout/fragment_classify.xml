@@ -12,5 +12,6 @@
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/find_rv"
-        style="@style/RecyclerViewStyle"/>
+        style="@style/RecyclerViewStyle"
+        android:layout_height="match_parent"/>
 </LinearLayout>

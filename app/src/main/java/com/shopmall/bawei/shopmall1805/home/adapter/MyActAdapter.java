@@ -3,10 +3,10 @@ package com.shopmall.bawei.shopmall1805.home.adapter;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bw.common.BaseAdapter;
 import com.bw.net.Contants;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
 
 
 public class MyActAdapter extends BaseAdapter<HomeFragmentBean.ResultBean.ActInfoBean> {

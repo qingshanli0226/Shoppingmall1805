@@ -1,32 +1,28 @@
 package com.bw.net;
 
-import com.bw.net.bean.AccessoryBean;
-import com.bw.net.bean.BagBean;
-import com.bw.net.bean.DigitBean;
-import com.bw.net.bean.DressBean;
-import com.bw.net.bean.GameBean;
 import com.bw.net.bean.HomeFragmentBean;
-import com.bw.net.bean.HomeProductsBean;
-import com.bw.net.bean.JacketBean;
 import com.bw.net.bean.LoginBean;
-import com.bw.net.bean.OverCoatBean;
-import com.bw.net.bean.PantsBean;
 import com.bw.net.bean.RegisterBean;
 import com.bw.net.bean.SkirtBean;
-import com.bw.net.bean.StationeryBean;
 import com.bw.net.bean.TagBean;
 
+import java.util.HashMap;
+
 import io.reactivex.Observable;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 
 public interface INetWorkApiService {
 
     @POST("login")
-    Observable<LoginBean> login();
+    @FormUrlEncoded
+    Observable<LoginBean> login(@FieldMap HashMap<String,String> map);
 
     @POST("register")
-    Observable<RegisterBean> register();
+    @FormUrlEncoded
+    Observable<RegisterBean> register(@FieldMap HashMap<String,String> map);
 
     @GET(Contants.HOME_URL)
     Observable<HomeFragmentBean> getHomeData();

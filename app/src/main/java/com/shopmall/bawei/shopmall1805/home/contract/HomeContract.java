@@ -1,9 +1,10 @@
 package com.shopmall.bawei.shopmall1805.home.contract;
 
 
+import com.bw.common.BasePresenter;
+import com.bw.common.IView;
 import com.bw.net.bean.HomeFragmentBean;
-import com.shopmall.bawei.shopmall1805.base.BasePresenter;
-import com.shopmall.bawei.shopmall1805.base.IView;
+
 
 public class HomeContract {
 

@@ -16,18 +16,16 @@
         <Button
             android:id="@+id/btn1"
             android:text="分类"
-            android:textSize="@dimen/sp_20"
+            style="@style/ButtonStyle"
             android:background="@drawable/white_radius"
-            android:textColor="@color/colorBlack"
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_60"/>
 
         <Button
+            style="@style/ButtonStyle"
             android:id="@+id/btn2"
             android:text="标签"
-            android:textSize="@dimen/sp_20"
             android:background="@drawable/white_radius"
-            android:textColor="@color/colorBlack"
             android:layout_width="@dimen/dp_100"
             android:layout_height="@dimen/dp_60"/>
 

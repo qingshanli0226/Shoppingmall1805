@@ -9,15 +9,14 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
+import com.bw.common.BaseAdapter;
 import com.bw.net.Contants;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.activity.DetailsActivity;
-import com.shopmall.bawei.shopmall1805.base.BaseAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
