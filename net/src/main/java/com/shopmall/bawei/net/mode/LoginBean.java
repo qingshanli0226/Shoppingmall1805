@@ -2,88 +2,107 @@ package com.shopmall.bawei.net.mode;
 
 public class LoginBean {
 
-        /**
-         * id : 1610
-         * password : 1610
-         * email : null
-         * point : null
-         * address : null
-         * money : null
-         * avatar : null
-         * token : eaacae51-1c55-4ead-a31d-80703e336bc51AND15584495232809
-         */
+    /**
+     * id : lkkji1234
+     * name : lkkji1234
+     * password : 123456
+     * email : null
+     * phone : null
+     * point : null
+     * address : null
+     * money : null
+     * avatar : /img/1438946011155.jpg
+     * token : 7165a1b7-63be-46ea-9b1c-086be9f22c5dAND1606689169588
+     */
 
-        private String id;
-        private String password;
-        private Object email;
-        private Object point;
-        private Object address;
-        private Object money;
-        private Object avatar;
-        private String token;
+    private String id;
+    private String name;
+    private String password;
+    private Object email;
+    private Object phone;
+    private Object point;
+    private Object address;
+    private Object money;
+    private String avatar;
+    private String token;
 
-        public String getId() {
-            return id;
-        }
+    public String getId() {
+        return id;
+    }
 
-        public void setId(String id) {
-            this.id = id;
-        }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-        public String getPassword() {
-            return password;
-        }
+    public String getName() {
+        return name;
+    }
 
-        public void setPassword(String password) {
-            this.password = password;
-        }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-        public Object getEmail() {
-            return email;
-        }
+    public String getPassword() {
+        return password;
+    }
 
-        public void setEmail(Object email) {
-            this.email = email;
-        }
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
-        public Object getPoint() {
-            return point;
-        }
+    public Object getEmail() {
+        return email;
+    }
 
-        public void setPoint(Object point) {
-            this.point = point;
-        }
+    public void setEmail(Object email) {
+        this.email = email;
+    }
 
-        public Object getAddress() {
-            return address;
-        }
+    public Object getPhone() {
+        return phone;
+    }
 
-        public void setAddress(Object address) {
-            this.address = address;
-        }
+    public void setPhone(Object phone) {
+        this.phone = phone;
+    }
 
-        public Object getMoney() {
-            return money;
-        }
+    public Object getPoint() {
+        return point;
+    }
 
-        public void setMoney(Object money) {
-            this.money = money;
-        }
+    public void setPoint(Object point) {
+        this.point = point;
+    }
 
-        public Object getAvatar() {
-            return avatar;
-        }
+    public Object getAddress() {
+        return address;
+    }
 
-        public void setAvatar(Object avatar) {
-            this.avatar = avatar;
-        }
+    public void setAddress(Object address) {
+        this.address = address;
+    }
 
-        public String getToken() {
-            return token;
-        }
+    public Object getMoney() {
+        return money;
+    }
 
-        public void setToken(String token) {
-            this.token = token;
-        }
+    public void setMoney(Object money) {
+        this.money = money;
+    }
 
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
+    }
 }

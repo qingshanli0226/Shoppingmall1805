@@ -111,10 +111,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
 
             return (V)view;
         }
-
-
-
-
     }
     public interface  IRecyclerViewItemClickListener{
         void onItemClick(int position);
