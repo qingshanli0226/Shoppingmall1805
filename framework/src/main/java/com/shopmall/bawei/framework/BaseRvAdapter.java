@@ -8,8 +8,6 @@ import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseViewHolder;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

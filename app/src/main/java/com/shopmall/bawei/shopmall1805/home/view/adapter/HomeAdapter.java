@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.home.view.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -15,6 +16,7 @@ import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.ShoppingActivity;
+import com.shopmall.bawei.shopmall1805.product.view.ProductDetailActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;
 import com.youth.banner.loader.ImageLoader;
@@ -67,16 +69,19 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         RecyclerView recommendRv = baseViewHolder.getView(R.id.gv_recommend);
         Log.i("TAG", "displayRecommend: "+recommendInfoBeans);
         recommendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
-        RecommendAdapter recommendAdapter = new RecommendAdapter();
+        final RecommendAdapter recommendAdapter = new RecommendAdapter();
         recommendRv.setAdapter(recommendAdapter);
         recommendAdapter.updateData(recommendInfoBeans);
         recommendAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Log.d("TAG", "onItemClick: "+recommendInfoBeans.get(position).getName());
-                Intent intent = new Intent(baseViewHolder.itemView.getContext(), ShoppingActivity.class);
-                intent.putExtra("bean",recommendInfoBeans.get(position));
-                baseViewHolder.itemView.getContext().startActivity(intent);
+                Intent intent = new Intent();
+                intent.putExtra("productId", recommendAdapter.getItemData(position).getProduct_id());
+                intent.putExtra("productName", recommendAdapter.getItemData(position).getName());
+                intent.putExtra("productPrice", recommendAdapter.getItemData(position).getCover_price());
+                intent.putExtra("url", recommendAdapter.getItemData(position).getFigure());
+                intent.setClass((Activity)(baseViewHolder.itemView.getContext()), ProductDetailActivity.class);
+                ((Activity)(baseViewHolder.itemView.getContext())).startActivity(intent);
             }
         });
     }
@@ -97,17 +102,23 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         });
     }
 
-    private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
+    private void displayHot(Object itemData, final BaseViewHolder baseViewHolder) {
         final List<HomeBean.ResultBean.HotInfoBean> hotInfoBeans = (List<HomeBean.ResultBean.HotInfoBean>)itemData;
         RecyclerView hotRv = baseViewHolder.getView(R.id.gv_hot);
         hotRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),2,GridLayoutManager.VERTICAL,false));
-        HotAdapter hotAdapter = new HotAdapter();
+        final HotAdapter hotAdapter = new HotAdapter();
         hotRv.setAdapter(hotAdapter);
         hotAdapter.updateData(hotInfoBeans);
         hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                Log.d("TAG", "onItemClick: "+hotInfoBeans.get(position).getName());
+                Intent intent = new Intent();
+                intent.putExtra("productId", hotAdapter.getItemData(position).getProduct_id());
+                intent.putExtra("productName", hotAdapter.getItemData(position).getName());
+                intent.putExtra("productPrice", hotAdapter.getItemData(position).getCover_price());
+                intent.putExtra("url", hotAdapter.getItemData(position).getFigure());
+                intent.setClass((Activity)(baseViewHolder.itemView.getContext()), ProductDetailActivity.class);
+                ((Activity)(baseViewHolder.itemView.getContext())).startActivity(intent);
             }
         });
     }

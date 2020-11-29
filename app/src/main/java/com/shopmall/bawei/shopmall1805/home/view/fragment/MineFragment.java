@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.ShopUserManager;
 import com.shopmall.bawei.net.mode.HomeBean;
@@ -100,7 +101,7 @@ public class MineFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
 

@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.user.contract.RegisterContract;
 import com.shopmall.bawei.user.presenter.RegisterPresenterImpl;
@@ -64,9 +65,10 @@ public class RegisterFragment extends BaseFragment<RegisterPresenterImpl, Regist
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
 
 
     private void switchLoginFragment() {

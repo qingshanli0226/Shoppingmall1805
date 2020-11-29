@@ -12,7 +12,10 @@ public class Constants {
     //3.ip地址修改成wifi的ip地址
     //4.手机一定要连接电脑分享的wifi
 //    public static final String BASE = "http://192.168.191.1:8080";
-
+    public static final int HOME_INDEX = 0;
+    public static final int TYPE_INDEX = 1;
+    public static final int SHOPCAR_INDEX = 2;
+    public static final int MINE_INDEX = 3;
     // 请求Json数据基本URL
     public static final String BASE_URL_JSON = BASE+"/atguigu/json/";
 
@@ -80,9 +83,30 @@ public class Constants {
     //首饰厂
     public static final String SHOUSHI_STORE = BASE_URL_JSON + "SHOUSHI_STORE.json";
 
+    public static String BASE_URL = "http://49.233.0.68:8080/";
+    //public static String BASE_URL = "http://192.168.3.4:8080/";
+
+    public static String BASE_RESOURCE_URL = BASE_URL+"atguigu";
+    public static String BASE_RESOURCE_IMAGE_URL = BASE_URL+"atguigu/img";
 
 
-    public static Boolean isBackHome = false;
+    public static final String JSCON_ERROR_CODE = "10000";
+    public static final String JSON_ERROR_MESSAGE = "服务端范湖数据解析错误";
+
+    public static final String HTTP_ERROR_CODE = "20000";
+    public static final String HTTP_ERROR_MESSAGE = "网络错误";
+
+    public static final String SECURITY_ERROR_CODE = "30000";
+    public static final String SECURITY_ERROR_MESSAGE = "权限错误";
+
+    public static final String USER_NOT_REGISTER_ERROR = "1001";
+
+    public static final String SOCKET_TIMEOUT_ERROR_CODE = "40000";
+    public static final String SOCKET_TIMEOUT_ERROR_MESSAGE = "连接超时错误";
+
+    public static final String PLAYER_VIDEO_URL = "videoUrl";
+    public static final String PLAYER_VIDEO_LIST = "videoList";
+    public static final String PLAYER_VIDEO_POSITION = "position";
 
 
     public static final String spName = "shopmall";
@@ -90,9 +114,6 @@ public class Constants {
 
     public static final String LOGIN_ACTION = "com.bawei.shopmall.LOGIN_ACTION";
 
-
-    //客服数据
-    public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";
     public static final int TO_LOGIN_FROM_SHOPCAR_FRAGMTNT = 0;
     public static final int TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR = 1;
     public static final int TO_LOGIN_FROM_GOODS_DETAIL_SHOPCAR_PIC = 2;
@@ -100,6 +121,17 @@ public class Constants {
     public static final String TO_LOGIN_KEY = "toLogin";
 
     public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
+
+
+
+
+    public static Boolean isBackHome = false;
+
+
+
+
+    //客服数据
+    public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";
 
 
 

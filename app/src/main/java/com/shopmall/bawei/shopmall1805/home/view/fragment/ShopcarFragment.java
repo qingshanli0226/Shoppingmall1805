@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomeImpl;
-
-@Route(path = "/shopcar/ShopcarActivity")
 public class ShopcarFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
 
@@ -65,7 +64,8 @@ public class ShopcarFragment extends BaseFragment<HomeImpl, HomeContract.IHomeVi
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
 }

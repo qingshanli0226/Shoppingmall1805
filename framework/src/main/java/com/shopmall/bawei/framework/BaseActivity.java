@@ -43,4 +43,6 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
             httpPresenter.detachView();
         }
     }
+
+    protected abstract void onRightClick();
 }

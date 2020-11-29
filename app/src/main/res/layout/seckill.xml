@@ -6,14 +6,12 @@
     android:layout_margin="20dp"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        style="@style/SeckillImgStyle"
         android:id="@+id/figure"></ImageView>
     <TextView
-        android:layout_gravity="center"
+        style="@style/TextStyle"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-         android:id="@+id/name"
-        android:gravity="center"
+        android:id="@+id/name"
         ></TextView>
 </LinearLayout>

@@ -6,14 +6,11 @@
     android:layout_margin="30dp"
     android:layout_height="wrap_content">
     <ImageView
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        style="@style/SkirtImgStyle"
         android:id="@+id/reimage"
         ></ImageView>
        <TextView
            style="@style/TextStyle"
            android:id="@+id/retext"
-           android:layout_gravity="center"
-           android:gravity="center"
            ></TextView>
 </LinearLayout>

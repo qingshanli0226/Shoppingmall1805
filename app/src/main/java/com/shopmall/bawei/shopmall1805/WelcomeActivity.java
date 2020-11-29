@@ -47,4 +47,9 @@ public class WelcomeActivity extends BaseActivity<IPresenter, IView> {
             }
         }).start();
     }
+
+    @Override
+    protected void onRightClick() {
+
+    }
 }

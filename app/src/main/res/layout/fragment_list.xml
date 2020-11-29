@@ -8,6 +8,7 @@
     tools:context=".home.view.fragment.ListFragment">
 
     <com.shopmall.bawei.common.MyToolBar
+        android:visibility="gone"
         style="@style/MyToolBar"
         android:id="@+id/toolbar"
         app:left_show="false"

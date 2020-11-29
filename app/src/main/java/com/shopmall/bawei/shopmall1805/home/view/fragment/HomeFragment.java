@@ -8,6 +8,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.HomeBean;
@@ -95,9 +96,10 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     }
 
     @Override
-    public void hideLoading() {
-        loadingBar.setVisibility(View.GONE);
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
     }
+
 
     @Override
     public void onLeftClick() {

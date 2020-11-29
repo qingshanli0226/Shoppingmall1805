@@ -30,6 +30,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".product.view.ProductDetailActivity"></activity>
         <activity android:name=".home.ShoppingActivity"></activity>
         <activity android:name=".WelcomeActivity">
             <intent-filter>

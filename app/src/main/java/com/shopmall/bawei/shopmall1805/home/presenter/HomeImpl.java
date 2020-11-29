@@ -31,19 +31,20 @@ public class HomeImpl extends HomeContract.HomePresenter {
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
-                        iView.hideLoading();
+                        iView.hideLoading(true,null);
                     }
                 })
                 .subscribe(new Observer<HomeBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        iView.showLoading();
                     }
 
                     @Override
                     public void onNext(HomeBean homeBean) {
                         Log.i("TAG", "onNext: "+homeBean);
                         iView.onHomeData(homeBean);
+                        iView.showLoading();
                     }
 
                     @Override

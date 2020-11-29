@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.common.Constants;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.RecommendedBeen;
 import com.shopmall.bawei.net.typebean.BugBean;
@@ -191,9 +192,11 @@ public class ListFragment extends BaseFragment<TypeImpl, TypeContract.ITypeView>
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
+
 
     @Override
     public void UserView(List<BugBean.ResultBean.ChildBean> list) {

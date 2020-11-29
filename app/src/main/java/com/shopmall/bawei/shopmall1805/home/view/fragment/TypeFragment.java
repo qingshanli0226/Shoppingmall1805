@@ -10,6 +10,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.MyToolBar;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.net.mode.RecommendedBeen;
@@ -132,9 +133,11 @@ public class TypeFragment extends BaseFragment<TypeImpl, TypeContract.ITypeView>
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
+
+
 
     @Override
     public void UserView(List<BugBean.ResultBean.ChildBean> list) {

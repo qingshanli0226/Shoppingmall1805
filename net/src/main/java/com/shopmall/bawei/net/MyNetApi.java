@@ -3,11 +3,15 @@ package com.shopmall.bawei.net;
 import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.ClothesBean;
 import com.shopmall.bawei.net.mode.HomeBean;
+import com.shopmall.bawei.net.mode.InventoryBean;
 import com.shopmall.bawei.net.mode.LoginBean;
+import com.shopmall.bawei.net.mode.OrderInfoBean;
+import com.shopmall.bawei.net.mode.ShopcarBean;
 import com.shopmall.bawei.net.mode.TAGBean;
 import com.shopmall.bawei.net.typebean.BugBean;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -63,5 +67,11 @@ public interface MyNetApi {
     @POST("removeManyProduct")
     Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
 
-    
+    @POST("checkInventory")
+    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+    @GET("getShortcartProducts")
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
 }
