@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.bawei.shopmall.home.MainActivity"></activity>
+        <activity
+            android:name="com.bawei.shopmall.home.MainActivity"
+            android:launchMode="singleTask"></activity>
         <activity android:name="com.bawei.shopmall.WelcomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

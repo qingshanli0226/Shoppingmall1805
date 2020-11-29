@@ -10,6 +10,11 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
     buildTypes {
         release {
@@ -22,6 +27,7 @@ android {
         daoPackage 'Shoppingmall1805.app.src.main.java.com.bawei.shopmall.greendao.dao'
         targetGenDir 'src/main/java'
     }
+
 }
 
 dependencies {
@@ -74,4 +80,7 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'org.greenrobot:greendao:3.2.2'
+
+    implementation ('com.alibaba:arouter-api:1.4.1') //ARouter依赖
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2' //ARouter依赖
 }

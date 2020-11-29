@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IPresenter;
 import com.bawei.framework.IView;
@@ -18,6 +19,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = "/main/MainActivity")
 public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     private List<Fragment> fragments = new ArrayList();
@@ -105,6 +107,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
         fragmentTransaction.add(R.id.frameLayoutId,fragments.get(2));
         fragmentTransaction.hide(fragments.get(1));
+        fragmentTransaction.hide(fragments.get(2));
         fragmentTransaction.commit();
     }
 

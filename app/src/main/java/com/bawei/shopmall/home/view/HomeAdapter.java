@@ -69,6 +69,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         recommendAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
     }
@@ -84,6 +85,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         secKillRvAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
     }
@@ -98,6 +100,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+
             }
         });
     }
@@ -127,6 +130,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         channelAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                
             }
         });
 
