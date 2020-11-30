@@ -12,7 +12,7 @@ public class UserContract {
         void register(RegisterBean registerBean);
     }
 
-    public static abstract class UserPresenter extends BasePresenter<IUserView> {
+    public static abstract class IUserPresenter extends BasePresenter<IUserView> {
         public abstract void loginUser(String username,String password);
 
         public abstract void registerUser(String username,String password);

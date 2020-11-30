@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class UserContractImpl extends UserContract.UserPresenter {
+public class UserContractImpl extends UserContract.IUserPresenter {
 
     @Override
     public void loginUser(String username, String password) {

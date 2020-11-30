@@ -130,7 +130,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         channelAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                
+
             }
         });
 
