@@ -3,6 +3,7 @@ package com.shopmall.framework.mvptest.presenter;
 import com.shopmall.framework.callback.Sort;
 import com.shopmall.framework.constart.Constart;
 import com.shopmall.framework.mvptest.repository.SortRepository;
+import com.shopmall.framework.view.LoadingPage;
 
 public class SortPresenter extends Constart.SortConstartPresenter {
 
@@ -11,8 +12,8 @@ public class SortPresenter extends Constart.SortConstartPresenter {
     }
 
     @Override
-    public void Sort(String url) {
-          mRepository.Sort(url, new Sort() {
+    public void Sort(String url, final LoadingPage loadingPage) {
+          mRepository.Sort(url,loadingPage, new Sort() {
             @Override
             public void Ok(Object... objects) {
                 if (objects!=null){
@@ -23,6 +24,7 @@ public class SortPresenter extends Constart.SortConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+                    loadingPage.showErrorPage(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
             }

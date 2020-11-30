@@ -32,7 +32,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenter> implements Cons
 
     @Override
     protected void createData() {
-        mPresenter.homec(Constants.HOME_URL2);
+        mPresenter.homec(Constants.HOME_URL2,loadingPage);
     }
 
     @Override

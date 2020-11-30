@@ -4,9 +4,10 @@ import com.shopmall.framework.callback.Home;
 import com.shopmall.framework.callback.Sort;
 import com.shopmall.framework.callback.Tag;
 import com.shopmall.framework.mvp.IModel;
-import com.shopmall.framework.mvp.IPresenter;
+import com.shopmall.framework.mvp.Presenter;
 import com.shopmall.framework.mvp.IView;
 import com.shopmall.framework.mvp.Repository;
+import com.shopmall.framework.view.LoadingPage;
 
 /**
  * 服务，管理层
@@ -50,21 +51,21 @@ public interface Constart {
      * home主页M 层
      */
     interface HomeConstartModel extends IModel{
-           void homec(String url, Home home);
+           void homec(String url, LoadingPage loadingPage, Home home);
     }
 
     /**
      * 分类 M 层
      */
     interface SortConstartModel extends IModel{
-          void Sort(String url, Sort sort);
+          void Sort(String url,LoadingPage loadingPage,  Sort sort);
     }
 
     /**
      * 标签 M 层
      */
     interface TagConstartModel extends IModel{
-        void Tag(String url, Tag tag);
+        void Tag(String url,LoadingPage loadingPage, Tag tag);
     }
 
     /**
@@ -76,27 +77,27 @@ public interface Constart {
      * home主页仓库 层
      */
     abstract class HomeConstartRepository extends Repository<HomeConstartModel>{
-        public abstract void homec(String url, Home home);
+        public abstract void homec(String url,LoadingPage loadingPage,  Home home);
     }
 
     /**
      * 分类 仓库 层
      */
     abstract class SortConstartRepository extends Repository<SortConstartModel>{
-       public abstract void Sort(String url, Sort sort);
+       public abstract void Sort(String url,LoadingPage loadingPage, Sort sort);
     }
 
     /**
      * 标签 仓库 层
      */
     abstract class TagConstartRepository extends Repository<TagConstartModel>{
-        public abstract void Tag(String url, Tag tag);
+        public abstract void Tag(String url,LoadingPage loadingPage, Tag tag);
     }
 
     /**
      * P 层
      */
-    abstract class LoginConstartPresenter extends IPresenter<LoginConstartView,LoginConstartRepository> {
+    abstract class LoginConstartPresenter extends Presenter<LoginConstartView,LoginConstartRepository> {
         public LoginConstartPresenter(LoginConstartView loginConstartView) {
             super(loginConstartView);
         }
@@ -105,31 +106,31 @@ public interface Constart {
     /**
      * home主页P 层
      */
-    abstract class HomeConstartPresenter extends IPresenter<HomeConstartView,HomeConstartRepository>{
+    abstract class HomeConstartPresenter extends Presenter<HomeConstartView,HomeConstartRepository> {
         public HomeConstartPresenter(HomeConstartView homeConstartView) {
             super(homeConstartView);
         }
-        public abstract void homec(String url);
+        public abstract void homec(String url, LoadingPage loadingPage);
     }
 
     /**
      * 分类 P 层
      */
-    abstract class SortConstartPresenter extends IPresenter<SortConstartView,SortConstartRepository>{
+    abstract class SortConstartPresenter extends Presenter<SortConstartView,SortConstartRepository> {
         public SortConstartPresenter(SortConstartView sortConstartView) {
             super(sortConstartView);
         }
-        public abstract void Sort(String url);
+        public abstract void Sort(String url,LoadingPage loadingPage);
     }
 
     /**
      * 标签 P 层
      */
-    abstract class TagConstartPresenter extends IPresenter<TagConstartView,TagConstartRepository>{
+    abstract class TagConstartPresenter extends Presenter<TagConstartView,TagConstartRepository> {
         public TagConstartPresenter(TagConstartView tagConstartView) {
             super(tagConstartView);
         }
-        public abstract void tag(String url);
+        public abstract void tag(String url,LoadingPage loadingPage);
     }
 
 }

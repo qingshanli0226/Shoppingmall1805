@@ -3,6 +3,7 @@ package com.shopmall.framework.mvptest.presenter;
 import com.shopmall.framework.callback.Home;
 import com.shopmall.framework.constart.Constart;
 import com.shopmall.framework.mvptest.repository.HpmeRepository;
+import com.shopmall.framework.view.LoadingPage;
 
 public class HomePresenter extends Constart.HomeConstartPresenter {
 
@@ -11,8 +12,8 @@ public class HomePresenter extends Constart.HomeConstartPresenter {
     }
 
     @Override
-    public void homec(String url) {
-        mRepository.homec(url, new Home() {
+    public void homec(String url, final LoadingPage loadingPage) {
+        mRepository.homec(url,loadingPage, new Home() {
             @Override
             public void Ok(Object... objects) {
                  if (objects!=null){
@@ -23,6 +24,7 @@ public class HomePresenter extends Constart.HomeConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+                    loadingPage.showErrorPage(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
 

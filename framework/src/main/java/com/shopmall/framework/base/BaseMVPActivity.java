@@ -6,9 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.ProgressBar;
 
 import com.shopmall.bawei.framework.R;
-import com.shopmall.framework.mvp.IPresenter;
+import com.shopmall.framework.mvp.Presenter;
 
-public abstract class BaseMVPActivity<P extends IPresenter> extends AppCompatActivity {
+public abstract class BaseMVPActivity<P extends Presenter> extends AppCompatActivity {
     protected P mPresenter;
     protected ProgressBar loadingBar;
 

@@ -28,7 +28,7 @@ public class TagFragment extends BaseMVPFragment<TagPresenter> implements Consta
 
     @Override
     protected void createData() {
-        mPresenter.tag(Constants.TAG_URL2);
+        mPresenter.tag(Constants.TAG_URL2,loadingPage);
         rvTag.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
     }
 

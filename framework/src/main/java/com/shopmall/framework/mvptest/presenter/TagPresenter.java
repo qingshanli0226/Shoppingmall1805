@@ -3,6 +3,7 @@ package com.shopmall.framework.mvptest.presenter;
 import com.shopmall.framework.callback.Tag;
 import com.shopmall.framework.constart.Constart;
 import com.shopmall.framework.mvptest.repository.TagRepository;
+import com.shopmall.framework.view.LoadingPage;
 
 public class TagPresenter extends Constart.TagConstartPresenter {
 
@@ -11,8 +12,8 @@ public class TagPresenter extends Constart.TagConstartPresenter {
     }
 
     @Override
-    public void tag(String url) {
-        mRepository.Tag(url, new Tag() {
+    public void tag(String url, final LoadingPage loadingPage) {
+        mRepository.Tag(url,loadingPage, new Tag() {
             @Override
             public void Ok(Object... objects) {
                 if (objects!=null){
@@ -23,6 +24,7 @@ public class TagPresenter extends Constart.TagConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+                    loadingPage.showErrorPage(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
             }

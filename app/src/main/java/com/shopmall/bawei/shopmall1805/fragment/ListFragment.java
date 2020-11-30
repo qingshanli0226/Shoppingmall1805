@@ -47,43 +47,43 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
 
     @Override
     protected void createEnvent() {
-        mPresenter.Sort(Constants.SKIRT_URL2);
+        mPresenter.Sort(Constants.SKIRT_URL2,loadingPage);
         listviewSort.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (position){
                     case 0:
-                        mPresenter.Sort(Constants.SKIRT_URL2);
+                        mPresenter.Sort(Constants.SKIRT_URL2,loadingPage);
                         break;
                     case 1:
-                        mPresenter.Sort(Constants.JACKET_URL2);
+                        mPresenter.Sort(Constants.JACKET_URL2,loadingPage);
                         break;
                     case 2:
-                        mPresenter.Sort(Constants.PANTS_URL2);
+                        mPresenter.Sort(Constants.PANTS_URL2,loadingPage);
                         break;
                     case 3:
-                        mPresenter.Sort(Constants.OVERCOAT_URL2);
+                        mPresenter.Sort(Constants.OVERCOAT_URL2,loadingPage);
                         break;
                     case 4:
-                        mPresenter.Sort(Constants.ACCESSORY_URL2);
+                        mPresenter.Sort(Constants.ACCESSORY_URL2,loadingPage);
                         break;
                     case 5:
-                        mPresenter.Sort(Constants.BAG_URL2);
+                        mPresenter.Sort(Constants.BAG_URL2,loadingPage);
                         break;
                     case 6:
-                        mPresenter.Sort(Constants.DRESS_UP_URL2);
+                        mPresenter.Sort(Constants.DRESS_UP_URL2,loadingPage);
                         break;
                     case 7:
-                        mPresenter.Sort(Constants.HOME_PRODUCTS_URL2);
+                        mPresenter.Sort(Constants.HOME_PRODUCTS_URL2,loadingPage);
                         break;
                     case 8:
-                        mPresenter.Sort(Constants.STATIONERY_URL2);
+                        mPresenter.Sort(Constants.STATIONERY_URL2,loadingPage);
                         break;
                     case 9:
-                        mPresenter.Sort(Constants.DIGIT_URL2);
+                        mPresenter.Sort(Constants.DIGIT_URL2,loadingPage);
                         break;
                     case 10:
-                        mPresenter.Sort(Constants.GAME_URL2);
+                        mPresenter.Sort(Constants.GAME_URL2,loadingPage);
                         break;
                 }
             }
