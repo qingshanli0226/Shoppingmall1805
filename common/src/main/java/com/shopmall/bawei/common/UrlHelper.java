@@ -61,7 +61,6 @@ public class UrlHelper {
     public static final String BASE_URl_IMAGE = BASE_URL +"atguigu/img";
 
 
-
     //小裙子
     public static final String SKIRT_URL = BASE_URL_JSON + "SKIRT_URL.json";
     //上衣

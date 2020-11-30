@@ -65,8 +65,8 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         }
     }
 
-    private void displayRecommend(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.RecommendInfoBean>)itemData;
+    private void displayRecommend(Object itemData, final BaseViewHolder baseViewHolder) {
+        final List<HomeBean.RecommendInfoBean> recommendInfoBeans = (List<HomeBean.RecommendInfoBean>)itemData;
         RecyclerView recommendRv = baseViewHolder.getView(R.id.gv_recommend);
         Log.i("TAG", "displayRecommend: "+recommendInfoBeans);
         recommendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3,GridLayoutManager.VERTICAL,false));
@@ -76,7 +76,15 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         recommendAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-
+                String cover_price = recommendInfoBeans.get(position).getCover_price();
+                String name = recommendInfoBeans.get(position).getName();
+                String figure = recommendInfoBeans.get(position).getFigure();
+                String product_id = recommendInfoBeans.get(position).getProduct_id();
+                GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
+//
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodsInfoActivity.class);
+                intent.putExtra(GOODS_BEAN, goodsBean);
+                baseViewHolder.itemView.getContext().startActivity(intent);
                 /**
                  *
                  *
@@ -121,8 +129,8 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         });
     }
 
-    private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
-        List<HomeBean.HotInfoBean> hotInfoBeans = (List<HomeBean.HotInfoBean>)itemData;
+    private void displayHot(Object itemData, final BaseViewHolder baseViewHolder) {
+        final List<HomeBean.HotInfoBean> hotInfoBeans = (List<HomeBean.HotInfoBean>)itemData;
         RecyclerView hotRv = baseViewHolder.getView(R.id.gv_hot);
         hotRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),2,GridLayoutManager.VERTICAL,false));
         HotAdapter hotAdapter = new HotAdapter();
@@ -131,6 +139,15 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                String cover_price = hotInfoBeans.get(position).getCover_price();
+                String name = hotInfoBeans.get(position).getName();
+                String figure = hotInfoBeans.get(position).getFigure();
+                String product_id = hotInfoBeans.get(position).getProduct_id();
+                GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
+
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodsInfoActivity.class);
+                intent.putExtra(GOODS_BEAN, goodsBean);
+                baseViewHolder.itemView.getContext().startActivity(intent);
                 /**
                  *
                  *

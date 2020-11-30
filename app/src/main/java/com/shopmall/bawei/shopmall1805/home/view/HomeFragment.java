@@ -36,7 +36,6 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     public void onClick(View v) {
     }
 
-
     @Override
     protected int layoutId() {
         return R.layout.fragment_home;
