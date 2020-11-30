@@ -1,44 +1,266 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".home.view.HomeFragment">
+    android:orientation="vertical">
 
-    <android.support.v7.widget.Toolbar
-        style="@style/Base_Layout_Match_Match"
-        android:layout_height="@dimen/sp_60"
-        android:background="@color/colorOrange"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:background="#DD001B"
+        android:gravity="center"
         >
         <LinearLayout
-           style="@style/Base_Layout_Match_Wrap"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/dp_30"
+             android:layout_margin="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="#ffffff"
+            android:gravity="center"
             >
+
             <EditText
-                android:layout_width="@dimen/dp_320"
-                android:layout_height="@dimen/dp_40"
-                android:drawableLeft="@mipmap/home_search_icon"
-                android:background="@drawable/yuan"
-                android:layout_gravity="center"
-                android:hint="@string/Please_Enter"
+                android:paddingLeft="5dp"
+                android:layout_width="0dp"
+                android:layout_weight="9"
+                android:layout_height="50dp"
+                 android:drawableLeft="@mipmap/home_search_icon"
+                 android:singleLine="true"
+                android:background="#ffffff"
+                android:hint="输入搜索信息"
+                android:textSize="20dp"
                 ></EditText>
+
+            <TextView
+                android:layout_marginLeft="10dp"
+                android:layout_width="60dp"
+                android:layout_height="50dp"
+                android:drawableTop="@mipmap/new_message_icon"
+                android:textColor="#ffffff"
+                android:background="#DD001B"
+                android:textSize="15dp"
+                android:gravity="center"
+                android:text="消息"
+                ></TextView>
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+
+            android:orientation="vertical"
+            >
+
+
+           <com.youth.banner.Banner
+               android:id="@+id/banner_f1"
+               android:layout_width="match_parent"
+               android:layout_height="120dp"
+
+               ></com.youth.banner.Banner>
+
+           <android.support.v7.widget.RecyclerView
+               android:id="@+id/title_f1"
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+
+               ></android.support.v7.widget.RecyclerView>
+
+            <com.youth.banner.Banner
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:id="@+id/banner2_f1"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+
+                ></com.youth.banner.Banner>
+
             <LinearLayout
-                style="@style/Base_Layout_Match_Wrap"
-                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+
                 >
                 <ImageView
-                    android:layout_marginLeft="@dimen/dp_20"
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
-                    android:background="@mipmap/community_message_icon"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/home_arrow_left_flash"
                     ></ImageView>
 
+                <TextView
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                     android:text="今日闪购 距.结束"
+                    android:textColor="#000000"
+
+                    ></TextView>
+
+                <TextView
+                    android:layout_marginLeft="@dimen/dp_10"
+                    android:layout_width="50dp"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/home_jishibian"
+                    ></TextView>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="9"
+                    android:layout_height="match_parent"
+
+                    ></TextView>
+
+                <TextView
+                    android:paddingRight="5dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="查看更多 >"
+                    ></TextView>
+
+
             </LinearLayout>
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/home_recycle_gou"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                ></android.support.v7.widget.RecyclerView>
+
+            <LinearLayout
+                android:layout_marginTop="10dp"
+                android:paddingLeft="20dp"
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+
+                >
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@mipmap/home_arrow_left_new"
+                    ></ImageView>
+
+                <TextView
+                    android:layout_marginLeft="13dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="新品推荐"
+                    android:textColor="#000000"
+
+                    ></TextView>
+
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_weight="9"
+                    android:layout_height="match_parent"
+
+                    ></TextView>
+
+                <TextView
+                    android:paddingRight="5dp"
+                    android:gravity="center"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:text="查看更多 >"
+                    ></TextView>
+
+
+            </LinearLayout>
+
+
+
+            <android.support.v7.widget.RecyclerView
+                android:layout_marginTop="@dimen/dp_10"
+                android:id="@+id/home_recycle_new"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                ></android.support.v7.widget.RecyclerView>
+
+           <LinearLayout
+               android:layout_width="match_parent"
+               android:layout_height="1000dp"
+               android:orientation="vertical"
+
+               >
+
+               <LinearLayout
+
+                   android:layout_marginTop="10dp"
+                   android:paddingLeft="20dp"
+                   android:layout_width="match_parent"
+                   android:layout_height="40dp"
+                   android:background="#EFEFEF"
+
+                   >
+                   <ImageView
+                       android:layout_gravity="center_vertical"
+                       android:layout_width="20dp"
+                       android:layout_height="20dp"
+                       android:src="@mipmap/home_arrow_left_hot"
+                       ></ImageView>
+
+                   <TextView
+                       android:layout_marginTop="@dimen/dp_10"
+                       android:layout_marginBottom="@dimen/dp_10"
+                       android:layout_marginLeft="13dp"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:gravity="center_vertical"
+                       android:text="这里都是买的棒棒哒"
+                       android:textColor="#000000"
+
+                       ></TextView>
+
+
+                   <TextView
+                       android:layout_width="0dp"
+                       android:layout_weight="9"
+                       android:layout_height="match_parent"
+
+                       ></TextView>
+
+                   <TextView
+                       android:paddingRight="5dp"
+                       android:gravity="center"
+                       android:layout_width="wrap_content"
+                       android:layout_height="match_parent"
+                       android:text="查看更多 >"
+                       ></TextView>
+
+
+               </LinearLayout>
+
+
+               <android.support.v7.widget.RecyclerView
+
+                   android:id="@+id/home_recycle_shopping"
+                   android:layout_width="match_parent"
+                   android:layout_height="match_parent"
+                   android:background="#EFEFEF"
+
+                   ></android.support.v7.widget.RecyclerView>
+
+           </LinearLayout>
+
         </LinearLayout>
-    </android.support.v7.widget.Toolbar>
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/rv"
-        style="@style/Base_Layout_Match_Match"></android.support.v7.widget.RecyclerView>
+
+
+    </ScrollView>
+
+
 </LinearLayout>
