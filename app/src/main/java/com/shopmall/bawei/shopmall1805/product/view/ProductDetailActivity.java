@@ -5,9 +5,11 @@ import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bumptech.glide.Glide;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseActivity;
@@ -28,7 +30,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenterIm
     private String prodctPrice;
     private String url;
     private int newNum;
-
+    private ImageView mIvGoodInfoImage;
     @Override
     protected void initPresenter() {
         httpPresenter = new ProductDetailPresenterImpl();
@@ -51,6 +53,8 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenterIm
 
     @Override
     protected void initView() {
+
+        mIvGoodInfoImage = findViewById(R.id.iv_good_info_image);
         picWebView = findViewById(R.id.wb_good_info_more);
         priceTv = findViewById(R.id.tv_good_info_price);
         findViewById(R.id.btn_good_info_addcart).setOnClickListener(this);
@@ -60,7 +64,7 @@ public class ProductDetailActivity extends BaseActivity<ProductDetailPresenterIm
         productName = intent.getStringExtra("productName");
         prodctPrice = intent.getStringExtra("productPrice");
         url = intent.getStringExtra("url");
-
+        Glide.with(this).load(url).into((mIvGoodInfoImage));
         priceTv.setText(prodctPrice);
         picWebView.setWebViewClient(new WebViewClient());
         picWebView.setWebChromeClient(new WebChromeClient());

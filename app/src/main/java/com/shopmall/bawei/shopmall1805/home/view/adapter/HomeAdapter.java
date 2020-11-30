@@ -15,7 +15,6 @@ import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseRvAdapter;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.home.ShoppingActivity;
 import com.shopmall.bawei.shopmall1805.product.view.ProductDetailActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.Transformer;

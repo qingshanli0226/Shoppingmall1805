@@ -213,8 +213,8 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     public void onInventory(List<InventoryBean> inventoryBean) {
 
 
-        if (checkInventoryIsEnough(inventoryBean)) {//库存充足的条件
-             //充足情况下，向服务端下订单
+        if (checkInventoryIsEnough(inventoryBean)) {
+
             httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
         } else {
         }

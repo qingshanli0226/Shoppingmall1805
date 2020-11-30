@@ -24,16 +24,16 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
 
 
-//存储购物车数据的类
+
 public class CacheManager {
 
-    //当用户登录成功后，CacheManger会调用服务端接口请求购物车数据。拿到购物车数据后，给shopcarBeanList赋值
+
     private List<ShopcarBean> shopcarBeanList = new ArrayList<>();
     private List<ShopcarBean> deleteShopcarBeanList = new ArrayList<>();
 
     private static CacheManager instance;
 
-    //有多个页面监听数据的变化，所以维护一个监听listener的列表
+
     private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList = new ArrayList<>();
 
     private Context context;
