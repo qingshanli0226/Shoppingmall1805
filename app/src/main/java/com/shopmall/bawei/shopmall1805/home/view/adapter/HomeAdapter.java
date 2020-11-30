@@ -178,6 +178,8 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
 
     }
 
+    
+
     @Override
     protected int getViewType(int position) {
         switch (position){
