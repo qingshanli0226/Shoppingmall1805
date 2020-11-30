@@ -1,8 +1,6 @@
 package com.shopmall.bawei.shopmall1805.home;
 
 
-import android.util.Log;
-
 import com.example.net.RetrofitCreater;
 import com.example.net.bean.MainBean;
 import com.shoppmall.common.adapter.error.ExceptionUtil;
@@ -34,13 +32,16 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
 
                     @Override
                     public void onNext(MainBean bean) {
-                        iview.onOk(bean);
                         iview.hideLoading(true,null);
+                        if(bean.getResult()!=null){
+                            iview.onOk(bean);
+                        }else {
+                            iview.showEmpty();
+                        }
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        Log.i("TAG", "onError: ");
                         iview.hideLoading(false, ExceptionUtil.getErrorBean(e));
                     }
 

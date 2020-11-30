@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Shoppingmall1805.iml" filepath="$PROJECT_DIR$/.idea/modules/Shoppingmall1805.iml" group="Shoppingmall1805" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/app/app.iml" filepath="$PROJECT_DIR$/.idea/modules/app/app.iml" group="Shoppingmall1805/app" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/common/common.iml" filepath="$PROJECT_DIR$/.idea/modules/common/common.iml" group="Shoppingmall1805/common" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/detail/detail.iml" filepath="$PROJECT_DIR$/.idea/modules/detail/detail.iml" group="Shoppingmall1805/detail" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/framework/framework.iml" filepath="$PROJECT_DIR$/.idea/modules/framework/framework.iml" group="Shoppingmall1805/framework" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/net/net.iml" filepath="$PROJECT_DIR$/.idea/modules/net/net.iml" group="Shoppingmall1805/net" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/order/order.iml" filepath="$PROJECT_DIR$/.idea/modules/order/order.iml" group="Shoppingmall1805/order" />

@@ -16,6 +16,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.net.Constants;
 import com.example.net.bean.MainBean;
 import com.shopmall.bawei.shopmall1805.R;
@@ -30,7 +31,6 @@ import com.youth.banner.loader.ImageLoader;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
-
 public class HomeAdapter extends BaseRvAdapter<Object> {
     private Context context;
 
@@ -69,12 +69,6 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                     public void displayImage(Context context, Object path, ImageView imageView) {
                         MainBean.ResultBean.BannerInfoBean bean = (MainBean.ResultBean.BannerInfoBean) path;
                         Glide.with(context).load(Constants.BASE_URl_IMAGE+bean.getImage()).into(imageView);
-                        imageView.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                ARouter.getInstance().build("/detailpage/DetailActivity").withObject("good",bean).navigation();
-                            }
-                        });
                     }
                 }).start();
                 break;
@@ -131,23 +125,45 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                     isFirst = false;
                 }
                 recyclerView.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
-                SeckillAdapter seckillAdapter = new SeckillAdapter(seckillInfoBeans.getList(), context);
+                List<MainBean.ResultBean.SeckillInfoBean.ListBean> beans = seckillInfoBeans.getList();
+                SeckillAdapter seckillAdapter = new SeckillAdapter(beans, context);
+                seckillAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good", beans.get(position)).withString("type","seckill").navigation();
+
+                    }
+                });
                 recyclerView.setAdapter(seckillAdapter);
                 handler.sendEmptyMessageDelayed(0, 1000);
-
                 break;
             case 4:
                 List<MainBean.ResultBean.RecommendInfoBean> recommendInfoBeans = (List<MainBean.ResultBean.RecommendInfoBean>) o;
                 RecyclerView recommendrv = baseViewHoder.getView(R.id.rv_recommend);
                 recommendrv.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
                 RecommendAdapter recommendAdapter = new RecommendAdapter(recommendInfoBeans, context);
+                recommendAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good", recommendInfoBeans.get(position)).withString("type","recommend").navigation();
+
+                    }
+                });
                 recommendrv.setAdapter(recommendAdapter);
+
                 break;
             case 5:
                 List<MainBean.ResultBean.HotInfoBean> hotInfoBeans = (List<MainBean.ResultBean.HotInfoBean>) o;
                 RecyclerView hotrv = baseViewHoder.getView(R.id.rv_hot);
                 hotrv.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
                 HotAdapter hotAdapter = new HotAdapter(hotInfoBeans, context);
+                hotAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good", hotInfoBeans.get(position)).withString("type","hot").navigation();
+
+                    }
+                });
                 hotrv.setAdapter(hotAdapter);
                 break;
         }

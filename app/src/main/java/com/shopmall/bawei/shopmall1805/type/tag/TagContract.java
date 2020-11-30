@@ -7,7 +7,6 @@ import com.example.net.bean.TagBean;
 public interface TagContract {
     interface TagView extends IView{
         void onOk(TagBean bean);
-        void onError(String msg);
     }
     public abstract class TagPresenter extends BasePresenter<TagView>{
         abstract void showTag();

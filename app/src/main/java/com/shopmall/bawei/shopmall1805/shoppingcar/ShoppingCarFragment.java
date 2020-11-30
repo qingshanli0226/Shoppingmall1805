@@ -55,11 +55,12 @@ public class ShoppingCarFragment extends BaseFragment {
         llEmptyShopcart = (LinearLayout) inflate.findViewById(R.id.ll_empty_shopcart);
         ivEmpty = (ImageView) inflate.findViewById(R.id.iv_empty);
         tvEmptyCartTobuy = (TextView) inflate.findViewById(R.id.tv_empty_cart_tobuy);
-
+        showEmptyCarPage();
     }
 
     @Override
     protected int getLayoutID() {
         return R.layout.fragment_shopping_car;
     }
+
 }

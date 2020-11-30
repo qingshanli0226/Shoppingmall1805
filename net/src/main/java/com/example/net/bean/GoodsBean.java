@@ -1,9 +1,11 @@
 package com.example.net.bean;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class GoodsBean {
+public class GoodsBean implements Serializable{
 
+    private static final long serialVersionUID = -5069304582253755063L;
     /**
      * code : 200
      * msg : 请求成功
@@ -38,7 +40,8 @@ public class GoodsBean {
         this.result = result;
     }
 
-    public static class ResultBean {
+    public static class ResultBean implements Serializable{
+        private static final long serialVersionUID = 6885048212189908139L;
         /**
          * p_catalog_id : 3
          * parent_id : 0
@@ -113,7 +116,8 @@ public class GoodsBean {
             this.hot_product_list = hot_product_list;
         }
 
-        public static class ChildBean {
+        public static class ChildBean implements Serializable{
+            private static final long serialVersionUID = 8702629812669035517L;
             /**
              * p_catalog_id : 10
              * parent_id : 3
@@ -169,7 +173,8 @@ public class GoodsBean {
             }
         }
 
-        public static class HotProductListBean {
+        public static class HotProductListBean implements Serializable {
+            private static final long serialVersionUID = -6965146663608697251L;
             /**
              * product_id : 2704
              * channel_id : 6

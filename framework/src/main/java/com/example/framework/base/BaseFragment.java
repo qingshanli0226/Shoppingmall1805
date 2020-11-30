@@ -75,4 +75,7 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
     public void showEmptyPage() {
         loadingPage.showEmptyPage();
     }
+    public void showEmptyCarPage() {
+        loadingPage.showEmptyCarPage();
+    }
 }

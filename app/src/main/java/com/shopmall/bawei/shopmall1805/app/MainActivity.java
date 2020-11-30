@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopmall1805.app;
 
 
+import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -10,6 +12,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.user.UserManager;
+import com.example.framework.view.MyVP;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -20,7 +23,6 @@ import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.shoppingcar.ShoppingCarFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.user.UserFragment;
-import com.example.framework.view.MyVP;
 import com.shoppmall.common.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
@@ -59,7 +61,22 @@ public class MainActivity extends BaseActivity {
         vpMain.setScanScroll(false);
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
         vpMain.setOffscreenPageLimit(5);
+        
 
+    }
+
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        String key = intent.getStringExtra("position");
+        Log.i("Yoyo", "onResume: "+key);
+        if(key!=null&&!key.equals("")){
+
+            int anInt = Integer.parseInt(key);
+            commMain.setCurrentTab(anInt);
+            vpMain.setCurrentItem(anInt);
+        }
     }
 
     @Override
@@ -70,11 +87,11 @@ public class MainActivity extends BaseActivity {
             public void onTabSelect(int position) {
                 if(UserManager.isLogin()){
                     vpMain.setCurrentItem(position);
-                }else {
-                    Toast.makeText(MainActivity.this, "请先登录账户", Toast.LENGTH_SHORT).show();
-                    ARouter.getInstance().build("/user/LoginActivity").withString("key","main").navigation();
-                    commMain.setCurrentTab(0);
-                }
+            }else {
+                Toast.makeText(MainActivity.this, "请先登录账户", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build("/user/LoginActivity").withString("key",position+"").navigation();
+                commMain.setCurrentTab(0);
+            }
 
             }
 

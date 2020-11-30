@@ -11,10 +11,12 @@ public class UserManager {
         return userManager;
     }
     public void bindUser(User user){
-        this.user=user;
+       if(this.user==null){
+           this.user=user;
+
+       }
     }
     public static boolean isLogin(){
-
         return user!=null;
     }
     public static class User{

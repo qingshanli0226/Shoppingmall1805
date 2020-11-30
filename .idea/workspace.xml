@@ -6,8 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="TAG" />
-    <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
+    <option name="TOOL_WINDOW_LOG_LEVEL" value="error" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
@@ -63,20 +62,25 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-24T06:43:40.336Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/framework/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/detail/src/main/res/drawable" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="AndroidSdkUpdater" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
+    <key name="android.template.-1729063472">
+      <recent name="com.example.detail" />
+    </key>
     <key name="ExtractSuperBase.RECENT_KEYS">
       <recent name="com.shoppmall.common.adapter" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\detail\src\main\res\drawable" />
+      <recent name="F:\five\Shoppingmall1805\detail\src\main\res\layout" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout\home" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main\res\layout" />
-      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
     </key>
     <key name="android.template.-1849807279">
       <recent name="com.shopmall.bawei.shopmall1805.detailpage" />
@@ -86,17 +90,19 @@
       <recent name="com.shopmall.bawei.user.login" />
     </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="com.example.detail" />
+      <recent name="com.shopmall.bawei.shopmall1805" />
       <recent name="com.shopmall.bawei.shopmall1805.home" />
     </key>
     <key name="android.template.1219811837">
       <recent name="com.shopmall.bawei.user" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\detail\src\main\res\drawable" />
+      <recent name="F:\five\Shoppingmall1805\framework\src\main\java\com\example\framework\view" />
+      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\user\src\main\res\drawable" />
-      <recent name="F:\five\Shoppingmall1805\app\src\main\res\drawable" />
-      <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
-      <recent name="F:\five\Shoppingmall1805\common\src\main\res\mipmap" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.shoppmall.common.adapter.error" />
@@ -190,26 +196,30 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="742" y="337" key="#PSD" timestamp="1606475708784">
+    <state x="742" y="337" key="#PSD" timestamp="1606724474132">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="742" y="337" key="#PSD/75.0.1845.1080@75.0.1845.1080" timestamp="1606475708784" />
+    <state x="742" y="337" key="#PSD/75.0.1845.1080@75.0.1845.1080" timestamp="1606724474132" />
     <state x="451" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606473327064">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="451" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606473327064" />
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1606478016197">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1606734046380">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606478016197" />
-    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606127332784">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606734046380" />
+    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606723195244">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606127332784" />
-    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606387113664">
+    <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606723195244" />
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes" timestamp="1606723126001">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/75.0.1845.1080@75.0.1845.1080" timestamp="1606387113664" />
+    <state x="1208" y="400" width="506" height="295" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/75.0.1845.1080@75.0.1845.1080" timestamp="1606723126001" />
+    <state x="777" y="418" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages" timestamp="1606723146310">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="777" y="418" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/75.0.1845.1080@75.0.1845.1080" timestamp="1606723146310" />
     <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1606386320848">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -222,46 +232,54 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1039" y="298" key="AndroidCreateResourceFileDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606474829309" />
-    <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606287390952">
+    <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606722759949">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606287390952" />
-    <state width="1802" height="260" key="GridCell.Tab.0.bottom" timestamp="1606481239946">
+    <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606722759949" />
+    <state width="1802" height="442" key="GridCell.Tab.0.bottom" timestamp="1606736804292">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.0.center" timestamp="1606481239946">
+    <state width="1802" height="442" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
+    <state width="1802" height="442" key="GridCell.Tab.0.center" timestamp="1606736804292">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.0.left" timestamp="1606481239946">
+    <state width="1802" height="442" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
+    <state width="1802" height="442" key="GridCell.Tab.0.left" timestamp="1606736804292">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.0.right" timestamp="1606481239946">
+    <state width="1802" height="442" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
+    <state width="1802" height="442" key="GridCell.Tab.0.right" timestamp="1606736804292">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.1.bottom" timestamp="1606481239947">
+    <state width="1802" height="442" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
+    <state width="1802" height="260" key="GridCell.Tab.1.bottom" timestamp="1606736724334">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239947" />
-    <state width="1802" height="260" key="GridCell.Tab.1.center" timestamp="1606481239946">
+    <state width="1802" height="260" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724334" />
+    <state width="1802" height="260" key="GridCell.Tab.1.center" timestamp="1606736724333">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.1.left" timestamp="1606481239946">
+    <state width="1802" height="260" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
+    <state width="1802" height="260" key="GridCell.Tab.1.left" timestamp="1606736724333">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
-    <state width="1802" height="260" key="GridCell.Tab.1.right" timestamp="1606481239946">
+    <state width="1802" height="260" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
+    <state width="1802" height="260" key="GridCell.Tab.1.right" timestamp="1606736724333">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606481239946" />
+    <state width="1802" height="260" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
+    <state x="638" y="118" key="SettingsEditor" timestamp="1606732846196">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="638" y="118" key="SettingsEditor/75.0.1845.1080@75.0.1845.1080" timestamp="1606732846196" />
     <state x="1258" y="320" key="chooseDestDirectoryDialog" timestamp="1606129655596">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1258" y="320" key="chooseDestDirectoryDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606129655596" />
+    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1606522488468">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606522488468" />
     <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606194087228">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -274,18 +292,18 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="727" y="307" key="extract.method.dialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606444605769" />
-    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension" timestamp="1606475707512">
+    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension" timestamp="1606724473472">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension/75.0.1845.1080@75.0.1845.1080" timestamp="1606475707512" />
+    <state x="561" y="324" key="psd.add.module.dependency.panel.dimension/75.0.1845.1080@75.0.1845.1080" timestamp="1606724473472" />
     <state x="654" y="250" key="run.anything.popup" timestamp="1606478870232">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="654" y="250" key="run.anything.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606478870232" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1606474736249">
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1606737574832">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606474736249" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606737574832" />
     <state x="719" y="451" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606478836207">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -295,29 +313,19 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/user/src/main/java/com/shopmall/bawei/user/login/LoginActivity.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/LoadingPage.java</url>
-          <line>73</line>
+          <line>76</line>
           <option name="timeStamp" value="18" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/LoadingPage.java</url>
-          <line>63</line>
-          <option name="timeStamp" value="19" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/LoadingPage.java</url>
-          <line>55</line>
-          <option name="timeStamp" value="20" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/LoadingPage.java</url>
-          <line>82</line>
+          <line>85</line>
           <option name="timeStamp" value="21" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/arouter-api/1.5.1/3bae1f492096e8cb87a2d79d87645732f518070a/arouter-api-1.5.1-sources.jar!/com/alibaba/android/arouter/facade/Postcard.java</url>
+          <line>229</line>
+          <option name="timeStamp" value="22" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

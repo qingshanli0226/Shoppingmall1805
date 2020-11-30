@@ -1,7 +1,6 @@
 package com.shopmall.bawei.shopmall1805.type.tag;
 
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,7 +16,7 @@ import java.util.List;
 public class TagFragment extends BaseFragment<TagPresenterImpl, TagContract.TagView> implements TagContract.TagView {
     private RecyclerView rvTag;
     private List<TagBean.ResultBean> list=new ArrayList<>();
-    private TagDapter tagDapter;
+    private TagAdapter tagAdapter;
     @Override
     protected void initDate() {
         presenter.showTag();
@@ -33,8 +32,8 @@ public class TagFragment extends BaseFragment<TagPresenterImpl, TagContract.TagV
         presenter=new TagPresenterImpl();
         rvTag = (RecyclerView) inflate.findViewById(R.id.rv_tag);
         rvTag.setLayoutManager(new GridLayoutManager(getContext(),3));
-        tagDapter=new TagDapter();
-        rvTag.setAdapter(tagDapter);
+        tagAdapter=new TagAdapter();
+        rvTag.setAdapter(tagAdapter);
     }
 
     @Override
@@ -47,26 +46,21 @@ public class TagFragment extends BaseFragment<TagPresenterImpl, TagContract.TagV
         list.clear();
         List<TagBean.ResultBean> result = bean.getResult();
         list.addAll(result);
-        tagDapter.updataData(list);
-    }
-
-    @Override
-    public void onError(String msg) {
-        Toast.makeText(getContext(), ""+msg, Toast.LENGTH_SHORT).show();
+        tagAdapter.updataData(list);
     }
 
     @Override
     public void showloading() {
-
+        showLoading();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+        hideLoadingPage(isSuccess,errorBean);
     }
 
     @Override
     public void showEmpty() {
-
+        showEmptyPage();
     }
 }

@@ -10,7 +10,7 @@ import com.shoppmall.common.adapter.BaseRvAdapter;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TagDapter extends BaseRvAdapter<TagBean.ResultBean> {
+public class TagAdapter extends BaseRvAdapter<TagBean.ResultBean> {
     private List<Integer> colors= new ArrayList<>();
     @Override
     protected int getLayoutId(int viewType) {

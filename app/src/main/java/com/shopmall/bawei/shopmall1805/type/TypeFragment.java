@@ -19,13 +19,13 @@ import java.util.List;
 
 
 public class TypeFragment extends BaseFragment {
-    private SegmentTabLayout tl1;
+    private SegmentTabLayout segTab;
     private ImageView ivTypeSearch;
     private MyVP vpType;
     private List<Fragment> fragments=new ArrayList<>();
     @Override
     protected void initDate() {
-        tl1.setTabData(new String[]{"分类","标签"});
+        segTab.setTabData(new String[]{"分类","标签"});
         if(fragments.size()!=0){
             fragments.clear();
         }
@@ -39,7 +39,7 @@ public class TypeFragment extends BaseFragment {
     protected void initLisenter() {
 
 
-        tl1.setOnTabSelectListener(new OnTabSelectListener() {
+        segTab.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
                 vpType.setCurrentItem(position);
@@ -54,7 +54,7 @@ public class TypeFragment extends BaseFragment {
 
     @Override
     protected void initView(View inflate) {
-        tl1 = (SegmentTabLayout) inflate.findViewById(R.id.tl_1);
+        segTab = (SegmentTabLayout) inflate.findViewById(R.id.segtab);
         ivTypeSearch = (ImageView) inflate.findViewById(R.id.iv_type_search);
         vpType = inflate.findViewById(R.id.vp_type);
 

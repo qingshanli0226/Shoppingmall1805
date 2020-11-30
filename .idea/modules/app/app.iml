@@ -166,6 +166,7 @@
     <orderEntry type="library" name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22@aar" level="project" />
     <orderEntry type="module" module-name="net" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="detail" />
     <orderEntry type="module" module-name="user" />
     <orderEntry type="module" module-name="shopcar" />
     <orderEntry type="module" module-name="pay" />

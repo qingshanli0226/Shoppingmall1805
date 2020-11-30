@@ -69,7 +69,6 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
 
     @Override
     public void showloading() {
-
         showLoading();
     }
 
@@ -80,7 +79,7 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
 
     @Override
     public void showEmpty() {
-        showEmpty();
+        showEmptyPage();
     }
 
 }

@@ -3,6 +3,7 @@ package com.example.framework.view;
 import android.content.Context;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.framework.R;
 
 public abstract class LoadingPage extends FrameLayout {
@@ -21,7 +23,7 @@ public abstract class LoadingPage extends FrameLayout {
     private View emptyCarView;
     private View successView;
     private TextView errorTv;
-
+    private TextView tvEmptyCartTobuy;
     public LoadingPage(@NonNull Context context) {
         super(context);
         init(context);
@@ -44,12 +46,13 @@ public abstract class LoadingPage extends FrameLayout {
         addView(emptyView,layoutParams);
         emptyCarView=layoutInflater.inflate(R.layout.empty_cart,null);
         addView(emptyCarView,layoutParams);
+        tvEmptyCartTobuy =emptyCarView.findViewById(R.id.tv_empty_cart_tobuy);
         successView=layoutInflater.inflate(getSuccessLayoutId(),null);
         addView(successView);
         loadingView=layoutInflater.inflate(R.layout.view_loading,null);
         loadingView.setBackgroundColor(Color.TRANSPARENT);
         addView(loadingView,layoutParams);
-        showErrorPage("jjjjjjss");
+        showSuccessView();
     }
 
     public void showSuccessView(){
@@ -87,6 +90,13 @@ public abstract class LoadingPage extends FrameLayout {
         emptyCarView.setVisibility(GONE);
     }
     public void showEmptyCarPage() {
+        tvEmptyCartTobuy.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("Yoyo", "onClick: ");
+                ARouter.getInstance().build("/main/MainActivity").withString("position","0").navigation();
+            }
+        });
         errorView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         successView.setVisibility(GONE);

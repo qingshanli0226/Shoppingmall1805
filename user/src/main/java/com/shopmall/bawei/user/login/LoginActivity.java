@@ -159,9 +159,17 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     }
 
     private void arouter() {
-
-        if(key.equals("main")){
-            ARouter.getInstance().build("/main/MainActivity").navigation();
+        if(!UserManager.isLogin()){
+            key="0";
+        }
+        switch (key){
+            case "0":
+            case "1":
+            case "2":
+            case "3":
+            case "4":
+                ARouter.getInstance().build("/main/MainActivity").withString("position",key).navigation();
+                break;
         }
     }
 

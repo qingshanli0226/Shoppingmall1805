@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.type.list;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -18,9 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListFragment extends BaseFragment<ListPresenterImpl, ListContract.ListIView> implements ListContract.ListIView {
-    private String[] urls = new String[]{Constants.SKIRT_URL, Constants.JACKET_URL, Constants.PANTS_URL, Constants.OVERCOAT_URL,
-            Constants.ACCESSORY_URL, Constants.BAG_URL, Constants.DRESS_UP_URL, Constants.HOME_PRODUCTS_URL, Constants.STATIONERY_URL,
-            Constants.DIGIT_URL, Constants.GAME_URL};
+    private String[] urls = new String[]{Constants.SKIRT_URL, Constants.JACKET_URL, Constants.PANTS_URL, Constants.OVERCOAT_URL, Constants.ACCESSORY_URL, Constants.BAG_URL, Constants.DRESS_UP_URL, Constants.HOME_PRODUCTS_URL, Constants.STATIONERY_URL, Constants.DIGIT_URL, Constants.GAME_URL};
     private ListView lvLeft;
     private RecyclerView rvRight;
     private ListHotAdapter strAdapter;
@@ -73,22 +70,17 @@ public class ListFragment extends BaseFragment<ListPresenterImpl, ListContract.L
     }
 
     @Override
-    public void onError(String msg) {
-        Log.i("Yoyo", msg);
-    }
-
-    @Override
     public void showloading() {
-
+        showLoading();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+        hideLoadingPage(isSuccess,errorBean);
     }
 
     @Override
     public void showEmpty() {
-
+        showEmpty();
     }
 }
