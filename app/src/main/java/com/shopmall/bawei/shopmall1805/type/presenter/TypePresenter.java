@@ -22,7 +22,7 @@ public class TypePresenter extends TypeContract.ITypePresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iView.showLoaing();
+                        iView.showsLoaing();
                     }
                 })
                 .subscribe(new Observer<SkirtBean>() {
@@ -35,12 +35,12 @@ public class TypePresenter extends TypeContract.ITypePresenter {
                     public void onNext(SkirtBean skirtBean) {
                             iView.onGetSkirtOk(skirtBean);
 
-                            iView.hideLoading(true);
+                            iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        iView.hideLoading(false);
+                        iView.hidesLoading(false);
                         iView.onError(e.getMessage());
                     }
 

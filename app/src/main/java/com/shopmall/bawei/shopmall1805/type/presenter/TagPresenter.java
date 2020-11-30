@@ -19,7 +19,7 @@ public class TagPresenter extends TagContract.ITagPresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iView.showLoaing();
+                        iView.showsLoaing();
                     }
                 })
                 .subscribe(new Observer<TagBean>() {
@@ -31,13 +31,13 @@ public class TagPresenter extends TagContract.ITagPresenter {
                     @Override
                     public void onNext(TagBean tagBean) {
                         iView.onOk(tagBean);
-                        iView.hideLoading(true);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         iView.onError(e.getMessage());
-                        iView.hideLoading(false);
+                        iView.hidesLoading(false);
                     }
 
                     @Override

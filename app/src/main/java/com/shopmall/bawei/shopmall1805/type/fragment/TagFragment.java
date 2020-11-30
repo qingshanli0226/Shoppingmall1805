@@ -59,15 +59,16 @@ public class TagFragment extends BaseFragment<TagPresenter, TagContract.TagView>
     }
 
     @Override
-    public void showLoaing() {
+    public void showsLoaing() {
         showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess) {
-
+    public void hidesLoading(boolean isSuccess) {
         hideLoadingPage(isSuccess);
     }
+
+
 
     @Override
     public void showEmpty() {

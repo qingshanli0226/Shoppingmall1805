@@ -7,6 +7,8 @@ import android.view.View;
 import android.widget.Button;
 
 import com.bw.common.BaseFragment;
+import com.bw.common.IPresenter;
+import com.bw.common.IView;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.adapter.MyPagerAdapter;
 import com.shopmall.bawei.shopmall1805.type.fragment.ClassifyFragment;
@@ -15,7 +17,7 @@ import com.shopmall.bawei.shopmall1805.type.fragment.TagFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TypeFragment extends BaseFragment {
+public class TypeFragment extends BaseFragment<IPresenter, IView> {
 
     private ViewPager frameLayout;
     private MyPagerAdapter myPagerAdapter;

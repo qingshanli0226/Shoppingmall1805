@@ -23,7 +23,7 @@ public class HomePresenter extends HomeContract.HomePresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iView.showLoaing();
+                        iView.showsLoaing();
                     }
                 })
                 .subscribe(new Observer<HomeFragmentBean>() {
@@ -36,7 +36,7 @@ public class HomePresenter extends HomeContract.HomePresenter {
                     public void onNext(HomeFragmentBean homeFragmentBean) {
                         if (homeFragmentBean.getCode() == 200){
                             iView.onOk(homeFragmentBean);
-                            iView.hideLoading(true);
+                            iView.hidesLoading(true);
                         }
                     }
 

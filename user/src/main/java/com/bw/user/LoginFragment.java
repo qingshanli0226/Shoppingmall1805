@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+
 import com.bw.common.BaseFragment;
 import com.bw.net.bean.LoginBean;
 import com.bw.user.contract.LoginContract;
@@ -88,7 +89,7 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
             getActivity().finish();
             return;
         } else {
-            ARouter.getInstance().build("/shopcar/ShopcarActivity").navigation();
+            ARouter.getInstance().build("/activity/activity_shopCart").navigation();
         }
 
         getActivity().finish();//是不是一定能回到MainActivity，这个不一定，因为，MainActivity有可能被系统回收.
@@ -100,14 +101,15 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
     }
 
     @Override
-    public void showLoaing() {
+    public void showsLoaing() {
 
     }
 
     @Override
-    public void hideLoading(boolean isSuccess) {
+    public void hidesLoading(boolean isSuccess) {
 
     }
+
 
     @Override
     public void showEmpty() {

@@ -131,14 +131,15 @@ public class ClassifyFragment extends BaseFragment<TypePresenter, TypeContract.T
     }
 
     @Override
-    public void showLoaing() {
+    public void showsLoaing() {
         showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess) {
+    public void hidesLoading(boolean isSuccess) {
         hideLoadingPage(isSuccess);
     }
+
 
     @Override
     public void showEmpty() {

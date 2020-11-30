@@ -30,7 +30,7 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 //        View view = inflater.inflate(getLayoutId(), null);
 
-        loadingPage = new LoadingPage(getActivity()) {
+        loadingPage = new LoadingPage(getContext()) {
             @Override
             protected int getSuccessLayoutId() {
                 return getLayoutId();

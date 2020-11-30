@@ -77,12 +77,12 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     }
 
     @Override
-    public void showLoaing() {
-        showLoaing();
+    public void showsLoaing() {
+          showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess) {
+    public void hidesLoading(boolean isSuccess) {
         hideLoadingPage(isSuccess);
     }
 
