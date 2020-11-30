@@ -1,10 +1,16 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -18,9 +24,12 @@ import com.shopmall.bawei.shopmall1805.tliteUser;
 import java.util.ArrayList;
 
 import framework.BaseActivity;
+import framework.ShopUserManager;
+import view.ShopmallConstant;
 
+@Route(path = "/main/MainActivity")
 public class MainActivity extends BaseActivity {
-    private ViewPager ViewPager;
+    private ViewPager viewPager;
     private CommonTabLayout commont;
     private ArrayList<Fragment> fragmentlist = new ArrayList<>();
     private ArrayList<CustomTabEntity> tiltelist = new  ArrayList<>();
@@ -36,7 +45,8 @@ public class MainActivity extends BaseActivity {
         tiltelist.add(new tliteUser("分类",0,0));
         tiltelist.add(new tliteUser("购物车",0,0));
         tiltelist.add(new tliteUser("个人中心",0,0));
-
+        //ARouter注入
+        ARouter.getInstance().inject(this);
         FragmentPagerAdapter adapter = new FragmentPagerAdapter(getSupportFragmentManager()) {
             @Override
             public int getCount() {
@@ -48,9 +58,9 @@ public class MainActivity extends BaseActivity {
                 return fragmentlist.get(i);
             }
         };
-        ViewPager.setAdapter(adapter);
+        viewPager.setAdapter(adapter);
         commont.setTabData(tiltelist);
-        ViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
 
@@ -66,10 +76,17 @@ public class MainActivity extends BaseActivity {
 
             }
         });
+
         commont.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                ViewPager.setCurrentItem(position);
+                viewPager.setCurrentItem(position);
+                if (position==2 && !ShopUserManager.getInstance().isUserLogin()){
+                    //如果用户没有登录
+                    ARouter.getInstance().build(ShopmallConstant.LOGIN_ACTIVITY_PATH).withInt(ShopmallConstant.TO_LOGIN_KEY, ShopmallConstant.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT).navigation();//跳转到loginActivity
+                    //finish();
+                    return;
+                }
             }
 
             @Override
@@ -80,12 +97,32 @@ public class MainActivity extends BaseActivity {
     }
     @Override
     protected void initData() {
-        ViewPager = (ViewPager) findViewById(R.id.ViewPager);
+        viewPager = (ViewPager) findViewById(R.id.ViewPager);
         commont = (CommonTabLayout) findViewById(R.id.commont);
         fragmentlist.clear();
         tiltelist.clear();
 
+        switchFragmentByIndex(getIntent());
+
     }
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        switchFragmentByIndex(intent);
+    }
+    private void switchFragmentByIndex(Intent intent) {
+        int index = intent.getIntExtra("index", 0);
+        setLog(">>",""+index);
+        if (index == ShopmallConstant.BUTTON_LOGIN_INDEX1){
+            viewPager.setCurrentItem(2);
+            setLog(">>","进入购物车"+index);
+        }else if (index == ShopmallConstant.BUTTON_LOGIN_INDEX2){
+            viewPager.setCurrentItem(0);
+            setLog(">>","进入首页"+index);
+        }
+    }
+
     @Override
     protected int getlayoutId() {
         return R.layout.activity_main ;

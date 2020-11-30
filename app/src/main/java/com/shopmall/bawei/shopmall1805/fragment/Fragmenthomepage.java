@@ -58,24 +58,7 @@ class Fragmenthomepage extends BaseFragment {
         });
     }
 
-/*    private void goShopBay(int i, int position) {//购买
-        userBean usernv = null;
 
-
-        if (i==1){
-            HomeBean.ResultBean.HotInfoBean hotInfoBean = hotInfoBeanList.get(position);
-            usernv = new userBean(hotInfoBean.getName(),hotInfoBean.getCover_price(),hotInfoBean.getFigure());
-        }else if (i == 4){
-            HomeBean.ResultBean.RecommendInfoBean recommendInfoBean = recommendInfoBeans.get(position);
-            usernv = new userBean(recommendInfoBean.getName(),recommendInfoBean.getCover_price(),recommendInfoBean.getFigure());
-        }
-
-        if (usernv !=null){
-            Intent intent = new Intent(getContext(), goShopActivity.class);
-            intent.putExtra("user",usernv);
-            startActivity(intent);
-        }
-    }*/
 
     @Override
     protected int getlayoutId() {

@@ -55,6 +55,7 @@ class Fragmentclassify extends BaseFragment {
 
     @Override
     protected void InitData() {
+        list.clear();
         linnerButton = (LinearLayout) findViewById(R.id.linner_button);
         textOne = (TextView) findViewById(R.id.text_one);
         textTow = (TextView) findViewById(R.id.text_tow);

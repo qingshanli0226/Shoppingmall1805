@@ -9,14 +9,14 @@ import com.shopmall.bawei.shopmall1805.R;
 import java.util.List;
 
 public
-class Tliteadper extends BaseQuickAdapter<String, BaseViewHolder> {
-    public Tliteadper(int layoutResId, @Nullable List<String> data) {
+class TliteHeadlineAdper extends BaseQuickAdapter<String, BaseViewHolder> {
+    public TliteHeadlineAdper(int layoutResId, @Nullable List<String> data) {
         super(layoutResId, data);
     }
 
     @Override
     protected void convert(BaseViewHolder helper, String item) {
-        helper.setText(R.id.tlite_text_one,item);
-        helper.addOnClickListener(R.id.tlite_text_one);
+        helper.setText(R.id.tlite_text_Headlin,item);
+        helper.addOnClickListener(R.id.tlite_text_Headlin);
     }
 }

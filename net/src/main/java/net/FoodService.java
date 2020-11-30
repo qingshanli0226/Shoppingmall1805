@@ -2,11 +2,19 @@ package net;
 
 
 
+import java.util.HashMap;
+
 import io.reactivex.Observable;
 import mode.ClothesBean;
 import mode.HomeBean;
 import mode.LableBean;
+import mode.LoginBean;
+import mode.ReginsterAndLogin;
+import mode.RegisterBean;
+import retrofit2.http.FieldMap;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 import static view.Constants.BASE_URL_JSON2;
 
@@ -60,4 +68,11 @@ interface FoodService {
     @GET(BASE_URL_JSON2+"TAG_URL.json")
     Observable<LableBean> getLable();
 
+    @POST("register")
+    @FormUrlEncoded
+    Observable<RegisterBean> goToRegister(@FieldMap HashMap<String,String> register);
+
+    @POST("login")
+    @FormUrlEncoded
+    Observable<LoginBean> goToLogin(@FieldMap HashMap<String,String> login);
 }

@@ -25,5 +25,7 @@ class ClassIfyblowAdaper extends BaseQuickAdapter<ClothesBean.ResultBean.HotProd
         Glide.with(mContext).load(Constants.BASE_URl_IMAGE+item.getFigure())
                 .into((ImageView)helper.getView(R.id.channel_Image_one));
         helper.setText(R.id.channel_text_tow,item.getCover_price());
+
+        helper.addOnClickListener(R.id.channel_Image_one);
     }
 }

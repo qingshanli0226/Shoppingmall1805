@@ -4,6 +4,8 @@ import framework.JsonDataCallBace;
 import mode.ClothesBean;
 import mode.HomeBean;
 import mode.LableBean;
+import mode.LoginBean;
+import mode.RegisterBean;
 
 public
 class JsonDataBack implements JsonDataCallBace {
@@ -19,6 +21,16 @@ class JsonDataBack implements JsonDataCallBace {
 
     @Override
     public void homeBean(HomeBean e) {
+
+    }
+
+    @Override
+    public void registerBean(RegisterBean e) {
+
+    }
+
+    @Override
+    public void loginBean(LoginBean e) {
 
     }
 

@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import framework.mvpc.jsonPresenter;
 import view.loadinPage.LoadIngPagec;
@@ -52,6 +53,10 @@ class BaseFragment<P extends jsonPresenter> extends Fragment implements Contact.
 
 
     protected abstract int getlayoutId();
+
+    public void setToast(String type , String setMessage){
+        Toast.makeText(getContext(), type+"- -  >"+setMessage,Toast.LENGTH_SHORT).show();
+    }
 
 
 }

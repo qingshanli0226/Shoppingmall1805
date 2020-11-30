@@ -14,11 +14,12 @@ interface Contact {
 
     interface centerUserImodel extends Imodel {
          void getshopcal(int count);
+         void loginAndRegister(int count,String username,String password);
     }
 
     abstract class centerUserRepostory extends Repository<centerUserImodel> {
          public abstract void getshopcal(int count);
-
+         public abstract void loginAndRegister(int count,String username,String password);
     }
 
     abstract class centetUserpepostory extends Presenter<centerUserRepostory,CenterUserIview> {
@@ -27,5 +28,6 @@ interface Contact {
             super(centerUserIview);
         }
         public abstract   void getshopcal(int count, JsonDataCallBace userc);
+        public abstract  void loginAndRegister(int count,String username,String password,JsonDataCallBace userc);
     }
 }

@@ -5,6 +5,8 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import framework.ShopUserManager;
+
 
 public class ShopmallApplication extends Application {
 
@@ -16,6 +18,8 @@ public class ShopmallApplication extends Application {
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);
+
+        ShopUserManager.getInstance().init(this);
 
     }
 }

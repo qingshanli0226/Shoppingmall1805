@@ -24,5 +24,6 @@ class ClassifyUpAdaper extends BaseQuickAdapter<ClothesBean.ResultBean.ChildBean
         Glide.with(mContext).load(Constants.BASE_URl_IMAGE+item.getPic())
                 .into((ImageView)helper.getView(R.id.tlite_er_image));
         helper.setText(R.id.tlite_er_text,item.getName());
+        helper.addOnClickListener(R.id.tlite_er_image);
     }
 }

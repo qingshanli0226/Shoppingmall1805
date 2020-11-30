@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -19,6 +19,6 @@ class NoScrollViewPager extends ViewPager {
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
-        return true;
+        return false;
     }
 }

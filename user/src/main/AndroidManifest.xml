@@ -4,7 +4,7 @@
     package="com.shopmall.bawei.user">
 
     <application>
-        <activity android:name="View.UserActivity"/>
+        <activity android:name="view.UserActivity"/>
     </application>
 
 </manifest>

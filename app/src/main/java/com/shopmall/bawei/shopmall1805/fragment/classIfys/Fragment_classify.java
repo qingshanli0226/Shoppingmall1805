@@ -7,29 +7,31 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 import android.view.View;
-
+import android.content.Intent;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopmall1805.Adper.classify.ClassIfyblowAdaper;
 import com.shopmall.bawei.shopmall1805.Adper.classify.ClassifyUpAdaper;
-import com.shopmall.bawei.shopmall1805.Adper.classify.Tliteadper;
+import com.shopmall.bawei.shopmall1805.Adper.classify.TliteHeadlineAdper;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.fragment.goShopActivity;
 import com.shopmall.bawei.shopmall1805.fragment.jsonCallBack.JsonDataBack;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseFragment;
+import framework.greendao.userBean;
 import framework.mvpc.jsonPresenter;
 import mode.ClothesBean;
 
 public
 class Fragment_classify extends BaseFragment {
-    private List<String> list = new ArrayList<>();
+    private List<String> list = new ArrayList<String>();
     private RecyclerView ShopcarOne;
     private RecyclerView ShopcarTow;
     private RecyclerView ShopcarThree;
-    private Tliteadper tliteadper;
+    private TliteHeadlineAdper tliteadper;
     private ClassifyUpAdaper classifyUpAdaper;
     private ClassIfyblowAdaper classIfyblowAdaper;
     private List<ClothesBean.ResultBean.ChildBean> clothesBeans = new ArrayList<>();
@@ -59,7 +61,7 @@ class Fragment_classify extends BaseFragment {
     @Override
     protected void OnClickListener() {
 
-        tliteadper = new Tliteadper(R.layout.fragment_personage,list);
+        tliteadper = new TliteHeadlineAdper(R.layout.item_tlite,list);
         ShopcarOne.setAdapter(tliteadper);
         tliteadper.notifyDataSetChanged();
         tliteadper.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
@@ -86,11 +88,23 @@ class Fragment_classify extends BaseFragment {
         classifyUpAdaper = new ClassifyUpAdaper(R.layout.item_er_tlite,clothesBeans);
         ShopcarTow.setAdapter(classifyUpAdaper);
         classifyUpAdaper.notifyDataSetChanged();
-
+        classifyUpAdaper.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                goShopBay(1,position);
+            }
+        });
 
         classIfyblowAdaper = new ClassIfyblowAdaper(R.layout.item_channel,hotProductListBeans);
         ShopcarThree.setAdapter(classIfyblowAdaper);
         classIfyblowAdaper.notifyDataSetChanged();
+
+        classIfyblowAdaper.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
+            @Override
+            public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
+                goShopBay(2,position);
+            }
+        });
 
     }
 
@@ -117,7 +131,23 @@ class Fragment_classify extends BaseFragment {
             }
         });
     }
+        private void goShopBay(int i, int position) {//购买
+            userBean usernv = null;
 
+            if (i==1){
+                ClothesBean.ResultBean.ChildBean childBean = clothesBeans.get(position);
+                usernv = new userBean(childBean.getName(),childBean.getParent_id(),childBean.getPic());
+            }else if (i == 2){
+                ClothesBean.ResultBean.HotProductListBean hotProductListBean = hotProductListBeans.get(position);
+                usernv = new userBean(hotProductListBean.getName(),hotProductListBean.getCover_price(),hotProductListBean.getFigure());
+            }
+
+            if (usernv !=null){
+                Intent intent = new Intent(getContext(), goShopActivity.class);
+                intent.putExtra("user",usernv);
+                startActivity(intent);
+            }
+        }
     @Override
     protected int getlayoutId() {
         return R.layout.classifs2_fragment;

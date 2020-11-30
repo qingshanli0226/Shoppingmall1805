@@ -15,6 +15,7 @@ import framework.BaseActivity;
 import framework.greendao.RxGreen;
 import framework.greendao.userBean;
 import framework.greendao.usernv;
+import view.Constants;
 
 public
 class goShopActivity extends BaseActivity {
@@ -47,7 +48,7 @@ class goShopActivity extends BaseActivity {
 
         Log.i("=====","这是跳转过来接受到的数据 -》"+userBean.toString());
 
-        Glide.with(goShopActivity.this).load(userBean.getUrl()).into(ImageGoShop);
+        Glide.with(goShopActivity.this).load(Constants.BASE_URl_IMAGE+userBean.getUrl()).into(ImageGoShop);
         tliteGoshop.setText(userBean.getName()+"");
         PriceShop.setText(userBean.getPrice()+"");
 
