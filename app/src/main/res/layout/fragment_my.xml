@@ -277,7 +277,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:background="@drawable/new_message_icon" />
+            android:background="@mipmap/new_message_icon" />
 
     </RelativeLayout>
 

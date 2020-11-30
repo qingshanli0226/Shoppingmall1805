@@ -7,11 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
+import com.shopmall.bawei.framework.R;
 import com.shopmall.framework.mvp.IPresenter;
 
 public abstract class BaseMVPFragment<P extends IPresenter> extends Fragment {
     protected P mPresenter;
+    protected ProgressBar loadingBar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -24,6 +27,7 @@ public abstract class BaseMVPFragment<P extends IPresenter> extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View inflate = inflater.inflate(fragmentid(), null);
         createViewid(inflate);
+        loadingBar = inflate.findViewById(R.id.loadingBar);
         return inflate;
     }
 

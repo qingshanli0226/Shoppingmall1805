@@ -39,6 +39,7 @@ public class MyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View inflate = inflater.inflate(R.layout.fragment_my, container, false);
+
         scrollview = (ScrollView) inflate.findViewById(R.id.scrollview);
         ibUserIconAvator = (ImageButton) inflate.findViewById(R.id.ib_user_icon_avator);
         tvUsername = (TextView) inflate.findViewById(R.id.tv_username);
