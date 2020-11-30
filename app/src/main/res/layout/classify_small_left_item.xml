@@ -5,11 +5,8 @@
     android:layout_height="wrap_content"
     >
     <TextView
+        style="@style/textSmallLeft"
         android:id="@+id/fen_left_item_tv"
-        android:layout_width="100dp"
-        android:layout_height="60dp"
-        android:gravity="center_horizontal"
-        android:text="哈哈"
-        android:textSize="15sp">
+        >
     </TextView>
 </LinearLayout>

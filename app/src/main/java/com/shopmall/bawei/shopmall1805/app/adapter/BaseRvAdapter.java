@@ -44,13 +44,11 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
     }
 
     public abstract void convert(BaseViewHolder holder, int viewType, T t);
-
     @Override
     public int getItemViewType(int position) {
         return getViewType(position);
     }
     public abstract int getViewType(int position);
-
     @Override
     public int getItemCount() {
         return list.size();
@@ -60,7 +58,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
         public BaseViewHolder(@NonNull View itemView) {
             super(itemView);
         }
-
         public <V extends View> V getView(@IdRes int id){
             if(viewSparseArray.get(id) == null){
                 V childView = itemView.findViewById(id);

@@ -25,7 +25,7 @@ public interface INetPresetenterWork {
     //登录  接口
     @POST("login")
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> map);
+    Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
 
     //小裙子 接口
     @GET()

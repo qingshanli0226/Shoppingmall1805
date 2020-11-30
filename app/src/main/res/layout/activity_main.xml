@@ -20,27 +20,19 @@
         android:orientation="horizontal"
         >
         <TextView
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#E7E7E7"
-            android:layout_marginTop="9dp"
+            style="@style/textViewLine"
+            android:background="@color/colorTextLine"
             >
         </TextView>
         <ImageView
-            android:layout_width="1dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
+            style="@style/homeImages"
             android:src="@drawable/home_bottom_parent_bg"
             android:scaleType="fitXY"
             >
         </ImageView>
         <TextView
-            android:layout_width="1dp"
-            android:layout_height="1dp"
-            android:layout_weight="1"
-            android:background="#E7E7E7"
-            android:layout_marginTop="9dp"
+            style="@style/textViewLine"
+            android:background="@color/colorTextLine"
             >
         </TextView>
     </LinearLayout>

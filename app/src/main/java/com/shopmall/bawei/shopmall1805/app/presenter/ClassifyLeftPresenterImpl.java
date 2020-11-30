@@ -19,12 +19,6 @@ public class ClassifyLeftPresenterImpl extends ClassifyLeftContract.FenleiPresen
     public void getFenLeiView(String url) {
         RetrofitUtils.getiNetPresetenterWork()
                 .skirt(url)
-                .doOnSubscribe(new Consumer<Disposable>() {
-                    @Override
-                    public void accept(Disposable disposable) throws Exception {
-                        iHttpView.showLoaing();
-                    }
-                })
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new BaseObserver<ClothesBean>() {

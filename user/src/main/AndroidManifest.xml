@@ -2,4 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="om.shopmall.bawei.shopmall1805.user">
 
+    <application>
+        <activity android:name="com.shopmall.bawei.shopmall1805.user.LoginActivity"></activity>
+    </application>
+
 </manifest>

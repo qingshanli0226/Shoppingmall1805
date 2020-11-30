@@ -6,21 +6,12 @@
     android:orientation="vertical"
     >
        <TextView
-           android:layout_width="match_parent"
-           android:layout_height="wrap_content"
-           android:text="常用分类:"
-           android:textSize="15sp"
-           android:textStyle="bold"
-           android:layout_marginTop="20dp"
-           android:layout_marginLeft="2dp"
+            style="@style/textSmallRightTitle"
            >
        </TextView>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fenlei_down_rv"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
+        style="@style/smallRightItemAdapter"
         >
     </androidx.recyclerview.widget.RecyclerView>
 

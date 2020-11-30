@@ -1,5 +1,4 @@
 <resources>
-
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
         <!-- Customize your theme here. -->
@@ -9,5 +8,69 @@
     </style>
     <style name="AppTheme.ScreenFull" parent="AppTheme">
         <item name="android:windowFullscreen">true</item>
+    </style>
+    <style name="MainButtonStyle">
+        <!-- Customize your theme here. -->
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:button">@null</item>
+        <item name="android:textSize">10sp</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="TextStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawablePadding">10dp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:padding">10dp</item>
+        <item name="android:textColor">#5d5d5d</item>
+    </style>
+    <!--home界面下划线-->
+    <style name="textViewLine">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_marginTop">9dp</item>
+    </style>
+
+    <!--home界面底部图片-->
+    <style name="homeImages">
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">match_parent</item>
+    </style>
+    <!--分类界面left item-->
+    <style name="textSmallLeft">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:textSize">15sp</item>
+    </style>
+    <!--分类界面right title-->
+    <style name="textSmallRightTitle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:layout_marginLeft">2dp</item>
+    </style>
+    <!--分类界面right item 图片-->
+    <style name="imagesSmallRightItem">
+        <item name="android:layout_width">100dp</item>
+        <item name="android:layout_height">120dp</item>
+        <item name="android:layout_marginLeft">10dp</item>
+    </style>
+    <!--分类界面right item 适配器-->
+    <style name="smallRightItemAdapter">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">5dp</item>
+    </style>
+    <!--text 基本使用-->
+    <style name="textBasicsUse">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
     </style>
 </resources>

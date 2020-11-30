@@ -6,13 +6,11 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.util.Log;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.adapter.fenlei.ClassifyTagAdapter;
+import com.shopmall.bawei.shopmall1805.app.adapter.classify.ClassifyTagAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyRightPresenterImpl;
 import com.shopmall.bawei.shopmall1805.common.ClassifyTagEntity;
-import com.shopmall.bawei.shopmall1805.framework.BaseFragment;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
-import com.shopmall.bawei.shopmall1805.framework.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;

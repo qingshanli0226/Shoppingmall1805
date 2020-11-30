@@ -7,16 +7,12 @@
     >
     <ImageView
         android:id="@+id/fenlei_down_item_img"
-        android:layout_width="100dp"
-        android:layout_height="120dp"
-        android:layout_marginLeft="10dp"
+        style="@style/imagesSmallRightItem"
         >
     </ImageView>
     <TextView
         android:id="@+id/fenlei_down_item_tv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="w8888"
+        style="@style/textBasicsUse"
         android:layout_below="@id/fenlei_down_item_img"
         android:layout_centerHorizontal="true"
         >
