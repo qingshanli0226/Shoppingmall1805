@@ -1,12 +1,16 @@
 package com.shopmall.bawei.shopmall1805.type.view;
 
+import android.content.Intent;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shopmall.bawei.framework.BaseRvAdapter;
+import com.shopmall.bawei.net.mode.GoodsBean;
 import com.shopmall.bawei.net.mode.TypeBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.goodsdesc.view.GoodsInfoActivity;
 
 import java.util.List;
 
@@ -48,8 +52,8 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
         });
     }
 
-    private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
-        List<TypeBean.HotProductListBean> hots = (List<TypeBean.HotProductListBean>) itemData;
+    private void displayHot(Object itemData, final BaseViewHolder baseViewHolder) {
+        final List<TypeBean.HotProductListBean> hots = (List<TypeBean.HotProductListBean>) itemData;
         RecyclerView rvOrdinary = baseViewHolder.getView(R.id.rv_hot_right);
         HotAdapter hotAdapter = new HotAdapter();
         rvOrdinary.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -58,7 +62,15 @@ public class TypeAdapter extends BaseRvAdapter<Object> {
         hotAdapter.setIRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
+                String cover_price = hots.get(position).getCover_price();
+                String name = hots.get(position).getName();
+                String figure = hots.get(position).getFigure();
+                String product_id = hots.get(position).getProduct_id();
+                GoodsBean goodsBean = new GoodsBean(name, cover_price, figure, product_id);
 
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodsInfoActivity.class);
+                intent.putExtra("goods_bean", goodsBean);
+                baseViewHolder.itemView.getContext().startActivity(intent);
             }
         });
     }
