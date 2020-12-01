@@ -2,12 +2,14 @@ package com.bawei.shopmall.home;
 
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IPresenter;
 import com.bawei.framework.IView;
@@ -19,7 +21,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = "/main/MainActivity")
+@Route(path = NetConfig.MAIN_MAINACTIVITY)
 public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     private List<Fragment> fragments = new ArrayList();
@@ -34,6 +36,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     private RadioButton rbCommunity;
     private RadioButton rbCart;
     private RadioButton rbUser;
+    private TextView tv_username;
 
     private FragmentManager manager;
 
@@ -54,7 +57,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 FragmentTransaction transaction = manager.beginTransaction();
-                switch (checkedId){
+                switch (checkedId) {
                     case R.id.rb_home:
                         position = 0;
                         break;
@@ -72,10 +75,10 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
                         break;
 
                 }
-                for (int i = 0; i < fragments.size() ; i++) {
-                    if(position == i){
+                for (int i = 0; i < fragments.size(); i++) {
+                    if (position == i) {
                         transaction.show(fragments.get(position));
-                    }else{
+                    } else {
                         transaction.hide(fragments.get(i));
                     }
                 }
@@ -89,6 +92,10 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     @Override
     protected void initView() {
         fragments.add(new HomeFragment());
+        typeTagFragment = new TypeTagFragment();
+        fragments.add(typeTagFragment);
+        fragments.add(new UserFragment());
+
         rgMain = (RadioGroup) findViewById(R.id.rg_main);
         rbHome = (RadioButton) findViewById(R.id.rb_home);
         rbType = (RadioButton) findViewById(R.id.rb_type);
@@ -97,15 +104,10 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         rbUser = (RadioButton) findViewById(R.id.rb_user);
         manager = getSupportFragmentManager();
 
-        typeTagFragment = new TypeTagFragment();
-        fragments.add(typeTagFragment);
-        fragments.add(new UserFragment());
-
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(0));
-        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(1));
-        fragmentTransaction.add(R.id.frameLayoutId,fragments.get(2));
+        FragmentTransaction fragmentTransaction = manager.beginTransaction();
+        fragmentTransaction.add(R.id.frameLayoutId, fragments.get(0));
+        fragmentTransaction.add(R.id.frameLayoutId, fragments.get(1));
+        fragmentTransaction.add(R.id.frameLayoutId, fragments.get(2));
         fragmentTransaction.hide(fragments.get(1));
         fragmentTransaction.hide(fragments.get(2));
         fragmentTransaction.commit();
@@ -113,7 +115,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initData() {
-
     }
 
 

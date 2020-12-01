@@ -105,6 +105,8 @@ public class NetConfig {
 
     public static Boolean isBackHome = false;
 
+    //跳转路径
+    public static final String MAIN_MAINACTIVITY = "/main/MainActivity";
 
     //客服数据
     public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";

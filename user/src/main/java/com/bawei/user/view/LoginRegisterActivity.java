@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -113,13 +114,14 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
 
     @Override
     public void login(LoginBean loginBean) {
-        ARouter.getInstance().build("/main/MainActivity").navigation();
+        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+        ARouter.getInstance().build("/main/MainActivity").withString("name", loginBean.getResult().getName()).navigation();
         finish();
     }
 
     @Override
     public void register(RegisterBean registerBean) {
-
+        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
     }
 
     @Override

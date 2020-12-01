@@ -81,6 +81,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
     implementation 'org.greenrobot:greendao:3.2.2'
 
-    implementation ('com.alibaba:arouter-api:1.4.1') //ARouter依赖
+    implementation('com.alibaba:arouter-api:1.4.1') //ARouter依赖
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2' //ARouter依赖
 }
