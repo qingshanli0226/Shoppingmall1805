@@ -1,10 +1,8 @@
 package com.shopmall.bawei.shopmall1805.home;
 
 import android.util.Log;
-import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -21,7 +19,7 @@ import java.util.List;
 public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.HomeView> implements HomeContract.HomeView {
     private ImageView searchBtnHome;
     private EditText searchEtHome;
-    private LinearLayout newMessage;
+
     private RecyclerView rvHomeMain;
     private HomeAdapter homeAdapter;
     private List<Object> list=new ArrayList<>();
@@ -36,12 +34,11 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
 
     }
     @Override
-    protected void initView(View inflate) {
+    protected void initView() {
         presenter=new HomePresenterImpl();
-        searchBtnHome = (ImageView) inflate.findViewById(R.id.search_btn_home);
-        searchEtHome = (EditText) inflate.findViewById(R.id.search_et_home);
-        newMessage = (LinearLayout) inflate.findViewById(R.id.new_message);
-        rvHomeMain = (RecyclerView) inflate.findViewById(R.id.rv_home_main);
+        searchBtnHome = findViewById(R.id.search_btn_home);
+        searchEtHome = findViewById(R.id.search_et_home);
+        rvHomeMain = findViewById(R.id.rv_home_main);
         rvHomeMain.requestFocus();
         rvHomeMain.setLayoutManager(new LinearLayoutManager(getContext()));
         homeAdapter = new HomeAdapter(getContext());

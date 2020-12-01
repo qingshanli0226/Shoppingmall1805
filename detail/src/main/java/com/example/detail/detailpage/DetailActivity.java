@@ -1,9 +1,7 @@
 package com.example.detail.detailpage;
 
 import android.content.Intent;
-import android.view.View;
 import android.widget.Button;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,8 +21,6 @@ import java.io.Serializable;
 
 @Route(path = "/detailpage/DetailActivity")
 public class DetailActivity extends BaseActivity {
-    private ImageButton ibGoodInfoBack;
-    private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
     private TextView tvGoodInfoDesc;
@@ -45,12 +41,12 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void initListener() {
         super.initListener();
-        ibGoodInfoBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ARouter.getInstance().build("/main/MainActivity").navigation();
-            }
-        });
+    }
+
+    @Override
+    public void onLeftClick() {
+        super.onLeftClick();
+        ARouter.getInstance().build("/main/MainActivity").navigation();
     }
 
     @Override
@@ -98,8 +94,6 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-        ibGoodInfoBack = (ImageButton) findViewById(R.id.ib_good_info_back);
-        ibGoodInfoMore = (ImageButton) findViewById(R.id.ib_good_info_more);
         ivGoodInfoImage = (ImageView) findViewById(R.id.iv_good_info_image);
         tvGoodInfoName = (TextView) findViewById(R.id.tv_good_info_name);
         tvGoodInfoDesc = (TextView) findViewById(R.id.tv_good_info_desc);

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -17,7 +18,7 @@ import com.shoppmall.common.adapter.error.ErrorBean;
 
 @Route(path = "/user/RegisterActivity")
 public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, RegisterContract.RegisterView> implements RegisterContract.RegisterView {
-    private ImageButton ibRegisterBack;
+
     private EditText etRegisterPhone;
     private EditText etRegisterPwd;
     private ImageButton ibRegisterVisible;
@@ -27,15 +28,11 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
     private String key;
     private boolean flag=false;
     private boolean reflag=false;
+    private ProgressBar pbRegister;
     @Override
     protected void initListener() {
         super.initListener();
-        ibRegisterBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                aroutertologin();
-            }
-        });
+
         ibRegisterRevisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,6 +78,12 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
         });
     }
 
+    @Override
+    public void onLeftClick() {
+        super.onLeftClick();
+        aroutertologin();
+    }
+
     private void aroutertologin() {
         ARouter.getInstance().build("/user/LoginActivity").withString("key",key).navigation();
         finish();
@@ -104,7 +107,10 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
 
     @Override
     protected void initView() {
-        ibRegisterBack = (ImageButton) findViewById(R.id.ib_register_back);
+
+
+        pbRegister = (ProgressBar) findViewById(R.id.pb_register);
+
         etRegisterPhone = (EditText) findViewById(R.id.et_register_phone);
         etRegisterPwd = (EditText) findViewById(R.id.et_register_pwd);
         ibRegisterVisible = (ImageButton) findViewById(R.id.ib_register_visible);
@@ -128,18 +134,16 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
     }
 
     @Override
-    public void onError(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showloading() {
-
+        pbRegister.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+        pbRegister.setVisibility(View.GONE);
+        if(!isSuccess){
+            Toast.makeText(this, errorBean.getErrorMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

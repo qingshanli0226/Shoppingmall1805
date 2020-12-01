@@ -6,7 +6,13 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".app.MainActivity">
+    <com.example.framework.view.ToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:visibility="gone"
+        android:layout_height="wrap_content">
 
+    </com.example.framework.view.ToolBar>
     <com.example.framework.view.MyVP
         android:id="@+id/vp_main"
         style="@style/Base.VP.Main_VP"

@@ -7,34 +7,12 @@
     android:background="#fff"
     android:orientation="vertical"
     tools:context=".detailpage.DetailActivity">
-    <LinearLayout
+    <com.example.framework.view.ToolBar
+        android:id="@+id/toolbar"
+        app:right_show="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
-
-        <ImageButton
-            android:id="@+id/ib_good_info_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/top_bar_left_back" />
-
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="商品详情"
-            android:textColor="#564c4c"
-            android:textSize="20sp" />
-
-        <ImageButton
-            android:id="@+id/ib_good_info_more"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/icon_more" />
-
-    </LinearLayout>
-    <!--分割线-->
+        app:title_text="商品详情"
+        android:layout_height="50dp"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"

@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.shoppingcar;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageView;
@@ -14,7 +13,6 @@ import com.shopmall.bawei.shopmall1805.R;
 
 
 public class ShoppingCarFragment extends BaseFragment {
-    private TextView tvShopcartEdit;
     private RecyclerView recyclerview;
     private LinearLayout llCheckAll;
     private CheckBox checkboxAll;
@@ -39,22 +37,19 @@ public class ShoppingCarFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View inflate) {
-
-
-        tvShopcartEdit = (TextView) inflate.findViewById(R.id.tv_shopcart_edit);
-        recyclerview = (RecyclerView) inflate.findViewById(R.id.recyclerview);
-        llCheckAll = (LinearLayout) inflate.findViewById(R.id.ll_check_all);
-        checkboxAll = (CheckBox) inflate.findViewById(R.id.checkbox_all);
-        tvShopcartTotal = (TextView) inflate.findViewById(R.id.tv_shopcart_total);
-        btnCheckOut = (Button) inflate.findViewById(R.id.btn_check_out);
-        llDelete = (LinearLayout) inflate.findViewById(R.id.ll_delete);
-        cbAll = (CheckBox) inflate.findViewById(R.id.cb_all);
-        btnDelete = (Button) inflate.findViewById(R.id.btn_delete);
-        btnCollection = (Button) inflate.findViewById(R.id.btn_collection);
-        llEmptyShopcart = (LinearLayout) inflate.findViewById(R.id.ll_empty_shopcart);
-        ivEmpty = (ImageView) inflate.findViewById(R.id.iv_empty);
-        tvEmptyCartTobuy = (TextView) inflate.findViewById(R.id.tv_empty_cart_tobuy);
+    protected void initView() {
+        recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
+        llCheckAll = (LinearLayout) findViewById(R.id.ll_check_all);
+        checkboxAll = (CheckBox) findViewById(R.id.checkbox_all);
+        tvShopcartTotal = (TextView)findViewById(R.id.tv_shopcart_total);
+        btnCheckOut = (Button) findViewById(R.id.btn_check_out);
+        llDelete = (LinearLayout) findViewById(R.id.ll_delete);
+        cbAll = (CheckBox) findViewById(R.id.cb_all);
+        btnDelete = (Button) findViewById(R.id.btn_delete);
+        btnCollection = (Button) findViewById(R.id.btn_collection);
+        llEmptyShopcart = (LinearLayout) findViewById(R.id.ll_empty_shopcart);
+        ivEmpty = (ImageView) findViewById(R.id.iv_empty);
+        tvEmptyCartTobuy = (TextView) findViewById(R.id.tv_empty_cart_tobuy);
         showEmptyCarPage();
     }
 

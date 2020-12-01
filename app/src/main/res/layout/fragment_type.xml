@@ -7,7 +7,11 @@
     android:orientation="vertical"
     tools:context=".type.TypeFragment">
 
-    <androidx.appcompat.widget.Toolbar
+    <com.example.framework.view.ToolBar
+        android:id="@+id/toolbar"
+        app:right_show="false"
+        app:left_show="false"
+        app:title_show="false"
         android:layout_width="match_parent"
         android:layout_height="60dp">
 
@@ -37,15 +41,10 @@
                 android:layout_margin="15dp"
                 android:src="@drawable/icon_search_white" />
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginRight="15dp"
-                android:layout_alignParentBottom="true"
-                android:background="#e4e4e4" />
+
         </RelativeLayout>
 
-    </androidx.appcompat.widget.Toolbar>
+    </com.example.framework.view.ToolBar>
     <com.example.framework.view.MyVP
         android:id="@+id/vp_type"
         android:layout_width="match_parent"

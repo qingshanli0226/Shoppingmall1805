@@ -1,14 +1,13 @@
 package com.shopmall.bawei.shopmall1805.type;
 
-import android.view.View;
 import android.widget.ImageView;
 
 import androidx.fragment.app.Fragment;
 
 import com.example.framework.base.BaseFragment;
+import com.example.framework.view.MyVP;
 import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.example.framework.view.MyVP;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.list.ListFragment;
 import com.shopmall.bawei.shopmall1805.type.tag.TagFragment;
@@ -53,10 +52,10 @@ public class TypeFragment extends BaseFragment {
     }
 
     @Override
-    protected void initView(View inflate) {
-        segTab = (SegmentTabLayout) inflate.findViewById(R.id.segtab);
-        ivTypeSearch = (ImageView) inflate.findViewById(R.id.iv_type_search);
-        vpType = inflate.findViewById(R.id.vp_type);
+    protected void initView() {
+        segTab = (SegmentTabLayout) findViewById(R.id.segtab);
+        ivTypeSearch = (ImageView)findViewById(R.id.iv_type_search);
+        vpType = (MyVP) findViewById(R.id.vp_type);
 
     }
 

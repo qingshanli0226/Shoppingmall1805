@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,7 +20,6 @@ import com.shoppmall.common.adapter.error.ErrorBean;
 
 @Route(path = "/user/LoginActivity")
 public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContract.LoginView> implements LoginContract.LoginView {
-    private ImageButton ibLoginBack;
     private EditText etLoginPhone;
     private EditText etLoginPwd;
     private ImageButton ibLoginVisible;
@@ -31,6 +31,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     private ImageButton ibWechat;
     private boolean flag=false;
     private String key;
+    private ProgressBar pbLogin;
     @Override
     protected void initPresenter() {
         presenter=new LoginPresenterImpl();
@@ -39,12 +40,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     @Override
     protected void initListener() {
         super.initListener();
-        ibLoginBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                arouter();
-            }
-        });
+
         ibLoginVisible.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +99,12 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         });
     }
 
+    @Override
+    public void onLeftClick() {
+        super.onLeftClick();
+        arouter();
+    }
+
     private void aroutertoregister() {
         ARouter.getInstance().build("/user/RegisterActivity").withString("key",key).navigation();
         finish();
@@ -121,7 +123,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
 
     @Override
     protected void initView() {
-        ibLoginBack = (ImageButton) findViewById(R.id.ib_login_back);
+
+
+        pbLogin = (ProgressBar) findViewById(R.id.pb_login);
+
         etLoginPhone = (EditText) findViewById(R.id.et_login_phone);
         etLoginPwd = (EditText) findViewById(R.id.et_login_pwd);
         ibLoginVisible = (ImageButton) findViewById(R.id.ib_login_visible);
@@ -173,19 +178,18 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         }
     }
 
-    @Override
-    public void onError(String msg) {
-        Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     public void showloading() {
-
+        pbLogin.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
-
+        pbLogin.setVisibility(View.GONE);
+        if(!isSuccess){
+            Toast.makeText(this, errorBean.getErrorMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

@@ -40,10 +40,10 @@
       <list>
         <option value="Kotlin Interface" />
         <option value="resourceFile" />
-        <option value="valueResourceFile" />
         <option value="Interface" />
         <option value="layoutResourceFile" />
         <option value="Class" />
+        <option value="valueResourceFile" />
       </list>
     </option>
   </component>
@@ -62,7 +62,7 @@
     <property name="DeviceAndSnapshotComboBoxAction.selectionTime" value="2020-11-24T06:43:40.336Z" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/detail/src/main/res/drawable" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/framework/src/main/res/layout" />
     <property name="project.structure.last.edited" value="Dependencies" />
     <property name="project.structure.proportion" value="0.17" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -98,11 +98,11 @@
       <recent name="com.shopmall.bawei.user" />
     </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\five\Shoppingmall1805\framework\src\main\res\layout" />
+      <recent name="F:\five\Shoppingmall1805\framework\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\detail\src\main\res\drawable" />
       <recent name="F:\five\Shoppingmall1805\framework\src\main\java\com\example\framework\view" />
       <recent name="F:\five\Shoppingmall1805\app\src\main\res\layout" />
-      <recent name="F:\five\Shoppingmall1805\framework\src\main\res\drawable" />
-      <recent name="F:\five\Shoppingmall1805\user\src\main\res\drawable" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.shoppmall.common.adapter.error" />
@@ -204,10 +204,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="451" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606473327064" />
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1606734046380">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1606789844714">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606734046380" />
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1606789844714" />
     <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606723195244">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -232,42 +232,46 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1039" y="298" key="AndroidCreateResourceFileDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606474829309" />
+    <state x="852" y="304" key="AndroidProcessChooserDialog" timestamp="1606791364794">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="852" y="304" key="AndroidProcessChooserDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606791364794" />
     <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606722759949">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606722759949" />
-    <state width="1802" height="442" key="GridCell.Tab.0.bottom" timestamp="1606736804292">
+    <state width="1802" height="143" key="GridCell.Tab.0.bottom" timestamp="1606803191978">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="442" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
-    <state width="1802" height="442" key="GridCell.Tab.0.center" timestamp="1606736804292">
+    <state width="1802" height="143" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606803191978" />
+    <state width="1802" height="143" key="GridCell.Tab.0.center" timestamp="1606803191978">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="442" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
-    <state width="1802" height="442" key="GridCell.Tab.0.left" timestamp="1606736804292">
+    <state width="1802" height="143" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606803191978" />
+    <state width="1802" height="143" key="GridCell.Tab.0.left" timestamp="1606803191978">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="442" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
-    <state width="1802" height="442" key="GridCell.Tab.0.right" timestamp="1606736804292">
+    <state width="1802" height="143" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606803191978" />
+    <state width="1802" height="143" key="GridCell.Tab.0.right" timestamp="1606803191978">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="442" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606736804292" />
-    <state width="1802" height="260" key="GridCell.Tab.1.bottom" timestamp="1606736724334">
+    <state width="1802" height="143" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606803191978" />
+    <state width="1802" height="503" key="GridCell.Tab.1.bottom" timestamp="1606792069551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724334" />
-    <state width="1802" height="260" key="GridCell.Tab.1.center" timestamp="1606736724333">
+    <state width="1802" height="503" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1606792069551" />
+    <state width="1802" height="503" key="GridCell.Tab.1.center" timestamp="1606792069551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
-    <state width="1802" height="260" key="GridCell.Tab.1.left" timestamp="1606736724333">
+    <state width="1802" height="503" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1606792069551" />
+    <state width="1802" height="503" key="GridCell.Tab.1.left" timestamp="1606792069551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
-    <state width="1802" height="260" key="GridCell.Tab.1.right" timestamp="1606736724333">
+    <state width="1802" height="503" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1606792069551" />
+    <state width="1802" height="503" key="GridCell.Tab.1.right" timestamp="1606792069551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="260" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606736724333" />
+    <state width="1802" height="503" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1606792069551" />
     <state x="638" y="118" key="SettingsEditor" timestamp="1606732846196">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -288,10 +292,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="991" y="0" width="936" height="1087" key="dock-window-1/75.0.1845.1080@75.0.1845.1080" timestamp="1606385183431" />
-    <state x="727" y="307" key="extract.method.dialog" timestamp="1606444605769">
+    <state x="727" y="307" key="extract.method.dialog" timestamp="1606783072369">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="727" y="307" key="extract.method.dialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606444605769" />
+    <state x="727" y="307" key="extract.method.dialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606783072369" />
     <state x="561" y="324" key="psd.add.module.dependency.panel.dimension" timestamp="1606724473472">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -300,10 +304,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="654" y="250" key="run.anything.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606478870232" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1606737574832">
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1606791086557">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606737574832" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1606791086557" />
     <state x="719" y="451" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606478836207">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -326,6 +330,19 @@
           <url>jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.alibaba/arouter-api/1.5.1/3bae1f492096e8cb87a2d79d87645732f518070a/arouter-api-1.5.1-sources.jar!/com/alibaba/android/arouter/facade/Postcard.java</url>
           <line>229</line>
           <option name="timeStamp" value="22" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/ToolBar.java</url>
+          <line>91</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-method">
+          <url>file://$PROJECT_DIR$/detail/src/main/java/com/example/detail/detailpage/DetailActivity.java</url>
+          <line>46</line>
+          <properties class="com.example.detail.detailpage.DetailActivity" method="onLeftClick">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="26" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

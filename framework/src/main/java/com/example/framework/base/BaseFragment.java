@@ -5,18 +5,22 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.framework.mvp.IPresenter;
 import com.example.framework.mvp.IView;
 import com.example.framework.view.LoadingPage;
+import com.example.framework.view.ToolBar;
+import com.shopmall.bawei.framework.R;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
 
-public abstract class BaseFragment<T extends IPresenter,V extends IView> extends Fragment {
+public abstract class BaseFragment<T extends IPresenter,V extends IView> extends Fragment implements ToolBar.IToolBarClickListner {
     private LoadingPage loadingPage;
     protected T presenter;
+    protected ToolBar toolBar;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -27,11 +31,26 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
                 return getLayoutID();
             }
         };
-        initView(loadingPage);
+        toolBar = findViewById(R.id.toolbar);//在这里实例化toolbar
+        toolBar.setToolBarClickListner(this);
+        initView();
+
         if(presenter!=null){
             presenter.attchView((V)this);
         }
         return loadingPage;
+    }
+    public <T extends View> T findViewById(@IdRes int id){
+        return loadingPage.findViewById(id);
+    }
+    @Override
+    public void onRightClick() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
     }
 
     @Override
@@ -45,7 +64,7 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
 
     protected abstract void initLisenter();
 
-    protected abstract void initView(View inflate);
+    protected abstract void initView();
 
     protected abstract int getLayoutID();
 

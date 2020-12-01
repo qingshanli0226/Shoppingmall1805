@@ -1,7 +1,5 @@
 package com.shopmall.bawei.shopmall1805.type.tag;
 
-import android.view.View;
-
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -28,9 +26,9 @@ public class TagFragment extends BaseFragment<TagPresenterImpl, TagContract.TagV
     }
 
     @Override
-    protected void initView(View inflate) {
+    protected void initView() {
         presenter=new TagPresenterImpl();
-        rvTag = (RecyclerView) inflate.findViewById(R.id.rv_tag);
+        rvTag = (RecyclerView) findViewById(R.id.rv_tag);
         rvTag.setLayoutManager(new GridLayoutManager(getContext(),3));
         tagAdapter=new TagAdapter();
         rvTag.setAdapter(tagAdapter);

@@ -42,10 +42,10 @@ public class ListFragment extends BaseFragment<ListPresenterImpl, ListContract.L
     }
 
     @Override
-    protected void initView(View inflate) {
+    protected void initView() {
         presenter=new ListPresenterImpl();
-        lvLeft = (ListView) inflate.findViewById(R.id.lv_left);
-        rvRight = (RecyclerView) inflate.findViewById(R.id.rv_right);
+        lvLeft = (ListView)findViewById(R.id.lv_left);
+        rvRight = (RecyclerView) findViewById(R.id.rv_right);
         LinearLayoutManager manager = new LinearLayoutManager(getContext());
         manager.setOrientation(RecyclerView.VERTICAL);
         rvRight.setLayoutManager(manager);
