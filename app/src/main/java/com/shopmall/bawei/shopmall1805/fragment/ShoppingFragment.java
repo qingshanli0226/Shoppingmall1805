@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.IPrine;
+import com.bawei.deom.IView;
 import com.bawei.deom.countroller.SkirtCommuntroller;
 import com.bawei.deom.countroller.SkirtImpl;
 import com.bawei.deom.countroller.UserCountroller;
@@ -32,7 +33,7 @@ import java.util.List;
 
 import bean.typebean.BugBean;
 @Route(path = "/fragment/ShoppingFragment")
-public class ShoppingFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsView>implements SkirtCommuntroller.UsView {
+public class ShoppingFragment extends BaseFragment<IPrine, IView> {
     private ImageView pic;
     private TextView name;
     private TextView price;
@@ -46,11 +47,12 @@ public class ShoppingFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller
 
     @Override
     protected void inPrine() {
-        prine=new SkirtImpl();
+        loadingPage.showSuccessView();
     }
 
     @Override
     protected void initData() {
+
         daoSession=((ShopmallApplication)getActivity().getApplication()).getDaoSession();
         List<ShangTitle> shangTitles = daoSession.loadAll(ShangTitle.class);
         ARouter.getInstance().inject(this);
@@ -102,38 +104,4 @@ public class ShoppingFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller
     }
 
 
-    @Override
-    public void loading() {
-
-    }
-
-    @Override
-    public void hideloading() {
-
-    }
-
-    @Override
-    public void showLoadingPage2() {
-        showLoadingPage();
-    }
-
-    @Override
-    public void showErrorPage2(String errorMsg) {
-        showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-        showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-        showSuccessView();
-    }
-
-    @Override
-    public void UserView(List<BugBean.ResultBean> list) {
-
-    }
 }

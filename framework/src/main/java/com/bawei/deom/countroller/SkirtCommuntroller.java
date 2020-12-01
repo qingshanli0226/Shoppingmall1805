@@ -2,6 +2,7 @@ package com.bawei.deom.countroller;
 
 import com.bawei.deom.BaseAroute;
 import com.bawei.deom.IView;
+import com.bawei.deom.view.LoadingPage;
 
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class SkirtCommuntroller {
         void UserView(List<BugBean.ResultBean> list);
     }
     public abstract static class UsShow extends BaseAroute<UsView> {
-        public abstract void UserShow(String url);
+        public abstract void UserShow(String url, LoadingPage loadingPage);
 
     }
 }

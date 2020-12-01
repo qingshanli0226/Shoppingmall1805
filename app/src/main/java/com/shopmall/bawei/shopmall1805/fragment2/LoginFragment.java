@@ -33,6 +33,7 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
     @Override
     protected void inPrine() {
         prine=new LoginImpl();
+        loadingPage.showSuccessView();
     }
 
     @Override
@@ -74,25 +75,7 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-        showLoadingPage();
-    }
 
-    @Override
-    public void showErrorPage2(String errorMsg) {
-        showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-        showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-        showSuccessView();
-    }
 
 
     @Override
@@ -100,7 +83,7 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
         if (loginBean.getCode().equals("200")){
             Toast.makeText(getContext(), ""+loginBean.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("token1",loginBean.getResult().getToken()+"");
-            getActivity().getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("logintoken",loginBean.getResult().getToken()).commit();
+            getActivity().getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",loginBean.getResult().getToken()).commit();
             Intent intent=new Intent(getContext(), MainActivity.class);
             startActivity(intent);
         }else {

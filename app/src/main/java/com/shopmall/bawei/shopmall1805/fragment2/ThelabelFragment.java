@@ -29,7 +29,7 @@ public class ThelabelFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     @Override
     protected void initData() {
-      prine.TagShow();
+      prine.TagShow(loadingPage);
       biaoQianApter=new ThelabelApter(R.layout.taglayout,arrayList);
       biaoqianRecyle.setAdapter(biaoQianApter);
       biaoqianRecyle.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
@@ -73,23 +73,5 @@ public class ThelabelFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-        showLoadingPage();
-    }
 
-    @Override
-    public void showErrorPage2(String errorMsg) {
-         showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-     showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-     showSuccessView();
-    }
 }

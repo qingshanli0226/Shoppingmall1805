@@ -30,7 +30,7 @@ public class FoundFragment extends BaseFragment<UserIMPL,UserCountroller.UserVie
 
     @Override
     protected void initData() {
-
+       prine.getskerak(loadingPage);
     }
 
     @Override
@@ -64,23 +64,5 @@ public class FoundFragment extends BaseFragment<UserIMPL,UserCountroller.UserVie
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-         showLoadingPage();
-    }
 
-    @Override
-    public void showErrorPage2(String errorMsg) {
-         showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-      showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-        showSuccessView2();
-    }
 }

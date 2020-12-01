@@ -62,7 +62,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
          add();
         bugChangApter = new BugChangApter();
         bugReApter = new BugReApter();
-        prine.UserShow(BaseUser.SKIRT_URL);
+        prine.UserShow(BaseUser.SKIRT_URL,loadingPage);
         final String data[]=new String[]{"小裙子","上衣","下装","外套","配件","包包","装扮","居家宅品","办公文具","数码周边","游戏专区"};
         if (data!=null){
             data.clone();
@@ -75,47 +75,47 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 switch (data[position]){
                     case "小裙子":
-                        prine.UserShow(BaseUser.SKIRT_URL);
+                        prine.UserShow(BaseUser.SKIRT_URL,loadingPage);
 
                         break;
                     case "上衣":
-                        prine.UserShow(BaseUser.JACKET_URL);
+                        prine.UserShow(BaseUser.JACKET_URL,loadingPage);
                         break;
                     case "下装":
-                        prine.UserShow(BaseUser.PANTS_URL);
+                        prine.UserShow(BaseUser.PANTS_URL,loadingPage);
 
                         break;
                     case "外套":
-                        prine.UserShow(BaseUser.OVERCOAT_URL);
+                        prine.UserShow(BaseUser.OVERCOAT_URL,loadingPage);
 
                         break;
                     case "配件":
-                        prine.UserShow(BaseUser.ACCESSORY_URL);
+                        prine.UserShow(BaseUser.ACCESSORY_URL,loadingPage);
 
                         break;
                     case "包包":
-                        prine.UserShow(BaseUser.BAG_URL);
+                        prine.UserShow(BaseUser.BAG_URL,loadingPage);
 
                         break;
 
                     case "装扮":
-                        prine.UserShow(BaseUser.DRESS_UP_URL);
+                        prine.UserShow(BaseUser.DRESS_UP_URL,loadingPage);
 
                         break;
                     case "居家宅品":
-                        prine.UserShow(BaseUser.HOME_PRODUCTS_URL);
+                        prine.UserShow(BaseUser.HOME_PRODUCTS_URL,loadingPage);
 
                         break;
                     case "办公文具":
-                        prine.UserShow(BaseUser.STATIONERY_URL);
+                        prine.UserShow(BaseUser.STATIONERY_URL,loadingPage);
 
                         break;
                     case "数码周边":
-                        prine.UserShow(BaseUser.DIGIT_URL);
+                        prine.UserShow(BaseUser.DIGIT_URL,loadingPage);
 
                         break;
                     case "游戏专区":
-                        prine.UserShow(BaseUser.GAME_URL);
+                        prine.UserShow(BaseUser.GAME_URL,loadingPage);
 
                         break;
                 }
@@ -176,25 +176,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-        showLoadingPage();
-    }
 
-    @Override
-    public void showErrorPage2(String errorMsg) {
-      showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-     showSuccessView();
-    }
 
     @Override
     public void UserView(final List<BugBean.ResultBean> list) {

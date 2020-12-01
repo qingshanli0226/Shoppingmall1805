@@ -26,6 +26,7 @@ public class RegisterFragment extends BaseFragment<LoginImpl, LoginCountroller.L
     @Override
     protected void inPrine() {
          prine=new LoginImpl();
+        loadingPage.showSuccessView();
     }
 
     @Override
@@ -74,23 +75,5 @@ public class RegisterFragment extends BaseFragment<LoginImpl, LoginCountroller.L
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-        showLoadingPage();
-    }
 
-    @Override
-    public void showErrorPage2(String errorMsg) {
-        showErrorPage( errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-        showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-        showSuccessView();
-    }
 }

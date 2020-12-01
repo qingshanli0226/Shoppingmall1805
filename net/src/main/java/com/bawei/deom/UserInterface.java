@@ -3,6 +3,7 @@ package com.bawei.deom;
 import java.util.HashMap;
 import java.util.List;
 
+import bean.AutoLoginBeen;
 import bean.BaseBean;
 import bean.ClothesBean;
 import bean.HomeBean;
@@ -35,7 +36,9 @@ public interface UserInterface {
     @POST("/login")
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
-
+    @POST("/autoLogin")
+    @FormUrlEncoded
+    Observable<AutoLoginBeen>autoLogin(@FieldMap HashMap<String,String> map);
 
 
     @GET

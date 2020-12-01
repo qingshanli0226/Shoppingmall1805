@@ -15,7 +15,7 @@ import com.bawei.deom.view.LoadingPage;
 public abstract class BaseFragment<Prine extends IPrine,PView extends IView> extends Fragment {
 
    public Prine prine;
-    private LoadingPage loadingPage;
+    protected LoadingPage loadingPage;
 
     @Nullable
     @Override
@@ -49,23 +49,7 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     protected abstract void initView(View view);
 
     protected abstract int getlayoutview();
-    //显示loading
-    public  void showLoadingPage(){
-       loadingPage.showLoadingPage();
-    }
-    //显示错误页面
-    public void showErrorPage(String errorMsg) {
-      loadingPage.showErrorPage(errorMsg);
-    }
-    //显示空白页面
-    public void showEmptyPage() {
-       loadingPage.showEmptyPage();
-    }
-    //显示正确页面
-    //显示正确页面
-    public void showSuccessView() {
-    loadingPage.showSuccessView();
-    }
+
 
     @Override
     public void onDestroy() {

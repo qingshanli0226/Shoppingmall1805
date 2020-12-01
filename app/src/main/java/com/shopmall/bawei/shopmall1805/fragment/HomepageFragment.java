@@ -7,6 +7,7 @@ import android.view.View;
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.countroller.UserCountroller;
 import com.bawei.deom.countroller.UserIMPL;
+import com.bawei.deom.view.LoadingPage;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.apter.PrimereAdpter;
 
@@ -31,7 +32,7 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     @Override
     protected void initData() {
-        prine.getskerak();
+        prine.getskerak(loadingPage);
 
     }
 
@@ -49,7 +50,6 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     }
 
 
-
     @Override
     public void loading() {
 
@@ -60,25 +60,6 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     }
 
-    @Override
-    public void showLoadingPage2() {
-           showLoadingPage();
-    }
-
-    @Override
-    public void showErrorPage2(String errorMsg) {
-           showErrorPage(errorMsg);
-    }
-
-    @Override
-    public void showEmptyPage2() {
-         showEmptyPage();
-    }
-
-    @Override
-    public void showSuccessView2() {
-         showSuccessView();
-    }
 
     @Override
     public void onskerk(HomeBean homeBeanList) {

@@ -22,7 +22,7 @@ public class Myfragment  extends BaseFragment<IPrine,IView> {
 
     @Override
     protected void inPrine() {
-
+        loadingPage.showSuccessView();
     }
 
     @Override

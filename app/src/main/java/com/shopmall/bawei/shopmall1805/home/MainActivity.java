@@ -1,13 +1,21 @@
 package com.shopmall.bawei.shopmall1805.home;
 
 
+import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.widget.Toast;
 
+import com.bawei.deom.BaseActivity;
+import com.bawei.deom.Login;
+import com.bawei.deom.autologin.AutologinCountroller;
+import com.bawei.deom.autologin.AutologinImpl;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -19,33 +27,57 @@ import com.shopmall.bawei.shopmall1805.fragment.HomepageFragment;
 import com.shopmall.bawei.shopmall1805.fragment.Myfragment;
 import com.shopmall.bawei.shopmall1805.fragment.ShoppingFragment;
 import com.shopmall.bawei.shopmall1805.fragment.SpeciesFragment;
+import com.shopmall.bawei.shopmall1805.login.LoginActivity;
+import com.shopmall.bawei.shopmall1805.server.MyServer;
+import com.shopmall.bawei.shopmall1805.user.UserMenger;
 
 import java.util.ArrayList;
 
+import bean.AutoLoginBeen;
 
-public class MainActivity extends AppCompatActivity {
+
+public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountroller.AutoLoginView> implements AutologinCountroller.AutoLoginView {
 
     private ViewPager pager;
     private CommonTabLayout com;
     ArrayList<CustomTabEntity> tabEntitys=new ArrayList<>();
-      ArrayList<Fragment> arrayList=new ArrayList<>();
+    ArrayList<Fragment> arrayList=new ArrayList<>();
     MyFragmentPager myFragmentPager;
-
+   MyServer myServer;
+    Intent intent;
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected int getLayoutId() {
+        return R.layout.activity_main;
+    }
+    @Override
+    protected void intView() {
         pager = (ViewPager) findViewById(R.id.pager);
         com = (CommonTabLayout) findViewById(R.id.com);
+         intent=new Intent(this,MyServer.class);
+        startService(intent);
+    }
+    @Override
+    protected void inPresone() {
+         prine=new AutologinImpl();
+    }
+    String token;
+    @Override
+    protected void inData() {
+
         if (arrayList!=null||arrayList.size()!=0){
             arrayList.clear();
         }
+
+
+        token= getSharedPreferences("login", MODE_PRIVATE).getString("login", "123");
+        UserMenger.getInstance().setToken(token);
+        Log.e("logintoken",token);
+        prine.MyautologinShow(token);
         indata();
-        String string = getSharedPreferences("login", MODE_PRIVATE).getString("logintoken", "123");
-        Log.e("token",string);
         myFragmentPager=new MyFragmentPager(getSupportFragmentManager(),arrayList);
         pager.setAdapter(myFragmentPager);
         com.setTabData(tabEntitys);
+
 
         com.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -67,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onPageSelected(int i) {
             com.setCurrentTab(i);
+                Log.e("页数",pager.getCurrentItem()+"");
+                if (token.equals("123")&&pager.getCurrentItem()==3){
+                    Intent intent=new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -74,15 +111,12 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
 
     }
 
     private void indata() {
+
+
         arrayList.add(new HomepageFragment());
         arrayList.add(new SpeciesFragment());
         arrayList.add(new FoundFragment());
@@ -94,5 +128,29 @@ public class MainActivity extends AppCompatActivity {
         tabEntitys.add(new CoutomEntiy("购物车",R.mipmap.main_cart,R.mipmap.main_cart));
         tabEntitys.add(new CoutomEntiy("个人中心",R.mipmap.icon_callserver_unpressed,R.mipmap.icon_callserver_unpressed));
 
+    }
+
+    @Override
+    public void MyautologinView(AutoLoginBeen autoLoginBeen) {
+        Toast.makeText(this, ""+autoLoginBeen.getMessage(), Toast.LENGTH_SHORT).show();
+           Log.e("autotoken",autoLoginBeen.getResult().getToken());
+           Log.e("auot====",autoLoginBeen.getMessage());
+
+    }
+
+    @Override
+    public void loading() {
+
+    }
+
+    @Override
+    public void hideloading() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
     }
 }

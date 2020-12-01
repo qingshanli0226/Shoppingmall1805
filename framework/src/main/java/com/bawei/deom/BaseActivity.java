@@ -11,15 +11,15 @@ import com.bawei.deom.view.LoadingPage;
 public abstract class BaseActivity<Prine extends IPrine,PView extends IView> extends AppCompatActivity {
 
      public Prine prine;
-      private LoadingPage loadingPage;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        setContentView(getLayoutId());
         intView();
         inPresone();
         inData();
-        setContentView(getLayoutId());
+
        prine.attach((PView)this);
     }
 
@@ -32,6 +32,6 @@ public abstract class BaseActivity<Prine extends IPrine,PView extends IView> ext
 
     protected abstract void intView();
 
-    protected abstract int getlayouview();
+
 
 }

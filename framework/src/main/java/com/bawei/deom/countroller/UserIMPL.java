@@ -3,6 +3,7 @@ package com.bawei.deom.countroller;
 import android.util.Log;
 
 import com.bawei.deom.ClassInterface;
+import com.bawei.deom.view.LoadingPage;
 
 
 import java.util.List;
@@ -16,18 +17,32 @@ import bean.typebean.SkirtBean;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Action;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class UserIMPL extends UserCountroller.UserShow {
 
 
     @Override
-    public void getskerak() {
+    public void getskerak(final LoadingPage loadingPage) {
         ClassInterface.getUserInterface().home()
                 .delay(3, TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                              loadingPage.showLoadingPage();
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
 
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
+
                 .subscribe(new Observer<BaseBean<HomeBean>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -39,7 +54,8 @@ public class UserIMPL extends UserCountroller.UserShow {
                         HomeBean result = homeBeanBaseBean.getResult();
 
                             pView.onskerk(result);
-                            pView.showSuccessView2();
+                            loadingPage.showSuccessView();
+
                     }
 
                     @Override
@@ -56,10 +72,24 @@ public class UserIMPL extends UserCountroller.UserShow {
     }
 
     @Override
-    public void TagShow() {
+    public void TagShow(final LoadingPage loadingPage) {
         ClassInterface.getUserInterface().tag()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        pView.loading();
+                        loadingPage.showLoadingPage();
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        pView.hideloading();
+
+                    }
+                })
                 .subscribe(new Observer<TAGBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -69,6 +99,7 @@ public class UserIMPL extends UserCountroller.UserShow {
                     @Override
                     public void onNext(TAGBean tagBean) {
                                pView.TagBiew(tagBean.getResult());
+                               loadingPage.showSuccessView();
                     }
 
                     @Override
