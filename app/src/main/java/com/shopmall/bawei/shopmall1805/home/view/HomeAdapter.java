@@ -223,16 +223,16 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
         banner.setOnBannerListener(new OnBannerListener() {
             @Override
             public void OnBannerClick(int position) {
-                if(position - 1 < bannerInfoBeans.size()){
-                    int option = bannerInfoBeans.get(position - 1).getOption();
+                if(position < bannerInfoBeans.size() ){
+                    int option = bannerInfoBeans.get(position).getOption();
                     String product_id = "";
                     String name = "";
                     String cover_price = "";
-                    if (position - 1 == 0) {
+                    if (position == 0) {
                         product_id = "627";
                         cover_price = "32.00";
                         name = "剑三T恤批发";
-                    } else if (position - 1 == 1) {
+                    } else if (position == 1) {
                         product_id = "21";
                         cover_price = "8.00";
                         name = "同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
@@ -241,7 +241,7 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                         cover_price = "50.00";
                         name = "【蓝诺】《天下吾双》 剑网3同人本";
                     }
-                    String image = bannerInfoBeans.get(position - 1).getImage();
+                    String image = bannerInfoBeans.get(position).getImage();
                     GoodsBean goodsBean = new GoodsBean(name, cover_price, image, product_id);
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodsInfoActivity.class);
                     intent.putExtra("goods_bean", goodsBean);
