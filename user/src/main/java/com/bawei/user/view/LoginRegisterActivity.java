@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IView;
+import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.LoginBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.user.R;
@@ -108,13 +109,13 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
                 tvLoginRegister.setText("注册账号");
                 isLogin = true;
             }
-
         }
     }
 
     @Override
     public void login(LoginBean loginBean) {
         Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+        ShopUserManager.getInstance().saveLoginBean(loginBean);
         ARouter.getInstance().build("/main/MainActivity").withString("name", loginBean.getResult().getName()).navigation();
         finish();
     }

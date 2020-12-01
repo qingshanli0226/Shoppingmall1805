@@ -45,6 +45,6 @@
         style="@style/HomeEditStyle"
         android:background="@drawable/search_home_shape"
         android:drawableLeft="@drawable/home_search_icon"
-        android:hint="@string/search" />
+        android:hint="@string/searchMessage" />
 
 </RelativeLayout>

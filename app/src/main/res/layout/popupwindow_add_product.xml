@@ -85,7 +85,7 @@
             android:layout_gravity="center"
             android:text="数量" />
 
-        <com.bawei.shopmall.details.NumberAddSubView
+        <com.bawei.shopmall.details.view.NumberAddSubView
             android:id="@+id/nas_goodinfo_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

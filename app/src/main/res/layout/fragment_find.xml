@@ -3,17 +3,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.bawei.find.FindFragment">
+    tools:context="com.bawei.shopmall.find.FindFragment">
 
     <com.bawei.common.view.MyToolBar
-        android:id="@+id/myToolBar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:id="@+id/toolbar"
+        style="@style/BannerStyle.MyToolBarStyle" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:gravity="center"
+        android:text="这是发现页面"
+        android:textSize="50sp" />
 
 </FrameLayout>

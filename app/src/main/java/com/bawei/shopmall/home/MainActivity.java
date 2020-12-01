@@ -1,5 +1,6 @@
 package com.bawei.shopmall.home;
 
+import android.content.SharedPreferences;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -9,10 +10,15 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IPresenter;
 import com.bawei.framework.IView;
+import com.bawei.framework.ShopUserManager;
+import com.bawei.net.mode.LoginBean;
+import com.bawei.shopcar.ShopcarFragment;
+import com.bawei.shopmall.find.FindFragment;
 import com.bawei.shopmall.home.view.HomeFragment;
 import com.bawei.shopmall.type.view.TypeTagFragment;
 import com.bawei.shopmall.user.UserFragment;
@@ -22,12 +28,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = NetConfig.MAIN_MAINACTIVITY)
-public class MainActivity extends BaseActivity<IPresenter, IView> {
+public class MainActivity extends BaseActivity<IPresenter, IView> implements ShopUserManager.IUserLoginChangedListener {
 
     private List<Fragment> fragments = new ArrayList();
 
     private TypeTagFragment typeTagFragment;
-
 
     private int position;
     private RadioGroup rgMain;
@@ -77,6 +82,13 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
                 }
                 for (int i = 0; i < fragments.size(); i++) {
                     if (position == i) {
+                        if (position == 3) {
+                            if (ShopUserManager.getInstance().isUserLogin()) {
+                                transaction.show(fragments.get(position));
+                            } else {
+                                ARouter.getInstance().build("/user/LoginRegisterActivity").navigation();
+                            }
+                        }
                         transaction.show(fragments.get(position));
                     } else {
                         transaction.hide(fragments.get(i));
@@ -94,6 +106,8 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         fragments.add(new HomeFragment());
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
+        fragments.add(new FindFragment());
+        fragments.add(new ShopcarFragment());
         fragments.add(new UserFragment());
 
         rgMain = (RadioGroup) findViewById(R.id.rg_main);
@@ -108,8 +122,12 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         fragmentTransaction.add(R.id.frameLayoutId, fragments.get(0));
         fragmentTransaction.add(R.id.frameLayoutId, fragments.get(1));
         fragmentTransaction.add(R.id.frameLayoutId, fragments.get(2));
+        fragmentTransaction.add(R.id.frameLayoutId, fragments.get(3));
+        fragmentTransaction.add(R.id.frameLayoutId, fragments.get(4));
         fragmentTransaction.hide(fragments.get(1));
         fragmentTransaction.hide(fragments.get(2));
+        fragmentTransaction.hide(fragments.get(3));
+        fragmentTransaction.hide(fragments.get(4));
         fragmentTransaction.commit();
     }
 
@@ -120,6 +138,18 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initPresenter() {
+
+    }
+
+    @Override
+    public void onUserLogin(LoginBean loginBean) {
+        SharedPreferences userToken = getSharedPreferences("userToken", MODE_PRIVATE);
+        SharedPreferences.Editor edit = userToken.edit();
+        edit.putString("token", loginBean.getResult().getToken());
+    }
+
+    @Override
+    public void onUserLogout() {
 
     }
 }

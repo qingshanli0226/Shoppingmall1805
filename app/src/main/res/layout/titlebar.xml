@@ -10,7 +10,7 @@
         style="@style/titlebar_uptext"
         android:background="@drawable/search_home_shape"
         android:drawableLeft="@drawable/home_search_icon"
-        android:text="@string/search" />
+        android:text="@string/searchMessage" />
 
     <TextView
         android:id="@+id/tv_message_home"

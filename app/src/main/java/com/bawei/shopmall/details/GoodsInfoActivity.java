@@ -1,10 +1,8 @@
 package com.bawei.shopmall.details;
 
-import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -21,17 +19,17 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.NetConfig;
-import com.bawei.shopmall.greendao.GoodsBean;
+import com.bawei.framework.BaseActivity;
+import com.bawei.framework.BasePresenter;
+import com.bawei.framework.IView;
+import com.bawei.shopmall.details.view.NumberAddSubView;
+import com.bawei.shopmall.details.view.VirtualkeyboardHeight;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
 
-import java.util.List;
-
-/**
- * 商品信息列表
- */
-public class GoodsInfoActivity extends Activity implements View.OnClickListener {
+public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implements View.OnClickListener {
     private ImageButton ibGoodInfoBack;
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
@@ -54,16 +52,52 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
     //private CartProvider cartProvider;
     // private Boolean isFirst = true;
 
-    private List<GoodsBean> goodsBeans;
     private DetailsGoodsBean goods_bean;
 
-    /**
-     * Find the Views in the layout<br />
-     * <br />
-     * Auto-created on 2016-10-09 01:34:23 by Android Layout Finder
-     * (http://www.buzzingandroid.com/tools/android-layout-finder)
-     */
-    private void findViews() {
+    @Override
+    public void onClick(View v) {
+        if (v == ibGoodInfoBack) {
+            finish();
+        } else if (v == ibGoodInfoMore) {
+            if (ll_root.getVisibility() == View.VISIBLE) {
+                ll_root.setVisibility(View.GONE);
+            } else {
+                ll_root.setVisibility(View.VISIBLE);
+            }
+        } else if (v == btn_more) {
+            ll_root.setVisibility(View.GONE);
+        } else if (v == tvMoreShare) {
+            Toast.makeText(GoodsInfoActivity.this, R.string.share, Toast.LENGTH_SHORT).show();
+//            showShare();
+        } else if (v == tvMoreSearch) {
+            Toast.makeText(GoodsInfoActivity.this, R.string.search, Toast.LENGTH_SHORT).show();
+        } else if (v == tvMoreHome) {
+            //Constants.isBackHome = true;
+            finish();
+        } else if (v == tvGoodInfoCallcenter) {
+            Toast.makeText(GoodsInfoActivity.this, R.string.customer_service, Toast.LENGTH_SHORT).show();
+            //Intent intent = new Intent(this, CallCenterActivity.class);
+            //startActivity(intent);
+        } else if (v == tvGoodInfoCollection) {
+            Toast.makeText(GoodsInfoActivity.this, R.string.Collection, Toast.LENGTH_SHORT).show();
+        } else if (v == tvGoodInfoCart) {
+            //Intent intent = new Intent(this, ShoppingCartActivity.class);
+            //startActivity(intent);
+
+            ARouter.getInstance().build("/shopcar/ShopcarActivity").navigation();
+        } else if (v == btnGoodInfoAddcart) {
+            //添加购物车
+            showPopwindow();
+        }
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_goods_info;
+    }
+
+    @Override
+    protected void initView() {
         ibGoodInfoBack = (ImageButton) findViewById(R.id.ib_good_info_back);
         ibGoodInfoMore = (ImageButton) findViewById(R.id.ib_good_info_more);
         ivGoodInfoImage = (ImageView) findViewById(R.id.iv_good_info_image);
@@ -86,6 +120,13 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
 
         btn_more = (Button) findViewById(R.id.btn_more);
 
+        Intent intent = getIntent();
+        goods_bean = (DetailsGoodsBean) intent.getSerializableExtra("goods_bean");
+        if (goods_bean != null) {
+            //本地获取存储的数据
+            setDataFormView(goods_bean);
+        }
+
         ibGoodInfoBack.setOnClickListener(this);
         ibGoodInfoMore.setOnClickListener(this);
         btnGoodInfoAddcart.setOnClickListener(this);
@@ -103,76 +144,23 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
         tvGoodInfoCallcenter.setOnClickListener(this);
     }
 
-    /**
-     * Handle button click events<br />
-     * <br />
-     * Auto-created on 2016-10-09 01:34:23 by Android Layout Finder
-     * (http://www.buzzingandroid.com/tools/android-layout-finder)
-     */
     @Override
-    public void onClick(View v) {
-        if (v == ibGoodInfoBack) {
-            finish();
-        } else if (v == ibGoodInfoMore) {
-            if (ll_root.getVisibility() == View.VISIBLE) {
-                ll_root.setVisibility(View.GONE);
-            } else {
-                ll_root.setVisibility(View.VISIBLE);
-            }
-        } else if (v == btn_more) {
-            ll_root.setVisibility(View.GONE);
-        } else if (v == tvMoreShare) {
-            //Toast.makeText(GoodsInfoActivity.this, "分享", Toast.LENGTH_SHORT).show();
-//            showShare();
-        } else if (v == tvMoreSearch) {
-            //Toast.makeText(GoodsInfoActivity.this, "搜索", Toast.LENGTH_SHORT).show();
-        } else if (v == tvMoreHome) {
-            //Constants.isBackHome = true;
-            finish();
-        } else if (v == tvGoodInfoCallcenter) {
-            //Toast.makeText(GoodsInfoActivity.this, "客服", Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(this, CallCenterActivity.class);
-            //startActivity(intent);
-        } else if (v == tvGoodInfoCollection) {
-            //Toast.makeText(GoodsInfoActivity.this, "收藏", Toast.LENGTH_SHORT).show();
-        } else if (v == tvGoodInfoCart) {
-            //Intent intent = new Intent(this, ShoppingCartActivity.class);
-            //startActivity(intent);
+    protected void initListener() {
 
-        } else if (v == btnGoodInfoAddcart) {
-            //添加购物车
-            showPopwindow();
-        }
     }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_goods_info);
-        findViews();
-
-        //cartProvider = CartProvider.getInstance();
-        //取出intent
-        Intent intent = getIntent();
-        goods_bean = (DetailsGoodsBean) intent.getSerializableExtra("goods_bean");
-        if (goods_bean != null) {
-            //本地获取存储的数据
-            setDataFormView(goods_bean);
-        }
+    protected void initPresenter() {
 
     }
 
     private void setWebView(String product_id) {
 
         if (product_id != null) {
-            //http://192.168.51.104:8080/atguigu/json/GOODSINFO_URL.json2691
-//            wbGoodInfoMore.loadUrl(Constants.GOODSINFO_URL + product_id);
-            wbGoodInfoMore.loadUrl("http://www.atguigu.com");
-            //覆盖WebView默认使用第三方或系统默认浏览器打开网页的行为，使网页用WebView打开
+            wbGoodInfoMore.loadUrl(NetConfig.OFFICIAL_WEBSITE);
             wbGoodInfoMore.setWebViewClient(new WebViewClient() {
                 @Override
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
-                    //返回值是true的时候控制去WebView打开，为false调用系统浏览器或第三方浏览器
                     view.loadUrl(url);
                     return true;
                 }
@@ -199,10 +187,10 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
             tvGoodInfoName.setText(name);
         }
         if (cover_price != null) {
-            tvGoodInfoPrice.setText("￥" + cover_price);
+            tvGoodInfoPrice.setText("$" + cover_price);
         }
         if (figure != null) {
-            Glide.with(GoodsInfoActivity.this).load(NetConfig.BASE_URl_IMAGE+figure).into(ivGoodInfoImage);
+            Glide.with(GoodsInfoActivity.this).load(NetConfig.BASE_URl_IMAGE + figure).into(ivGoodInfoImage);
         }
         setWebView(product_id);
     }
@@ -280,7 +268,7 @@ public class GoodsInfoActivity extends Activity implements View.OnClickListener 
                 //添加购物车
                 //cartProvider.addData(goods_bean);
                 Log.e("TAG", "66:" + goods_bean.toString());
-                Toast.makeText(GoodsInfoActivity.this, "添加购物车成功", Toast.LENGTH_SHORT).show();
+                Toast.makeText(GoodsInfoActivity.this, R.string.Add_shopCar_success, Toast.LENGTH_SHORT).show();
             }
         });
 

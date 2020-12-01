@@ -111,6 +111,7 @@ public class NetConfig {
     //客服数据
     public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";
 
+    public static final String OFFICIAL_WEBSITE = "https://www.bwie.com/";
 
     //用户操作URL
     public static final String USER_REGISTER_URL = BASE_URL + "register";

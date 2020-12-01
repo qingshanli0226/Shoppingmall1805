@@ -1,4 +1,4 @@
-package com.bawei.shopmall.details;
+package com.bawei.shopmall.details.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -14,10 +14,6 @@ import androidx.appcompat.widget.TintTypedArray;
 
 import com.shopmall.bawei.shopmall1805.R;
 
-
-/**
- * Created by Administrator on 2016/8/31.
- */
 public class NumberAddSubView extends LinearLayout implements View.OnClickListener {
     private ImageView btn_sub;
     private ImageView btn_add;

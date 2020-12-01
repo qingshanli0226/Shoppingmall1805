@@ -10,13 +10,15 @@ import androidx.fragment.app.Fragment;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
+import com.bawei.framework.ShopUserManager;
+import com.bawei.net.mode.LoginBean;
 import com.bawei.shopmall.ARouterPath;
 import com.shopmall.bawei.shopmall1805.R;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserFragment extends BaseFragment implements View.OnClickListener {
+public class UserFragment extends BaseFragment implements View.OnClickListener, ShopUserManager.IUserLoginChangedListener {
 
     private MyToolBar myToolbar;
     private View inflate;
@@ -38,7 +40,6 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     protected void initListener() {
-
 
     }
 
@@ -65,5 +66,15 @@ public class UserFragment extends BaseFragment implements View.OnClickListener {
                 ARouter.getInstance().build(ARouterPath.LoginRegisterActivity).navigation();
                 break;
         }
+    }
+
+    @Override
+    public void onUserLogin(LoginBean loginBean) {
+        tv_username.setText(loginBean.getResult().getName());
+    }
+
+    @Override
+    public void onUserLogout() {
+
     }
 }
