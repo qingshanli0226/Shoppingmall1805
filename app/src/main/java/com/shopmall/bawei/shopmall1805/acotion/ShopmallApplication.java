@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 
 public class ShopmallApplication extends Application {
     private static Context context;
@@ -11,7 +12,7 @@ public class ShopmallApplication extends Application {
     public void onCreate() {
         super.onCreate();
         context=this;
-
+        ShopUserManager.getInstance().init(this);
         // 打印日志
         ARouter.openLog();
         // 开启调试模式(如果在InstantRun(就是AndroidStudio2.0以后新增的一个可以减少很多编译时间的运行机制)模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)

@@ -36,6 +36,7 @@ public class DetailsMainActivity extends AppCompatActivity {
     private Button addShopNo;
     private Button addShopYes;
     private PopupWindow popupWindow;
+    private TextView shopLike;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -83,12 +84,36 @@ public class DetailsMainActivity extends AppCompatActivity {
         });
 
 
+        /***
+         * 点击跳转购物车模块
+         */
+        shopCar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/shopcar/ShopCarMainActivity").navigation();
+            }
+        });
+
+
+        /**
+         * 收藏的点击监听事件
+         */
+        shopLike.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(DetailsMainActivity.this, "已收藏", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     /**
      * 点击事件
      */
     private void popuEnvent() {
+
+
+
         /**
          * 购买商品数量加、减点击事件
          */
@@ -137,15 +162,7 @@ public class DetailsMainActivity extends AppCompatActivity {
             }
         });
 
-        /***
-         * 点击跳转购物车模块
-         */
-        shopCar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ARouter.getInstance().build("/shopcar/ShopCarMainActivity").navigation();
-            }
-        });
+
 
     }
     /**
@@ -157,11 +174,6 @@ public class DetailsMainActivity extends AppCompatActivity {
         shop_image = inflate.findViewById(R.id.shop_image);
         shop_num = inflate.findViewById(R.id.shop_num);
         add_shop_name = inflate.findViewById(R.id.add_shop_name);
-
-
-
-        shopCar = findViewById(R.id.shop_car);
-
 
         addShopNo = inflate.findViewById(R.id.add_shop_no);
         addShopYes = inflate.findViewById(R.id.add_shop_yes);
@@ -193,8 +205,8 @@ public class DetailsMainActivity extends AppCompatActivity {
      */
     private void initview() {
 
-
-
+        shopCar = findViewById(R.id.shop_car);
+        shopLike = findViewById(R.id.shop_like);
         imageDetails = findViewById(R.id.image_details);
         nameDetails = findViewById(R.id.name_details);
         moneyDetails = findViewById(R.id.money_details);

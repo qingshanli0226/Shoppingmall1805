@@ -2,11 +2,11 @@ package com.shopmall.bawei.shopmall1805.homeadapter;
 
 import android.widget.ImageView;
 
-import com.bumptech.glide.Glide;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.HomeData;
+import com.shopmall.glide.Myglide;
 
 
 public class ActAdapter extends BaseRVAdapter<HomeData.ResultBean.ActInfoBean> {
@@ -23,7 +23,8 @@ public class ActAdapter extends BaseRVAdapter<HomeData.ResultBean.ActInfoBean> {
 //        imageView.setWebViewClient(new WebViewClient());
 //        imageView.setWebChromeClient(new WebChromeClient());
 //        imageView.loadUrl(Confing.BASE_IMAGE + itemData.getIcon_url());
-        Glide.with(baseViewHolder.itemView.getContext()).load(Constants.BASE_URl_IMAGE + itemData.getIcon_url()).into(imageView);
+       // Glide.with(baseViewHolder.itemView.getContext()).load(Constants.BASE_URl_IMAGE + itemData.getIcon_url()).into(imageView);
+        Myglide.getMyglide().centercenglide(baseViewHolder.itemView.getContext(),imageView,Constants.BASE_URl_IMAGE + itemData.getIcon_url());
     }
 
     @Override

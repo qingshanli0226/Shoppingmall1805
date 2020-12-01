@@ -22,6 +22,8 @@
         </activity>
         <activity android:name=".ui.activity.MainActivity"
             android:launchMode="singleTask"></activity>
+
+        <service android:name=".service.LoginService"></service>
     </application>
 
 </manifest>

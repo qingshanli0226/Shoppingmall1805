@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    style="@style/view_match_wrap"
     android:layout_marginLeft="15sp"
     android:layout_marginTop="15sp"
     android:background="#fff"
@@ -24,13 +23,12 @@
         android:ellipsize="end"
         android:lines="2"
         android:padding="@dimen/dp_10"
-        android:text="【智趣屋】DIY小屋盒子剧场 手工拼装房子 模型玩具创意礼品 送工具"
+        android:text="@string/detils_nmae"
         android:textColor="@color/color_black" />
 
     <TextView
         android:id="@+id/tv_hot_price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+       style="@style/view_width_height_warp"
         android:layout_gravity="left"
         android:layout_marginTop="3dp"
         android:text="￥88.00"

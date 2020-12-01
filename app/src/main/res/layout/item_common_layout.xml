@@ -25,6 +25,6 @@
     <TextView
         android:id="@+id/tv_price"
        style="@style/view_width_height_warp"
-        android:text="￥88.00"
+        android:text="@string/detils_money"
         android:textColor="#ff4242" />
 </LinearLayout>

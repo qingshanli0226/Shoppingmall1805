@@ -54,11 +54,11 @@ public class ClassFragment_Sort extends BaseFragment<SortPresenter> implements C
 
     @Override
     protected void createEnvent() {
-        mPresenter.Sort(Constants.SKIRT_URL2);
+        mPresenter.Sort(Constants.SKIRT_URL2,logingPage);
         listviewSort.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                  mPresenter.Sort(url.get(position));
+                  mPresenter.Sort(url.get(position),logingPage);
             }
         });
     }

@@ -53,7 +53,7 @@ public class UserLoginFragment extends BaseFragment<LoginPresenter> implements C
                       return;
                   }
 
-                  mPresenter.login(Constants.LOGIN_URL,map);
+                  mPresenter.login(Constants.LOGIN_URL,map,logingPage);
 
               }
           });
@@ -81,7 +81,6 @@ public class UserLoginFragment extends BaseFragment<LoginPresenter> implements C
         Toast.makeText(getContext(), ""+loginbean.getMessage(), Toast.LENGTH_SHORT).show();
         if (loginbean.getCode().equals("200")){
             Log.e("logintoken",""+loginbean.getResult().getToken());
-            ShopUserManager.getInstance().init(getContext());
             ShopUserManager.getInstance().setLogin(loginbean);
             ARouter.getInstance().build("/app/MainActivity").navigation();
         }

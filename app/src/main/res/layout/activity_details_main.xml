@@ -213,19 +213,20 @@
            android:padding="@dimen/dp_10"
            android:drawableTop="@mipmap/icon_callserver_unpressed"
            android:drawablePadding="@dimen/dp_10"
-           android:text="联系客服"
+           android:text="@string/shop_guest"
            android:gravity="center"
            ></TextView>
 
 
         <TextView
+            android:id="@+id/shop_like"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:padding="@dimen/dp_10"
             android:drawableTop="@mipmap/good_uncollected"
             android:drawablePadding="@dimen/dp_10"
-            android:text="收藏"
+            android:text="@string/shop_like"
             android:gravity="center"
             ></TextView>
 
@@ -238,7 +239,7 @@
             android:padding="@dimen/dp_10"
             android:drawableTop="@mipmap/icon_good_detail_cart"
             android:drawablePadding="@dimen/dp_10"
-            android:text="购物车"
+            android:text="@string/shop_car"
             android:gravity="center"
             ></TextView>
 
@@ -247,9 +248,9 @@
             android:layout_gravity="center"
             android:layout_width="0dp"
             android:layout_weight="1"
-            android:layout_height="55dp"
-             android:text="加入购物车"
-            android:textColor="#ffffff"
+            android:layout_height="@dimen/dp_55"
+             android:text="@string/add_shopcar"
+            android:textColor="@color/color_white"
             android:background="#ED3F3F"
             ></Button>
 

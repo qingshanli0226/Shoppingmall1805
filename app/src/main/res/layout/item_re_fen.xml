@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="90dp"
-    android:layout_height="120dp"
-    android:padding="5dp"
+    android:layout_height="@dimen/dp_120"
+    android:padding="@dimen/dp_5"
     android:layout_gravity="center"
     android:orientation="vertical">
     <ImageView
@@ -11,16 +11,16 @@
         android:layout_height="0dp"
         android:layout_weight="4"
         android:scaleType="fitXY"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="@dimen/dp_10"
         ></ImageView>
 
     <TextView
         android:id="@+id/tv_re"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="@dimen/dp_10"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:gravity="center"
-        android:text="111"
+        android:text="@string/detils_money"
         android:layout_marginLeft="@dimen/dp_10"
         android:textSize="@dimen/sp_15"
         android:textColor="#FD0808"

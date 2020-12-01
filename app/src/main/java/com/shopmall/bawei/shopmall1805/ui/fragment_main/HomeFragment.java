@@ -12,23 +12,11 @@ import com.shopmall.bawei.framework.mvptest.presenter.HomePresenter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.homeadapter.PrimereAdpter;
 import com.shopmall.bean.HomeData;
-import com.youth.banner.Banner;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class HomeFragment extends BaseFragment<HomePresenter> implements Constart.HomeConstartView {
-    private List<String> image=new ArrayList<>();
-    private List<String> image2=new ArrayList<>();
-    private Banner bannerF1;
 
-    private RecyclerView titleF1;
-    private Banner banner2F1;
-    private RecyclerView homeRecycleGou;
-    private RecyclerView homeRecycleNew;
-    private ArrayList<HomeData.ResultBean.ChannelInfoBean> channel=new ArrayList<>();
 
-    private RecyclerView homeRecycleShopping;
+
     private RecyclerView recycleHome;
     private PrimereAdpter primereAdpter;
 

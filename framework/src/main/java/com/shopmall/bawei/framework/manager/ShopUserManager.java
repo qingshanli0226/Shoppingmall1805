@@ -1,18 +1,21 @@
 package com.shopmall.bawei.framework.manager;
 
-import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
 
 import com.shopmall.bawei.framework.restname.RestName;
 import com.shopmall.bean.Loginbean;
 
-public class ShopUserManager extends Application {
+import java.util.ArrayList;
+import java.util.List;
+
+public class ShopUserManager  {
     private volatile static ShopUserManager shareManager=null;
     private Context context;
     private SharedPreferences sharedPreferences;
     private Loginbean loginbean;
     private SharedPreferences.Editor editor;
+    private List<IUserListener> iUserListeners=new ArrayList<>();
     /**
      * 单例- 双重锁
      * @return
@@ -41,10 +44,31 @@ public class ShopUserManager extends Application {
     }
 
 
-    public void setLogin(Loginbean login){
-        this.loginbean=login;
+    public void setLogin(Loginbean loginbean){
+        this.loginbean=loginbean;
         //添加toekn值
-       editor.putString(RestName.LOGIN_TOKEN,login.getResult().getToken()).commit();
+       editor.putString(RestName.LOGIN_TOKEN,loginbean.getResult().getToken()).commit();
+
+        /**
+         * 登录成功后通知每个页面该用户上线
+         */
+        for (IUserListener iUserListener : iUserListeners) {
+              iUserListener.OnUserLogin(loginbean);
+        }
+    }
+
+    /**
+     * 获取token值
+     * @return
+     */
+    public String getToken(){
+        String string = sharedPreferences.getString(RestName.LOGIN_TOKEN, null);
+        if (string!=null){
+            return string;
+        }else {
+            return null;
+        }
+
     }
 
     /**
@@ -69,6 +93,31 @@ public class ShopUserManager extends Application {
          }else {
              return false;
          }
+    }
+
+    /**
+     * 该接口不存在添加
+     * @param iUserListener
+     */
+    public void RegistUserLogin(IUserListener iUserListener){
+          if (!iUserListeners.contains(iUserListener)){
+              iUserListeners.add(iUserListener);
+          }
+    }
+
+    /**
+     * 该接口存在删除
+     * @param iUserListener
+     */
+    public void UnRegistUserLogin(IUserListener iUserListener){
+          if (iUserListeners.contains(iUserListener)){
+              iUserListeners.remove(iUserListener);
+          }
+    }
+
+    public interface IUserListener{
+          void OnUserLogin(Loginbean loginbean);
+          void OnUserLoginout();
     }
 
 

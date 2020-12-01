@@ -65,7 +65,7 @@ public interface Constart {
      * Login M 层
      */
     interface LoginConstartModel extends IModel{
-            void login(String url, HashMap<String,String> map, ILogin iLogin);
+            void login(String url, HashMap<String,String> map,LogingPage logingPage, ILogin iLogin);
     }
 
 
@@ -74,7 +74,7 @@ public interface Constart {
      * regist M 层
      */
     interface RegistConstartModel extends IModel{
-          void regist(String url, HashMap<String,String> map, IRegist iRegist);
+          void regist(String url, HashMap<String,String> map,LogingPage logingPage, IRegist iRegist);
     }
 
     /**
@@ -88,7 +88,7 @@ public interface Constart {
      * 分类主页M 层
      */
     interface SortConstartModel extends IModel{
-          void Sort(String url, Sort sort);
+          void Sort(String url,LogingPage logingPage, Sort sort);
     }
 
 
@@ -96,7 +96,7 @@ public interface Constart {
      * 标签主页M 层
      */
     interface TagConstartModel extends IModel{
-        void Tagdata(String url, Tag sort);
+        void Tagdata(String url,LogingPage logingPage, Tag sort);
     }
 
 
@@ -104,7 +104,7 @@ public interface Constart {
      * Login 仓库层
      */
     abstract class LoginConstartRepository extends Repository<LoginConstartModel>{
-        public abstract void login(String url, HashMap<String,String> map, ILogin iLogin);
+        public abstract void login(String url, HashMap<String,String> map,LogingPage logingPage, ILogin iLogin);
     }
 
 
@@ -112,7 +112,7 @@ public interface Constart {
      *regist 仓库层
      */
     abstract class RegistConstartRepository extends Repository<RegistConstartModel>{
-       public abstract void regist(String url, HashMap<String,String> map, IRegist iRegist);
+       public abstract void regist(String url, HashMap<String,String> map,LogingPage logingPage, IRegist iRegist);
     }
 
     /**
@@ -127,7 +127,7 @@ public interface Constart {
      * 分类仓库 层
      */
     abstract class SortConstartRepository extends Repository<SortConstartModel>{
-       public abstract void Sort(String url, Sort sort);
+       public abstract void Sort(String url,LogingPage logingPage, Sort sort);
     }
 
 
@@ -135,7 +135,7 @@ public interface Constart {
      * 标签仓库 层
      */
     abstract class TagConstartRepository extends Repository<TagConstartModel>{
-        public abstract void Tag(String url, Tag sort);
+        public abstract void Tag(String url,LogingPage logingPage, Tag sort);
     }
 
 
@@ -150,7 +150,7 @@ public interface Constart {
             super(loginConstartView);
         }
 
-       public abstract void login(String url, HashMap<String,String> map);
+       public abstract void login(String url, HashMap<String,String> map,LogingPage logingPage);
     }
 
 
@@ -164,7 +164,7 @@ public interface Constart {
         public RegistConstartPresenter(RegistConstartView registConstartView) {
             super(registConstartView);
         }
-        public abstract void regist(String url, HashMap<String,String> map);
+        public abstract void regist(String url, HashMap<String,String> map,LogingPage logingPage);
     }
 
     /**
@@ -190,7 +190,7 @@ public interface Constart {
         public SortConstartPresenter(SortConstartView sortConstartView) {
             super(sortConstartView);
         }
-        public abstract void Sort(String url);
+        public abstract void Sort(String url,LogingPage logingPage);
     }
 
 
@@ -203,7 +203,7 @@ public interface Constart {
         public TagConstartPresenter(TagConstartView tagConstartView) {
             super(tagConstartView);
         }
-        public abstract void Tag(String url);
+        public abstract void Tag(String url,LogingPage logingPage);
 
     }
 

@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:id="@+id/shop_fragment"
+       style="@style/view_width_height_match"
          android:textSize="@dimen/dp_30"
         android:text="framgment4"
         ></TextView>

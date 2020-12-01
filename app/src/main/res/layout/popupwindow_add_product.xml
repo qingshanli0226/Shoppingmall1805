@@ -8,8 +8,7 @@
     android:paddingRight="@dimen/dp_5">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/view_match_wrap"
         android:orientation="horizontal">
 
         <ImageView
@@ -19,23 +18,20 @@
             android:src="@mipmap/tag_bg" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+          style="@style/view_match_wrap"
             android:layout_marginLeft="@dimen/dp_5"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/add_shop_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+               style="@style/view_match_wrap"
                 android:layout_marginTop="@dimen/dp_2"
                 android:text="@string/detils_nmae"
                 android:textSize="@dimen/sp_15" />
 
             <TextView
                 android:id="@+id/add_shop_money"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                style="@style/view_width_height_warp"
                 android:layout_marginTop="@dimen/dp_2"
                 android:text="@string/detils_money"
                 android:textColor="@android:color/holo_red_light"
@@ -44,44 +40,37 @@
     </LinearLayout>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/view_match_wrap"
         android:layout_marginTop="@dimen/dp_5"
         android:text="@string/shop_kuan"
         android:textSize="@dimen/sp_15" />
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+       style="@style/view_match_wrap"
         android:layout_marginTop="@dimen/dp_5">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+           style="@style/view_width_height_warp"
             android:text="M" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+           style="@style/view_width_height_warp"
             android:layout_marginLeft="@dimen/dp_10"
             android:text="L" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/view_width_height_warp"
             android:layout_marginLeft="@dimen/dp_10"
             android:text="XL"
             android:textColor="@android:color/holo_red_light" />
     </LinearLayout>
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        style="@style/view_match_wrap"
         android:layout_marginTop="@dimen/dp_5">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            style="@style/view_width_height_warp"
             android:layout_gravity="center"
             android:text="@string/shop_num" />
 
@@ -120,8 +109,7 @@
 
     <LinearLayout
         android:layout_marginTop="@dimen/dp_15"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+       style="@style/view_match_wrap">
 
         <Button
             android:id="@+id/add_shop_no"

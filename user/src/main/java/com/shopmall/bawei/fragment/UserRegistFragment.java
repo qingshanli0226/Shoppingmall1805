@@ -44,7 +44,7 @@ public class UserRegistFragment extends BaseFragment<RegistPresenter> implements
                      Toast.makeText(getContext(), "账号或密码不能为空！！", Toast.LENGTH_SHORT).show();
                      return;
                  }
-                mPresenter.regist(Constants.REGIST_URL,map);
+                mPresenter.regist(Constants.REGIST_URL,map,logingPage);
              }
          });
     }

@@ -39,9 +39,9 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
 
     @NonNull
     @Override
-    //根据viewType生成一个布局
+
     public BaseViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
-        //因为需要适配不同的布局，所以需要提供一个抽象方法，让子类把布局文件传递过来
+
         View rootView = LayoutInflater.from(viewGroup.getContext()).inflate(getLayoutId(viewType), viewGroup, false);
         return new BaseViewHolder(rootView);
     }
@@ -63,7 +63,7 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
         convert(itemData, baseViewHolder, position);//通过position，将itemData转换成需要的类型，并且将baseViewHoder也转换成需要的viewHolder
 
     }
-    //需要子类来，渲染UI
+
     protected abstract void convert(T itemData, BaseViewHolder baseViewHolder, int position);
 
     public T getItemData(int position) {
@@ -83,16 +83,16 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
         this.iRecyclerViewItemClickListener = iRecyclerViewItemClickListener;
     }
 
-    //定义一个ViewHolder，可以适配不同的UI
+
     public static class BaseViewHolder extends RecyclerView.ViewHolder {
-        //Integer是id，View是控件，所有的控件的父类都是View,使用HashMap来存储这些Item里的所有View.findViewById,是比较耗时的
+
         HashMap<Integer, View> viewHashMap = new HashMap<>();
 
         public BaseViewHolder(View rootView) {
             super(rootView);
         }
 
-        //泛型方法，可以通过它获取view，并且强制转换成需要的view类型,可以参考系统的findViewById
+
         public <V extends View> V getView(@IdRes int id) {
             View view = viewHashMap.get(id);
             if (view == null) {
@@ -108,13 +108,13 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
         void onItemClick(int position);
     }
 
-    //通过这个position来返回一种对应的布局类型，让子类来指定
+
     @Override
     public int getItemViewType(int position) {
         return getViewType(position);
     }
 
 
-    //让子类来实现
+
     protected abstract int getViewType(int position);
 }

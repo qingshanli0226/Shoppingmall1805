@@ -2,6 +2,7 @@ package com.shopmall.bawei.framework.mvptest.repository;
 
 import com.shopmall.bawei.framework.callback.Sort;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.model.SortModel;
 
 public class SortRepository extends Constart.SortConstartRepository {
@@ -12,7 +13,7 @@ public class SortRepository extends Constart.SortConstartRepository {
     }
 
     @Override
-    public void Sort(String url, Sort sort) {
-         mModel.Sort(url,sort);
+    public void Sort(String url, LogingPage logingPage, Sort sort) {
+         mModel.Sort(url,logingPage,sort);
     }
 }

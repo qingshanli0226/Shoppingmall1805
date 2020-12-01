@@ -2,6 +2,7 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.Sort;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.SortRepository;
 
 public class SortPresenter extends Constart.SortConstartPresenter {
@@ -11,8 +12,8 @@ public class SortPresenter extends Constart.SortConstartPresenter {
     }
 
     @Override
-    public void Sort(String url) {
-          mRepository.Sort(url, new Sort() {
+    public void Sort(String url, final LogingPage logingPage) {
+          mRepository.Sort(url,logingPage, new Sort() {
             @Override
             public void Ok(Object... objects) {
                 if (objects!=null){
@@ -23,6 +24,7 @@ public class SortPresenter extends Constart.SortConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+                    logingPage.showError(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
             }

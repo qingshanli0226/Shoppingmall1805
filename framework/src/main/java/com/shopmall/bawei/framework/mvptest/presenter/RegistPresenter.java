@@ -2,6 +2,7 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.IRegist;
 import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.RegistRepository;
 import com.shopmall.bean.Registbean;
 
@@ -13,8 +14,8 @@ public class RegistPresenter extends Constart.RegistConstartPresenter {
     }
 
     @Override
-    public void regist(String url, HashMap<String, String> map) {
-        mRepository.regist(url, map, new IRegist() {
+    public void regist(String url, HashMap<String, String> map, final LogingPage logingPage) {
+        mRepository.regist(url, map,logingPage, new IRegist() {
             @Override
             public void Ok(Object... objects) {
                   if (objects!=null){
@@ -26,6 +27,7 @@ public class RegistPresenter extends Constart.RegistConstartPresenter {
             @Override
             public void No(String mag) {
                 if (mag!=null){
+                    logingPage.showError(mag.split(",")[1]);
                     mView.get().Error(mag);
                 }
             }

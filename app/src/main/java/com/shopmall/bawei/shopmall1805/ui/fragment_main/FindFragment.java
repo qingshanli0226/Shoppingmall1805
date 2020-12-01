@@ -1,32 +1,35 @@
 package com.shopmall.bawei.shopmall1805.ui.fragment_main;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
+import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class FindFragment extends Fragment {
+public class FindFragment extends BaseFragment {
 
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-    }
+    protected void createViewid(View inflate) {
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View inflate = inflater.inflate(R.layout.find_fragment, null);
-        return inflate;
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
+    protected void createEnvent() {
+
+    }
+
+    @Override
+    protected void createData() {
+
+    }
+
+    @Override
+    protected int fragmentid() {
+        return R.layout.find_fragment;
+    }
+
+    @Override
+    protected void createPresenter() {
+
     }
 }

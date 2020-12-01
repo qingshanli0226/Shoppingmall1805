@@ -4,9 +4,8 @@
     android:layout_height="match_parent">
     <TextView
         android:id="@+id/text_f"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="游戏专区"
+        style="@style/view_width_height_warp"
+        android:text="@string/title_msg"
         android:textSize="@dimen/sp_25"
         android:textColor="@color/color_black"></TextView>
 </LinearLayout>

@@ -33,7 +33,7 @@ public class TagFragment_Sort extends BaseFragment<TagPresenter> implements Cons
     @Override
     protected void createData() {
 
-        mPresenter.Tag(Constants.TAG_URL2);
+        mPresenter.Tag(Constants.TAG_URL2,logingPage);
 
         recycleTag2.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
 

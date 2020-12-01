@@ -33,12 +33,12 @@
                     ></ImageView>
 
                 <TextView
-                     android:id="@+id/loginr_my"
+                     android:id="@+id/users_my"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_centerInParent="true"
                     android:layout_below="@id/log_my"
                    style="@style/view_width_height_warp"
-                    android:textColor="@color/color_white"
+                    android:textColor="@color/color_red"
                     android:textSize="@dimen/dp_20"
                     android:text="登陆/注册"
                     ></TextView>
