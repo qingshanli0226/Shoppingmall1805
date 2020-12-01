@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.home;
 
 import android.Manifest;
+import android.content.Intent;
 import android.os.Build;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -11,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
@@ -46,6 +48,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
 
 
     private Fragment currentFragment;
+
 
     @Override
     protected int layoutId() {
@@ -92,9 +95,44 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
         rgMain.check(R.id.rb_home);
     }
 
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        switchFragment(intent);
+    }
+
+    private void switchFragment(Intent intent) {
+        int index = intent.getIntExtra("index", 0);
+        switch (index){
+            case FragmentHelper.SHOP_CAR_INDEX:
+                rgMain.check(R.id.rb_cart);
+                break;
+            case FragmentHelper.HOME_INDEX:
+                rgMain.check(R.id.rb_home);
+                break;
+            case FragmentHelper.TYPE_INDEX:
+                rgMain.check(R.id.rb_type);
+                break;
+            default:rgMain.check(R.id.rb_user);
+        }
+    }
 
     @Override
     protected void initView() {
+        ARouter.getInstance().inject(this);
+        /**
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         *
+         */
+
+
         fragments.add(new HomeFragment());
         rgMain = (RadioGroup) findViewById(R.id.rg_main);
         rbHome = (RadioButton) findViewById(R.id.rb_home);

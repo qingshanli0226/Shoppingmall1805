@@ -69,7 +69,7 @@ public class UserManager {
         if (loginBean!=null) {
             return loginBean.getToken();
         } else {
-            return "";
+            return sharedPreferences.getString(UrlHelper.tokenName,"");
         }
     }
 

@@ -7,6 +7,7 @@ public class UrlHelper {
     public static final String LOGIN = "login";
 
     public static final String AUTO_LOGIN = "autoLogin";
+    public static final String  TO_LOGIN_KEY = "LoginKey";
 
     public static String BASE_URL = "http://49.233.0.68:8080/";
     //public static String BASE_URL = "http://192.168.3.4:8080/";

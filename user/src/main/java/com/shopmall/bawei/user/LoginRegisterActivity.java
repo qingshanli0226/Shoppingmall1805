@@ -5,11 +5,14 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
 import com.shopmall.bawei.framework.IView;
@@ -25,6 +28,8 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> imple
     public static final int TO_REG = 0;
     public static final int TO_LOGIN = 1;
     private FragmentManager manager;
+
+    private int toLoginFromIndex = -1;
 
 
     @Override
@@ -64,6 +69,10 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> imple
 
     @Override
     protected void initView() {
+        Intent intent = getIntent();
+        toLoginFromIndex = intent.getIntExtra(UrlHelper.TO_LOGIN_KEY,-1);
+        ARouter.getInstance().inject(this);
+
         manager = getSupportFragmentManager();
         list.add(new LoginFragment<>());
         list.add(new RegisterFragment<>());
@@ -73,6 +82,10 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> imple
         transaction.show(list.get(0));
         transaction.hide(list.get(1));
         transaction.commit();
+    }
+
+    public int getToLoginFromIndex(){
+        return toLoginFromIndex;
     }
 
     @Override
@@ -85,7 +98,8 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> imple
 
     }
 
-//    @Override
+
+    //    @Override
 //    public void onItemClick(View v) {
 //        FragmentTransaction transaction = manager.beginTransaction();
 //        if(v.getId() == R.id.tv_login_register){

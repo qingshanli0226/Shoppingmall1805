@@ -13,7 +13,9 @@ import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseFragment;
+import com.shopmall.bawei.framework.UserManager;
 import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.LoginRegisterActivity.*;
@@ -23,6 +25,8 @@ import com.shopmall.bawei.user.R;
 import com.shopmall.bawei.user.SwitchFragmentListener;
 import com.shopmall.bawei.user.login.contract.LoginContract;
 import com.shopmall.bawei.user.login.contract.LoginImpl;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class LoginFragment<P extends LoginImpl,V extends LoginContract.ILoginView> extends BaseFragment<P,V> implements LoginContract.ILoginView, View.OnClickListener {
 
@@ -155,6 +159,8 @@ public class LoginFragment<P extends LoginImpl,V extends LoginContract.ILoginVie
 
     @Override
     public void onLogin(LoginBean loginBean) {
+        UserManager.getInstance().saveLoginBean(loginBean);
+//        EventBus.getDefault().post(loginBean);
 
         ARouter.getInstance().build("/app/MainActivity").navigation();
         /**

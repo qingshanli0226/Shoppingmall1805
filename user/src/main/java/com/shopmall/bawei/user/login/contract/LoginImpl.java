@@ -44,7 +44,6 @@ public class LoginImpl extends LoginContract.ILoginPresenter {
                 .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
                     }
 
                     @Override
