@@ -6,7 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.ShopUsermange;
 import com.shopmall.bawei.shopmall1805.R;

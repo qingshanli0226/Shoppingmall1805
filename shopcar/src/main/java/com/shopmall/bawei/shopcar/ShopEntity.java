@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopcar;
 
 public class ShopEntity {
+    private Boolean isChecked;
+    private Boolean isVisibility;
     private String name;
     private String path;
     private String money;
@@ -9,6 +11,22 @@ public class ShopEntity {
         this.name = name;
         this.path = path;
         this.money = money;
+    }
+
+    public Boolean getVisibility() {
+        return isVisibility;
+    }
+
+    public void setVisibility(Boolean visibility) {
+        isVisibility = visibility;
+    }
+
+    public Boolean getChecked() {
+        return isChecked;
+    }
+
+    public void setChecked(Boolean checked) {
+        isChecked = checked;
     }
 
     public String getName() {

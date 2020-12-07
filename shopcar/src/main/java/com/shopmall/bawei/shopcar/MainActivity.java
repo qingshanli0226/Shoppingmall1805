@@ -8,7 +8,9 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -27,12 +29,14 @@ public class MainActivity extends AppCompatActivity {
     private RecyclerView recyclerView;
     private List<ShopEntity> list = new ArrayList<>();
     private ShopAdapter shopAdapter;
+    private TextView bianji;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shopcar);
 
         recyclerView = findViewById(R.id.recyclerview);
+        bianji = findViewById(R.id.tv_shopcart_edit);
 
         ARouter.getInstance().inject(this);
         Toast.makeText(this, "?????????", Toast.LENGTH_SHORT).show();
@@ -52,5 +56,11 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setAdapter(shopAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        bianji.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                
+            }
+        });
     }
 }

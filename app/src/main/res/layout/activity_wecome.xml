@@ -9,7 +9,7 @@
         android:id="@+id/imv"
         android:scaleX="1.5"
         android:scaleY="1.5"
-        android:src="@drawable/ic_launcher_background"
+        android:src="@mipmap/aaa"
         />
 
 </LinearLayout>

@@ -64,8 +64,6 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                 });
 
 
-//                break;
-//            case 1:
                 RecyclerView view = helper.getView(R.id.rec_item2);
                 itemPrimereAdapter = new ItemPrimereAdapter(R.layout.item2_item,item.getChannel_info());
                 view.setAdapter(itemPrimereAdapter);
@@ -80,8 +78,6 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                     }
                 });
 
-//                break;
-//            case 2:
                 Banner vp = helper.getView(R.id.vp_item3);
                 for (int i=0;i<item.getAct_info().size();i++){
                     imv1.add(ConfigUrl.BASE_IMAGE+item.getAct_info().get(i).getIcon_url());
@@ -114,6 +110,8 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Intent intent = new Intent(mContext, XiangActivity.class);
                         intent.putExtra("path",ConfigUrl.BASE_IMAGE+item.getSeckill_info().getList().get(position).getFigure());
+                        intent.putExtra("name",item.getSeckill_info().getList().get(position).getName());
+                        intent.putExtra("money",item.getSeckill_info().getList().get(position).getOrigin_price());
                         mContext.startActivity(intent);
                     }
                 });
@@ -128,6 +126,8 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Intent intent = new Intent(mContext, XiangActivity.class);
                         intent.putExtra("path",item.getRecommend_info().get(position).getFigure());
+                        intent.putExtra("name",item.getRecommend_info().get(position).getName());
+                        intent.putExtra("money",item.getRecommend_info().get(position).getCover_price());
                         mContext.startActivity(intent);
                     }
                 });
@@ -142,6 +142,8 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Intent intent = new Intent(mContext, XiangActivity.class);
                         intent.putExtra("path",item.getHot_info().get(position).getFigure());
+                        intent.putExtra("name",item.getHot_info().get(position).getName());
+                        intent.putExtra("money",item.getHot_info().get(position).getCover_price());
                         mContext.startActivity(intent);
                     }
                 });
