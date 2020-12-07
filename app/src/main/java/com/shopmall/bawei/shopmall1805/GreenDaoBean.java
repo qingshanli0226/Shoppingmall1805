@@ -24,6 +24,7 @@ public class GreenDaoBean {
     }
     @Generated(hash = 826843181)
     public GreenDaoBean() {
+
     }
     public String getProductId() {
         return this.productId;
