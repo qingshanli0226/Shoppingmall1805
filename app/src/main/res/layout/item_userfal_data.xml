@@ -13,7 +13,7 @@
         android:layout_height="100dp"/>
 
     <TextView
-        style="@style/TextStyle"
+        style="@style/TextViewStyle"
         android:layout_gravity="center"
         android:id="@+id/userfal_title"
         android:layout_width="100dp"

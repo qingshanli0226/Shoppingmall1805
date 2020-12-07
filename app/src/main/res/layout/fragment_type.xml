@@ -11,23 +11,23 @@
         android:layout_width="match_parent"
         android:orientation="horizontal"
         android:gravity="center"
-        android:layout_height="80dp">
+        android:layout_height="@dimen/dp_60">
 
         <Button
             android:id="@+id/btn1"
             android:text="分类"
             style="@style/ButtonStyle"
             android:background="@drawable/white_radius"
-            android:layout_width="@dimen/dp_100"
-            android:layout_height="@dimen/dp_60"/>
+            android:layout_width="@dimen/dp_72"
+            android:layout_height="@dimen/dp_50"/>
 
         <Button
             style="@style/ButtonStyle"
             android:id="@+id/btn2"
             android:text="标签"
             android:background="@drawable/white_radius"
-            android:layout_width="@dimen/dp_100"
-            android:layout_height="@dimen/dp_60"/>
+            android:layout_width="@dimen/dp_72"
+            android:layout_height="@dimen/dp_50"/>
 
     </LinearLayout>
 

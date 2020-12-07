@@ -3,8 +3,10 @@ package com.bw.framework;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.bw.net.bean.LoginBean;
+import com.bw.net.bean.ShopmallConstant;
 
 
 public class ShopUserManager {
@@ -20,7 +22,6 @@ public class ShopUserManager {
     private SharedPreferences.Editor editor;
 
     private ShopUserManager() {
-
     }
 
     public static ShopUserManager getInstance() {
@@ -41,15 +42,17 @@ public class ShopUserManager {
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
 
-        //使用sp存储token
-        editor.putString(ShopmallConstant.tokenName,loginBean.getToken() );
-        editor.commit();
 
+        //使用sp存储token
+        editor.putString("token",loginBean.getResult().getToken());
+        editor.commit();
+        Log.e("---", "saveLoginBean: "+loginBean.getResult().getToken() );
         //发送广播，通知当前应用用户已经登录成功
         Intent intent = new Intent();
         intent.setAction(ShopmallConstant.LOGIN_ACTION);
         context.sendBroadcast(intent);
     }
+
 
 
     //判断当前用户是否登录
@@ -58,8 +61,9 @@ public class ShopUserManager {
     }
 
     public String getToken() {
-        if (loginBean!=null) {
-            return loginBean.getToken();
+        if (loginBean != null) {
+            Log.i("---", "getToken: "+loginBean.getResult().getToken());
+            return loginBean.getResult().getToken();
         } else {
             return "";
         }

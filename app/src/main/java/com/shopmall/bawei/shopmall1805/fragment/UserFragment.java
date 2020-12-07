@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -10,6 +11,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.BaseFragment;
 import com.bw.framework.IPresenter;
 import com.bw.framework.IView;
+import com.bw.framework.ShopUserManager;
+import com.bw.net.bean.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.R;
 
 @Route(path = "/fragment/userFragment")
@@ -35,8 +38,6 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
     private TextView tvUsercenter;
     private ImageButton ibUserSetting;
     private ImageButton ibUserMessage;
-
-
 
     @Override
     protected int getLayoutId() {
@@ -66,9 +67,9 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
         ibUserSetting = (ImageButton) findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
 
-        ibUserIconAvator.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+        ibUserIconAvator.setOnClickListener(v -> {
+            boolean userLogin = ShopUserManager.getInstance().isUserLogin();
+            if (userLogin == true){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }
         });

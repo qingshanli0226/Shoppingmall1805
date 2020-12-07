@@ -9,7 +9,7 @@
     <com.bw.framework.ToorBar
         android:id="@+id/main_bar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="@dimen/dp_60"
         android:visibility="gone"></com.bw.framework.ToorBar>
 
    <FrameLayout

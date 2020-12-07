@@ -10,7 +10,7 @@
         android:layout_height="180dp"/>
 
     <TextView
-        style="@style/TextStyle"
+        style="@style/TextViewStyle"
         android:id="@+id/seckill_title"
         android:textColor="#FF5722"
         android:layout_width="150dp"/>

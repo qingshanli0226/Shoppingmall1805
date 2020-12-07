@@ -14,7 +14,7 @@ import com.bw.net.Contants;
 import com.bw.net.bean.HomeFragmentBean;
 import com.bw.net.bean.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.activity.DetailsActivity;
+import com.shopmall.bawei.shopmall1805.detail.DetailsActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 

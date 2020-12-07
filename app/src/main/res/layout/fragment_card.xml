@@ -1,19 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_height="match_parent">
-
-   <com.bw.framework.ToorBar
-       android:id="@+id/cardBar"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"/>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="5dp"
-        android:background="#eeee" />
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -30,56 +19,51 @@
                 android:layout_width="match_parent"
                 android:layout_weight="1"
                 android:layout_height="0dp"
-                android:background="#eee" />
+                android:background="@color/colorWhite" />
 
 
             <LinearLayout
                 android:id="@+id/ll_check_all"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#fff"
+                android:background="@color/colorWhite"
                 android:orientation="horizontal"
                 android:visibility="visible">
 
                 <CheckBox
                     android:id="@+id/checkbox_all"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    style="@style/TextViewStyle"
                     android:layout_centerVertical="true"
                     android:button="@null"
                     android:drawableLeft="@drawable/checkbox_selector"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
                     android:paddingLeft="0dp"
                     android:text="全选"
-                    android:textColor="#303235"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="10dp"
+                    style="@style/TextViewStyle"
                     android:text="合计:"
-                    android:textColor="#303235"
                     android:textSize="15sp" />
 
                 <TextView
+                    style="@style/TextViewStyle"
                     android:id="@+id/tv_shopcart_total"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="10dp"
                     android:text="￥0.00"
-                    android:textColor="#ed3f3f"
-                    android:textSize="15sp" />
+                    android:textColor="@color/colorRed"
+                    android:textSize="@dimen/sp_14" />
 
                 <Button
                     android:id="@+id/btn_check_out"
+                    style="@style/ButtonStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ed3f3f"
+                    android:background="@color/colorRed"
                     android:text="去结算"
-                    android:textColor="#fff" />
+                    android:textSize="@dimen/sp_12"
+                    android:textColor="@color/colorWhite" />
             </LinearLayout>
 
             <LinearLayout
@@ -88,7 +72,7 @@
                 android:layout_height="wrap_content"
                 android:background="#fff"
                 android:orientation="horizontal"
-                android:padding="5dp"
+                android:padding="@dimen/dp_5"
                 android:visibility="gone">
 
                 <CheckBox
@@ -99,35 +83,33 @@
                     android:layout_weight="1"
                     android:button="@null"
                     android:drawableLeft="@drawable/checkbox_selector"
-                    android:drawablePadding="10dp"
-                    android:padding="10dp"
+                    android:drawablePadding="@dimen/dp_10"
+                    android:padding="@dimen/dp_10"
                     android:paddingLeft="0dp"
                     android:text="全选"
                     android:textColor="#303235"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/sp_14" />
 
                 <Button
+                    style="@style/ButtonStyle"
                     android:id="@+id/btn_delete"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
+                    android:layout_height="@dimen/dp_40"
                     android:background="@drawable/words"
                     android:text="删除"
                     android:textColor="#303235"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/sp_14" />
 
                 <Button
+                    style="@style/ButtonStyle"
                     android:id="@+id/btn_collection"
-                    android:layout_width="wrap_content"
-                    android:layout_height="35dp"
-                    android:layout_marginLeft="15dp"
+                    android:layout_height="@dimen/dp_35"
+                    android:layout_marginLeft="@dimen/dp_15"
                     android:background="@drawable/wordsred"
                     android:text="收藏"
                     android:textColor="#ed3f3f"
-                    android:textSize="15sp" />
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
         </LinearLayout>
-
-        <include layout="@layout/empty_cart" />
     </FrameLayout>
 
 </LinearLayout>

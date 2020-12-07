@@ -10,7 +10,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <TextView
-            style="@style/TextStyle"
+            style="@style/TextViewStyle"
             android:text="常用推荐"
             android:textSize="25sp"
             android:textColor="#03A9F4"

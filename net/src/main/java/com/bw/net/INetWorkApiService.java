@@ -1,5 +1,6 @@
 package com.bw.net;
 
+import com.bw.net.bean.AutoLoginBean;
 import com.bw.net.bean.HomeFragmentBean;
 import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.RegisterBean;
@@ -26,6 +27,10 @@ public interface INetWorkApiService {
     @POST("register")
     @FormUrlEncoded
     Observable<RegisterBean> register(@FieldMap HashMap<String,String> map);
+
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
 
     @GET(Contants.HOME_URL)
     Observable<HomeFragmentBean> getHomeData();
