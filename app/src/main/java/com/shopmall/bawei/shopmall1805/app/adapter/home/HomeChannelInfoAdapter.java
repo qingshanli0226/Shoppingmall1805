@@ -21,5 +21,6 @@ public class HomeChannelInfoAdapter extends BaseQuickAdapter<HomeBean.ResultBean
     protected void convert(BaseViewHolder helper, HomeBean.ResultBean.ChannelInfoBean item) {
         Glide.with(mContext).load(ConfigUrl.BASE_IMAGE+item.getImage()).into((ImageView) helper.getView(R.id.channelInfo_item_img));
         helper.setText(R.id.channelInfo_item_tv,item.getChannel_name());
+
     }
 }

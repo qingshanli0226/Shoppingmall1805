@@ -26,7 +26,7 @@ public class ClassifyLeftFragment extends BaseMVPFragment<ClassifyLeftPresenterI
     private ClassifyLeftAdapter fenLeiAdapter;
     private List<Object> list_up=new ArrayList<>();
     private ClassifyRightAdapter fenleiAdapters=new ClassifyRightAdapter(getContext());
-    private String url=ConfigUrl.SKIRT_URL;
+    private String url = ConfigUrl.SKIRT_URL;
 
     @Override
     protected int getLayoutId() {

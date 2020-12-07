@@ -18,7 +18,6 @@ import org.w3c.dom.Text;
 
 public abstract class LoadingPage extends FrameLayout {
 
-
     private View loadingView;
     private View errorView;
     private View emptyView;
@@ -29,7 +28,6 @@ public abstract class LoadingPage extends FrameLayout {
         super(context);
         init(context);
     }
-
     public LoadingPage(@NonNull Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
         init(context);

@@ -2,6 +2,7 @@ package com.shopmall.bawei.shopmall1805.net;
 
 import com.shopmall.bawei.shopmall1805.common.AllParameter;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
+import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 
 import java.util.concurrent.TimeUnit;
 
@@ -23,10 +24,11 @@ public class RetrofitUtils {
     private static INetPresetenterWork createRetrofit() {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
-                .readTimeout(AllParameter.READ_TIME, TimeUnit.SECONDS)
-                .writeTimeout(AllParameter.WRITE_TIME,TimeUnit.SECONDS)
-                .connectTimeout(AllParameter.CONNECT_TIME,TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .readTimeout(ShopmallConstant.READ_TIME, TimeUnit.SECONDS)
+                .writeTimeout(ShopmallConstant.WRITE_TIME,TimeUnit.SECONDS)
+                .connectTimeout(ShopmallConstant.CONNECT_TIME,TimeUnit.SECONDS)
+//                .addInterceptor(new TokenInterceptor())
+                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()

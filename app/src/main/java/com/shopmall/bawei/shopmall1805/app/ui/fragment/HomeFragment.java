@@ -1,10 +1,13 @@
 package com.shopmall.bawei.shopmall1805.app.ui.fragment;
 
 
+import android.widget.Toast;
+
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.app.adapter.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.app.adapter.home.HomeAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.HomePresenterImpl;
@@ -20,7 +23,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
 
     private RecyclerView rv;
     private List<Object> list=new ArrayList<>();
-    private HomeAdapter baseHomeAdapter=new HomeAdapter(getContext());
+    private HomeAdapter baseHomeAdapter;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
@@ -33,6 +36,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
     protected void initView() {
         rv = findViewById(R.id.rv);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        baseHomeAdapter =new HomeAdapter(getContext());
         rv.setAdapter(baseHomeAdapter);
     }
 
@@ -43,6 +47,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
     @Override
     protected void initPresenter() {
         ihttpPresenter = new HomePresenterImpl();
+
     }
     @Override
     public void showLoaing() {
@@ -73,5 +78,6 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
         list.add(recommend_info);
         list.add(hot_info);
         baseHomeAdapter.upDataText(list);
+
     }
 }

@@ -1,13 +1,17 @@
 package com.shopmall.bawei.shopmall1805.app.adapter.home;
 
 import android.content.Context;
+import android.content.Intent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.bumptech.glide.Glide;
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
@@ -19,9 +23,11 @@ import java.util.List;
 
 public class HomeAdapter extends BaseRvAdapter<Object> {
     private Context context;
+
     public HomeAdapter(Context context) {
         this.context = context;
     }
+
     @Override
     protected int getLayoutId(int viewType) {
         switch (viewType){
@@ -58,10 +64,18 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                 banner.start();
                 break;
             case 1:
-                List<HomeBean.ResultBean.ChannelInfoBean> o1 = (List<HomeBean.ResultBean.ChannelInfoBean>) o;
+                final List<HomeBean.ResultBean.ChannelInfoBean> o1 = (List<HomeBean.ResultBean.ChannelInfoBean>) o;
                 RecyclerView view = holder.getView(R.id.rv_ChannelInfo);
                 view.setLayoutManager(new GridLayoutManager(context,5));
                 HomeChannelInfoAdapter wanggeAdapter=new HomeChannelInfoAdapter(R.layout.layout_home_channelinfo_item, o1);
+                wanggeAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                        Intent intent = new Intent(context, ChannelInfoActivity.class);
+                        intent.putExtra("name",o1.get(position).getChannel_name());
+                        context.startActivity(intent);
+                    }
+                });
                 view.setAdapter(wanggeAdapter);
                 break;
             case 2:
