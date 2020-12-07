@@ -1,4 +1,5 @@
 package com.shopmall.bawei.user.view;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -6,16 +7,17 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.framework.BaseFragment;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
-import com.example.framework.InputType;
-import com.example.net.bean.HomeBean;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.net.bean.LoginBean;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.InputType;
+import com.shopmall.bawei.framework.example.framework.user.UserManage;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bawei.user.contract.LoginContact;
 import com.shopmall.bawei.user.presenter.LoginPresenter;
+
+
 
 public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.LoginView> implements LoginContact.LoginView,View.OnClickListener {
     private ImageButton ibLoginBack;
@@ -86,6 +88,11 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     @Override
     public void onlogin(LoginBean loginBean) {
         Toast.makeText(getContext(), "登陆成功", Toast.LENGTH_SHORT).show();
+        UserManage.getInstance().saveToken(loginBean.getToken()+"");
+        UserManage.getInstance().saveUsername(etLoginPhone.getText().toString().trim()+"");
+        ARouter.getInstance().build("/activity/MainActivity").navigation();
+        getActivity().finish();
+
     }
 
     @Override

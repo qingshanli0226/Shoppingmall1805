@@ -7,18 +7,14 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.framework.BaseFragment;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
-import com.example.framework.InputType;
-import com.example.net.bean.LoginBean;
 import com.example.net.bean.RegisterBean;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.InputType;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
-import com.shopmall.bawei.user.contract.LoginContact;
 import com.shopmall.bawei.user.contract.RegisterContact;
-import com.shopmall.bawei.user.presenter.LoginPresenter;
 import com.shopmall.bawei.user.presenter.RegisterPresenter;
+
 
 public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterContact.LoginView> implements RegisterContact.LoginView, View.OnClickListener {
     private ImageButton ibLoginBack;
