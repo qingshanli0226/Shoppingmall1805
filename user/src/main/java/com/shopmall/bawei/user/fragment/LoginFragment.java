@@ -12,7 +12,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
+import com.example.framework.ShopUsermange;
+import com.example.net.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bawei.user.contract.LoginContract;
@@ -77,15 +80,16 @@ public  class LoginFragment extends BaseFragment<LogPresenter, LoginContract.Log
     }
 
     @Override
-    public void getLoginCode(String message) {
-        Log.i("wftmessage", "getLoginCode: "+message);
-        if (message.equals("登录成功")){
-            EventBus.getDefault().post(1);
-            getActivity().finish();
-        }else {
-            EventBus.getDefault().post(0);
-            Toast.makeText(getContext(), "请重新登录", Toast.LENGTH_SHORT).show();
-        }
+    public void getLoginCode(LoginBean loginBean) {
+
+            ShopUsermange.getInstance()
+                    .ShopLoginmange(loginBean);
+
+            ARouter.getInstance()
+                    .build("/aa/aaa")
+                    .navigation();
+
+
     }
 
     @Override

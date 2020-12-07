@@ -2,4 +2,6 @@
     <string name="app_name">Shopmall1805</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="xiang_tv_text">【预售】《来年就交给你啦》珍藏画册 限量礼盒版</string>
+    <string name="xiang_tvinfo_text">预售截止10月15日，预售期为限量礼盒版，包括特制木盒x1、画集x1、邮票x1套、书签x1、贴纸x1、信封x1、礼盒特</string>
 </resources>

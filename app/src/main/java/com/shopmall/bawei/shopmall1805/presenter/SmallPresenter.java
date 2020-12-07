@@ -11,6 +11,7 @@ import com.shopmall.bawei.shopmall1805.contract.SmallskirtContract;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 public class SmallPresenter extends SmallskirtContract.SmallskirtPresenter {
@@ -20,6 +21,12 @@ public class SmallPresenter extends SmallskirtContract.SmallskirtPresenter {
                 .create(INetPresetenterWork.class)
                 .skirt()
                 .subscribeOn(Schedulers.io())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ClothesBean>() {
                     @Override
@@ -30,6 +37,7 @@ public class SmallPresenter extends SmallskirtContract.SmallskirtPresenter {
                     @Override
                     public void onNext(ClothesBean clothesBean) {
                         if (iView!=null){
+                            iView.hideloading();
                             iView.getViewData2(clothesBean.getResult());
                         }
                     }

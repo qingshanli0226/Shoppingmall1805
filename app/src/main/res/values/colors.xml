@@ -3,4 +3,11 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="tl_textUnselectColor">#FF5722</color>
+    <color name="tl_textSelectColor">#03A9F4</color>
+    <color name="textcolor_xiang">#564c4c</color>
+    <color name="backgroud_xiang">#fff</color>
+    
+    <color name="tv_textcolor_xiang">#323427</color>\
+    <color name="tv_textinfo_xiang">#767f86</color>
 </resources>

@@ -49,12 +49,6 @@ public class PrimereFragment extends BaseFragment<PriPresenter, PrimereContract.
 
     }
 
-
-
-
-
-
-
     @Override
     public void getViewData(BaseBean<HomeBean> clotheslist) {
         Log.i("wft", "getViewData: "+clotheslist.getResult());

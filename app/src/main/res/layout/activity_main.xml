@@ -9,21 +9,21 @@
 
     <com.shopmall.bawei.shopmall1805.ui.NoScrollViewPager
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dp_0"
         android:layout_weight="8"
         android:id="@+id/viewpager"
         />
 
     <com.flyco.tablayout.CommonTabLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="@dimen/dp_0"
         android:layout_weight="1"
         android:id="@+id/commontablayout"
-        app:tl_iconWidth="40dp"
-        app:tl_iconHeight="40dp"
-        app:tl_iconMargin="-5dp"
-        app:tl_textUnselectColor="#FF5722"
-        app:tl_textSelectColor="#03A9F4"
+        app:tl_iconWidth="@dimen/iconwidth_40"
+        app:tl_iconHeight="@dimen/iconheight"
+        app:tl_iconMargin="@dimen/iconmargin"
+        app:tl_textUnselectColor="@color/tl_textUnselectColor"
+        app:tl_textSelectColor="@color/tl_textUnselectColor"
         />
 
 </LinearLayout>

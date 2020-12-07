@@ -7,5 +7,5 @@ public class ConfigUrl {
     //请求图片的Url
     public static final String BASE_IMAGE = BASE_URL+"atguigu/img";
 
-    //http://49.233.0.68:8080/register/SKIRT_URL.json
+    //http://49.233.0.68:8080/atguigu/json/SKIRT_URL.json
 }

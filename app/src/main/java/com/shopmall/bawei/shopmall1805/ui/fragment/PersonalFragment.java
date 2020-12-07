@@ -5,16 +5,33 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 
 
 public class PersonalFragment extends Fragment {
 
+    private TextView textView;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal, container, false);
+        View view = inflater.inflate(R.layout.fragment_personal, container, false);
+
+        textView = view.findViewById(R.id.tv_username);
+
+        textView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/duoduo/user")
+                        .navigation();
+            }
+        });
+
+        return view;
     }
 }

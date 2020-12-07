@@ -37,8 +37,8 @@ public class LogPresenter extends LoginContract.LoginPresenter {
                     @Override
                     public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                         if (iView!=null){
-                            String message = loginBeanBaseBean.getMessage();
-                            iView.getLoginCode(message);
+                            LoginBean result = loginBeanBaseBean.getResult();
+                            iView.getLoginCode(result);
                         }
                     }
 

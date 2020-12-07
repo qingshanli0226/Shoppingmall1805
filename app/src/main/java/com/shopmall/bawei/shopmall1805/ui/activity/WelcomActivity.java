@@ -38,6 +38,7 @@ public class WelcomActivity extends BaseActivity implements ViewPropertyAnimator
     @Override
     public void onAnimationEnd(View view) {
         startActivity(new Intent(this, HomeActivity.class));
+        finish();
     }
 
     @Override

@@ -61,12 +61,10 @@ public class GridFragment extends BaseFragment<ClassPresenter, ClassfiyContract.
 
     @Override
     public void showsloading() {
-
     }
 
     @Override
     public void hideloading() {
-
     }
 
     @Override

@@ -10,7 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:padding="@dimen/padding">
 
         <ImageButton
             android:id="@+id/ib_good_info_back"
@@ -19,13 +19,13 @@
             android:background="@drawable/top_bar_left_back" />
 
         <TextView
-            android:layout_width="0dp"
+            android:layout_width="@dimen/dp_0"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="center"
             android:text="商品详情"
-            android:textColor="#564c4c"
-            android:textSize="20sp" />
+            android:textColor="@color/textcolor_xiang"
+            android:textSize="@dimen/textsize_xiang" />
 
         <ImageButton
             android:id="@+id/ib_good_info_more"
@@ -42,38 +42,38 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#fff"
+            android:background="@color/backgroud_xiang"
             android:orientation="vertical">
 
             <ImageView
                 android:id="@+id/iv_good_info_image"
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
-                android:layout_margin="15sp"
-                android:layout_height="350dp"
+                android:layout_margin="@dimen/margin_imv"
+                android:layout_height="@dimen/height_imv"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tv_good_info_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="15dp"
-                android:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"
-                android:textColor="#323427" />
+                android:layout_marginLeft="@dimen/marginleft_tv"
+                android:text="@string/xiang_tv_text"
+                android:textColor="@color/tv_textcolor_xiang" />
 
             <TextView
                 android:id="@+id/tv_good_info_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="预售截止10月15日，预售期为限量礼盒版，包括特制木盒x1、画集x1、邮票x1套、书签x1、贴纸x1、信封x1、礼盒特"
-                android:textColor="#767f86" />
+                android:padding="@dimen/padding"
+                android:text="@string/xiang_tvinfo_text"
+                android:textColor="@color/tv_textinfo_xiang" />
 
             <TextView
                 android:id="@+id/tv_good_info_price"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="@dimen/padding"
                 android:text="￥150.00"
                 android:textColor="#ed3f3f"
                 android:textSize="20sp" />

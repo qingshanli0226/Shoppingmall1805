@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".LoginRegisterActivity"></activity>
+        <service android:name="com.example.framework.LoginService"/>
     </application>
 
 </manifest>

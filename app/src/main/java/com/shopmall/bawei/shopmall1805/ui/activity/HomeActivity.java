@@ -3,10 +3,12 @@ package com.shopmall.bawei.shopmall1805.ui.activity;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentStatePagerAdapter;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseActivity;
 import com.example.framework.IPresenter;
 import com.example.framework.IVIew;
+import com.example.framework.ShopUsermange;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -21,7 +23,7 @@ import com.shopmall.bawei.shopmall1805.ui.NoScrollViewPager;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Route(path = "/aa/aaa")
 public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
 
     private CommonTabLayout commonTabLayout;
@@ -64,9 +66,17 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
             public void onTabSelect(int position) {
                 viewPager.setCurrentItem(position);
                 if (position==3){
-                    ARouter.getInstance()
-                            .build("/duoduo/shopcar")
-                            .navigation();
+                    if (!ShopUsermange.getInstance().isUserLogin()){
+                        ARouter.getInstance()
+                                .build("/duoduo/user")
+                                .navigation();
+                    }else {
+                        ARouter.getInstance()
+                                .build("/duo/shopcar")
+                                .navigation();
+                    }
+                }else {
+                   viewPager.setCurrentItem(position);
                 }
             }
 
