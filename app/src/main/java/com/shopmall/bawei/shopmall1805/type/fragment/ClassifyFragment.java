@@ -7,7 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 
-import com.bw.common.BaseFragment;
+import com.bw.framework.BaseFragment;
 import com.bw.net.bean.SkirtBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.adapter.MyListAdapter;

@@ -1,12 +1,10 @@
 package com.shopmall.bawei.shopmall1805.home.presenter;
 
-import com.bw.common.view.LoadingPage;
+import com.bw.framework.view.LoadingPage;
 import com.bw.net.RetraficCreator;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 
-
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;

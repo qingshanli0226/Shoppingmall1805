@@ -1,4 +1,4 @@
-package com.bw.common;
+package com.bw.framework;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -51,6 +51,7 @@ public abstract class BaseAdapter<T> extends RecyclerView.Adapter<BaseAdapter.Ba
     }
 
     public abstract int getViewType(int position);
+
     @Override
     public int getItemViewType(int position) {
         return getViewType(position);

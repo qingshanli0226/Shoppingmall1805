@@ -6,9 +6,9 @@ import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 
-import com.bw.common.BaseFragment;
-import com.bw.common.IPresenter;
-import com.bw.common.IView;
+import com.bw.framework.BaseFragment;
+import com.bw.framework.IPresenter;
+import com.bw.framework.IView;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.adapter.MyPagerAdapter;
 import com.shopmall.bawei.shopmall1805.type.fragment.ClassifyFragment;

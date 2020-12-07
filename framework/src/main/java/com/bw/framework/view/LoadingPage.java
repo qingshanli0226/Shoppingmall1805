@@ -1,4 +1,4 @@
-package com.bw.common.view;
+package com.bw.framework.view;
 
 import android.content.Context;
 import android.graphics.Color;

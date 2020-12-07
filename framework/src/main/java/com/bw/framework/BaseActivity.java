@@ -1,4 +1,4 @@
-package com.bw.common;
+package com.bw.framework;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

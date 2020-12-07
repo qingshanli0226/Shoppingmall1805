@@ -9,9 +9,10 @@ import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
-import com.bw.common.BaseAdapter;
+import com.bw.framework.BaseAdapter;
 import com.bw.net.Contants;
 import com.bw.net.bean.HomeFragmentBean;
+import com.bw.net.bean.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.activity.DetailsActivity;
 import com.youth.banner.Banner;
@@ -22,7 +23,7 @@ import java.util.List;
 
 
 public class HomeFragmentAdapter extends BaseAdapter<Object> {
-
+   private Intent intent ;
 
 
     @Override
@@ -46,6 +47,7 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
 
     @Override
     protected void convert(BaseViewHoder baseViewHoder, int viewType, Object itemData) {
+
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseViewHoder.itemView.getContext());
         switch (viewType){
             case 0:
@@ -104,9 +106,23 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
 
                 myRecommendAdapter.setRecyclerViewListener(position -> {
                     HomeFragmentBean.ResultBean.RecommendInfoBean listBean = recommend_Info.get(position);
-                    Intent intent = new Intent();
-                    intent.setAction("recommend_Info");
-                    intent.putExtra("recommend_Info",  listBean);
+                    String cover_price = listBean.getCover_price();
+                    String figure = listBean.getFigure();
+                    String product_id = listBean.getProduct_id();
+                    String name = listBean.getName();
+
+
+
+                    ShopCarBean shopCarBean = new ShopCarBean();
+                    shopCarBean.setProductName(name);
+                    shopCarBean.setUrl(figure);
+                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductPrice(cover_price);
+                    shopCarBean.setProductSelected(false);
+                    shopCarBean.setProductId(product_id);
+                    intent = new Intent();
+
+                    intent.putExtra("goods",  shopCarBean);
                     intent.setClass(baseViewHoder.itemView.getContext(), DetailsActivity.class);
                     baseViewHoder.itemView.getContext().startActivity(intent);
                 });
@@ -125,10 +141,25 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
                 seckillRv.setLayoutManager(gridLayoutManager);
 
                 mySeckillAdapter.setRecyclerViewListener(position -> {
+
                     HomeFragmentBean.ResultBean.SeckillInfoBean.ListBean listBean = listBeans.get(position);
-                    Intent intent = new Intent();
-                    intent.setAction("listBeans");
-                    intent.putExtra("listBeans",  listBean);
+
+                    String cover_price = listBean.getCover_price();
+                    String figure = listBean.getFigure();
+                    String product_id = listBean.getProduct_id();
+                    String name = listBean.getName();
+
+
+                    ShopCarBean shopCarBean = new ShopCarBean();
+                    shopCarBean.setProductId(product_id);
+                    shopCarBean.setProductName(name);
+                    shopCarBean.setUrl(figure);
+                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductPrice(cover_price);
+                    shopCarBean.setProductSelected(false);
+
+                    intent = new Intent();
+                    intent.putExtra("goods",  shopCarBean);
                     intent.setClass(baseViewHoder.itemView.getContext(), DetailsActivity.class);
                     baseViewHoder.itemView.getContext().startActivity(intent);
                 });
@@ -143,9 +174,22 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
 
                 myHotAdapter.setRecyclerViewListener(position -> {
                     HomeFragmentBean.ResultBean.HotInfoBean hotInfoBean = hot_Info.get(position);
-                    Intent intent = new Intent();
-                    intent.putExtra("hotInfo", hotInfoBean);
-                    intent.setAction("hotInfo");
+                    String cover_price = hotInfoBean.getCover_price();
+                    String figure = hotInfoBean.getFigure();
+                    String product_id = hotInfoBean.getProduct_id();
+                    String name = hotInfoBean.getName();
+
+
+                    ShopCarBean shopCarBean = new ShopCarBean();
+                    shopCarBean.setProductId(product_id);
+                    shopCarBean.setProductName(name);
+                    shopCarBean.setUrl(figure);
+                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductPrice(cover_price);
+                    shopCarBean.setProductSelected(false);
+
+                    intent = new Intent();
+                    intent.putExtra("goods",  shopCarBean);
                     intent.setClass(baseViewHoder.itemView.getContext(), DetailsActivity.class);
                     baseViewHoder.itemView.getContext().startActivity(intent);
                 });

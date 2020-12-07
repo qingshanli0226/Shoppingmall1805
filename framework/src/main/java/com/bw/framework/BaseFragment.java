@@ -1,7 +1,8 @@
-package com.bw.common;
+package com.bw.framework;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
-import com.bw.common.view.LoadingPage;
+import com.bw.framework.view.LoadingPage;
 
 
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
@@ -53,6 +54,10 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
         initData();
 
 
+    }
+
+    public <T extends View> T findViewById(@IdRes int id) {
+        return this.loadingPage.findViewById(id);
     }
 
     protected void initPresenter() {

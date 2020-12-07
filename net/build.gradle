@@ -3,8 +3,6 @@ apply plugin: 'com.android.library'
 android {
     compileSdkVersion 29
 
-
-
     defaultConfig {
         minSdkVersion 15
         targetSdkVersion 29
@@ -49,5 +47,8 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.7'
 
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+
+
+    implementation 'org.greenrobot:greendao:3.3.0' // add library
 
 }

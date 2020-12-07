@@ -1,4 +1,4 @@
-package com.bw.common;
+package com.bw.framework;
 
 public interface IPresenter<V extends IView> {
 

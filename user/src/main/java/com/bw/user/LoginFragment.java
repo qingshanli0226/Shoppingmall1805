@@ -1,16 +1,16 @@
 package com.bw.user;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.EditText;
-
 import com.alibaba.android.arouter.launcher.ARouter;
-
-import com.bw.common.BaseFragment;
+import com.bw.framework.BaseFragment;
+import com.bw.framework.ShopUserManager;
 import com.bw.net.bean.LoginBean;
 import com.bw.user.contract.LoginContract;
 import com.bw.user.presenter.LoginPresenterImpl;
 import com.shopmall.bawei.user.R;
-
 
 public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContract.ILoginView> implements LoginContract.ILoginView, View.OnClickListener {
 
@@ -78,6 +78,15 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
         intent.setAction("com.bawei.1801.HOME");//通过隐式方式启动主页面
         intent.putExtra("index", BottomBar.HOME_INDEX);
         startActivity(intent);*/
+//
+//        ShopUserManager.getInstance().init(getContext());
+//        ShopUserManager.getInstance().saveLoginBean(loginBean);
+
+       getContext().getSharedPreferences("1805A.xml", Context.MODE_PRIVATE)
+               .edit()
+               .putString("token",loginBean.getToken())
+               .commit();
+
 
         LoginRegisterActivity loginRegisterActivity = (LoginRegisterActivity)getActivity();
         int toLoginFromIndex = loginRegisterActivity.getToLoginFromIndex();
@@ -89,9 +98,12 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
             getActivity().finish();
             return;
         } else {
-            ARouter.getInstance().build("/activity/activity_shopCart").navigation();
+
+            ARouter.getInstance().build("/fragment/userFragment").navigation();
+//            ARouter.getInstance().build("/activity/activity_shopCart").navigation();
         }
 
+        myToast("登录成功");
         getActivity().finish();//是不是一定能回到MainActivity，这个不一定，因为，MainActivity有可能被系统回收.
     }
 

@@ -3,12 +3,15 @@ package com.bw.net;
 import com.bw.net.bean.HomeFragmentBean;
 import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.RegisterBean;
+import com.bw.net.bean.ShopCarBean;
 import com.bw.net.bean.SkirtBean;
 import com.bw.net.bean.TagBean;
 
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -63,5 +66,8 @@ public interface INetWorkApiService {
 
     @GET(Contants.JACKET_URL)
     Observable<SkirtBean> getJacket();
+
+    @POST("addOneProduct")
+    Observable<ShopCarBean> addProduct(@Body RequestBody requestBody);
 
 }

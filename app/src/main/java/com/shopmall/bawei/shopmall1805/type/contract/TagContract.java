@@ -1,7 +1,7 @@
 package com.shopmall.bawei.shopmall1805.type.contract;
 
-import com.bw.common.BasePresenter;
-import com.bw.common.IView;
+import com.bw.framework.BasePresenter;
+import com.bw.framework.IView;
 import com.bw.net.bean.TagBean;
 
 

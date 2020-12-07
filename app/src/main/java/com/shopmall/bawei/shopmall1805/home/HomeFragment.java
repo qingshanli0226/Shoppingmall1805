@@ -5,7 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 
-import com.bw.common.BaseFragment;
+import com.bw.framework.BaseFragment;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 

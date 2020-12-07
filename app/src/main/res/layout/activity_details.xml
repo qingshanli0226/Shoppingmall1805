@@ -49,14 +49,14 @@
                 android:layout_width="match_parent"
                 android:scaleType="fitXY"
                 android:layout_margin="15sp"
-                android:layout_height="400dp"
+                android:layout_height="300dp"
                 android:layout_gravity="center_horizontal" />
 
             <TextView
                 android:id="@+id/tv_good_info_name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:gravity="center"
                 android:layout_marginLeft="15dp"
                 android:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"
@@ -66,7 +66,7 @@
                 android:id="@+id/tv_good_info_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="预售截止10月15日，预售期为限量礼盒版，包括特制木盒x1、画集x1、邮票x1套、书签x1、贴纸x1、信封x1、礼盒特"
                 android:textColor="#767f86" />
 
@@ -90,7 +90,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:drawableRight="@drawable/home_arrow_right"
-                android:padding="10dp"
+                android:padding="5dp"
                 android:text="请选择款式"
                 android:textColor="#3c3d40" />
 
@@ -98,7 +98,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:padding="10dp">
+                android:padding="5dp">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -133,7 +133,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:text="提示：普通商品享有质量问题7天退货，签收后3个工作日内可换货。其他特殊商品（如手办）的售后以页面说明为准"
                 android:textColor="#3c3d40" />
 

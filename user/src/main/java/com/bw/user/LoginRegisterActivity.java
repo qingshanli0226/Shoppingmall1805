@@ -1,13 +1,11 @@
 package com.bw.user;
 
-import android.content.Intent;
 import android.support.v4.view.ViewPager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bw.common.BaseActivity;
+import com.bw.framework.BaseActivity;
 
-import com.bw.net.bean.ShopmallConstant;
 import com.shopmall.bawei.user.R;
 
 

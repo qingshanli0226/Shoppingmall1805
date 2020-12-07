@@ -2,7 +2,7 @@ package com.shopmall.bawei.shopmall1805.type.adapter;
 
 import android.widget.TextView;
 
-import com.bw.common.BaseAdapter;
+import com.bw.framework.BaseAdapter;
 import com.bw.net.bean.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
 

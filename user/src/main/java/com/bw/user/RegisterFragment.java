@@ -4,7 +4,7 @@ import android.view.View;
 import android.widget.EditText;
 
 
-import com.bw.common.BaseFragment;
+import com.bw.framework.BaseFragment;
 import com.bw.user.contract.RegisterContract;
 import com.bw.user.presenter.RegisterPresenterImpl;
 import com.shopmall.bawei.user.R;
@@ -69,12 +69,6 @@ public class RegisterFragment extends BaseFragment<RegisterPresenterImpl, Regist
     private void register() {
         httpPresenter.register(nameEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
     }
-
-//    @Override
-//    public void setName(String name) {
-//        nameEditText.setText(name);
-//        passwordEditText.setText("");
-//    }
 
     @Override
     public void onError(String message) {

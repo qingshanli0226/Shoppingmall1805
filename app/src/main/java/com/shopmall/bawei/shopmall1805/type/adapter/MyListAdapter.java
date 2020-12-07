@@ -9,7 +9,9 @@ import android.widget.TextView;
 
 import com.shopmall.bawei.shopmall1805.R;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 public class MyListAdapter extends BaseAdapter {
 
