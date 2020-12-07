@@ -5,28 +5,29 @@ import com.google.gson.Gson;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class LoginBean {
+public class AutoLoginBean {
+
     /**
      * code : 200
      * message : 登录成功
-     * result : {"id":"1610","name":"1610","password":"1610","email":null,"phone":null,"point":null,"address":null,"money":null,"avatar":null,"token":"eaacae51-1c55-4ead-a31d-8070e336bc51AND1558449232809"}
+     * result : {"id":"gtl998","name":"gtl998","password":"123","email":null,"phone":null,"point":null,"address":null,"money":null,"avatar":"/img/1438946011155.jpg","token":"8dac24e2-8fca-4bb1-aecb-181691607480AND1607364932456"}
      */
 
     private String code;
     private String message;
     private ResultBean result;
 
-    public static LoginBean objectFromData(String str) {
+    public static AutoLoginBean objectFromData(String str) {
 
-        return new Gson().fromJson(str, LoginBean.class);
+        return new Gson().fromJson(str, AutoLoginBean.class);
     }
 
-    public static LoginBean objectFromData(String str, String key) {
+    public static AutoLoginBean objectFromData(String str, String key) {
 
         try {
             JSONObject jsonObject = new JSONObject(str);
 
-            return new Gson().fromJson(jsonObject.getString(str), LoginBean.class);
+            return new Gson().fromJson(jsonObject.getString(str), AutoLoginBean.class);
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -60,16 +61,16 @@ public class LoginBean {
 
     public static class ResultBean {
         /**
-         * id : 1610
-         * name : 1610
-         * password : 1610
+         * id : gtl998
+         * name : gtl998
+         * password : 123
          * email : null
          * phone : null
          * point : null
          * address : null
          * money : null
-         * avatar : null
-         * token : eaacae51-1c55-4ead-a31d-8070e336bc51AND1558449232809
+         * avatar : /img/1438946011155.jpg
+         * token : 8dac24e2-8fca-4bb1-aecb-181691607480AND1607364932456
          */
 
         private String id;
@@ -80,7 +81,7 @@ public class LoginBean {
         private Object point;
         private Object address;
         private Object money;
-        private Object avatar;
+        private String avatar;
         private String token;
 
         public static ResultBean objectFromData(String str) {
@@ -165,11 +166,11 @@ public class LoginBean {
             this.money = money;
         }
 
-        public Object getAvatar() {
+        public String getAvatar() {
             return avatar;
         }
 
-        public void setAvatar(Object avatar) {
+        public void setAvatar(String avatar) {
             this.avatar = avatar;
         }
 

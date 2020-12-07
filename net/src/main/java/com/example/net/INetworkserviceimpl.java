@@ -1,5 +1,6 @@
 package com.example.net;
 
+import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.Recommonde;
@@ -26,4 +27,8 @@ public interface INetworkserviceimpl {
     @FormUrlEncoded
     Observable<LoginBean> loginbean(@FieldMap HashMap<String,String> map);
 
+
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<AutoLoginBean> tokenbean(@FieldMap HashMap<String,String> map);
 }

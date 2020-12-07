@@ -3,6 +3,7 @@ package com.example.elevenmonthshoppingproject.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethod;
@@ -13,12 +14,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.elevenmonthshoppingproject.R;
+import com.example.elevenmonthshoppingproject.service.LoginService;
 import com.example.elevenmonthshoppingproject.shop.ShopIView;
 import com.example.elevenmonthshoppingproject.shop.ShopPresenterImp;
 import com.example.net.BaseActivity;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.Recommonde;
 import com.example.net.bean.RegisterBean;
+import com.example.user.ShopCarManager;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -36,7 +39,7 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
     private TextView txtJump;
 
 
-
+    private Intent intent;
     @Override
     protected int getLayoutId() {
         return R.layout.activity_login;
@@ -44,7 +47,8 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
 
     @Override
     protected void iniView() {
-
+        intent = new Intent(this, LoginService.class);
+        startService(intent);
 
 
         txtJump = findViewById(R.id.txt_jump);
@@ -54,6 +58,22 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
 
         btnLogin.setOnClickListener(this);
         txtJump.setOnClickListener(this);
+        //获取token值
+        iniToken();
+    }
+
+    private void iniToken() {
+        SharedPreferences gtlname = getSharedPreferences("gtlname", Context.MODE_PRIVATE);
+        String token = gtlname.getString("token", "");
+        Log.i("---","45"+token);
+
+//        if (ShopCarManager.getInstance().isUserLogin()){
+//            Toast.makeText(this, "自动登录成功"+token, Toast.LENGTH_SHORT).show();
+//            Intent intent = new Intent(this, MainActivity.class);
+//            startActivity(intent);
+//        }
+
+
 
     }
 
@@ -78,6 +98,13 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
     @Override
     public void onlogin( LoginBean loginBean) {
         Toast.makeText(this, "登陆成功111", Toast.LENGTH_SHORT).show();
+        Log.i("---",""+loginBean.getResult().getToken());
+        getSharedPreferences("gtlname",MODE_PRIVATE).edit()
+                .putString("token",loginBean.getResult().getToken()).commit();
+        Intent intent = new Intent(this,MainActivity.class);
+        startActivity(intent);
+
+
 
     }
 
@@ -101,8 +128,7 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
         if (matcheruser.matches()){
            if (matcherpass.matches()){
                shopPresenterImp.onlogin(username,password);
-               Intent intent = new Intent(this,MainActivity.class);
-               startActivity(intent);
+
 
 
                finish();
@@ -126,6 +152,9 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
         super.onDestroy();
         Log.i("---","111");
         shopPresenterImp.detachview();
+
+            stopService(intent);
+
     }
 
 }
