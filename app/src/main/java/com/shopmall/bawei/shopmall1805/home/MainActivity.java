@@ -13,10 +13,14 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ARouterHelper;
 import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.common.FragmentHelper;
+import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
 import com.shopmall.bawei.framework.IView;
+import com.shopmall.bawei.framework.UserManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.view.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
@@ -25,7 +29,7 @@ import com.shopmall.bawei.shopmall1805.user.view.UserFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-@Route(path = "/app/MainActivity")
+@Route(path = ARouterHelper.APP_MAIN)
 public class MainActivity extends BaseActivity<IPresenter, IView> implements IView {
 
     private List<Fragment> fragments = new ArrayList();
@@ -81,6 +85,11 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
                         break;
 
                 }
+                if(position == FragmentHelper.SHOP_INDEX && !UserManager.getInstance().isUserLogin()){
+                    Toast.makeText(MainActivity.this, "请先登录", Toast.LENGTH_SHORT).show();
+                    ARouter.getInstance().build(ARouterHelper.USER_LOGIN).withInt(UrlHelper.TO_LOGIN_KEY,UrlHelper.TO_LOGIN_FROM_SHOP_CAR).navigation();
+                    return;
+                }
                 for (int i = 0; i < fragments.size() ; i++) {
                     if(position == i){
                         transaction.show(fragments.get(position));
@@ -90,7 +99,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
                 }
                 transaction.commit();
             }
-
         });
         rgMain.check(R.id.rb_home);
     }
@@ -105,7 +113,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
     private void switchFragment(Intent intent) {
         int index = intent.getIntExtra("index", 0);
         switch (index){
-            case FragmentHelper.SHOP_CAR_INDEX:
+            case FragmentHelper.SHOP_INDEX:
                 rgMain.check(R.id.rb_cart);
                 break;
             case FragmentHelper.HOME_INDEX:
@@ -113,6 +121,9 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
                 break;
             case FragmentHelper.TYPE_INDEX:
                 rgMain.check(R.id.rb_type);
+                break;
+            case FragmentHelper.MINE_INDEX:
+                rgMain.check(R.id.rb_user);
                 break;
             default:rgMain.check(R.id.rb_user);
         }

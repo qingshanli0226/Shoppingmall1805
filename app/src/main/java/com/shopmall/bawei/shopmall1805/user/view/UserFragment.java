@@ -1,39 +1,78 @@
 package com.shopmall.bawei.shopmall1805.user.view;
 
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ARouterHelper;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.BasePresenter;
 import com.shopmall.bawei.framework.IView;
+import com.shopmall.bawei.framework.UserManager;
+import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class UserFragment extends BaseFragment<BasePresenter, IView> implements IView, View.OnClickListener {
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+public class UserFragment extends BaseFragment<BasePresenter, IView> implements IView, View.OnClickListener, UserManager.IUserLoginChangedListener {
     private ImageButton ibUserSetting;
     private ImageButton ibUserMessage;
+    private ImageButton ibUserIconAvator;
+    private TextView tvUsername;
 
 
     @Override
     protected void initView() {
+
+
+
+
         ibUserSetting = (ImageButton) findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
+        ibUserIconAvator = (ImageButton) findViewById(R.id.ib_user_icon_avator);
+        tvUsername = (TextView) findViewById(R.id.tv_username);
+        if(UserManager.getInstance().isUserLogin()){
+            tvUsername.setText(UserManager.getInstance().getName());
+        } else {
+            UserManager.getInstance().registerUserLoginChangeListener(this);
+        }
+        EventBus.getDefault().register(this);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ib_user_setting:
-                toLogin();
+
                 break;
             case R.id.ib_user_message:
 
                 break;
+            case R.id.ib_user_icon_avator:
+                toLogin();
+                break;
         }
     }
 
+    @Subscribe(threadMode = ThreadMode.POSTING)
+    public void onLogin(LoginBean loginBean){
+
+    }
+
     private void toLogin() {
-        ARouter.getInstance().build("/user/LoginRegisterActivity").navigation();
+        if(!UserManager.getInstance().isUserLogin()) {
+            ARouter.getInstance().build(ARouterHelper.USER_LOGIN).navigation();
+        }
     }
 
     @Override
@@ -45,6 +84,7 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
     protected void initListener() {
         ibUserSetting.setOnClickListener(this);
         ibUserMessage.setOnClickListener(this);
+        ibUserIconAvator.setOnClickListener(this);
     }
 
     @Override
@@ -75,5 +115,23 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
     @Override
     public void onRightClick() {
 
+    }
+
+    @Override
+    public void onUserLogin(LoginBean loginBean) {
+        tvUsername.setText(loginBean.getName());
+
+    }
+
+    @Override
+    public void onUserLogout() {
+
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+        UserManager.getInstance().unRegisterUserLoginChangeListener(this);
     }
 }

@@ -7,7 +7,13 @@ public class UrlHelper {
     public static final String LOGIN = "login";
 
     public static final String AUTO_LOGIN = "autoLogin";
+
     public static final String  TO_LOGIN_KEY = "LoginKey";
+    public static int TO_LOGIN_FROM_SHOP_ACTIVITY = 0;
+    public static int TO_LOGIN_FROM_ADD_SHOP = 1;
+    public static int TO_LOGIN_FROM_SHOP_CAR = 3;
+    public static int TO_LOGIN_FROM_MINE = 4;
+
 
     public static String BASE_URL = "http://49.233.0.68:8080/";
     //public static String BASE_URL = "http://192.168.3.4:8080/";

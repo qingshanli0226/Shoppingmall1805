@@ -12,7 +12,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ARouterHelper;
 import com.shopmall.bawei.common.ErrorBean;
+import com.shopmall.bawei.common.FragmentHelper;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.UserManager;
@@ -160,26 +162,19 @@ public class LoginFragment<P extends LoginImpl,V extends LoginContract.ILoginVie
     @Override
     public void onLogin(LoginBean loginBean) {
         UserManager.getInstance().saveLoginBean(loginBean);
-//        EventBus.getDefault().post(loginBean);
-
-        ARouter.getInstance().build("/app/MainActivity").navigation();
-        /**
-         * T
-         * O
-         * K
-         * E
-         * N
-         *存
-         *储
-         *到
-         * S
-         * P
-         *
-         *
-         *
-         */
+        EventBus.getDefault().post(loginBean);
+        LoginRegisterActivity loginRegisterActivity = (LoginRegisterActivity) getActivity();
+        int toLoginFromIndex = loginRegisterActivity.getToLoginFromIndex();
+        if(toLoginFromIndex == UrlHelper.TO_LOGIN_FROM_SHOP_CAR){
+            ARouter.getInstance().build(ARouterHelper.APP_MAIN).withInt("index", FragmentHelper.SHOP_INDEX).navigation();
+        } else if(toLoginFromIndex == UrlHelper.TO_LOGIN_FROM_MINE){
+            ARouter.getInstance().build(ARouterHelper.APP_MAIN).withInt("index", FragmentHelper.MINE_INDEX).navigation();
+        } else if(toLoginFromIndex == UrlHelper.TO_LOGIN_FROM_ADD_SHOP){
+            getActivity().finish();
+            return;
+        } else {
+            ARouter.getInstance().build(ARouterHelper.APP_MAIN);
+        }
+        getActivity().finish();
     }
-
-
-
 }

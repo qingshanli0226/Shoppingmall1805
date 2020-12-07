@@ -12,6 +12,7 @@ import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ARouterHelper;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.IPresenter;
@@ -21,12 +22,13 @@ import com.shopmall.bawei.user.register.view.RegisterFragment;
 
 import java.util.ArrayList;
 import java.util.List;
-@Route(path = "/user/LoginRegisterActivity")
+@Route(path = ARouterHelper.USER_LOGIN)
 public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> implements SwitchFragmentListener,IView {
     private List<Fragment> list = new ArrayList<>();
 
     public static final int TO_REG = 0;
     public static final int TO_LOGIN = 1;
+
     private FragmentManager manager;
 
     private int toLoginFromIndex = -1;
@@ -83,6 +85,7 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter, IView> imple
         transaction.hide(list.get(1));
         transaction.commit();
     }
+
 
     public int getToLoginFromIndex(){
         return toLoginFromIndex;

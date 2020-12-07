@@ -25,7 +25,7 @@ import com.shopmall.bawei.shopmall1805.R;
 
 public class GoodsInfoActivity extends BaseActivity implements View.OnClickListener {
     private Button btnGoodInfoAddCart;
-    private GoodsBean goods_bean;
+    private GoodsBean goodsBean;
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
     private TextView tvGoodInfoPrice;
@@ -39,10 +39,10 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         tvGoodInfoPrice = (TextView) findViewById(R.id.tv_good_info_price);
         wbGoodInfoMore = (WebView) findViewById(R.id.wb_good_info_more);
         Intent intent = getIntent();
-        goods_bean = (GoodsBean) intent.getSerializableExtra("goods_bean");
-        if (goods_bean != null) {
+        goodsBean = (GoodsBean) intent.getSerializableExtra("goods_bean");
+        if (goodsBean != null) {
             //本地获取存储的数据
-            setDataFormView(goods_bean);
+            setDataFormView(goodsBean);
         }
     }
 
@@ -132,12 +132,12 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
         Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
 
-        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + goods_bean.getFigure()).into(iv_goodinfo_photo);
+        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + goodsBean.getFigure()).into(iv_goodinfo_photo);
 
         // 名称
-        tv_goodinfo_name.setText(goods_bean.getName());
+        tv_goodinfo_name.setText(goodsBean.getName());
         // 显示价格
-        tv_goodinfo_price.setText(goods_bean.getCover_price());
+        tv_goodinfo_price.setText(goodsBean.getCover_price());
 
         nas_goodinfo_num.setMaxValue(8);
         nas_goodinfo_num.setValue(1);
@@ -145,12 +145,12 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         nas_goodinfo_num.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
             public void addNumber(View view, int value) {
-                goods_bean.setNumber(value);
+                goodsBean.setNumber(value);
             }
 
             @Override
             public void subNumner(View view, int value) {
-                goods_bean.setNumber(value);
+                goodsBean.setNumber(value);
             }
         });
 
@@ -170,7 +170,7 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
 
 
 
-                Log.e("TAG", "66:" + goods_bean.toString());
+                Log.e("TAG", "66:" + goodsBean.toString());
                 Toast.makeText(GoodsInfoActivity.this, "添加购物车成功", Toast.LENGTH_SHORT).show();
             }
         });
