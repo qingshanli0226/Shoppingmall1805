@@ -4,8 +4,8 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.net.Confing;
-import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
+import com.shopmall.bawei.framework.example.framework.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 
 

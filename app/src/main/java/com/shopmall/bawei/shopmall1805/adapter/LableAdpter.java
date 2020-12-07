@@ -2,8 +2,8 @@ package com.shopmall.bawei.shopmall1805.adpter;
 
 import android.widget.TextView;
 
-import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.Biaobean;
+import com.shopmall.bawei.framework.example.framework.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 
 public class LableAdpter extends BaseRVAdapter<Biaobean.ResultBean> {

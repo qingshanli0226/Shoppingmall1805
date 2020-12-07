@@ -5,16 +5,15 @@ import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.example.net.Confing;
-import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
-import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
+import com.shopmall.bawei.framework.example.framework.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
+import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;

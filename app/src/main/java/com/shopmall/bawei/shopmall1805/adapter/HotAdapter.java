@@ -5,26 +5,26 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.net.Confing;
-import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
+import com.shopmall.bawei.framework.example.framework.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 
 
-public class SeckAdapter extends BaseRVAdapter<HomeBean.SeckillInfoBean.ListBean> {
+public class HotAdapter extends BaseRVAdapter<HomeBean.HotInfoBean> {
 
 
     @Override
     protected int getLayoutId(int viewType) {
-        return R.layout.item_seck_layout;
+        return R.layout.item_hot;
     }
 
     @Override
-    protected void convert(HomeBean.SeckillInfoBean.ListBean itemData, BaseViewHolder baseViewHolder, int position) {
-        ImageView imageView = baseViewHolder.getView(R.id.hotImg);
+    protected void convert(HomeBean.HotInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
+        ImageView imageView = baseViewHolder.getView(R.id.iv_hot);
         Glide.with(baseViewHolder.itemView.getContext()).load(Confing.BASE_IMAGE + itemData.getFigure()).into(imageView);
-        TextView texthot1 = baseViewHolder.getView(R.id.tv_hot1);
-        TextView texthot2 = baseViewHolder.getView(R.id.tv_hot2);
-        texthot1.setText(""+itemData.getCover_price());
+        TextView texthot1 = baseViewHolder.getView(R.id.tv_hot_name);
+        TextView texthot2 = baseViewHolder.getView(R.id.tv_hot_price);
+        texthot1.setText(""+itemData.getName());
         texthot2.setText(""+itemData.getCover_price());
     }
 
