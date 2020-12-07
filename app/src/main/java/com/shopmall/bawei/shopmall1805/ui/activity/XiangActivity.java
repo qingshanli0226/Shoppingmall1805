@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -16,6 +19,8 @@ import com.example.net.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.entity.ShopEntityDao;
 
+import java.util.zip.Inflater;
+
 public class XiangActivity extends AppCompatActivity {
 
     private ImageView imv;
@@ -23,6 +28,8 @@ public class XiangActivity extends AppCompatActivity {
     public static ShopEntityDao shopEntityDao;
     private MySql mySql;
     private SQLiteDatabase sqLiteDatabase;
+    private TextView tv_shopcar;
+    private Button button;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,12 +66,29 @@ public class XiangActivity extends AppCompatActivity {
             }
         });
 
+        tv_shopcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/duo/shopcar")
+                        .navigation();
+            }
+        });
 
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PopupWindow popupWindow = new PopupWindow();
+//                popupWindow.setContentView();
+            }
+        });
 
     }
 
     private void initView() {
         imv = (ImageView) findViewById(R.id.iv_good_info_image);
         textView = findViewById(R.id.tv_good_info_collection);
+        tv_shopcar = findViewById(R.id.tv_good_info_cart);
+        button = findViewById(R.id.btn_good_info_addcart);
     }
 }

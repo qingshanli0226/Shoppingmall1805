@@ -56,6 +56,7 @@ public class LoginService extends Service {
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
                             ShopUsermange.getInstance().ShopLoginmange(loginBean);
+                            ShopUsermange.getInstance().setName(loginBeanBaseBean.getResult().getName());
                             EventBus.getDefault().postSticky("自动登录成功");
                         }
 

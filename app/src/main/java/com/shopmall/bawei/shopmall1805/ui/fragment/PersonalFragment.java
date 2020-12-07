@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.framework.ShopUsermange;
 import com.shopmall.bawei.shopmall1805.R;
 
 
@@ -22,6 +23,7 @@ public class PersonalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
 
         textView = view.findViewById(R.id.tv_username);
+        textView.setText(ShopUsermange.getInstance().getName());
 
         textView.setOnClickListener(new View.OnClickListener() {
             @Override

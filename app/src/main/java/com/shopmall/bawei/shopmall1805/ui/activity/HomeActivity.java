@@ -71,9 +71,7 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
                                 .build("/duoduo/user")
                                 .navigation();
                     }else {
-                        ARouter.getInstance()
-                                .build("/duo/shopcar")
-                                .navigation();
+                        viewPager.setCurrentItem(position);
                     }
                 }else {
                    viewPager.setCurrentItem(position);

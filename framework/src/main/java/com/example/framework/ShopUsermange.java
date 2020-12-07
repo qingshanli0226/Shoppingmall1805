@@ -15,7 +15,18 @@ public class ShopUsermange {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
     private List<IUserLoginChangeLiestener> liesteners = new LinkedList<>();
+    String name;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     private ShopUsermange(){
+
 
     }
     public static ShopUsermange getInstance(){
@@ -48,7 +59,6 @@ public class ShopUsermange {
         }
     }
     public String getToken(){
-
 
         return sharedPreferences.getString("boluo","");
     }
