@@ -1,2 +1,1 @@
-include ':FlycoTabLayout_Lib'
 include ':app', ':user', ':shopcar', ':order', ':pay', ':point', ':framework', ':net', ':common'

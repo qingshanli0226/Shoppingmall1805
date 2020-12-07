@@ -5,6 +5,7 @@ import com.shopmall.bawei.net.mode.AutoLogBean;
 import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.net.mode.LoginBean;
+import com.shopmall.bawei.net.mode.ShopCarBean;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;
 
@@ -12,7 +13,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
-import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,9 +30,11 @@ public interface MyNetApi {
 
     @POST(UrlHelper.AUTO_LOGIN)
     @FormUrlEncoded
-    Observable<BaseBean<AutoLogBean>> autoLogin(@Field("token") String token);
+    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap params);
 
 
+    @GET("getShortCartProducts")
+    Observable<BaseBean<List<ShopCarBean>>> getShortCartProducts();
 
 
 

@@ -45,6 +45,7 @@
         <activity android:name=".home.MainActivity" android:launchMode="singleTask">
 
         </activity>
+        <service android:name="com.shopmall.bawei.framework.service.ShopmallService"/>
     </application>
 
 </manifest>
