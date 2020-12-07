@@ -18,6 +18,8 @@ import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.user.R;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
+import java.io.Serializable;
+
 @Route(path = "/user/LoginActivity")
 public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContract.LoginView> implements LoginContract.LoginView {
     private EditText etLoginPhone;
@@ -32,6 +34,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     private boolean flag=false;
     private String key;
     private ProgressBar pbLogin;
+    private  Intent intent;
     @Override
     protected void initPresenter() {
         presenter=new LoginPresenterImpl();
@@ -112,9 +115,10 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
 
     @Override
     protected void initData() {
-        Intent intent = getIntent();
+       intent = getIntent();
         key = intent.getStringExtra("key");
     }
+
 
     @Override
     protected int getLayoutID() {
@@ -144,17 +148,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         if(bean.getCode().equals("200")){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             LoginBean.ResultBean result = bean.getResult();
-            UserManager.User user = new UserManager.User();
-            user.setAddress(result.getAddress());
-            user.setEmail(result.getEmail());
-            user.setId(result.getId());
-            user.setMoney(result.getMoney());
-            user.setName(result.getName());
-            user.setToken(result.getToken());
-            user.setPhone(result.getPhone());
-            user.setPoint(result.getPoint());
-            user.setAvatar(result.getAvatar());
-            UserManager.getInstance().bindUser(user);
+            UserManager.getInstance().bindUser(result);
+            UserManager.getInstance().spToken();
             arouter();
         }else {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
@@ -164,7 +159,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     }
 
     private void arouter() {
-        if(!UserManager.isLogin()){
+        if(!UserManager.isLogin()&&!key.equals("detail")){
             key="0";
         }
         switch (key){
@@ -174,6 +169,11 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
             case "3":
             case "4":
                 ARouter.getInstance().build("/main/MainActivity").withString("position",key).navigation();
+                break;
+            case "detail":
+                String type = intent.getStringExtra("type");
+                Serializable extra = intent.getSerializableExtra("good");
+                ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good",extra).withString("type",type).navigation();
                 break;
         }
     }

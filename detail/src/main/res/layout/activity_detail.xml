@@ -10,6 +10,8 @@
     <com.example.framework.view.ToolBar
         android:id="@+id/toolbar"
         app:right_show="false"
+        app:right_show_only_img="true"
+        app:right_src="@drawable/menu"
         android:layout_width="match_parent"
         app:title_text="商品详情"
         android:layout_height="50dp"/>
@@ -172,7 +174,7 @@
         <LinearLayout
             android:id="@+id/ll_goods_root"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="70dp"
             android:layout_gravity="bottom"
             android:background="#fff">
 
@@ -216,7 +218,7 @@
             <Button
                 android:id="@+id/btn_good_info_addcart"
                 android:layout_width="120dp"
-                android:layout_height="51dp"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:background="@drawable/add_cart_bg_selector"
                 android:gravity="center"

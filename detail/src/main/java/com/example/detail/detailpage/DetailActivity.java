@@ -1,6 +1,8 @@
 package com.example.detail.detailpage;
 
 import android.content.Intent;
+import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -11,6 +13,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.detail.R;
 import com.example.framework.base.BaseActivity;
+import com.example.framework.user.UserManager;
 import com.example.net.Constants;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.MainBean;
@@ -31,8 +34,12 @@ public class DetailActivity extends BaseActivity {
     private TextView tvMoreSearch;
     private TextView tvMoreHome;
     private Button btnMore;
-
-
+    private WebView wbGoodInfoMore;
+    private  Serializable extra;
+    private String type;
+    private TextView tvGoodInfoCallcenter;
+    private TextView tvGoodInfoCollection;
+    private TextView tvGoodInfoCart;
     @Override
     protected void initPresenter() {
 
@@ -41,6 +48,48 @@ public class DetailActivity extends BaseActivity {
     @Override
     protected void initListener() {
         super.initListener();
+        tvMoreHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/main/MainActivity").navigation();
+            }
+        });
+        btnGoodInfoAddcart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(UserManager.isLogin()){
+
+                }else {
+                    ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                }
+            }
+        });
+        tvGoodInfoCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(UserManager.isLogin()){
+                    ARouter.getInstance().build("/shopCar/ShopCarActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                }else {
+                    ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                }
+            }
+        });
+        tvGoodInfoCollection.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(UserManager.isLogin()){
+
+                }else {
+                    ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                }
+            }
+        });
+        btnMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                llRoot.setVisibility(View.GONE);
+            }
+        });
     }
 
     @Override
@@ -50,10 +99,16 @@ public class DetailActivity extends BaseActivity {
     }
 
     @Override
+    public void onRightClick() {
+        super.onRightClick();
+        llRoot.setVisibility(View.VISIBLE);
+    }
+
+    @Override
     protected void initData() {
         Intent intent = getIntent();
-        Serializable extra = intent.getSerializableExtra("good");
-        String type = intent.getStringExtra("type");
+        extra = intent.getSerializableExtra("good");
+        type = intent.getStringExtra("type");
         if(extra!=null&&type!=null&&!type.equals("")){
             Gson gson = new Gson();
             switch (type){
@@ -76,6 +131,7 @@ public class DetailActivity extends BaseActivity {
            }
         }
 
+
     }
 
     private void setUI(String image, String name, String desc, String cover_price) {
@@ -85,6 +141,7 @@ public class DetailActivity extends BaseActivity {
             tvGoodInfoDesc.setText(desc);
         }
         tvGoodInfoPrice.setText("¥"+cover_price);
+        wbGoodInfoMore.loadUrl("https://www.jd.com");
     }
 
     @Override
@@ -94,12 +151,19 @@ public class DetailActivity extends BaseActivity {
 
     @Override
     protected void initView() {
+        wbGoodInfoMore = (WebView) findViewById(R.id.wb_good_info_more);
         ivGoodInfoImage = (ImageView) findViewById(R.id.iv_good_info_image);
         tvGoodInfoName = (TextView) findViewById(R.id.tv_good_info_name);
         tvGoodInfoDesc = (TextView) findViewById(R.id.tv_good_info_desc);
         tvGoodInfoPrice = (TextView) findViewById(R.id.tv_good_info_price);
         btnGoodInfoAddcart = (Button) findViewById(R.id.btn_good_info_addcart);
         llRoot = (LinearLayout) findViewById(R.id.ll_root);
+
+
+        tvGoodInfoCallcenter = (TextView) findViewById(R.id.tv_good_info_callcenter);
+        tvGoodInfoCollection = (TextView) findViewById(R.id.tv_good_info_collection);
+        tvGoodInfoCart = (TextView) findViewById(R.id.tv_good_info_cart);
+
         tvMoreShare = (TextView) findViewById(R.id.tv_more_share);
         tvMoreSearch = (TextView) findViewById(R.id.tv_more_search);
         tvMoreHome = (TextView) findViewById(R.id.tv_more_home);

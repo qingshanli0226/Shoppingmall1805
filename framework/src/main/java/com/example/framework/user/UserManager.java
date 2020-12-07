@@ -1,128 +1,43 @@
 package com.example.framework.user;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+
+import com.example.framework.service.ShopMallService;
+import com.example.net.bean.LoginBean;
+
 public class UserManager {
 
+    private SharedPreferences sharedPreferences;
+    private SharedPreferences.Editor editor;
     private static UserManager userManager;
-    private static User user;
+    private static  LoginBean.ResultBean user;
+    public void init(Context context){
+        Intent intent = new Intent(context, ShopMallService.class);
+        context.startService(intent);
+        sharedPreferences=context.getSharedPreferences("auto",Context.MODE_PRIVATE);
+        editor=sharedPreferences.edit();
+    }
+    public void spToken(){
+        editor.putString("token",user.getToken());
+    }
     public static UserManager getInstance(){
        if(userManager==null){
            userManager=new UserManager();
        }
         return userManager;
     }
-    public void bindUser(User user){
+    public void bindUser(LoginBean.ResultBean user){
        if(this.user==null){
            this.user=user;
-
        }
+    }
+    public void outLogin(){
+        user=null;
     }
     public static boolean isLogin(){
         return user!=null;
     }
-    public static class User{
 
-        /**
-         * id : 1610
-         * name : 1610
-         * password : 1610
-         * email : null
-         * phone : null
-         * point : null
-         * address : null
-         * money : null
-         * avatar : null
-         * token : eaacae51-1c55-4ead-a31d-8070e336bc51AND1558449232809
-         */
-
-        private String id;
-        private String name;
-        private String password;
-        private Object email;
-        private Object phone;
-        private Object point;
-        private Object address;
-        private Object money;
-        private Object avatar;
-        private String token;
-
-        public String getId() {
-            return id;
-        }
-
-        public void setId(String id) {
-            this.id = id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public String getPassword() {
-            return password;
-        }
-
-        public void setPassword(String password) {
-            this.password = password;
-        }
-
-        public Object getEmail() {
-            return email;
-        }
-
-        public void setEmail(Object email) {
-            this.email = email;
-        }
-
-        public Object getPhone() {
-            return phone;
-        }
-
-        public void setPhone(Object phone) {
-            this.phone = phone;
-        }
-
-        public Object getPoint() {
-            return point;
-        }
-
-        public void setPoint(Object point) {
-            this.point = point;
-        }
-
-        public Object getAddress() {
-            return address;
-        }
-
-        public void setAddress(Object address) {
-            this.address = address;
-        }
-
-        public Object getMoney() {
-            return money;
-        }
-
-        public void setMoney(Object money) {
-            this.money = money;
-        }
-
-        public Object getAvatar() {
-            return avatar;
-        }
-
-        public void setAvatar(Object avatar) {
-            this.avatar = avatar;
-        }
-
-        public String getToken() {
-            return token;
-        }
-
-        public void setToken(String token) {
-            this.token = token;
-        }
-    }
 }

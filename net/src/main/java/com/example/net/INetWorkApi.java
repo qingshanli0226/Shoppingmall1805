@@ -1,5 +1,6 @@
 package com.example.net;
 
+import com.example.net.bean.AddProductBean;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
@@ -10,6 +11,7 @@ import com.example.net.bean.TagBean;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -35,4 +37,7 @@ public interface INetWorkApi {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
+    @POST("addOneProduct")
+    Observable<AddProductBean> addOneProduct(@Body String json);
+
 }
