@@ -1,10 +1,16 @@
 package com.shopmall.bawei.shopmall1805.ui.activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseActivity;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
+import com.example.framework.ShopUsermange;
+import com.example.net.Confing;
+import com.example.net.bean.LoginBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -19,13 +25,14 @@ import com.example.framework.MyViewPager;
 import com.shopmall.bawei.shopmall1805.bean.TabEntity;
 
 import java.util.ArrayList;
-
-public class MainActivity extends BaseActivity<IPresenter, IView> {
+@Route(path="/main/MainActivity")
+public class MainActivity extends BaseActivity<IPresenter, IView>{
     private MyViewPager vr;
     private CommonTabLayout common;
     private ArrayList<CustomTabEntity> tabEntitys = new ArrayList<>();
     private ArrayList<Fragment> fragmentArrayList = new ArrayList<>();
     private FragmentAdpter fragmentAdpter;
+    private int number;
     @Override
     protected void initpreseter() {
 
@@ -33,6 +40,9 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initdate() {
+//        Intent intent = getIntent();
+//        int index = intent.getIntExtra("index", 0);
+//        common.setCurrentTab(index);
 
         common.setTabData(tabEntitys);
 
@@ -43,7 +53,20 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         common.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                vr.setCurrentItem(position);
+
+                if (position == 3){
+                    if (!ShopUsermange.getInstance().isUserLogin()){
+                        ARouter.getInstance().build("/user/LoginRegisterActivity").withInt(Confing.TO_LOGIN_KEY,position).navigation();
+                        common.setCurrentTab(number);
+                    }else {
+                        vr.setCurrentItem(position);
+
+                    }
+                }else {
+                    vr.setCurrentItem(position);
+                   number=position;
+
+                }
             }
 
             @Override
@@ -82,4 +105,5 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     protected int getlayoutid() {
         return R.layout.activity_main;
     }
+
 }

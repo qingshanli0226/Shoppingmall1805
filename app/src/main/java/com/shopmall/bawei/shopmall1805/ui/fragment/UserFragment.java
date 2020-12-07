@@ -14,6 +14,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
+import com.example.framework.ShopUsermange;
 import com.shopmall.bawei.shopmall1805.R;
 
 
@@ -77,6 +78,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView> implements Vie
     protected void initdate() {
         //点击跳转到注册界面
         ibUserIconAvator.setOnClickListener(this);
+//        tvUsername.setText(""+ ShopUsermange.getInstance().getName());
     }
 
     @Override

@@ -1,9 +1,11 @@
 package com.shopmall.bawei.user;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -11,9 +13,14 @@ import com.example.framework.BaseActivity;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.MyViewPager;
+import com.example.net.Confing;
 import com.shopmall.bawei.user.adpter.FragmentAdpter;
 import com.shopmall.bawei.user.view.LoginFragment;
 import com.shopmall.bawei.user.view.RegisterFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,20 +32,31 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter,IView> {
     private RegisterFragment registerFragment = new RegisterFragment();
     private List<Fragment> list = new ArrayList<>();
     private FragmentAdpter fragmentAdpter;
+    private int toFiemIndex;
     @Override
     protected void initpreseter() {
 
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN,sticky = true)
+    public void autologin(String string){
+        Toast.makeText(this, ""+string, Toast.LENGTH_SHORT).show();
+        ARouter.getInstance().build("/main/MainActivity").navigation();
+    }
     @Override
     protected void initdate() {
+
         ARouter.getInstance().inject(this);
         fragmentAdpter = new FragmentAdpter(getSupportFragmentManager(),list);
         vrLoginRegister.setAdapter(fragmentAdpter);
+        //接受传过来的position
+        Intent intent = getIntent();
+        toFiemIndex = intent.getIntExtra(Confing.TO_LOGIN_KEY,0);
+
     }
 
     @Override
     protected void initview() {
+        EventBus.getDefault().register(this);
         //初始化控件
         vrLoginRegister = findViewById(R.id.vr_login_register);
         //添加fragment
@@ -49,5 +67,14 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter,IView> {
     @Override
     protected int getlayoutid() {
         return R.layout.activity_login_register;
+    }
+    public int getToLoginFilemIndex(){
+        return toFiemIndex;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

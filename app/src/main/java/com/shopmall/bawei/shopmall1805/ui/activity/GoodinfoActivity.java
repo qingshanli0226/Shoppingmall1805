@@ -1,11 +1,16 @@
 package com.shopmall.bawei.shopmall1805.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.AbsListView;
 import android.widget.Button;
+import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -50,6 +55,7 @@ public class GoodinfoActivity extends BaseActivity<IPresenter, IView> implements
         //点击监听事件
         tvGoodInfoCart.setOnClickListener(this);
         tvGoodInfoCallcenter.setOnClickListener(this);
+        btnGoodInfoAddcart.setOnClickListener(this);
     }
 
     @Override
@@ -83,6 +89,23 @@ public class GoodinfoActivity extends BaseActivity<IPresenter, IView> implements
             case R.id.tv_good_info_callcenter:
                 Intent intent = new Intent(GoodinfoActivity.this, CallcenterActivity.class);
                 startActivity(intent);
+                break;
+            case R.id.btn_good_info_addcart:
+                final PopupWindow popupWindow = new PopupWindow();
+                popupWindow.setWidth(GridView.LayoutParams.MATCH_PARENT);
+                popupWindow.setHeight(GridView.LayoutParams.WRAP_CONTENT);
+                View inflate = LinearLayout.inflate(v.getContext(), R.layout.popupwindow_add_product, null);
+                Button button = inflate.findViewById(R.id.bt_goodinfo_cancel);
+                popupWindow.setContentView(inflate);
+                popupWindow.showAtLocation(inflate,Gravity.BOTTOM,0,0);
+                button.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        popupWindow.dismiss();
+                        Toast.makeText(GoodinfoActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 break;
         }
     }

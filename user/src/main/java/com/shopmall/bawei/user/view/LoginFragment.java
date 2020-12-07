@@ -1,4 +1,5 @@
 package com.shopmall.bawei.user.view;
+import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -6,10 +7,13 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.InputType;
+import com.example.framework.ShopUsermange;
+import com.example.net.Confing;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
@@ -85,6 +89,20 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
 
     @Override
     public void onlogin(LoginBean loginBean) {
+        ShopUsermange.getInstance().ShopLoginmange(loginBean);
+        LoginRegisterActivity activity = (LoginRegisterActivity)getActivity();
+        int toLoginFilemIndex = activity.getToLoginFilemIndex();
+        if (toLoginFilemIndex== Confing.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT){
+            ARouter.getInstance().build("/main/MainActivity").withInt("index",2).navigation();
+        }else if (toLoginFilemIndex == Confing.TO_LOGIN_FROM_MINE_FRAGMENT){
+            ARouter.getInstance().build("/main/MainActivity").withInt("index",0).navigation();
+        }else if (toLoginFilemIndex == Confing.TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR) {
+            getActivity().finish();
+            return;
+        }else {
+            ARouter.getInstance().build("/main/MainActivity").navigation();
+        }
+        getActivity().finish();
         Toast.makeText(getContext(), "登陆成功", Toast.LENGTH_SHORT).show();
     }
 

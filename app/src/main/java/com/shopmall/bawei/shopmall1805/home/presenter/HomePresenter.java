@@ -34,9 +34,9 @@ public class HomePresenter extends HomeContract.SlerakPresenter {
 
                     @Override
                     public void onNext(BaseBean<HomeBean> homeBeanBaseBean) {
-                        iView.hideloading();
                         HomeBean result = homeBeanBaseBean.getResult();
                         if (iView!=null){
+                            iView.hideloading();
                             iView.onskerk(result);
                         }
 

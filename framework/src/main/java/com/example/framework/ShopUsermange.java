@@ -10,6 +10,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ShopUsermange {
+    String name;
+    String password;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     private LoginBean loginBean;
     private Context context;
     private static ShopUsermange instance;
@@ -30,6 +49,10 @@ public class ShopUsermange {
         editor =sharedPreferences.edit();
         this.context = context;
     }
+    //判断用户是否登录
+    public boolean isUserLogin(){
+        return loginBean!=null;
+    }
     //该函数，将当前的登录程序的登录状态从未登录变成已登录
     public void ShopLoginmange(LoginBean loginBean) {
         this.loginBean = loginBean;
@@ -42,6 +65,9 @@ public class ShopUsermange {
         for (IUserLoginChangeLiestener listenter:liesteners) {
             listenter.onUserLogin(loginBean);
         }
+    }
+    public String gettoken(){
+        return sharedPreferences.getString(Confing.spName,"");
     }
     public interface IUserLoginChangeLiestener{
         void onUserLogin(LoginBean loginBean);

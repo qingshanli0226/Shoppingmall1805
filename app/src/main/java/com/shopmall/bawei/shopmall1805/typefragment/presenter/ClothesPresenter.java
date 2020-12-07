@@ -34,8 +34,8 @@ public class ClothesPresenter extends ClothesContract.SkertPresenter {
 
                     @Override
                     public void onNext(ClothesBean clothesBean) {
-                        iView.hideloading();
                         if (iView!=null) {
+                            iView.hideloading();
                             iView.onjscket(clothesBean.getResult());
                         }
                     }

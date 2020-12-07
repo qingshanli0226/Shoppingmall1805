@@ -25,6 +25,10 @@ public interface INetPresetenterWork {
     @POST("login")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> map);
+    //自动登录接口
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> autologin(@FieldMap HashMap<String,String> map);
 
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")

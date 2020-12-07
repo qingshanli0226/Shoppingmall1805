@@ -1,8 +1,13 @@
 package com.shopmall.bawei.shopmall1805.aplacation;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.framework.MyService;
+import com.example.framework.ShopUsermange;
+
+
 
 public class ShopmallApplication extends Application {
 
@@ -15,5 +20,8 @@ public class ShopmallApplication extends Application {
         ARouter.openDebug();
         // 初始化尽可能早，推荐在Application中初始化
         ARouter.init(this);
+        ShopUsermange.getInstance().init(this);
+
+
     }
 }

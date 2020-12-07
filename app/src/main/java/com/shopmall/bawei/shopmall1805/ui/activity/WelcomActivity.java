@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import com.example.framework.BaseActivity;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
+import com.example.framework.MyService;
 import com.shopmall.bawei.shopmall1805.R;
 
 public class WelcomActivity extends BaseActivity<IPresenter, IView> implements ViewPropertyAnimatorListener {
@@ -17,7 +18,9 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> implements V
 
     @Override
     protected void initpreseter() {
-
+        Intent intent = new Intent();
+        intent.setClass(this, MyService.class);
+        startService(intent);
     }
 
     @Override
@@ -49,6 +52,7 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> implements V
     public void onAnimationEnd(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
