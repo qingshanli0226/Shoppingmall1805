@@ -48,12 +48,13 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+
     }
     @Override
     protected void intView() {
         pager = (ViewPager) findViewById(R.id.pager);
         com = (CommonTabLayout) findViewById(R.id.com);
-         intent=new Intent(this,MyServer.class);
+        intent=new Intent(MainActivity.this, MyServer.class);
         startService(intent);
     }
     @Override
@@ -68,9 +69,9 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
             arrayList.clear();
         }
 
-
+        //自动登录获取token
         token= getSharedPreferences("login", MODE_PRIVATE).getString("login", "123");
-        UserMenger.getInstance().setToken(token);
+
         Log.e("logintoken",token);
         prine.MyautologinShow(token);
         indata();
@@ -132,9 +133,11 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
 
     @Override
     public void MyautologinView(AutoLoginBeen autoLoginBeen) {
-        Toast.makeText(this, ""+autoLoginBeen.getMessage(), Toast.LENGTH_SHORT).show();
-           Log.e("autotoken",autoLoginBeen.getResult().getToken());
-           Log.e("auot====",autoLoginBeen.getMessage());
+        UserMenger.getInstance().setToken(autoLoginBeen.getResult().getToken());
+        getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
+            Toast.makeText(this, "自动登录", Toast.LENGTH_SHORT).show();
+            Log.e("autotoken",autoLoginBeen.getResult().getToken());
+            Log.e("auot====","自动登录");
 
     }
 

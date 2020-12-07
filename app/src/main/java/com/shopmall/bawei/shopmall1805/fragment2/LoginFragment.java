@@ -3,6 +3,8 @@ package com.shopmall.bawei.shopmall1805.fragment2;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -38,7 +40,9 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
 
     @Override
     protected void initData() {
-         loginbutton.setOnClickListener(new View.OnClickListener() {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.atguigu_logo);
+
+        loginbutton.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
                  prine.loginShow(username.getText().toString(),password.getText().toString());
@@ -80,15 +84,13 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
 
     @Override
     public void login(LoginBean loginBean) {
-        if (loginBean.getCode().equals("200")){
+
             Toast.makeText(getContext(), ""+loginBean.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.e("token1",loginBean.getResult().getToken()+"");
+            Log.e("登录的token",loginBean.getResult().getToken()+"");
             getActivity().getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",loginBean.getResult().getToken()).commit();
             Intent intent=new Intent(getContext(), MainActivity.class);
             startActivity(intent);
-        }else {
-            Toast.makeText(getContext(), "登录失败", Toast.LENGTH_SHORT).show();
-        }
+
 
     }
 
