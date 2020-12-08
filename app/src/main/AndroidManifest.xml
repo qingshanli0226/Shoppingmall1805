@@ -19,7 +19,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name=".service.AotuLoginService"/>
+        <service android:name="com.bw.framework.service.AotuLoginService"/>
     </application>
 
 </manifest>

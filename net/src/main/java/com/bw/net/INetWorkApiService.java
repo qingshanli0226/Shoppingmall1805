@@ -1,6 +1,7 @@
 package com.bw.net;
 
 import com.bw.net.bean.AutoLoginBean;
+import com.bw.net.bean.Basebean;
 import com.bw.net.bean.HomeFragmentBean;
 import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.RegisterBean;
@@ -9,6 +10,7 @@ import com.bw.net.bean.SkirtBean;
 import com.bw.net.bean.TagBean;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
@@ -30,7 +32,7 @@ public interface INetWorkApiService {
 
     @POST("autoLogin")
     @FormUrlEncoded
-    Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
+    Observable<LoginBean> autoLogin(@FieldMap HashMap<String,String> map);
 
     @GET(Contants.HOME_URL)
     Observable<HomeFragmentBean> getHomeData();
@@ -75,4 +77,28 @@ public interface INetWorkApiService {
     @POST("addOneProduct")
     Observable<ShopCarBean> addProduct(@Body RequestBody requestBody);
 
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<Basebean<String>> checkOneProductInventory(@FieldMap HashMap<String,String> map);
+
+    @GET("getShortcartProducts")
+    Observable<List<ShopCarBean>> getShortcartProducts();
+
+    @POST("updateProductNum")
+    Observable<Basebean<String>> updateProductNum(@Body RequestBody requestBody);
+
+    @POST("updateProductSelected")
+    Observable<Basebean<String>> updateProductSelected(@Body RequestBody requestBody);
+
+    @POST("selectAllProduct")
+    Observable<Basebean<String>> selectAllProduct(@Body RequestBody requestBody);
+
+    @POST("removeManyProduct")
+    Observable<Basebean<String>> removeManyProduct(@Body RequestBody requestBody);
+
+//    @POST("checkInventory")
+//    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+//
+//    @POST("getOrderInfo")
+//    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
 }

@@ -89,19 +89,26 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }else {
                 MyGreenManager.getMyGreenManager().deleteAll();
-//
-
-//                GreenDaoBean greenDaoBean = new GreenDaoBean(shopCarBean.getProductId(),shopCarBean.getProductName(),shopCarBean.getProductNum(),shopCarBean.getUrl(),shopCarBean.getProductPrice(),false);
-//                MyGreenManager.getMyGreenManager().putData(greenDaoBean);
-
-
+                checkHasProduct();
                 httpPresenter.addProduct(shopCarBean.getProductId(),shopCarBean.getProductName(),shopCarBean.getProductNum(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
-
-
-               ARouter.getInstance().build("/activity/activity_shopCart").navigation();
             }
         });
 
+        tvGoodInfoCart.setOnClickListener(v -> {
+            boolean userLogin = ShopUserManager.getInstance().isUserLogin();
+            Log.i("----", "initView: "+userLogin);
+            if (userLogin == false){
+                ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
+            }else {
+                MyGreenManager.getMyGreenManager().deleteAll();
+                ARouter.getInstance().build("/activity/activity_shopCart").navigation();
+            }
+        });
+
+    }
+
+    private void checkHasProduct() {
+        httpPresenter.checkOneProductNum(shopCarBean.getProductId(),"1");
     }
 
     @Override
@@ -111,8 +118,20 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     }
 
     @Override
+    public void onCheckOneProduct(String productNum) {
+        if (Integer.valueOf(productNum) >= 1){
+
+        }
+    }
+
+    @Override
     public void onAddProductOk(String addResult) {
         Toast.makeText(this, ""+addResult, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onProductNumChange(String result) {
+
     }
 
     @Override

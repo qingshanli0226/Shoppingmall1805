@@ -8,6 +8,9 @@ import android.util.Log;
 import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.ShopmallConstant;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class ShopUserManager {
 
@@ -20,6 +23,8 @@ public class ShopUserManager {
 
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
+
+    private List<IUserLoginChangedListener> listeners = new ArrayList<>();
 
     private ShopUserManager() {
     }
@@ -53,6 +58,13 @@ public class ShopUserManager {
         context.sendBroadcast(intent);
     }
 
+    public String getName(){
+        if (loginBean != null){
+            return loginBean.getResult().getName();
+        }else {
+            return null;
+        }
+    }
 
 
     //判断当前用户是否登录
@@ -65,16 +77,24 @@ public class ShopUserManager {
             Log.i("---", "getToken: "+loginBean.getResult().getToken());
             return loginBean.getResult().getToken();
         } else {
-            return "";
+            return sharedPreferences.getString(ShopmallConstant.tokenName,"");
         }
     }
 
+    public void registerUserLoginChangedListener(IUserLoginChangedListener listener){
+        if (listeners.contains(listener)){
+            listeners.add(listener);
+        }
+    }
 
+    public void unRegisterUserLoginChangedListener(IUserLoginChangedListener listener){
+        if (listeners.contains(listener)){
+            listeners.remove(listener);
+        }
+    }
 
-
-
-
-
-
-
+    public interface IUserLoginChangedListener {
+        void onUserLogin(LoginBean loginBean);
+        void onUserLoginOut();
+    }
 }
