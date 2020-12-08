@@ -45,7 +45,7 @@ public class ShopUserManager {
         editor.commit();
 
         //发送广播，通知当前应用用户已经登录成功
-        /*Intent intent = new Intent();
+      /*  Intent intent = new Intent();
         intent.setAction(ShopmallConstant.LOGIN_ACTION);
         context.sendBroadcast(intent);*/
     }
@@ -53,7 +53,7 @@ public class ShopUserManager {
 
     //判断当前用户是否登录
     public boolean isUserLogin() {
-        return loginBean != null;//如果loginBean不为空则代表已经登录
+        return true;//如果loginBean不为空则代表已经登录
     }
 
     public String getToken() {

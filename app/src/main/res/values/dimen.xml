@@ -31,4 +31,7 @@
 
     <dimen name="layout_weight_viewpager">10</dimen>
     <dimen name="layout_weight_commont">1</dimen>
+
+    <dimen name="View_left_space">20dp</dimen>
+    <dimen name="View_reght_space">20dp</dimen>
 </resources>

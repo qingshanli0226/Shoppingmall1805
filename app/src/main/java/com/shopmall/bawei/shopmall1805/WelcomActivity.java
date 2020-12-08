@@ -12,6 +12,7 @@ import android.content.Intent;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
 import framework.BaseActivity;
+import view.loadinPage.ErrorBean;
 
 
 public class WelcomActivity extends BaseActivity {
@@ -20,6 +21,11 @@ public class WelcomActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getlayoutId());
+    }
+
+    @Override
+    protected void createPresenter() {
+
     }
 
     @Override
@@ -70,5 +76,20 @@ public class WelcomActivity extends BaseActivity {
     @Override
     protected int getlayoutId() {
         return R.layout.activity_welcome;
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

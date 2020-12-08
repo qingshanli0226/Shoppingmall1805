@@ -1,7 +1,6 @@
 package view.fragment;
 
 
-import android.content.Intent;
 import android.view.View;
 import android.widget.EditText;
 
@@ -10,13 +9,16 @@ import com.shopmall.bawei.user.R;
 import framework.BaseFragment;
 import framework.mvpc.jsonPresenter;
 import mode.RegisterBean;
+import view.ToolBar;
 import view.fragment.CallBackLR.JsonDataCallBackLR;
 import view.UserActivity;
+import view.loadinPage.ErrorBean;
 
 public
-class FragmentRegister extends BaseFragment implements UserActivity.INameInterface,View.OnClickListener {
+class FragmentRegister extends BaseFragment implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
     private EditText registerUser;
     private EditText registerPassword;
+
     @Override
     protected void createPresenter() {
         Presenter = new jsonPresenter(this);
@@ -32,6 +34,7 @@ class FragmentRegister extends BaseFragment implements UserActivity.INameInterfa
         registerPassword = (EditText) findViewById(R.id.registerPassword);
         findViewById(R.id.registerSumpLogin).setOnClickListener(this);
         findViewById(R.id.registerLoginButton).setOnClickListener(this);
+        tooBar = (ToolBar) findViewById(R.id.tooBar);
     }
 
     @Override
@@ -72,5 +75,30 @@ class FragmentRegister extends BaseFragment implements UserActivity.INameInterfa
 
     private void switchLoginFragment() {
         UserActivity.userViewPager.setCurrentItem(0);
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
     }
 }

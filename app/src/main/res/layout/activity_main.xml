@@ -7,19 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".home.MainActivity">
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/ViewPager"
+    <FrameLayout
+        android:id="@+id/fragmentViewLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="10"/>
-    <com.flyco.tablayout.CommonTabLayout
-        android:id="@+id/commont"
+        android:layout_weight="1"/>
+    <RadioGroup
+        android:id="@+id/radioGroupMain"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        app:tl_textUnselectColor="#1B0101"
-        app:tl_textSelectColor="#F80C0C"
-        app:tl_textsize="26sp"
-        android:background="#F6ECEC"/>
+        android:layout_weight="0.1"
+        android:orientation="horizontal">
+        <RadioButton
+            android:id="@+id/radioButtonHome"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="22sp"
+            android:text="首页"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/radioButtonClassify"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="22sp"
+            android:text="分类"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/radioButtonShopcar"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="22sp"
+            android:text="购物车"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/radioButtonPreson"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:textSize="22sp"
+            android:text="个人主页"
+            android:gravity="center"/>
+    </RadioGroup>
 
 </LinearLayout>

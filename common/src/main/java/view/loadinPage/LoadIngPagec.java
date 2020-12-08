@@ -58,7 +58,7 @@ class LoadIngPagec  extends FrameLayout {
 
     protected abstract int getSuccessLayoutId();
 
-    private void showLoadingpage(){
+    public void showLoadingpage(){
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(VISIBLE);
         errorView.setVisibility(GONE);
@@ -66,15 +66,14 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(GONE);
     }
 
-    private void showErrorPage(String Errormsg){
+    public void showErrorPage(String Errormsg){
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(VISIBLE);
-
         successView.setVisibility(GONE);
     }
 
-    private void showEmptyPage(){
+    public void showEmptyPage(){
         emptyView.setVisibility(VISIBLE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);
@@ -82,7 +81,7 @@ class LoadIngPagec  extends FrameLayout {
         successView.setVisibility(GONE);
     }
     //显示正确页面
-    private void showSuccessView() {
+    public void showSuccessView() {
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(GONE);

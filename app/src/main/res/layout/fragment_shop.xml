@@ -3,11 +3,10 @@
     style="@style/LinearLayoutSV"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="#ccc">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toobar"
+    <view.ToolBar
+        android:id="@+id/tooBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/com_public_heightfour"
-        android:background="#FFFBFB"/>
+        android:layout_height="@dimen/Ucom_public_heightfour"/>
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">

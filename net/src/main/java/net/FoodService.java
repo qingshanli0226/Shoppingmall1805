@@ -3,14 +3,17 @@ package net;
 
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
+import mode.BaseBean;
 import mode.ClothesBean;
 import mode.HomeBean;
 import mode.LableBean;
 import mode.LoginBean;
 import mode.ReginsterAndLogin;
 import mode.RegisterBean;
+import mode.ShopcarBean;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -75,4 +78,11 @@ interface FoodService {
     @POST("login")
     @FormUrlEncoded
     Observable<LoginBean> goToLogin(@FieldMap HashMap<String,String> login);
+
+    @GET("getShortcartProducts")
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String, String> params);
 }

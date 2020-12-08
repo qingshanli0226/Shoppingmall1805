@@ -1,5 +1,6 @@
 package framework.mvpc;
 
+
 import android.util.Log;
 
 import framework.Contact;
@@ -15,12 +16,12 @@ import mode.HomeBean;
 import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
-import view.loadinPage.LoadIngPagec;
-
 
 public class jsonPresenter extends Contact.centetUserpepostory{
+    private Contact.CenterUserIview centerUserIviewc;
     public jsonPresenter(Contact.CenterUserIview centerUserIview) {
         super(centerUserIview);
+        this.centerUserIviewc = centerUserIview;
     }
     public static Observer<LableBean> javabeanObserver;
     public static Observer<ClothesBean> clothesBeanObserver;
@@ -34,14 +35,15 @@ public class jsonPresenter extends Contact.centetUserpepostory{
             @Override
             public void onNext(LableBean javabean) {
                 if (javabean==null){
+
                 }else {
                     userc.javabean(javabean);
+
                 }
-
             }
-
             @Override
             public void onError(Throwable e) {
+
             }
         };
         clothesBeanObserver = new ClothesBeanObserver(){
@@ -58,6 +60,9 @@ public class jsonPresenter extends Contact.centetUserpepostory{
             @Override
             public void onNext(HomeBean homeBean) {
                 userc.homeBean(homeBean);
+                if (homeBean==null){
+
+                }
             }
 
             @Override

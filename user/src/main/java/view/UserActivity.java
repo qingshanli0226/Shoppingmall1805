@@ -17,6 +17,7 @@ import framework.BaseActivity;
 import framework.ShopUserManager;
 import view.fragment.FragmentLogin;
 import view.fragment.FragmentRegister;
+import view.loadinPage.ErrorBean;
 
 @Route(path = "/usr/LoginRegisterActivity")
 public class UserActivity extends BaseActivity {
@@ -24,6 +25,12 @@ public class UserActivity extends BaseActivity {
 
     public static NoScrollViewPager userViewPager;
     private List<Fragment> fragments = new ArrayList<>();
+
+    @Override
+    protected void createPresenter() {
+
+    }
+
     @Override
     protected void OnClickListener() {
 
@@ -63,6 +70,21 @@ public class UserActivity extends BaseActivity {
     //获取跳转的index值
     public int getToLoginFromIndex() {
         return toLoginFromIndex;
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 
     public interface INameInterface {

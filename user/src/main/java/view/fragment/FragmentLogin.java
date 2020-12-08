@@ -11,13 +11,16 @@ import framework.ShopUserManager;
 import framework.mvpc.jsonPresenter;
 import mode.LoginBean;
 import view.ShopmallConstant;
+import view.ToolBar;
 import view.UserActivity;
 import view.fragment.CallBackLR.JsonDataCallBackLR;
+import view.loadinPage.ErrorBean;
 
 public
-class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface,View.OnClickListener {
+class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
     private EditText loginUser;
     private EditText loginPassword;
+
     @Override
     protected void createPresenter() {
         Presenter = new jsonPresenter(this);
@@ -35,7 +38,7 @@ class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface
         loginPassword = (EditText) findViewById(R.id.loginPassword);
         findViewById(R.id.loginLoginButton).setOnClickListener(this);
         findViewById(R.id.loginSumpResgin).setOnClickListener(this);
-
+        tooBar = (ToolBar) findViewById(R.id.tooBar);
     }
 
     @Override
@@ -79,5 +82,30 @@ class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface
 
     private void switchRegisterFragment() {
         UserActivity.userViewPager.setCurrentItem(1);
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
     }
 }
