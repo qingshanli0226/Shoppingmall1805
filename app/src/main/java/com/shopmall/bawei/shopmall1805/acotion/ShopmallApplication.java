@@ -4,7 +4,8 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.shopmall.bawei.framework.manager.ShopUserManager;
+import com.shopmall.manager.ShopUserManager;
+
 
 public class ShopmallApplication extends Application {
     private static Context context;

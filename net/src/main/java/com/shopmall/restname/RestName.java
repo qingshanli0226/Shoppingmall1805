@@ -1,4 +1,4 @@
-package com.shopmall.bawei.framework.restname;
+package com.shopmall.restname;
 
 public class RestName {
 

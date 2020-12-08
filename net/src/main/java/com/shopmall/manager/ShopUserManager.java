@@ -1,10 +1,10 @@
-package com.shopmall.bawei.framework.manager;
+package com.shopmall.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.shopmall.bawei.framework.restname.RestName;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.restname.RestName;
 
 import java.util.ArrayList;
 import java.util.List;

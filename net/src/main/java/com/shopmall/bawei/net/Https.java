@@ -3,12 +3,15 @@ package com.shopmall.bawei.net;
 import com.shopmall.bean.HomeData;
 import com.shopmall.bean.Loginbean;
 import com.shopmall.bean.Registbean;
+import com.shopmall.bean.ShopcarBean;
 import com.shopmall.bean.SortData;
 import com.shopmall.bean.TagData;
 
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
@@ -57,6 +60,25 @@ public interface Https {
 
     @POST
     Observable<Registbean> getregist(@Url String url,@QueryMap HashMap<String,String> map);
+
+    /**
+     * 获取服务端购物车信息
+     * @param url
+     * @return
+     */
+    @GET
+    Observable<ShopcarBean> getShopcar(@Url String url);
+
+    /**
+     * 向服务端购物车添加一个产品
+     */
+    @POST
+    Observable<Registbean> getaddOneProduct(@Url String url,@Body RequestBody requestBody);
+    /**
+     * 验证服务端产品库存情况
+     */
+    @POST
+    Observable<Registbean> getcheckOneProductInventory(@Url String url,@QueryMap HashMap<String,String> map);
 
 
 }

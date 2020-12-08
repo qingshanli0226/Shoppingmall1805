@@ -11,10 +11,10 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.framework.constart.Constart;
-import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.manager.ShopUserManager;
 
 import java.util.HashMap;
 
@@ -82,6 +82,7 @@ public class UserLoginFragment extends BaseFragment<LoginPresenter> implements C
         if (loginbean.getCode().equals("200")){
             Log.e("logintoken",""+loginbean.getResult().getToken());
             ShopUserManager.getInstance().setLogin(loginbean);
+            //ShopCarmanager.getShopCarmanager().ShopcarData();
             ARouter.getInstance().build("/app/MainActivity").navigation();
         }
 

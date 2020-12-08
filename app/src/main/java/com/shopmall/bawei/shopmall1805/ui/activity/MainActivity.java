@@ -2,6 +2,7 @@ package com.shopmall.bawei.shopmall1805.ui.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -10,19 +11,23 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.framework.base.BaseActivity;
-import com.shopmall.bawei.framework.manager.ShopUserManager;
+import com.shopmall.bawei.framework.service.LoginService;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.service.LoginService;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.FindFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.HomeFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.IndividualFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.SortFragment;
 import com.shopmall.bean.Cus;
+import com.shopmall.bean.ShopcarBean;
+import com.shopmall.manager.ShopCarmanager;
+import com.shopmall.manager.ShopUserManager;
 
 import java.util.ArrayList;
+import java.util.List;
+
 @Route(path = "/app/MainActivity")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ShopCarmanager.IShopcarDataChangeListener {
     private FrameLayout viewpagerMain;
     private CommonTabLayout commonMain;
     private ArrayList<CustomTabEntity> custom=new ArrayList<>();
@@ -35,6 +40,11 @@ public class MainActivity extends BaseActivity {
     private int num;
 
     private Intent intent;
+
+    @Override
+    protected void oncreatePresenter() {
+
+    }
 
     @Override
     protected void initEnvent() {
@@ -68,6 +78,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void initview() {
         ARouter.getInstance().inject(this);
+        ShopCarmanager.getShopCarmanager().registiShopcarDataChangeListener(this);
         viewpagerMain = findViewById(R.id.viewpager_main);
         commonMain = findViewById(R.id.common_main);
 
@@ -85,7 +96,7 @@ public class MainActivity extends BaseActivity {
 
         commonMain.setTabData(custom);
 
-        commonMain.showMsg(3,5);
+
 
 
 
@@ -136,5 +147,27 @@ public class MainActivity extends BaseActivity {
     protected void onDestroy() {
         super.onDestroy();
         stopService(intent);
+        ShopCarmanager.getShopCarmanager().uniShopcarDataChangeListener(this);
     }
+
+    @Override
+    public void shopcarData(List<ShopcarBean.ResultBean> shopcarBeans) {
+        if (shopcarBeans.size()!=0){
+            commonMain.showMsg(3,shopcarBeans.size());
+        }
+         Log.e("num",""+shopcarBeans.size());
+    }
+
+    @Override
+    public void undateshopcar(int positon, ShopcarBean.ResultBean shopcar) {
+
+    }
+
+    @Override
+    public void getMoney(String money) {
+
+    }
+
+
+
 }

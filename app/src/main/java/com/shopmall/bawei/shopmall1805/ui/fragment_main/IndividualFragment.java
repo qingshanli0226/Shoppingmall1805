@@ -1,15 +1,15 @@
 package com.shopmall.bawei.shopmall1805.ui.fragment_main;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.framework.base.BaseFragment;
-import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.manager.ShopCarmanager;
+import com.shopmall.manager.ShopUserManager;
 
 public class IndividualFragment extends BaseFragment implements ShopUserManager.IUserListener {
 
@@ -63,11 +63,20 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
     @Override
     public void OnUserLogin(Loginbean loginbean) {
         usersMy.setText(loginbean.getResult().getName());
+        if (ShopUserManager.getInstance().getUserName()!=null){
+            ShopCarmanager.getShopCarmanager().ShopcarData();
+        }
 
     }
 
     @Override
     public void OnUserLoginout() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ShopUserManager.getInstance().UnRegistUserLogin(this);
     }
 }

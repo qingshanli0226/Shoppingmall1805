@@ -1,7 +1,6 @@
 package com.shopmall.bawei.shopmall1805.ui.shopactivity;
 
-import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,11 +12,20 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.framework.base.BaseActivity;
+import com.shopmall.bawei.framework.callback.Itest;
+import com.shopmall.bawei.framework.shopcar.ShopCarNet;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.DetailsData;
 import com.shopmall.glide.Myglide;
+import com.shopmall.manager.ShopUserManager;
 
-public class DetailsMainActivity extends AppCompatActivity {
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+
+public class DetailsMainActivity extends BaseActivity {
     private ImageView backDetails;
 
     private TextView shopCar;
@@ -37,21 +45,16 @@ public class DetailsMainActivity extends AppCompatActivity {
     private Button addShopYes;
     private PopupWindow popupWindow;
     private TextView shopLike;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_details_main);
-        initview();
+    protected void oncreatePresenter() {
 
-        initdata();
-
-        initEnvent();
     }
 
     /**
      * 初始化事件
      */
-    private void initEnvent() {
+    protected void initEnvent() {
 
         //返回
         backDetails.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +111,7 @@ public class DetailsMainActivity extends AppCompatActivity {
     }
 
     /**
-     * 点击事件
+     * popu点击事件
      */
     private void popuEnvent() {
 
@@ -155,10 +158,45 @@ public class DetailsMainActivity extends AppCompatActivity {
         addShopYes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if (ShopUserManager.getInstance().getUserName()==null){
+                    ARouter.getInstance().build("/user/UserMainActivity").navigation();
+                    return;
+                }
+
+                final HashMap<String,String> map=new HashMap<>();
+                map.put("productId",details.getId());
+                map.put("productNum",num+"");
+
+                ShopCarNet.getShopCarNet().checkOneProductInventory("checkOneProductInventory", map, new Itest() {
+                    @Override
+                    public void ontest(String msg) {
+                         if (msg.equals("检查产品数量出现错误")){
+                             Toast.makeText(DetailsMainActivity.this, "产品数量不足", Toast.LENGTH_SHORT).show();
+                         }else {
+                             JSONObject jsonObject=new JSONObject();
+                             try {
+                                 jsonObject.put("productId",details.getId());
+                                 jsonObject.put("productNum",num);
+                                 jsonObject.put("productName",details.getName());
+                                 jsonObject.put("url",details.getImage());
+                                 jsonObject.put("productPrice",details.getPice());
+                             } catch (JSONException e) {
+                                 e.printStackTrace();
+                             }
 
 
-                Toast.makeText(DetailsMainActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
+                             Log.e("jsonobject",jsonObject.length()+"");
+
+                             ShopCarNet.getShopCarNet().addshopcarData("addOneProduct",jsonObject);
+
+                             Toast.makeText(DetailsMainActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
+                         }
+                    }
+                });
+
+
                  popupWindow.dismiss();
+
             }
         });
 
@@ -190,20 +228,13 @@ public class DetailsMainActivity extends AppCompatActivity {
 
 
     }
-    /**
-     * 数据初始化
-     */
-    private void initdata() {
-       details =(DetailsData) getIntent().getSerializableExtra("details");
-        Myglide.getMyglide().tupian(this,imageDetails,details.getImage());
-        nameDetails.setText(details.getName());
-        moneyDetails.setText("￥"+details.getPice());
-    }
+
+
 
     /**
      * 初始化控件
      */
-    private void initview() {
+    protected void initview() {
 
         shopCar = findViewById(R.id.shop_car);
         shopLike = findViewById(R.id.shop_like);
@@ -216,5 +247,21 @@ public class DetailsMainActivity extends AppCompatActivity {
 
         backDetails = findViewById(R.id.back_details);
 
+    }
+
+    /**
+     * 数据初始化
+     */
+    @Override
+    protected void initData() {
+        details =(DetailsData) getIntent().getSerializableExtra("details");
+        Myglide.getMyglide().tupian(this,imageDetails,details.getImage());
+        nameDetails.setText(details.getName());
+        moneyDetails.setText("￥"+details.getPice());
+    }
+
+    @Override
+    protected int layoutid() {
+        return R.layout.activity_details_main;
     }
 }

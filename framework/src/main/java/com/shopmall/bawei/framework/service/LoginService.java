@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.service;
+package com.shopmall.bawei.framework.service;
 
 import android.app.Service;
 import android.content.Intent;
@@ -7,10 +7,10 @@ import android.support.annotation.Nullable;
 import android.util.Log;
 import android.widget.Toast;
 
-import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.manager.ShopUserManager;
 
 import java.util.HashMap;
 
@@ -53,6 +53,7 @@ public class LoginService extends Service {
                                if (loginbean.getCode().equals("200")){
                                    Toast.makeText(LoginService.this, ""+loginbean.getMessage(), Toast.LENGTH_SHORT).show();
                                    ShopUserManager.getInstance().setLogin(loginbean);
+                                 //  ShopCarmanager.getShopCarmanager().ShopcarData();
                                }else {
                                    Toast.makeText(LoginService.this, ""+loginbean.getMessage(), Toast.LENGTH_SHORT).show();
                                }

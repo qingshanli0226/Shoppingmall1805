@@ -13,10 +13,13 @@ public abstract class BaseActivity<P extends Presenter> extends AppCompatActivit
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(layoutid());
+        oncreatePresenter();
         initview();
         initData();
         initEnvent();
     }
+
+    protected abstract void oncreatePresenter();
 
     /**
      * 初始化事件

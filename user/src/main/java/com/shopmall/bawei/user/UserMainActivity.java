@@ -16,6 +16,12 @@ public class UserMainActivity extends BaseActivity {
     private ViewPager userMainViewpager;
     private List<Fragment> fragments=new ArrayList<>();
     private UserfragmentAdapter userfragmentAdapter;
+
+    @Override
+    protected void oncreatePresenter() {
+
+    }
+
     @Override
     protected void initEnvent() {
 

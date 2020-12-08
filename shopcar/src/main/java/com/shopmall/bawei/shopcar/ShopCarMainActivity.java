@@ -5,13 +5,19 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.shopmall.bawei.framework.base.BaseActivity;
-import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.manager.ShopUserManager;
 
 @Route(path = "/shopcar/ShopCarMainActivity")
 public class ShopCarMainActivity extends BaseActivity implements ShopUserManager.IUserListener {
 
     private TextView shopcarText;
+
+    @Override
+    protected void oncreatePresenter() {
+
+    }
+
     @Override
     protected void initEnvent() {
 

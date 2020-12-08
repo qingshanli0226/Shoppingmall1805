@@ -1,5 +1,9 @@
 package com.shopmall.bawei.net;
 
+import android.util.Log;
+
+import com.shopmall.manager.ShopUserManager;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -50,14 +54,14 @@ public class HttpsFactory {
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
+                .addInterceptor(createceptor())
                 .addNetworkInterceptor(createhttplogging())
-//                .addInterceptor(createceptor())
                 .build();
         return build;
     }
 
     /**
-     * 添加token
+     * 添加token头
      * @return
      */
     private Interceptor createceptor() {
@@ -65,11 +69,13 @@ public class HttpsFactory {
               @Override
               public Response intercept(Chain chain) throws IOException {
                   Request request = chain.request();
+                  Log.e("token",""+ShopUserManager.getInstance().getToken());
                   request.newBuilder()
-                          .addHeader("token","1")
+                          .addHeader("token",ShopUserManager.getInstance().getToken())
                           .build();
 
                   Response proceed = chain.proceed(request);
+
                   return proceed;
               }
           };
