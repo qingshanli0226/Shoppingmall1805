@@ -1,44 +1,57 @@
 package mvp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
+import androidx.annotation.IdRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
-import mvp.presenter.IPresenter;
+public abstract class BaseFragment extends Fragment  {
+   private View rootView;
 
-public abstract class BaseFragment <P extends IPresenter> extends Fragment implements IFragment,IView {
-   protected P ipresenter;
-    View view;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater, container, savedInstanceState);
-        return view=inflater.inflate(bandlayout(),container,false);
+
+        rootView=inflater.inflate(getLayoutId(),container,false);
+        return rootView;
     }
+    protected abstract int getLayoutId();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        initView();
+        initData();
+    }
+    protected abstract void initData();
+
+    protected abstract void initView();
+    public <T extends View> T findViewById(@IdRes int id) {
+        return rootView.findViewById(id);
     }
 
-    @Override
-    public <T extends View> T findViewById(int id) {
-        return view.findViewById(id);
+
+
+    protected void showMessage(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (ipresenter!=null){
-            ipresenter.destroy();
-            ipresenter=null;
-        }
-        System.gc();
+    protected void launchActivity(Class launcActivityClass, Bundle bundle) {
+        Intent intent = new Intent();
+        intent.putExtras(bundle);
+        intent.setClass(getActivity(), launcActivityClass);
+        startActivity(intent);
     }
+
+
+
 }

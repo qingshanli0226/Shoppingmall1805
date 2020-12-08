@@ -2,4 +2,7 @@
     <string name="app_name">电商App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="goodstitle">商品详情</string>
+    <string name="goodstext">预售截止10月15日,预售期为限量礼盒版,包括特指木盒x1,画集x1,邮票x1套,书签x1,贴纸x1,信封x1</string>
+    <string name="goodscar">加入购物车</string>
 </resources>

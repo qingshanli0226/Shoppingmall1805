@@ -5,6 +5,7 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+
         android:name=".ShopmallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/atguigu_logo"
@@ -14,19 +15,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".mvp.view.activity.GoodsListActivity">
+        <activity android:name=".Classification.view.activity.GoodsListActivity">
+
         </activity>
 
         <activity
             android:name=".WelcomActivity"
             android:theme="@style/AppTheme.FullScreen">
+
+        </activity>
+        <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MainActivity"></activity>
     </application>
 
 </manifest>

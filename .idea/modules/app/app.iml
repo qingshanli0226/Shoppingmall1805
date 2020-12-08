@@ -116,8 +116,11 @@
     <orderEntry type="library" name="Gradle: com.google.code.gson:gson:2.8.5@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.9.0@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.9.0@jar" level="project" />
+    <orderEntry type="library" name="Gradle: com.alibaba:arouter-annotation:1.0.4@jar" level="project" />
+    <orderEntry type="library" name="Gradle: org.greenrobot:eventbus:3.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.4@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.appcompat:appcompat:1.2.0@aar" level="project" />
+    <orderEntry type="library" name="Gradle: com.alibaba:arouter-api:1.3.1@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-v4:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.recyclerview:recyclerview:1.0.0@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.legacy:legacy-support-core-ui:1.0.0@aar" level="project" />
@@ -156,12 +159,11 @@
     <orderEntry type="library" name="Gradle: com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22@aar" level="project" />
     <orderEntry type="module" module-name="net" />
+    <orderEntry type="module" module-name="common2" />
     <orderEntry type="module" module-name="user" />
-    <orderEntry type="module" module-name="shopcar" />
     <orderEntry type="module" module-name="pay" />
     <orderEntry type="module" module-name="framework" />
     <orderEntry type="module" module-name="order" />
     <orderEntry type="module" module-name="point" />
-    <orderEntry type="module" module-name="common" />
   </component>
 </module>

@@ -1,9 +1,167 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".mvp.view.activity.GoodsListActivity">
+    android:orientation="vertical"
+    tools:context=".Classification.view.activity.GoodsListActivity">
+<androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+    >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:src="@drawable/top_bar_left_back"
+            android:layout_centerVertical="true"
+            android:id="@+id/bank"
+            android:layout_height="@dimen/dp_40"
+            >
+        </ImageView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goodstitle"
+            android:textSize="30dp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"
+            >
+        </TextView>
+        <ImageView
+            android:layout_width="@dimen/dp_40"
+            android:src="@drawable/icon_more"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="20dp"
+            android:layout_height="@dimen/dp_40"
+            >
+        </ImageView>
+    </RelativeLayout>
+</androidx.appcompat.widget.Toolbar>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#A6A4A4"
+        >
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/goods_image"
+            android:layout_width="wrap_content"
+            android:layout_height="400dp"></ImageView>
+
+        <TextView
+            android:id="@+id/goods_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"></TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/goodstext"></TextView>
+
+        <TextView
+            android:id="@+id/goods_pay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/colorRed">
+
+        </TextView>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginLeft="@dimen/dp_10"
+            android:layout_marginRight="@dimen/dp_10"
+            android:background="#A6A4A4">
+
+        </View>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="@dimen/dp_10">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="由"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="尚硅谷"
+                android:textColor="@color/colorRed"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="发货"></TextView>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_marginTop="20dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+               android:layout_weight="7"
+                >
+                <RadioButton
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/main_user"
+                    android:button="@null"
+                    android:text="联系客服"
+                    ></RadioButton>
+                <RadioButton
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/good_uncollected"
+                    android:button="@null"
+                    android:text="收藏"
+                    ></RadioButton>
+                <RadioButton
+                    android:gravity="center"
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:drawableTop="@drawable/main_cart"
+                    android:button="@null"
+                    android:text="购物车"
+                    ></RadioButton>
+            </LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:background="@color/colorRed"
+                android:text="@string/goodscar"
+                android:textColor="@color/colorWilte"
+                android:layout_height="match_parent"
+                android:id="@+id/addcar"
+                ></Button>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

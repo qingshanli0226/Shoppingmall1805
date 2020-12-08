@@ -1,8 +1,11 @@
 package http;
 
+import com.example.common2.UrlHelp;
+
 import java.util.concurrent.TimeUnit;
 
-import baseurl.UrlHelp;
+
+
 import okhttp3.OkHttpClient;
 
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -12,14 +15,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MyHttp {
 
-    private static volatile MyHttp instance;
-    public static synchronized MyHttp getInstance(){
-        if (instance==null){
-            instance=new MyHttp();
+    private static  ShopmallApiService shopmallApiService;
+
+
+    public static  ShopmallApiService getShopmallApiService(){
+        if (shopmallApiService==null){
+            shopmallApiService= retrofit();
         }
-        return instance;
+        return shopmallApiService;
     }
-    public Retrofit retrofit(){
+    public static ShopmallApiService retrofit(){
         //  打印日志,添加请求头
         HttpLoggingInterceptor httpLoggingInterceptor=new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
         OkHttpClient.Builder builder = new OkHttpClient.Builder()
@@ -28,15 +33,16 @@ public class MyHttp {
                 .writeTimeout(5, TimeUnit.SECONDS)
                 .connectTimeout(5,TimeUnit.SECONDS)
                 //打印日志
+//                .addInterceptor(new TokenInterceptor())
                 .addInterceptor(httpLoggingInterceptor);
-        Retrofit.Builder builder1 = new Retrofit.Builder();
-        builder1
+
+        Retrofit build = new Retrofit.Builder()
                 .baseUrl(UrlHelp.BASE)
                 .client(builder.build())
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
-        return builder1.build();
+        return build.create(ShopmallApiService.class);
     }
 
 

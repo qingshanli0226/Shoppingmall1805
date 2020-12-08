@@ -4,16 +4,12 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import android.view.View;
-import android.view.animation.Animation;
 import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
-import androidx.core.view.ViewPropertyAnimatorCompat;
 import androidx.core.view.ViewPropertyAnimatorListener;
-
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
 
 public class WelcomActivity extends AppCompatActivity implements ViewPropertyAnimatorListener {
 
@@ -38,7 +34,6 @@ public class WelcomActivity extends AppCompatActivity implements ViewPropertyAni
 
 
     }
-
 
     @Override
     public void onAnimationStart(View view) {
