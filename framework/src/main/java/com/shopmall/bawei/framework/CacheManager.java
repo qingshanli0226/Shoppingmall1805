@@ -29,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 public class CacheManager {
 
     //当用户登录成功后，CacheManger会调用服务端接口请求购物车数据。拿到购物车数据后，给shopcarBeanList赋值
-    private List<ShopcarBean>  shopcarBeanList = new ArrayList<>();
+    private List<ShopcarBean>  shopcarBeanList = new ArrayList<>();//缓存第一步:,定义单例，并且在单例中使用列表来存储缓存数据
     private List<ShopcarBean>  deleteShopcarBeanList = new ArrayList<>();
 
     private static CacheManager instance;
@@ -54,7 +54,6 @@ public class CacheManager {
 
     public void init(Context context) {
         this.context = context;
-        initReceiver();
         initService();
     }
 
@@ -62,7 +61,7 @@ public class CacheManager {
     private void initService() {
          Intent intent = new Intent(context,ShopmallService.class);
          context.startService(intent);//通过start启动service
-        //监听登录事件
+        //缓存第2步:通过回调监听登录事件，一旦监听到登录成功，立马从服务端获取购物车数据，并且将数据塞到列表的缓存中,初始化缓存
         ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangedListener() {
             @Override
             public void onUserLogin(LoginBean loginBean) {
@@ -74,20 +73,6 @@ public class CacheManager {
 
             }
         });
-    }
-
-    //注册广播，监听当前用户的登录状态
-    private void initReceiver() {
-        IntentFilter intentFilter = new IntentFilter(ShopmallConstant.LOGIN_ACTION);
-        context.registerReceiver(new BroadcastReceiver() {
-            @Override
-            public void onReceive(Context context, Intent intent) {
-                //当前用户登录成功
-                if (intent.getAction().equals(ShopmallConstant.LOGIN_ACTION)) {
-                    getShopcarDataFromServer();//从服务端获取购物车的数据
-                }
-            }
-        }, intentFilter);
     }
 
     //从服务端获取购物车的数据
@@ -113,6 +98,7 @@ public class CacheManager {
 
     }
 
+    //缓存第三步：提供修改缓存数据的接口
     public void add(ShopcarBean shopcarBean) {
         shopcarBeanList.add(shopcarBean);//提供接口，添加一个商品到购物车公共数据里
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
@@ -127,6 +113,7 @@ public class CacheManager {
         }
     }
 
+    //缓存第三步：提供方法让别的类可以获取缓存
     public List<ShopcarBean> getShopcarBeanList() {
         return shopcarBeanList;
     }
@@ -182,6 +169,7 @@ public class CacheManager {
         }
     }
 
+    //获取购物车已选商品的总价
     public String getMoneyValue() {
         float totalPrice = 0;
         for(ShopcarBean shopcarBean:shopcarBeanList) {

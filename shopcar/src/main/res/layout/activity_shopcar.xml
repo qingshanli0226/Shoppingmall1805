@@ -12,7 +12,7 @@
         app:title_text="购物车"
         app:right_text="编辑"
         app:left_src="@mipmap/back"
-        app:left_show="false"
+        app:left_show="true"
         app:right_show_only_text="true"
         android:layout_alignParentTop="true">
 
