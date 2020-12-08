@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         >
         <ImageView
             android:layout_width="25dp"
@@ -54,7 +54,6 @@
         android:id="@+id/seckillinfo_rv"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:layout_marginLeft="20dp"
         >
     </androidx.recyclerview.widget.RecyclerView>
 

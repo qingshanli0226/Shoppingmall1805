@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopmall1805.app.ui.fragment;
 
 
+import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract.IHomeView> implements HomeContract.IHomeView {
+public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
     private RecyclerView rv;
     private List<Object> list=new ArrayList<>();
     private HomeAdapter baseHomeAdapter;
+    private TextView errorTv;
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_home;
@@ -35,9 +39,13 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
     @Override
     protected void initView() {
         rv = findViewById(R.id.rv);
+        errorTv = findViewById(R.id.errorTv);
+        errorTv.setOnClickListener(this);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
         baseHomeAdapter =new HomeAdapter(getContext());
         rv.setAdapter(baseHomeAdapter);
+        toolbar.setToolBarRightImg(R.drawable.new_message_icon);
+        toolbar.setRightTvTextSize(15);
     }
 
     @Override
@@ -78,6 +86,11 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
         list.add(recommend_info);
         list.add(hot_info);
         baseHomeAdapter.upDataText(list);
+
+    }
+
+    @Override
+    public void onClick(View view) {
 
     }
 }

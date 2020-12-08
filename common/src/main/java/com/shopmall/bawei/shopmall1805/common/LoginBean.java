@@ -26,15 +26,12 @@ public class LoginBean {
     public void setMessage(String message) {
         this.message = message;
     }
-
     public ResultBean getResult() {
         return result;
     }
-
     public void setResult(ResultBean result) {
         this.result = result;
     }
-
     public static class ResultBean {
         /**
          * id : 1610

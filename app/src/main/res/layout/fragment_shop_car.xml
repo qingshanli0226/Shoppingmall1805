@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".app.ui.fragment.ShopCarFragment">
 
-    <!-- TODO: Update blank fragment layout -->
+
+    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:right_show_only_img="true"
+        android:id="@+id/toolbar">
+    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="购物车" />
-
-</FrameLayout>
+        android:text="购物车"
+        />
+</LinearLayout>

@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:layout_marginTop="8dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         >
         <ImageView
             android:layout_width="25dp"
@@ -46,7 +46,6 @@
         android:id="@+id/hotinfo_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginLeft="30dp"
         >
     </androidx.recyclerview.widget.RecyclerView>
 

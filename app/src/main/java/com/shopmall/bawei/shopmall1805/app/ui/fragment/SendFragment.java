@@ -11,9 +11,10 @@ public class SendFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-
+        toolbar.setToolBarLeftImg(R.drawable.menu_cyc);
+        toolbar.setToolBarTitle("社区");
+        toolbar.setToolBarRightImg(R.drawable.new_message_icon);
     }
-
     @Override
     protected void initView() {
 

@@ -3,12 +3,19 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".app.ui.fragment.PeoPleCenterFragment">
+
+    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:right_show_only_img="true"
+        android:id="@+id/toolbar">
+    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
     <ScrollView
         android:id="@+id/scrollview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"

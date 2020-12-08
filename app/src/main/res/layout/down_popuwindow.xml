@@ -65,6 +65,7 @@
         >
     </TextView>
     <LinearLayout
+        android:id="@+id/ll"
         android:layout_width="150dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -99,5 +100,30 @@
             android:layout_weight="1"
             >
         </ImageView>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/ll"
+        >
+        <Button
+            android:id="@+id/bt_cancel"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="取消"
+            >
+        </Button>
+        <Button
+            android:id="@+id/bt_pushi"
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:text="确定"
+            android:layout_margin="5dp"
+            android:background="@color/colorTextSmall"
+            >
+        </Button>
     </LinearLayout>
 </RelativeLayout>

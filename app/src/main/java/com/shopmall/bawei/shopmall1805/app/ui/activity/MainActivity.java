@@ -17,6 +17,7 @@ import com.shopmall.bawei.shopmall1805.app.ui.fragment.PeoPleCenterFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.SendFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.framework.BaseActivity;
+import com.shopmall.bawei.shopmall1805.framework.Toolbar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +32,6 @@ public class MainActivity extends BaseActivity {
     private SendFragment sendFragment;
     private ShopCarFragment shopCarFragment;
     private PeoPleCenterFragment peoPleFragment;
-
     @Override
     protected void initView() {
         framlayout = findViewById(R.id.framlayout);

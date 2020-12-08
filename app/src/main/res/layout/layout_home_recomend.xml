@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="10dp"
         >
         <ImageView
             android:layout_width="25dp"
@@ -43,7 +43,6 @@
         android:id="@+id/recomend_rv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
         >
     </androidx.recyclerview.widget.RecyclerView>
 

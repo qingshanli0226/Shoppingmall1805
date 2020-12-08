@@ -12,10 +12,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment {
+import com.shopmall.bawei.framework.R;
+
+public abstract class BaseFragment extends Fragment implements Toolbar.IToolBarClickListner{
 
     private LoadingPage loadingPage;
     private String TAG;
+    protected Toolbar toolbar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -26,6 +29,8 @@ public abstract class BaseFragment extends Fragment {
                 return getLayoutId();
             }
         };
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setToolBarClickListner(this);
         return loadingPage;
     }
 
@@ -50,6 +55,14 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initData();
 
     protected abstract void initView();
+
+    @Override
+    public void onLeftClick() {
+        getActivity().finish();
+    }
+    @Override
+    public void onRightClick() {
+    }
 
     public void showLoading() {
         loadingPage.showLoadingPage();

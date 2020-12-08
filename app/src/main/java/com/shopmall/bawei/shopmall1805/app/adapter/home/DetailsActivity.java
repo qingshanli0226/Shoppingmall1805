@@ -35,8 +35,13 @@ public class DetailsActivity extends BaseActivity {
     private String name;
     private   String cover_price;
     private int number = 0;
+    private Button btCancel;
+    private Button btPushi;
     @Override
     protected void initData() {
+        toolbar.setToolBarTitle("商品详情");
+        toolbar.setToolBarRightImg(R.drawable.icon_more);
+
         figure = getIntent().getStringExtra("figure");
         name = getIntent().getStringExtra("name");
         cover_price= getIntent().getStringExtra("cover_price");
@@ -56,6 +61,20 @@ public class DetailsActivity extends BaseActivity {
                 addNumberJianImg = inflate.findViewById(R.id.add_number_jian_img);
                 addNumber = inflate.findViewById(R.id.add_number);
                 addNumberJiaImg = inflate.findViewById(R.id.add_number_jia_img);
+                btCancel = inflate.findViewById(R.id.bt_cancel);
+                btPushi = inflate.findViewById(R.id.bt_pushi);
+                btCancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });
+                btPushi.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        popupWindow.dismiss();
+                    }
+                });
                 Glide.with(DetailsActivity.this).load(ConfigUrl.BASE_IMAGE+figure).into(popImg);
                 popTitle.setText(name);
                 popPrice.setText("￥"+cover_price);
@@ -81,12 +100,8 @@ public class DetailsActivity extends BaseActivity {
                 popupWindow.setContentView(inflate);
                 popupWindow.setOutsideTouchable(true);
                 popupWindow.showAtLocation(detailJoinShopcarBt, Gravity.BOTTOM,0,100);
-
-
-
             }
         });
-
     }
     @Override
     protected void initView() {
@@ -96,6 +111,8 @@ public class DetailsActivity extends BaseActivity {
         detailPrice = findViewById(R.id.detail_price);
         detailShopcar = findViewById(R.id.detail_shopcar);
         detailJoinShopcarBt = findViewById(R.id.detail_join_shopcar_bt);
+
+
     }
     @Override
     protected int getLayoutId() {
