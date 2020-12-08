@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
+        android:name=".ShopmallApplication"
         android:allowBackup="true"
         android:appComponentFactory="45622"
         android:icon="@mipmap/ic_launcher"
@@ -15,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Fullquan"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".fragment.goShopActivity"></activity>
+        <activity android:name=".home.GoShopActivity"></activity>
         <activity android:name=".WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

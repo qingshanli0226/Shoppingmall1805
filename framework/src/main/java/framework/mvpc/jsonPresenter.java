@@ -1,63 +1,124 @@
 package framework.mvpc;
 
+
+
 import android.util.Log;
 
 import framework.Contact;
-import framework.User2;
-import framework.mvpc.ExtractObserver.TypeHome;
-import framework.mvpc.ExtractObserver.TypeLable;
-import framework.mvpc.ExtractObserver.TypecloBean;
+import framework.JsonDataCallBace;
+import framework.mvpc.CallBaceObserver.BeanObserver;
+import framework.mvpc.CallBaceObserver.ClothesBeanObserver;
+import framework.mvpc.CallBaceObserver.HomeBeanObserver;
+import framework.mvpc.CallBaceObserver.JavaBeanObserver;
+import framework.mvpc.CallBaceObserver.LoginBeanObserver;
+import framework.mvpc.CallBaceObserver.RegisterBeanObserver;
 import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import mode.ClothesBean;
 import mode.HomeBean;
-import mode.javabean;
+import mode.LableBean;
+import mode.LoginBean;
+import mode.RegisterBean;
+import mode.ShopcarBean;
 
 public class jsonPresenter extends Contact.centetUserpepostory{
+    private Contact.CenterUserIview centerUserIviewc;
     public jsonPresenter(Contact.CenterUserIview centerUserIview) {
         super(centerUserIview);
+        this.centerUserIviewc = centerUserIview;
     }
 
-    public static Observer<javabean> javabeanObserver;
+    public static Observer<LableBean> javabeanObserver;
     public static Observer<ClothesBean> clothesBeanObserver;
     public static Observer<HomeBean> homeBeanObserver;
-
+    public static Observer<RegisterBean> registerBeanObserver;
+    public static Observer<LoginBean> loginBeanObserver;
+    public static Observer<ShopcarBean> beanObserver;
     @Override
-    public void getshopcal(int count,final User2 userc) {
+    public void getshopcal(int count, final JsonDataCallBace jsonDataCallBace) {
         Repostory.getshopcal(count);
-        javabeanObserver = new TypeLable(){
+        javabeanObserver = new JavaBeanObserver(){
             @Override
-            public void onNext(javabean javabean) {
-                Log.i("====","获取到的javabean数据"+javabean.toString());
-                userc.successLable(javabean);
+            public void onNext(LableBean javabean) {
+                if (javabean==null){
 
+                }else {
+                    jsonDataCallBace.javabean(javabean);
+
+                }
             }
-
             @Override
             public void onError(Throwable e) {
+
             }
         };
-
-        clothesBeanObserver = new TypecloBean(){
+        clothesBeanObserver = new ClothesBeanObserver(){
             @Override
             public void onNext(ClothesBean clothesBean) {
-                userc.successClassifs(clothesBean);
-
+                jsonDataCallBace.clothesBean(clothesBean);
             }
 
             @Override
             public void onError(Throwable e) {
             }
         };
-        homeBeanObserver = new TypeHome(){
+        homeBeanObserver = new HomeBeanObserver(){
             @Override
             public void onNext(HomeBean homeBean) {
-                Log.i("====","这是home的数据"+homeBean.toString());
-                userc.successHome(homeBean);
+                jsonDataCallBace.homeBean(homeBean);
+                if (homeBean==null){
+
+                }
             }
 
             @Override
             public void onError(Throwable e) {
+            }
+        };
+
+    }
+
+    @Override
+    public void loginAndRegister(int count, String username, String password, final JsonDataCallBace jsonDataCallBace) {
+        Repostory.loginAndRegister(count, username, password);
+        registerBeanObserver = new RegisterBeanObserver() {
+            @Override
+            public void onNext(RegisterBean registerBean) {
+                jsonDataCallBace.registerBean(registerBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+        };
+
+        loginBeanObserver = new LoginBeanObserver() {
+            @Override
+            public void onNext(LoginBean loginBean) {
+                jsonDataCallBace.loginBean(loginBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+            }
+
+
+        };
+    }
+
+
+    @Override
+    public void shcarShop(int count, JsonDataCallBace jsonDataCallBace) {
+        Repostory.getshopcal(count);
+        beanObserver = new BeanObserver<ShopcarBean>() {
+            @Override
+            public void onNext(ShopcarBean shopcarBean) {
+                super.onNext(shopcarBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+                super.onError(e);
             }
         };
     }

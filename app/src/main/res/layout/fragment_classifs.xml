@@ -3,23 +3,40 @@
     style="@style/LinearLayoutSV"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:gravity="center">
-    <LinearLayout
-        android:id="@+id/linner_button"
-        android:layout_width="@dimen/com_public_widthtow"
-        android:layout_height="@dimen/com_public_heightfour"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/reques">
-        <TextView
-            android:id="@+id/text_one"
-            style="@style/textView_whith_0dp"
-            android:text="分类" />
-        <TextView
-            android:id="@+id/text_tow"
-            style="@style/textView_whith_0dp"
-            android:text="标签"/>
-    </LinearLayout>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/View_pager"
+    <view.ToolBar
+        android:id="@+id/tooBar"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="@dimen/Ucom_public_heightfour"
+        android:visibility="gone"/>
+    <RadioGroup
+        android:id="@+id/radioGroupClassify"
+        android:layout_width="@dimen/com_public_widthtone"
+        android:layout_height="@dimen/com_public_heightfour"
+        android:orientation="horizontal"
+        android:background="@drawable/reques">
+        <RadioButton
+            android:id="@+id/radioButtonClassify"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="分类"
+            android:textSize="22sp"
+            android:gravity="center"/>
+        <RadioButton
+            android:id="@+id/radioButtonLable"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:button="@null"
+            android:text="分类"
+            android:textSize="22sp"
+            android:gravity="center"/>
+
+    </RadioGroup>
+    <FrameLayout
+        android:id="@+id/fragmentViewClassify"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="10"/>
 </LinearLayout>

@@ -74,7 +74,6 @@ class LoadIngPagec  extends FrameLayout {
         emptyView.setVisibility(GONE);
         loadingView.setVisibility(GONE);
         errorView.setVisibility(VISIBLE);
-
         successView.setVisibility(GONE);
     }
 
@@ -93,4 +92,7 @@ class LoadIngPagec  extends FrameLayout {
 
         successView.setVisibility(VISIBLE);
     }
+
+
+
 }

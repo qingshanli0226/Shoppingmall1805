@@ -1,15 +1,16 @@
 package view.loadinPage;
 
 public class ErrorBean {
-    private String errorCode;
+
+    public String errorcode;
     private String errorMessage;
 
     public String getErrorCode() {
-        return errorCode;
+        return errorcode;
     }
 
     public void setErrorCode(String errorCode) {
-        this.errorCode = errorCode;
+        this.errorcode = errorCode;
     }
 
     public String getErrorMessage() {

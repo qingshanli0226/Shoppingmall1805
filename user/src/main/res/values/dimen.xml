@@ -14,7 +14,5 @@
     <dimen name="UView_reght_space">20dp</dimen>
 
 
-    <dimen name="Utext_size_min">20sp</dimen>
 
-    <dimen name="Utext_match_0dp">0dp</dimen>
 </resources>

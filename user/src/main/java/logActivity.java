@@ -5,6 +5,7 @@ import android.widget.TextView;
 import com.shopmall.bawei.user.R;
 
 import framework.BaseActivity;
+import view.loadinPage.ErrorBean;
 
 public
 class logActivity extends BaseActivity {
@@ -12,6 +13,11 @@ class logActivity extends BaseActivity {
     private EditText loginPassword;
     private Button loginLoginButton;
     private TextView loginSumpResgin;
+
+    @Override
+    protected void createPresenter() {
+
+    }
 
     @Override
     protected void OnClickListener() {
@@ -28,5 +34,20 @@ class logActivity extends BaseActivity {
     @Override
     protected int getlayoutId() {
         return R.layout.login_acitvity;
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

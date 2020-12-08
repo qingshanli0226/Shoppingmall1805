@@ -34,5 +34,16 @@ public class ShopmallConstant {
     public static final String LOGIN_ACTION = "com.bawei.shopmall.LOGIN_ACTION";
 
 
+    public static final int TO_LOGIN_FROM_SHOPCAR_FRAGMTNT = 0;
+    public static final int TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR = 1;
+    public static final int TO_LOGIN_FROM_GOODS_DETAIL_SHOPCAR_PIC = 2;
+    public static final int TO_LOGIN_FROM_MINE_FRAGMENT = 3;
+    public static final String TO_LOGIN_KEY = "toLogin";
 
+    public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
+
+    public static final int  BUTTON_LOGIN_INDEX1 = 1;
+    public static final int  BUTTON_LOGIN_INDEX2 = 2;
+    public static final int  BUTTON_LOGIN_INDEX3 = 3;
+    public static final int  BUTTON_LOGIN_INDEX4 = 4;
 }

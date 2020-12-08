@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="Scom_public_heightone">200dp</dimen>
+    <dimen name="Scom_public_heighttow">150dp</dimen>
+    <dimen name="Scom_public_heightthree">100dp</dimen>
+    <dimen name="Scom_public_heightfour">60dp</dimen>
+
+    <dimen name="Scom_public_widthtone">200dp</dimen>
+    <dimen name="Scom_public_widthtow">150dp</dimen>
+    <dimen name="Scom_public_widththree">100dp</dimen>
+    <dimen name="Scom_public_widthfour">60dp</dimen>
+
+    <dimen name="SView_left_space">20dp</dimen>
+    <dimen name="SView_reght_space">20dp</dimen>
+</resources>
