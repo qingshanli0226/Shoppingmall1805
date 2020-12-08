@@ -2,17 +2,61 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".home.MainActivity">
+    style="@style/ActivityStyle"
+    android:orientation="vertical"
+    tools:context=".activity.MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <com.bw.framework.ToorBar
+        android:id="@+id/main_bar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:visibility="gone"></com.bw.framework.ToorBar>
+
+   <FrameLayout
+       android:id="@+id/frame_layout"
+       android:layout_width="match_parent"
+       android:layout_height="0dp"
+       android:layout_weight="1"/>
+
+
+   <RadioGroup
+       android:id="@+id/group"
+       android:layout_width="match_parent"
+       android:orientation="horizontal"
+       android:layout_height="@dimen/dp_72">
+
+       <RadioButton
+           android:id="@+id/rd1"
+           android:checked="true"
+           android:text="主页"
+           style="@style/RadioButtonStyle"
+           android:drawableTop="@drawable/btn1_selecter" />
+
+       <RadioButton
+           android:id="@+id/rd2"
+           android:text="分类"
+           style="@style/RadioButtonStyle"
+           android:drawableTop="@drawable/btn2_selecter"/>
+
+       <RadioButton
+           android:id="@+id/rd3"
+           android:text="发现"
+           style="@style/RadioButtonStyle"
+           android:drawableTop="@drawable/btn3_selecter"/>
+
+       <RadioButton
+           android:id="@+id/rd4"
+           android:text="购物车"
+           style="@style/RadioButtonStyle"
+           android:drawableTop="@drawable/btn4_selecter"/>
+       <RadioButton
+           android:id="@+id/rd5"
+           android:text="个人中心"
+           style="@style/RadioButtonStyle"
+           android:drawableTop="@drawable/btn5_selecter"/>
+
+
+   </RadioGroup>
+
 
 </LinearLayout>

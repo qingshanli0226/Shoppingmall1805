@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_width="@dimen/dp_100"
+    android:layout_height="wrap_content">
+
+
+<ImageView
+        android:id="@+id/channel_image"
+        android:src="@drawable/ic_launcher_background"
+        android:scaleType="center"
+        android:layout_width="@dimen/dp_72"
+        android:layout_height="@dimen/dp_72"/>
+
+    <TextView
+        android:id="@+id/channel_title"
+        android:layout_width="@dimen/dp_72"
+        android:textAlignment="center"
+        android:layout_height="@dimen/dp_40"/>
+
+</LinearLayout>

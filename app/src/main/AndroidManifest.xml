@@ -9,14 +9,17 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".home.MainActivity">
+        android:theme="@style/AppTheme.Fullscreen">
+        <activity android:name=".detail.DetailsActivity"></activity>
+        <activity android:name=".activity.MainActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".activity.WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <service android:name="com.bw.framework.service.AotuLoginService"/>
     </application>
 
 </manifest>
