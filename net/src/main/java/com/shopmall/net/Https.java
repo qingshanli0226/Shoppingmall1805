@@ -26,10 +26,10 @@ public interface Https {
      * 分类页面请求
      */
     @GET
-    Observable<SortData> getsort(@Url String url);
+    Observable<SortData> getSort(@Url String url);
 
     @GET
-    Observable<TagBean> gettag(@Url String url);
+    Observable<TagBean> getTag(@Url String url);
 
     @POST
     Observable<LoginBean> getLogin(@Url String url, @QueryMap HashMap<String,String> map);

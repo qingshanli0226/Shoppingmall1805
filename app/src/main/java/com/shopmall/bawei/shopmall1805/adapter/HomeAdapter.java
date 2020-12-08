@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopmall1805.adapter;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -8,8 +10,10 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.home.GoodsInfoActivity;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.adapter.BaseRVAdapter;
+import com.shopmall.net.bean.DetailsData;
 import com.shopmall.net.bean.HomeData;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
@@ -115,7 +119,7 @@ public class HomeAdapter extends BaseRVAdapter<Object> {
         seckillAdapter.updataData(seckillInfoBeans);
     }
 
-    private void displayRecommend(Object itemData, BaseViewHolder baseViewHolder) {
+    private void displayRecommend(final Object itemData, final BaseViewHolder baseViewHolder) {
         List<HomeData.ResultBean.RecommendInfoBean> recommendInfoBeans = (List<HomeData.ResultBean.RecommendInfoBean>)itemData;
         RecyclerView recommendRv  = baseViewHolder.getView(R.id.rv_recommend);
         recommendRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),3));
@@ -123,9 +127,21 @@ public class HomeAdapter extends BaseRVAdapter<Object> {
         RecommendAdapter recommendAdapter = new RecommendAdapter();
         recommendRv.setAdapter(recommendAdapter);
         recommendAdapter.updataData(recommendInfoBeans);
+
+        recommendAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                HomeData.ResultBean.RecommendInfoBean recommendInfoBean = ((List<HomeData.ResultBean.RecommendInfoBean>) itemData).get(position);
+                DetailsData detailsData = new DetailsData(recommendInfoBean.getProduct_id(), recommendInfoBean.getName(), recommendInfoBean.getCover_price(), Constants.BASE_URl_IMAGE + recommendInfoBean.getFigure());
+                Intent intent = new Intent();
+                intent.putExtra("details",detailsData);
+                intent.setClass((Activity)(baseViewHolder.itemView.getContext()), GoodsInfoActivity.class);
+                ((Activity)(baseViewHolder.itemView.getContext())).startActivity(intent);
+            }
+        });
     }
 
-    private void displayHot(Object itemData, BaseViewHolder baseViewHolder) {
+    private void displayHot(final Object itemData, final BaseViewHolder baseViewHolder) {
         List<HomeData.ResultBean.HotInfoBean> hotInfoBeans = (List<HomeData.ResultBean.HotInfoBean>)itemData;
         RecyclerView hotRv  = baseViewHolder.getView(R.id.rv_hot);
         hotRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),2));
@@ -133,6 +149,18 @@ public class HomeAdapter extends BaseRVAdapter<Object> {
         final HotAdapter hotAdapter = new HotAdapter();
         hotRv.setAdapter(hotAdapter);
         hotAdapter.updataData(hotInfoBeans);
+
+        hotAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
+            @Override
+            public void onItemClick(int position) {
+                HomeData.ResultBean.HotInfoBean hotInfoBean = ((List<HomeData.ResultBean.HotInfoBean>) itemData).get(position);
+                DetailsData detailsData = new DetailsData(hotInfoBean.getProduct_id(), hotInfoBean.getName(), hotInfoBean.getCover_price(), Constants.BASE_URl_IMAGE + hotInfoBean.getFigure());
+                Intent intent = new Intent();
+                intent.putExtra("details",detailsData);
+                intent.setClass((Activity)(baseViewHolder.itemView.getContext()), GoodsInfoActivity.class);
+                ((Activity)(baseViewHolder.itemView.getContext())).startActivity(intent);
+            }
+        });
     }
 
     @Override

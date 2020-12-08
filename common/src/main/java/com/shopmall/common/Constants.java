@@ -21,7 +21,6 @@ public class Constants {
     public static final String BASE_URl_IMAGE = BASE+"/atguigu/img";
 
 
-
     //小裙子
     public static final String SKIRT_URL = BASE_URL_JSON + "SKIRT_URL.json";
     public static final String SKIRT_URL2 = BASE_URL_JSON2 + "SKIRT_URL.json";
@@ -90,16 +89,37 @@ public class Constants {
     //首饰厂
     public static final String SHOUSHI_STORE = BASE_URL_JSON + "SHOUSHI_STORE.json";
 
-
+    //登陆
+    public static final String LOGIN_URL="login";
+    //注册
+    public static final String REGISTER_URL="register";
 
     public static Boolean isBackHome = false;
-
-
 
     //客服数据
     public static final String CALL_CENTER = "http://www6.53kf.com/webCompany.php?arg=10007377&style=1&kflist=off&kf=info@atguigu.com,video@atguigu.com,public@atguigu.com,3069368606@qq.com,215648937@qq.com,sudan@atguigu.com,sszhang@atguigu.com&zdkf_type=1&language=zh-cn&charset=gbk&referer=http%3A%2F%2Fwww.atguigu.com%2Fcontant.shtml&keyword=&tfrom=1&tpl=crystal_blue&timeStamp=1479001706368&ucust_id=";
 
+    //搜索数据的接口
+    public static final String SEARCH="search";
+    //检查服务端一个产品库存情况的接口
+    public static final String CHECKONE__PRODUCT="checkOneProductInventory";
+    //向服务端购物车添加一个产品的接口
+    public static final String ADDONE_PRODUCT="addOneProduct";
 
+    //获取服务端购物车产品信息的接口
+    public static final String GETSHORTCART_PRODUCT="getShortcartProducts";
+    //更新服务端购物车产品的数量的接口
+    public static final String UPDATE_PRODUCT="updateProductNum";
+    //检查服务端多个产品是否库存充足
+    public static final String CHECKINVENTORY="checkInventory";
+
+    //向服务端下订单接口
+    public static final String GETORDERINFO="getOrderInfo";
+    //从服务端购物车删除一个产品的接口
+    public static final String REMOVEONE_PRODUCT="removeOneProduct";
+
+    //全选服务端购物车产品或者全不选
+    public static final String SELECTALL_PRODUCT="selectAllProduct";
 }
 
 

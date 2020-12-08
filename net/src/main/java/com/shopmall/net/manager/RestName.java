@@ -1,4 +1,4 @@
-package com.shopmall.framework;
+package com.shopmall.net.manager;
 
 public class RestName {
     //share名字

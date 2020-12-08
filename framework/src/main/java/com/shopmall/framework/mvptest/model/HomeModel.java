@@ -42,7 +42,7 @@ public class HomeModel implements Constart.HomeConstartModel {
                     @Override
                     public void onError(Throwable e) {
                         loadingPage.showSuccessView();
-                           home.No(e.getMessage());
+                        home.No(e.getMessage());
                     }
 
                     @Override

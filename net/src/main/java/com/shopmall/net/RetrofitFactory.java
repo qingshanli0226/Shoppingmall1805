@@ -1,5 +1,7 @@
 package com.shopmall.net;
 
+import com.shopmall.net.manager.ShopUserManager;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -65,7 +67,7 @@ public class RetrofitFactory {
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 Request newRequest = request.newBuilder()
-                        .addHeader("", "")
+                        .addHeader("token", ShopUserManager.getInstance().getToken())
                         .build();
                 Response proceed = chain.proceed(newRequest);
                 return proceed;

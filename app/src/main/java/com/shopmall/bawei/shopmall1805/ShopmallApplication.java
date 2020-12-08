@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.net.manager.ShopUserManager;
 
 public class ShopmallApplication extends Application {
 
@@ -13,5 +14,7 @@ public class ShopmallApplication extends Application {
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);
+
+        ShopUserManager.getInstance().init(this);
     }
 }

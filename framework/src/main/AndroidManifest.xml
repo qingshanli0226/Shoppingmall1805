@@ -1,2 +1,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shopmall.bawei.framework" />
+    package="com.shopmall.bawei.framework" >
+
+    <application>
+
+        <service android:name="com.shopmall.framework.service.LoginService"/>
+
+    </application>
+
+</manifest>
+
+

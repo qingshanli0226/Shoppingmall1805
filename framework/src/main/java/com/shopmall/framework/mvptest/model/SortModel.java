@@ -18,7 +18,7 @@ public class SortModel implements Constart.SortConstartModel {
     @Override
     public void Sort(String url, final LoadingPage loadingPage, final Sort sort) {
         Https getinstance = RetrofitFactory.getInstance().create(Https.class);
-        getinstance.getsort(url)
+        getinstance.getSort(url)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {

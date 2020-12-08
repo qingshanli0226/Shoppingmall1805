@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.shopmall.framework.ShopUserManager;
+import com.shopmall.net.manager.ShopUserManager;
 import com.shopmall.framework.base.BaseMVPActivity;
 import com.shopmall.net.bean.LoginBean;
 
@@ -25,7 +25,7 @@ public class ShopCarActivity extends BaseMVPActivity implements ShopUserManager.
     @Override
     protected void initView(Bundle savedInstanceState) {
         shopText = (TextView) findViewById(R.id.shopText);
-
+        ShopUserManager.getInstance().registerUserLoginChangeListener(this);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class ShopCarActivity extends BaseMVPActivity implements ShopUserManager.
 
     @Override
     public void OnUserLogin(LoginBean loginBean) {
-
+        shopText.setText(loginBean.getResult().getName());
     }
 
     @Override

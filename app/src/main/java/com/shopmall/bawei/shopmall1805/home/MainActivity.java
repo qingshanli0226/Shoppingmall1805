@@ -1,37 +1,82 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.net.bean.MyTab;
 import com.shopmall.bawei.shopmall1805.fragment.CartFragment;
 import com.shopmall.bawei.shopmall1805.fragment.CommunFragment;
 import com.shopmall.bawei.shopmall1805.fragment.HomeFragment;
 import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
 import com.shopmall.bawei.shopmall1805.fragment.TypeFragment;
+import com.shopmall.framework.base.BaseMVPActivity;
+import com.shopmall.framework.service.LoginService;
+import com.shopmall.net.bean.MyTab;
+import com.shopmall.net.manager.ShopUserManager;
 
 import java.util.ArrayList;
+import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
+@Route(path = "/app/MainActivity")
+public class MainActivity extends BaseMVPActivity {
+
     private CommonTabLayout comm;
     private ArrayList<CustomTabEntity> tabEntities = new ArrayList<>();
-    private HomeFragment homeFragment = new HomeFragment();
-    private TypeFragment typeFragment = new TypeFragment();
-    private CommunFragment communFragment = new CommunFragment();
-    private CartFragment cartFragment = new CartFragment();
-    private MyFragment myFragment = new MyFragment();
+    private List<Fragment> fragments = new ArrayList<>();
+    private HomeFragment homeFragment;
+    private TypeFragment typeFragment;
+    private CommunFragment communFragment;
+    private CartFragment cartFragment;
+    private MyFragment myFragment;
+    private int num;
+
+    private Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    protected void initEvent() {
+        comm.setOnTabSelectListener(new OnTabSelectListener() {
+            @Override
+            public void onTabSelect(int position) {
+                if(position == 3){
+                    if (ShopUserManager.getInstance().isUserLogin()==false){
+                        ARouter.getInstance().build("/user/UserActivity").navigation();
+                        comm.setCurrentTab(num);
+                    }else {
+                        showFragment(fragments.get(position));
+                    }
+                }else{
+                    showFragment(fragments.get(position));
+                    num = position;
+                }
 
-        comm = (CommonTabLayout) findViewById(R.id.comm);
+            }
+
+            @Override
+            public void onTabReselect(int position) {
+
+            }
+        });
+    }
+
+    @Override
+    protected void initData() {
+        homeFragment = new HomeFragment();
+        typeFragment = new TypeFragment();
+        communFragment = new CommunFragment();
+        cartFragment = new CartFragment();
+        myFragment = new MyFragment();
+
+        fragments.add(homeFragment);
+        fragments.add(typeFragment);
+        fragments.add(communFragment);
+        fragments.add(cartFragment);
+        fragments.add(myFragment);
 
         getSupportFragmentManager().beginTransaction()
                 .add(R.id.frame,homeFragment)
@@ -49,28 +94,21 @@ public class MainActivity extends AppCompatActivity {
         tabEntities.add(new MyTab("个人中心", R.drawable.main_user_press, R.drawable.main_user));
 
         comm.setTabData(tabEntities);
+    }
 
-        comm.setOnTabSelectListener(new OnTabSelectListener() {
-            @Override
-            public void onTabSelect(int position) {
-                if(position == 0){
-                    showFragment(homeFragment);
-                }else  if(position == 1){
-                    showFragment(typeFragment);
-                }else  if(position == 2){
-                    showFragment(communFragment);
-                }else  if(position == 3){
-                    showFragment(cartFragment);
-                }else  if(position == 4){
-                    showFragment(myFragment);
-                }
-            }
+    @Override
+    protected void initView(Bundle savedInstanceState) {
+        ARouter.getInstance().inject(this);
 
-            @Override
-            public void onTabReselect(int position) {
+        comm = (CommonTabLayout) findViewById(R.id.comm);
 
-            }
-        });
+        intent = new Intent(MainActivity.this, LoginService.class);
+        startService(intent);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_main;
     }
 
     public void showFragment(Fragment fragment){
@@ -82,5 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 .hide(myFragment)
                 .show(fragment)
                 .commit();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
     }
 }

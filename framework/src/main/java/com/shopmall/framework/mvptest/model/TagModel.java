@@ -19,7 +19,7 @@ public class TagModel implements Constart.TagConstartModel {
     public void Tag(String url, final LoadingPage loadingPage, final Tag tag) {
         Https getinstance = RetrofitFactory.getInstance().create(Https.class);
 
-        getinstance.gettag(url)
+        getinstance.getTag(url)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .doOnSubscribe(new Consumer<Disposable>() {
