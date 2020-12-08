@@ -24,6 +24,18 @@ public class LabelPresenter extends LabelContract.LabelPresenter {
                 .gettag()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iHttpView.showLoaing();
+                    }
+                })
+                .doFinally(new Action() {
+                    @Override
+                    public void run() throws Exception {
+                        iHttpView.hideLoading();
+                    }
+                })
                 .subscribe(new ShopmallObserver<TagBean>() {
                     @Override
                     public void onNext(TagBean tagBean) {

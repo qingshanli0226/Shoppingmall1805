@@ -23,7 +23,7 @@ public abstract class ShopmallObserver<T> implements Observer<T> {
     public abstract void onNext(T t);
 
     @Override
-    public void onError(Throwable e) {//该函数可以扩展处理各种类型的错误
+    public void onError(Throwable e) {
         Log.d("LQS error message-----", e.getMessage());
         if (e instanceof JSONException) {
             onRequestError(UrlHelp.JSCON_ERROR_CODE, UrlHelp.JSON_ERROR_MESSAGE);

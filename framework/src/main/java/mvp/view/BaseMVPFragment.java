@@ -8,16 +8,19 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.shopmall.bawei.framework.R;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseMVPFragment <T extends  IPresenter,V extends  IView> extends BaseFragment{
         protected  T ihttpPresenter;
-
+    protected ProgressBar loadingBar;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        loadingBar = findViewById(R.id.loadingBar);
         initPresenter();
         ihttpPresenter.attachView((V)this);
         initHttpData();

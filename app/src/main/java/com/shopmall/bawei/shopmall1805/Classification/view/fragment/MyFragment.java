@@ -12,7 +12,7 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.user.UserMainActivity;
+import com.shopmall.bawei.user.view.UserMainActivity;
 
 
 public class MyFragment extends Fragment {

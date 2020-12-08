@@ -3,7 +3,7 @@
     package="com.shopmall.bawei.user">
 
     <application>
-        <activity android:name=".UserMainActivity" android:launchMode="singleTop"></activity>
+        <activity android:name=".view.UserMainActivity" android:launchMode="singleTop"></activity>
     </application>
 
 </manifest>

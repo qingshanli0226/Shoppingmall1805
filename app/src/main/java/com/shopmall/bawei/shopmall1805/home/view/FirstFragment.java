@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.home.view;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
@@ -20,7 +21,7 @@ import java.util.List;
 
 import mvp.view.BaseMVPFragment;
 
-public class FirstFragment extends BaseMVPFragment<HomePresenterImpl, HomeContract.IHomeView> implements HomeContract.IHomeView , View.OnClickListener{
+public class FirstFragment extends BaseMVPFragment<HomePresenterImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
     private RecyclerView main_rv;
     private List<Object> h_data=new ArrayList<>();
     private TextView errorTv;
@@ -39,20 +40,36 @@ public class FirstFragment extends BaseMVPFragment<HomePresenterImpl, HomeContra
     @Override
     protected void initView() {
         h_data.clear();
+        errorTv=findViewById(R.id.errorTv);
+        errorTv.setOnClickListener(this);
+        normalContent=findViewById(R.id.normalContent);
         main_rv = findViewById(R.id.main_rv);
         main_rv.setLayoutManager(new LinearLayoutManager(getContext()));
     }
-
+    @Override
+    public void showError(String code, String message) {
+        errorTv.setVisibility(View.VISIBLE);
+        normalContent.setVisibility(View.GONE);
+        errorTv.setText(message + " 点击刷新数据");
+    }
 
     @Override
-    public void onClick(View v) {
-
+    public void showLoaing() {
+        errorTv.setVisibility(View.GONE);
+        normalContent.setVisibility(View.VISIBLE);
+        loadingBar.setVisibility(View.VISIBLE);
+        errorTv.setVisibility(View.GONE);
     }
+
+    @Override
+    public void hideLoading() {
+        loadingBar.setVisibility(View.GONE);
+    }
+
 
     @Override
     public void onHomeData(HomeBean homeBean) {
 
-        Log.i("TAG", "onHomeData: "+homeBean);
         List<HomeBean.BannerInfoBean> banner_info = homeBean.getBanner_info();
         h_data.add(banner_info);
 
@@ -71,7 +88,6 @@ public class FirstFragment extends BaseMVPFragment<HomePresenterImpl, HomeContra
 
         List<HomeBean.HotInfoBean> hot_info = homeBean.getHot_info();
         h_data.add(hot_info);
-        Log.i("TAG", "getdata2: "+recommend_info);
 
         HomeMultiLayoutAdapter homeMultiLayoutAdapter = new HomeMultiLayoutAdapter(getContext());
         main_rv.setAdapter(homeMultiLayoutAdapter);
@@ -85,27 +101,20 @@ public class FirstFragment extends BaseMVPFragment<HomePresenterImpl, HomeContra
 
     @Override
     protected void initPresenter() {
-        Log.i("TAG", "initPresenter: ");
+
         ihttpPresenter = new HomePresenterImpl();
     }
 
-    @Override
-    public void showError(String code, String message) {
-        errorTv.setVisibility(View.VISIBLE);
-        normalContent.setVisibility(View.GONE);
-        errorTv.setText(message + " 点击刷新数据");
-    }
 
     @Override
-    public void showLoaing() {
-        errorTv.setVisibility(View.GONE);
-        normalContent.setVisibility(View.VISIBLE);
-
-        errorTv.setVisibility(View.GONE);
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.errorTv:
+                ihttpPresenter.getHomeData();
+                break;
+            default:break;
+        }
     }
 
-    @Override
-    public void hideLoading() {
 
-    }
 }

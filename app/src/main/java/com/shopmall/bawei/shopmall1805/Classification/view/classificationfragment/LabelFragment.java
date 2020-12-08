@@ -25,7 +25,7 @@ import mvp.view.BaseFragment;
 import mvp.view.BaseMVPFragment;
 
 
-public class LabelFragment extends BaseMVPFragment<LabelPresenter, LabelContract.ILabel> implements LabelContract.ILabel {
+public class LabelFragment extends BaseMVPFragment<LabelPresenter, LabelContract.ILabel> implements LabelContract.ILabel, View.OnClickListener {
     private RecyclerView biaoRv;
     private TextView errorTv;
     private RelativeLayout normalContent;
@@ -54,6 +54,10 @@ public class LabelFragment extends BaseMVPFragment<LabelPresenter, LabelContract
     @Override
     protected void initView() {
         biaoRv = (RecyclerView) findViewById(R.id.biao_rv);
+        errorTv=findViewById(R.id.errorTv);
+        errorTv.setOnClickListener(this);
+        normalContent=findViewById(R.id.normalContent);
+
         biaoRv.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
 
     }
@@ -77,12 +81,22 @@ public class LabelFragment extends BaseMVPFragment<LabelPresenter, LabelContract
     public void showLoaing() {
         errorTv.setVisibility(View.GONE);
         normalContent.setVisibility(View.VISIBLE);
-
+        normalContent.setVisibility(View.VISIBLE);
         errorTv.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
+        loadingBar.setVisibility(View.GONE);
+    }
 
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.errorTv:
+                ihttpPresenter.getILabelData();
+                break;
+            default:break;
+        }
     }
 }

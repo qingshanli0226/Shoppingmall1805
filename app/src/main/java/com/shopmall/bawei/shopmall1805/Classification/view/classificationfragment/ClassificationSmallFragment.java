@@ -29,7 +29,7 @@ import java.util.List;
 import mvp.view.BaseMVPFragment;
 
 
-public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationPresenter,ClassificationContract.IClassification> implements  ClassificationContract.IClassification {
+public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationPresenter,ClassificationContract.IClassification> implements ClassificationContract.IClassification, View.OnClickListener {
     private String uri;
     private ListView clothesLv;
     private List<String> list = new ArrayList();
@@ -60,9 +60,10 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
         initsmall();
         viewById = findViewById(R.id.content_rv);
         Log.i("", "initView: ");
-
-     viewById.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
-
+        errorTv=findViewById(R.id.errorTv);
+        normalContent=findViewById(R.id.normalContent);
+        viewById.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
+        errorTv.setOnClickListener( this);
         viewById.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
@@ -156,19 +157,20 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
         errorTv.setVisibility(View.VISIBLE);
         normalContent.setVisibility(View.GONE);
         errorTv.setText(message + " 点击刷新数据");
+
     }
 
     @Override
     public void showLoaing() {
         errorTv.setVisibility(View.GONE);
         normalContent.setVisibility(View.VISIBLE);
-
+        loadingBar.setVisibility(View.VISIBLE);
         errorTv.setVisibility(View.GONE);
     }
 
     @Override
     public void hideLoading() {
-
+        loadingBar.setVisibility(View.GONE);
     }
 
     @Override
@@ -199,6 +201,18 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
     protected void initPresenter() {
         ihttpPresenter=new ClassificationPresenter();
     }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.errorTv:
+                ihttpPresenter.getIClassificationData(uri);
+                break;
+            default:break;
+        }
+    }
+
+
 
     class MyAdapter extends BaseAdapter {
         private int isselect=0;

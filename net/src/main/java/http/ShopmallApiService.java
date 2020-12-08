@@ -4,6 +4,8 @@ package http;
 
 
 import com.example.common2.HomeBean;
+import com.example.common2.LoginBean;
+import com.example.common2.RegisterBean;
 import com.example.common2.SkirstBean;
 import com.example.common2.TagBean;
 import com.example.common2.UrlHelp;
@@ -35,13 +37,13 @@ public interface ShopmallApiService {
     @GET(UrlHelp.TAG_URL)
     Observable<TagBean>gettag();
 
-   /* @POST("register")
+    @POST("register")
     @FormUrlEncoded
-    Observable<BaseBean<String>> register(@FieldMap HashMap<String, String> params);
+    Observable<BaseBean<RegisterBean>> register(@FieldMap HashMap<String, String> params);
 
     @POST("login")
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> params);*/
+    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> params);
 
    /* @POST("checkOneProductInventory")
     @FormUrlEncoded

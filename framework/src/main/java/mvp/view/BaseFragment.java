@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public abstract class BaseFragment extends Fragment  {
+public abstract class BaseFragment extends Fragment  implements ToolBar.IToolBarClickListner {
    private View rootView;
 
     @Nullable
@@ -37,12 +37,6 @@ public abstract class BaseFragment extends Fragment  {
     protected abstract void initView();
     public <T extends View> T findViewById(@IdRes int id) {
         return rootView.findViewById(id);
-    }
-
-
-
-    protected void showMessage(String message) {
-        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
     }
 
     protected void launchActivity(Class launcActivityClass, Bundle bundle) {
