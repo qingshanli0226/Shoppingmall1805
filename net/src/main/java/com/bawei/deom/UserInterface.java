@@ -51,12 +51,15 @@ public interface UserInterface {
     Observable<Shoppingcartproducts>getShortcartProducts();
 //    addOneProduct
     @POST("/addOneProduct")
+
      Observable<BaseBean<String>>addOneProduct(@Body RequestBody requestBody);
 
     @POST("/updateProductNum")
+
     Observable<BaseBean<String>>updateProductNum(@Body RequestBody requestBody);
 
     @POST("/checkOneProductInventory")
+    @FormUrlEncoded
     Observable<BaseBean<String>>checkOneProductInventory(@FieldMap HashMap<String,String> map);
 
 

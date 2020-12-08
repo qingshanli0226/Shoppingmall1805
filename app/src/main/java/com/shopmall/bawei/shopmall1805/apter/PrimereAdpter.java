@@ -80,7 +80,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         hotAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ShangPing goodsBean = new ShangPing(hotInfoBeans.get(position).getProduct_id(),hotInfoBeans.get(position).getCover_price(),hotInfoBeans.get(position).getFigure(),hotInfoBeans.get(position).getName());
+                ShangPing goodsBean = new ShangPing(hotInfoBeans.get(position).getProduct_id(),hotInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+hotInfoBeans.get(position).getFigure(),hotInfoBeans.get(position).getName());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -100,7 +100,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
 
-                ShangPing goodsBean = new ShangPing(recommendInfoBeans.get(position).getProduct_id(),recommendInfoBeans.get(position).getCover_price(),recommendInfoBeans.get(position).getFigure(),recommendInfoBeans.get(position).getName());
+                ShangPing goodsBean = new ShangPing(recommendInfoBeans.get(position).getProduct_id(),recommendInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+recommendInfoBeans.get(position).getFigure(),recommendInfoBeans.get(position).getName());
 
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
                 intent.putExtra("shangp", goodsBean);
@@ -120,7 +120,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         seckAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ShangPing goodsBean = new ShangPing(seckillInfoBeans.get(position).getProduct_id(),seckillInfoBeans.get(position).getCover_price(),seckillInfoBeans.get(position).getFigure(),seckillInfoBeans.get(position).getName());
+                ShangPing goodsBean = new ShangPing(seckillInfoBeans.get(position).getProduct_id(),seckillInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+seckillInfoBeans.get(position).getFigure(),seckillInfoBeans.get(position).getName());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -153,7 +153,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
                     }
                     String image = actInfoBeans.get(position).getIcon_url();
-                    ShangPing goodsBean = new ShangPing(product_id,cover_price,actInfoBeans.get(position).getIcon_url(),name);
+                    ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+actInfoBeans.get(position).getIcon_url(),name);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
                     intent.putExtra("shangp", goodsBean);
@@ -222,7 +222,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【蓝诺】《天下吾双》 剑网3同人本";
                     }
                     String image = bannerInfoBeans.get(position).getImage();
-                    ShangPing goodsBean = new ShangPing(product_id,cover_price,bannerInfoBeans.get(position).getImage(),name);
+                    ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+bannerInfoBeans.get(position).getImage(),name);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
                     intent.putExtra("shangp", goodsBean);

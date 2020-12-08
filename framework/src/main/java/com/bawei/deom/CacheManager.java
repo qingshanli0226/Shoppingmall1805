@@ -164,14 +164,110 @@ public class CacheManager {
     //更新缓存中商品的数量
     public void updateProductNum(String productId, String newNum) {
         int i = 0;
+        for(Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
+            if (shopcarBean.getProductId().equals(productId)){
+                shopcarBean.setProductNum(newNum);
+                for (IShopcarDataChangeListener listener: iShopcarDataChangeListeners){
+                    listener.onOneDataChanger(i,shopcarBean);
+                    listener.onMeneyChanged(getMoneyValue());
+                }
+                break;
+            }
+            i++;
+        }
 
     }
+    //当页面销毁时页面不需要监听数据改变了我们把它从列标中删除
+    public  void unSetShopcarDataChangerListener(IShopcarDataChangeListener listener){
+        if (iShopcarDataChangeListeners.contains(listener)){
+            iShopcarDataChangeListeners.remove(listener);
+        }
+    }
+    public  Shoppingcartproducts.ResultBean getShopcarBan(String prpductId){
+        for (Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
+            if (prpductId.equals(shopcarBean.getProductId())){
+                return  shopcarBean;
+            }
+        }
+        return  null;
+    }
+
     private boolean isALLSelected() {
+          for ( Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
+              if (!shopcarBean.isProductSelected()){
+                  return  false;
+              }
+          }
           return true;
     }
-
-
-
+   public  void selectAllProduct(boolean isAllSelected){
+        for (Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
+            shopcarBean.setProductSelected(isAllSelected);
+        }
+        //通知UI更改界面
+       //通知UI数据发生了改变需要更细UI
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+            listener.onDataChanged(shopcarBeanlist);
+            listener.onMeneyChanged(getMoneyValue());
+            listener.onAllSelected(isAllSelected);
+        }
+   }
+   //把它加入到删除队列
+   private void  addDeleteShopcarBean(Shoppingcartproducts.ResultBean shopcarBean,int postion){
+        deleteshocarBeanlist.add(shopcarBean);
+        boolean isAllselect=deleteshocarBeanlist.size()== shopcarBeanlist.size();//判断当前删除队列数据数目和购物车数目是否一致，一致代表全选删除
+       for ( IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+           listener.onOneDataChanger(postion,shopcarBean);
+           if (isAllselect){
+               listener.onAllSelected(isAllselect);
+           }
+       }
+   }
+   public  boolean isALLSelectedInEditMode(){
+        return  deleteshocarBeanlist.size()==shopcarBeanlist.size();
+   }
+   //从删除队列中删除
+   public void deleteOneShopcarBean(Shoppingcartproducts.ResultBean shopcarBean,int postion ){
+        deleteshocarBeanlist.remove(shopcarBean);
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+            listener.onOneDataChanger(postion,shopcarBean);
+            listener.onAllSelected(false);
+        }
+   }
+   public void selectAllProductInEditMode(boolean isAllselect){
+        if (isAllselect){
+            deleteshocarBeanlist.clear();
+            deleteshocarBeanlist.addAll(shopcarBeanlist);
+        }else {
+            deleteshocarBeanlist.clear();
+        }
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+            listener.onAllSelected(isAllselect);
+            listener.onDataChanged(shopcarBeanlist);
+        }
+   }
+   public  boolean checkIfDataInDeleteShopcarBeanList(Shoppingcartproducts.ResultBean shopcarBean){
+        return  deleteshocarBeanlist.contains(shopcarBean);
+   }
+    public  List<Shoppingcartproducts.ResultBean> getDeleteshocarBeanlist(){
+        return  deleteshocarBeanlist;
+    }
+    public  void processDeleteProducts(){
+        //首先将删除列表中的数据在购物车缓存中删除
+        shopcarBeanlist.removeAll(deleteshocarBeanlist);
+//b1删除列表清空
+        deleteshocarBeanlist.clear();
+        //通知UI刷新页面
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+            listener.onDataChanged(shopcarBeanlist);
+            listener.onMeneyChanged(getMoneyValue());
+            listener.onAllSelected(false);
+        }
+    }
+//    public ExecutorService getExecutorService(){
+//        return exec
+//    }
+    //定义接口当购物车数据发生改变是，通过改接口通知页面刷新
     public interface IShopcarDataChangeListener{
          void onDataChanged(List<Shoppingcartproducts.ResultBean> shopcarBeanlist);
          void onOneDataChanger(int pstion,Shoppingcartproducts.ResultBean shopcarBeanlist);
