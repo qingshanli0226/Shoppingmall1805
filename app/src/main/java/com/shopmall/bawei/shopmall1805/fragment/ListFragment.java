@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -14,13 +15,16 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.SortChildAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.SortHotAdapter;
+import com.shopmall.bawei.shopmall1805.home.GoodsInfoActivity;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
 import com.shopmall.framework.constart.Constart;
 import com.shopmall.framework.mvptest.presenter.SortPresenter;
+import com.shopmall.net.bean.DetailsData;
 import com.shopmall.net.bean.SortData;
 
 import java.util.ArrayList;
@@ -34,6 +38,8 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
     private List<String> title=new ArrayList<>();
     private SortHotAdapter sortHotAdapter;
     private SortChildAdapter sortChildAdapter;
+
+    private List<String> url = new ArrayList<>();
 
     @Override
     protected void createViewid(View inflate) {
@@ -51,47 +57,16 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
         listviewSort.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        mPresenter.Sort(Constants.SKIRT_URL2,loadingPage);
-                        break;
-                    case 1:
-                        mPresenter.Sort(Constants.JACKET_URL2,loadingPage);
-                        break;
-                    case 2:
-                        mPresenter.Sort(Constants.PANTS_URL2,loadingPage);
-                        break;
-                    case 3:
-                        mPresenter.Sort(Constants.OVERCOAT_URL2,loadingPage);
-                        break;
-                    case 4:
-                        mPresenter.Sort(Constants.ACCESSORY_URL2,loadingPage);
-                        break;
-                    case 5:
-                        mPresenter.Sort(Constants.BAG_URL2,loadingPage);
-                        break;
-                    case 6:
-                        mPresenter.Sort(Constants.DRESS_UP_URL2,loadingPage);
-                        break;
-                    case 7:
-                        mPresenter.Sort(Constants.HOME_PRODUCTS_URL2,loadingPage);
-                        break;
-                    case 8:
-                        mPresenter.Sort(Constants.STATIONERY_URL2,loadingPage);
-                        break;
-                    case 9:
-                        mPresenter.Sort(Constants.DIGIT_URL2,loadingPage);
-                        break;
-                    case 10:
-                        mPresenter.Sort(Constants.GAME_URL2,loadingPage);
-                        break;
-                }
+                mPresenter.Sort(url.get(position),loadingPage);
             }
         });
     }
 
     @Override
     protected void createData() {
+        if (title!=null || title.size()!=0){
+            title.clear();
+        }
         title.add("小裙子");
         title.add("上衣");
         title.add("下装");
@@ -116,6 +91,21 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
             }
         };
         listviewSort.setAdapter(arrayAdapter);
+
+        if (url!=null || url.size()!=0){
+            url.clear();
+        }
+        url.add(Constants.SKIRT_URL2);
+        url.add(Constants.JACKET_URL2);
+        url.add(Constants.PANTS_URL2);
+        url.add(Constants.OVERCOAT_URL2);
+        url.add(Constants.ACCESSORY_URL2);
+        url.add(Constants.BAG_URL2);
+        url.add(Constants.DRESS_UP_URL2);
+        url.add(Constants.HOME_PRODUCTS_URL2);
+        url.add(Constants.STATIONERY_URL2);
+        url.add(Constants.DIGIT_URL2);
+        url.add(Constants.GAME_URL2);
     }
 
     @Override
@@ -130,7 +120,7 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
 
     @Override
     public void Success(Object... objects) {
-        SortData sortData=(SortData)objects[0];
+        final SortData sortData=(SortData)objects[0];
         Toast.makeText(getContext(), ""+sortData, Toast.LENGTH_SHORT).show();
 
         if (sortHotAdapter==null&&sortChildAdapter==null){
@@ -150,6 +140,23 @@ public class ListFragment extends BaseMVPFragment<SortPresenter> implements Cons
             sortChildAdapter.notifyDataSetChanged();
         }
 
+        sortHotAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                SortData.ResultBean.HotProductListBean hotProductListBean = sortData.getResult().get(0).getHot_product_list().get(position);
+                DetailsData detailsData = new DetailsData(hotProductListBean.getProduct_id(), hotProductListBean.getName(), hotProductListBean.getCover_price(),Constants.BASE_URl_IMAGE+hotProductListBean.getFigure());
+                Intent intent = new Intent(getActivity(), GoodsInfoActivity.class);
+                intent.putExtra("details",detailsData);
+                startActivity(intent);
+            }
+        });
+
+        sortChildAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                Toast.makeText(getContext(), ""+position, Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

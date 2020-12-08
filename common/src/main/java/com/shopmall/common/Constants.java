@@ -56,11 +56,6 @@ public class Constants {
     public static final String GAME_URL = BASE_URL_JSON + "GAME_URL.json";
     public static final String GAME_URL2 = BASE_URL_JSON2 + "GAME_URL.json";
 
-
-
-
-
-
     //主页Fragment路径
     public static final String HOME_URL = BASE_URL_JSON + "HOME_URL.json";
     public static final String HOME_URL2 = BASE_URL_JSON2 + "HOME_URL.json";
