@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.common.view.ErrorBean;
-import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.net.mode.HomeBean;
 import com.bawei.shopmall.home.contract.HomeContract;
@@ -17,7 +16,6 @@ import com.shopmall.bawei.shopmall1805.R;
 
 public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
-    private MyToolBar toolbar;
     private RelativeLayout normalContent;
     private RecyclerView homeRv;
     private TextView errorTv;
@@ -27,7 +25,6 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     protected void initView() {
-        toolbar = findViewById(R.id.toolbar);
         normalContent = (RelativeLayout) findViewById(R.id.normalContent);
         homeRv = (RecyclerView) findViewById(R.id.homeRv);
         homeRv.setLayoutManager(new LinearLayoutManager(getContext()));

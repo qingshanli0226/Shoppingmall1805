@@ -23,7 +23,7 @@ import java.util.List;
 
 public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implements IView {
     private ImageView ivTypeSearch;
-    private FrameLayout fl_type;
+    private FrameLayout flType;
 
     private RadioGroup rg;
     private RadioButton rbl;
@@ -38,7 +38,7 @@ public class TypeTagFragment extends BaseFragment<BasePresenter, IView> implemen
     @Override
     protected void initView() {
         ivTypeSearch = (ImageView) findViewById(R.id.iv_type_search);
-        fl_type = (FrameLayout) findViewById(R.id.fl_type);
+        flType = (FrameLayout) findViewById(R.id.fl_type);
         rg = (RadioGroup) findViewById(R.id.rg);
         rbl = (RadioButton) findViewById(R.id.rbl);
         rbr = (RadioButton) findViewById(R.id.rbr);

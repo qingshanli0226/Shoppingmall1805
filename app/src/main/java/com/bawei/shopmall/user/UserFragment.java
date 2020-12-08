@@ -8,7 +8,6 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.LoginBean;
@@ -20,10 +19,9 @@ import com.shopmall.bawei.shopmall1805.R;
  */
 public class UserFragment extends BaseFragment implements View.OnClickListener, ShopUserManager.IUserLoginChangedListener {
 
-    private MyToolBar myToolbar;
     private View inflate;
-    private ImageView ib_user_icon_avator;
-    private TextView tv_username;
+    private ImageView ibUserIconAvator;
+    private TextView tvUsername;
 
     @Override
     protected int layoutId() {
@@ -32,10 +30,10 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     protected void initView() {
-        ib_user_icon_avator = (ImageView) findViewById(R.id.ib_user_icon_avator);
-        tv_username = (TextView) findViewById(R.id.tv_username);
+        ibUserIconAvator = (ImageView) findViewById(R.id.ib_user_icon_avator);
+        tvUsername = (TextView) findViewById(R.id.tv_username);
 
-        ib_user_icon_avator.setOnClickListener(this);
+        ibUserIconAvator.setOnClickListener(this);
     }
 
     @Override
@@ -70,7 +68,7 @@ public class UserFragment extends BaseFragment implements View.OnClickListener, 
 
     @Override
     public void onUserLogin(LoginBean loginBean) {
-        tv_username.setText(loginBean.getResult().getName());
+        tvUsername.setText(loginBean.getResult().getName());
     }
 
     @Override

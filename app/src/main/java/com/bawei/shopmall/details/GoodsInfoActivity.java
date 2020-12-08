@@ -3,7 +3,6 @@ package com.bawei.shopmall.details;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -50,7 +49,7 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
     private Button btn_more;
 
     //private CartProvider cartProvider;
-    // private Boolean isFirst = true;
+    private Boolean isFirst = true;
 
     private DetailsGoodsBean goods_bean;
 
@@ -178,9 +177,9 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
 
     public void setDataFormView(DetailsGoodsBean goodsBean) {
         String name = goodsBean.getName();
-        String cover_price = goodsBean.getCover_price();
+        String cover_price = goodsBean.getCoverPrice();
         String figure = goodsBean.getFigure();
-        String product_id = goodsBean.getProduct_id();
+        String product_id = goodsBean.getProductId();
 
         //Glide.with(this).load(Constants.BASE_URl_IMAGE + figure).into(ivGoodInfoImage);
         if (name != null) {
@@ -236,7 +235,7 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
         // 名称
         tv_goodinfo_name.setText(goods_bean.getName());
         // 显示价格
-        tv_goodinfo_price.setText(goods_bean.getCover_price());
+        tv_goodinfo_price.setText(goods_bean.getCoverPrice());
 
         // 设置最大值和当前值
         nas_goodinfo_num.setMaxValue(8);
@@ -267,7 +266,6 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
                 window.dismiss();
                 //添加购物车
                 //cartProvider.addData(goods_bean);
-                Log.e("TAG", "66:" + goods_bean.toString());
                 Toast.makeText(GoodsInfoActivity.this, R.string.Add_shopCar_success, Toast.LENGTH_SHORT).show();
             }
         });

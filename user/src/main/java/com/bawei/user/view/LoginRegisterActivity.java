@@ -30,9 +30,9 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
     private Button btnLogin;
     private TextView tvLoginRegister;
     private TextView tvLoginForgetPwd;
-    private ImageButton ib_weibo;
-    private ImageButton ib_qq;
-    private ImageButton ib_wechat;
+    private ImageButton ibWeibo;
+    private ImageButton ibQq;
+    private ImageButton ibWechat;
     private RegisterBean registerBean;
 
     private int count;
@@ -52,16 +52,16 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
         btnLogin = (Button) findViewById(R.id.btn_login);
         tvLoginRegister = (TextView) findViewById(R.id.tv_login_register);
         tvLoginForgetPwd = (TextView) findViewById(R.id.tv_login_forget_pwd);
-        ib_weibo = (ImageButton) findViewById(R.id.ib_weibo);
-        ib_qq = (ImageButton) findViewById(R.id.ib_qq);
-        ib_wechat = (ImageButton) findViewById(R.id.ib_wechat);
+        ibWeibo = (ImageButton) findViewById(R.id.ib_weibo);
+        ibQq = (ImageButton) findViewById(R.id.ib_qq);
+        ibWechat = (ImageButton) findViewById(R.id.ib_wechat);
 
         ibLoginBack.setOnClickListener(this);
         ibLoginVisible.setOnClickListener(this);
         btnLogin.setOnClickListener(this);
-        ib_weibo.setOnClickListener(this);
-        ib_qq.setOnClickListener(this);
-        ib_wechat.setOnClickListener(this);
+        ibWeibo.setOnClickListener(this);
+        ibQq.setOnClickListener(this);
+        ibWechat.setOnClickListener(this);
         tvLoginRegister.setOnClickListener(this);
     }
 

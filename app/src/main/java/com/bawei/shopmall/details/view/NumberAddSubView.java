@@ -15,15 +15,15 @@ import androidx.appcompat.widget.TintTypedArray;
 import com.shopmall.bawei.shopmall1805.R;
 
 public class NumberAddSubView extends LinearLayout implements View.OnClickListener {
-    private ImageView btn_sub;
-    private ImageView btn_add;
-    private TextView tv_count;
+    private ImageView btnSub;
+    private ImageView btnAdd;
+    private TextView tvCount;
     private int value = 1;
     private int minValue = 1;
     private int maxValue = 10;
 
     public int getValue() {
-        String countStr = tv_count.getText().toString().trim();//文本内容
+        String countStr = tvCount.getText().toString().trim();//文本内容
         if (countStr != null) {
             value = Integer.valueOf(countStr);
         }
@@ -32,7 +32,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
 
     public void setValue(int value) {
         this.value = value;
-        tv_count.setText(String.valueOf(value));
+        tvCount.setText(String.valueOf(value));
     }
 
     public int getMinValue() {
@@ -64,15 +64,15 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         super(context, attrs, defStyleAttr);
         //把布局和当前类形成整体
         View.inflate(context, R.layout.number_add_sub_layout, this);
-        btn_sub = (ImageView) findViewById(R.id.btn_sub);
-        btn_add = (ImageView) findViewById(R.id.btn_add);
-        tv_count = (TextView) findViewById(R.id.tv_count);
+        btnSub = (ImageView) findViewById(R.id.btn_sub);
+        btnAdd = (ImageView) findViewById(R.id.btn_add);
+        tvCount = (TextView) findViewById(R.id.tv_count);
 
         getValue();
 
         //设置点击事件
-        btn_add.setOnClickListener(this);
-        btn_sub.setOnClickListener(this);
+        btnAdd.setOnClickListener(this);
+        btnSub.setOnClickListener(this);
 
         if (attrs != null) {
             //取出属性
@@ -91,11 +91,11 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
             }
             Drawable addDrawable = tintTypedArray.getDrawable(R.styleable.NumberAddSubView_numberAddBackground);
             if (addDrawable != null) {
-                btn_add.setImageDrawable(addDrawable);
+                btnAdd.setImageDrawable(addDrawable);
             }
             Drawable subDrawable = tintTypedArray.getDrawable(R.styleable.NumberAddSubView_numberSubBackground);
             if (subDrawable != null) {
-                btn_sub.setImageDrawable(subDrawable);
+                btnSub.setImageDrawable(subDrawable);
             }
         }
     }

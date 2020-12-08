@@ -1,7 +1,5 @@
 package com.bawei.net;
 
-import android.util.Log;
-
 import com.bawei.common.view.NetConfig;
 
 import java.util.concurrent.TimeUnit;
@@ -16,7 +14,7 @@ public class RetrofitCreate {
     private static MyNetApi api;
 
     public static MyNetApi getApi() {
-        if(api == null){
+        if (api == null) {
             api = createNetApi();
         }
         return api;
@@ -27,15 +25,17 @@ public class RetrofitCreate {
                 .connectTimeout(5, TimeUnit.SECONDS)
                 .writeTimeout(5, TimeUnit.SECONDS)
                 .readTimeout(5, TimeUnit.SECONDS)
+                .addInterceptor(new TokenInterceptor())
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(NetConfig.BASE_URL)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
         MyNetApi api = retrofit.create(MyNetApi.class);
-        Log.i("TAG", "createNetApi: "+api);
         return api;
     }
 }

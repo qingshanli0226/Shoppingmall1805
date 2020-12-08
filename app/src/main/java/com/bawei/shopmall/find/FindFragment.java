@@ -15,8 +15,6 @@ import com.shopmall.bawei.shopmall1805.R;
  */
 public class FindFragment extends BaseFragment<BasePresenter, IView> implements IView,MyToolBar.IToolBarClickListner{
 
-    private MyToolBar myToolBar;
-
     @Override
     protected int layoutId() {
         return R.layout.fragment_find;
@@ -24,9 +22,7 @@ public class FindFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     protected void initView() {
-        myToolBar = findViewById(R.id.toolbar);
 
-        myToolBar.setToolBarClickListner(this);
     }
 
     @Override

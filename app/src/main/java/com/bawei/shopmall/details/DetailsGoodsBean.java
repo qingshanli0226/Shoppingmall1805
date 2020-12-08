@@ -4,9 +4,9 @@ import java.io.Serializable;
 
 public class DetailsGoodsBean implements Serializable {
     private String name;
-    private String cover_price;
+    private String coverPrice;
     private String figure;
-    private String product_id;
+    private String productId;
     private int number = 1;
 
     /**
@@ -21,11 +21,11 @@ public class DetailsGoodsBean implements Serializable {
     public DetailsGoodsBean() {
     }
 
-    public DetailsGoodsBean(String name, String cover_price, String figure, String product_id) {
+    public DetailsGoodsBean(String name, String coverPrice, String figure, String productId) {
         this.name = name;
-        this.cover_price = cover_price;
+        this.coverPrice = coverPrice;
         this.figure = figure;
-        this.product_id = product_id;
+        this.productId = productId;
     }
 
     public String getName() {
@@ -36,13 +36,12 @@ public class DetailsGoodsBean implements Serializable {
         this.name = name;
     }
 
-    public String getCover_price() {
-        cover_price.substring(0, cover_price.length() - 1);
-        return cover_price;
+    public String getCoverPrice() {
+        return coverPrice;
     }
 
-    public void setCover_price(String cover_price) {
-        this.cover_price = cover_price;
+    public void setCoverPrice(String coverPrice) {
+        this.coverPrice = coverPrice;
     }
 
     public String getFigure() {
@@ -53,28 +52,12 @@ public class DetailsGoodsBean implements Serializable {
         this.figure = figure;
     }
 
-    public String getProduct_id() {
-        return product_id;
+    public String getProductId() {
+        return productId;
     }
 
-    public void setProduct_id(String product_id) {
-        this.product_id = product_id;
-    }
-
-    public boolean isEditing() {
-        return isEditing;
-    }
-
-    public void setIsEditing(boolean isEditing) {
-        this.isEditing = isEditing;
-    }
-
-    public boolean isChildSelected() {
-        return isChildSelected;
-    }
-
-    public void setIsChildSelected(boolean isChildSelected) {
-        this.isChildSelected = isChildSelected;
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getNumber() {
@@ -85,16 +68,19 @@ public class DetailsGoodsBean implements Serializable {
         this.number = number;
     }
 
-    @Override
-    public String toString() {
-        return "GoodsBean{" +
-                "name='" + name + '\'' +
-                ", cover_price='" + cover_price + '\'' +
-                ", figure='" + figure + '\'' +
-                ", product_id='" + product_id + '\'' +
-                ", number=" + number +
-                ", isEditing=" + isEditing +
-                ", isChildSelected=" + isChildSelected +
-                '}';
+    public boolean isEditing() {
+        return isEditing;
+    }
+
+    public void setEditing(boolean editing) {
+        isEditing = editing;
+    }
+
+    public boolean isChildSelected() {
+        return isChildSelected;
+    }
+
+    public void setChildSelected(boolean childSelected) {
+        isChildSelected = childSelected;
     }
 }

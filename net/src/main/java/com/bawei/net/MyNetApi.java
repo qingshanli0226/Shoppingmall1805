@@ -92,4 +92,16 @@ public interface MyNetApi {
 
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
+
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
+
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String, String> map);
+
 }

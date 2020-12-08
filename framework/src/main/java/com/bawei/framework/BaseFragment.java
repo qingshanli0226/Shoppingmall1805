@@ -18,7 +18,7 @@ public abstract class BaseFragment<P extends BasePresenter, V extends IView> ext
 
     protected P httpPresenter;
     private LoadingPage loadingPage;
-    private MyToolBar toolBar;
+    protected MyToolBar toolBar;
 
 
     @Nullable

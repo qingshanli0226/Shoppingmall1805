@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
-import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.CacheManager;
 import com.bawei.net.mode.InventoryBean;
@@ -35,7 +34,6 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     private RelativeLayout normalLayout;
     private RelativeLayout editLayout;
     private CheckBox editAllSelectCheckBox;
-    private MyToolBar myToolBar;
 
 
     private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
@@ -132,7 +130,6 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         editAllSelectCheckBox = findViewById(R.id.allEditSelect);
         findViewById(R.id.deleteBtn).setOnClickListener(this);
         findViewById(R.id.payBtn).setOnClickListener(this);
-        myToolBar = findViewById(R.id.toolbar);
 
         //沙箱环境
         //EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.

@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bawei.common.view.ErrorBean;
-import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseFragment;
 import com.bawei.net.mode.TypeBean;
 import com.bawei.shopmall.type.contract.TypeContract;
@@ -20,7 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ListFragment<P extends TypeImpl, V extends TypeContract.ITypeView> extends BaseFragment<P, V> implements TypeContract.ITypeView {
-    private MyToolBar toolbar;
     private ListView lvLeft;
     private RecyclerView rvRight;
 
@@ -41,7 +39,6 @@ public class ListFragment<P extends TypeImpl, V extends TypeContract.ITypeView> 
 
     @Override
     protected void initView() {
-        toolbar = findViewById(R.id.toolbar);
         lvLeft = (ListView) findViewById(R.id.lv_left);
         rvRight = (RecyclerView) findViewById(R.id.rv_right);
         rvRight.setLayoutManager(new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false));
