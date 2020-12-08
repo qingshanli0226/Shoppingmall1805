@@ -1,4 +1,4 @@
-package com.example.framework.view;
+package com.shopmall.bawei.framework.example.framework.view;
 
 import android.content.Context;
 import android.graphics.Color;
