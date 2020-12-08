@@ -29,6 +29,8 @@ public abstract class BaseActivity<P extends IPresenter,V extends IVIew> extends
 
 
     }
+
+
     protected abstract int getLayoutId();
 
     protected abstract void initView();

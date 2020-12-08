@@ -14,6 +14,8 @@ public class WelcomActivity extends BaseActivity implements ViewPropertyAnimator
     private ImageView imageView;
 
 
+
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_wecome;

@@ -17,7 +17,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.XiangActivity"></activity>
+        <activity android:name=".product.view.XiangActivity"></activity>
         <activity android:name=".ui.activity.HomeActivity"></activity>
         <activity
             android:name=".ui.activity.WelcomActivity"

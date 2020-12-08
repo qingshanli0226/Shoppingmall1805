@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseActivity;
 import com.example.framework.IPresenter;
 import com.example.framework.IVIew;
-import com.example.framework.ShopUsermange;
+import com.example.net.ShopUserManger;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -66,7 +66,7 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
             public void onTabSelect(int position) {
                 viewPager.setCurrentItem(position);
                 if (position==3){
-                    if (!ShopUsermange.getInstance().isUserLogin()){
+                    if (!ShopUserManger.getInstance().isUserLogin()){
                         ARouter.getInstance()
                                 .build("/duoduo/user")
                                 .navigation();
@@ -100,6 +100,8 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
 
 
     }
+
+
 
     @Override
     protected int getLayoutId() {

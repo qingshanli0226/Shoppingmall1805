@@ -15,7 +15,7 @@ import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.net.ConfigUrl;
 import com.example.net.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ui.activity.XiangActivity;
+import com.shopmall.bawei.shopmall1805.product.view.XiangActivity;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -125,6 +125,7 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                     @Override
                     public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
                         Intent intent = new Intent(mContext, XiangActivity.class);
+                        intent.putExtra("id",item.getRecommend_info().get(position).getProduct_id());
                         intent.putExtra("path",item.getRecommend_info().get(position).getFigure());
                         intent.putExtra("name",item.getRecommend_info().get(position).getName());
                         intent.putExtra("money",item.getRecommend_info().get(position).getCover_price());

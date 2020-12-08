@@ -23,16 +23,6 @@ public class ShopAdapter extends BaseQuickAdapter<ShopEntity, BaseViewHolder> {
         helper.setText(R.id.tv_item,item.getName());
         helper.setText(R.id.tv_money,item.getMoney());
         CheckBox checkBox = helper.getView(R.id.checkbox_item);
-        if (item.getChecked()){
-            checkBox.setChecked(true);
-        }else {
-            checkBox.setChecked(false);
-        }
 
-        if (item.getVisibility()){
-            checkBox.setVisibility(View.VISIBLE);
-        }else {
-            checkBox.setVisibility(View.GONE);
-        }
     }
 }

@@ -1,20 +1,18 @@
-package com.example.framework;
+package com.example.net;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.example.net.LoginBean;
-
 import java.util.LinkedList;
 import java.util.List;
 
-public class ShopUsermange {
+public class ShopUserManger {
     private LoginBean loginBean;
     private Context context;
-    private static ShopUsermange instance;
+    private static ShopUserManger instance;
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
-    private List<IUserLoginChangeLiestener> liesteners = new LinkedList<>();
+    private List<IUserLoginChangeListener> listeners = new LinkedList<>();
     String name;
 
     public String getName() {
@@ -25,13 +23,13 @@ public class ShopUsermange {
         this.name = name;
     }
 
-    private ShopUsermange(){
+    private ShopUserManger(){
 
 
     }
-    public static ShopUsermange getInstance(){
+    public static ShopUserManger getInstance(){
         if (instance == null) {
-            instance = new ShopUsermange();
+            instance = new ShopUserManger();
         }
         return instance;
     }
@@ -54,7 +52,7 @@ public class ShopUsermange {
 
 
         //通过接口回调通知其他的界面，当前用户已经登录
-        for (IUserLoginChangeLiestener listenter:liesteners) {
+        for (IUserLoginChangeListener listenter:listeners) {
             listenter.onUserLogin(loginBean);
         }
     }
@@ -62,7 +60,21 @@ public class ShopUsermange {
 
         return sharedPreferences.getString("boluo","");
     }
-    public interface IUserLoginChangeLiestener{
+
+    public void requesterUserLoginChangeListener(IUserLoginChangeListener listener){
+        if (listeners.contains(listener)){
+            listeners.add(listener);
+        }
+    }
+
+    public void unRegisterUserLoginChangeListener(IUserLoginChangeListener listener){
+        if (listeners.contains(listener)){
+            listeners.remove(listener);
+        }
+    }
+
+
+    public interface IUserLoginChangeListener{
         void onUserLogin(LoginBean loginBean);
         void onUserlogout();
     }

@@ -15,7 +15,7 @@ import com.example.framework.BaseFragment;
 import com.example.net.ClothesBean;
 import com.example.net.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ui.activity.XiangActivity;
+import com.shopmall.bawei.shopmall1805.product.view.XiangActivity;
 import com.shopmall.bawei.shopmall1805.adapter.BottomAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.RightAdapter;
 import com.shopmall.bawei.shopmall1805.contract.SmallskirtContract;

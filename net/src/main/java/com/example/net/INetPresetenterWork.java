@@ -6,10 +6,13 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 
 public interface INetPresetenterWork {
     //注册 接口
@@ -24,6 +27,18 @@ public interface INetPresetenterWork {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> Autologin(@FieldMap HashMap<String, String> map);
+
+    //检查服务端一个产品库存情况的接口
+    @POST("checkOneProductInventory")
+    Observable<BaseBean> checkShop(@Query("productId")String id,@Query("productNum")String num);
+
+    //向服务端购物车添加一个产品的接口
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
+
+    //获取服务端购物车产品信息的接口
+    @POST("getShortcartProducts")
+    Observable<BaseBean<String>> getShortcartProducts(@Body RequestBody requestBody);
 
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")

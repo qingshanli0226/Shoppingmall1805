@@ -11,6 +11,7 @@ import com.example.net.ConfigUrl;
 import com.example.net.HttpRetrofitManager;
 import com.example.net.INetPresetenterWork;
 import com.example.net.LoginBean;
+import com.example.net.ShopUserManger;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -32,7 +33,7 @@ public class LoginService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String token = ShopUsermange.getInstance().getToken();
+        String token = ShopUserManger.getInstance().getToken();
         Log.e("###",""+token);
         if (token==null){
             return START_STICKY;
@@ -55,8 +56,8 @@ public class LoginService extends Service {
                         @Override
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
-                            ShopUsermange.getInstance().ShopLoginmange(loginBean);
-                            ShopUsermange.getInstance().setName(loginBeanBaseBean.getResult().getName());
+                            ShopUserManger.getInstance().ShopLoginmange(loginBean);
+                            ShopUserManger.getInstance().setName(loginBeanBaseBean.getResult().getName());
                             EventBus.getDefault().postSticky("自动登录成功");
                         }
 

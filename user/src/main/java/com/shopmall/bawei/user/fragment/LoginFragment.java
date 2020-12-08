@@ -1,27 +1,20 @@
 package com.shopmall.bawei.user.fragment;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
-import com.example.framework.ShopUsermange;
+import com.example.net.ShopUserManger;
 import com.example.net.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bawei.user.contract.LoginContract;
 import com.shopmall.bawei.user.presenter.LogPresenter;
-
-import org.greenrobot.eventbus.EventBus;
 
 public  class LoginFragment extends BaseFragment<LogPresenter, LoginContract.LoginView>implements LoginContract.LoginView {
 
@@ -82,14 +75,13 @@ public  class LoginFragment extends BaseFragment<LogPresenter, LoginContract.Log
     @Override
     public void getLoginCode(LoginBean loginBean) {
 
-            ShopUsermange.getInstance()
+            ShopUserManger.getInstance()
                     .ShopLoginmange(loginBean);
 
             ARouter.getInstance()
                     .build("/aa/aaa")
                     .navigation();
-
-
+        Log.i("wft", "getLoginCode: "+loginBean.getToken());
     }
 
     @Override

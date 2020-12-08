@@ -1,8 +1,11 @@
 package com.example.net;
 
-import java.util.concurrent.TimeUnit;
 
+import java.io.IOException;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
@@ -32,6 +35,7 @@ public class HttpRetrofitManager {
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .addInterceptor(interceptor)
+                .addInterceptor(createInterceptor())
                 .build();
 
         Retrofit build = new Retrofit.Builder()
@@ -45,6 +49,20 @@ public class HttpRetrofitManager {
             retrofit = build;
     }
 
+    private Interceptor createInterceptor() {
+        Interceptor interceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request token = chain.request().newBuilder()
+                        .addHeader("token", ShopUserManger.getInstance().getToken())
+                        .build();
+                Response proceed = chain.proceed(token);
+
+                return proceed;
+            }
+        };
+        return interceptor;
+    }
 
 
 }
