@@ -1,11 +1,15 @@
 package com.shopmall.bawei.shopmall1805.home.fragment.jsonCallBack;
 
+import java.util.List;
+
 import framework.JsonDataCallBace;
+import mode.BaseBean;
 import mode.ClothesBean;
 import mode.HomeBean;
 import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
+import mode.ShopcarBean;
 
 public
 class JsonDataBack implements JsonDataCallBace {
@@ -31,6 +35,11 @@ class JsonDataBack implements JsonDataCallBace {
 
     @Override
     public void loginBean(LoginBean e) {
+
+    }
+
+    @Override
+    public void shopBean(BaseBean<List<ShopcarBean>> shopcarBean) {
 
     }
 

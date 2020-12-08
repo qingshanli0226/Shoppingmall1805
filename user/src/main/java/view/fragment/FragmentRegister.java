@@ -7,10 +7,10 @@ import android.widget.EditText;
 import com.shopmall.bawei.user.R;
 
 import framework.BaseFragment;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.RegisterBean;
 import view.ToolBar;
-import view.fragment.CallBackLR.JsonDataCallBackLR;
+import view.fragment.callbacklr.JsonDataCallBackLR;
 import view.UserActivity;
 import view.loadinPage.ErrorBean;
 
@@ -21,7 +21,7 @@ class FragmentRegister extends BaseFragment implements UserActivity.INameInterfa
 
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
     }
 
     @Override
@@ -58,7 +58,7 @@ class FragmentRegister extends BaseFragment implements UserActivity.INameInterfa
     }
     //登录
     private void login() {
-        Presenter.loginAndRegister(1,registerUser.getText().toString().trim(),registerPassword.getText().toString().trim(),new JsonDataCallBackLR(){
+        presenter.loginAndRegister(1,registerUser.getText().toString().trim(),registerPassword.getText().toString().trim(),new JsonDataCallBackLR(){
             @Override
             public void registerBean(RegisterBean registerBean) {
                 if (200 ==Integer.parseInt(registerBean.getCode())){

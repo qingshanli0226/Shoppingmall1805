@@ -23,7 +23,7 @@ import framework.BaseActivity;
 import framework.CacheManagerc;
 import framework.ShopUserManager;
 import framework.greendao.userBean;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.ClothesBean;
 import mode.ShopcarBean;
 import view.Constants;
@@ -42,7 +42,7 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
 
     @Override
     protected void createPresenter() {
-        jsonPresenter = new jsonPresenter(this);
+        jsonPresenter = new JsonPresenter(this);
     }
 
     @Override

@@ -13,15 +13,15 @@ import android.widget.Toast;
 
 import com.shopmall.bawei.framework.R;
 
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import view.loadinPage.ErrorBean;
 import view.loadinPage.LoadIngPagec;
 
 import view.ToolBar;
 
 public abstract
-class BaseFragment<P extends jsonPresenter> extends Fragment implements Contact.CenterUserIview, ToolBar.IToolBarClickListner{
-    protected  P Presenter;
+class BaseFragment<P extends JsonPresenter> extends Fragment implements Contact.CenterUserIview, ToolBar.IToolBarClickListner{
+    protected  P presenter;
 
     protected LoadIngPagec LoadIngPage;
     protected ToolBar tooBar;

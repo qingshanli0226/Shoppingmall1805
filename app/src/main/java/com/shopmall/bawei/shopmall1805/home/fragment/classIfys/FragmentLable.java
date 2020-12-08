@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseFragment;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.LableBean;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
@@ -25,7 +25,7 @@ class FragmentLable extends BaseFragment implements ToolBar.IToolBarClickListner
 
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
     }
 
     @Override
@@ -40,7 +40,7 @@ class FragmentLable extends BaseFragment implements ToolBar.IToolBarClickListner
 
         Rvc.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
 
-        Presenter.getshopcal(12,new JsonDataBack() {
+        presenter.getshopcal(12,new JsonDataBack() {
             @Override
             public void javabean(LableBean e) {
                 resultBeans.addAll(e.getResult());

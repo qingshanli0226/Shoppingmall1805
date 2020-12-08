@@ -9,7 +9,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.fragment.jsonCallBack.JsonDataBack;
 
 import framework.BaseFragment;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.HomeBean;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
@@ -20,7 +20,7 @@ class FragmentHomePage extends BaseFragment implements ToolBar.IToolBarClickList
     private PrimereAdper primereAdpter;
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
     }
 
     @Override
@@ -42,7 +42,7 @@ class FragmentHomePage extends BaseFragment implements ToolBar.IToolBarClickList
     }
 
     private void JsonData() {
-        Presenter.getshopcal(11,new JsonDataBack() {
+        presenter.getshopcal(11,new JsonDataBack() {
             @Override
             public void homeBean(HomeBean homeBean) {
                 primereAdpter.addOneData(homeBean.getResult().getBanner_info());

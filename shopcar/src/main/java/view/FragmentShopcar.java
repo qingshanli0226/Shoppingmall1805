@@ -1,16 +1,26 @@
 package view;
 
+
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.shopmall.bawei.shopcar.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import framework.BaseFragment;
+import framework.mvpc.JsonPresenter;
+import mode.BaseBean;
+import mode.ShopcarBean;
+import view.adaper.ShopAdaper;
+import view.callbackdata.JsondataCallBackShop;
 import view.loadinPage.ErrorBean;
 
 public
@@ -26,9 +36,12 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
     private Button saveBtn;
     private Button deleteBtn;
     private boolean clickChange = true;
+
+    private List<ShopcarBean> shopcarBeans = new ArrayList<>();
+    private ShopAdaper shopAdaper;
     @Override
     protected void createPresenter() {
-
+        presenter = new JsonPresenter(this);
     }
 
     @Override
@@ -38,7 +51,25 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
 
     @Override
     protected void InitData() {
+        initiAlize();
+        shopCarRv.setLayoutManager(new LinearLayoutManager(getContext()));
+        shopAdaper = new ShopAdaper(R.layout.item_shop_car,shopcarBeans);
+        shopCarRv.setAdapter(shopAdaper);
+        presenter.shcarShop(1,new JsondataCallBackShop(){
+            @Override
+            public void shopBean(BaseBean<List<ShopcarBean>> shopcarBean) {
+                shopcarBeans.addAll(shopcarBean.getResult());
+                shopAdaper.notifyDataSetChanged();
+            }
 
+            @Override
+            public void Error(String error) {
+
+            }
+        });
+    }
+
+    private void initiAlize() {
         tooBar = (ToolBar) findViewById(R.id.tooBar);
         shopCarRv = (RecyclerView) findViewById(R.id.shopCarRv);//适配器
         normalLayout = (RelativeLayout) findViewById(R.id.normalLayout);//全选框 RelativeLayout
@@ -50,6 +81,7 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
         allEditSelect = (CheckBox) findViewById(R.id.allEditSelect);//全选
         saveBtn = (Button) findViewById(R.id.saveBtn);//保存
         deleteBtn = (Button) findViewById(R.id.deleteBtn);//删除
+
 
     }
 
@@ -90,5 +122,10 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
     @Override
     public void onRightClick() {
 
+        if (clickChange){
+            clickChange=false;
+        }else {
+            clickChange=true;
+        }
     }
 }

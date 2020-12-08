@@ -15,7 +15,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseFragment;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import view.ToolBar;
 import view.loadinPage.ErrorBean;
 
@@ -30,7 +30,7 @@ class FragmentClassify extends BaseFragment implements ToolBar.IToolBarClickList
 
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
     }
 
     @Override

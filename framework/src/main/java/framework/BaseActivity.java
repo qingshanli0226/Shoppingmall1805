@@ -6,13 +6,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
-import framework.mvpc.jsonPresenter;
-import view.loadinPage.LoadIngPagec;
+import framework.mvpc.JsonPresenter;
 
 
 public abstract
 
-class BaseActivity<P extends jsonPresenter> extends AppCompatActivity implements  Contact.CenterUserIview {
+class BaseActivity<P extends JsonPresenter> extends AppCompatActivity implements  Contact.CenterUserIview {
     protected  P jsonPresenter;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -1,10 +1,14 @@
 package framework;
 
+import java.util.List;
+
+import mode.BaseBean;
 import mode.ClothesBean;
 import mode.HomeBean;
 import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
+import mode.ShopcarBean;
 
 public
 interface JsonDataCallBace {
@@ -13,5 +17,6 @@ interface JsonDataCallBace {
     void homeBean(HomeBean e);
     void registerBean(RegisterBean e);
     void loginBean(LoginBean e);
+    void shopBean(BaseBean<List<ShopcarBean>>  shopcarBean );
     void Error(String error);
 }

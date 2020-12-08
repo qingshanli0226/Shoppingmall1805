@@ -13,6 +13,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.fragment.FragmentClassify;
 import com.shopmall.bawei.shopmall1805.home.fragment.FragmentHomePage;
 import com.shopmall.bawei.shopmall1805.home.fragment.FragmentPersonAge;
+import com.shopmall.bawei.shopmall1805.service.AutomactionLoginService;
 
 import java.util.List;
 
@@ -72,6 +73,9 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+
+        Intent intent = new Intent(this, AutomactionLoginService.class);
+        startService(intent);//开启服务service
 
     }
     @Override

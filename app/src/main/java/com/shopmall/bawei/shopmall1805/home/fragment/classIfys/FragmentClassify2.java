@@ -24,7 +24,7 @@ import framework.BaseFragment;
 
 
 import framework.greendao.userBean;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.ClothesBean;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
@@ -59,7 +59,7 @@ class FragmentClassify2 extends BaseFragment implements ToolBar.IToolBarClickLis
 
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
 
     }
     @Override
@@ -74,7 +74,7 @@ class FragmentClassify2 extends BaseFragment implements ToolBar.IToolBarClickLis
                         count = position;
                         clothesBeans.clear();
                         hotProductListBeans.clear();
-                        Presenter.getshopcal(count, new JsonDataBack(){
+                        presenter.getshopcal(count, new JsonDataBack(){
                             @Override
                             public void clothesBean(ClothesBean e) {
                                 clothesBeans.addAll(e.getResult().get(0).getChild());
@@ -123,7 +123,7 @@ class FragmentClassify2 extends BaseFragment implements ToolBar.IToolBarClickLis
         shopcarTow.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
         shopcarThree.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
 
-        Presenter.getshopcal(count, new JsonDataBack() {
+        presenter.getshopcal(count, new JsonDataBack() {
             @Override
             public void clothesBean(ClothesBean e) {
                 clothesBeans.addAll(e.getResult().get(0).getChild());

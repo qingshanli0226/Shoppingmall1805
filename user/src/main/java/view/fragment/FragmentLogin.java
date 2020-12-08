@@ -8,12 +8,12 @@ import com.shopmall.bawei.user.R;
 
 import framework.BaseFragment;
 import framework.ShopUserManager;
-import framework.mvpc.jsonPresenter;
+import framework.mvpc.JsonPresenter;
 import mode.LoginBean;
 import view.ShopmallConstant;
 import view.ToolBar;
 import view.UserActivity;
-import view.fragment.CallBackLR.JsonDataCallBackLR;
+import view.fragment.callbacklr.JsonDataCallBackLR;
 import view.loadinPage.ErrorBean;
 
 public
@@ -23,7 +23,7 @@ class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface
 
     @Override
     protected void createPresenter() {
-        Presenter = new jsonPresenter(this);
+        presenter = new JsonPresenter(this);
     }
 
     @Override
@@ -54,7 +54,7 @@ class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.loginLoginButton){
-            Presenter.loginAndRegister(2,loginUser.getText().toString().trim(),loginPassword.getText().toString().trim(),new JsonDataCallBackLR(){
+            presenter.loginAndRegister(2,loginUser.getText().toString().trim(),loginPassword.getText().toString().trim(),new JsonDataCallBackLR(){
                 @Override
                 public void loginBean(LoginBean loginBean) {
                     setToast("====","登录成功");
