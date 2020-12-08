@@ -9,6 +9,7 @@ import bean.ClothesBean;
 import bean.HomeBean;
 import bean.LoginBean;
 import bean.RegisterBean;
+import bean.Shoppingcartproducts;
 import bean.TAGBean;
 import bean.typebean.BugBean;
 import bean.typebean.DigitBean;
@@ -21,6 +22,8 @@ import bean.typebean.Pants;
 import bean.typebean.SkirtBean;
 import bean.typebean.StationeryBean;
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -39,10 +42,22 @@ public interface UserInterface {
     @POST("/autoLogin")
     @FormUrlEncoded
     Observable<AutoLoginBeen>autoLogin(@FieldMap HashMap<String,String> map);
-
-
+//    getShortcartProducts
+//    updateProductNum
     @GET
     Observable<BugBean> getbug(@Url String url);
+
+    @GET("/getShortcartProducts")
+    Observable<Shoppingcartproducts>getShortcartProducts();
+//    addOneProduct
+    @POST("/addOneProduct")
+     Observable<BaseBean<String>>addOneProduct(@Body RequestBody requestBody);
+
+    @POST("/updateProductNum")
+    Observable<BaseBean<String>>updateProductNum(@Body RequestBody requestBody);
+
+    @POST("/checkOneProductInventory")
+    Observable<BaseBean<String>>checkOneProductInventory(@FieldMap HashMap<String,String> map);
 
 
     //主页Fragment路径

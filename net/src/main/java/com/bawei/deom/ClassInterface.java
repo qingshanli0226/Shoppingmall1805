@@ -1,5 +1,8 @@
 package com.bawei.deom;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -14,7 +17,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public  class ClassInterface {
     public static UserInterface userInterface;
-
+     public  Context context;
     public static UserInterface getUserInterface(){
         if (userInterface==null){
             userInterface=getUserface();
@@ -26,8 +29,11 @@ public  class ClassInterface {
         OkHttpClient build = new OkHttpClient.Builder()
                 .writeTimeout(5000, TimeUnit.SECONDS)
                 .readTimeout(5000, TimeUnit.SECONDS)
-                .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                .build();
+                .addInterceptor(new TokenInterceptor())
+                .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
+                .build()
+                ;
+
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl(BaseUser.BASE_URL)
                 .client(build)
@@ -41,10 +47,13 @@ public  class ClassInterface {
 
 
 
-    private static Interceptor getheard(final String token) {
+    public static Interceptor getheard() {
          Interceptor interceptor=new Interceptor() {
              @Override
              public Response intercept(Chain chain) throws IOException {
+                    Context context=NetModule.context;
+                 String token = context.getSharedPreferences("login", Context.MODE_PRIVATE).getString("login","123");
+
                  Request request = chain.request();
                  Request tokens=request.newBuilder()
                          .addHeader("token",token)

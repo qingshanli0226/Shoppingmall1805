@@ -199,7 +199,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
             public void onItemClick(int position) {
                   Toast.makeText(getContext(), "数据库", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getContext(), XIangqingActivity.class);
-                intent.putExtra("shangp",new ShangPing(list.get(0).getHot_product_list().get(position).getFigure(),list.get(0).getHot_product_list().get(position).getName(),list.get(0).getHot_product_list().get(position).getCover_price()));
+                intent.putExtra("shangp",new ShangPing(list.get(0).getHot_product_list().get(position).getP_catalog_id(),list.get(0).getHot_product_list().get(position).getCover_price(),list.get(0).getHot_product_list().get(position).getFigure(),list.get(0).getHot_product_list().get(position).getName()));
                 startActivity(intent);
             }
         });
