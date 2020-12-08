@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.home;
 
-import android.util.Log;
 import android.widget.EditText;
 import android.widget.ImageView;
 
@@ -60,7 +59,6 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
         list.add(result.getSeckill_info());
         list.add(result.getRecommend_info());
         list.add(result.getHot_info());
-        Log.i("Yoyo", "onOk: "+result.getAct_info());
         homeAdapter.addData(list);
     }
 

@@ -16,6 +16,8 @@ import com.example.net.bean.RegisterBean;
 import com.shopmall.bawei.user.R;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
+import java.io.Serializable;
+
 @Route(path = "/user/RegisterActivity")
 public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, RegisterContract.RegisterView> implements RegisterContract.RegisterView {
 
@@ -29,6 +31,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
     private boolean flag=false;
     private boolean reflag=false;
     private ProgressBar pbRegister;
+    private String type;
+    private Serializable extra;
     @Override
     protected void initListener() {
         super.initListener();
@@ -85,7 +89,7 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
     }
 
     private void aroutertologin() {
-        ARouter.getInstance().build("/user/LoginActivity").withString("key",key).navigation();
+        ARouter.getInstance().build("/user/LoginActivity").withString("key",key).withSerializable("good",extra).withString("type",type).navigation();
         finish();
     }
 
@@ -98,7 +102,8 @@ public class RegisterActivity extends BaseActivity<RegisterPresenterImpl, Regist
     protected void initData() {
         Intent intent = getIntent();
         key = intent.getStringExtra("key");
-
+        type = intent.getStringExtra("type");
+        extra = intent.getSerializableExtra("good");
     }
     @Override
     protected int getLayoutID() {

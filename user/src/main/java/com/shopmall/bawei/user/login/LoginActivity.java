@@ -2,6 +2,7 @@ package com.shopmall.bawei.user.login;
 
 import android.content.Intent;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,6 +36,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     private String key;
     private ProgressBar pbLogin;
     private  Intent intent;
+    private String type;
+    private Serializable extra;
     @Override
     protected void initPresenter() {
         presenter=new LoginPresenterImpl();
@@ -109,7 +112,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     }
 
     private void aroutertoregister() {
-        ARouter.getInstance().build("/user/RegisterActivity").withString("key",key).navigation();
+        ARouter.getInstance().build("/user/RegisterActivity").withString("key",key).withSerializable("good",extra).withString("type",type).navigation();
         finish();
     }
 
@@ -117,6 +120,8 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     protected void initData() {
        intent = getIntent();
         key = intent.getStringExtra("key");
+        type=intent.getStringExtra("type");
+        extra=intent.getSerializableExtra("good");
     }
 
 
@@ -148,6 +153,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
         if(bean.getCode().equals("200")){
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
             LoginBean.ResultBean result = bean.getResult();
+            Log.i("Yoyo", "onOk: "+result.getToken());
             UserManager.getInstance().bindUser(result);
             UserManager.getInstance().spToken();
             arouter();
@@ -171,8 +177,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
                 ARouter.getInstance().build("/main/MainActivity").withString("position",key).navigation();
                 break;
             case "detail":
-                String type = intent.getStringExtra("type");
-                Serializable extra = intent.getSerializableExtra("good");
+
                 ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good",extra).withString("type",type).navigation();
                 break;
         }

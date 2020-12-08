@@ -1,29 +1,39 @@
 package com.example.detail.detailpage;
 
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.drawable.ColorDrawable;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.WindowManager;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.detail.R;
+import com.example.detail.detailpage.detail.DetailContract;
+import com.example.detail.detailpage.detail.DetailPresenterImpl;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.user.UserManager;
 import com.example.net.Constants;
+import com.example.net.bean.AddProductBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.MainBean;
 import com.google.gson.Gson;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.io.Serializable;
 
 
 @Route(path = "/detailpage/DetailActivity")
-public class DetailActivity extends BaseActivity {
+public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailContract.IDetailView> implements DetailContract.IDetailView {
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
     private TextView tvGoodInfoDesc;
@@ -40,9 +50,11 @@ public class DetailActivity extends BaseActivity {
     private TextView tvGoodInfoCallcenter;
     private TextView tvGoodInfoCollection;
     private TextView tvGoodInfoCart;
+    ProductGoodBean goodBean;
     @Override
     protected void initPresenter() {
-
+        presenter=new DetailPresenterImpl();
+        presenter.attchView(this);
     }
 
     @Override
@@ -58,12 +70,13 @@ public class DetailActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 if(UserManager.isLogin()){
-
+                    showPopwindow();
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
                 }
             }
         });
+
         tvGoodInfoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +105,70 @@ public class DetailActivity extends BaseActivity {
         });
     }
 
+    private void showPopwindow() {
+        LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View view = inflater.inflate(R.layout.popupwindow_add_product, null);
+
+        // 2下面是两种方法得到宽度和高度 getWindow().getDecorView().getWidth()
+        final PopupWindow window = new PopupWindow(view,
+                WindowManager.LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.WRAP_CONTENT);
+        window.setFocusable(true);
+        ColorDrawable dw = new ColorDrawable(0xFFFFFFFF);
+        window.setBackgroundDrawable(dw);
+        ImageView iv_goodinfo_photo = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
+        TextView tv_goodinfo_name = (TextView) view.findViewById(R.id.tv_goodinfo_name);
+        TextView tv_goodinfo_price = (TextView) view.findViewById(R.id.tv_goodinfo_price);
+        final NumberAddSubView nas_goodinfo_num = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
+        Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
+        Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
+        Glide.with(DetailActivity.this).load(Constants.BASE_URl_IMAGE + goodBean.getFigure()).into(iv_goodinfo_photo);
+
+        // 名称
+        tv_goodinfo_name.setText(goodBean.getName());
+        // 显示价格
+        tv_goodinfo_price.setText(goodBean.getCover_price());
+
+        // 设置最大值和当前值
+        nas_goodinfo_num.setValue(1);
+
+        nas_goodinfo_num.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
+            @Override
+            public void addNumber(View view, int value) {
+                goodBean.setNumber(value);
+            }
+
+            @Override
+            public void subNumner(View view, int value) {
+                goodBean.setNumber(value);
+            }
+        });
+
+        bt_goodinfo_cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+            }
+        });
+
+        bt_goodinfo_confim.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+                goodBean.setNumber(nas_goodinfo_num.getValue());
+                presenter.addProduct(goodBean.getProduct_id(),goodBean.getNumber(),goodBean.getName(),"http:\\/\\/www.baidu.com",goodBean.getCover_price());
+            }
+        });
+        window.showAsDropDown(wbGoodInfoMore);
+        window.setOnDismissListener(new PopupWindow.OnDismissListener() {
+
+            @Override
+            public void onDismiss() {
+                window.dismiss();
+            }
+        });
+    }
+
     @Override
     public void onLeftClick() {
         super.onLeftClick();
@@ -114,34 +191,34 @@ public class DetailActivity extends BaseActivity {
             switch (type){
                 case "seckill":
                     MainBean.ResultBean.SeckillInfoBean.ListBean seckillInfoBean = (MainBean.ResultBean.SeckillInfoBean.ListBean) extra;
-                    setUI(seckillInfoBean.getFigure(),seckillInfoBean.getName(),"",seckillInfoBean.getCover_price());
+                    goodBean = new ProductGoodBean(seckillInfoBean.getName(), seckillInfoBean.getCover_price(), seckillInfoBean.getFigure(), seckillInfoBean.getProduct_id());
                     break;
                 case "recommend":
                     MainBean.ResultBean.RecommendInfoBean recommendInfoBean = (MainBean.ResultBean.RecommendInfoBean) extra;
-                    setUI(recommendInfoBean.getFigure(),recommendInfoBean.getName(),"",recommendInfoBean.getCover_price());
+                    goodBean = new ProductGoodBean(recommendInfoBean.getName(), recommendInfoBean.getCover_price(), recommendInfoBean.getFigure(), recommendInfoBean.getProduct_id());
                     break;
                 case "hot":
                     MainBean.ResultBean.HotInfoBean hotInfoBean = (MainBean.ResultBean.HotInfoBean) extra;
-                    setUI(hotInfoBean.getFigure(),hotInfoBean.getName(),"",hotInfoBean.getCover_price());
+                    goodBean = new ProductGoodBean(hotInfoBean.getName(), hotInfoBean.getCover_price(), hotInfoBean.getFigure(), hotInfoBean.getProduct_id());
                     break;
                 case "product":
                     GoodsBean.ResultBean.HotProductListBean productListBean = (GoodsBean.ResultBean.HotProductListBean) extra;
-                    setUI(productListBean.getFigure(),productListBean.getName(),"",productListBean.getCover_price());
+                    goodBean = new ProductGoodBean(productListBean.getName(), productListBean.getCover_price(), productListBean.getFigure(), productListBean.getProduct_id());
                     break;
-           }
+            }
+
+            setUI(goodBean);
+
         }
 
 
     }
 
-    private void setUI(String image, String name, String desc, String cover_price) {
-        Glide.with(this).load(Constants.BASE_URl_IMAGE+image).into(ivGoodInfoImage);
-        tvGoodInfoName.setText(name);
-        if(!desc.equals("")){
-            tvGoodInfoDesc.setText(desc);
-        }
-        tvGoodInfoPrice.setText("¥"+cover_price);
-        wbGoodInfoMore.loadUrl("https://www.jd.com");
+    private void setUI(ProductGoodBean goodBean) {
+        Glide.with(this).load(Constants.BASE_URl_IMAGE+goodBean.getFigure()).into(ivGoodInfoImage);
+        tvGoodInfoName.setText(goodBean.getName());
+        tvGoodInfoPrice.setText("¥"+goodBean.getCover_price());
+
     }
 
     @Override
@@ -168,5 +245,36 @@ public class DetailActivity extends BaseActivity {
         tvMoreSearch = (TextView) findViewById(R.id.tv_more_search);
         tvMoreHome = (TextView) findViewById(R.id.tv_more_home);
         btnMore = (Button) findViewById(R.id.btn_more);
+    }
+
+    @Override
+    public void onOk(AddProductBean bean) {
+
+        if(!bean.getCode().equals("200")){
+            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
+    }
+
+    @Override
+    public void onError(String msg) {
+        Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showloading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

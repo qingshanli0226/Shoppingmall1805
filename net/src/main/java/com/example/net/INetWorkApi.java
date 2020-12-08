@@ -6,11 +6,13 @@ import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.MainBean;
 import com.example.net.bean.RegisterBean;
+import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.TagBean;
 
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
@@ -38,6 +40,7 @@ public interface INetWorkApi {
     @FormUrlEncoded
     Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
     @POST("addOneProduct")
-    Observable<AddProductBean> addOneProduct(@Body String json);
-
+    Observable<AddProductBean> addOneProduct(@Body RequestBody body);
+    @GET("getShortcartProducts")
+    Observable<ShopCarBean> getShopCar();
 }

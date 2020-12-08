@@ -2,7 +2,6 @@ package com.shopmall.bawei.shopmall1805.app;
 
 
 import android.content.Intent;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
@@ -70,7 +69,6 @@ public class MainActivity extends BaseActivity {
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
         String key = intent.getStringExtra("position");
-        Log.i("Yoyo", "onResume: "+key);
         if(key!=null&&!key.equals("")){
 
             int anInt = Integer.parseInt(key);
