@@ -1,6 +1,10 @@
 package com.example.elevenmonthshoppingproject.fragment;
 
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -8,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.elevenmonthshoppingproject.R;
+import com.example.elevenmonthshoppingproject.activity.MainActivity;
 import com.example.elevenmonthshoppingproject.adapter.BaseRVAdapter;
 import com.example.elevenmonthshoppingproject.adapter.Recyadapter;
 import com.example.elevenmonthshoppingproject.shop.ShopIView;
@@ -16,6 +21,7 @@ import com.example.net.BaseFragment;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.Recommonde;
 import com.example.net.bean.RegisterBean;
+import com.example.user.ShopCarManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +50,10 @@ public class FirstShops extends BaseFragment implements ShopIView.IShopView , Ba
         recyCler.setAdapter(recyadapter);
 
 
+
     }
+
+
 
     @Override
     protected void iniData() {

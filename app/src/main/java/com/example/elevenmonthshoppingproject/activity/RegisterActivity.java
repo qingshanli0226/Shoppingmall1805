@@ -41,8 +41,8 @@ public class RegisterActivity extends BaseActivity implements ShopIView.IShopVie
 
     @Override
     protected void iniView() {
-        editName = findViewById(R.id.edit_name);
-        editPass = findViewById(R.id.edit_pass);
+        editName = findViewById(R.id.et_login_phone);
+        editPass = findViewById(R.id.et_login_pwd);
         btnLogin = findViewById(R.id.btn_login);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -64,7 +64,9 @@ public class RegisterActivity extends BaseActivity implements ShopIView.IShopVie
 
     @Override
     public void onShopview(Recommonde recommonde) {
-
+        Intent intent = new Intent(this,LoginActivity.class);
+        startActivity(intent);
+        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -81,9 +83,7 @@ public class RegisterActivity extends BaseActivity implements ShopIView.IShopVie
             Toast.makeText(this, "用户名正确", Toast.LENGTH_SHORT).show();
             if (mtcpassword.matches()){
                 shopPresenterImp.onregister(username,password);
-                Intent intent = new Intent(this,LoginActivity.class);
-                startActivity(intent);
-                Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+
                 finish();
             }else {
                 Toast.makeText(this, "密码格式不正确", Toast.LENGTH_SHORT).show();

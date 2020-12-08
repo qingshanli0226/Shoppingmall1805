@@ -10,4 +10,5 @@
     <color name="colororange">#F85C2B</color>
     <color name="colorred">#EB0D0D</color>
     <color name="seablue">#3F51B5</color>
+    <color name="gray_dark_bg">#fff</color>
 </resources>

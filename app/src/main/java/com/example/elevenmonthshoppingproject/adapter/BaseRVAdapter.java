@@ -19,6 +19,7 @@ import java.util.List;
  * @param <T>
  */
 public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapter.BaseViewHoder> {
+
     private List<T> datelist=new ArrayList<>();
     private IBaseRecyclerLinsterner iBaseRecyclerLinsterner;
 

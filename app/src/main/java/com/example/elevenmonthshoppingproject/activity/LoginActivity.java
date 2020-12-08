@@ -51,9 +51,9 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
         startService(intent);
 
 
-        txtJump = findViewById(R.id.txt_jump);
-        editName = findViewById(R.id.edit_name);
-        editPass = findViewById(R.id.edit_pass);
+        txtJump = findViewById(R.id.tv_login_register);
+        editName = findViewById(R.id.et_login_phone);
+        editPass = findViewById(R.id.et_login_pwd);
         btnLogin = findViewById(R.id.btn_login);
 
         btnLogin.setOnClickListener(this);
@@ -140,7 +140,7 @@ public class LoginActivity extends BaseActivity implements ShopIView.IShopView,V
         }
 
                 break;
-            case R.id.txt_jump:
+            case R.id.tv_login_register:
                 Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
                 startActivity(intent);
                 break;

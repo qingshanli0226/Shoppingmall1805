@@ -8,6 +8,7 @@ import com.example.net.Contants;
 import com.example.net.bean.Recommonde;
 
 public class ChannelAdapter extends  BaseRVAdapter<Recommonde.ChannelInfoBean> {
+
     @Override
     protected int getLayoutid(int viewtype) {
         return R.layout.channel_layout;

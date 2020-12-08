@@ -8,6 +8,7 @@ import com.example.net.Contants;
 import com.example.net.bean.Recommonde;
 
 public class ActAdapter extends  BaseRVAdapter<Recommonde.ActInfoBean> {
+
     @Override
     protected int getLayoutid(int viewtype) {
         return R.layout.act_layout;

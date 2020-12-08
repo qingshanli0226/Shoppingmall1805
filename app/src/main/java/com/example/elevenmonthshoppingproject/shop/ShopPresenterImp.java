@@ -1,5 +1,7 @@
 package com.example.elevenmonthshoppingproject.shop;
 
+import android.util.Log;
+
 import com.example.net.NetFunction;
 import com.example.net.RetorfitCreate;
 import com.example.net.bean.BaseBean;
@@ -55,7 +57,7 @@ public class ShopPresenterImp extends  ShopIView.IShopPresenter {
     @Override
     public void onregister(String username, String password) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("username",username);
+        map.put("name",username);
         map.put("password",password);
         RetorfitCreate.getiNetworkserviceimpl().registerbean(map)
                 .delay(5,TimeUnit.SECONDS)
@@ -91,7 +93,7 @@ public class ShopPresenterImp extends  ShopIView.IShopPresenter {
     @Override
     public void onlogin(String username, String password) {
         HashMap<String, String> map = new HashMap<>();
-        map.put("username",username);
+        map.put("name",username);
         map.put("password",password);
         RetorfitCreate.getiNetworkserviceimpl().loginbean(map)
                 .delay(5,TimeUnit.SECONDS)
@@ -105,7 +107,13 @@ public class ShopPresenterImp extends  ShopIView.IShopPresenter {
 
                     @Override
                     public void onNext(LoginBean loginBean) {
+                        if (shopView!=null){
+                            if (loginBean.getCode().equals("200")){
+                                Log.i("---","gtl"+loginBean.getResult().getToken());
                                 shopView.onlogin(loginBean);
+                            }
+                        }
+
                     }
 
                     @Override

@@ -7,10 +7,13 @@ import com.example.net.bean.Recommonde;
 import com.example.net.bean.RegisterBean;
 
 public class ShopIView {
+
     public interface IShopView extends IView{
         void onShopview(Recommonde recommonde);
         void onregister(RegisterBean registerBean);
         void onlogin(LoginBean loginBean);
+        void onskirt();
+
     }
     public static abstract class IShopPresenter extends BasePresenter<IShopView>{
             public abstract void getshop();

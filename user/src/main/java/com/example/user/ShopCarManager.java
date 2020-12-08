@@ -39,7 +39,7 @@ public class ShopCarManager {
         public void saveLoginbean(LoginBean loginBean){
                     this.loginBean=loginBean;
             //使用sp卡存储
-            editor.putString(Contants.SHOPCAR_TOKEN,loginBean.getToken()).commit();
+            editor.putString(Contants.SHOPCAR_TOKEN,loginBean.getResult().getToken()).commit();
 
             Intent intent = new Intent();
             intent.setAction(Contants.LOGIN_ACTION);
@@ -53,7 +53,7 @@ public class ShopCarManager {
 
       public String getToken(){
             if (loginBean!=null){
-               return loginBean.getToken();
+               return loginBean.getResult().getToken();
             }else {
                 return "";
             }

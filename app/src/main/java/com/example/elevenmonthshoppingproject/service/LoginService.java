@@ -54,7 +54,6 @@ public class LoginService extends Service {
                                 intent1.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                                 startActivity(intent1);
 
-
                         }
                     }
 

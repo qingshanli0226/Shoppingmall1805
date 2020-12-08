@@ -7,7 +7,7 @@ import com.example.elevenmonthshoppingproject.R;
 import com.example.elevenmonthshoppingproject.adapter.FragAdapter;
 import com.example.elevenmonthshoppingproject.commontablayout.MyCommonTab;
 import com.example.elevenmonthshoppingproject.fragment.FirstShops;
-import com.example.elevenmonthshoppingproject.fragment.ShopShowFragment;
+import com.example.elevenmonthshoppingproject.fragment.ShopTypeFragment;
 import com.example.elevenmonthshoppingproject.fragment.Fragment3;
 import com.example.elevenmonthshoppingproject.fragment.Fragment4;
 import com.example.elevenmonthshoppingproject.fragment.Fragment5;
@@ -25,12 +25,13 @@ public class MainActivity extends BaseActivity {
 
     private List<Fragment> fragments=new ArrayList<>();
     private FirstShops fragment1=new FirstShops();
-    private ShopShowFragment fragment2=new ShopShowFragment();
+    private ShopTypeFragment fragment2=new ShopTypeFragment();
     private Fragment3 fragment3=new Fragment3();
     private Fragment4 fragment4=new Fragment4();
     private Fragment5 fragment5=new Fragment5();
 
     private CommonTabLayout common;
+
     private ArrayList<CustomTabEntity> tabEntitys=new ArrayList<>();
     private FragAdapter fragAdapter;
     @Override
@@ -40,6 +41,9 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected void iniData() {
+
+
+
         fragments.add(fragment1);
         fragments.add(fragment2);
         fragments.add(fragment3);

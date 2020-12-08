@@ -31,4 +31,6 @@ public interface INetworkserviceimpl {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<AutoLoginBean> tokenbean(@FieldMap HashMap<String,String> map);
+
+
 }

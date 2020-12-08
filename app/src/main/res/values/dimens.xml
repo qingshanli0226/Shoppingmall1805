@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="txt_sizefifteen">15sp</dimen>
     <dimen name="txt_sizetwentyfive">25sp</dimen>
     <dimen name="txt_sizethirty">30sp</dimen>
     <dimen name="txt_sizefourty">40sp</dimen>
