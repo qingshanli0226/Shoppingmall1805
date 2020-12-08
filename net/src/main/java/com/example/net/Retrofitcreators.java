@@ -21,6 +21,7 @@ public class Retrofitcreators {
                 .writeTimeout(5000, TimeUnit.SECONDS)
                 .readTimeout(5000, TimeUnit.SECONDS)
                 .connectTimeout(5000, TimeUnit.SECONDS)
+                .addInterceptor(new TokenInterceptor())
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
         Retrofit build = new Retrofit.Builder()

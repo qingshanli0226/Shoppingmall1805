@@ -58,7 +58,7 @@ public class ShopUsermange {
         this.loginBean = loginBean;
 
         //使用sp储存token
-        editor.putString(Confing.spName,loginBean.getToken());
+        editor.putString(Confing.token,loginBean.getToken());
         editor.commit();
 
         //通过接口回调通知其他的界面，当前用户已经登录
@@ -67,7 +67,22 @@ public class ShopUsermange {
         }
     }
     public String gettoken(){
-        return sharedPreferences.getString(Confing.spName,"");
+        if (loginBean!=null){
+            return loginBean.getToken();
+        }else {
+            return sharedPreferences.getString(Confing.token,"");
+        }
+
+    }
+    public void registerUserLoginChangeListenter(IUserLoginChangeLiestener liestener){
+        if (! liesteners.contains(liestener)){
+            liesteners.add(liestener);
+        }
+    }
+    public void unRegisterUserLoginChangeListenter(IUserLoginChangeLiestener liestener){
+        if (liesteners.contains(liestener)){
+            liesteners.remove(liestener);
+        }
     }
     public interface IUserLoginChangeLiestener{
         void onUserLogin(LoginBean loginBean);

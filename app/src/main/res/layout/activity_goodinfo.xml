@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="#fff"
-    tools:context=".ui.activity.GoodinfoActivity">
+    tools:context=".ui.activity.view.GoodinfoActivity">
     <LinearLayout
         style="@style/Base_Layout_Match_Wrap"
         android:padding="@dimen/dp_10">

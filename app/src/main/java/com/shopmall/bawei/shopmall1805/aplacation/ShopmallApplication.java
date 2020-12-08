@@ -4,9 +4,10 @@ import android.app.Application;
 import android.content.Intent;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.example.framework.CacheManager;
 import com.example.framework.MyService;
 import com.example.framework.ShopUsermange;
-
+import com.example.net.NetModel;
 
 
 public class ShopmallApplication extends Application {
@@ -21,7 +22,7 @@ public class ShopmallApplication extends Application {
         // 初始化尽可能早，推荐在Application中初始化
         ARouter.init(this);
         ShopUsermange.getInstance().init(this);
-
-
+        NetModel.init(this);
+        CacheManager.getInstance().init(this);
     }
 }

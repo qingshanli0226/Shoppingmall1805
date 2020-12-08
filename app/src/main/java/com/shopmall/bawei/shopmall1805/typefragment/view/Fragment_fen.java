@@ -16,7 +16,7 @@ import com.example.framework.BaseRVAdapter;
 import com.example.net.Confing;
 import com.example.net.bean.ClothesBean;
 import com.shopmall.bawei.shopmall1805.typefragment.presenter.ClothesPresenter;
-import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.view.GoodinfoActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adpter.Clother_RAdpter;
 import com.shopmall.bawei.shopmall1805.adpter.Colother_CAdpter;
@@ -181,7 +181,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
             clother_rAdpter.setiRecyclerViewItemClickListener(new BaseRVAdapter.IRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getHot_product_list().get(position).getProduct_id(),skertbean.get(0).getHot_product_list().get(position).getName(),skertbean.get(0).getHot_product_list().get(position).getCover_price(), Confing.BASE_IMAGE + skertbean.get(0).getHot_product_list().get(position).getFigure());
+                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getHot_product_list().get(position).getProduct_id(),skertbean.get(0).getHot_product_list().get(position).getName(),skertbean.get(0).getHot_product_list().get(position).getCover_price(), skertbean.get(0).getHot_product_list().get(position).getFigure());
 
                     Intent intent = new Intent(getContext(), GoodinfoActivity.class);
                     intent.putExtra("goods_bean", goodsBean);
@@ -192,7 +192,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
             colother_cAdpter.setiRecyclerViewItemClickListener(new BaseRVAdapter.IRecyclerViewItemClickListener() {
                 @Override
                 public void onItemClick(int position) {
-                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getChild().get(position).getParent_id(),skertbean.get(0).getChild().get(position).getName(),skertbean.get(0).getChild().get(position).getParent_id(), Confing.BASE_IMAGE + skertbean.get(0).getChild().get(position).getPic());
+                    PrimereBean goodsBean = new PrimereBean(skertbean.get(0).getChild().get(position).getParent_id(),skertbean.get(0).getChild().get(position).getName(),skertbean.get(0).getChild().get(position).getParent_id(), skertbean.get(0).getChild().get(position).getPic());
 
                     Intent intent = new Intent(getContext(), GoodinfoActivity.class);
                     intent.putExtra("goods_bean", goodsBean);

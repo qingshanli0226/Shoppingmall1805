@@ -18,9 +18,7 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> implements V
 
     @Override
     protected void initpreseter() {
-        Intent intent = new Intent();
-        intent.setClass(this, MyService.class);
-        startService(intent);
+
     }
 
     @Override

@@ -6,11 +6,14 @@ import com.example.net.bean.ClothesBean;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.RegisterBean;
+import com.example.net.bean.ShopcarBean;
 
 import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -29,6 +32,22 @@ public interface INetPresetenterWork {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> autologin(@FieldMap HashMap<String,String> map);
+    //检查服务端一个产品库存情况的接口
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkoneproductInventory(@FieldMap HashMap<String,String> map);
+
+    //向服务端购物车添加一个产品的接口
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
+
+    //获取服务端购物车产品信息的接口
+     @GET("getShortcartProducts")
+     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
+    //更新服务端购物车产品的数量的接口
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
 
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")

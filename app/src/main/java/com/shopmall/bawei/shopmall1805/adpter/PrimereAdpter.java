@@ -12,7 +12,7 @@ import com.bumptech.glide.Glide;
 import com.example.net.Confing;
 import com.example.framework.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
-import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.view.GoodinfoActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
 import com.youth.banner.Banner;
@@ -72,7 +72,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         hotAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                PrimereBean goodsBean = new PrimereBean(hotInfoBeans.get(position).getProduct_id(), hotInfoBeans.get(position).getName(), hotInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + hotInfoBeans.get(position).getFigure());
+                PrimereBean goodsBean = new PrimereBean(hotInfoBeans.get(position).getProduct_id(), hotInfoBeans.get(position).getName(), hotInfoBeans.get(position).getCover_price(), hotInfoBeans.get(position).getFigure());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -91,7 +91,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         recommendAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                PrimereBean goodsBean = new PrimereBean(recommendInfoBeans.get(position).getProduct_id(), recommendInfoBeans.get(position).getName(), recommendInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + recommendInfoBeans.get(position).getFigure());
+                PrimereBean goodsBean = new PrimereBean(recommendInfoBeans.get(position).getProduct_id(), recommendInfoBeans.get(position).getName(), recommendInfoBeans.get(position).getCover_price(),  recommendInfoBeans.get(position).getFigure());
 
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
@@ -111,7 +111,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         seckAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                PrimereBean goodsBean = new PrimereBean(seckillInfoBeans.get(position).getProduct_id(), seckillInfoBeans.get(position).getName(), seckillInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + seckillInfoBeans.get(position).getFigure());
+                PrimereBean goodsBean = new PrimereBean(seckillInfoBeans.get(position).getProduct_id(), seckillInfoBeans.get(position).getName(), seckillInfoBeans.get(position).getCover_price(),  seckillInfoBeans.get(position).getFigure());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -144,7 +144,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
                     }
                     String image = actInfoBeans.get(position).getIcon_url();
-                    PrimereBean goodsBean = new PrimereBean(product_id, name, cover_price, Confing.BASE_IMAGE + image);
+                    PrimereBean goodsBean = new PrimereBean(product_id, name, cover_price,  image);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                     intent.putExtra("goods_bean", goodsBean);
@@ -213,7 +213,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【蓝诺】《天下吾双》 剑网3同人本";
                     }
                     String image = bannerInfoBeans.get(position).getImage();
-                    PrimereBean goodsBean = new PrimereBean(product_id,name, cover_price, Confing.BASE_IMAGE+image);
+                    PrimereBean goodsBean = new PrimereBean(product_id,name, cover_price, image);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                     intent.putExtra("goods_bean", goodsBean);
