@@ -1,33 +1,25 @@
 package com.shopmall.bawei.shopmall1805.home;
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewPager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.flyco.tablayout.CommonTabLayout;
-import com.flyco.tablayout.listener.CustomTabEntity;
-import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.fragment.FragmentClassify;
-import com.shopmall.bawei.shopmall1805.fragment.FragmentHomePage;
-import com.shopmall.bawei.shopmall1805.fragment.FragmentPersonAge;
-import com.shopmall.bawei.shopmall1805.fragment.FragmentShop;
-import com.shopmall.bawei.shopmall1805.tliteUser;
+import com.shopmall.bawei.shopmall1805.home.fragment.FragmentClassify;
+import com.shopmall.bawei.shopmall1805.home.fragment.FragmentHomePage;
+import com.shopmall.bawei.shopmall1805.home.fragment.FragmentPersonAge;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseActivity;
 import framework.CacheManagerc;
 import framework.ShopUserManager;
 import mode.ShopcarBean;
+import view.FragmentShopcar;
 import view.ShopmallConstant;
 import view.loadinPage.ErrorBean;
 
@@ -61,7 +53,7 @@ public class MainActivity extends BaseActivity {
                         break;
                     case R.id.radioButtonShopcar:
                         getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.fragmentViewLayout,new FragmentShop())
+                                .replace(R.id.fragmentViewLayout,new FragmentShopcar())
                         .commit();
                         if (!ShopUserManager.getInstance().isUserLogin()){
                             //如果用户没有登录
@@ -89,12 +81,11 @@ public class MainActivity extends BaseActivity {
         FragmentTransaction add = getSupportFragmentManager().beginTransaction()
                 .add(R.id.fragmentViewLayout, new FragmentHomePage())
                 .add(R.id.fragmentViewLayout, new FragmentClassify())
-                .add(R.id.fragmentViewLayout, new FragmentShop())
+                .add(R.id.fragmentViewLayout, new FragmentShopcar())
                 .add(R.id.fragmentViewLayout, new FragmentPersonAge());
-        add.show(new FragmentHomePage())
+        getSupportFragmentManager().beginTransaction()
+                .replace(R.id.fragmentViewLayout,new FragmentHomePage())
                 .commit();
-
-
         switchFragmentByIndex(getIntent());
         //注册listener监听购物车公共数据是否发生改变,改变后，要去刷新购物车数量
         initShopcarDataChangeListener();

@@ -85,4 +85,6 @@ interface FoodService {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String, String> params);
+
+
 }

@@ -45,18 +45,17 @@ public class ToolBar extends RelativeLayout {
     }
 
 
-    //初始化函数
+    //初始化
     private void init(Context context, AttributeSet attrs, int defStyleAttr) {
         initToolBarAttrs(context, attrs);
 
         LayoutInflater inflater = LayoutInflater.from(context);
-        inflater.inflate(R.layout.toolbar_layout, this);//第二个参数一定要是this
+        inflater.inflate(R.layout.toolbar_layout, this);
         toolBarLeftImg = findViewById(R.id.toolbarLeftImg);
         toolbarRightImg = findViewById(R.id.toolbarRightImg);
         toolbarTitleTv = findViewById(R.id.toolbarTitleTv);
         toolbarRightTv = findViewById(R.id.toolbarRightTv);
 
-        //使用属性值来控制toolbar里控件的显示
         if (!isShowLeft) showNotLeft();
         if (!isShowTitle) showNotTitle();
         if (rightImgId != 0) setToolBarRightImg(rightImgId);
@@ -103,7 +102,6 @@ public class ToolBar extends RelativeLayout {
     }
 
     private void initToolBarAttrs(Context context, AttributeSet attrs) {
-        //获取Toolbar在布局中定义的属性值
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ToolBar);
         isShowLeft = typedArray.getBoolean(R.styleable.ToolBar_left_show, true);
         isShowTitle = typedArray.getBoolean(R.styleable.ToolBar_title_show,true);

@@ -161,4 +161,9 @@ class jsonModel implements Contact.centerUserImodel {
 
 
     }
+
+    @Override
+    public void shcarShop(int count) {
+
+    }
 }

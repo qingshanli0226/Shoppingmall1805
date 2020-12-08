@@ -21,4 +21,9 @@ class JsonRepository extends Contact.centerUserRepostory {
         model.loginAndRegister(count,username,password);
     }
 
+    @Override
+    public void shcarShop(int count) {
+        model.shcarShop(count);
+    }
+
 }

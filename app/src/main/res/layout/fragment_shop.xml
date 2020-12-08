@@ -6,19 +6,8 @@
     <view.ToolBar
         android:id="@+id/tooBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Ucom_public_heightfour"/>
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/Go_rv"
-            style="@style/LinearLayoutSV"/>
-        <LinearLayout
-            android:layout_alignBottom="@+id/Go_rv"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/com_public_heightfour"
-            android:orientation="horizontal">
-        </LinearLayout>
-    </RelativeLayout>
+        android:layout_height="@dimen/Ucom_public_heightfour"
+        android:visibility="gone"/>
+
 
 </LinearLayout>

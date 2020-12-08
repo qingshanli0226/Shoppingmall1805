@@ -5,6 +5,7 @@ import android.util.Log;
 
 import framework.Contact;
 import framework.JsonDataCallBace;
+import framework.mvpc.CallBaceObserver.BeanObserver;
 import framework.mvpc.CallBaceObserver.ClothesBeanObserver;
 import framework.mvpc.CallBaceObserver.HomeBeanObserver;
 import framework.mvpc.CallBaceObserver.JavaBeanObserver;
@@ -16,6 +17,7 @@ import mode.HomeBean;
 import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
+import mode.ShopcarBean;
 
 public class jsonPresenter extends Contact.centetUserpepostory{
     private Contact.CenterUserIview centerUserIviewc;
@@ -28,8 +30,9 @@ public class jsonPresenter extends Contact.centetUserpepostory{
     public static Observer<HomeBean> homeBeanObserver;
     public static Observer<RegisterBean> registerBeanObserver;
     public static Observer<LoginBean> loginBeanObserver;
+    public static Observer<ShopcarBean> beanObserver;
     @Override
-    public void getshopcal(int count, final JsonDataCallBace userc) {
+    public void getshopcal(int count, final JsonDataCallBace jsonDataCallBace) {
         Repostory.getshopcal(count);
         javabeanObserver = new JavaBeanObserver(){
             @Override
@@ -37,7 +40,7 @@ public class jsonPresenter extends Contact.centetUserpepostory{
                 if (javabean==null){
 
                 }else {
-                    userc.javabean(javabean);
+                    jsonDataCallBace.javabean(javabean);
 
                 }
             }
@@ -49,7 +52,7 @@ public class jsonPresenter extends Contact.centetUserpepostory{
         clothesBeanObserver = new ClothesBeanObserver(){
             @Override
             public void onNext(ClothesBean clothesBean) {
-                userc.clothesBean(clothesBean);
+                jsonDataCallBace.clothesBean(clothesBean);
             }
 
             @Override
@@ -59,7 +62,7 @@ public class jsonPresenter extends Contact.centetUserpepostory{
         homeBeanObserver = new HomeBeanObserver(){
             @Override
             public void onNext(HomeBean homeBean) {
-                userc.homeBean(homeBean);
+                jsonDataCallBace.homeBean(homeBean);
                 if (homeBean==null){
 
                 }
@@ -69,15 +72,16 @@ public class jsonPresenter extends Contact.centetUserpepostory{
             public void onError(Throwable e) {
             }
         };
+
     }
 
     @Override
-    public void loginAndRegister(int count, String username, String password, final JsonDataCallBace userc) {
+    public void loginAndRegister(int count, String username, String password, final JsonDataCallBace jsonDataCallBace) {
         Repostory.loginAndRegister(count,username,password);
         registerBeanObserver  = new RegisterBeanObserver(){
             @Override
             public void onNext(RegisterBean registerBean) {
-                userc.registerBean(registerBean);
+                jsonDataCallBace.registerBean(registerBean);
             }
 
             @Override
@@ -87,11 +91,27 @@ public class jsonPresenter extends Contact.centetUserpepostory{
         loginBeanObserver = new LoginBeanObserver(){
             @Override
             public void onNext(LoginBean loginBean) {
-                userc.loginBean(loginBean);
+                jsonDataCallBace.loginBean(loginBean);
             }
 
             @Override
             public void onError(Throwable e) {
+            }
+        };
+    }
+
+    @Override
+    public void shcarShop(int count, JsonDataCallBace jsonDataCallBace) {
+        Repostory.getshopcal(count);
+        beanObserver = new BeanObserver<ShopcarBean>() {
+            @Override
+            public void onNext(ShopcarBean shopcarBean) {
+                super.onNext(shopcarBean);
+            }
+
+            @Override
+            public void onError(Throwable e) {
+                super.onError(e);
             }
         };
     }
