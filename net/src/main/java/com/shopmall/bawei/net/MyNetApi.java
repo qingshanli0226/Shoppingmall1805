@@ -11,8 +11,12 @@ import com.shopmall.bawei.net.mode.TypeBean;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -30,14 +34,35 @@ public interface MyNetApi {
 
     @POST(UrlHelper.AUTO_LOGIN)
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap params);
-
+    Observable<BaseBean<LoginBean>> autoLogin(@Field("token") String token);
 
     @GET("getShortCartProducts")
     Observable<BaseBean<List<ShopCarBean>>> getShortCartProducts();
 
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String,String> map);
 
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
+
+    @POST("updateProductSelected")
+    Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);
+
+    @POST("selectAllProduct")
+    Observable<BaseBean<String>> selectAllProduct(@Body RequestBody requestBody);
+
+    @POST("removeManyProduct")
+    Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
+//
+//    @POST("checkInventory")
+//    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+//
+//    @POST("getOrderInfo")
+//    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
 
     @GET(UrlHelper.HOME_URL)
     Observable<BaseBean<HomeBean>> getHomeData();

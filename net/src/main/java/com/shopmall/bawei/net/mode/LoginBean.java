@@ -2,6 +2,22 @@ package com.shopmall.bawei.net.mode;
 
 public class LoginBean {
 
+    @Override
+    public String toString() {
+        return "LoginBean{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", email=" + email +
+                ", phone=" + phone +
+                ", point=" + point +
+                ", address=" + address +
+                ", money=" + money +
+                ", avatar='" + avatar + '\'' +
+                ", token='" + token + '\'' +
+                '}';
+    }
+
     /**
      * id : lkkji1234
      * name : lkkji1234
@@ -14,6 +30,7 @@ public class LoginBean {
      * avatar : /img/1438946011155.jpg
      * token : 7165a1b7-63be-46ea-9b1c-086be9f22c5dAND1606689169588
      */
+
 
     private String id;
     private String name;

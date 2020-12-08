@@ -17,19 +17,42 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
+import com.shopmall.bawei.common.ARouterHelper;
+import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseActivity;
+import com.shopmall.bawei.framework.CacheManager;
+import com.shopmall.bawei.framework.UserManager;
 import com.shopmall.bawei.net.mode.GoodsBean;
+import com.shopmall.bawei.net.mode.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.goodsdesc.contract.GoodsInfoContract;
+import com.shopmall.bawei.shopmall1805.goodsdesc.contract.GoodsInfoImpl;
 
-public class GoodsInfoActivity extends BaseActivity implements View.OnClickListener {
+import java.util.List;
+
+public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoContract.IGoodsInfoView> implements View.OnClickListener, CacheManager.IShopcarDataChangeListener , GoodsInfoContract.IGoodsInfoView {
     private Button btnGoodInfoAddCart;
     private GoodsBean goodsBean;
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
     private TextView tvGoodInfoPrice;
     private WebView wbGoodInfoMore;
+    private TextView tvGoodInfoCart;
+
+
+    private String name;
+    private String coverPrice;
+    private String figure;
+    private String productId;
+
+    private NumberAddSubView nasGoodinfoNum;
+
+
+
+
 
     @Override
     protected void initView() {
@@ -38,6 +61,14 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         tvGoodInfoName = (TextView) findViewById(R.id.tv_good_info_name);
         tvGoodInfoPrice = (TextView) findViewById(R.id.tv_good_info_price);
         wbGoodInfoMore = (WebView) findViewById(R.id.wb_good_info_more);
+        tvGoodInfoCart = (TextView) findViewById(R.id.tv_good_info_cart);
+        tvGoodInfoCart.setOnClickListener(this);
+        if(UserManager.getInstance().isUserLogin()){
+            tvGoodInfoCart.setText("购物车"+CacheManager.getInstance().getShopCarBeanList().size());
+        }
+        CacheManager.getInstance().setShopCarDataChangeListener(this);
+
+
         Intent intent = getIntent();
         goodsBean = (GoodsBean) intent.getSerializableExtra("goods_bean");
         if (goodsBean != null) {
@@ -47,24 +78,24 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
     }
 
     private void setDataFormView(GoodsBean goodsBean) {
-        String name = goodsBean.getName();
-        String cover_price = goodsBean.getCover_price();
-        String figure = goodsBean.getFigure();
-        Log.i("TAG", "setDataFormView: "+figure);
-        String product_id = goodsBean.getProduct_id();
+        name = goodsBean.getName();
+        coverPrice = goodsBean.getCover_price();
+        figure = goodsBean.getFigure();
+        productId = goodsBean.getProduct_id();
+        Log.i("TAG", "setDataFormView: "+productId);
 
         Glide.with(this).load(UrlHelper.BASE_URl_IMAGE + figure).into(ivGoodInfoImage);
         if (name != null) {
             tvGoodInfoName.setText(name);
         }
-        if (cover_price != null) {
-            tvGoodInfoPrice.setText("￥" + cover_price);
+        if (coverPrice != null) {
+            tvGoodInfoPrice.setText("￥" + coverPrice);
         }
-        setWebView(product_id);
+        setWebView(productId);
     }
 
-    private void setWebView(String product_id) {
-        if (product_id != null) {
+    private void setWebView(String productId) {
+        if (productId != null) {
             //http://192.168.51.104:8080/atguigu/json/GOODSINFO_URL.json2691
 //            wbGoodInfoMore.loadUrl(Constants.GOODSINFO_URL + product_id);
             wbGoodInfoMore.loadUrl("http://www.atguigu.com");
@@ -99,19 +130,33 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
 
     @Override
     protected void initPresenter() {
-
+        httpPresenter = new GoodsInfoImpl();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_good_info_addcart:
-                showPopWindow();
+                if(!UserManager.getInstance().isUserLogin()){
+                    ARouter.getInstance().build(ARouterHelper.USER_LOGIN).withInt(UrlHelper.TO_LOGIN_KEY,UrlHelper.TO_LOGIN_FROM_ADD_SHOP).navigation(this,100);
+                    return;
+                }
+                checkHasProduct(1);
+                break;
+            case R.id.tv_good_info_cart:
+                if(!UserManager.getInstance().isUserLogin()){
+                    ARouter.getInstance().build(ARouterHelper.USER_LOGIN).withInt(UrlHelper.TO_LOGIN_KEY,UrlHelper.TO_LOGIN_FROM_SHOP_ACTIVITY).navigation();
+                    return;
+                }
                 break;
         }
     }
 
-    private void showPopWindow() {
+    private void checkHasProduct(int num) {
+        httpPresenter.checkOneProductNum(productId,String.valueOf(num));
+    }
+
+    private void showPopWindow(int num) {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
 
@@ -128,7 +173,7 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         ImageView iv_goodinfo_photo = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
         TextView tv_goodinfo_name = (TextView) view.findViewById(R.id.tv_goodinfo_name);
         TextView tv_goodinfo_price = (TextView) view.findViewById(R.id.tv_goodinfo_price);
-        NumberAddSubView nas_goodinfo_num = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
+        nasGoodinfoNum = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
         Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
         Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
 
@@ -139,17 +184,17 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         // 显示价格
         tv_goodinfo_price.setText(goodsBean.getCover_price());
 
-        nas_goodinfo_num.setMaxValue(8);
-        nas_goodinfo_num.setValue(1);
+        nasGoodinfoNum.setMaxValue(num);
+        nasGoodinfoNum.setValue(1);
 
-        nas_goodinfo_num.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
+        nasGoodinfoNum.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
             public void addNumber(View view, int value) {
                 goodsBean.setNumber(value);
             }
 
             @Override
-            public void subNumner(View view, int value) {
+            public void subNumber(View view, int value) {
                 goodsBean.setNumber(value);
             }
         });
@@ -186,5 +231,63 @@ public class GoodsInfoActivity extends BaseActivity implements View.OnClickListe
         // 5 在底部显示
         window.showAtLocation(GoodsInfoActivity.this.findViewById(R.id.ll_goods_root),
                 Gravity.BOTTOM, 0, VirtualkeyboardHeight.getBottomStatusHeight(GoodsInfoActivity.this));
+    }
+
+    @Override
+    public void onDataChanged(List<ShopCarBean> shopcarBeanList) {
+        tvGoodInfoCart.setText("购物车"+shopcarBeanList.size());
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopCarBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
+
+    @Override
+    public void onCheckOneProducts(String productNum) {
+        int num = Integer.parseInt(productNum);
+//        if(num > 1){
+//            showPopWindow(num);
+//        }
+    }
+
+    @Override
+    public void onAddProduct(String addResult) {
+
+    }
+
+    @Override
+    public void onProductNumChange(String result) {
+
+    }
+
+    @Override
+    public void onError(String msg) {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoadingPage(isSuccess,errorBean);
+    }
+
+    @Override
+    public void showLoaDing() {
+        showLoading();
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

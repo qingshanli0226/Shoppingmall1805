@@ -12,6 +12,8 @@ public class ShopCarBean {
      * productSelected : false
      */
 
+
+
     private String productId;
     private String productName;
     private String productNum;

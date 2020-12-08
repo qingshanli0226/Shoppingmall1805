@@ -238,6 +238,8 @@
                 android:text="购物车"
                 android:textColor="#393b3e" />
 
+
+
             <Button
                 android:id="@+id/btn_good_info_addcart"
                 android:layout_width="120dp"
