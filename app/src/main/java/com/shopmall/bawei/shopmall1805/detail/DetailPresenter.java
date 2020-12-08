@@ -1,5 +1,7 @@
 package com.shopmall.bawei.shopmall1805.detail;
 
+import android.util.Log;
+
 import com.bw.net.RetraficCreator;
 import com.bw.net.bean.Basebean;
 import com.bw.net.bean.ShopCarBean;
@@ -50,7 +52,8 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
 
                     @Override
                     public void onNext(ShopCarBean shopCarBean) {
-                        iView.onAddProductOk("加入购物车成功");
+                        Log.i("---", "onNext  addProduct : "+shopCarBean.getProductId());
+                        iView.onAddProductOk("加入购物车成功"+shopCarBean.getProductId());
                     }
 
                     @Override
@@ -75,15 +78,15 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
         RetraficCreator.getiNetWorkApiService().checkOneProductInventory(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Basebean<String>>() {
+                .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Basebean<String> string) {
-                        iView.onCheckOneProduct(string.getMessage());
+                    public void onNext(String string) {
+                        iView.onCheckOneProduct(string);
                     }
 
                     @Override
@@ -114,15 +117,16 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
         RetraficCreator.getiNetWorkApiService().updateProductNum(requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<Basebean<String>>() {
+                .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(Basebean<String> string) {
-                        iView.onProductNumChange(string.getMessage());
+                    public void onNext(String string) {
+                        Log.i("---", "onNext: updateProductNum："+string);
+                        iView.onProductNumChange(string);
                     }
 
                     @Override

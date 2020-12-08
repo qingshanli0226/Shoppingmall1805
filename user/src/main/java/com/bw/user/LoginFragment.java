@@ -7,11 +7,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.BaseFragment;
 import com.bw.framework.ShopUserManager;
 import com.bw.net.bean.LoginBean;
+import com.bw.net.bean.ShopmallConstant;
 import com.bw.user.contract.LoginContract;
 import com.bw.user.presenter.LoginPresenterImpl;
 import com.shopmall.bawei.user.R;
 
-public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContract.ILoginView> implements LoginContract.ILoginView, View.OnClickListener {
+public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContract.ILoginView> implements LoginContract.ILoginView, View.OnClickListener ,LoginRegisterActivity.INameInterface{
 
     private EditText nameEditText;
     private EditText passwordEditText;
@@ -37,6 +38,7 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
         passwordEditText = view.findViewById(R.id.password);
         view.findViewById(R.id.loginButton).setOnClickListener(this);
         view.findViewById(R.id.registerTv).setOnClickListener(this);
+
     }
 
 
@@ -65,8 +67,11 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
         ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
         Log.e("---","token"+loginBean.getResult().getToken());
         ARouter.getInstance().build("/fragment/userFragment").navigation();
+
+
+
         myToast("登录成功");
-        getActivity().finish();//是不是一定能回到MainActivity，这个不一定，因为，MainActivity有可能被系统回收.
+        getActivity().finish();//不一定回到 MainActivity，因为，MainActivity有可能被系统回收.
     }
 
     @Override
@@ -88,5 +93,11 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
     @Override
     public void showEmpty() {
 
+    }
+
+    @Override
+    public void setName(String name) {
+        nameEditText.setText(name+"");
+        passwordEditText.setText("");
     }
 }

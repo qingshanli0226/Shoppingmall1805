@@ -9,6 +9,7 @@ import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.ShopmallConstant;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -24,7 +25,7 @@ public class ShopUserManager {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    private List<IUserLoginChangedListener> listeners = new ArrayList<>();
+    private List<IUserLoginChangedListener> listeners = new LinkedList<>();
 
     private ShopUserManager() {
     }
@@ -47,15 +48,20 @@ public class ShopUserManager {
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
 
+        if (loginBean != null){
+            Log.e("---", "saveLoginBean: "+loginBean.getResult().getToken() );
+        }else {
+            Log.e("---", "saveLoginBean: loginbean 为空" );
+        }
 
         //使用sp存储token
         editor.putString("token",loginBean.getResult().getToken());
         editor.commit();
-        Log.e("---", "saveLoginBean: "+loginBean.getResult().getToken() );
-        //发送广播，通知当前应用用户已经登录成功
-        Intent intent = new Intent();
-        intent.setAction(ShopmallConstant.LOGIN_ACTION);
-        context.sendBroadcast(intent);
+
+        //通过接口回调告诉其他页面  用户已经登录
+        for (IUserLoginChangedListener listener : listeners) {
+            listener.onUserLogin(loginBean);
+        }
     }
 
     public String getName(){

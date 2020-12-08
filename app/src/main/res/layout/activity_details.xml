@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="80dp"
+        android:layout_height="60dp"
         android:gravity="center"
         android:padding="@dimen/dp_5">
 
@@ -47,18 +47,18 @@
                 android:id="@+id/iv_good_info_image"
                 style="@style/ImageViewStyle"
                 android:layout_width="match_parent"
-                android:scaleType="fitXY"
+                android:layout_height="230dp"
+                android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dp_10"
-                android:layout_height="@dimen/dp_300"
-                android:layout_gravity="center_horizontal" />
+                android:scaleType="fitXY" />
 
             <TextView
                 android:id="@+id/tv_good_info_name"
                 style="@style/TextViewStyle"
                 android:layout_width="match_parent"
-                android:gravity="center"
                 android:layout_marginLeft="@dimen/dp_10"
-                android:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版"/>
+                android:gravity="center"
+                android:text="【预售】《来年就交给你啦》珍藏画册 限量礼盒版" />
 
             <TextView
                 android:id="@+id/tv_good_info_desc"
@@ -69,8 +69,8 @@
 
             <TextView
                 android:id="@+id/tv_good_info_price"
-                android:layout_width="match_parent"
                 style="@style/TextViewStyle"
+                android:layout_width="match_parent"
                 android:text="￥150.00"
                 android:textColor="@color/colorRed"
                 android:textSize="@dimen/sp_20" />
@@ -97,18 +97,18 @@
                 <TextView
                     style="@style/TextViewStyle"
                     android:text="由"
-                    android:textSize="@dimen/sp_14"/>
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     android:id="@+id/tv_good_info_store"
                     style="@style/TextViewStyle"
-                    android:textSize="@dimen/sp_14"
-                    android:text="尚硅谷" />
+                    android:text="尚硅谷"
+                    android:textSize="@dimen/sp_14" />
 
                 <TextView
                     style="@style/TextViewStyle"
                     android:text="发货"
-                    android:textSize="@dimen/sp_14"/>
+                    android:textSize="@dimen/sp_14" />
             </LinearLayout>
 
             <View
@@ -130,20 +130,21 @@
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
                 android:background="#eeee" />
+
             <LinearLayout
                 android:id="@+id/ll_goods_root"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_100"
-                android:gravity="center"
-                android:background="@color/colorWhite">
+                android:background="@color/colorWhite"
+                android:gravity="center">
 
                 <TextView
                     android:id="@+id/tv_good_info_callcenter"
                     style="@style/TextViewStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/icon_callserver_unpressed"
+                    android:drawablePadding="@dimen/dp_5"
                     android:gravity="center"
                     android:text="联系客服" />
 
@@ -152,8 +153,8 @@
                     style="@style/TextViewStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/good_uncollected"
+                    android:drawablePadding="@dimen/dp_5"
                     android:gravity="center"
                     android:text="收藏" />
 
@@ -163,8 +164,8 @@
                     style="@style/TextViewStyle"
                     android:layout_width="0dp"
                     android:layout_weight="1"
-                    android:drawablePadding="@dimen/dp_5"
                     android:drawableTop="@drawable/icon_good_detail_cart"
+                    android:drawablePadding="@dimen/dp_5"
                     android:gravity="center"
                     android:text="购物车" />
 
@@ -173,10 +174,10 @@
                     style="@style/ButtonStyle"
                     android:layout_width="@dimen/dp_100"
                     android:layout_height="@dimen/dp_50"
-                    android:textSize="@dimen/sp_12"
                     android:background="@drawable/add_cart_bg_selector"
                     android:text="加入购物车"
-                    android:textColor="@color/colorWhite" />
+                    android:textColor="@color/colorWhite"
+                    android:textSize="@dimen/sp_12" />
             </LinearLayout>
         </LinearLayout>
 

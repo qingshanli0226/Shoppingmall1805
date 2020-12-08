@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.bw.framework.BaseActivity;
+import com.bw.framework.CacheManager;
 import com.bw.framework.ShopUserManager;
 import com.bw.net.Contants;
 import com.bw.net.bean.ShopCarBean;
@@ -26,7 +27,7 @@ import com.shopmall.bawei.shopmall1805.ShopmallApplication;
 import java.util.List;
 
 
-public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract.DetailView> implements DetailContract.DetailView {
+public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract.DetailView> implements DetailContract.DetailView , CacheManager.IShopcarDataChangeListener {
     private ImageButton ibGoodInfoBack;
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
@@ -44,6 +45,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     private Intent intent;
     private String action;
     private ShopCarBean shopCarBean;
+    private int newNum;
 
     @Override
     protected int getLayoutId() {
@@ -81,6 +83,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
         Glide.with(this).load(Contants.BASE_URl_IMAGE+shopCarBean.getUrl()).into(ivGoodInfoImage);
         tvGoodInfoPrice.setText(shopCarBean.getProductPrice());
 
+        CacheManager.getInstance().setShopCarDataChangerListener(this);
 
         btnGoodInfoAddcart.setOnClickListener(v -> {
             boolean userLogin = ShopUserManager.getInstance().isUserLogin();
@@ -88,9 +91,9 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
             if (userLogin == false){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }else {
-                MyGreenManager.getMyGreenManager().deleteAll();
+                //先检查仓库中是否还有一件商品
                 checkHasProduct();
-                httpPresenter.addProduct(shopCarBean.getProductId(),shopCarBean.getProductName(),shopCarBean.getProductNum(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
+                httpPresenter.addProduct(shopCarBean.getProductId(),shopCarBean.getProductNum(),shopCarBean.getProductName(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
             }
         });
 
@@ -100,7 +103,6 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
             if (userLogin == false){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }else {
-                MyGreenManager.getMyGreenManager().deleteAll();
                 ARouter.getInstance().build("/activity/activity_shopCart").navigation();
             }
         });
@@ -119,14 +121,39 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     @Override
     public void onCheckOneProduct(String productNum) {
-        if (Integer.valueOf(productNum) >= 1){
 
+        Log.i("---", "onCheckOneProduct: "+productNum);
+
+        if (Integer.parseInt(productNum) >= 1){
+            if (checkIfShopcarListHasProduct()){
+                ShopCarBean shopcarBan = CacheManager.getInstance().getShopcarBan(shopCarBean.getProductId());
+                int oldNum = Integer.parseInt(shopcarBan.getProductName());
+                newNum =  + 1;
+                httpPresenter.updateProductNum(shopcarBan.getProductId(),String.valueOf(newNum),shopcarBan.getProductName(),shopcarBan.getUrl(),shopcarBan.getProductPrice());
+            }else {
+                httpPresenter.addProduct(shopCarBean.getProductId(),"1",shopCarBean.getProductName(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
+            }
         }
+    }
+
+    private boolean checkIfShopcarListHasProduct() {
+        List<ShopCarBean> shopCarBeans = CacheManager.getInstance().getShopCarBeans();
+        for (ShopCarBean bean : shopCarBeans) {
+            if (shopCarBean.getProductId().equals(bean.getProductId())){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public void onAddProductOk(String addResult) {
+        onAddOneProduct();
         Toast.makeText(this, ""+addResult, Toast.LENGTH_SHORT).show();
+    }
+
+    private void onAddOneProduct() {
+        CacheManager.getInstance().add(shopCarBean);
     }
 
     @Override
@@ -151,6 +178,29 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     @Override
     public void showEmpty() {
+
+    }
+
+
+
+
+    @Override
+    public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
+
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
 
     }
 }

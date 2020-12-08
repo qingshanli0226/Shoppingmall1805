@@ -15,8 +15,7 @@ public class LoginRegisterActivity extends BaseActivity {
     private ViewPager viewPager;
     private LoginRegisterAdapter loginRegisterAdapter;
 
-
-
+    
     @Override
     protected void initView() {
 
