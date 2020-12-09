@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -15,7 +14,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
-import com.shopmall.bawei.shopmall1805.common.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 

@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".app.ui.fragment.HomeFragment">
 
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="60dp"
@@ -31,7 +31,7 @@
                 android:background="@android:color/white"
                 android:hint="请输入搜索内容" />
         </RelativeLayout>
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
 
     <RelativeLayout
         android:layout_below="@+id/toolbar"

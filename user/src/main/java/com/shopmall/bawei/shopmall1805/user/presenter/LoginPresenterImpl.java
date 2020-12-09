@@ -1,6 +1,6 @@
 package com.shopmall.bawei.shopmall1805.user.presenter;
 
-import com.shopmall.bawei.shopmall1805.common.LoginBean;
+import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
 import com.shopmall.bawei.shopmall1805.user.contract.LoginContract;
@@ -23,8 +23,9 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
                     public void onNext(LoginBean loginBean) {
                         if(loginBean!=null){
                             iHttpView.onLoginDate(loginBean);
-                        }
-                    }
-                });
+                     }
+                }
+
+         });
     }
 }

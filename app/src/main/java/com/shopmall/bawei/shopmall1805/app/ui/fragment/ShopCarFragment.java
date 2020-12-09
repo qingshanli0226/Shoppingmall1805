@@ -17,5 +17,4 @@ public class ShopCarFragment extends BaseFragment {
     protected void initView() {
 
     }
-
 }

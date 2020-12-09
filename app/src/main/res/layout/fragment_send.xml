@@ -6,13 +6,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".app.ui.fragment.SendFragment">
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:id="@+id/toolbar"
         app:right_show_only_img="true"
         >
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

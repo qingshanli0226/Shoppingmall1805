@@ -13,6 +13,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.shopmall.bawei.framework.R;
+import com.shopmall.bawei.shopmall1805.framework.view.LoadingPage;
+import com.shopmall.bawei.shopmall1805.framework.view.Toolbar;
 
 public abstract class BaseFragment extends Fragment implements Toolbar.IToolBarClickListner{
 

@@ -3,12 +3,7 @@ package com.shopmall.bawei.shopmall1805.app.adapter.home;
 
 import android.content.Intent;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.PopupWindow;
-import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
@@ -17,9 +12,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.classify.ChannelInfoAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyLeftContract;
-import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyLeftPresenterImpl;
-import com.shopmall.bawei.shopmall1805.common.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;

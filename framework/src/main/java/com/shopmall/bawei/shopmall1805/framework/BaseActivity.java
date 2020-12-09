@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.shopmall.bawei.framework.R;
+import com.shopmall.bawei.shopmall1805.framework.view.Toolbar;
 
 public abstract class BaseActivity extends AppCompatActivity implements Toolbar.IToolBarClickListner{
     private String TAG;

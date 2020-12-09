@@ -11,7 +11,7 @@ import com.shopmall.bawei.shopmall1805.app.adapter.classify.ClassifyRightAdapter
 import com.shopmall.bawei.shopmall1805.app.adapter.classify.ClassifyLeftAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyLeftContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyLeftPresenterImpl;
-import com.shopmall.bawei.shopmall1805.common.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
 

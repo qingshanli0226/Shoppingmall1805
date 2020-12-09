@@ -7,7 +7,7 @@
     android:orientation="vertical"
     tools:context=".app.ui.fragment.ClassifyFragment">
 
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:layout_width="match_parent"
         android:layout_height="60dp"
         app:left_show="false"
@@ -42,7 +42,7 @@
                 >
             </ImageView>
         </RelativeLayout>
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
 
     <TextView
         android:layout_width="match_parent"

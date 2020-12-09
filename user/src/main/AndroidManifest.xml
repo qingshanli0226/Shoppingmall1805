@@ -3,7 +3,9 @@
     package="om.shopmall.bawei.shopmall1805.user">
 
     <application>
-        <activity android:name="com.shopmall.bawei.shopmall1805.user.LoginActivity"></activity>
+        <activity android:name="com.shopmall.bawei.shopmall1805.user.LoginActivity"
+            >
+        </activity>
     </application>
 
 </manifest>

@@ -42,7 +42,7 @@ public class ShopmallConstant {
     public static final int TO_LOGIN_FROM_MINE_FRAGMENT = 3;
     public static final String TO_LOGIN_KEY = "toLogin";
 
-    public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
+    public static final String LOGIN_ACTIVITY_PATH = "/user/LoginActivity";
 
     public static final String FU_SHI = "服饰";
     public static final String YOU_XI = "游戏";

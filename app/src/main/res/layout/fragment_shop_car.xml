@@ -8,12 +8,12 @@
     tools:context=".app.ui.fragment.ShopCarFragment">
 
 
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:right_show_only_img="true"
         android:id="@+id/toolbar">
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

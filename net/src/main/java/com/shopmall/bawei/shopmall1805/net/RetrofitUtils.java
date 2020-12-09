@@ -27,7 +27,7 @@ public class RetrofitUtils {
                 .readTimeout(ShopmallConstant.READ_TIME, TimeUnit.SECONDS)
                 .writeTimeout(ShopmallConstant.WRITE_TIME,TimeUnit.SECONDS)
                 .connectTimeout(ShopmallConstant.CONNECT_TIME,TimeUnit.SECONDS)
-//                .addInterceptor(new TokenInterceptor())
+                .addInterceptor(new TokenInterceptor())
                 .addNetworkInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .build();
 

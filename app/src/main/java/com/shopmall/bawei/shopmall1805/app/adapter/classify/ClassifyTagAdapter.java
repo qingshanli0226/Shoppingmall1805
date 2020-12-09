@@ -5,7 +5,7 @@ import androidx.annotation.Nullable;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.common.ClassifyTagEntity;
+import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 
 import java.util.List;
 

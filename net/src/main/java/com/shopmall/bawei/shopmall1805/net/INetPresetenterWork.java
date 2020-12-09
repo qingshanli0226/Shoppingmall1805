@@ -2,11 +2,11 @@ package com.shopmall.bawei.shopmall1805.net;
 
 
 
-import com.shopmall.bawei.shopmall1805.common.BaseBean;
-import com.shopmall.bawei.shopmall1805.common.ClassifyTagEntity;
-import com.shopmall.bawei.shopmall1805.common.ClothesBean;
-import com.shopmall.bawei.shopmall1805.common.HomeBean;
-import com.shopmall.bawei.shopmall1805.common.LoginBean;
+import com.shopmall.bawei.shopmall1805.net.entity.BaseBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
+import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
 
 import java.util.HashMap;
 
@@ -26,6 +26,10 @@ public interface INetPresetenterWork {
     @POST("login")
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
+
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<LoginBean> autoLogin(@FieldMap HashMap<String, String> params);
 
     //小裙子 接口
     @GET()

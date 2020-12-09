@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.common.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 
 import java.util.List;

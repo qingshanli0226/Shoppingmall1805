@@ -6,13 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".app.adapter.home.DetailsActivity"
     >
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/toolbar"
         app:right_show_only_img="true"
         >
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
     <ScrollView
         android:layout_below="@id/toolbar"
         android:layout_width="match_parent"

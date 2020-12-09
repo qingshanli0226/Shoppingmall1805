@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".app.ui.fragment.ClassifyLeftFragment">
-    <com.shopmall.bawei.shopmall1805.framework.Toolbar
+    <com.shopmall.bawei.shopmall1805.framework.view.Toolbar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"
         android:id="@+id/toolbar"
         >
-    </com.shopmall.bawei.shopmall1805.framework.Toolbar>
+    </com.shopmall.bawei.shopmall1805.framework.view.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"

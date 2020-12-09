@@ -1,6 +1,6 @@
 package com.shopmall.bawei.shopmall1805.app.contract;
 
-import com.shopmall.bawei.shopmall1805.common.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 
 import com.shopmall.bawei.shopmall1805.framework.BasePresenter;
 import com.shopmall.bawei.shopmall1805.framework.IView;

@@ -3,19 +3,16 @@ package com.shopmall.bawei.shopmall1805.app.ui.fragment;
 
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.adapter.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.app.adapter.home.HomeAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.HomePresenterImpl;
-import com.shopmall.bawei.shopmall1805.common.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
-import com.shopmall.bawei.shopmall1805.framework.ErrorBean;
 
 import java.util.ArrayList;
 import java.util.List;

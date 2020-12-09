@@ -2,7 +2,7 @@ package com.shopmall.bawei.shopmall1805.app.presenter;
 
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
 
-import com.shopmall.bawei.shopmall1805.common.ClassifyTagEntity;
+import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
 

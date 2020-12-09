@@ -1,6 +1,6 @@
 package com.shopmall.bawei.shopmall1805.user.contract;
 
-import com.shopmall.bawei.shopmall1805.common.LoginBean;
+import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
 import com.shopmall.bawei.shopmall1805.framework.BasePresenter;
 import com.shopmall.bawei.shopmall1805.framework.IView;
 

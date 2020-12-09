@@ -1,14 +1,16 @@
 package com.shopmall.bawei.shopmall1805.user;
 
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.shopmall.bawei.shopmall1805.common.LoginBean;
+import androidx.annotation.IdRes;
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
+import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
+import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;
 import com.shopmall.bawei.shopmall1805.user.contract.LoginContract;
 import com.shopmall.bawei.shopmall1805.user.presenter.LoginPresenterImpl;
@@ -17,6 +19,9 @@ import java.util.HashMap;
 
 import om.shopmall.bawei.shopmall1805.user.R;
 
+
+
+@Route(path = ShopmallConstant.LOGIN_ACTIVITY_PATH)
 public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginContract.LoginView> implements LoginContract.LoginView {
     private EditText etLoginPhone;
     private EditText etLoginPwd;
@@ -24,7 +29,7 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     private HashMap<String,String> map=new HashMap<>();
     @Override
     protected void initData() {
-
+        toolbar.setToolBarTitle("登陆");
     }
     @Override
     protected void initView() {
@@ -67,6 +72,7 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     @Override
     public void onLoginDate(LoginBean loginBean) {
         if(loginBean.getCode().equals("200")){
+            ShopUserManager.getInstance().saveLoginBean(loginBean.getResult());
             finish();
             Toast.makeText(this, loginBean.getMessage(), Toast.LENGTH_SHORT).show();
         }

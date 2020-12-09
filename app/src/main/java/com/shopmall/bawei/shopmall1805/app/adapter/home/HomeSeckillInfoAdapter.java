@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
-import com.shopmall.bawei.shopmall1805.common.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 
 import java.util.List;
 

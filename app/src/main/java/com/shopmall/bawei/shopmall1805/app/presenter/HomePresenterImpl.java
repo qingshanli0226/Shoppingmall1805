@@ -1,11 +1,9 @@
 package com.shopmall.bawei.shopmall1805.app.presenter;
 
 import com.shopmall.bawei.shopmall1805.app.contract.HomeContract;
-import com.shopmall.bawei.shopmall1805.common.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
-
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
