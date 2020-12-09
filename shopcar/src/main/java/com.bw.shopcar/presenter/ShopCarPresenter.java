@@ -2,6 +2,7 @@ package com.bw.shopcar.presenter;
 
 import android.util.Log;
 
+import com.bw.net.NetFunction;
 import com.bw.net.RetraficCreator;
 import com.bw.net.bean.Basebean;
 import com.bw.net.bean.ShopCarBean;
@@ -38,6 +39,7 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
 
         RetraficCreator.getiNetWorkApiService().updateProductNum(requestBody)
                 .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
@@ -80,6 +82,7 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
 
         RetraficCreator.getiNetWorkApiService().updateProductSelected(requestBody)
                 .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<String>() {
                     @Override
@@ -107,7 +110,40 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
 
     @Override
     public void selectAllProduct(boolean isAllSelect) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("selected", isAllSelect);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+
+        RetraficCreator.getiNetWorkApiService().selectAllProduct(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<String>, String>())
+                .observeOn(AndroidSchedulers.mainThread())
+               .subscribe(new Observer<String>() {
+                   @Override
+                   public void onSubscribe(Disposable d) {
+
+                   }
+
+                   @Override
+                   public void onNext(String s) {
+                       iView.onAllSelected(s);
+                   }
+
+                   @Override
+                   public void onError(Throwable e) {
+
+                   }
+
+                   @Override
+                   public void onComplete() {
+
+                   }
+               });
     }
 
     @Override

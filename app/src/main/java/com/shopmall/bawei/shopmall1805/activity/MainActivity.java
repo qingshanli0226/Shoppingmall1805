@@ -3,17 +3,23 @@ package com.shopmall.bawei.shopmall1805.activity;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.BaseActivity;
+import com.bw.framework.CacheManager;
 import com.bw.framework.IPresenter;
 import com.bw.framework.IView;
+import com.bw.framework.ShopUserManager;
+import com.bw.net.bean.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.fragment.CardFragment;
 import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.fragment.UserFragment;
+
+import java.util.List;
 
 public class MainActivity extends BaseActivity<IPresenter, IView> {
 
@@ -104,6 +110,51 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
             }
         });
 
+
+        //页面显示时，刷新购物车数据
+        updateShopcarCount();
+        //注册listener监听购物车公共数据是否发生改变,改变后，要去刷新购物车数量
+        initShopcarDataChangeListener();
+
     }
+
+    private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
+        @Override
+        public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
+            int count = shopCarBeanList.size();
+
+        }
+
+        @Override
+        public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
+
+        }
+
+        @Override
+        public void onMoneyChanged(String moneyValue) {
+
+        }
+
+        @Override
+        public void onAllSelected(boolean isAllSelect) {
+
+        }
+    };
+
+    private void initShopcarDataChangeListener() {
+        CacheManager.getInstance().setShopCarDataChangerListener(iShopcarDataChangeListener);
+    }
+
+    private void updateShopcarCount() {
+        //如果用户登录了，才可以刷新购物车数据，否则购物车数据并没有初始化，没必要刷新
+        if (ShopUserManager.getInstance().isUserLogin()) {
+            int count = CacheManager.getInstance().getShopCarBeans().size();
+            if (count != 0) {
+            }
+        } else {
+            Toast.makeText(this,"当前用户没有登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
 
 }

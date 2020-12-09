@@ -2,7 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopmall.bawei.shopmall1805">
 
+    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+
     <application
+        android:usesCleartextTraffic="true"
+        android:allowTaskReparenting="true"
+        android:networkSecurityConfig="@xml/network_security_config"
         android:name=".ShopmallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,7 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <service android:name="com.bw.framework.service.AotuLoginService"/>
+
     </application>
 
 </manifest>

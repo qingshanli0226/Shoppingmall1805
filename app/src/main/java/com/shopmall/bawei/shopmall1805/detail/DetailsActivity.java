@@ -1,12 +1,16 @@
 package com.shopmall.bawei.shopmall1805.detail;
 
+import android.animation.ValueAnimator;
 import android.content.Intent;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,17 +21,20 @@ import com.bw.framework.CacheManager;
 import com.bw.framework.ShopUserManager;
 import com.bw.net.Contants;
 import com.bw.net.bean.ShopCarBean;
+import com.bw.user.LoginFragment;
 import com.shopmall.bawei.shopmall1805.DaoSession;
 import com.shopmall.bawei.shopmall1805.GreenDaoBean;
 import com.shopmall.bawei.shopmall1805.GreenDaoBeanDao;
 import com.shopmall.bawei.shopmall1805.MyGreenManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ShopmallApplication;
+import com.shopmall.bawei.shopmall1805.home.Bean;
 
 import java.util.List;
 
 
-public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract.DetailView> implements DetailContract.DetailView , CacheManager.IShopcarDataChangeListener {
+public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract.DetailView> implements DetailContract.DetailView
+        , CacheManager.IShopcarDataChangeListener   {
     private ImageButton ibGoodInfoBack;
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
@@ -44,7 +51,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     private Intent intent;
     private String action;
-    private ShopCarBean shopCarBean;
+    private Bean bean;
     private int newNum;
 
     @Override
@@ -74,14 +81,15 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
 
 
+
         intent = getIntent();
         Log.e("---","action"+action);
-        shopCarBean = (ShopCarBean) intent.getSerializableExtra("goods");
+        bean = (Bean) intent.getSerializableExtra("goods");
 
 
-        tvGoodInfoName.setText(shopCarBean.getProductName());
-        Glide.with(this).load(Contants.BASE_URl_IMAGE+shopCarBean.getUrl()).into(ivGoodInfoImage);
-        tvGoodInfoPrice.setText(shopCarBean.getProductPrice());
+        tvGoodInfoName.setText(bean.getProductName());
+        Glide.with(this).load(Contants.BASE_URl_IMAGE+bean.getUrl()).into(ivGoodInfoImage);
+        tvGoodInfoPrice.setText(bean.getProductPrice());
 
         CacheManager.getInstance().setShopCarDataChangerListener(this);
 
@@ -93,7 +101,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
             }else {
                 //先检查仓库中是否还有一件商品
                 checkHasProduct();
-                httpPresenter.addProduct(shopCarBean.getProductId(),shopCarBean.getProductNum(),shopCarBean.getProductName(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
+                httpPresenter.addProduct(bean.getProductId(),bean.getProductNum(),bean.getProductName(),bean.getUrl(),bean.getProductPrice());
             }
         });
 
@@ -110,7 +118,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     }
 
     private void checkHasProduct() {
-        httpPresenter.checkOneProductNum(shopCarBean.getProductId(),"1");
+        httpPresenter.checkOneProductNum(bean.getProductId(),"1");
     }
 
     @Override
@@ -126,20 +134,20 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
         if (Integer.parseInt(productNum) >= 1){
             if (checkIfShopcarListHasProduct()){
-                ShopCarBean shopcarBan = CacheManager.getInstance().getShopcarBan(shopCarBean.getProductId());
-                int oldNum = Integer.parseInt(shopcarBan.getProductName());
+                ShopCarBean shopcarBan = CacheManager.getInstance().getShopcarBan(bean.getProductId());
+                int oldNum = Integer.parseInt(shopcarBan.getProductNum());
                 newNum =  + 1;
                 httpPresenter.updateProductNum(shopcarBan.getProductId(),String.valueOf(newNum),shopcarBan.getProductName(),shopcarBan.getUrl(),shopcarBan.getProductPrice());
             }else {
-                httpPresenter.addProduct(shopCarBean.getProductId(),"1",shopCarBean.getProductName(),shopCarBean.getUrl(),shopCarBean.getProductPrice());
+                httpPresenter.addProduct(bean.getProductId(),"1",bean.getProductName(),bean.getUrl(),bean.getProductPrice());
             }
         }
     }
 
     private boolean checkIfShopcarListHasProduct() {
         List<ShopCarBean> shopCarBeans = CacheManager.getInstance().getShopCarBeans();
-        for (ShopCarBean bean : shopCarBeans) {
-            if (shopCarBean.getProductId().equals(bean.getProductId())){
+        for (ShopCarBean shopCarBean : shopCarBeans) {
+            if (bean.getProductId().equals(shopCarBean.getProductId())){
                 return true;
             }
         }
@@ -148,17 +156,92 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     @Override
     public void onAddProductOk(String addResult) {
-        onAddOneProduct();
-        Toast.makeText(this, ""+addResult, Toast.LENGTH_SHORT).show();
+        Log.i("---", "onAddProductOk: "+addResult);
+        
+        showShopCarAnim(1);
+//        addOneProduct();
     }
 
-    private void onAddOneProduct() {
+    private void showShopCarAnim(int i) {
+        int[] startPoint = new int[2];
+        int[] endPoint = new int[2];
+        int[] controlPoint = new int[2];
+
+        int[] picViewPoint = new int[2];
+
+        ivGoodInfoImage.getLocationInWindow(picViewPoint);
+        Log.i("---", "showShopCarAnim: picViewPoint:"+picViewPoint[0]+"------"+picViewPoint[1]);
+        startPoint[0] = picViewPoint[0]+400;
+        startPoint[1] = picViewPoint[1]+800;
+        Log.i("---", "showShopCarAnim:起点坐标 startPoint:"+startPoint[0]+"------"+startPoint[1]);
+
+        int[] shopcarPoint = new int[2];
+        tvGoodInfoCart.getLocationInWindow(shopcarPoint);
+        Log.i("---", "showShopCarAnim: shopcarPoint:"+shopcarPoint[0]+"------"+shopcarPoint[1]);
+        endPoint[0] = shopcarPoint[0]+150;
+        endPoint[1] = shopcarPoint[1]-100;
+        Log.i("---", "showShopCarAnim:终点坐标 startPoint:"+endPoint[0]+"------"+endPoint[1]);
+
+        controlPoint[0] = shopcarPoint[0]-300;
+        controlPoint[1] = shopcarPoint[1]+100;
+        Log.i("---", "showShopCarAnim:控制点坐标 startPoint:"+controlPoint[0]+"------"+controlPoint[1]);
+
+
+        ImageView animView = new ImageView(this);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(100, 100);
+        animView.setLayoutParams(layoutParams);
+        Glide.with(this).load(Contants.BASE_URl_IMAGE+bean.getUrl()).into(animView);
+        RelativeLayout rootview = findViewById(R.id.rootView);
+        rootview.addView(animView);
+
+        //使用贝塞尔曲线完成动画
+        Path path = new Path();
+        path.moveTo(startPoint[0],startPoint[1]);
+        path.quadTo(controlPoint[0],controlPoint[1],endPoint[0],endPoint[1]);
+        PathMeasure pathMeasure = new PathMeasure(path, false);
+
+        //使用属性动画 完成小图片在贝塞尔曲线上移动
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());
+        valueAnimator.setDuration(1000);
+
+        //注册更新监听，获取下一个图片的坐标
+        valueAnimator.addUpdateListener(animation -> {
+            float animatedValue = (float) animation.getAnimatedValue();
+            Log.d("---", "showShopCarAnim: 动画已经平移的距离"+valueAnimator);
+            float[] nextPosition = new float[2];
+
+            pathMeasure.getPosTan(animatedValue,nextPosition,null);
+            animView.setTranslationX(nextPosition[0]);
+            animView.setTranslationY(nextPosition[1]);
+
+            if (animatedValue >= pathMeasure.getLength()){
+                if (i ==1){
+                    addOneProduct();
+                }else {
+                    CacheManager.getInstance().updateProductNum(bean.getProductId(),String.valueOf(newNum));
+                    Toast.makeText(this, "在原有数据数量上+1", Toast.LENGTH_SHORT).show();
+                }
+
+                animView.setVisibility(View.GONE);
+            }
+
+        });
+        valueAnimator.start();
+    }
+
+    private void addOneProduct() {
+        ShopCarBean shopCarBean = new ShopCarBean();
+        shopCarBean.setProductId(bean.getProductId());
+        shopCarBean.setProductName(bean.getProductName());
+        shopCarBean.setProductNum(bean.getProductNum());
+        shopCarBean.setUrl(bean.getUrl());
+        shopCarBean.setProductPrice(bean.getProductPrice());
         CacheManager.getInstance().add(shopCarBean);
     }
 
     @Override
     public void onProductNumChange(String result) {
-
+        showShopCarAnim(2);
     }
 
     @Override

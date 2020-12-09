@@ -75,26 +75,26 @@ public interface INetWorkApiService {
     Observable<SkirtBean> getJacket();
 
     @POST("addOneProduct")
-    Observable<ShopCarBean> addProduct(@Body RequestBody requestBody);
+    Observable<Basebean<String>> addProduct(@Body RequestBody requestBody);
 
     @POST("checkOneProductInventory")
     @FormUrlEncoded
-    Observable<String> checkOneProductInventory(@FieldMap HashMap<String,String> map);
+    Observable<Basebean<String>> checkOneProductInventory(@FieldMap HashMap<String,String> map);
 
     @GET("getShortcartProducts")
-    Observable<List<ShopCarBean>> getShortcartProducts();
+    Observable<Basebean<List<ShopCarBean>>> getShortcartProducts();
 
     @POST("updateProductNum")
-    Observable<String> updateProductNum(@Body RequestBody requestBody);
+    Observable<Basebean<String>> updateProductNum(@Body RequestBody requestBody);
 
     @POST("updateProductSelected")
-    Observable<String> updateProductSelected(@Body RequestBody requestBody);
+    Observable<Basebean<String>> updateProductSelected(@Body RequestBody requestBody);
 
     @POST("selectAllProduct")
-    Observable<String> selectAllProduct(@Body RequestBody requestBody);
+    Observable<Basebean<String>> selectAllProduct(@Body RequestBody requestBody);
 
     @POST("removeManyProduct")
-    Observable<String> removeManyProduct(@Body RequestBody requestBody);
+    Observable<Basebean<String>> removeManyProduct(@Body RequestBody requestBody);
 
 //    @POST("checkInventory")
 //    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);

@@ -2,9 +2,11 @@ package com.bw.framework;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.bw.framework.service.AutoLoginService;
+import com.bw.net.NetFunction;
 import com.bw.net.RetraficCreator;
 import com.bw.net.bean.Basebean;
 import com.bw.net.bean.LoginBean;
@@ -22,14 +24,13 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager{
 
+    private Context context;
     private List<ShopCarBean> shopCarBeans = new ArrayList<>();
     private List<ShopCarBean> deleteShopCarBeans = new ArrayList<>();
 
     private static CacheManager instance;
 
     private List<IShopcarDataChangeListener> iShopcarDataChangeListeners = new ArrayList<>();
-
-    private Context context;
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
     private CacheManager() {
@@ -47,13 +48,15 @@ public class CacheManager{
         initService();
     }
 
-    private void initService() {
+    public void initService() {
+        Log.i("---", "initService: 进入：");
         Intent intent = new Intent(context, AutoLoginService.class);
         context.startService(intent);
 
         ShopUserManager.getInstance().registerUserLoginChangedListener(new ShopUserManager.IUserLoginChangedListener() {
             @Override
             public void onUserLogin(LoginBean loginBean) {
+                Log.i("---", "onUserLogin: 登录成功"+loginBean.getResult().getToken());
                 getShopDataCarService();
             }
 
@@ -64,9 +67,11 @@ public class CacheManager{
         });
     }
 
-    private void getShopDataCarService() {
+    public void getShopDataCarService() {
+        Log.i("---", "getShopDataCarService: ");
         RetraficCreator.getiNetWorkApiService().getShortcartProducts()
                 .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<List<ShopCarBean>>,List<ShopCarBean>>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<List<ShopCarBean>>() {
                     @Override
@@ -168,6 +173,19 @@ public class CacheManager{
         }
     }
 
+    //更新缓存中商品数量
+    public void updatePositionProductNum(int productId,String newNum){
+
+        ShopCarBean shopCarBean = shopCarBeans.get(productId);
+
+        shopCarBean.setProductNum(newNum);
+        //通知UI 刷新数据
+        for (IShopcarDataChangeListener listener : iShopcarDataChangeListeners) {
+            listener.onOneDataChanged(productId,shopCarBean);
+            listener.onMoneyChanged(getMoneyValues());
+        }
+
+    }
     //全选
     public void selectAllProduct(boolean isAllSelect){
         for (ShopCarBean shopCarBean : shopCarBeans) {

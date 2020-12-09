@@ -38,7 +38,6 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
         passwordEditText = view.findViewById(R.id.password);
         view.findViewById(R.id.loginButton).setOnClickListener(this);
         view.findViewById(R.id.registerTv).setOnClickListener(this);
-
     }
 
 
@@ -64,11 +63,11 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
     @Override
     public void onLogin(LoginBean loginBean) {
         //实现跳转到MainActivity，显示HomeFragment,Activity的启动模式问题.
+
         ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
-        Log.e("---","token"+loginBean.getResult().getToken());
+
+        Log.e("---","onLogin：token："+loginBean.getResult().getToken());
         ARouter.getInstance().build("/fragment/userFragment").navigation();
-
-
 
         myToast("登录成功");
         getActivity().finish();//不一定回到 MainActivity，因为，MainActivity有可能被系统回收.

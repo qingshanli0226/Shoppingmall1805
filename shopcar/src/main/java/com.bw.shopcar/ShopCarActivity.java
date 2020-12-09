@@ -6,11 +6,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
@@ -28,7 +30,8 @@ import java.util.List;
 
 
 @Route(path = "/activity/activity_shopCart")
-public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContract.ShopCarView> implements ShopCarContract.ShopCarView {
+public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContract.ShopCarView> implements ShopCarContract.ShopCarView
+,CacheManager.IShopcarDataChangeListener{
 
     private ImageButton ibShopcartBack;
     private TextView tvShopcartEdit;
@@ -43,6 +46,9 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
     private Button btnCollection;
     private ImageView ivEmpty;
     private TextView tvEmptyCartTobuy;
+
+    private boolean newAllSelect;
+    private boolean isEditMode = false; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
 
     private ShopCarAdapter shopCarAdapter;
 
@@ -67,17 +73,54 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
         ivEmpty = (ImageView) findViewById(R.id.iv_empty);
         tvEmptyCartTobuy = (TextView) findViewById(R.id.tv_empty_cart_tobuy);
 
+        CacheManager.getInstance().setShopCarDataChangerListener(this);
+
         shopCarAdapter = new ShopCarAdapter();
         recyclerview.setAdapter(shopCarAdapter);
         recyclerview.setLayoutManager(new LinearLayoutManager(this));
         shopCarAdapter.notifyDataSetChanged();
+
+        tvShopcartEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                edit();
+            }
+        });
+
+
+
     }
+
+    private void edit() {
+            if (!isEditMode) {//如果当前页面时非编辑模式，那么则进入编辑模式
+                isEditMode = true;//进入编辑模式
+                llDelete.setVisibility(View.VISIBLE);
+                llCheckAll.setVisibility(View.GONE);
+                shopCarAdapter.setEditMode(isEditMode);
+                tvShopcartEdit.setText("完成");
+                if (CacheManager.getInstance().isAllSelectInEditMode()){
+                    cbAll.setChecked(true);
+                }
+            } else {//从编辑模式进入到正常模式
+                isEditMode = false;
+                llDelete.setVisibility(View.GONE);
+                llCheckAll.setVisibility(View.VISIBLE);
+                shopCarAdapter.setEditMode(isEditMode);
+                tvShopcartEdit.setText("编辑");
+            }
+
+    }
+
+
+
+
 
 
     @Override
     protected void initPresenter() {
         super.initPresenter();
         httpPresenter = new ShopCarPresenter();
+        shopCarAdapter.setShopcarPresenter(httpPresenter);
     }
 
     @Override
@@ -86,6 +129,39 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
         List<ShopCarBean> shopCarBeans = CacheManager.getInstance().getShopCarBeans();
         Log.i("---", "initData: "+shopCarBeans.size());
         shopCarAdapter.updataData(shopCarBeans);
+
+
+        if (CacheManager.getInstance().isAllSelected()) {
+            checkboxAll.setChecked(true);
+        } else {
+            checkboxAll.setChecked(false);
+        }
+
+        //设置全选的点击事件
+        //设置全选的点击事件
+        checkboxAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkboxAll.isChecked()) {
+                    newAllSelect = true;
+                    httpPresenter.selectAllProduct(newAllSelect);
+                } else {
+                    newAllSelect = false;
+                    httpPresenter.selectAllProduct(newAllSelect);
+                }
+            }
+        });
+
+        cbAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbAll.isChecked()) {//在编辑模式下，所有商品都被选中了
+                    CacheManager.getInstance().selectAllProductInEditMode(true);
+                } else {
+                    CacheManager.getInstance().selectAllProductInEditMode(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -95,17 +171,17 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
 
     @Override
     public void onProductNumChange(String result, int position, String newNum) {
-
+        CacheManager.getInstance().updatePositionProductNum(position,newNum);
     }
 
     @Override
     public void onProductSelected(String result, int position) {
-
+        CacheManager.getInstance().updateProductSelected(position);
     }
 
     @Override
     public void onAllSelected(String result) {
-
+        CacheManager.getInstance().selectAllProduct(newAllSelect);
     }
 
     @Override
@@ -131,5 +207,29 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
     @Override
     public void showEmpty() {
 
+    }
+
+    @Override
+    public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
+        shopCarAdapter.updataData(shopCarBeanList);
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
+        shopCarAdapter.notifyItemChanged(position);
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+        tvShopcartTotal.setText(moneyValue);
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+        if (isEditMode) {
+            cbAll.setChecked(isAllSelect);
+        } else {
+            cbAll.setChecked(isAllSelect);
+        }
     }
 }

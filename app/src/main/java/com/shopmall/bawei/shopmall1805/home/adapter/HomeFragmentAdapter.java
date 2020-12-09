@@ -15,6 +15,7 @@ import com.bw.net.bean.HomeFragmentBean;
 import com.bw.net.bean.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.detail.DetailsActivity;
+import com.shopmall.bawei.shopmall1805.home.Bean;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -49,6 +50,7 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
     protected void convert(BaseViewHoder baseViewHoder, int viewType, Object itemData) {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(baseViewHoder.itemView.getContext());
+        Bean shopCarBean = new Bean();
         switch (viewType){
             case 0:
                 List<HomeFragmentBean.ResultBean.BannerInfoBean> list = (List<HomeFragmentBean.ResultBean.BannerInfoBean>) itemData;
@@ -113,10 +115,9 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
 
 
 
-                    ShopCarBean shopCarBean = new ShopCarBean();
                     shopCarBean.setProductName(name);
                     shopCarBean.setUrl(figure);
-                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductNum("1");
                     shopCarBean.setProductPrice(cover_price);
                     shopCarBean.setProductSelected(false);
                     shopCarBean.setProductId(product_id);
@@ -150,11 +151,10 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
                     String name = listBean.getName();
 
 
-                    ShopCarBean shopCarBean = new ShopCarBean();
                     shopCarBean.setProductId(product_id);
                     shopCarBean.setProductName(name);
                     shopCarBean.setUrl(figure);
-                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductNum("0");
                     shopCarBean.setProductPrice(cover_price);
                     shopCarBean.setProductSelected(false);
 
@@ -180,21 +180,22 @@ public class HomeFragmentAdapter extends BaseAdapter<Object> {
                     String name = hotInfoBean.getName();
 
 
-                    ShopCarBean shopCarBean = new ShopCarBean();
                     shopCarBean.setProductId(product_id);
                     shopCarBean.setProductName(name);
                     shopCarBean.setUrl(figure);
-                    shopCarBean.setProductNum("10");
+                    shopCarBean.setProductNum("0");
                     shopCarBean.setProductPrice(cover_price);
                     shopCarBean.setProductSelected(false);
-
                     intent = new Intent();
                     intent.putExtra("goods",  shopCarBean);
                     intent.setClass(baseViewHoder.itemView.getContext(), DetailsActivity.class);
                     baseViewHoder.itemView.getContext().startActivity(intent);
+
+
                 });
                 break;
         }
+
     }
 
     @Override

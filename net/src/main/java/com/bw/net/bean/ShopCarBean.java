@@ -4,7 +4,7 @@ import org.greenrobot.greendao.annotation.Entity;
 
 import java.io.Serializable;
 
-public class ShopCarBean implements Serializable {
+public class ShopCarBean  {
     /**
      * productId : 9356
      * productName : 现货【一方尘寰】剑侠情缘三剑三七秀 干将莫邪 90橙武仿烧蓝复古对簪

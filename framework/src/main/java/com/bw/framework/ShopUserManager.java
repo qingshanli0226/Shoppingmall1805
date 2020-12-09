@@ -48,15 +48,14 @@ public class ShopUserManager {
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
 
-        if (loginBean != null){
-            Log.e("---", "saveLoginBean: "+loginBean.getResult().getToken() );
-        }else {
-            Log.e("---", "saveLoginBean: loginbean 为空" );
-        }
-
-        //使用sp存储token
-        editor.putString("token",loginBean.getResult().getToken());
-        editor.commit();
+//        if (loginBean != null){
+//            Log.e("---", "saveLoginBean: "+loginBean.getResult().getToken() );
+//        }else {
+//            Log.e("---", "saveLoginBean: loginbean 为空" );
+//        }
+            //使用sp存储token
+            editor.putString("token",loginBean.getResult().getToken());
+            editor.commit();
 
         //通过接口回调告诉其他页面  用户已经登录
         for (IUserLoginChangedListener listener : listeners) {
@@ -88,7 +87,7 @@ public class ShopUserManager {
     }
 
     public void registerUserLoginChangedListener(IUserLoginChangedListener listener){
-        if (listeners.contains(listener)){
+        if (!listeners.contains(listener)){
             listeners.add(listener);
         }
     }

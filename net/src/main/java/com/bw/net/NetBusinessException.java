@@ -1,0 +1,28 @@
+package com.bw.net;
+
+class NetBusinessException extends Exception {
+    private String errorCode;
+    private String errorMessage;
+
+    public NetBusinessException(String code, String messsage) {
+        super(messsage);
+        this.setErrorCode(code);
+        this.setErrorMessage(messsage);
+    }
+
+    public String getErrorCode() {
+        return errorCode;
+    }
+
+    public void setErrorCode(String errorCode) {
+        this.errorCode = errorCode;
+    }
+
+    public String getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void setErrorMessage(String errorMessage) {
+        this.errorMessage = errorMessage;
+    }
+}

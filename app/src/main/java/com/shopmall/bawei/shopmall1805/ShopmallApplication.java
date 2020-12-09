@@ -22,16 +22,16 @@ public class ShopmallApplication extends Application {
         ARouter.openDebug();
         ARouter.init(this);
 
+        ShopUserManager.getInstance().init(this);
+        NetModel.init(this);
+
+        CacheManager.getInstance().init(this);
+
         DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getApplicationContext(),"daodao");
         SQLiteDatabase writableDatabase = devOpenHelper.getWritableDatabase();
         daoSession = new DaoMaster(writableDatabase).newSession();
         GreenDaoBeanDao greenDaoBeanDao = daoSession.getGreenDaoBeanDao();
         MyGreenManager.getMyGreenManager().setGreenDaoBeanDao(greenDaoBeanDao);
-
-        ShopUserManager.getInstance().init(this);
-        NetModel.init(this);
-
-        CacheManager.getInstance().init(this);
     }
 
     public DaoSession getDaoSession() {

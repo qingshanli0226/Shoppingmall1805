@@ -4,6 +4,7 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.Binder;
 import android.os.IBinder;
+import android.support.annotation.Nullable;
 import android.text.TextUtils;
 import android.util.Log;
 import android.widget.Toast;
@@ -22,6 +23,8 @@ import io.reactivex.schedulers.Schedulers;
 
 public class AutoLoginService extends Service {
 
+
+
     public class KsBinder extends Binder {
         public AutoLoginService getService(){
             return AutoLoginService.this;
@@ -38,8 +41,7 @@ public class AutoLoginService extends Service {
 
         String token = ShopUserManager.getInstance().getToken();
 
-
-        Log.i("---", "onStartCommand: "+token);
+        Log.i("---", "onStartCommand: 自动登录 "+token);
         if (TextUtils.isEmpty(token) || token == null){
             Toast.makeText(this, "token为空", Toast.LENGTH_SHORT).show();
         }
@@ -56,6 +58,7 @@ public class AutoLoginService extends Service {
 
                     @Override
                     public void onNext(LoginBean autoLoginBean) {
+                        Log.i("---", "onNext: autoLogin:--"+autoLoginBean.getResult().getToken());
                         ShopUserManager.getInstance().saveLoginBean(autoLoginBean);
                         Toast.makeText(AutoLoginService.this, "自动登录成功", Toast.LENGTH_SHORT).show();
                     }
@@ -74,4 +77,9 @@ public class AutoLoginService extends Service {
 
         return super.onStartCommand(intent, flags, startId);
     }
+
+
+
+
+
 }

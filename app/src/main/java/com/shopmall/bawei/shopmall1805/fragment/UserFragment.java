@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -12,6 +13,7 @@ import com.bw.framework.BaseFragment;
 import com.bw.framework.IPresenter;
 import com.bw.framework.IView;
 import com.bw.framework.ShopUserManager;
+import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.R;
 
@@ -67,9 +69,11 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
         ibUserSetting = (ImageButton) findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
 
+
         ibUserIconAvator.setOnClickListener(v -> {
             boolean userLogin = ShopUserManager.getInstance().isUserLogin();
-            if (userLogin == true){
+            Log.i("---", "initView: userLogin："+userLogin);
+            if (userLogin == false){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }
         });
