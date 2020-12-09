@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
@@ -20,24 +21,24 @@ import com.shoppmall.common.adapter.error.ErrorBean;
 public abstract class BaseFragment<T extends IPresenter,V extends IView> extends Fragment implements ToolBar.IToolBarClickListner {
     private LoadingPage loadingPage;
     protected T presenter;
-    protected ToolBar toolBar;
+    public ToolBar toolBar;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         loadingPage=new LoadingPage(getActivity()) {
             @Override
             protected int getSuccessLayoutId() {
                 return getLayoutID();
             }
         };
-        toolBar = findViewById(R.id.toolbar);//在这里实例化toolbar
-        toolBar.setToolBarClickListner(this);
-        initView();
 
+
+        initView();
         if(presenter!=null){
             presenter.attchView((V)this);
         }
+
         return loadingPage;
     }
     public <T extends View> T findViewById(@IdRes int id){
@@ -56,8 +57,18 @@ public abstract class BaseFragment<T extends IPresenter,V extends IView> extends
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        toolBar = loadingPage.findViewById(R.id.toolbar);
+        toolBar.setToolBarClickListner(this);
         initDate();
         initLisenter();
+
+
+    }
+
+    @Override
+    public void onAttachFragment(@NonNull Fragment childFragment) {
+        super.onAttachFragment(childFragment);
+
     }
 
     protected abstract   void initDate();

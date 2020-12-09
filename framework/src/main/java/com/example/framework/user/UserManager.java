@@ -1,10 +1,8 @@
 package com.example.framework.user;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 
-import com.example.framework.service.ShopMallService;
 import com.example.net.bean.LoginBean;
 
 import java.util.LinkedList;
@@ -35,6 +33,9 @@ public class UserManager {
     public void bindUser(LoginBean.ResultBean user){
        if(this.user==null){
            this.user=user;
+           for (IUserLoginChangedListener listener : listeners) {
+               listener.onUserLogin(user);
+           }
        }
     }
 
@@ -45,7 +46,7 @@ public class UserManager {
         return user!=null;
     }
     public interface IUserLoginChangedListener{
-        void OnUserLogin(LoginBean loginBean);
+        void onUserLogin(LoginBean.ResultBean user);
         void onUserLogout();
 
     }

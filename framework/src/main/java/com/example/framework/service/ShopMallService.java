@@ -49,12 +49,11 @@ public class ShopMallService extends Service {
                 .subscribe(new Observer<AutoLoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
-
+                        
                     }
 
                     @Override
                     public void onNext(AutoLoginBean autoLoginBean) {
-                        Toast.makeText(ShopMallService.this, ""+autoLoginBean.getMessage(), Toast.LENGTH_SHORT).show();
                         if(autoLoginBean.getCode().equals("200")){
                             AutoLoginBean.ResultBean result = autoLoginBean.getResult();
                             LoginBean.ResultBean user = new LoginBean.ResultBean();

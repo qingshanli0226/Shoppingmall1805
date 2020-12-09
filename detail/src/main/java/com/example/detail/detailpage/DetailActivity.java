@@ -21,12 +21,13 @@ import com.example.detail.R;
 import com.example.detail.detailpage.detail.DetailContract;
 import com.example.detail.detailpage.detail.DetailPresenterImpl;
 import com.example.framework.base.BaseActivity;
+import com.example.framework.user.CacheManager;
 import com.example.framework.user.UserManager;
 import com.example.net.Constants;
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.MainBean;
-import com.google.gson.Gson;
+import com.example.net.bean.ShopCarBean;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.io.Serializable;
@@ -50,7 +51,11 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
     private TextView tvGoodInfoCallcenter;
     private TextView tvGoodInfoCollection;
     private TextView tvGoodInfoCart;
-    ProductGoodBean goodBean;
+    private ProductGoodBean goodBean;
+    private NumberAddSubView nasGoodinfoNum;
+    private PopupWindow window;
+    private Button btGoodinfoCancel;
+    private  Button btGoodinfoConfim;
     @Override
     protected void initPresenter() {
         presenter=new DetailPresenterImpl();
@@ -103,36 +108,27 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
                 llRoot.setVisibility(View.GONE);
             }
         });
+
     }
 
     private void showPopwindow() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
-
-        // 2下面是两种方法得到宽度和高度 getWindow().getDecorView().getWidth()
-        final PopupWindow window = new PopupWindow(view,
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT);
+        window = new PopupWindow(view, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
         window.setFocusable(true);
         ColorDrawable dw = new ColorDrawable(0xFFFFFFFF);
         window.setBackgroundDrawable(dw);
-        ImageView iv_goodinfo_photo = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
-        TextView tv_goodinfo_name = (TextView) view.findViewById(R.id.tv_goodinfo_name);
-        TextView tv_goodinfo_price = (TextView) view.findViewById(R.id.tv_goodinfo_price);
-        final NumberAddSubView nas_goodinfo_num = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
-        Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
-        Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
-        Glide.with(DetailActivity.this).load(Constants.BASE_URl_IMAGE + goodBean.getFigure()).into(iv_goodinfo_photo);
-
-        // 名称
-        tv_goodinfo_name.setText(goodBean.getName());
-        // 显示价格
-        tv_goodinfo_price.setText(goodBean.getCover_price());
-
-        // 设置最大值和当前值
-        nas_goodinfo_num.setValue(1);
-
-        nas_goodinfo_num.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
+        ImageView ivGoodinfoPhoto = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
+        TextView tvGoodinfoName = (TextView) view.findViewById(R.id.tv_goodinfo_name);
+        TextView tvGoodinfoPrice = (TextView) view.findViewById(R.id.tv_goodinfo_price);
+        nasGoodinfoNum = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
+        btGoodinfoCancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
+        btGoodinfoConfim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
+        Glide.with(DetailActivity.this).load(Constants.BASE_URl_IMAGE + goodBean.getFigure()).into(ivGoodinfoPhoto);
+        tvGoodinfoName.setText(goodBean.getName());
+        tvGoodinfoPrice.setText(goodBean.getCover_price());
+        nasGoodinfoNum.setValue(1);
+        nasGoodinfoNum.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
             public void addNumber(View view, int value) {
                 goodBean.setNumber(value);
@@ -143,23 +139,20 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
                 goodBean.setNumber(value);
             }
         });
-
-        bt_goodinfo_cancel.setOnClickListener(new View.OnClickListener() {
+        btGoodinfoCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 window.dismiss();
             }
         });
-
-        bt_goodinfo_confim.setOnClickListener(new View.OnClickListener() {
+        btGoodinfoConfim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 window.dismiss();
-                goodBean.setNumber(nas_goodinfo_num.getValue());
+                goodBean.setNumber(nasGoodinfoNum.getValue());
                 presenter.addProduct(goodBean.getProduct_id(),goodBean.getNumber(),goodBean.getName(),"http:\\/\\/www.baidu.com",goodBean.getCover_price());
             }
         });
-        window.showAsDropDown(wbGoodInfoMore);
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
 
             @Override
@@ -167,6 +160,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
                 window.dismiss();
             }
         });
+        window.showAsDropDown(wbGoodInfoMore);
     }
 
     @Override
@@ -187,7 +181,6 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         extra = intent.getSerializableExtra("good");
         type = intent.getStringExtra("type");
         if(extra!=null&&type!=null&&!type.equals("")){
-            Gson gson = new Gson();
             switch (type){
                 case "seckill":
                     MainBean.ResultBean.SeckillInfoBean.ListBean seckillInfoBean = (MainBean.ResultBean.SeckillInfoBean.ListBean) extra;
@@ -245,13 +238,22 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         tvMoreSearch = (TextView) findViewById(R.id.tv_more_search);
         tvMoreHome = (TextView) findViewById(R.id.tv_more_home);
         btnMore = (Button) findViewById(R.id.btn_more);
+
     }
 
     @Override
     public void onOk(AddProductBean bean) {
 
-        if(!bean.getCode().equals("200")){
+        if(bean.getCode().equals("200")){
             Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+            ShopCarBean.ResultBean resultBean = new ShopCarBean.ResultBean();
+            resultBean.setProductId(goodBean.getProduct_id());
+            resultBean.setProductName(goodBean.getName());
+            resultBean.setProductNum(goodBean.getNumber()+"");
+            resultBean.setProductPrice(goodBean.getCover_price());
+            resultBean.setProductSelected(false);
+            resultBean.setUrl("");
+            CacheManager.getInstance().add(resultBean);
         }else {
             Toast.makeText(this, ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
         }

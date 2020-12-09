@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -34,18 +35,25 @@ public class ToolBar extends RelativeLayout {
     public ToolBar(Context context) {
         super(context);
         this.context=context;
+        NullPointerException nullPointerException = new NullPointerException(hashCode()+"");
+
+        nullPointerException.printStackTrace();
+
+
     }
 
     public ToolBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context=context;
         init(context,attrs,0);
+        NullPointerException nullPointerException = new NullPointerException(hashCode()+"");
+        nullPointerException.printStackTrace();
     }
 
     public ToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         this.context=context;
-        init(context,attrs,defStyleAttr);
+        init(context,attrs,0);
     }
     private void init(Context context,AttributeSet attrs,int defstyleAttr){
         initToolBarAttrs(context,attrs);
@@ -114,6 +122,8 @@ public class ToolBar extends RelativeLayout {
         toolbarRightTv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d("LQS===================-------------------", context.getClass().getSimpleName() + " " + ToolBar.this.hashCode());
+
                 if(iToolBarClickListner!=null){
                     iToolBarClickListner.onRightClick();
                 }
@@ -121,59 +131,59 @@ public class ToolBar extends RelativeLayout {
         });
     }
 
-    private void showOnlyRightImg(int rightImgId) {
+    public void showOnlyRightImg(int rightImgId) {
         Glide.with(context).load(rightImgId).into(toolbarRightImg);
         toolbarRightImg.setVisibility(VISIBLE);
         toolbarRightTv.setVisibility(GONE);
     }
 
-    private void showOnlyRightTv(String rightText) {
+    public void showOnlyRightTv(String rightText) {
         toolbarRightImg.setVisibility(GONE);
         toolbarRightTv.setVisibility(VISIBLE);
         toolbarRightTv.setText(rightText);
     }
 
-    private void setToolBarLeftImg(int leftImgId) {
+    public void setToolBarLeftImg(int leftImgId) {
         Glide.with(context).load(leftImgId).into(toolBarLeftImg);
     }
 
-    private void setToolBarTitle(String titleText) {
+    public void setToolBarTitle(String titleText) {
         toolbarTitleTv.setText(titleText);
     }
 
-    private void setRightTextSize(float rightTextSize) {
+    public void setRightTextSize(float rightTextSize) {
         toolbarRightTv.setTextSize(rightTextSize);
     }
 
-    private void setRightTextColor(int rightTextColor) {
+    public void setRightTextColor(int rightTextColor) {
         toolbarRightTv.setTextColor(rightTextColor);
     }
 
-    private void setToolBarRightTv(String rightText) {
+    public void setToolBarRightTv(String rightText) {
         toolbarRightTv.setText(rightText);
     }
 
-    private void setToolBarRightImg(int rightImgId) {
+    public void setToolBarRightImg(int rightImgId) {
         toolbarRightImg.setImageResource(rightImgId);
     }
 
-    private void showNotRight() {
+    public void showNotRight() {
         toolbarRightTv.setVisibility(GONE);
         toolbarRightImg.setVisibility(GONE);
     }
 
-    private void showNotTitle() {
+    public void showNotTitle() {
         toolbarTitleTv.setVisibility(GONE);
     }
 
-    private void showNotLeft() {
+    public void showNotLeft() {
         toolBarLeftImg.setVisibility(GONE);
     }
     public void setToolBarClickListner(IToolBarClickListner toolBarClickListner){
         iToolBarClickListner=toolBarClickListner;
     }
     public interface IToolBarClickListner{
-        void onLeftClick();//ToolBar的左侧控件被点击时调用
-        void onRightClick();//ToolBar的右侧控件被点击
+        void onLeftClick();
+        void onRightClick();
     }
 }

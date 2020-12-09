@@ -1,18 +1,23 @@
 package com.shopmall.bawei.shopmall1805.shoppingcar;
 
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.framework.base.BaseFragment;
+import com.example.framework.user.CacheManager;
+import com.example.net.bean.ShopCarBean;
 import com.shopmall.bawei.shopmall1805.R;
 
+import java.util.List;
 
-public class ShoppingCarFragment extends BaseFragment {
+
+public class ShoppingCarFragment extends BaseFragment implements CacheManager.IShopcarDataChangeListener {
     private RecyclerView recyclerview;
     private LinearLayout llCheckAll;
     private CheckBox checkboxAll;
@@ -22,17 +27,22 @@ public class ShoppingCarFragment extends BaseFragment {
     private CheckBox cbAll;
     private Button btnDelete;
     private Button btnCollection;
-    private LinearLayout llEmptyShopcart;
-    private ImageView ivEmpty;
-    private TextView tvEmptyCartTobuy;
+    private boolean isEdit=true;
 
     @Override
     protected void initDate() {
-
+        List<ShopCarBean.ResultBean> shopCarList = CacheManager.getInstance().getShopCarList();
+        if(shopCarList.size()>0){
+            showSuccess();
+            llCheckAll.setVisibility(View.VISIBLE);
+        }else {
+            showEmptyCarPage();
+        }
     }
 
     @Override
     protected void initLisenter() {
+        CacheManager.getInstance().setShopcarDataChangeListener(this);
 
     }
 
@@ -47,10 +57,22 @@ public class ShoppingCarFragment extends BaseFragment {
         cbAll = (CheckBox) findViewById(R.id.cb_all);
         btnDelete = (Button) findViewById(R.id.btn_delete);
         btnCollection = (Button) findViewById(R.id.btn_collection);
-        llEmptyShopcart = (LinearLayout) findViewById(R.id.ll_empty_shopcart);
-        ivEmpty = (ImageView) findViewById(R.id.iv_empty);
-        tvEmptyCartTobuy = (TextView) findViewById(R.id.tv_empty_cart_tobuy);
-        showEmptyCarPage();
+
+
+    }
+
+    @Override
+    public void onRightClick() {
+        if(isEdit){
+            toolBar.setToolBarRightTv("完成");
+            llDelete.setVisibility(View.VISIBLE);
+            llCheckAll.setVisibility(View.GONE);
+        }else {
+            toolBar.setToolBarRightTv("编辑");
+            llDelete.setVisibility(View.GONE);
+            llCheckAll.setVisibility(View.VISIBLE);
+        }
+        isEdit=!isEdit;
     }
 
     @Override
@@ -58,4 +80,29 @@ public class ShoppingCarFragment extends BaseFragment {
         return R.layout.fragment_shopping_car;
     }
 
+    @Override
+    public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
+        Log.i("Yoyo", "onDataChanged: "+shopCarBeanList.size());
+        if(shopCarBeanList.size()>0){
+            showSuccess();
+            llCheckAll.setVisibility(View.VISIBLE);
+        }else {
+            showEmptyCarPage();
+        }
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
 }
