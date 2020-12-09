@@ -16,9 +16,11 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.framework.BaseActivity;
+import com.example.framework.CacheManager;
 import com.example.framework.MySql;
 import com.example.net.ShopUserManger;
 import com.example.net.ConfigUrl;
+import com.example.net.ShopcarBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.entity.ShopEntityDao;
 import com.shopmall.bawei.shopmall1805.product.contract.ProductDetailContract;
@@ -65,7 +67,6 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
          id = intent.getStringExtra("id");
 
          httpPresenter = new ProductDetailPresenterImpl();
-
         Glide.with(this).load(ConfigUrl.BASE_IMAGE+path).into(imv);
 
         ARouter.getInstance().inject(this);
@@ -165,7 +166,14 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
 
     @Override
     public void onAddProduct(String addResult) {
-
+        Toast.makeText(this, ""+addResult, Toast.LENGTH_SHORT).show();
+        ShopcarBean shopcarBean = new ShopcarBean();
+        shopcarBean.setProductId(id);
+        shopcarBean.setProductName(name);
+        shopcarBean.setProductNum("1");
+        shopcarBean.setProductPrice(path);
+        shopcarBean.setProductSelected(true);
+        CacheManager.getInstance().add(shopcarBean);
     }
 
     @Override

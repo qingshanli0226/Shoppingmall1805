@@ -37,8 +37,8 @@ public interface INetPresetenterWork {
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
     //获取服务端购物车产品信息的接口
-    @POST("getShortcartProducts")
-    Observable<BaseBean<String>> getShortcartProducts(@Body RequestBody requestBody);
+    @GET("getShortcartProducts")
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
 
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")

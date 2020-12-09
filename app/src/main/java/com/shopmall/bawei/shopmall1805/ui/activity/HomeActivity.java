@@ -6,9 +6,11 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseActivity;
+import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IVIew;
 import com.example.net.ShopUserManger;
+import com.example.net.ShopcarBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -24,7 +26,7 @@ import com.shopmall.bawei.shopmall1805.ui.NoScrollViewPager;
 import java.util.ArrayList;
 import java.util.List;
 @Route(path = "/aa/aaa")
-public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
+public class HomeActivity extends BaseActivity<IPresenter, IVIew> implements CacheManager.IShopcarDataChangeListener {
 
     private CommonTabLayout commonTabLayout;
     private NoScrollViewPager viewPager;
@@ -36,6 +38,7 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
         commonTabLayout = findViewById(R.id.commontablayout);
         viewPager = findViewById(R.id.viewpager);
         addData();
+
     }
 
 
@@ -106,5 +109,25 @@ public class HomeActivity extends BaseActivity<IPresenter, IVIew> {
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
+    }
+
+    @Override
+    public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
+
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopcarBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
     }
 }

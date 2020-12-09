@@ -3,6 +3,10 @@ package com.example.framework;
 import android.content.Context;
 import android.content.Intent;
 
+import com.example.net.BaseBean;
+import com.example.net.ConfigUrl;
+import com.example.net.HttpRetrofitManager;
+import com.example.net.INetPresetenterWork;
 import com.example.net.LoginBean;
 import com.example.net.ShopUserManger;
 import com.example.net.ShopcarBean;
@@ -11,6 +15,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager {
 
@@ -61,6 +70,34 @@ public class CacheManager {
     }
     //从服务端获取购物车的数据
     private void getShopcarDataFromServer() {
+        new HttpRetrofitManager()
+                .getRetrofit(ConfigUrl.BASE_URL)
+                .create(INetPresetenterWork.class)
+                .getShortcartProducts()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseBean<List<ShopcarBean>>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseBean<List<ShopcarBean>> listBaseBean) {
+                        shopcarBeanList.addAll(listBaseBean.getResult());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
 
     }
 
@@ -70,5 +107,34 @@ public class CacheManager {
         void onOneDataChanged(int position, ShopcarBean shopcarBean);
         void onMoneyChanged(String moneyValue);
         void onAllSelected(boolean isAllSelect);
+    }
+
+    //缓存第三步:提供修改缓存数据的接口
+    public void add(ShopcarBean shopcarBean){
+        shopcarBeanList.add(shopcarBean);
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+        }
+    }
+
+    private void notifyShopcarDataChanged(){
+        //遍历这listener列表,去逐个通知页面购物车产品数据变化了
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+        }
+    }
+    public List<ShopcarBean> getShopcarBeanList(){
+        return shopcarBeanList;
+    }
+
+    //获取已经选择的商品列表
+    public List<ShopcarBean> getSelectedProductBeanList() {
+        List<ShopcarBean> selectedList = new ArrayList<>();
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+//            if (shopcarBean.isProductSelected()) {
+//                selectedList.add(shopcarBean);
+//            }
+        }
+        return selectedList;
     }
 }

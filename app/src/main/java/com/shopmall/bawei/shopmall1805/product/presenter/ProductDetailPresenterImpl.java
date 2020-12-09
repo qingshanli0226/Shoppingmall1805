@@ -9,7 +9,6 @@ import com.shopmall.bawei.shopmall1805.product.contract.ProductDetailContract;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.util.HashMap;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -142,7 +141,7 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
         new HttpRetrofitManager()
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
-                .getShortcartProducts(requestBody)
+                .getShortcartProducts()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {
