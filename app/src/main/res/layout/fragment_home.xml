@@ -17,8 +17,10 @@
             android:layout_marginLeft="@dimen/dp_30"
             >
             <EditText
+                android:id="@+id/ed"
                 android:layout_width="@dimen/dp_320"
                 android:layout_height="@dimen/dp_40"
+                android:enabled="false"
                 android:drawableLeft="@mipmap/home_search_icon"
                 android:background="@drawable/yuan"
                 android:layout_gravity="center"

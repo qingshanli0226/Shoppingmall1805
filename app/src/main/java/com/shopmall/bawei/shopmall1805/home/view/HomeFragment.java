@@ -1,9 +1,12 @@
 package com.shopmall.bawei.shopmall1805.home.view;
 
 
+import android.content.Context;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.framework.BaseFragment;
@@ -16,6 +19,8 @@ import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
 public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.SkerakView> implements HomeContract.SkerakView {
     private RecyclerView rv;
     private PrimereAdpter primereAdpter;
+    private EditText ed;
+
     @Override
     protected void initPreseter() {
         httpresetnter= new HomePresenter();
@@ -23,6 +28,9 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
 
     @Override
     protected void initView(View inflate) {
+
+        ed = inflate.findViewById(R.id.ed);
+
 
         rv = inflate.findViewById(R.id.rv);
         primereAdpter = new PrimereAdpter();
@@ -33,6 +41,7 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
 
     @Override
     protected void initdate() {
+
         httpresetnter.getskerak();
     }
 

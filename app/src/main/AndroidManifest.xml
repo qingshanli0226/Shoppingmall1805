@@ -15,7 +15,8 @@
         android:theme="@style/AppTheme">
         <activity android:name=".ui.activity.CallcenterActivity"></activity>
         <activity android:name=".ui.activity.view.GoodinfoActivity" />
-        <activity android:name=".ui.activity.MainActivity" />
+        <activity android:name=".ui.activity.MainActivity"
+            android:launchMode="singleTask"></activity>
         <activity
             android:name=".ui.activity.WelcomActivity"
             android:theme="@style/AppTheme.FullScreen">

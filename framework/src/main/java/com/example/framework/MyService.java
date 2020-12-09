@@ -46,9 +46,10 @@ public class MyService extends Service{
                         @Override
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
-                            ShopUsermange.getInstance().setName(loginBean.getName());
-                            ShopUsermange.getInstance().setPassword(loginBean.getPassword());
+//                            ShopUsermange.getInstance().setName(loginBean.getName());
+//                            ShopUsermange.getInstance().setPassword(loginBean.getPassword());
                             ShopUsermange.getInstance().ShopLoginmange(loginBean);
+                            CacheManager.getInstance().getshopCardateserver();
                             EventBus.getDefault().postSticky("自动登录成功");
                         }
 

@@ -16,15 +16,19 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.example.framework.BaseActivity;
+import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
 import com.example.net.Confing;
+import com.example.net.bean.ShopcarBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
 import com.shopmall.bawei.shopmall1805.ui.activity.CallcenterActivity;
 import com.shopmall.bawei.shopmall1805.ui.activity.contract.GoodsInfoContract;
 import com.shopmall.bawei.shopmall1805.ui.activity.presenter.GoodInfoPresenter;
+
+import java.util.List;
 
 @Route(path="/goodsinto/GoodinfoActivity")
 public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoContract.IGoodsInfoView> implements GoodsInfoContract.IGoodsInfoView,View.OnClickListener {
@@ -56,6 +60,8 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
     private String productName;
     private String productprice;
     private String url;
+    private String num;
+    int newNum;
     @Override
     protected void initpreseter() {
         httpresenter = new GoodInfoPresenter();
@@ -69,6 +75,7 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
         productName = goods_bean.getName();
         productprice = goods_bean.getPrice();
         url = goods_bean.getPic();
+        num = goods_bean.getId();
         Toast.makeText(this, ""+goods_bean.getName(), Toast.LENGTH_SHORT).show();
         Glide.with(this).load(Confing.BASE_IMAGE + goods_bean.getPic()).into(ivGoodInfoImage);
         tvGoodInfoName.setText(""+goods_bean.getName());
@@ -155,8 +162,9 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
                         @Override
                         public void onClick(View v) {
 
-                            //判断库存数量
-                            httpresenter.CheckOneproduct(productId, "1");
+                            //判断库存数量进行添加
+                            httpresenter.CheckOneproduct(productId, ""+tvCount.getText().toString());
+                            popupWindow.dismiss();
                         }
                     });
                     popupWindow.setContentView(inflate);
@@ -188,22 +196,51 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
 
     @Override
     public void onCheckOneproduct(String productNum) {
-        //服务端将仓库的数量返回
-        //首先判断一下库存数量是否大于1，如果大于1就加入到购物车中
-        if (Integer.parseInt(productNum)>=1){
+        /*服务端将仓库的数量返回
+         * 首先判断一下库存数量是否大于1，如果大于1就加入到购物车中
+         */
+        if (Integer.parseInt(productNum)>=Integer.parseInt(tvCount.getText().toString())){
             //再次做一个判断，判断购物车是否有过这个商品，如果有了的话就不需要再次添加，只需要让数量+1
-            httpresenter.AddOneproduct(productId,"1",productName,url,productprice);
+            if (ShopcarListHashproduct()){
+                ShopcarBean shopcarBan = CacheManager.getInstance().getShopcarBan(productId);
+                int oldNum = Integer.parseInt(shopcarBan.getProductNum());
+                newNum = oldNum + 1;
+                httpresenter.Productchanged(productId,String.valueOf(newNum),productName,url,productprice);
+            }else {
+                httpresenter.AddOneproduct(productId,tvCount.getText().toString(),productName,url,productprice);
+            }
+
         }
     }
-
+    //购物车是否存在这个商品，如果存在返回true 不存在就返回false
+    private boolean ShopcarListHashproduct(){
+        //第一步获取当前购物车列表的数据
+        List<ShopcarBean> shopcarList = CacheManager.getInstance().getShopcarList();
+        for (ShopcarBean shopcarBean : shopcarList) {
+            if (productId.equals(shopcarBean.getProductId())){
+                return true;
+            }
+        }
+        return false;
+    }
+    //往购物车添加一条数据
     @Override
     public void onAddOneproduct(String addresult) {
         Toast.makeText(this, "商品成功加入购物车", Toast.LENGTH_SHORT).show();
+        ShopcarBean shopcarBean = new ShopcarBean();
+        shopcarBean.setProductId(productId);
+        shopcarBean.setProductName(productName);
+        shopcarBean.setProductNum("1");
+        shopcarBean.setProductPrice(productprice);
+        shopcarBean.setProductSelected(true);
+        shopcarBean.setUrl(url);
+        CacheManager.getInstance().add(shopcarBean);
     }
-
+    //更新了一下服务端商品的数量
     @Override
     public void onProductchanged(String result) {
-
+        Toast.makeText(this, "商品已存在，再原本的基础上加了1", Toast.LENGTH_SHORT).show();
+        CacheManager.getInstance().updateProductNum(productId,String.valueOf(newNum));
     }
 
     @Override
