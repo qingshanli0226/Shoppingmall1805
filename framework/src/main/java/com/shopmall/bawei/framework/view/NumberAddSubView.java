@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.goodsdesc.view;
+package com.shopmall.bawei.framework.view;
 
 import android.annotation.TargetApi;
 import android.content.Context;
@@ -6,7 +6,6 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
-import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -14,10 +13,7 @@ import android.widget.Toast;
 
 import androidx.appcompat.widget.TintTypedArray;
 
-import com.shopmall.bawei.shopmall1805.R;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.shopmall.bawei.framework.R;
 
 
 /**

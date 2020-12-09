@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.goodsdesc.view;
+package com.shopmall.bawei.framework.view;
 
 public interface ResultFromCheckInterface {
     void onChecked(int productNum);
