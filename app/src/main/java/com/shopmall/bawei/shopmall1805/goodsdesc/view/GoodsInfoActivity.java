@@ -33,7 +33,7 @@ import com.shopmall.bawei.shopmall1805.goodsdesc.contract.GoodsInfoImpl;
 
 import java.util.List;
 
-public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoContract.IGoodsInfoView> implements View.OnClickListener, CacheManager.IShopcarDataChangeListener , GoodsInfoContract.IGoodsInfoView {
+public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoContract.IGoodsInfoView> implements View.OnClickListener, CacheManager.IShopcarDataChangeListener, GoodsInfoContract.IGoodsInfoView, ClickToCheckInterface {
     private Button btnGoodInfoAddCart;
     private GoodsBean goodsBean;
     private ImageView ivGoodInfoImage;
@@ -41,6 +41,8 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
     private TextView tvGoodInfoPrice;
     private WebView wbGoodInfoMore;
     private TextView tvGoodInfoCart;
+
+    private PopupWindow window;
 
 
     private String name;
@@ -50,12 +52,20 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
 
     private NumberAddSubView nasGoodinfoNum;
 
+    private ResultFromCheckInterface resultFromCheckInterface;
 
 
+
+
+
+//    public void setCheckNumListener(CheckNumListener checkNumListener){
+//        this.checkNumListener = checkNumListener;
+//    }
 
 
     @Override
     protected void initView() {
+
         btnGoodInfoAddCart = findViewById(R.id.btn_good_info_addcart);
         ivGoodInfoImage = (ImageView) findViewById(R.id.iv_good_info_image);
         tvGoodInfoName = (TextView) findViewById(R.id.tv_good_info_name);
@@ -141,6 +151,7 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
                     ARouter.getInstance().build(ARouterHelper.USER_LOGIN).withInt(UrlHelper.TO_LOGIN_KEY,UrlHelper.TO_LOGIN_FROM_ADD_SHOP).navigation(this,100);
                     return;
                 }
+                Log.i("addcart", "onClick: ");
                 checkHasProduct(1);
                 break;
             case R.id.tv_good_info_cart:
@@ -156,12 +167,12 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         httpPresenter.checkOneProductNum(productId,String.valueOf(num));
     }
 
-    private void showPopWindow(int num) {
+    private void showPopWindow() {
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
 
 
-        final PopupWindow window = new PopupWindow(view,
+        window = new PopupWindow(view,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
         window.setFocusable(true);
@@ -174,6 +185,8 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         TextView tv_goodinfo_name = (TextView) view.findViewById(R.id.tv_goodinfo_name);
         TextView tv_goodinfo_price = (TextView) view.findViewById(R.id.tv_goodinfo_price);
         nasGoodinfoNum = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
+        nasGoodinfoNum.setClickToCheckInterface(this);
+        resultFromCheckInterface = (ResultFromCheckInterface)nasGoodinfoNum;
         Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
         Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
 
@@ -184,12 +197,11 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         // 显示价格
         tv_goodinfo_price.setText(goodsBean.getCover_price());
 
-        nasGoodinfoNum.setMaxValue(num);
         nasGoodinfoNum.setValue(1);
 
         nasGoodinfoNum.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
-            public void addNumber(View view, int value) {
+            public void addNumber(int value) {
                 goodsBean.setNumber(value);
             }
 
@@ -255,10 +267,11 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
 
     @Override
     public void onCheckOneProducts(String productNum) {
-        int num = Integer.parseInt(productNum);
-//        if(num > 1){
-//            showPopWindow(num);
-//        }
+        if(window == null || !window.isShowing()) {
+            showPopWindow();
+        }else{
+            resultFromCheckInterface.onChecked(Integer.parseInt(productNum));
+        }
     }
 
     @Override
@@ -289,5 +302,10 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
     @Override
     public void showEmpty() {
 
+    }
+
+    @Override
+    public void checking(int num) {
+        checkHasProduct(num);
     }
 }

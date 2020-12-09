@@ -32,6 +32,7 @@ public class OkHttpHelper {
                 .build();
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(UrlHelper.BASE_URL)
+                .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
@@ -39,4 +40,6 @@ public class OkHttpHelper {
         Log.i("TAG", "createNetApi: "+api);
         return api;
     }
+
+
 }

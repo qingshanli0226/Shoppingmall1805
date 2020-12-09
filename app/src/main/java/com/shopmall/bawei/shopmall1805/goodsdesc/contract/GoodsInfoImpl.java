@@ -24,9 +24,10 @@ import okhttp3.RequestBody;
 public class GoodsInfoImpl extends GoodsInfoContract.IGoodsInfoPresenter {
     @Override
     public void checkOneProductNum(String productId, String productNum) {
-        HashMap<String,String> map = new HashMap<>();
-        map.put("productId",productId);
-        map.put("productNum",productNum);
+        HashMap<String,Integer> map = new HashMap<>();
+        map.put("productId",Integer.valueOf(productId));
+        map.put("productNum",Integer.valueOf(productNum));
+        Log.i("TAG", "checkOneProductNum: "+productId+productNum);
         OkHttpHelper.getApi().checkOneProductInventory(map)
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<BaseBean<String>,String>())
@@ -47,10 +48,12 @@ public class GoodsInfoImpl extends GoodsInfoContract.IGoodsInfoPresenter {
                     public void onNext(String s) {
                         Log.i("TAG", "onNext: "+s);
                         iView.onCheckOneProducts(s);
+                        iView.hideLoading(true,null);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("error", "onError: "+e.getMessage());
                         iView.hideLoading(false, ExceptionUtil.getErrorBean(e));
                     }
 

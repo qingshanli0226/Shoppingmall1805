@@ -2,14 +2,25 @@ package com.shopmall.bawei.framework;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.shopmall.bawei.common.UrlHelper;
+import com.shopmall.bawei.net.MyNetApi;
+import com.shopmall.bawei.net.OkHttpHelper;
+import com.shopmall.bawei.net.TokenInterceptor;
 import com.shopmall.bawei.net.mode.LoginBean;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
-public class UserManager {
+import okhttp3.OkHttpClient;
+import okhttp3.logging.HttpLoggingInterceptor;
+import retrofit2.Retrofit;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+public class UserManager{
 
     private LoginBean loginBean;
 
@@ -84,6 +95,8 @@ public class UserManager {
             listeners.remove(listener);
         }
     }
+
+
 
     public interface IUserLoginChangedListener {
         void onUserLogin(LoginBean loginBean);

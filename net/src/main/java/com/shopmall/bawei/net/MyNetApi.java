@@ -41,7 +41,7 @@ public interface MyNetApi {
 
     @POST("checkOneProductInventory")
     @FormUrlEncoded
-    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String,String> map);
+    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String,Integer> map);
 
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);

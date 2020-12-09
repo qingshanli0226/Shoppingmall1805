@@ -6,25 +6,36 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.util.AttributeSet;
 import android.view.View;
+import android.view.ViewParent;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.TintTypedArray;
 
 import com.shopmall.bawei.shopmall1805.R;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 /**
  * Created by Administrator on 2016/8/31.
  */
-public class NumberAddSubView extends LinearLayout implements View.OnClickListener {
+public class NumberAddSubView extends LinearLayout implements View.OnClickListener , ResultFromCheckInterface {
     private ImageView btn_sub;
     private ImageView btn_add;
     private TextView tv_count;
     private int value = 1;
     private int minValue = 1;
     private int maxValue = 10;
+
+    private ClickToCheckInterface clickToCheckInterface;
+
+    public void setClickToCheckInterface(ClickToCheckInterface clickToCheckInterface) {
+        this.clickToCheckInterface = clickToCheckInterface;
+    }
 
     public int getValue() {
         String countStr = tv_count.getText().toString().trim();//文本内容
@@ -104,14 +115,12 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         }
     }
 
+
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.btn_add) {
             //加
-            addNumber();
-            if (onNumberChangeListener != null) {
-                onNumberChangeListener.addNumber(v, value);
-            }
+            clickToCheckInterface.checking(value+1);
         } else {
             //减
             subNumber();
@@ -122,6 +131,8 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     }
 
     private void subNumber() {
+
+
         if (value > minValue) {
             value -= 1;
         }
@@ -136,9 +147,21 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         setValue(value);
     }
 
+    @Override
+    public void onChecked(int productNum) {
+        if(productNum == value + 1) {
+            addNumber();
+            if (onNumberChangeListener != null) {
+                onNumberChangeListener.addNumber(value);
+            }
+        }else{
+            Toast.makeText(getContext(),"库存不足",Toast.LENGTH_SHORT).show();
+        }
+    }
+
     public interface OnNumberChangeListener {
         //当按钮被点击的时候回调
-        void addNumber(View view, int value);
+        void addNumber(int value);
 
         void subNumber(View view, int value);
     }
