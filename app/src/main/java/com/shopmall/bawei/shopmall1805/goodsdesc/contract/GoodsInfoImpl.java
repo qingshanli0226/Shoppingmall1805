@@ -98,6 +98,7 @@ public class GoodsInfoImpl extends GoodsInfoContract.IGoodsInfoPresenter {
                     @Override
                     public void onNext(String s) {
                         iView.onAddProduct(s);
+                        iView.hideLoading(true,null);
                     }
 
                     @Override
@@ -144,6 +145,7 @@ public class GoodsInfoImpl extends GoodsInfoContract.IGoodsInfoPresenter {
                     @Override
                     public void onNext(String s) {
                         iView.onProductNumChange(s);
+                        iView.hideLoading(true,null);
                     }
 
                     @Override

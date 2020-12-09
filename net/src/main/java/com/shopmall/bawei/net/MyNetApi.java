@@ -36,7 +36,7 @@ public interface MyNetApi {
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> autoLogin(@Field("token") String token);
 
-    @GET("getShortCartProducts")
+    @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopCarBean>>> getShortCartProducts();
 
     @POST("checkOneProductInventory")

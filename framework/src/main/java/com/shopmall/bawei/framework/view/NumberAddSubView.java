@@ -23,8 +23,8 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     private ImageView btn_sub;
     private ImageView btn_add;
     private TextView tv_count;
-    private int value = 1;
-    private int minValue = 1;
+    private int value = 0;
+    private int minValue = 0;
     private int maxValue = 10;
 
     private ClickToCheckInterface clickToCheckInterface;
@@ -78,7 +78,7 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
         btn_sub = (ImageView) findViewById(R.id.btn_sub);
         btn_add = (ImageView) findViewById(R.id.btn_add);
         tv_count = (TextView) findViewById(R.id.tv_count);
-
+        tv_count.setText(String.valueOf(value));
         getValue();
 
         //设置点击事件

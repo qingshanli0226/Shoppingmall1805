@@ -88,7 +88,7 @@ public class CacheManager {
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(context, ExceptionUtil.getErrorBean(e).getErrorMessage(),Toast.LENGTH_SHORT);
+                        Toast.makeText(context, ExceptionUtil.getErrorBean(e).getErrorMessage(),Toast.LENGTH_SHORT).show();
                     }
 
                     @Override

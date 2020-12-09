@@ -39,6 +39,7 @@ import java.util.List;
 public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoContract.IGoodsInfoView> implements View.OnClickListener, CacheManager.IShopcarDataChangeListener, GoodsInfoContract.IGoodsInfoView, ClickToCheckInterface {
     private Button btnGoodInfoAddCart;
     private GoodsBean goodsBean;
+    private ShopCarBean shopCarBean;
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
     private TextView tvGoodInfoPrice;
@@ -52,6 +53,9 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
     private String coverPrice;
     private String figure;
     private String productId;
+
+
+    private int newNum;
 
     private NumberAddSubView nasGoodinfoNum;
 
@@ -96,6 +100,12 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         figure = goodsBean.getFigure();
         productId = goodsBean.getProduct_id();
         Log.i("TAG", "setDataFormView: "+productId);
+        shopCarBean = new ShopCarBean();
+        shopCarBean.setProductId(goodsBean.getProduct_id());
+        shopCarBean.setProductName(goodsBean.getName());
+        shopCarBean.setProductNum(String.valueOf(goodsBean.getNumber()));
+        shopCarBean.setUrl(goodsBean.getFigure());
+        shopCarBean.setProductPrice(goodsBean.getCover_price());
 
         Glide.with(this).load(UrlHelper.BASE_URl_IMAGE + figure).into(ivGoodInfoImage);
         if (name != null) {
@@ -193,24 +203,27 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
         Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
 
-        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + goodsBean.getFigure()).into(iv_goodinfo_photo);
+        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + shopCarBean.getUrl()).into(iv_goodinfo_photo);
 
         // 名称
-        tv_goodinfo_name.setText(goodsBean.getName());
+        tv_goodinfo_name.setText(shopCarBean.getProductName());
         // 显示价格
-        tv_goodinfo_price.setText(goodsBean.getCover_price());
+        tv_goodinfo_price.setText(shopCarBean.getProductPrice());
 
-        nasGoodinfoNum.setValue(1);
+        goodsBean.setNumber(nasGoodinfoNum.getValue());
+        shopCarBean.setProductNum(String.valueOf(nasGoodinfoNum.getValue()));
 
         nasGoodinfoNum.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
             public void addNumber(int value) {
                 goodsBean.setNumber(value);
+                shopCarBean.setProductNum(String.valueOf(nasGoodinfoNum.getValue()));
             }
 
             @Override
             public void subNumber(View view, int value) {
                 goodsBean.setNumber(value);
+                shopCarBean.setProductNum(String.valueOf(nasGoodinfoNum.getValue()));
             }
         });
 
@@ -227,11 +240,18 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
                 window.dismiss();
                 //添加购物车
 
-
-
-
-                Log.e("TAG", "66:" + goodsBean.toString());
-                Toast.makeText(GoodsInfoActivity.this, "添加购物车成功", Toast.LENGTH_SHORT).show();
+                if(goodsBean.getNumber() > 0) {
+                    if(checkIfShopCarListHasProduct()){
+                        ShopCarBean shopCarBan = CacheManager.getInstance().getShopCarBan(productId);
+                        int oldNum = Integer.parseInt(shopCarBan.getProductNum());
+                        newNum = oldNum + Integer.parseInt(shopCarBean.getProductNum());
+                        httpPresenter.updateProductNum(productId,String.valueOf(newNum),name,figure,coverPrice);
+                    } else {
+                        httpPresenter.addOneProduct(shopCarBean.getProductId(), String.valueOf(shopCarBean.getProductNum()), shopCarBean.getProductName(), shopCarBean.getUrl(), shopCarBean.getProductPrice());
+                    }
+                } else {
+                    Toast.makeText(GoodsInfoActivity.this,"请确保商品数大于0,num:"+ goodsBean.getNumber(),Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
@@ -248,9 +268,19 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
                 Gravity.BOTTOM, 0, VirtualkeyboardHeight.getBottomStatusHeight(GoodsInfoActivity.this));
     }
 
+    private boolean checkIfShopCarListHasProduct(){
+        List<ShopCarBean> shopCarBeanList = CacheManager.getInstance().getShopCarBeanList();
+        for (ShopCarBean shopCarBean : shopCarBeanList){
+            if(productId.equals(shopCarBean.getProductId())){
+                return true;
+            }
+        }
+        return false;
+    }
+
     @Override
     public void onDataChanged(List<ShopCarBean> shopcarBeanList) {
-        tvGoodInfoCart.setText("购物车"+shopcarBeanList.size());
+        tvGoodInfoCart.setText("购物车:"+shopcarBeanList.size());
     }
 
     @Override
@@ -279,7 +309,26 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
 
     @Override
     public void onAddProduct(String addResult) {
+        showShopCarAnim(1);
+    }
 
+    private void showShopCarAnim(int type) {
+        if(type == 1){
+            addOneProductToCache();
+        }else{
+            CacheManager.getInstance().updateProductNum(productId,String.valueOf(newNum));
+        }
+    }
+
+    private void addOneProductToCache() {
+        ShopCarBean shopCarBan = new ShopCarBean();
+        shopCarBan.setProductId(productId);
+        shopCarBan.setProductName(name);
+        shopCarBan.setProductPrice(coverPrice);
+        shopCarBan.setProductSelected(true);
+        shopCarBan.setProductNum(shopCarBean.getProductNum());
+        shopCarBan.setUrl(figure);
+        CacheManager.getInstance().add(shopCarBan);
     }
 
     @Override
