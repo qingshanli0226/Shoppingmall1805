@@ -10,14 +10,14 @@ import bean.BaseBean;
 
 public class AddCountroller {
     public interface AddView extends IView {
-         void CheckOneProductInventoryView(String productNum);
-         void AddShoppingView(String addResult);
-        void UpdateProductNumView(String result);
+         void onCheckOneProductInventoryView(String productNum);
+         void onAddShoppingView(String addResult);
+        void onProductNumChange(String result);
     }
     public abstract static class ADDShow extends BaseAroute<AddView> {
-        public abstract void checkOneProductNum(String productId, String productNum);
-        public abstract void addOneProduct(String productId, String productNum, String productName, String url, String productPrice);
-        public abstract void updateProductNum(String productId, String productNum, String productName, String url, String productPrice);
+        public abstract void CheckOneProductNum(String productId, String productNum);
+        public abstract void AddOneProduct(String productId, String productNum, String productName, String url, String productPrice);
+        public abstract void UpdateProductNum(String productId, String productNum, String productName, String url, String productPrice);
 
     }
 }

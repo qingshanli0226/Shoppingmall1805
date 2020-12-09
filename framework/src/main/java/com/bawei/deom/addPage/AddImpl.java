@@ -18,7 +18,7 @@ import okhttp3.RequestBody;
 
 public class AddImpl extends AddCountroller.ADDShow {
     @Override
-    public void checkOneProductNum(String productId, String productNum) {
+    public void CheckOneProductNum(String productId, String productNum) {
         HashMap<String,String> params=new HashMap<>();
         params.put("productId",productId);
         params.put("productNum",productNum);
@@ -34,7 +34,7 @@ public class AddImpl extends AddCountroller.ADDShow {
 
                     @Override
                     public void onNext(String s) {
-                       pView.CheckOneProductInventoryView(s);
+                       pView.onCheckOneProductInventoryView(s);
                     }
 
                     @Override
@@ -50,7 +50,7 @@ public class AddImpl extends AddCountroller.ADDShow {
     }
 
     @Override
-    public void addOneProduct(String productId, String productNum, String productName, String url, String productPrice) {
+    public void AddOneProduct(String productId, String productNum, String productName, String url, String productPrice) {
         JSONObject jsonObject=new JSONObject();
         try {
             jsonObject.put("productId",productId);
@@ -75,7 +75,7 @@ public class AddImpl extends AddCountroller.ADDShow {
 
                     @Override
                     public void onNext(String s) {
-                           pView.AddShoppingView(s);
+                           pView.onAddShoppingView(s);
                     }
 
                     @Override
@@ -92,7 +92,7 @@ public class AddImpl extends AddCountroller.ADDShow {
     }
 
     @Override
-    public void updateProductNum(String productId, String productNum, String productName, String url, String productPrice) {
+    public void UpdateProductNum(String productId, String productNum, String productName, String url, String productPrice) {
 
         JSONObject jsonObject = new JSONObject();
         try {
@@ -117,7 +117,7 @@ public class AddImpl extends AddCountroller.ADDShow {
 
                     @Override
                     public void onNext(String s) {
-                             pView.UpdateProductNumView(s);
+                             pView.onProductNumChange(s);
                     }
 
                     @Override

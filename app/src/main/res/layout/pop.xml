@@ -79,7 +79,7 @@
               android:layout_width="30dp"
               android:layout_height="30dp"
               android:text="-"
-              android:id="@+id/jian"
+              android:id="@+id/del"
               ></Button>
        <TextView
            android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
            android:text=""
            ></TextView>
        <Button
-           android:id="@+id/jia"
+           android:id="@+id/add"
            android:layout_width="30dp"
            android:layout_height="30dp"
            android:text="+"

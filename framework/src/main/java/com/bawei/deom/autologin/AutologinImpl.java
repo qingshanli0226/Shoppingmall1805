@@ -7,6 +7,7 @@ import com.bawei.deom.ClassInterface;
 import java.util.HashMap;
 
 import bean.AutoLoginBeen;
+import bean.LoginBean;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -21,14 +22,14 @@ public class AutologinImpl extends AutologinCountroller.AutoLoginShow {
         ClassInterface.getUserInterface().autoLogin(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<AutoLoginBeen>() {
+                .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
 
                     @Override
-                    public void onNext(AutoLoginBeen autoLoginBeen) {
+                    public void onNext(LoginBean autoLoginBeen) {
                         if (autoLoginBeen.getCode().equals("200")){
                             pView.MyautologinView(autoLoginBeen);
                         }

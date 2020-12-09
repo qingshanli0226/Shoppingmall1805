@@ -9,7 +9,7 @@ import bean.RegisterBean;
 
 public class AutologinCountroller {
     public interface AutoLoginView extends IView {
-               void MyautologinView(AutoLoginBeen autoLoginBeen);
+               void MyautologinView(LoginBean autoLoginBeen);
     }
     public abstract static class AutoLoginShow extends BaseAroute<AutoLoginView> {
               public abstract   void MyautologinShow(String token);

@@ -13,6 +13,26 @@ public class CoutomEntiy implements CustomTabEntity {
         this.unTabSelectedIcon = unTabSelectedIcon;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setTabSelectedIcon(int tabSelectedIcon) {
+        TabSelectedIcon = tabSelectedIcon;
+    }
+
+    public int getUnTabSelectedIcon() {
+        return unTabSelectedIcon;
+    }
+
+    public void setUnTabSelectedIcon(int unTabSelectedIcon) {
+        this.unTabSelectedIcon = unTabSelectedIcon;
+    }
+
     @Override
     public String getTabTitle() {
         return title;

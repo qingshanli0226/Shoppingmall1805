@@ -4,12 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+import bean.LoginBean;
 import bean.Shoppingcartproducts;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -20,8 +22,8 @@ import retrofit2.http.POST;
 public class CacheManager {
     //当用户登录成功以后CacheManger会调用服务端接口请求购物车数据拿到购物车数据后给shopcarBeanlist
     private List<Shoppingcartproducts.ResultBean> shopcarBeanlist=new ArrayList<>();
-    private  List<Shoppingcartproducts.ResultBean> deleteshocarBeanlist=new ArrayList<>();
-    private  static  CacheManager instance;
+    private List<Shoppingcartproducts.ResultBean> deleteshocarBeanlist=new ArrayList<>();
+    private static  CacheManager instance;
     //监听多个页面数据的变化所以维护一个监听listener的列表
   private  List<IShopcarDataChangeListener> iShopcarDataChangeListeners=new ArrayList<>();
   private Context context;
@@ -30,26 +32,32 @@ public class CacheManager {
     public CacheManager() {
     }
     public static CacheManager getInstance(){
-        if ( instance==null){
+        if (instance==null){
             instance=new CacheManager();
         }
         return  instance;
     }
     public  void init(Context context){
         this.context=context;
-        initReceiver();
+        initService();
     }
    //注册广播监听当前用户的登录状态
-    private void initReceiver() {
-        IntentFilter intentFilter=new IntentFilter("/usr/LoginRegisterActivity");
-        context.registerReceiver(new BroadcastReceiver() {
+    private void initService() {
+
+        Intent intent = new Intent(context,MyServer.class);
+        context.startService(intent);//通过start启动service
+        //缓存第2步:通过回调监听登录事件，一旦监听到登录成功，立马从服务端获取购物车数据，并且将数据塞到列表的缓存中,初始化缓存
+        ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangedListener() {
             @Override
-            public void onReceive(Context context, Intent intent) {
-                 if (intent.getAction().equals("/usr/LoginRegisterActivity")){
-                     getShopcarDataFromServer();
-                 }
+            public void onUserLogin(LoginBean loginBean) {
+                getShopcarDataFromServer();//获取购物车数据。
             }
-        },intentFilter);
+
+            @Override
+            public void onUserLogout() {
+
+            }
+        });
     }
 
     private void getShopcarDataFromServer() {
@@ -64,7 +72,9 @@ public class CacheManager {
 
                     @Override
                     public void onNext(Shoppingcartproducts shoppingcartproducts) {
+//                        Log.e("EEE",""+shoppingcartproducts.getResult().get(0).getProductName());
                         shopcarBeanlist.addAll(shoppingcartproducts.getResult());
+
                         //通知页面刷一下UI
                         notifyShopcarDataChanged();
                     }
@@ -271,7 +281,7 @@ public class CacheManager {
     public interface IShopcarDataChangeListener{
          void onDataChanged(List<Shoppingcartproducts.ResultBean> shopcarBeanlist);
          void onOneDataChanger(int pstion,Shoppingcartproducts.ResultBean shopcarBeanlist);
-         void  onMeneyChanged(String moneyValue);
+         void onMeneyChanged(String moneyValue);
          void onAllSelected(boolean isAllSelect);
     }
 

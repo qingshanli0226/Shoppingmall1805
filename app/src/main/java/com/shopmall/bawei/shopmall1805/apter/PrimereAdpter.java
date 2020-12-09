@@ -12,7 +12,7 @@ import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.XIangqingActivity;
+import com.shopmall.bawei.shopmall1805.DetailsActivity;
 import com.shopmall.bawei.shopmall1805.apter.apter.ActAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter.ChannelAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter.HotAdapter;
@@ -81,7 +81,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
                 ShangPing goodsBean = new ShangPing(hotInfoBeans.get(position).getProduct_id(),hotInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+hotInfoBeans.get(position).getFigure(),hotInfoBeans.get(position).getName());
-                Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
             }
@@ -102,7 +102,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
 
                 ShangPing goodsBean = new ShangPing(recommendInfoBeans.get(position).getProduct_id(),recommendInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+recommendInfoBeans.get(position).getFigure(),recommendInfoBeans.get(position).getName());
 
-                Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
             }
@@ -121,7 +121,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
                 ShangPing goodsBean = new ShangPing(seckillInfoBeans.get(position).getProduct_id(),seckillInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+seckillInfoBeans.get(position).getFigure(),seckillInfoBeans.get(position).getName());
-                Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
+                Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
             }
@@ -155,7 +155,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                     String image = actInfoBeans.get(position).getIcon_url();
                     ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+actInfoBeans.get(position).getIcon_url(),name);
 
-                    Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
+                    Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                     intent.putExtra("shangp", goodsBean);
                     baseViewHolder.itemView.getContext().startActivity(intent);
                 }
@@ -224,7 +224,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                     String image = bannerInfoBeans.get(position).getImage();
                     ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+bannerInfoBeans.get(position).getImage(),name);
 
-                    Intent intent = new Intent(baseViewHolder.itemView.getContext(), XIangqingActivity.class);
+                    Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                     intent.putExtra("shangp", goodsBean);
                     baseViewHolder.itemView.getContext().startActivity(intent);
                 }

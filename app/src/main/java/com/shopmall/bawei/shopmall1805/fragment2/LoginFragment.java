@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.Login;
+import com.bawei.deom.ShopUserManager;
 import com.bawei.deom.login.LoginCountroller;
 import com.bawei.deom.login.LoginImpl;
 import com.shopmall.bawei.shopmall1805.R;
@@ -88,8 +89,11 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
             Toast.makeText(getContext(), ""+loginBean.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("登录的token",loginBean.getResult().getToken()+"");
             getActivity().getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",loginBean.getResult().getToken()).commit();
-            Intent intent=new Intent(getContext(), MainActivity.class);
+            ShopUserManager.getInstance().saveLoginBean(loginBean);
+
+        Intent intent=new Intent(getContext(), MainActivity.class);
             startActivity(intent);
+
 
 
     }

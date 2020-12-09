@@ -6,12 +6,14 @@ import android.support.v7.app.AppCompatActivity;
 
 ;import com.bawei.deom.countroller.UserIMPL;
 import com.bawei.deom.view.LoadingPage;
+import com.bawei.deom.view.ToolBar;
+import com.shopmall.bawei.framework.R;
 
 
 public abstract class BaseActivity<Prine extends IPrine,PView extends IView> extends AppCompatActivity {
 
      public Prine prine;
-
+     private ToolBar toolBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +23,7 @@ public abstract class BaseActivity<Prine extends IPrine,PView extends IView> ext
         inData();
 
        prine.attach((PView)this);
+
     }
 
     protected abstract int getLayoutId();

@@ -6,8 +6,9 @@ import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bawei.deom.CacheManager;
 import com.bawei.deom.NetModule;
-import com.shopmall.bawei.shopmall1805.server.MyServer;
+import com.bawei.deom.ShopUserManager;
 
 public class ShopmallApplication extends Application {
    private  DaoSession daoSession;
@@ -25,7 +26,8 @@ public class ShopmallApplication extends Application {
         SQLiteDatabase db = devOpenHelper.getWritableDatabase();
         daoSession=new DaoMaster(db).newSession();
         NetModule.init(this);
-
+        ShopUserManager.getInstance().init(this);
+        CacheManager.getInstance().init(this);
     }
      public DaoSession getDaoSession(){
         return daoSession;

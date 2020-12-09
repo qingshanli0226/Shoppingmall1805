@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="match_parent"
-    tools:context=".XIangqingActivity">
-    <android.support.v7.widget.Toolbar
-           style="@style/XiangToolbar"
-        >
-        <TextView
-          style="@style/XiangToolbartextView"
-            ></TextView>
-    </android.support.v7.widget.Toolbar>
-    <ImageView
+    android:id="@+id/rootview"
+    tools:context=".DetailsActivity">
 
-       style="@style/XiangQingImage"
+    <android.support.v7.widget.Toolbar style="@style/XiangToolbar">
+
+        <TextView style="@style/XiangToolbartextView"></TextView>
+    </android.support.v7.widget.Toolbar>
+
+    <ImageView
+                android:layout_centerHorizontal="true"
         android:id="@+id/image"
-        ></ImageView>
+        style="@style/XiangQingImage"
+        android:layout_marginTop="80dp"></ImageView>
 
     <TextView
-        android:layout_margin="@dimen/Margin"
+          android:layout_below="@+id/image"
+        android:layout_marginTop="@dimen/Margin"
         android:id="@+id/text"
        style="@style/fenTextView"
         android:textSize="@dimen/XQTextSize"
         ></TextView>
 
     <TextView
+        android:layout_below="@id/text"
          android:layout_margin="@dimen/Margin"
          style="@style/fenTextView"
         android:text="@string/xqtextview"
+        android:id="@+id/xing"
         android:textSize="@dimen/XQTextSize">
         ></TextView>
     <TextView
+        android:layout_below="@id/xing"
         android:layout_margin="@dimen/Margin"
         style="@style/XQTextView"
         android:id="@+id/price"
@@ -40,57 +44,63 @@
         android:textColor="@color/red_light"
         ></TextView>
     <TextView
+        android:layout_below="@id/price"
         android:layout_margin="@dimen/Margin"
     style="@style/fenTextView"
         android:text="@string/fahuo"
         android:textSize="@dimen/XQTextSize"
+        android:id="@+id/fa"
         ></TextView>
     <TextView
+        android:layout_below="@id/fa"
         android:layout_margin="@dimen/Margin"
         style="@style/fenTextView"
         android:text="@string/fukuan"
         android:textSize="@dimen/XQTextSize"
+        android:id="@+id/type"
         ></TextView>
     <TextView
+        android:layout_below="@id/type"
         android:layout_margin="@dimen/Margin"
         style="@style/fenTextView"
         android:text="@string/tishi"
         android:textSize="@dimen/XQTextSize"
         ></TextView>
+
     <LinearLayout
-     android:layout_marginTop="@dimen/MarginTop"
+         android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
+        android:layout_marginTop="@dimen/MarginTop"
+        android:orientation="horizontal">
+
         <TextView
-            android:layout_weight="1"
             style="@style/fenTextView"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/icon_callserver_unpressed"
             android:gravity="center"
-            android:text="@string/lian"
-            ></TextView>
+            android:text="@string/lian"></TextView>
+
         <TextView
-            android:layout_weight="1"
             style="@style/fenTextView"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/good_uncollected"
             android:gravity="center"
-            android:text="@string/shoucang"
-            ></TextView>
+            android:text="@string/shoucang"></TextView>
+
         <TextView
-            android:layout_weight="1"
+            android:id="@+id/gouwu"
             style="@style/fenTextView"
+            android:layout_weight="1"
             android:drawableTop="@mipmap/main_cart"
             android:gravity="center"
-            android:text="@string/gouwuche"
-            android:id="@+id/gouwu"
-            ></TextView>
+            android:text="@string/gouwuche"></TextView>
+
         <Button
-            android:layout_weight="1"
-           android:id="@+id/pop"
+            android:id="@+id/pop"
             style="@style/fenTextView"
-              android:text="@string/jiache"
+            android:layout_weight="1"
             android:background="#E61111"
-            ></Button>
+            android:text="@string/jiache"></Button>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

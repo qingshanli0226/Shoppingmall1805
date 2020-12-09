@@ -41,7 +41,7 @@ public interface UserInterface {
     Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
     @POST("/autoLogin")
     @FormUrlEncoded
-    Observable<AutoLoginBeen>autoLogin(@FieldMap HashMap<String,String> map);
+    Observable<LoginBean>autoLogin(@FieldMap HashMap<String,String> map);
 //    getShortcartProducts
 //    updateProductNum
     @GET

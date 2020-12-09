@@ -15,7 +15,7 @@ import com.bawei.deom.countroller.SkirtCommuntroller;
 import com.bawei.deom.countroller.SkirtImpl;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.user.ShangPing;
-import com.shopmall.bawei.shopmall1805.XIangqingActivity;
+import com.shopmall.bawei.shopmall1805.DetailsActivity;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BugChangApter;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BugReApter;
@@ -37,9 +37,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
     //    //集合
    public static ArrayList<String> arrayList=new ArrayList<>();
 
-    ArrayList<BugBean.ResultBean.HotProductListBean> BugRe=new ArrayList<>();
-    ArrayList<BugBean.ResultBean> child=new ArrayList<>();
-    ArrayList<BugBean.ResultBean> resultBeans=new ArrayList<>();
+
 
 
 
@@ -198,7 +196,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
             @Override
             public void onItemClick(int position) {
                   Toast.makeText(getContext(), "数据库", Toast.LENGTH_SHORT).show();
-                Intent intent=new Intent(getContext(), XIangqingActivity.class);
+                Intent intent=new Intent(getContext(), DetailsActivity.class);
                 intent.putExtra("shangp",new ShangPing(list.get(0).getHot_product_list().get(position).getP_catalog_id(),list.get(0).getHot_product_list().get(position).getCover_price(),list.get(0).getHot_product_list().get(position).getFigure(),list.get(0).getHot_product_list().get(position).getName()));
                 startActivity(intent);
             }

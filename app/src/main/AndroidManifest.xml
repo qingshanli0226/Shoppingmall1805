@@ -16,7 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".login.LoginActivity"></activity>
-        <activity android:name=".XIangqingActivity" />
+        <activity android:name=".DetailsActivity" />
         <activity android:name=".home.MainActivity" />
         <activity android:name=".WelcomActivity">
             <intent-filter>
@@ -25,7 +25,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name=".server.MyServer"></service>
+        <service android:name="com.bawei.deom.MyServer"/>
     </application>
 
 </manifest>
