@@ -37,7 +37,7 @@ public class NetConfig {
     public static final int TO_LOGIN_FROM_MINE_FRAGMENT = 3;
     public static final String TO_LOGIN_KEY = "toLogin";
 
-    public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
+    public static final String LOGIN_ACTIVITY_PATH = "/user/LoginRegisterActivity";
 
     // 请求Json数据基本URL
     public static final String BASE_URL_JSON = BASE_URL + "atguigu/json/";

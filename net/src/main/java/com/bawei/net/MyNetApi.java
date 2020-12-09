@@ -100,8 +100,12 @@ public interface MyNetApi {
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
+//    @POST("autoLogin")
+//    @FormUrlEncoded
+//    Observable<BaseBean<LoginBean>> autoLogin(@Field("token") String token);
+
     @POST("autoLogin")
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String, String> map);
+    Observable<LoginBean> autoLogin(@FieldMap HashMap<String,String> map);
 
 }

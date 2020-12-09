@@ -149,7 +149,7 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     public void onRightClick() {
         if (!isEditMode) {
             isEditMode = true;
-            //myToolBar.setToolbarRightTv("完成");
+            toolBar.setToolbarRightTv("完成");
             shopcarAdapter.setEditMode(isEditMode);
             normalLayout.setVisibility(View.GONE);
             editLayout.setVisibility(View.VISIBLE);
@@ -158,7 +158,7 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
             }
         } else {
             isEditMode = false;
-            //myToolBar.setToolbarRightTv("编辑");
+            toolBar.setToolbarRightTv("编辑");
             shopcarAdapter.setEditMode(isEditMode);
             normalLayout.setVisibility(View.VISIBLE);
             editLayout.setVisibility(View.GONE);

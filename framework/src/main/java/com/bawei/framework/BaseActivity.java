@@ -39,8 +39,13 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        destroy();
         if(httpPresenter != null) {
             httpPresenter.detachView();
         }
+    }
+
+    protected void destroy(){
+
     }
 }

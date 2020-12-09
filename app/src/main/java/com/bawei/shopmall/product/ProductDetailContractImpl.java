@@ -42,8 +42,12 @@ public class ProductDetailContractImpl extends ProductDetailContract.ProductDeta
 
                     @Override
                     public void onNext(BaseBean<String> stringBaseBean) {
-                        String result = stringBaseBean.getResult();
-                        iView.onCheckOneProduct(result);
+                        if (stringBaseBean.getCode().equals("200")) {
+                            String result = stringBaseBean.getResult();
+                            iView.onCheckOneProduct(result);
+                        }else {
+                            iView.showEmpty();
+                        }
                     }
 
                     @Override
@@ -64,7 +68,7 @@ public class ProductDetailContractImpl extends ProductDetailContract.ProductDeta
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("productId", productId);
-            jsonObject.put("productName", productName);
+            jsonObject.put("productNum", productNum);
             jsonObject.put("productName", productName);
             jsonObject.put("url", url);
             jsonObject.put("productPrice", productPrice);

@@ -29,9 +29,7 @@ public class ShopUserManager {
     public static ShopUserManager getInstance() {
         if (instance == null) {
             instance = new ShopUserManager();
-
         }
-
         return instance;
     }
 
@@ -41,22 +39,18 @@ public class ShopUserManager {
         this.context = context;
     }
 
-    //该函数，将当前应用程序的登录状态由未登录改成已登录
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
 
-        //使用sp存储token
         editor.putString(NetConfig.tokenName, loginBean.getResult().getToken());
         editor.commit();
 
-        //通过接口回调通知其他模块的页面，当前用户已经登录
         for (IUserLoginChangedListener listener : listeners) {
             listener.onUserLogin(loginBean);
         }
     }
 
 
-    //判断当前用户是否登录
     public boolean isUserLogin() {
         return loginBean != null;//如果loginBean不为空则代表已经登录
     }
@@ -73,7 +67,7 @@ public class ShopUserManager {
         if (loginBean != null) {
             return loginBean.getResult().getToken();
         } else {
-            return "";
+            return sharedPreferences.getString(NetConfig.tokenName,"");
         }
     }
 

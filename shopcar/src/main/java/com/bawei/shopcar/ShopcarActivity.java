@@ -1,7 +1,5 @@
 package com.bawei.shopcar;
 
-import android.os.Handler;
-import android.os.Message;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
@@ -12,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseActivity;
@@ -75,7 +72,7 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
 
     @Override
     protected void initData() {
-        destroy();
+        //destroy();
         List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
         shopcarAdapter.updateData(shopcarBeanList);
         totalPriceTv.setText(CacheManager.getInstance().getMoneyValue());
@@ -145,7 +142,7 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
     public void onRightClick() {
         if (!isEditMode) {
             isEditMode = true;
-            //myToolBar.setToolbarRightTv("完成");
+            myToolBar.setToolbarRightTv("完成");
             shopcarAdapter.setEditMode(isEditMode);
             normalLayout.setVisibility(View.GONE);
             editLayout.setVisibility(View.VISIBLE);
@@ -154,7 +151,7 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
             }
         } else {
             isEditMode = false;
-            //myToolBar.setToolbarRightTv("编辑");
+            myToolBar.setToolbarRightTv("编辑");
             shopcarAdapter.setEditMode(isEditMode);
             normalLayout.setVisibility(View.VISIBLE);
             editLayout.setVisibility(View.GONE);
@@ -238,28 +235,28 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
     }
 
 
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1: {
-                    Toast.makeText(ShopcarActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                    CacheManager.getInstance().removeSelectedProducts();
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-                    break;
-                }
-                case 2: {
-                    Toast.makeText(ShopcarActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                    CacheManager.getInstance().removeSelectedProducts();
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-                    break;
-                }
-                default:
-                    break;
-            }
-        }
-    };
+//    private Handler handler = new Handler() {
+//        @Override
+//        public void handleMessage(Message msg) {
+//            super.handleMessage(msg);
+//            switch (msg.what) {
+//                case 1: {
+//                    Toast.makeText(ShopcarActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+//                    CacheManager.getInstance().removeSelectedProducts();
+//                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
+//                    break;
+//                }
+//                case 2: {
+//                    Toast.makeText(ShopcarActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+//                    CacheManager.getInstance().removeSelectedProducts();
+//                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
+//                    break;
+//                }
+//                default:
+//                    break;
+//            }
+//        }
+//    };
 
     @Override
     public void showLoaDing() {
@@ -278,6 +275,7 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
 
 
     protected void destroy() {
+        super.destroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
     }
 

@@ -19,16 +19,22 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseActivity;
-import com.bawei.framework.BasePresenter;
-import com.bawei.framework.IView;
+import com.bawei.framework.CacheManager;
+import com.bawei.framework.ShopUserManager;
+import com.bawei.net.mode.ShopcarBean;
 import com.bawei.shopmall.details.view.NumberAddSubView;
 import com.bawei.shopmall.details.view.VirtualkeyboardHeight;
+import com.bawei.shopmall.product.ProductDetailContract;
+import com.bawei.shopmall.product.ProductDetailContractImpl;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
 
-public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implements View.OnClickListener {
+import java.util.List;
+
+public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, ProductDetailContract.IProductDetailView> implements View.OnClickListener, CacheManager.IShopcarDataChangeListener, ProductDetailContract.IProductDetailView {
     private ImageButton ibGoodInfoBack;
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
@@ -47,8 +53,15 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
     private TextView tvMoreHome;
     private LinearLayout ll_root;
     private Button btn_more;
+    private String productId;
+    private int newNum;
+    private String productName;
+    private String productPrice;
+    private String url;
+    private String productNum;
 
-    //private CartProvider cartProvider;
+    private ShopcarBean shopcarBean;
+
     private Boolean isFirst = true;
 
     private DetailsGoodsBean goods_bean;
@@ -86,6 +99,10 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
             ARouter.getInstance().build("/shopcar/ShopcarActivity").navigation();
         } else if (v == btnGoodInfoAddcart) {
             //添加购物车
+            if (!ShopUserManager.getInstance().isUserLogin()) {
+                ARouter.getInstance().build(NetConfig.LOGIN_ACTIVITY_PATH).withInt(NetConfig.TO_LOGIN_KEY,NetConfig.TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR).navigation(this,100);
+                return;
+            }
             showPopwindow();
         }
     }
@@ -121,6 +138,21 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
 
         Intent intent = getIntent();
         goods_bean = (DetailsGoodsBean) intent.getSerializableExtra("goods_bean");
+
+        productId = goods_bean.getProductId();
+        productPrice = goods_bean.getCoverPrice();
+        productName = goods_bean.getName();
+        productNum = goods_bean.getNumber() + "";
+        url = goods_bean.getFigure();
+
+        shopcarBean = new ShopcarBean();
+
+        shopcarBean.setProductId(productId);
+        shopcarBean.setProductPrice(productPrice);
+        shopcarBean.setProductNum(productNum);
+        shopcarBean.setProductName(productName);
+        shopcarBean.setUrl(url);
+
         if (goods_bean != null) {
             //本地获取存储的数据
             setDataFormView(goods_bean);
@@ -150,7 +182,7 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
 
     @Override
     protected void initPresenter() {
-
+        httpPresenter = new ProductDetailContractImpl();
     }
 
     private void setWebView(String product_id) {
@@ -199,7 +231,7 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
      * 显示popupWindow
      */
     private void showPopwindow() {
-
+        checkHasProduct();
         // 1 利用layoutInflater获得View
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
@@ -265,8 +297,8 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
             public void onClick(View v) {
                 window.dismiss();
                 //添加购物车
-                //cartProvider.addData(goods_bean);
-                Toast.makeText(GoodsInfoActivity.this, R.string.Add_shopCar_success, Toast.LENGTH_SHORT).show();
+                addOneProductToCache();
+                //Toast.makeText(GoodsInfoActivity.this, R.string.Add_shopCar_success, Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -281,6 +313,89 @@ public class GoodsInfoActivity extends BaseActivity<BasePresenter, IView> implem
         // 5 在底部显示
         window.showAtLocation(GoodsInfoActivity.this.findViewById(R.id.ll_goods_root),
                 Gravity.BOTTOM, 0, VirtualkeyboardHeight.getBottomStatusHeight(GoodsInfoActivity.this));
+
+    }
+
+    private void checkHasProduct() {
+        httpPresenter.checkOneProductNum(productId, "1");
+    }
+
+    private void addOneProductToCache() {
+        ShopcarBean shopcarBean = new ShopcarBean();
+        shopcarBean.setProductId(productId);
+        shopcarBean.setProductName(productName);
+        shopcarBean.setProductPrice(productPrice);
+        shopcarBean.setProductNum("1");
+        shopcarBean.setProductSelected(true);
+        shopcarBean.setUrl(url);
+        CacheManager.getInstance().add(shopcarBean);
+        Toast.makeText(this, "添加购物车成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
+        tvGoodInfoCart.setText("购物车" + shopcarBeanList.size());
+    }
+
+    @Override
+    public void onOneDataChanged(int postion, ShopcarBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
+
+    @Override
+    public void onCheckOneProduct(String productNum) {
+        if (Integer.valueOf(productNum) >= 1) {
+            if (checkIfShopcarListHasProduct()) {
+                CacheManager.getInstance().getShopcarBean(productId);
+                int oldNum = Integer.parseInt(shopcarBean.getProductNum());
+                newNum = oldNum + 1;
+                httpPresenter.updateProdyctNum(productId, String.valueOf(newNum), productName, url, productPrice);
+            } else {
+                httpPresenter.addOneProduct(productId, "1", productName, url, productPrice);
+            }
+        }
+    }
+
+    private boolean checkIfShopcarListHasProduct() {
+        List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+        for (ShopcarBean bean : shopcarBeanList) {
+            if (productId.equals(bean.getProductId())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public void onAddProduct(String addResult) {
+        //addOneProductToCache();
+    }
+
+    @Override
+    public void onProductNumChange(String resylt) {
+
+    }
+
+    @Override
+    public void showLoaDing() {
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

@@ -1,5 +1,7 @@
 package com.bawei.user.view;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -11,6 +13,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
+import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IView;
 import com.bawei.framework.ShopUserManager;
@@ -114,15 +117,29 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
 
     @Override
     public void login(LoginBean loginBean) {
-        Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
-        ShopUserManager.getInstance().saveLoginBean(loginBean);
-        ARouter.getInstance().build("/main/MainActivity").withString("name", loginBean.getResult().getName()).navigation();
-        finish();
+        if (loginBean.getCode().equals("200")) {
+            Toast.makeText(this, "登录成功", Toast.LENGTH_SHORT).show();
+            SharedPreferences sharedPreferences = getSharedPreferences(NetConfig.spName, Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString(NetConfig.tokenName, loginBean.getResult().getToken());
+            editor.commit();
+
+            ShopUserManager.getInstance().saveLoginBean(loginBean);
+            ARouter.getInstance().build("/main/MainActivity").withString("name", loginBean.getResult().getName()).navigation();
+            finish();
+        } else {
+            Toast.makeText(this, "登录失败" + loginBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override
     public void register(RegisterBean registerBean) {
-        Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+        if (registerBean.getCode().equals("200")) {
+            Toast.makeText(this, "注册成功", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "注册失败" + registerBean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+
     }
 
     @Override

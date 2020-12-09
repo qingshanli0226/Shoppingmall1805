@@ -20,7 +20,6 @@ public class TokenInterceptor implements Interceptor {
 
         Request request = chain.request();
         Request token = request.newBuilder().addHeader("token", sharedPreferences.getString(NetConfig.tokenName, "")).build();
-
         return chain.proceed(token);
     }
 }

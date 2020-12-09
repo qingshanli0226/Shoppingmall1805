@@ -1,9 +1,9 @@
 package com.bawei.shopmall.home;
 
-import android.content.SharedPreferences;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,10 +13,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseActivity;
+import com.bawei.framework.CacheManager;
 import com.bawei.framework.IPresenter;
 import com.bawei.framework.IView;
 import com.bawei.framework.ShopUserManager;
-import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.ShopcarBean;
 import com.bawei.shopcar.ShopcarFragment;
 import com.bawei.shopmall.find.FindFragment;
 import com.bawei.shopmall.home.view.HomeFragment;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = NetConfig.MAIN_MAINACTIVITY)
-public class MainActivity extends BaseActivity<IPresenter, IView> implements ShopUserManager.IUserLoginChangedListener {
+public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     private List<Fragment> fragments = new ArrayList();
 
@@ -103,6 +104,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Sho
 
     @Override
     protected void initView() {
+
         fragments.add(new HomeFragment());
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
@@ -129,6 +131,12 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Sho
         fragmentTransaction.hide(fragments.get(3));
         fragmentTransaction.hide(fragments.get(4));
         fragmentTransaction.commit();
+
+        ARouter.getInstance().inject(this);
+
+        updateShopcarCount();
+
+        initShopcarDataChangeLinstener();
     }
 
     @Override
@@ -141,15 +149,47 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Sho
 
     }
 
-    @Override
-    public void onUserLogin(LoginBean loginBean) {
-        SharedPreferences userToken = getSharedPreferences("userToken", MODE_PRIVATE);
-        SharedPreferences.Editor edit = userToken.edit();
-        edit.putString("token", loginBean.getResult().getToken());
+    private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
+        @Override
+        public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
+            int size = shopcarBeanList.size();
+            rbCart.setText("购物车:" + size);
+        }
+
+        @Override
+        public void onOneDataChanged(int postion, ShopcarBean shopcarBean) {
+
+        }
+
+        @Override
+        public void onMoneyChanged(String moneyValue) {
+
+        }
+
+        @Override
+        public void onAllSelected(boolean isAllSelect) {
+
+        }
+    };
+
+    private void initShopcarDataChangeLinstener() {
+        CacheManager.getInstance().setShopcarDataChangeListener(iShopcarDataChangeListener);
+    }
+
+    private void updateShopcarCount() {
+        if (ShopUserManager.getInstance().isUserLogin()) {
+            int count = CacheManager.getInstance().getShopcarBeanList().size();
+            if (count != 0) {
+                rbCart.setText("购物车:" + count);
+            } else {
+                Toast.makeText(this, "当前用户没登录", Toast.LENGTH_SHORT).show();
+            }
+        }
     }
 
     @Override
-    public void onUserLogout() {
-
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
     }
 }

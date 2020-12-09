@@ -81,7 +81,7 @@ public class CacheManager {
                 });
     }
 
-    private void add(ShopcarBean shopcarBean) {
+    public void add(ShopcarBean shopcarBean) {
         shopcarBeanList.add(shopcarBean);
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopcarBeanList);
@@ -122,7 +122,7 @@ public class CacheManager {
         for (ShopcarBean shopcarBean : shopcarBeanList) {
             if (shopcarBean.isProductSelected()) {
                 float productPrice = Float.parseFloat(shopcarBean.getProductPrice());
-                int productNum = Integer.parseInt(shopcarBean.getProductName());
+                int productNum = Integer.parseInt(shopcarBean.getProductNum());
                 totalPrice = totalPrice + productPrice * productNum;
             }
         }
@@ -203,6 +203,15 @@ public class CacheManager {
         }
     }
 
+    public ShopcarBean getShopcarBean(String productId) {
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if (productId.equals(shopcarBean.getProductId())) {
+                return shopcarBean;
+            }
+        }
+        return null;
+    }
+
     public void selectAllProductInEditMode(boolean isAllSelect) {
         if (isAllSelect) {
             deleteShopcarBeanList.clear();
@@ -269,6 +278,10 @@ public class CacheManager {
             iShopcarDataChangeListener.onOneDataChanged(position, shopcarBean);
             iShopcarDataChangeListener.onAllSelected(false);
         }
+    }
+
+    public ExecutorService getExecutorService(){
+        return executorService;
     }
 
     public boolean checkIfDataInDeleteShopcarBeanList(ShopcarBean shopcarBean) {

@@ -162,7 +162,7 @@ public class MyToolBar extends RelativeLayout {
         toolbarRightTv.setTextColor(rightTextColor);
     }
 
-    private void setToolbarRightTv(String rightText) {
+    public void setToolbarRightTv(String rightText) {
         toolbarRightTv.setText(rightText);
     }
 
