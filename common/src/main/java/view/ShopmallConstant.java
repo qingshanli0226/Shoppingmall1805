@@ -46,4 +46,5 @@ public class ShopmallConstant {
     public static final int  BUTTON_LOGIN_INDEX2 = 2;
     public static final int  BUTTON_LOGIN_INDEX3 = 3;
     public static final int  BUTTON_LOGIN_INDEX4 = 4;
+
 }

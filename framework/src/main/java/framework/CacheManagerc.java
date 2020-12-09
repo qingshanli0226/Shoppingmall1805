@@ -146,7 +146,7 @@ class CacheManagerc {
         }
     }
 
-    private String getMoneyValue() {
+    public String getMoneyValue() {
         float totalPrice = 0;
         for(ShopcarBean shopcarBean:shopcarBeansList) {
             if (shopcarBean.isProductSelected()) {
