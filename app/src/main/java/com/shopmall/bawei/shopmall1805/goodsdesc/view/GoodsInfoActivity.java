@@ -185,6 +185,7 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
 
 
+
         window = new PopupWindow(view,
                 WindowManager.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.WRAP_CONTENT);
@@ -194,21 +195,21 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         window.setBackgroundDrawable(dw);
 
         window.setAnimationStyle(R.style.mypopwindow_anim_style);
-        ImageView iv_goodinfo_photo = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
-        TextView tv_goodinfo_name = (TextView) view.findViewById(R.id.tv_goodinfo_name);
-        TextView tv_goodinfo_price = (TextView) view.findViewById(R.id.tv_goodinfo_price);
+        ImageView ivGoodinfoPhoto = (ImageView) view.findViewById(R.id.iv_goodinfo_photo);
+        TextView tvGoodinfoName = (TextView) view.findViewById(R.id.tv_goodinfo_name);
+        TextView tvGoodinfoPrice = (TextView) view.findViewById(R.id.tv_goodinfo_price);
         nasGoodinfoNum = (NumberAddSubView) view.findViewById(R.id.nas_goodinfo_num);
         nasGoodinfoNum.setClickToCheckInterface(this);
         resultFromCheckInterface = (ResultFromCheckInterface)nasGoodinfoNum;
-        Button bt_goodinfo_cancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
-        Button bt_goodinfo_confim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
+        Button btGoodinfoCancel = (Button) view.findViewById(R.id.bt_goodinfo_cancel);
+        Button btGoodinfoConfim = (Button) view.findViewById(R.id.bt_goodinfo_confim);
 
-        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + shopCarBean.getUrl()).into(iv_goodinfo_photo);
+        Glide.with(GoodsInfoActivity.this).load(UrlHelper.BASE_URl_IMAGE + shopCarBean.getUrl()).into(ivGoodinfoPhoto);
 
         // 名称
-        tv_goodinfo_name.setText(shopCarBean.getProductName());
+        tvGoodinfoName.setText(shopCarBean.getProductName());
         // 显示价格
-        tv_goodinfo_price.setText(shopCarBean.getProductPrice());
+        tvGoodinfoPrice.setText(shopCarBean.getProductPrice());
 
         goodsBean.setNumber(nasGoodinfoNum.getValue());
         shopCarBean.setProductNum(String.valueOf(nasGoodinfoNum.getValue()));
@@ -227,14 +228,14 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
             }
         });
 
-        bt_goodinfo_cancel.setOnClickListener(new View.OnClickListener() {
+        btGoodinfoCancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 window.dismiss();
             }
         });
 
-        bt_goodinfo_confim.setOnClickListener(new View.OnClickListener() {
+        btGoodinfoConfim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 window.dismiss();
@@ -333,7 +334,7 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
 
     @Override
     public void onProductNumChange(String result) {
-
+        showShopCarAnim(2);
     }
 
     @Override
