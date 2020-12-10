@@ -111,6 +111,12 @@ public class HomeAdapter extends BaseRvAdapter<Object> {
                 RecyclerView view4 = holder.getView(R.id.hotinfo_rv);
                 view4.setLayoutManager(new StaggeredGridLayoutManager(2,StaggeredGridLayoutManager.VERTICAL));
                 HomeHotinfoAdapter hotinfoAdapter=new HomeHotinfoAdapter(R.layout.layout_home_hotinfo_item,o5);
+                hotinfoAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+                    }
+                });
                 view4.setAdapter(hotinfoAdapter);
                 break;
         }

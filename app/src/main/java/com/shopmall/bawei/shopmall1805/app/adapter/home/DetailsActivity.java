@@ -15,14 +15,14 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.ui.activity.MainActivity;
+import com.shopmall.bawei.shopmall1805.app.contract.ShopCarContract;
+import com.shopmall.bawei.shopmall1805.app.presenter.ShopCarPresenterImpl;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
-import com.shopmall.bawei.shopmall1805.framework.BaseActivity;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
 
-public class DetailsActivity extends BaseActivity {
+public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopCarContract.IProductDetailView> implements ShopCarContract.IProductDetailView {
     private ImageView detailImg;
     private TextView detailTitle;
     private TextView detailMsg;
@@ -39,16 +39,21 @@ public class DetailsActivity extends BaseActivity {
     private String figure;
     private String name;
     private   String cover_price;
-    private int number = 0;
+    private int number = 1;
     private Button btCancel;
     private Button btPushi;
+    private String product_id;
+    private String productNum = "1";
     @Override
     protected void initData() {
         toolbar.setToolBarTitle("商品详情");
         toolbar.setToolBarRightImg(R.drawable.icon_more);
+
         figure = getIntent().getStringExtra("figure");
         name = getIntent().getStringExtra("name");
         cover_price= getIntent().getStringExtra("cover_price");
+        product_id= getIntent().getStringExtra("product_id");
+
         if(figure!=null){
             Glide.with(this).load(ConfigUrl.BASE_IMAGE+figure).into(detailImg);
             detailTitle.setText(name);
@@ -67,8 +72,18 @@ public class DetailsActivity extends BaseActivity {
                 }
             }
         });
+        detailShopcar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build(ShopmallConstant.SHOP_CAR_ACTIVITY_PATH)
+                        .navigation();
+            }
+        });
     }
-
+    @Override
+    protected void initPresenter() {
+        httpPresenter = new ShopCarPresenterImpl();
+    }
     private void popwindow() {
         popupWindow = new PopupWindow();
         View inflate = getLayoutInflater().inflate(R.layout.down_popuwindow, null);
@@ -90,6 +105,7 @@ public class DetailsActivity extends BaseActivity {
             @Override
             public void onClick(View view) {
                 addShopAnimal();
+                httpPresenter.checkOneProductNum(product_id,productNum);
                 popupWindow.dismiss();
             }
         });
@@ -100,7 +116,7 @@ public class DetailsActivity extends BaseActivity {
         addNumberJianImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(number != 0){
+                if(number != 1){
                     number--;
                     addNumber.setText(""+number);
                 }
@@ -121,7 +137,6 @@ public class DetailsActivity extends BaseActivity {
     }
     private void addShopAnimal() {
 
-
     }
     @Override
     protected void initView() {
@@ -132,15 +147,38 @@ public class DetailsActivity extends BaseActivity {
         detailShopcar = findViewById(R.id.detail_shopcar);
         detailJoinShopcarBt = findViewById(R.id.detail_join_shopcar_bt);
 
-        detailJoinShopcarBt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-            }
-        });
     }
     @Override
     protected int getLayoutId() {
         return R.layout.activity_details;
+    }
+    @Override
+    public void onCheckOneProduct(String productNum) {
+       if(Integer.parseInt(productNum) >= 1){
+           httpPresenter.addOneProduct(product_id,"1",name,figure,cover_price);
+       }
+    }
+    @Override
+    public void onAddProduct(String addRyesult) {
+
+    }
+    @Override
+    public void onProductNumChange(String result) {
+
+    }
+
+    @Override
+    public void showLoaing() {
+
+    }
+
+    @Override
+    public void hideLoading() {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
     }
 }

@@ -2,9 +2,6 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 30
-
-
-
     defaultConfig {
         minSdkVersion 16
         targetSdkVersion 30
@@ -12,9 +9,12 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -27,9 +27,15 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation ('com.alibaba:arouter-api:1.4.1')
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+    implementation 'com.android.support:recyclerview-v7:30.0.0'//recyclerview
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'//glide依赖
     implementation project(':framework')
     implementation project(':net')
     implementation project(':common')

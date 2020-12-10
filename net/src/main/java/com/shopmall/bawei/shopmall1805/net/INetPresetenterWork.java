@@ -7,10 +7,14 @@ import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
+import com.shopmall.bawei.shopmall1805.net.entity.ShopcarBean;
 
 import java.util.HashMap;
+import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -27,9 +31,27 @@ public interface INetPresetenterWork {
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> map);
 
+    //自动登录
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<LoginBean> autoLogin(@FieldMap HashMap<String, String> params);
+
+
+    //检查商品
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
+
+    //添加一个商品
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
+
+    //更新商品
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
+
+    @GET("getShortcartProducts")
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
 
     //小裙子 接口
     @GET()

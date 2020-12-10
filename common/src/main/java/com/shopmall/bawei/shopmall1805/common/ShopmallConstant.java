@@ -43,6 +43,7 @@ public class ShopmallConstant {
     public static final String TO_LOGIN_KEY = "toLogin";
 
     public static final String LOGIN_ACTIVITY_PATH = "/user/LoginActivity";
+    public static final String SHOP_CAR_ACTIVITY_PATH = "/shopcar/ShopCarActivity";
 
     public static final String FU_SHI = "服饰";
     public static final String YOU_XI = "游戏";

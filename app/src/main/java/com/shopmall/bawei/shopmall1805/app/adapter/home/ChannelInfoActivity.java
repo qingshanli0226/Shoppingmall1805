@@ -49,7 +49,10 @@ public class ChannelInfoActivity extends BaseMVPActivity<ClassifyLeftPresenterIm
                 String figure = listBeans.get(position).getFigure();
                 String name = listBeans.get(position).getName();
                 String cover_price = listBeans.get(position).getCover_price();
+                String product_id = listBeans.get(position).getProduct_id();
+
                 intent.putExtra("figure",figure);
+                intent.putExtra("product_id",product_id);
                 intent.putExtra("name",name);
                 intent.putExtra("cover_price",cover_price);
                 startActivity(intent);
