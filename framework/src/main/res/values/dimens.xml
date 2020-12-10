@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+     <dimen name="ProgressBarwidth">500dp</dimen>
+    <dimen name="ImageViewlayout_marginLeft">5dp</dimen>
+    <dimen name="TextViewltextSize">30sp</dimen>
+    <dimen name="LinearLayoutlayout_width">20dp</dimen>
+    <dimen name="LinearLayoutlayout_marginRight">5dp</dimen>
+    <dimen name="ImageViewlayout_height">0dp</dimen>
+
+    <dimen name="ProgressBar">50dp</dimen>
+</resources>

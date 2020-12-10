@@ -11,7 +11,6 @@ import android.widget.Toast;
 
 import java.util.HashMap;
 
-import bean.AutoLoginBeen;
 import bean.LoginBean;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -51,7 +50,7 @@ public class MyServer extends Service {
                                      ShopUserManager.getInstance().saveLoginBean(autoLoginBeen);
                                      Toast.makeText(MyServer.this, "自动登录成功", Toast.LENGTH_SHORT).show();
                                      Log.e("自动登录","自动登录成功");
-                                     getSharedPreferences("login", Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
+//                                     getSharedPreferences("login", Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
                                  }
                                 ;
 

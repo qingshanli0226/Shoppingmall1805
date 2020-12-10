@@ -50,7 +50,7 @@ public class FoundFragment extends BaseFragment<UserIMPL,UserCountroller.UserVie
     }
 
     @Override
-    public void TagBiew(List<TAGBean.ResultBean> resultBeanList) {
+    public void onTagBiew(List<TAGBean.ResultBean> resultBeanList) {
 
     }
 

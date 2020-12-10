@@ -14,11 +14,11 @@ import com.bawei.deom.BaseUser;
 import com.bawei.deom.countroller.SkirtCommuntroller;
 import com.bawei.deom.countroller.SkirtImpl;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.user.ShangPing;
+import com.shopmall.bawei.shopmall1805.apter.apter2.BugHotApter;
+import com.shopmall.bawei.shopmall1805.user.GoodsBean;
 import com.shopmall.bawei.shopmall1805.DetailsActivity;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
-import com.shopmall.bawei.shopmall1805.apter.apter2.BugChangApter;
-import com.shopmall.bawei.shopmall1805.apter.apter2.BugReApter;
+import com.shopmall.bawei.shopmall1805.apter.apter2.BugCommonlyUsedApter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,8 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
     //    //适配器
     public static ArrayAdapter<String> zhongleiApter;
 
-  public static   BugReApter bugReApter;
-  public static    BugChangApter bugChangApter;
+  public static BugHotApter bugReApter;
+  public static BugCommonlyUsedApter bugChangApter;
 
     @Override
     protected void inPrine() {
@@ -58,8 +58,8 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
     @Override
     protected void initData() {
          add();
-        bugChangApter = new BugChangApter();
-        bugReApter = new BugReApter();
+        bugChangApter = new BugCommonlyUsedApter();
+        bugReApter = new BugHotApter();
         prine.UserShow(BaseUser.SKIRT_URL,loadingPage);
         final String data[]=new String[]{"小裙子","上衣","下装","外套","配件","包包","装扮","居家宅品","办公文具","数码周边","游戏专区"};
         if (data!=null){
@@ -177,7 +177,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
 
 
     @Override
-    public void UserView(final List<BugBean.ResultBean> list) {
+    public void onUserView(final List<BugBean.ResultBean> list) {
 
         Toast.makeText(getContext(), ""+list.get(0).getName(), Toast.LENGTH_SHORT).show();
 
@@ -197,7 +197,7 @@ public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsVi
             public void onItemClick(int position) {
                   Toast.makeText(getContext(), "数据库", Toast.LENGTH_SHORT).show();
                 Intent intent=new Intent(getContext(), DetailsActivity.class);
-                intent.putExtra("shangp",new ShangPing(list.get(0).getHot_product_list().get(position).getP_catalog_id(),list.get(0).getHot_product_list().get(position).getCover_price(),list.get(0).getHot_product_list().get(position).getFigure(),list.get(0).getHot_product_list().get(position).getName()));
+                intent.putExtra("shangp",new GoodsBean(list.get(0).getHot_product_list().get(position).getP_catalog_id(),list.get(0).getHot_product_list().get(position).getCover_price(),list.get(0).getHot_product_list().get(position).getFigure(),list.get(0).getHot_product_list().get(position).getName()));
                 startActivity(intent);
             }
         });

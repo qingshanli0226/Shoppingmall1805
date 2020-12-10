@@ -5,8 +5,8 @@
     android:layout_height="match_parent">
 
     <ProgressBar
-        android:layout_width="500dp"
-        android:layout_height="500dp"
+        android:layout_width="@dimen/ProgressBarwidth"
+        android:layout_height="@dimen/ProgressBarwidth"
         android:id="@+id/loadingBar"
         android:layout_centerInParent="true"
         android:visibility="gone"></ProgressBar>

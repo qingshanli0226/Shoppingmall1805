@@ -84,7 +84,7 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
 
 
     @Override
-    public void login(LoginBean loginBean) {
+    public void onlogin(LoginBean loginBean) {
 
             Toast.makeText(getContext(), ""+loginBean.getMessage(), Toast.LENGTH_SHORT).show();
             Log.e("登录的token",loginBean.getResult().getToken()+"");
@@ -99,7 +99,7 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
     }
 
     @Override
-    public void register(RegisterBean registerBean) {
+    public void onregister(RegisterBean registerBean) {
 
     }
 }

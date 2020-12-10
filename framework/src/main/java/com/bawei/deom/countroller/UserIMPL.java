@@ -98,7 +98,7 @@ public class UserIMPL extends UserCountroller.UserShow {
 
                     @Override
                     public void onNext(TAGBean tagBean) {
-                               pView.TagBiew(tagBean.getResult());
+                               pView.onTagBiew(tagBean.getResult());
                                loadingPage.showSuccessView();
                     }
 

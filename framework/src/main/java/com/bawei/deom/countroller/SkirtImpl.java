@@ -11,18 +11,9 @@ import com.bawei.deom.view.LoadingPage;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import bean.BaseBean;
-import bean.ClothesBean;
+
 import bean.typebean.BugBean;
-import bean.typebean.DigitBean;
-import bean.typebean.DressupBean;
-import bean.typebean.GameBean;
-import bean.typebean.HomproductsBean;
-import bean.typebean.JackBean;
-import bean.typebean.OverCoat;
-import bean.typebean.Pants;
-import bean.typebean.SkirtBean;
-import bean.typebean.StationeryBean;
+
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -58,7 +49,7 @@ public class SkirtImpl extends SkirtCommuntroller.UsShow {
 
                    @Override
                    public void onNext(BugBean bugBean) {
-                                 pView.UserView(bugBean.getResult());
+                                 pView.onUserView(bugBean.getResult());
                        loadingPage.showSuccessView();
                    }
 

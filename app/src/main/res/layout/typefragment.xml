@@ -19,7 +19,7 @@
             <RadioButton
                 style="@style/TypefragmentRadioButton"
                 android:id="@+id/biaoqian"
-                android:textSize="25dp"
+                android:textSize="@dimen/XQTextSize"
                 android:text="@string/typefragmentRadioButton2"
                 ></RadioButton>
         </RadioGroup>

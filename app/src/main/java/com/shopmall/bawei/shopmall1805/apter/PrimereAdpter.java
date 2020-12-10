@@ -14,13 +14,13 @@ import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.DetailsActivity;
 import com.shopmall.bawei.shopmall1805.apter.apter.ActAdapter;
-import com.shopmall.bawei.shopmall1805.apter.apter.ChannelAdapter;
+import com.shopmall.bawei.shopmall1805.apter.apter.CommonlyUsedApter;
 import com.shopmall.bawei.shopmall1805.apter.apter.HotAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter.RecommendAdapter;
-import com.shopmall.bawei.shopmall1805.apter.apter.SeckAdapter;
+import com.shopmall.bawei.shopmall1805.apter.apter.SkirtAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.login.LoginActivity;
-import com.shopmall.bawei.shopmall1805.user.ShangPing;
+import com.shopmall.bawei.shopmall1805.user.GoodsBean;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
@@ -80,7 +80,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         hotAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ShangPing goodsBean = new ShangPing(hotInfoBeans.get(position).getProduct_id(),hotInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+hotInfoBeans.get(position).getFigure(),hotInfoBeans.get(position).getName());
+                GoodsBean goodsBean = new GoodsBean(hotInfoBeans.get(position).getProduct_id(),hotInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+hotInfoBeans.get(position).getFigure(),hotInfoBeans.get(position).getName());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -100,7 +100,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
 
-                ShangPing goodsBean = new ShangPing(recommendInfoBeans.get(position).getProduct_id(),recommendInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+recommendInfoBeans.get(position).getFigure(),recommendInfoBeans.get(position).getName());
+                GoodsBean goodsBean = new GoodsBean(recommendInfoBeans.get(position).getProduct_id(),recommendInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+recommendInfoBeans.get(position).getFigure(),recommendInfoBeans.get(position).getName());
 
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
@@ -113,14 +113,14 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         final List<HomeBean.SeckillInfoBean.ListBean> seckillInfoBeans = (List<HomeBean.SeckillInfoBean.ListBean>)itemData;//强转成我们需要的类型
         RecyclerView seckRv = baseViewHolder.getView(R.id.rv_seck);
         seckRv.setLayoutManager(new LinearLayoutManager(baseViewHolder.itemView.getContext(),LinearLayoutManager.HORIZONTAL,false));
-        final SeckAdapter seckAdapter = new SeckAdapter();
+        final SkirtAdapter seckAdapter = new SkirtAdapter();
         seckRv.setAdapter(seckAdapter);
         seckAdapter.updataData(seckillInfoBeans);
         //点击跳转页面
         seckAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
             @Override
             public void onItemClick(int position) {
-                ShangPing goodsBean = new ShangPing(seckillInfoBeans.get(position).getProduct_id(),seckillInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+seckillInfoBeans.get(position).getFigure(),seckillInfoBeans.get(position).getName());
+                GoodsBean goodsBean = new GoodsBean(seckillInfoBeans.get(position).getProduct_id(),seckillInfoBeans.get(position).getCover_price(),"http://49.233.0.68:8080/atguigu/img/"+seckillInfoBeans.get(position).getFigure(),seckillInfoBeans.get(position).getName());
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                 intent.putExtra("shangp", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
@@ -153,7 +153,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【同人原创】剑网3 剑侠情缘叁 Q版成男 口袋胸针";
                     }
                     String image = actInfoBeans.get(position).getIcon_url();
-                    ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+actInfoBeans.get(position).getIcon_url(),name);
+                    GoodsBean goodsBean = new GoodsBean(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+actInfoBeans.get(position).getIcon_url(),name);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                     intent.putExtra("shangp", goodsBean);
@@ -168,7 +168,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
         RecyclerView channelRv = baseViewHolder.getView(R.id.channelRv);
         channelRv.setLayoutManager(new GridLayoutManager(baseViewHolder.itemView.getContext(),5));
 
-        ChannelAdapter channelAdapter = new ChannelAdapter();
+        CommonlyUsedApter channelAdapter = new CommonlyUsedApter();
         channelRv.setAdapter(channelAdapter);
         channelAdapter.updataData(channelInfoBeans);
         channelAdapter.setiRecyclerViewItemClickListener(new IRecyclerViewItemClickListener() {
@@ -222,7 +222,7 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
                         name = "【蓝诺】《天下吾双》 剑网3同人本";
                     }
                     String image = bannerInfoBeans.get(position).getImage();
-                    ShangPing goodsBean = new ShangPing(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+bannerInfoBeans.get(position).getImage(),name);
+                    GoodsBean goodsBean = new GoodsBean(product_id,cover_price,"http://49.233.0.68:8080/atguigu/img/"+bannerInfoBeans.get(position).getImage(),name);
 
                     Intent intent = new Intent(baseViewHolder.itemView.getContext(), DetailsActivity.class);
                     intent.putExtra("shangp", goodsBean);

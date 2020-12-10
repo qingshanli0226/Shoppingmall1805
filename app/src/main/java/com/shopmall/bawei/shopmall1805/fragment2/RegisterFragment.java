@@ -53,12 +53,12 @@ public class RegisterFragment extends BaseFragment<LoginImpl, LoginCountroller.L
     }
 
     @Override
-    public void login(LoginBean loginBean) {
+    public void onlogin(LoginBean loginBean) {
 
     }
 
     @Override
-    public void register(RegisterBean registerBean) {
+    public void onregister(RegisterBean registerBean) {
         Toast.makeText(getContext(), ""+registerBean.getMessage(), Toast.LENGTH_SHORT).show();
         AutoRegitser autoRegitser=new AutoRegitser(0);
         EventBus.getDefault().post(autoRegitser);

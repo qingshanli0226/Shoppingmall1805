@@ -17,7 +17,7 @@ public class UserCountroller {
     public interface UserView extends IView {
 
     void onskerk(HomeBean homeBeanList);
-     void TagBiew(List<TAGBean.ResultBean> resultBeanList);
+     void onTagBiew(List<TAGBean.ResultBean> resultBeanList);
 
     }
     public abstract static class UserShow extends BaseAroute<UserView>{

@@ -54,7 +54,7 @@ public class ThelabelFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     }
 
     @Override
-    public void TagBiew(List<TAGBean.ResultBean> resultBeanList) {
+    public void onTagBiew(List<TAGBean.ResultBean> resultBeanList) {
         Toast.makeText(getContext(), ""+resultBeanList.get(0).getName(), Toast.LENGTH_SHORT).show();
         arrayList.addAll(resultBeanList);
         biaoQianApter.notifyDataSetChanged();

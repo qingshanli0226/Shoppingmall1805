@@ -3,11 +3,6 @@ package com.bawei.deom.addPage;
 import com.bawei.deom.BaseAroute;
 import com.bawei.deom.IView;
 
-import java.util.List;
-
-import bean.AutoLoginBeen;
-import bean.BaseBean;
-
 public class AddCountroller {
     public interface AddView extends IView {
          void onCheckOneProductInventoryView(String productNum);

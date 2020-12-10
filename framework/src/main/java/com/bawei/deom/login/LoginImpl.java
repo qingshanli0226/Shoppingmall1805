@@ -46,7 +46,7 @@ public class LoginImpl extends LoginCountroller.LoginShow {
                     @Override
                     public void onNext(RegisterBean registerBean) {
                         if (registerBean.getCode().equals("200")){
-                            pView.register(registerBean);
+                            pView.onregister(registerBean);
                         }
 
 
@@ -94,7 +94,7 @@ public class LoginImpl extends LoginCountroller.LoginShow {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         if (loginBean.getCode().equals("200")){
-                            pView.login(loginBean);
+                            pView.onlogin(loginBean);
                         }
 
 

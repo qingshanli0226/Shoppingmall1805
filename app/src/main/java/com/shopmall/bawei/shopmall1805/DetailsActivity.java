@@ -20,13 +20,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.deom.BaseActivity;
 import com.bawei.deom.CacheManager;
-import com.bawei.deom.ShopUserManager;
 import com.bawei.deom.addPage.AddCountroller;
 import com.bawei.deom.addPage.AddImpl;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
-import com.shopmall.bawei.shopmall1805.login.LoginActivity;
-import com.shopmall.bawei.shopmall1805.user.ShangPing;
+import com.shopmall.bawei.shopmall1805.user.GoodsBean;
 
 import java.util.List;
 
@@ -58,7 +56,7 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
     @Override
     protected void inData() {
         Intent intent=getIntent();
-        shangp= (ShangPing) intent.getSerializableExtra("shangp");
+        shangp= (GoodsBean) intent.getSerializableExtra("shangp");
         Glide.with(this).load(shangp.getUrl()).into(image);
         text.setText(shangp.getProductName());
         price.setText(shangp.getProductPrice());
@@ -129,7 +127,7 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
             }
         });
     }
-     ShangPing  shangp;
+     GoodsBean shangp;
     @Override
     protected void intView() {
         image = (ImageView) findViewById(R.id.image);

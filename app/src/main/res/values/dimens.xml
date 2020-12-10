@@ -3,7 +3,7 @@
 
   <dimen name="CommonTabLayout">100dp</dimen>
   <dimen name="CommonTabLayouticon">50dp</dimen>
-  <dimen name="XQTextSize">20dp</dimen>
+  <dimen name="XQTextSize">28dp</dimen>
     <dimen name="Margin">10dp</dimen>
     <dimen name="MarginTop">90dp</dimen>
   <dimen name="MarginLeft">50dp</dimen>
@@ -61,4 +61,7 @@
   <dimen name="shoppButtonlayout_marginTop">40dp</dimen>
   <dimen name="skirtlayout_marginTop">70dp</dimen>
   <dimen name="skirlayout_marginTop">40dp</dimen>
+  <dimen name="shoppcarButtonlayout_height">35dp</dimen>
+  <dimen name="shoppcarCheckBoxdrawablePadding">10dp</dimen>
+  <dimen name="shoppcarCheckBoxdrawablepaddingLeft">0dp</dimen>
 </resources>

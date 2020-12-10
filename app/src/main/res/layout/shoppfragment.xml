@@ -19,12 +19,12 @@
 
         <TextView
             android:layout_width="0dp"
-            android:layout_height="match_parent"
+            android:layout_height="30dp"
             android:layout_weight="1"
             android:gravity="center"
             android:text="购物车"
             android:textColor="#303235"
-            android:textSize="20sp" />
+            android:textSize="@dimen/XQTextSize" />
 
         <TextView
             android:id="@+id/tv_shopcart_edit"
@@ -74,7 +74,7 @@
                 android:paddingLeft="0dp"
                 android:text="全选"
                 android:textColor="#303235"
-                android:textSize="15sp" />
+                android:textSize="@dimen/XQTextSize" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -82,7 +82,7 @@
                 android:padding="10dp"
                 android:text="合计:"
                 android:textColor="#303235"
-                android:textSize="15sp" />
+                android:textSize="@dimen/XQTextSize" />
 
             <TextView
                 android:id="@+id/tv_shopcart_total"
@@ -92,7 +92,7 @@
                 android:padding="10dp"
                 android:text="￥0.00"
                 android:textColor="#ed3f3f"
-                android:textSize="15sp" />
+                android:textSize="@dimen/XQTextSize" />
 
             <Button
                 android:id="@+id/btn_check_out"
@@ -120,17 +120,17 @@
                 android:layout_weight="1"
                 android:button="@null"
                 android:drawableLeft="@drawable/checkbox_selector"
-                android:drawablePadding="10dp"
-                android:padding="10dp"
-                android:paddingLeft="0dp"
+                android:drawablePadding="@dimen/shoppcarCheckBoxdrawablePadding"
+                android:padding="@dimen/shoppcarCheckBoxdrawablePadding"
+                android:paddingLeft="@dimen/shoppcarCheckBoxdrawablepaddingLeft"
                 android:text="全选"
                 android:textColor="#303235"
-                android:textSize="15sp" />
+                android:textSize="@dimen/XQTextSize" />
 
             <Button
                 android:id="@+id/btn_delete"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
+                android:layout_height="@dimen/shoppcarButtonlayout_height"
                 android:background="@drawable/words"
                 android:text="删除"
                 android:textColor="#303235"
@@ -139,12 +139,12 @@
             <Button
                 android:id="@+id/btn_collection"
                 android:layout_width="wrap_content"
-                android:layout_height="35dp"
-                android:layout_marginLeft="15dp"
+                android:layout_height="@dimen/shoppcarButtonlayout_height"
+                android:layout_marginLeft="@dimen/FirstImageMarginLeft"
                 android:background="@drawable/wordsred"
                 android:text="收藏"
                 android:textColor="#ed3f3f"
-                android:textSize="15sp" />
+                android:textSize="@dimen/XQTextSize" />
         </LinearLayout>
     </FrameLayout>
 <!--   <LinearLayout-->

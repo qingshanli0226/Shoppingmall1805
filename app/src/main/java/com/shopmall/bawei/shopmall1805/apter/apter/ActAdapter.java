@@ -21,9 +21,7 @@ public class ActAdapter extends BaseRVAdapter<HomeBean.ActInfoBean> {
     @Override
     protected void convert(HomeBean.ActInfoBean itemData, BaseViewHolder baseViewHolder, int position) {
         ImageView imageView = baseViewHolder.getView(R.id.vr_act);
-//        imageView.setWebViewClient(new WebViewClient());
-//        imageView.setWebChromeClient(new WebChromeClient());
-//        imageView.loadUrl(Confing.BASE_IMAGE + itemData.getIcon_url());
+
         Glide.with(baseViewHolder.itemView.getContext()).load("http://49.233.0.68:8080/atguigu/img/"+ itemData.getIcon_url()).into(imageView);
     }
 

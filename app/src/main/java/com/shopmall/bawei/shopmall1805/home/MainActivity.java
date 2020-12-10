@@ -29,7 +29,6 @@ import com.shopmall.bawei.shopmall1805.login.LoginActivity;
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.AutoLoginBeen;
 import bean.LoginBean;
 import bean.Shoppingcartproducts;
 
@@ -54,7 +53,7 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
         pager = (ViewPager) findViewById(R.id.pager);
         com = (CommonTabLayout) findViewById(R.id.com);
         intent=new Intent(MainActivity.this, MyServer.class);
-        //startService(intent);
+
 
     }
     @Override
@@ -69,11 +68,10 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
             arrayList.clear();
         }
 
-        //自动登录获取token
 
 
         Log.e("logintoken",token);
-//        prine.MyautologinShow(token);
+
         indata();
         myFragmentPager=new MyFragmentPager(getSupportFragmentManager(),arrayList);
         pager.setAdapter(myFragmentPager);
@@ -174,7 +172,7 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
     }
 
     @Override
-    public void MyautologinView(LoginBean autoLoginBeen) {
+    public void onMyautologinView(LoginBean autoLoginBeen) {
 
         getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
             Toast.makeText(this, "自动登录", Toast.LENGTH_SHORT).show();
