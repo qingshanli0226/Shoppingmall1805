@@ -2,6 +2,7 @@ package com.shopmall.framework.service;
 
 import android.app.Service;
 import android.content.Intent;
+import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.widget.Toast;
@@ -9,7 +10,7 @@ import android.widget.Toast;
 import com.shopmall.net.Https;
 import com.shopmall.net.RetrofitFactory;
 import com.shopmall.net.bean.LoginBean;
-import com.shopmall.net.manager.ShopUserManager;
+import com.shopmall.framework.manager.ShopUserManager;
 
 import java.util.HashMap;
 
@@ -20,10 +21,16 @@ import io.reactivex.schedulers.Schedulers;
 
 public class LoginService extends Service {
 
+    public class KsBinder extends Binder{
+        public LoginService getService(){
+            return LoginService.this;
+        }
+    }
+
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
-        return null;
+        return new KsBinder();
     }
 
     @Override

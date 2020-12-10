@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.widget.TextView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
-import com.shopmall.net.manager.ShopUserManager;
+import com.shopmall.framework.manager.ShopUserManager;
 import com.shopmall.framework.base.BaseMVPActivity;
 import com.shopmall.net.bean.LoginBean;
 

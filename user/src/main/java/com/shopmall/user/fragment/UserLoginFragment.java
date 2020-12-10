@@ -14,7 +14,7 @@ import com.shopmall.framework.base.BaseMVPFragment;
 import com.shopmall.framework.constart.Constart;
 import com.shopmall.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.net.bean.LoginBean;
-import com.shopmall.net.manager.ShopUserManager;
+import com.shopmall.framework.manager.ShopUserManager;
 
 import java.util.HashMap;
 

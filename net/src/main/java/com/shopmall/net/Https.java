@@ -4,6 +4,7 @@ package com.shopmall.net;
 import com.shopmall.net.bean.HomeData;
 import com.shopmall.net.bean.LoginBean;
 import com.shopmall.net.bean.RegisterBean;
+import com.shopmall.net.bean.ShopcarBean;
 import com.shopmall.net.bean.SortData;
 import com.shopmall.net.bean.TagBean;
 
@@ -36,4 +37,7 @@ public interface Https {
 
     @POST
     Observable<RegisterBean> getRegister(@Url String url,@QueryMap HashMap<String,String> map);
+
+    @GET
+    Observable<ShopcarBean> getShopCar(@Url String url);
 }

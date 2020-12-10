@@ -18,7 +18,7 @@ import com.shopmall.bawei.shopmall1805.fragment.TypeFragment;
 import com.shopmall.framework.base.BaseMVPActivity;
 import com.shopmall.framework.service.LoginService;
 import com.shopmall.net.bean.MyTab;
-import com.shopmall.net.manager.ShopUserManager;
+import com.shopmall.framework.manager.ShopUserManager;
 
 import java.util.ArrayList;
 import java.util.List;

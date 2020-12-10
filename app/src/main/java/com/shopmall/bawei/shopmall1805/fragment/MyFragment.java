@@ -8,7 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.framework.base.BaseMVPFragment;
 import com.shopmall.net.bean.LoginBean;
-import com.shopmall.net.manager.ShopUserManager;
+import com.shopmall.framework.manager.ShopUserManager;
 
 public class MyFragment extends BaseMVPFragment implements ShopUserManager.IUserLoginChangeListener {
     private ImageButton ibUserIconAvator;

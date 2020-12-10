@@ -1,6 +1,8 @@
 package com.shopmall.net;
 
-import com.shopmall.net.manager.ShopUserManager;
+import android.content.Context;
+
+import com.shopmall.net.share.RestName;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -16,6 +18,12 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitFactory {
     private static volatile RetrofitFactory instance = null;
+    private Context context;
+
+    public void init(Context context){
+        this.context = context;
+    }
+
     private RetrofitFactory(){
         initRetrofit();
     }
@@ -66,8 +74,9 @@ public class RetrofitFactory {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
+                String token = context.getSharedPreferences(RestName.SHARE_NAME, RestName.SHARE_MODEL).getString(RestName.LOGIN_TOKEN, null);
                 Request newRequest = request.newBuilder()
-                        .addHeader("token", ShopUserManager.getInstance().getToken())
+                        .addHeader("token", token)
                         .build();
                 Response proceed = chain.proceed(newRequest);
                 return proceed;
