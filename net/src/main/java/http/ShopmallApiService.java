@@ -6,6 +6,7 @@ package http;
 import com.example.common2.HomeBean;
 import com.example.common2.LoginBean;
 import com.example.common2.RegisterBean;
+import com.example.common2.ShopcarBean;
 import com.example.common2.SkirstBean;
 import com.example.common2.TagBean;
 import com.example.common2.UrlHelp;
@@ -39,21 +40,26 @@ public interface ShopmallApiService {
 
     @POST("register")
     @FormUrlEncoded
-    Observable<BaseBean<RegisterBean>> register(@FieldMap HashMap<String, String> params);
+    Observable<RegisterBean> register(@FieldMap HashMap<String, String> params);
 
     @POST("login")
     @FormUrlEncoded
-    Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> params);
-
-   /* @POST("checkOneProductInventory")
-    @FormUrlEncoded
-    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
+    Observable<LoginBean> login(@FieldMap HashMap<String, String> params);
 
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
+
+   /* @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
+
+
+
+
 
     @POST("updateProductNum")
     Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);

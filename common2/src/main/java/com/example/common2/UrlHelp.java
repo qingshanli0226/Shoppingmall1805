@@ -36,7 +36,7 @@ public class UrlHelp {
     public static final String spName = "shopmall";
     public static final String tokenName = "token";
 
-
+    public static final String LOGIN_ACTION = "com.mvp.view.shopmall.LOGIN_ACTION";
 
     public static final String JSCON_ERROR_CODE = "10000";
     public static final String JSON_ERROR_MESSAGE = "服务端范湖数据解析错误";

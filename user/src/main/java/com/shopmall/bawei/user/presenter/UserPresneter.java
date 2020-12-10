@@ -22,19 +22,20 @@ public class UserPresneter extends UserContract.UserPresenter {
         params.put("password", password);
         MyHttp.getShopmallApiService().login(params)
                 .subscribeOn(Schedulers.io())
-                .map(new NetFunction<BaseBean<LoginBean>,LoginBean>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ShopmallObserver<LoginBean>() {
                     @Override
                     public void onNext(LoginBean loginBean) {
-                        iHttpView.onLogin(loginBean);
+                            iHttpView.onLogin(loginBean);
                     }
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iHttpView.showError(errorCode,errorMessage);
+
                     }
                 });
+
+
     }
 
     @Override
@@ -44,7 +45,6 @@ public class UserPresneter extends UserContract.UserPresenter {
         params.put("password", password);
         MyHttp.getShopmallApiService().register(params)
                 .subscribeOn(Schedulers.io())
-                .map(new NetFunction<BaseBean<RegisterBean>,RegisterBean>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new ShopmallObserver<RegisterBean>() {
                     @Override

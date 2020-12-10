@@ -107,16 +107,36 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/new_password_drawable_invisible" />
         </LinearLayout>
-
-        <Button
-            android:id="@+id/btn_login"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_margin="10dp"
-            android:background="@drawable/add_cart_bg_selector"
-            android:padding="10dp"
-            android:text="登录"
-            android:textColor="#fff" />
+            android:layout_height="wrap_content"
+
+            >
+            <Button
+                android:id="@+id/btn_login"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/add_cart_bg_selector"
+                android:padding="10dp"
+                android:text="登录"
+                android:textColor="#fff" />
+            <Button
+                android:id="@+id/btn_register"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="40dp"
+                android:layout_margin="10dp"
+                android:background="@drawable/add_cart_bg_selector"
+                android:padding="10dp"
+                android:text="注册"
+                android:textColor="#fff" />
+
+
+        </LinearLayout>
+
+
 
         <TextView
             android:layout_width="match_parent"

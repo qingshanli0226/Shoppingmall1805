@@ -8,14 +8,14 @@ import androidx.annotation.Nullable;
 import com.shopmall.bawei.framework.R;
 
 public abstract class BaseMVPActivity<T extends IPresenter,V extends IView> extends BaseActivity {
-   protected T httpPresenter;
+   protected T ihttpPresenter;
     protected ProgressBar loadingBar;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initPresenter();
-        httpPresenter.attachView((V)this);
+     //  ihttpPresenter.attachView((V)this);
         loadingBar = findViewById(R.id.loadingBar);
         initData();
 
@@ -26,6 +26,6 @@ public abstract class BaseMVPActivity<T extends IPresenter,V extends IView> exte
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        httpPresenter.datachView();
+        ihttpPresenter.datachView();
     }
 }

@@ -40,9 +40,7 @@ public abstract  class BaseActivity extends AppCompatActivity {
     protected void printLog(String message){
         Log.d(TAG,message);
     }
-    protected void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
+
 
     protected void launchActivity(Class launcActivityClass, Bundle bundle) {
         Intent intent = new Intent();

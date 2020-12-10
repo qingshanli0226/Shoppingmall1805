@@ -11,11 +11,11 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomePagerAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter;
-import com.shopmall.bawei.shopmall1805.Classification.view.fragment.ClassificationFragment;
-import com.shopmall.bawei.shopmall1805.Classification.view.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
+import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.view.FirstFragment;
-import com.shopmall.bawei.shopmall1805.Classification.view.fragment.MyFragment;
-import com.shopmall.bawei.shopmall1805.Classification.view.fragment.ShopFragment;
+import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
+import com.shopmall.bawei.shopmall1805.shopcar.view.ShopCarFragment;
 import java.util.ArrayList;
 import java.util.List;
 public class MainActivity extends AppCompatActivity {
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         fsRes.add(new FirstFragment());
         fsRes.add(new ClassificationFragment());
         fsRes.add(new FindFragment());
-        fsRes.add(new ShopFragment());
+        fsRes.add(new ShopCarFragment());
         fsRes.add(new MyFragment());
 
         //设置数据

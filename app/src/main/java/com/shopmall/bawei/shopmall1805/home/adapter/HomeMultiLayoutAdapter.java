@@ -1,20 +1,17 @@
 package com.shopmall.bawei.shopmall1805.home.adapter;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.common2.HomeBean;
 import com.example.common2.UrlHelp;
-import com.shopmall.bawei.shopmall1805.Classification.view.activity.GoodsListActivity;
+import com.shopmall.bawei.shopmall1805.goods.GoodsListActivity;
 import com.shopmall.bawei.shopmall1805.R;
 
 import com.shopmall.bawei.shopmall1805.adapter.BaseRvAdapter;

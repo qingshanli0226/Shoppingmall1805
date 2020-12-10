@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".Classification.view.activity.GoodsListActivity">
+        <activity android:name=".goods.GoodsListActivity">
 
         </activity>
 

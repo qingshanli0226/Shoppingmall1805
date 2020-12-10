@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import mvp.CacheManager;
+import mvp.view.ShopUserManager;
+
 public class ShopmallApplication extends Application {
 
     @Override
@@ -11,6 +14,7 @@ public class ShopmallApplication extends Application {
         super.onCreate();
 
 
+        ShopUserManager.getInstance().init(this);
     }
 
 

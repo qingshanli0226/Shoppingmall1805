@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Classification.view.classificationfragment.LabelFragment">
+    tools:context=".classification.view.classificationfragment.LabelFragment">
    <TextView
        android:id="@+id/errorTv"
        android:layout_width="match_parent"
