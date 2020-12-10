@@ -3,6 +3,7 @@ package view.presenter;
 import net.FoodService;
 import net.RxjavaRetortUlis;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -17,7 +18,7 @@ import mode.BaseBean;
 import mode.ShopcarBean;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
-import view.FragmentShopcar;
+import view.ShopView.FragmentShopcar;
 import view.contract.ShopcarContractc;
 
 public
@@ -129,12 +130,66 @@ class ShopcarPresenterImplc extends ShopcarContractc.ShopcarPresenter {
 
     @Override
     public void selectAllProduct(boolean isAllSelect) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("selected", isAllSelect);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+
+        RxjavaRetortUlis.getInstance().create(FoodService.class)
+                .selectAllProduct(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iHttpView.showLoaDing();
+                    }
+                })
+                .subscribe(new Observer<BaseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseBean<String> stringBaseBean) {
+                        iHttpView.onAllSelected(stringBaseBean.getResult());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        //iHttpView.hideLoading(false,);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
 
     }
 
     @Override
     public void deleteProducts(List<ShopcarBean> products) {
+        JSONArray jsonArray = new JSONArray();
+        for(ShopcarBean shopcarBean:products) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("productId", shopcarBean.getProductId());
+                jsonObject.put("productName", shopcarBean.getProductName());
+                jsonObject.put("url", shopcarBean.getUrl());
+                jsonObject.put("productNum", shopcarBean.getProductNum());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
 
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonArray.toString());
     }
 
     @Override

@@ -1,4 +1,4 @@
-package view;
+package view.ShopView;
 
 
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,11 +18,13 @@ import java.util.List;
 
 import framework.BaseFragment;
 import framework.CacheManagerc;
+import framework.Contact;
 import framework.mvpc.JsonPresenter;
 import mode.BaseBean;
 import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
+import view.ToolBar;
 import view.adaper.ShopAdaper;
 import view.callbackdata.JsondataCallBackShop;
 import view.contract.ShopcarContractc;
@@ -30,7 +32,7 @@ import view.loadinPage.ErrorBean;
 import view.presenter.ShopcarPresenterImplc;
 
 public
-class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListner, View.OnClickListener, ShopcarContractc.IShopcarView {
+class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListner, View.OnClickListener, Contact.ICenterShoppingIview {
     private RecyclerView shopcarRv;
     private TextView totalPriceTv;
     private CheckBox allSelectCheckBox;
@@ -155,34 +157,34 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
 
 
     //这是view层 当数据返回时 直接返回到这边的数据
-    @Override
+   // @Override
     public void onProductNumChange(String result, int position, String newNum) {
         //当服务端的商品数据发生改变后,本地缓存的商品数量也要改变，保证和服务端数据一致
         CacheManagerc.getInstance().updateProductNum(position,newNum);
     }
 
-    @Override
+    //@Override
     public void onProductSelected(String result, int position) {
         //该回调代表当前该商品在购物车选择的状态发生了改变
         Toast.makeText(getContext(), "该商品在购物车的选择发生了改变", Toast.LENGTH_SHORT).show();
         CacheManagerc.getInstance().updateProductSelected(position);
     }
 
-    @Override
+    //@Override
     public void onAllSelected(String result) {
         Toast.makeText(getContext(), "所有商品的选择状态发生了改变，全选状态是"+newAllSelect, Toast.LENGTH_SHORT).show();
         //更新本地缓存的数据选择状态
         CacheManagerc.getInstance().selectAllProduct(newAllSelect);
     }
 
-    @Override
+   // @Override
     public void onDeleteProducts(String result) {
         Toast.makeText(getContext(), "删除购物车数据成功", Toast.LENGTH_SHORT).show();
         //在换粗中，将删除列表中的商品在购物车上删掉
         CacheManagerc.getInstance().processDeleteProducts();
     }
 
-    @Override
+   // @Override
     public void onInventory(List<InventoryBean> inventoryBean) {
         if (checkInventoryIsEnough(inventoryBean)){
             shopcarPresenterImplc.getOrderInfo(CacheManagerc.getInstance()
@@ -208,7 +210,7 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
         return true;
     }
 
-    @Override
+   // @Override
     public void onOrderInfo(OrderInfoBean orderInfoBean) {
         //f服务端已经成功下蛋 使用支付宝完成支付功能
         Runnable runnable = new Runnable() {
