@@ -1,5 +1,7 @@
 package com.example.net;
 
+import com.example.common.ShopMallContants;
+
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.OkHttpClient;
@@ -31,7 +33,7 @@ public class RetorfitCreate {
 
         Retrofit retrofit = new Retrofit.Builder()
                 .client(client)
-                .baseUrl(Contants.Base_Url)
+                .baseUrl(ShopMallContants.Base_Url)
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

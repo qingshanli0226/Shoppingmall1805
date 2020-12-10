@@ -3,8 +3,9 @@ package com.example.net;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.LoginBean;
-import com.example.net.bean.Recommonde;
+import com.example.net.bean.HomeBean;
 import com.example.net.bean.RegisterBean;
+import com.example.net.bean.TypeBean;
 
 import java.util.HashMap;
 
@@ -17,15 +18,18 @@ import retrofit2.http.POST;
 public interface INetworkserviceimpl {
 
     @GET("atguigu/json/HOME_URL.json")
-    Observable<BaseBean<Recommonde>> recommondebean();
+    Observable<BaseBean<HomeBean>> recommondebean();
+
+    @GET("atguigu/json/SKIRT_URL.json")
+    Observable<TypeBean> typebean();
 
     @POST("register")
     @FormUrlEncoded
-    Observable<RegisterBean> registerbean(@FieldMap HashMap<String,String> map);
+    Observable<BaseBean<RegisterBean>> registerbean(@FieldMap HashMap<String,String> map);
 
     @POST("login")
     @FormUrlEncoded
-    Observable<LoginBean> loginbean(@FieldMap HashMap<String,String> map);
+    Observable<BaseBean<LoginBean>> loginbean(@FieldMap HashMap<String,String> map);
 
 
     @POST("autoLogin")

@@ -3,11 +3,8 @@
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".activity.MainActivity">
-    <include layout="@layout/toolbars"/>
+    android:layout_height="match_parent">
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
@@ -16,14 +13,11 @@
         android:layout_weight="9"
         ></androidx.viewpager.widget.ViewPager>
 
-    <com.flyco.tablayout.CommonTabLayout
-        app:tl_textsize="@dimen/txt_sizethirty"
-        app:tl_textSelectColor="@color/skyblue"
-        app:tl_iconGravity="TOP"
-        android:id="@+id/common"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        ></com.flyco.tablayout.CommonTabLayout>
 
+    <com.roughike.bottombar.BottomBar
+        android:id="@+id/bottomBar"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        app:bb_tabXmlResource="@xml/bottombar_tabs"
+        ></com.roughike.bottombar.BottomBar>
 </LinearLayout>

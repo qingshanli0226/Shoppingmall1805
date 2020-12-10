@@ -16,25 +16,8 @@ public class RegisterBean {
 
     private String code;
     private String message;
-    private String result;
 
-    public static RegisterBean objectFromData(String str) {
 
-        return new Gson().fromJson(str, RegisterBean.class);
-    }
-
-    public static RegisterBean objectFromData(String str, String key) {
-
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-
-            return new Gson().fromJson(jsonObject.getString(str), RegisterBean.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
 
     public String getCode() {
         return code;
@@ -52,11 +35,5 @@ public class RegisterBean {
         this.message = message;
     }
 
-    public String getResult() {
-        return result;
-    }
 
-    public void setResult(String result) {
-        this.result = result;
-    }
 }

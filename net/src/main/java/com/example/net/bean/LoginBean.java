@@ -6,59 +6,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginBean {
-    /**
-     * code : 200
-     * message : 登录成功
-     * result : {"id":"1610","name":"1610","password":"1610","email":null,"phone":null,"point":null,"address":null,"money":null,"avatar":null,"token":"eaacae51-1c55-4ead-a31d-8070e336bc51AND1558449232809"}
-     */
 
-    private String code;
-    private String message;
-    private ResultBean result;
-
-    public static LoginBean objectFromData(String str) {
-
-        return new Gson().fromJson(str, LoginBean.class);
-    }
-
-    public static LoginBean objectFromData(String str, String key) {
-
-        try {
-            JSONObject jsonObject = new JSONObject(str);
-
-            return new Gson().fromJson(jsonObject.getString(str), LoginBean.class);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
-    public String getMessage() {
-        return message;
-    }
-
-    public void setMessage(String message) {
-        this.message = message;
-    }
-
-    public ResultBean getResult() {
-        return result;
-    }
-
-    public void setResult(ResultBean result) {
-        this.result = result;
-    }
-
-    public static class ResultBean {
         /**
          * id : 1610
          * name : 1610
@@ -83,23 +31,7 @@ public class LoginBean {
         private Object avatar;
         private String token;
 
-        public static ResultBean objectFromData(String str) {
 
-            return new Gson().fromJson(str, ResultBean.class);
-        }
-
-        public static ResultBean objectFromData(String str, String key) {
-
-            try {
-                JSONObject jsonObject = new JSONObject(str);
-
-                return new Gson().fromJson(jsonObject.getString(str), ResultBean.class);
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            return null;
-        }
 
         public String getId() {
             return id;
@@ -180,5 +112,5 @@ public class LoginBean {
         public void setToken(String token) {
             this.token = token;
         }
-    }
+
 }

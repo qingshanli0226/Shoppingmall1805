@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tabs>
+    <tab
+        id="@+id/tab_home"
+        icon="@drawable/home_tab_select"
+        title="首页"
+        barColorWhenSelected="@color/coloryellow"
+        />
+    <tab
+        id="@+id/tab_classification"
+        icon="@drawable/main_type"
+        title="分类"
+        barColorWhenSelected="@color/colorred"
+        />
+    <tab
+        id="@+id/tab_found"
+        icon="@drawable/main_community"
+        title="发现"
+        barColorWhenSelected="@color/skyblue"
+        />
+    <tab
+        id="@+id/tab_shop"
+        icon="@drawable/main_cart"
+        title="购物车"
+        barColorWhenSelected="@color/colorpurple"
+        />
+    <tab
+        id="@+id/tab_personal_center"
+        icon="@drawable/main_user"
+        title="个人中心"
+        barColorWhenSelected="@color/colorpink"
+        />
+</tabs>
