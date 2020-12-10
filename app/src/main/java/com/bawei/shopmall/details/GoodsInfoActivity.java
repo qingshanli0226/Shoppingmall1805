@@ -1,7 +1,10 @@
 package com.bawei.shopmall.details;
 
+import android.animation.ValueAnimator;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Path;
+import android.graphics.PathMeasure;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -15,6 +18,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,10 +43,7 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
     private TextView tvGoodInfoName;
-    private TextView tvGoodInfoDesc;
     private TextView tvGoodInfoPrice;
-    private TextView tvGoodInfoStore;
-    private TextView tvGoodInfoStyle;
     private WebView wbGoodInfoMore;
     private TextView tvGoodInfoCallcenter;
     private TextView tvGoodInfoCollection;
@@ -61,8 +62,6 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
     private String productNum;
 
     private ShopcarBean shopcarBean;
-
-    private Boolean isFirst = true;
 
     private DetailsGoodsBean goods_bean;
 
@@ -100,7 +99,7 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
         } else if (v == btnGoodInfoAddcart) {
             //添加购物车
             if (!ShopUserManager.getInstance().isUserLogin()) {
-                ARouter.getInstance().build(NetConfig.LOGIN_ACTIVITY_PATH).withInt(NetConfig.TO_LOGIN_KEY,NetConfig.TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR).navigation(this,100);
+                ARouter.getInstance().build(NetConfig.LOGIN_ACTIVITY_PATH).withInt(NetConfig.TO_LOGIN_KEY, NetConfig.TO_LOGIN_FROM_GOODS_DETAIL_ADD_SHOPCAR).navigation(this, 100);
                 return;
             }
             showPopwindow();
@@ -118,10 +117,7 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
         ibGoodInfoMore = (ImageButton) findViewById(R.id.ib_good_info_more);
         ivGoodInfoImage = (ImageView) findViewById(R.id.iv_good_info_image);
         tvGoodInfoName = (TextView) findViewById(R.id.tv_good_info_name);
-        tvGoodInfoDesc = (TextView) findViewById(R.id.tv_good_info_desc);
         tvGoodInfoPrice = (TextView) findViewById(R.id.tv_good_info_price);
-        tvGoodInfoStore = (TextView) findViewById(R.id.tv_good_info_store);
-        tvGoodInfoStyle = (TextView) findViewById(R.id.tv_good_info_style);
         wbGoodInfoMore = (WebView) findViewById(R.id.wb_good_info_more);
 
         tvGoodInfoCallcenter = (TextView) findViewById(R.id.tv_good_info_callcenter);
@@ -231,7 +227,7 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
      * 显示popupWindow
      */
     private void showPopwindow() {
-        checkHasProduct();
+
         // 1 利用layoutInflater获得View
         LayoutInflater inflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.popupwindow_add_product, null);
@@ -297,8 +293,8 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
             public void onClick(View v) {
                 window.dismiss();
                 //添加购物车
-                addOneProductToCache();
-                //Toast.makeText(GoodsInfoActivity.this, R.string.Add_shopCar_success, Toast.LENGTH_SHORT).show();
+                checkHasProduct();
+                //addOneProductToCache();
             }
         });
 
@@ -378,12 +374,74 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
 
     @Override
     public void onAddProduct(String addResult) {
-        //addOneProductToCache();
+        showShopcarAnim(1);
+    }
+
+    private void showShopcarAnim(final int type) {
+        int[] startPoint = new int[2];
+        int[] endPoint = new int[2];
+        int[] controlPoint = new int[2];
+
+        int[] picWebViewPoint = new int[2];
+
+        ivGoodInfoImage.getLocationInWindow(picWebViewPoint);
+
+        startPoint[0] = picWebViewPoint[0] + 400;
+        startPoint[1] = picWebViewPoint[1];
+
+        int[] shopcarImgPoint = new int[2];
+
+        tvGoodInfoCart.getLocationInWindow(shopcarImgPoint);
+        endPoint[0] = shopcarImgPoint[0] + 120;
+        endPoint[1] = shopcarImgPoint[1] - 120;
+
+        controlPoint[0] = startPoint[0] - 300;
+        controlPoint[1] = startPoint[1] + 100;
+
+        final ImageView imageView = new ImageView(this);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(100, 100);
+
+        imageView.setLayoutParams(layoutParams);
+
+        Glide.with(this).load(NetConfig.BASE_RESOURCE_IMAGE_URL + url).circleCrop().into(imageView);
+        RelativeLayout rootView = findViewById(R.id.rootview);
+        rootView.addView(imageView);
+
+        Path path = new Path();
+        path.moveTo(startPoint[0], startPoint[1]);
+        path.quadTo(controlPoint[0], controlPoint[1], endPoint[0], endPoint[1]);
+        final PathMeasure pathMeasure = new PathMeasure(path, false);
+
+        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());//平移属性动画
+        valueAnimator.setDuration(1000);
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator valueAnimator) {
+                float value = (float) valueAnimator.getAnimatedValue();
+
+                float[] nextPosition = new float[2];
+                pathMeasure.getPosTan(value, nextPosition, null);
+                imageView.setTranslationX(nextPosition[0]);//让小图片移动到下一个坐标处
+                imageView.setTranslationY(nextPosition[1]);
+
+                if (value >= pathMeasure.getLength()) {
+                    if (type == 1) {
+                        addOneProductToCache();
+                    } else {
+                        Toast.makeText(GoodsInfoActivity.this, "喜加一", Toast.LENGTH_SHORT).show();
+                        CacheManager.getInstance().updateProductNum(productId, String.valueOf(newNum));
+                    }
+                    imageView.setVisibility(View.GONE);
+                }
+            }
+        });
+        valueAnimator.start();
     }
 
     @Override
     public void onProductNumChange(String resylt) {
-
+        showShopcarAnim(2);
     }
 
     @Override

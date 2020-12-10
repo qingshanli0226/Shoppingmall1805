@@ -67,7 +67,7 @@ public class ShopUserManager {
         if (loginBean != null) {
             return loginBean.getResult().getToken();
         } else {
-            return sharedPreferences.getString(NetConfig.tokenName,"");
+            return sharedPreferences.getString(NetConfig.tokenName, "");
         }
     }
 
@@ -88,6 +88,4 @@ public class ShopUserManager {
 
         void onUserLogout();
     }
-
-
 }

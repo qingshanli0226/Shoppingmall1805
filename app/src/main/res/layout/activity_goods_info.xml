@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff"
     android:orientation="vertical"
+    android:id="@+id/rootview"
     tools:context="com.bawei.shopmall.details.GoodsInfoActivity">
 
     <LinearLayout
+        android:id="@+id/ll_toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp">
@@ -36,14 +38,17 @@
     </LinearLayout>
     <!--分割线-->
     <View
+        android:id="@+id/view_lin"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#eeee" />
+        android:background="#eeee"
+        android:layout_below="@+id/ll_toolbar"/>
 
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_height="match_parent"
         android:layout_marginTop="5dp"
+        android:layout_below="@+id/view_lin"
         android:layout_weight="1">
 
         <LinearLayout
@@ -250,4 +255,4 @@
     </FrameLayout>
 
 
-</LinearLayout>
+</RelativeLayout>

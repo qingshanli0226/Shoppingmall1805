@@ -15,6 +15,6 @@
     <TextView
         android:id="@+id/tv_message_home"
         style="@style/titlebar_text"
-        android:drawableTop="@drawable/new_message_icon"
+        android:drawableTop="@mipmap/new_message_icon"
         android:text="@string/message" />
 </LinearLayout>

@@ -139,5 +139,6 @@
     <orderEntry type="library" name="Gradle: io.reactivex.rxjava2:rxandroid:2.1.0@aar" level="project" />
     <orderEntry type="module" module-name="common" />
     <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="common" />
   </component>
 </module>
