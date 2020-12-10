@@ -1,3 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.detail">
+
+    <application>
+        <activity android:name=".detailpage.DetailActivity" android:launchMode="singleTop"/>
+    </application>
 </manifest>

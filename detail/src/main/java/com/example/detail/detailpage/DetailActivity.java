@@ -3,6 +3,7 @@ package com.example.detail.detailpage;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,16 +22,19 @@ import com.example.detail.R;
 import com.example.detail.detailpage.detail.DetailContract;
 import com.example.detail.detailpage.detail.DetailPresenterImpl;
 import com.example.framework.base.BaseActivity;
-import com.example.framework.user.CacheManager;
-import com.example.framework.user.UserManager;
+import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.UserManager;
+import com.example.framework.view.NumberAddSubView;
 import com.example.net.Constants;
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.MainBean;
 import com.example.net.bean.ShopCarBean;
+import com.example.net.bean.UpdateProductNumBean;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.io.Serializable;
+import java.util.List;
 
 
 @Route(path = "/detailpage/DetailActivity")
@@ -54,6 +58,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
     private ProductGoodBean goodBean;
     private NumberAddSubView nasGoodinfoNum;
     private PopupWindow window;
+    private int num;
     private Button btGoodinfoCancel;
     private  Button btGoodinfoConfim;
     @Override
@@ -69,6 +74,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
             @Override
             public void onClick(View view) {
                 ARouter.getInstance().build("/main/MainActivity").navigation();
+                finish();
             }
         });
         btnGoodInfoAddcart.setOnClickListener(new View.OnClickListener() {
@@ -78,7 +84,8 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
                     showPopwindow();
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
-                }
+                    finish();
+               }
             }
         });
 
@@ -87,8 +94,10 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
             public void onClick(View view) {
                 if(UserManager.isLogin()){
                     ARouter.getInstance().build("/shopCar/ShopCarActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                    finish();
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                    finish();
                 }
             }
         });
@@ -99,6 +108,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
 
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
+                    finish();
                 }
             }
         });
@@ -131,12 +141,12 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         nasGoodinfoNum.setOnNumberChangeListener(new NumberAddSubView.OnNumberChangeListener() {
             @Override
             public void addNumber(View view, int value) {
-                goodBean.setNumber(value);
+
             }
 
             @Override
             public void subNumner(View view, int value) {
-                goodBean.setNumber(value);
+
             }
         });
         btGoodinfoCancel.setOnClickListener(new View.OnClickListener() {
@@ -149,8 +159,18 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
             @Override
             public void onClick(View v) {
                 window.dismiss();
-                goodBean.setNumber(nasGoodinfoNum.getValue());
-                presenter.addProduct(goodBean.getProduct_id(),goodBean.getNumber(),goodBean.getName(),"http:\\/\\/www.baidu.com",goodBean.getCover_price());
+
+                ShopCarBean.ResultBean bean = CacheManager.getInstance().getShopcarBean(goodBean.getProduct_id());
+                if(bean==null){
+                    presenter.addProduct(goodBean.getProduct_id(),nasGoodinfoNum.getValue(),goodBean.getName(),goodBean.getFigure(),goodBean.getCover_price());
+                    num=nasGoodinfoNum.getValue();
+                }else {
+                    Log.i("Yoyo", "onClick: "+bean.getProductNum());
+                    Log.i("Yoyo", "onClick: "+nasGoodinfoNum.getValue());
+                    presenter.UpData(goodBean.getProduct_id(),Integer.parseInt(bean.getProductNum())+nasGoodinfoNum.getValue(),goodBean.getName(),goodBean.getFigure(),goodBean.getCover_price());
+                    num=nasGoodinfoNum.getValue()+Integer.parseInt(bean.getProductNum());
+                }
+
             }
         });
         window.setOnDismissListener(new PopupWindow.OnDismissListener() {
@@ -242,26 +262,26 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
     }
 
     @Override
-    public void onOk(AddProductBean bean) {
+    public void onAddOk(AddProductBean bean) {
 
         if(bean.getCode().equals("200")){
-            Toast.makeText(this, "添加成功", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "加入购物车成功", Toast.LENGTH_SHORT).show();
             ShopCarBean.ResultBean resultBean = new ShopCarBean.ResultBean();
             resultBean.setProductId(goodBean.getProduct_id());
             resultBean.setProductName(goodBean.getName());
             resultBean.setProductNum(goodBean.getNumber()+"");
             resultBean.setProductPrice(goodBean.getCover_price());
-            resultBean.setProductSelected(false);
-            resultBean.setUrl("");
+            resultBean.setProductSelected(true);
+            resultBean.setUrl(goodBean.getFigure());
             CacheManager.getInstance().add(resultBean);
         }else {
-            Toast.makeText(this, ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "加入购物车失败", Toast.LENGTH_SHORT).show();
         }
 
     }
 
     @Override
-    public void onError(String msg) {
+    public void onAddError(String msg) {
         Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
     }
 
@@ -278,5 +298,24 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
     @Override
     public void showEmpty() {
 
+    }
+
+
+    @Override
+    public void onUpDataOk(UpdateProductNumBean bean) {
+        if(!bean.getCode().equals("200")){
+            Toast.makeText(this, "加入购物车失败", Toast.LENGTH_SHORT).show();
+        }else {
+            Toast.makeText(this, "购物车中已存在,数量已更改", Toast.LENGTH_SHORT).show();
+            List<ShopCarBean.ResultBean> carList = CacheManager.getInstance().getShopCarList();
+            ShopCarBean.ResultBean shopcarBean = CacheManager.getInstance().getShopcarBean(goodBean.getProduct_id());
+            int position = carList.indexOf(shopcarBean);
+            CacheManager.getInstance().upDataProductNum(position,num+"");
+        }
+    }
+
+    @Override
+    public void onUpDataError(String msg) {
+        Toast.makeText(this, ""+msg, Toast.LENGTH_SHORT).show();
     }
 }

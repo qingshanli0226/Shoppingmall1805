@@ -10,8 +10,10 @@ import androidx.viewpager.widget.ViewPager;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
-import com.example.framework.user.UserManager;
+import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.UserManager;
 import com.example.framework.view.MyVP;
+import com.example.net.bean.ShopCarBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -30,7 +32,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 @Route(path = "/main/MainActivity")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements CacheManager.IShopcarDataChangeListener {
     private ArrayList<CustomTabEntity> tabs=new ArrayList<>();
     private List<Fragment> fragments=new ArrayList<>();
 
@@ -60,7 +62,7 @@ public class MainActivity extends BaseActivity {
         vpMain.setScanScroll(false);
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
         vpMain.setOffscreenPageLimit(5);
-        
+        CacheManager.getInstance().setShopcarDataChangeListener(this);
 
     }
 
@@ -126,4 +128,24 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
     }
 
+    @Override
+    public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
+        commMain.showMsg(3,shopCarBeanList.size());
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopCarBean.ResultBean shopCarBean) {
+
+    }
+
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
 }

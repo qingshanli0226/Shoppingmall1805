@@ -14,7 +14,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
-import com.example.framework.user.UserManager;
+import com.example.framework.manager.UserManager;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.user.R;
 import com.shoppmall.common.adapter.error.ErrorBean;
@@ -155,7 +155,6 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
             LoginBean.ResultBean result = bean.getResult();
             Log.i("Yoyo", "onOk: "+result.getToken());
             UserManager.getInstance().bindUser(result);
-            UserManager.getInstance().spToken();
             arouter();
         }else {
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();

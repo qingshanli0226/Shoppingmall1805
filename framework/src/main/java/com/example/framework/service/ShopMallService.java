@@ -5,11 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Binder;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
-import com.example.framework.user.UserManager;
+import com.example.framework.manager.UserManager;
 import com.example.net.RetrofitCreater;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.LoginBean;
@@ -36,6 +37,7 @@ public class ShopMallService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         SharedPreferences auto = getSharedPreferences("auto", MODE_PRIVATE);
         String token = auto.getString("token", "");
+
         HashMap<String, String> map = new HashMap<>();
         map.put("token",token);
         autoLogin(map);
@@ -67,7 +69,7 @@ public class ShopMallService extends Service {
                             user.setPoint(result.getPoint());
                             user.setAvatar(result.getAvatar());
                             UserManager.getInstance().bindUser(user);
-                            UserManager.getInstance().spToken();
+                            Log.i("Yoyo", "onStartCommand: "+result.getToken());
                         }
                     }
 

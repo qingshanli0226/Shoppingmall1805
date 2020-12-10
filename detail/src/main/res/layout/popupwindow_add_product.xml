@@ -85,7 +85,7 @@
             android:layout_gravity="center"
             android:text="数量" />
 
-        <com.example.detail.detailpage.NumberAddSubView
+        <com.example.framework.view.NumberAddSubView
             android:id="@+id/nas_goodinfo_num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

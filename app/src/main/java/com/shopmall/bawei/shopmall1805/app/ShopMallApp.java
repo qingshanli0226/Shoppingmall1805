@@ -4,8 +4,8 @@ package com.shopmall.bawei.shopmall1805.app;
 import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.framework.user.CacheManager;
-import com.example.framework.user.UserManager;
+import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.UserManager;
 import com.example.net.TokenInterceptorContext;
 
 public class  ShopMallApp extends Application {

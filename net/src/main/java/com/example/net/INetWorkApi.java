@@ -6,8 +6,11 @@ import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.MainBean;
 import com.example.net.bean.RegisterBean;
+import com.example.net.bean.RemoveManyProductBean;
+import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.TagBean;
+import com.example.net.bean.UpdateProductNumBean;
 
 import java.util.HashMap;
 
@@ -41,6 +44,16 @@ public interface INetWorkApi {
     Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
     @POST("addOneProduct")
     Observable<AddProductBean> addOneProduct(@Body RequestBody body);
+
+    @POST("removeManyProduct")
+    Observable<RemoveManyProductBean> removeManyProduct(@Body RequestBody body);
+
+    @POST("updateProductNum")
+    Observable<UpdateProductNumBean> updateProductNum(@Body RequestBody body);
+
+    @POST("selectAllProduct")
+    Observable<SelectAllBean> selectAllProduct(@Body RequestBody body);
+
     @GET("getShortcartProducts")
     Observable<ShopCarBean> getShopCar();
 }

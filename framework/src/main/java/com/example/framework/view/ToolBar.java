@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -122,7 +121,6 @@ public class ToolBar extends RelativeLayout {
         toolbarRightTv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d("LQS===================-------------------", context.getClass().getSimpleName() + " " + ToolBar.this.hashCode());
 
                 if(iToolBarClickListner!=null){
                     iToolBarClickListner.onRightClick();

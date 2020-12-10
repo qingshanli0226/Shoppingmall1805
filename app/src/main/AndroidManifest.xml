@@ -27,7 +27,6 @@
         <activity
             android:name=".app.MainActivity"
             android:launchMode="singleTask"></activity>
-        <service android:name="com.example.framework.service.ShopMallService"></service>
     </application>
 
 </manifest>

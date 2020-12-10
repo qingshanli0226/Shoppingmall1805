@@ -7,20 +7,26 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
-import com.example.framework.user.CacheManager;
+import com.example.framework.manager.CacheManager;
 import com.example.framework.view.ToolBar;
+import com.example.net.bean.RemoveManyProductBean;
+import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
+import com.example.net.bean.UpdateProductNumBean;
+import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/shopCar/ShopCarActivity")
-public class ShopCarActivity extends BaseActivity implements CacheManager.IShopcarDataChangeListener {
+public class ShopCarActivity extends BaseActivity implements CacheManager.IShopcarDataChangeListener, ShopCarContract.ShopCarView,IOnShopCarItemChildClickListener {
     private RecyclerView recyclerview;
     private LinearLayout llCheckAll;
     private CheckBox checkboxAll;
@@ -36,6 +42,8 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     private LinearLayout llEmpty;
     private boolean isEdit=true;
     private LinearLayout llShopcar;
+    private List<ShopCarBean.ResultBean> list=new ArrayList<>();
+    private ShopCarAdapter adapter;
 
     @Override
     protected void initListener() {
@@ -84,12 +92,26 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
 
     @Override
     protected void initPresenter() {
-
+        presenter=new ShopCarPresenterImpl();
+        presenter.attchView(this);
     }
 
     @Override
     protected void initData() {
        intent = getIntent();
+        List<ShopCarBean.ResultBean> shopCarList = CacheManager.getInstance().getShopCarList();
+        if(shopCarList.size()>0){
+            llShopcar.setVisibility(View.VISIBLE);
+            llEmpty.setVisibility(View.GONE);
+            list.clear();
+            list.addAll(shopCarList);
+            llCheckAll.setVisibility(View.VISIBLE);
+        }else {
+            list.clear();
+            llShopcar.setVisibility(View.GONE);
+            llEmpty.setVisibility(View.VISIBLE);
+        }
+        adapter.updataData(list);
     }
 
     @Override
@@ -111,7 +133,10 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
         cbAll = (CheckBox) findViewById(R.id.cb_all);
         btnDelete = (Button) findViewById(R.id.btn_delete);
         btnCollection = (Button) findViewById(R.id.btn_collection);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
+        adapter=new ShopCarAdapter(this,this);
 
+        recyclerview.setAdapter(adapter);
     }
 
     @Override
@@ -126,9 +151,10 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     }
 
     @Override
-    public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
+    public void onOneDataChanged(int position, ShopCarBean.ResultBean shopCarBean) {
 
     }
+
 
     @Override
     public void onMoneyChanged(String moneyValue) {
@@ -137,6 +163,61 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
 
     @Override
     public void onAllSelected(boolean isAllSelect) {
+
+    }
+
+    @Override
+    public void onRemoveManyOk(RemoveManyProductBean bean) {
+
+    }
+
+    @Override
+    public void onRemoveManyError(ErrorBean bean) {
+
+    }
+
+    @Override
+    public void onSelectAllOk(SelectAllBean bean) {
+
+    }
+
+    @Override
+    public void onSelectAllError(ErrorBean bean) {
+
+    }
+
+    @Override
+    public void onProductNumChangeOk(UpdateProductNumBean bean) {
+
+    }
+
+    @Override
+    public void onProductNumChangeError(ErrorBean bean) {
+
+    }
+
+    @Override
+    public void showloading() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void onProductNumChange(String id, int num, String name, String url, String price) {
+
+    }
+
+    @Override
+    public void onProductSelectChange(int position) {
 
     }
 }
