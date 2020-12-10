@@ -8,4 +8,6 @@ public class RestName {
      public static final int SHARE_MODEL=0;
      //存入登陆成功token值的键名
      public static final String LOGIN_TOKEN="LoginToken";
+     //产品数量判断
+    public static final String PRODUCT_MESSAGE="检查产品数量出现错误";
 }

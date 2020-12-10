@@ -8,8 +8,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.Loginbean;
-import com.shopmall.manager.ShopCarmanager;
-import com.shopmall.manager.ShopUserManager;
+import com.shopmall.bawei.framework.manager.ShopCarmanager;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 
 public class IndividualFragment extends BaseFragment implements ShopUserManager.IUserListener {
 

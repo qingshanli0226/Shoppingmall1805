@@ -20,8 +20,8 @@ import com.shopmall.bawei.shopmall1805.ui.fragment_main.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment_main.SortFragment;
 import com.shopmall.bean.Cus;
 import com.shopmall.bean.ShopcarBean;
-import com.shopmall.manager.ShopCarmanager;
-import com.shopmall.manager.ShopUserManager;
+import com.shopmall.bawei.framework.manager.ShopCarmanager;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -154,6 +154,8 @@ public class MainActivity extends BaseActivity implements ShopCarmanager.IShopca
     public void shopcarData(List<ShopcarBean.ResultBean> shopcarBeans) {
         if (shopcarBeans.size()!=0){
             commonMain.showMsg(3,shopcarBeans.size());
+        }else {
+            commonMain.hideMsg(3);
         }
          Log.e("num",""+shopcarBeans.size());
     }
@@ -168,6 +170,15 @@ public class MainActivity extends BaseActivity implements ShopCarmanager.IShopca
 
     }
 
+    @Override
+    public void getallselect(boolean isallselect) {
+
+    }
+
+    @Override
+    public void getdeleteallselect(boolean isallselect) {
+
+    }
 
 
 }

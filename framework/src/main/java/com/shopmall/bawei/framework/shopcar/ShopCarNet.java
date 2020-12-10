@@ -1,27 +1,18 @@
 package com.shopmall.bawei.framework.shopcar;
 
-import android.util.Log;
-
+import com.shopmall.bawei.common.Constants;
+import com.shopmall.bawei.framework.base.BaseUrl;
 import com.shopmall.bawei.framework.callback.Itest;
-import com.shopmall.bawei.net.Https;
-import com.shopmall.bawei.net.HttpsFactory;
-import com.shopmall.bean.Registbean;
-import com.shopmall.manager.ShopCarmanager;
+import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.mvptest.presenter.ShopcarPresenter;
+import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
 
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-import okhttp3.MediaType;
-import okhttp3.RequestBody;
-
-public class ShopCarNet {
+public class ShopCarNet extends BaseUrl<ShopcarPresenter> implements Constart.ShopcarConstartView {
      private volatile static ShopCarNet shopCarNet;
-
      public static ShopCarNet getShopCarNet(){
            if (null==shopCarNet){
                synchronized (ShopCarNet.class){
@@ -33,74 +24,56 @@ public class ShopCarNet {
            return shopCarNet;
      }
 
+
     /**
      * 添加数据
      * @param url
      * @param jsonObject
      */
      public void addshopcarData(String url, JSONObject jsonObject){
-         RequestBody requestBody=RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonObject.toString());
-         HttpsFactory.getHttpsFactory().getinstance(Https.class)
-                 .getaddOneProduct(url,requestBody)
-                 .subscribeOn(Schedulers.io())
-                 .observeOn(AndroidSchedulers.mainThread())
-                 .subscribe(new Observer<Registbean>() {
-                     @Override
-                     public void onSubscribe(Disposable d) {
 
-                     }
-
-                     @Override
-                     public void onNext(Registbean registbean) {
-                         Log.e("add","添加失败："+registbean.getMessage());
-                         ShopCarmanager.getShopCarmanager().ShopcarData();
-                     }
-
-                     @Override
-                     public void onError(Throwable e) {
-                         Log.e("add","添加异常："+e.getMessage());
-                     }
-
-                     @Override
-                     public void onComplete() {
-
-                     }
-                 });
-
-
+            mPresenter.addshopcarData(url,jsonObject);
      }
 
     /**
      * 检验库存情况
      */
     public void checkOneProductInventory(String url, HashMap<String,String> map, final Itest itest){
-            HttpsFactory.getHttpsFactory().getinstance(Https.class)
-                    .getcheckOneProductInventory(url,map)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Observer<Registbean>() {
-                        @Override
-                        public void onSubscribe(Disposable d) {
 
-                        }
-
-                        @Override
-                        public void onNext(Registbean registbean) {
-                                 Log.e("check",""+registbean.getResult());
-                                 itest.ontest(registbean.getResult());
-
-                        }
-
-                        @Override
-                        public void onError(Throwable e) {
-                            Log.e("check",""+e.getMessage());
-                        }
-
-                        @Override
-                        public void onComplete() {
-
-                        }
-                    });
+             mPresenter.checkOneProductInventory(url,map,itest);
     }
 
+    /**
+     * 结算勾选改变产品选择
+     */
+    public void updateProductSelected(ShopcarBean.ResultBean shopcar,int positon){
+               mPresenter.updateProductSelected(Constants.UPDATE_PRODUCTSELECTED,shopcar,positon);
+    }
+
+    /**
+     * 全选服务端购物车产品或者全不选
+     */
+    public void selectAllProduct(boolean allselect){
+            mPresenter.selectAllProduct(Constants.SELECTALL_PRODUCT,allselect);
+    }
+
+
+
+
+
+    @Override
+    public void Success(Object... objects) {
+
+    }
+
+    @Override
+    public void Error(String s) {
+
+    }
+
+
+    @Override
+    protected void createPresenter() {
+          mPresenter=new ShopcarPresenter(this);
+    }
 }

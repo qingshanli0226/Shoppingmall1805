@@ -1,4 +1,4 @@
-package com.shopmall.manager;
+package com.shopmall.bawei.framework.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;

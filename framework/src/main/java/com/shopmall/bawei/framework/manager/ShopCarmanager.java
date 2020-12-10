@@ -1,7 +1,8 @@
-package com.shopmall.manager;
+package com.shopmall.bawei.framework.manager;
 
 import android.util.Log;
 
+import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
 import com.shopmall.bean.ShopcarBean;
@@ -20,6 +21,9 @@ public class ShopCarmanager{
      //添加数据的集合
      private List<ShopcarBean.ResultBean> shopcarBeanList=new ArrayList<>();
 
+     //删除数据的集合
+    private List<ShopcarBean.ResultBean> deleteshopcarBeanList=new ArrayList<>();
+
      //添加监听的集合，用来通知数据的变化
      private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList=new ArrayList<>();
 
@@ -34,7 +38,50 @@ public class ShopCarmanager{
           return shopCarmanager;
      }
 
+     //判断勾选结算的数据是否全选
+    public boolean isallselect(){
+        for (ShopcarBean.ResultBean resultBean : shopcarBeanList) {
+                 if (!resultBean.isProductSelected()){
+                     return false;
+                 }
+        }
+        return true;
 
+    }
+
+    //勾选添加删除数据,判断是否存在，不存在添加，存在取消勾选删除
+    public void adddeleteshopcarBean(ShopcarBean.ResultBean shopcar,int postion){
+                if (!deleteshopcarBeanList.contains(shopcar)){
+                    deleteshopcarBeanList.add(shopcar);
+                }else {
+                    deleteshopcarBeanList.remove(shopcar);
+                }
+             notifydeleteboolean();
+    }
+
+
+    //切换结算清空删除集合
+    public void delteclear(){
+         if (deleteshopcarBeanList!=null){
+             deleteshopcarBeanList.clear();
+         }
+         notifydeleteboolean();
+    }
+
+
+     // 判断删除的数据和总数据是否一致
+    public boolean isdelectallselect(){
+        if (shopcarBeanList.size()==deleteshopcarBeanList.size()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    //获取删除集合
+    public List<ShopcarBean.ResultBean> getdeleteshopcarlist(){
+           return deleteshopcarBeanList;
+    }
     /**
      * 监听数据变化的接口
      */
@@ -42,6 +89,8 @@ public class ShopCarmanager{
           void shopcarData(List<ShopcarBean.ResultBean> shopcarBeans);
           void undateshopcar(int positon, ShopcarBean.ResultBean shopcar);
           void getMoney(String money);
+          void getallselect(boolean isallselect);
+          void getdeleteallselect(boolean isallselect);
 
     }
 
@@ -53,7 +102,39 @@ public class ShopCarmanager{
                    iShopcarDataChangeListenerList.add(iShopcarDataChangeListener);
               }
     }
+    /**
+     * 获取shopcar数组数据
+     */
+    public List<ShopcarBean.ResultBean> getShopcarBeanList(){
+          if (shopcarBeanList.size()!=0){
+              return shopcarBeanList;
+          }else {
+              return null;
+          }
+    }
 
+
+    //更改缓存中的购物车产品的选择状态
+    public void updateshopcarselect(ShopcarBean.ResultBean shopcar,int positon){
+        ShopcarBean.ResultBean resultBean = shopcarBeanList.get(positon);
+        if (shopcar.isProductSelected()){
+            resultBean.setProductSelected(false);
+        }else {
+            resultBean.setProductSelected(true);
+        }
+
+        updateshopcarbean(resultBean,positon);
+
+    }
+
+     //通知每个页面，当前位置发生改变，刷新该位置
+    public void updateshopcarbean(ShopcarBean.ResultBean shopcar,int postion){
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.undateshopcar(postion,shopcar);
+            iShopcarDataChangeListener.getallselect(isallselect());
+            iShopcarDataChangeListener.getMoney(getMoney());
+        }
+    }
 
     /**
      * 通知刷新数据数据
@@ -61,6 +142,15 @@ public class ShopCarmanager{
     public void notifyShopcarDataChanged(){
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
                iShopcarDataChangeListener.shopcarData(shopcarBeanList);
+               iShopcarDataChangeListener.getMoney(getMoney());
+               iShopcarDataChangeListener.getallselect(isallselect());
+        }
+    }
+
+   //通知知注册页面删除否全选
+    public void notifydeleteboolean(){
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.getdeleteallselect(isdelectallselect());
         }
     }
 
@@ -78,7 +168,7 @@ public class ShopCarmanager{
     /**
      * 结算总钱数
      */
-    private String getMoney(){
+    public String getMoney(){
          float money = 0;
         for (ShopcarBean.ResultBean resultBean : shopcarBeanList) {
                 if (resultBean.isProductSelected()){
@@ -90,6 +180,9 @@ public class ShopCarmanager{
     }
 
 
+
+
+
     /**
      * 获取购物车信息
      */
@@ -98,7 +191,7 @@ public class ShopCarmanager{
             shopcarBeanList.clear();
         }
         Https getinstance = HttpsFactory.getHttpsFactory().getinstance(Https.class);
-        getinstance.getShopcar("getShortcartProducts")
+        getinstance.getShopcar(Constants.GETSHORTCART_PRODUCT)
                  .subscribeOn(Schedulers.io())
                  .observeOn(AndroidSchedulers.mainThread())
                  .subscribe(new Observer<ShopcarBean>() {

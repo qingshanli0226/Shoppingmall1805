@@ -116,6 +116,8 @@ public class Constants {
     public static final String GETSHORTCART_PRODUCT="getShortcartProducts";
     //更新服务端购物车产品的数量的接口
     public static final String UPDATE_PRODUCT="updateProductNum";
+    //updateProductSelected
+    public static final String UPDATE_PRODUCTSELECTED="updateProductSelected";
     //检查服务端多个产品是否库存充足
     public static final String CHECKINVENTORY="checkInventory";
 

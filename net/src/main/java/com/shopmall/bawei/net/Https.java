@@ -79,6 +79,15 @@ public interface Https {
      */
     @POST
     Observable<Registbean> getcheckOneProductInventory(@Url String url,@QueryMap HashMap<String,String> map);
-
+    /**
+     * 更新服务端购物车产品的选择
+     */
+    @POST
+    Observable<Registbean> getupdateProductSelected(@Url String url,@Body RequestBody requestBody);
+    /**
+     * 全选服务端购物车产品或者全不选
+     */
+    @POST
+    Observable<Registbean> getselectAllProduct(@Url String url,@Body RequestBody requestBody);
 
 }

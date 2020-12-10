@@ -1,8 +1,9 @@
 package com.shopmall.bawei.net;
 
+import android.content.Context;
 import android.util.Log;
 
-import com.shopmall.manager.ShopUserManager;
+import com.shopmall.restname.RestName;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -19,12 +20,16 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class HttpsFactory {
 
       private static HttpsFactory httpsFactory=null;
-
+      private Context context;
       public static HttpsFactory getHttpsFactory(){
           if (httpsFactory==null){
               httpsFactory=new HttpsFactory();
           }
             return httpsFactory;
+      }
+
+      public void init(Context context){
+          this.context=context;
       }
 
       private HttpsFactory(){
@@ -54,8 +59,8 @@ public class HttpsFactory {
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(1, TimeUnit.MINUTES)
                 .writeTimeout(1, TimeUnit.MINUTES)
-                .addInterceptor(createceptor())
                 .addNetworkInterceptor(createhttplogging())
+                .addInterceptor(createceptor())
                 .build();
         return build;
     }
@@ -69,12 +74,13 @@ public class HttpsFactory {
               @Override
               public Response intercept(Chain chain) throws IOException {
                   Request request = chain.request();
-                  Log.e("token",""+ShopUserManager.getInstance().getToken());
-                  request.newBuilder()
-                          .addHeader("token",ShopUserManager.getInstance().getToken())
+                  String token = context.getSharedPreferences(RestName.SHARE_NAME, RestName.SHARE_MODEL).getString(RestName.LOGIN_TOKEN, null);
+                  Log.e("token",""+token);
+                  Request newRequest = request.newBuilder()
+                          .addHeader("token",token)
                           .build();
 
-                  Response proceed = chain.proceed(request);
+                  Response proceed = chain.proceed(newRequest);
 
                   return proceed;
               }

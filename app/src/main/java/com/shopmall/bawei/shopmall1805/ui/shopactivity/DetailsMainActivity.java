@@ -12,13 +12,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
 import com.shopmall.bawei.framework.callback.Itest;
 import com.shopmall.bawei.framework.shopcar.ShopCarNet;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.DetailsData;
 import com.shopmall.glide.Myglide;
-import com.shopmall.manager.ShopUserManager;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
+import com.shopmall.restname.RestName;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -167,16 +169,16 @@ public class DetailsMainActivity extends BaseActivity {
                 map.put("productId",details.getId());
                 map.put("productNum",num+"");
 
-                ShopCarNet.getShopCarNet().checkOneProductInventory("checkOneProductInventory", map, new Itest() {
+                ShopCarNet.getShopCarNet().checkOneProductInventory(Constants.CHECKONE__PRODUCT, map, new Itest() {
                     @Override
                     public void ontest(String msg) {
-                         if (msg.equals("检查产品数量出现错误")){
+                         if (msg.equals(RestName.PRODUCT_MESSAGE)){
                              Toast.makeText(DetailsMainActivity.this, "产品数量不足", Toast.LENGTH_SHORT).show();
                          }else {
                              JSONObject jsonObject=new JSONObject();
                              try {
                                  jsonObject.put("productId",details.getId());
-                                 jsonObject.put("productNum",num);
+                                 jsonObject.put("productNum",String.valueOf(num));
                                  jsonObject.put("productName",details.getName());
                                  jsonObject.put("url",details.getImage());
                                  jsonObject.put("productPrice",details.getPice());
@@ -187,7 +189,7 @@ public class DetailsMainActivity extends BaseActivity {
 
                              Log.e("jsonobject",jsonObject.length()+"");
 
-                             ShopCarNet.getShopCarNet().addshopcarData("addOneProduct",jsonObject);
+                             ShopCarNet.getShopCarNet().addshopcarData(Constants.ADDONE_PRODUCT,jsonObject);
 
                              Toast.makeText(DetailsMainActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
                          }

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="@dimen/dp_200">
+
+
+    <CheckBox
+        android:id="@+id/item_shopcar_checkbox"
+        android:layout_marginLeft="@dimen/dp_10"
+        style="@style/view_warp_height"
+
+        ></CheckBox>
+
+    <ImageView
+        android:id="@+id/item_shopcar_image"
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        android:layout_width="@dimen/dp_115"
+        android:layout_height="match_parent"
+
+        ></ImageView>
+
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_20"
+        android:layout_marginBottom="@dimen/dp_20"
+        style="@style/view_width_height_match"
+
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/item_shopcar_name"
+            android:layout_marginLeft="@dimen/dp_10"
+            style="@style/view_match_wrap"
+            android:textSize="@dimen/sp_20"
+            android:text="@string/app_name"
+            ></TextView>
+
+
+        <RelativeLayout
+           style="@style/view_width_height_match"
+
+            >
+            <TextView
+                android:id="@+id/item_shopcar_money"
+                android:layout_marginLeft="@dimen/dp_10"
+                android:layout_centerVertical="true"
+                style="@style/view_width_height_warp"
+                android:textColor="#FD2424"
+                android:textSize="@dimen/dp_20"
+                android:text="@string/detils_money"
+                ></TextView>
+
+            <TextView
+                android:layout_toLeftOf="@id/item_shopcar_num"
+                android:id="@+id/item_shopcar_jian"
+                android:layout_centerVertical="true"
+                android:background="@drawable/circop_bian"
+                android:layout_marginLeft="@dimen/dp_20"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:text="-"
+                android:textSize="@dimen/dp_30"
+                android:gravity="center"
+                android:textColor="@color/color_red"
+                ></TextView>
+
+            <TextView
+                android:layout_toLeftOf="@id/item_shopcar_jia"
+                android:id="@+id/item_shopcar_num"
+                android:layout_centerVertical="true"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:text="1"
+                android:textSize="@dimen/dp_30"
+                android:gravity="center"
+                ></TextView>
+
+            <TextView
+                android:id="@+id/item_shopcar_jia"
+                android:layout_centerVertical="true"
+                android:layout_alignParentRight="true"
+                android:background="@drawable/circop_bian"
+                android:layout_width="@dimen/dp_40"
+                android:layout_height="@dimen/dp_40"
+                android:text="+"
+                android:textSize="@dimen/dp_30"
+                android:gravity="center"
+                android:textColor="@color/color_red"
+                ></TextView>
+
+        </RelativeLayout>
+
+
+
+
+    </LinearLayout>
+
+
+
+</LinearLayout>

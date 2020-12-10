@@ -14,7 +14,7 @@ import com.shopmall.bawei.framework.constart.Constart;
 import com.shopmall.bawei.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bean.Loginbean;
-import com.shopmall.manager.ShopUserManager;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 
 import java.util.HashMap;
 
