@@ -5,7 +5,9 @@ package com.bw.user.presenter;
 
 import android.util.Log;
 
+import com.bw.net.NetFunction;
 import com.bw.net.RetraficCreator;
+import com.bw.net.bean.Basebean;
 import com.bw.net.bean.LoginBean;
 import com.bw.user.contract.LoginContract;
 
@@ -28,6 +30,7 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
 
         RetraficCreator.getiNetWorkApiService().login(params)
                 .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<LoginBean>,LoginBean>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LoginBean>() {
                     @Override
@@ -38,7 +41,7 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         iView.onLogin(loginBean);
-                        Log.e("---","p_token"+loginBean.getResult().getToken());
+                        Log.e("---","p_token"+loginBean.getToken());
                     }
 
                     @Override

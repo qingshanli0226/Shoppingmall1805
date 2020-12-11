@@ -54,7 +54,7 @@
                 android:id="@+id/iv_good_info_image"
                 style="@style/ImageViewStyle"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="250dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_margin="@dimen/dp_10"
                 android:scaleType="fitXY" />

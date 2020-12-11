@@ -70,13 +70,19 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
 
 
-        ibUserIconAvator.setOnClickListener(v -> {
-            boolean userLogin = ShopUserManager.getInstance().isUserLogin();
-            Log.i("---", "initView: userLogin："+userLogin);
-            if (userLogin == false){
+
+        if (ShopUserManager.getInstance().isUserLogin()){
+            String name = ShopUserManager.getInstance().getName();
+            tvUsername.setText(name);
+
+        }else {
+            ibUserIconAvator.setOnClickListener(v -> {
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
-            }
-        });
+            });
+        }
+
+
+
 
     }
 }

@@ -8,6 +8,7 @@ import com.bw.net.bean.Basebean;
 import com.bw.net.bean.ShopCarBean;
 import com.bw.shopcar.contract.ShopCarContract;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -131,6 +132,7 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
 
                    @Override
                    public void onNext(String s) {
+                       Log.i("---", "onNext: allSelect:"+s);
                        iView.onAllSelected(s);
                    }
 
@@ -147,7 +149,53 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
     }
 
     @Override
-    public void deleteProducts(List<ShopCarBean> products) {
+    public void deleteProducts(List<ShopCarBean> shopCarBeans) {
+
+        JSONArray jsonArray = new JSONArray();
+        for (ShopCarBean shopCarBean : shopCarBeans) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("productId",shopCarBean.getProductId());
+                jsonObject.put("productName",shopCarBean.getProductName());
+                jsonObject.put("productNum",shopCarBean.getProductNum());
+                jsonObject.put("productPrice",shopCarBean.getProductPrice());
+                jsonObject.put("url",shopCarBean.getUrl());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonArray.toString());
+
+        RetraficCreator.getiNetWorkApiService().removeManyProduct(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<String>,String>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<String>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        Log.i("---", "onNext: deleteProduct："+s);
+                        iView.onDeleteProducts(s);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iView.onError(e.getMessage());
+                        Log.i("---", "onError: deleteProduct："+e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
 
     }
 

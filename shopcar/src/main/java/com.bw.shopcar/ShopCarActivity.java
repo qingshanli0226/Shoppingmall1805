@@ -108,12 +108,7 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
                 shopCarAdapter.setEditMode(isEditMode);
                 tvShopcartEdit.setText("编辑");
             }
-
     }
-
-
-
-
 
 
     @Override
@@ -209,6 +204,9 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
 
     }
 
+
+
+    //监听页面 刷新数据
     @Override
     public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
         shopCarAdapter.updataData(shopCarBeanList);

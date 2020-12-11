@@ -24,7 +24,7 @@ public interface INetWorkApiService {
 
     @POST("login")
     @FormUrlEncoded
-    Observable<LoginBean> login(@FieldMap HashMap<String,String> map);
+    Observable<Basebean<LoginBean>> login(@FieldMap HashMap<String,String> map);
 
     @POST("register")
     @FormUrlEncoded
@@ -32,7 +32,7 @@ public interface INetWorkApiService {
 
     @POST("autoLogin")
     @FormUrlEncoded
-    Observable<LoginBean> autoLogin(@FieldMap HashMap<String,String> map);
+    Observable<Basebean<LoginBean>> autoLogin(@FieldMap HashMap<String,String> map);
 
     @GET(Contants.HOME_URL)
     Observable<HomeFragmentBean> getHomeData();

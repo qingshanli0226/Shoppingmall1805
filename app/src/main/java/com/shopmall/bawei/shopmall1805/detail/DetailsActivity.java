@@ -93,22 +93,35 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
         CacheManager.getInstance().setShopCarDataChangerListener(this);
 
+        boolean userLogin = ShopUserManager.getInstance().isUserLogin();
+
+        if (userLogin){
+            List<ShopCarBean> shopCarBeans = CacheManager.getInstance().getShopCarBeans();
+            tvGoodInfoCart.setText("购物车："+shopCarBeans.size());
+        }
+
+        //加入购物车 按钮点击  如果没有登录，跳转登录页面登录
+        //如果已经登录，检查仓库中是否有一件商品
+
         btnGoodInfoAddcart.setOnClickListener(v -> {
-            boolean userLogin = ShopUserManager.getInstance().isUserLogin();
             Log.i("----", "initView: "+userLogin);
-            if (userLogin == false){
+            if (!userLogin){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }else {
                 //先检查仓库中是否还有一件商品
                 checkHasProduct();
-                httpPresenter.addProduct(bean.getProductId(),bean.getProductNum(),bean.getProductName(),bean.getUrl(),bean.getProductPrice());
+//                httpPresenter.addProduct(bean.getProductId(),bean.getProductNum(),bean.getProductName(),bean.getUrl(),bean.getProductPrice());
             }
         });
 
+
+        //点击进入购物车
         tvGoodInfoCart.setOnClickListener(v -> {
-            boolean userLogin = ShopUserManager.getInstance().isUserLogin();
+
+            //判断是否登录，已经登录 跳转购物车 ，没有登录跳转登录页面登录
             Log.i("----", "initView: "+userLogin);
-            if (userLogin == false){
+
+            if (!userLogin){
                 ARouter.getInstance().build("/usr/LoginRegisterActivity").navigation();
             }else {
                 ARouter.getInstance().build("/activity/activity_shopCart").navigation();
@@ -118,6 +131,8 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     }
 
     private void checkHasProduct() {
+
+        //网络请求服务端，检查仓库数量
         httpPresenter.checkOneProductNum(bean.getProductId(),"1");
     }
 
@@ -130,13 +145,18 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     @Override
     public void onCheckOneProduct(String productNum) {
 
+        //检查到商品数量 返回
         Log.i("---", "onCheckOneProduct: "+productNum);
 
-        if (Integer.parseInt(productNum) >= 1){
-            if (checkIfShopcarListHasProduct()){
+        if (Integer.parseInt(productNum) >= 1){ //如果商品数量大于1
+            if (checkIfShopcarListHasProduct() == true){//判断购物车缓存中是否有这个商品 如果有返回 true
+
+                //购物车缓存中，有这个商品，再次加入这个商品，商品数量加1
                 ShopCarBean shopcarBan = CacheManager.getInstance().getShopcarBan(bean.getProductId());
+                Log.i("---11", "onCheckOneProduct: "+shopcarBan.getProductName()+","+shopcarBan.getProductNum());
                 int oldNum = Integer.parseInt(shopcarBan.getProductNum());
-                newNum =  + 1;
+                newNum = oldNum + 1;
+                //网络请求到服务端更改商品数量
                 httpPresenter.updateProductNum(shopcarBan.getProductId(),String.valueOf(newNum),shopcarBan.getProductName(),shopcarBan.getUrl(),shopcarBan.getProductPrice());
             }else {
                 httpPresenter.addProduct(bean.getProductId(),"1",bean.getProductName(),bean.getUrl(),bean.getProductPrice());
@@ -157,7 +177,9 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     @Override
     public void onAddProductOk(String addResult) {
         Log.i("---", "onAddProductOk: "+addResult);
-        
+
+        //添加商品到购物车服务端 返回
+        //展示动画
         showShopCarAnim(1);
 //        addOneProduct();
     }
@@ -215,9 +237,11 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
             animView.setTranslationY(nextPosition[1]);
 
             if (animatedValue >= pathMeasure.getLength()){
-                if (i ==1){
+                if (i == 1){
+                    //如果 是 1  说明是添加一条数据 同步缓存
                     addOneProduct();
                 }else {
+                    //如果不是 1 说明是修改了 数量 同步缓存
                     CacheManager.getInstance().updateProductNum(bean.getProductId(),String.valueOf(newNum));
                     Toast.makeText(this, "在原有数据数量上+1", Toast.LENGTH_SHORT).show();
                 }
@@ -233,7 +257,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
         ShopCarBean shopCarBean = new ShopCarBean();
         shopCarBean.setProductId(bean.getProductId());
         shopCarBean.setProductName(bean.getProductName());
-        shopCarBean.setProductNum(bean.getProductNum());
+        shopCarBean.setProductNum("1");
         shopCarBean.setUrl(bean.getUrl());
         shopCarBean.setProductPrice(bean.getProductPrice());
         CacheManager.getInstance().add(shopCarBean);
@@ -265,16 +289,14 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     }
 
 
-
-
     @Override
     public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
-
+//        CacheManager.getInstance().setShopCarBeans(shopCarBeanList);
     }
 
     @Override
     public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
-
+//        CacheManager.getInstance().updatePositionProductNum(position,String.valueOf(newNum));
     }
 
     @Override

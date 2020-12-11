@@ -54,7 +54,7 @@ public class ShopUserManager {
 //            Log.e("---", "saveLoginBean: loginbean 为空" );
 //        }
             //使用sp存储token
-            editor.putString("token",loginBean.getResult().getToken());
+            editor.putString("token",loginBean.getToken());
             editor.commit();
 
         //通过接口回调告诉其他页面  用户已经登录
@@ -65,7 +65,7 @@ public class ShopUserManager {
 
     public String getName(){
         if (loginBean != null){
-            return loginBean.getResult().getName();
+            return loginBean.getName();
         }else {
             return null;
         }
@@ -79,8 +79,8 @@ public class ShopUserManager {
 
     public String getToken() {
         if (loginBean != null) {
-            Log.i("---", "getToken: "+loginBean.getResult().getToken());
-            return loginBean.getResult().getToken();
+            Log.i("---", "getToken: "+loginBean.getToken());
+            return loginBean.getToken();
         } else {
             return sharedPreferences.getString(ShopmallConstant.tokenName,"");
         }

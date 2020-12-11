@@ -56,7 +56,7 @@ public class CacheManager{
         ShopUserManager.getInstance().registerUserLoginChangedListener(new ShopUserManager.IUserLoginChangedListener() {
             @Override
             public void onUserLogin(LoginBean loginBean) {
-                Log.i("---", "onUserLogin: 登录成功"+loginBean.getResult().getToken());
+                Log.i("---", "onUserLogin: 登录成功"+loginBean.getToken());
                 getShopDataCarService();
             }
 
@@ -82,7 +82,7 @@ public class CacheManager{
                     @Override
                     public void onNext(List<ShopCarBean> shopCarBeanList) {
                         shopCarBeans.addAll(shopCarBeanList);
-
+                        Log.i("---", "onNext: 购物车数量"+shopCarBeans.size());
                         notifyShopcarDataChanged();
                     }
 
@@ -282,7 +282,7 @@ public class CacheManager{
             if (shopCarBean.isProductSelected()){
                 float productPrice = Float.parseFloat(shopCarBean.getProductPrice());
                 int productNum = Integer.parseInt(shopCarBean.getProductNum());
-                totalPrice = productPrice * productNum;
+                totalPrice += productPrice * productNum;
             }
         }
         return String.valueOf(totalPrice);

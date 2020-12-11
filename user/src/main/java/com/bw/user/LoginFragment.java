@@ -66,7 +66,7 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
 
         ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
 
-        Log.e("---","onLogin：token："+loginBean.getResult().getToken());
+        Log.e("---","onLogin：token："+loginBean.getToken());
         ARouter.getInstance().build("/fragment/userFragment").navigation();
 
         myToast("登录成功");

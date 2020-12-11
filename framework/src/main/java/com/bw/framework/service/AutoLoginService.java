@@ -10,7 +10,9 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.bw.framework.ShopUserManager;
+import com.bw.net.NetFunction;
 import com.bw.net.RetraficCreator;
+import com.bw.net.bean.Basebean;
 import com.bw.net.bean.LoginBean;
 import com.bw.net.bean.ShopmallConstant;
 
@@ -49,6 +51,7 @@ public class AutoLoginService extends Service {
         map.put("token",token);
         RetraficCreator.getiNetWorkApiService().autoLogin(map)
                 .subscribeOn(Schedulers.io())
+                .map(new NetFunction<Basebean<LoginBean>,LoginBean>())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<LoginBean>() {
                     @Override
@@ -58,13 +61,14 @@ public class AutoLoginService extends Service {
 
                     @Override
                     public void onNext(LoginBean autoLoginBean) {
-                        Log.i("---", "onNext: autoLogin:--"+autoLoginBean.getResult().getToken());
+                        Log.i("---", "onNext: autoLogin:--"+autoLoginBean.getToken());
                         ShopUserManager.getInstance().saveLoginBean(autoLoginBean);
                         Toast.makeText(AutoLoginService.this, "自动登录成功", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("---", "onError: autoLogin："+e.getMessage());
                         Toast.makeText(AutoLoginService.this, "自动登录失败", Toast.LENGTH_SHORT).show();
                     }
 
