@@ -14,6 +14,7 @@ import android.widget.Toast;
 import androidx.appcompat.widget.TintTypedArray;
 
 import com.shopmall.bawei.framework.R;
+import com.shopmall.bawei.net.mode.ShopCarBean;
 
 
 /**
@@ -27,7 +28,38 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     private int minValue = 0;
     private int maxValue = 10;
 
+    private UpdateNumFromAdapter updateNumFromAdapter;
+    private int position = -1;
+    private boolean isFromAdapter = false;
+    private ShopCarBean itemData;
+
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
+
+    public void setUpdateNumFromAdapter(UpdateNumFromAdapter updateNumFromAdapter) {
+        this.updateNumFromAdapter = updateNumFromAdapter;
+    }
+
+    public void setItemData(ShopCarBean itemData) {
+        this.itemData = itemData;
+    }
+
+    public ShopCarBean getItemData() {
+        return itemData;
+    }
+
+    public void setFromAdapter(boolean fromAdapter) {
+        isFromAdapter = fromAdapter;
+    }
+
+    public boolean isFromAdapter() {
+        return isFromAdapter;
+    }
+
     private ClickToCheckInterface clickToCheckInterface;
+
 
     public void setClickToCheckInterface(ClickToCheckInterface clickToCheckInterface) {
         this.clickToCheckInterface = clickToCheckInterface;
@@ -116,19 +148,25 @@ public class NumberAddSubView extends LinearLayout implements View.OnClickListen
     public void onClick(View v) {
         if (v.getId() == R.id.btn_add) {
             //加
-            clickToCheckInterface.checking(value+1);
+            if(isFromAdapter){
+                updateNumFromAdapter.onAddNum(itemData,value,position);
+            } else {
+                clickToCheckInterface.checking(value + 1);
+            }
         } else {
             //减
-            subNumber();
-            if (onNumberChangeListener != null) {
-                onNumberChangeListener.subNumber(v, value);
+            if(isFromAdapter){
+                updateNumFromAdapter.onSubNum(itemData,value,position);
+            } else {
+                subNumber();
+                if (onNumberChangeListener != null) {
+                    onNumberChangeListener.subNumber(v, value);
+                }
             }
         }
     }
 
     private void subNumber() {
-
-
         if (value > minValue) {
             value -= 1;
         }

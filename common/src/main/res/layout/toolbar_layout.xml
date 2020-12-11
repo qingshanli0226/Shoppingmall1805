@@ -10,13 +10,13 @@
         android:layout_alignParentLeft="true"
         android:layout_centerVertical="true"
         android:id="@+id/toolbarLeftImg"
-        android:src="@mipmap/back"/>
+        android:src="@drawable/back"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:textSize="30sp"
+        android:textSize="20sp"
         android:textColor="@android:color/black"
         android:layout_centerInParent="true"
         android:id="@+id/toolbarTitleTv"
@@ -26,24 +26,27 @@
         android:layout_width="@dimen/toolbar_right_size"
         android:layout_height="match_parent"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:orientation="vertical"
-        android:layout_centerVertical="true">
+        android:layout_marginRight="21dp"
+        android:orientation="vertical">
+
         <ImageView
-            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:id="@+id/toolbarRightImg"
             android:layout_width="wrap_content"
             android:layout_height="0dp"
+            android:layout_marginTop="10dp"
             android:layout_weight="1"
-            android:id="@+id/toolbarRightImg"
-            android:scaleType="center"/>
+            android:scaleType="center" />
+
         <TextView
+            android:gravity="center"
             android:id="@+id/toolbarRightTv"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textSize="15sp"
+            android:text="右侧"
             android:textColor="@android:color/black"
-            android:text="右侧"/>
+            android:textSize="15sp" />
     </LinearLayout>
 
 </RelativeLayout>

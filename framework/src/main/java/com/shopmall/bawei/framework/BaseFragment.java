@@ -17,7 +17,7 @@ import com.shopmall.bawei.framework.view.MyToolBar;
 public abstract class BaseFragment<P extends BasePresenter,V extends IView> extends Fragment implements MyToolBar.IToolBarClickListner {
     protected P httpPresenter;
     private ProgressBar loadingBar;
-    private MyToolBar toolBar;
+    protected MyToolBar toolBar;
 
     protected LoadingPage loadingPage;
 

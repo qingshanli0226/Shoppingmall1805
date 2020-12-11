@@ -31,6 +31,23 @@ public class MyToolBar extends RelativeLayout {
 
     private IToolBarClickListner iToolBarClickListner;
 
+
+    public void setRightVisible(boolean flag) {
+        if(flag){
+            toolbarRightTv.setVisibility(VISIBLE);
+        } else {
+            toolbarRightTv.setVisibility(GONE);
+        }
+    }
+
+    public void setLeftVisible(boolean flag) {
+        if(flag){
+            toolbarLeftImg.setVisibility(VISIBLE);
+        } else {
+            toolbarLeftImg.setVisibility(GONE);
+        }
+    }
+
     public MyToolBar(Context context) {
         super(context);
         init(context,null,0);
@@ -88,6 +105,10 @@ public class MyToolBar extends RelativeLayout {
         isRightOnlyText = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_right_show_only_text, false);
         isRightOnlyImg = typedArray.getBoolean(com.shopmall.bawei.common.R.styleable.MyToolBar_right_show_only_img, false);
 
+    }
+
+    public void setRightTvText(String str) {
+        toolbarRightTv.setText(str);
     }
 
     //封装ToolBar的控件的点击事件

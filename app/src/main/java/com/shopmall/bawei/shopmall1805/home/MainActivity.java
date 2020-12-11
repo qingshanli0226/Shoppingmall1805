@@ -18,9 +18,12 @@ import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.common.FragmentHelper;
 import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.framework.BaseActivity;
+import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.IPresenter;
 import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.framework.UserManager;
+import com.shopmall.bawei.net.mode.ShopCarBean;
+import com.shopmall.bawei.shopcar.view.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.view.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.view.TypeTagFragment;
@@ -35,6 +38,34 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
     private List<Fragment> fragments = new ArrayList();
 
     private TypeTagFragment typeTagFragment;
+
+    private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
+        @Override
+        public void onDataChanged(List<ShopCarBean> shopcarBeanList) {
+            if(UserManager.getInstance().isUserLogin()) {
+                if(CacheManager.getInstance().getShopCarBeanList().size() == 0){
+                    rbCart.setText("购物车");
+                } else {
+                    rbCart.setText("购物车:" + String.valueOf(CacheManager.getInstance().getShopCarBeanList().size()));
+                }
+            }
+        }
+
+        @Override
+        public void onOneDataChanged(int position, ShopCarBean shopcarBean) {
+
+        }
+
+        @Override
+        public void onMoneyChanged(String moneyValue) {
+
+        }
+
+        @Override
+        public void onAllSelected(boolean isAllSelect) {
+
+        }
+    };
 
 
     private int position;
@@ -67,8 +98,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
                 FragmentTransaction transaction = manager.beginTransaction();
                 switch (checkedId){
                     case R.id.rb_home:
-
-
                         position = 0;
                         break;
                     case R.id.rb_type:
@@ -106,6 +135,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        CacheManager.getInstance().setShopCarDataChangeListener(iShopcarDataChangeListener);
         setIntent(intent);
         switchFragment(intent);
     }
@@ -131,6 +161,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
 
     @Override
     protected void initView() {
+        CacheManager.getInstance().setShopCarDataChangeListener(iShopcarDataChangeListener);
         ARouter.getInstance().inject(this);
         /**
          *
@@ -142,8 +173,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
          *
          *
          */
-
-
         fragments.add(new HomeFragment());
         rgMain = (RadioGroup) findViewById(R.id.rg_main);
         rbHome = (RadioButton) findViewById(R.id.rb_home);
@@ -158,7 +187,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
         typeTagFragment = new TypeTagFragment();
         fragments.add(typeTagFragment);
         fragments.add(new HomeFragment());
-        fragments.add(new HomeFragment());
+        fragments.add(new ShopCarFragment());
         fragments.add(new UserFragment());
 
         FragmentManager fragmentManager = getSupportFragmentManager();
@@ -173,7 +202,19 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements IVi
         fragmentTransaction.hide(fragments.get(3));
         fragmentTransaction.hide(fragments.get(4));
         fragmentTransaction.commit();
+        if(UserManager.getInstance().isUserLogin()) {
+            if(CacheManager.getInstance().getShopCarBeanList().size() == 0){
+                rbCart.setText("购物车");
+            } else {
+                rbCart.setText("购物车:" + String.valueOf(CacheManager.getInstance().getShopCarBeanList().size()));
+            }
+        }
+    }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangeListener(iShopcarDataChangeListener);
     }
 
     private void initPermission() {

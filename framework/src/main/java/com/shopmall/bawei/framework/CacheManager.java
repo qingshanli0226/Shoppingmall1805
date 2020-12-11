@@ -40,6 +40,8 @@ public class CacheManager {
     private CacheManager(){
     }
 
+
+
     public static CacheManager getInstance(){
         if(instance == null){
             instance = new CacheManager();
@@ -109,6 +111,7 @@ public class CacheManager {
         shopCarBeanList.add(shopCarBean);
         for (IShopcarDataChangeListener listener : iShopcarDataChangeListenerList){
             listener.onDataChanged(shopCarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
         }
     }
 
@@ -163,7 +166,7 @@ public class CacheManager {
         }
     }
 
-    private boolean isAllSelected() {
+    public boolean isAllSelected() {
         for (ShopCarBean shopCarBean:shopCarBeanList){
             if(!shopCarBean.isProductSelected()){
                 return false;
@@ -229,7 +232,7 @@ public class CacheManager {
 
     //把它加入到删除队列中
     public void addDeleteShopcarBean(ShopCarBean shopcarBean, int position) {
-        deleteShopCarBeanList.add(shopcarBean);
+            deleteShopCarBeanList.add(shopcarBean);
         boolean isAllSelect = deleteShopCarBeanList.size() == shopCarBeanList.size();//判断下当前删除队列数据数目和购物车商品数目是否一致，一致代表是全选删除
         //需要更新UI
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
@@ -246,7 +249,7 @@ public class CacheManager {
 
     //从删除队列中删除
     public void deleteOneShopCarBean(ShopCarBean shopcarBean, int position) {
-        deleteShopCarBeanList.remove(shopcarBean);
+            deleteShopCarBeanList.remove(shopcarBean);
         //需要更新UI
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
             listener.onOneDataChanged(position, shopcarBean);
@@ -268,7 +271,7 @@ public class CacheManager {
         }
     }
 
-    public boolean checkIfDataInDeleteShopcarBeanList(short shopcarBean) {
+    public boolean checkIfDataInDeleteShopcarBeanList(ShopCarBean shopcarBean) {
         return deleteShopCarBeanList.contains(shopcarBean);
     }
 
@@ -298,12 +301,14 @@ public class CacheManager {
 
 
 
-    private String getMoneyValue() {
+    public String getMoneyValue() {
         float totalPrice = 0;
         for (ShopCarBean shopCarBean:shopCarBeanList){
-            float productPrice = Float.parseFloat(shopCarBean.getProductPrice());
-            int productNum = Integer.parseInt(shopCarBean.getProductNum());
-            totalPrice = totalPrice + productPrice*productNum;
+            if(shopCarBean.isProductSelected()) {
+                float productPrice = Float.parseFloat(shopCarBean.getProductPrice());
+                int productNum = Integer.parseInt(shopCarBean.getProductNum());
+                totalPrice = totalPrice + productPrice * productNum;
+            }
         }
         return String.valueOf(totalPrice);
     }

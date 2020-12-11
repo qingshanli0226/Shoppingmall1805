@@ -81,7 +81,11 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
         tvGoodInfoCart = (TextView) findViewById(R.id.tv_good_info_cart);
         tvGoodInfoCart.setOnClickListener(this);
         if(UserManager.getInstance().isUserLogin()){
-            tvGoodInfoCart.setText("购物车"+CacheManager.getInstance().getShopCarBeanList().size());
+            if(CacheManager.getInstance().getShopCarBeanList().size() == 0){
+                tvGoodInfoCart.setText("购物车");
+            } else {
+                tvGoodInfoCart.setText("购物车:" + String.valueOf(CacheManager.getInstance().getShopCarBeanList().size()));
+            }
         }
         CacheManager.getInstance().setShopCarDataChangeListener(this);
 
@@ -172,6 +176,7 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
                     ARouter.getInstance().build(ARouterHelper.USER_LOGIN).withInt(UrlHelper.TO_LOGIN_KEY,UrlHelper.TO_LOGIN_FROM_SHOP_ACTIVITY).navigation();
                     return;
                 }
+                ARouter.getInstance().build(ARouterHelper.SHOP_CAR).navigation();
                 break;
         }
     }
@@ -281,7 +286,13 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
 
     @Override
     public void onDataChanged(List<ShopCarBean> shopcarBeanList) {
-        tvGoodInfoCart.setText("购物车:"+shopcarBeanList.size());
+        if(UserManager.getInstance().isUserLogin()) {
+            if(CacheManager.getInstance().getShopCarBeanList().size() == 0){
+                tvGoodInfoCart.setText("购物车");
+            } else {
+                tvGoodInfoCart.setText("购物车:" + String.valueOf(CacheManager.getInstance().getShopCarBeanList().size()));
+            }
+        }
     }
 
     @Override
@@ -360,5 +371,11 @@ public class GoodsInfoActivity extends BaseActivity<GoodsInfoImpl, GoodsInfoCont
     @Override
     public void checking(int num) {
         checkHasProduct(num);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangeListener(this);
     }
 }

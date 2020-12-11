@@ -26,15 +26,15 @@
             style="@style/RecyclerViewStyle"
             android:id="@+id/homeRv"/>
 
-    </RelativeLayout>
 
+    </RelativeLayout>
     <EditText
-        style="@style/HomeEditStyle"
         android:id="@+id/tv_search_home"
+        style="@style/HomeEditStyle"
         android:background="@drawable/search_home_shape"
         android:drawableLeft="@drawable/home_search_icon"
         android:drawablePadding="10dp"
-        android:text="输入搜索信息"
+        android:hint="输入搜索信息"
         android:textSize="13sp" />
 
 </RelativeLayout>

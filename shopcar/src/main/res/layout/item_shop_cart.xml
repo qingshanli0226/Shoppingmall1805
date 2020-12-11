@@ -16,8 +16,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:button="@drawable/checkbox_selector"
-            android:checked="true"
-            android:clickable="false" />
+        />
+        <CheckBox
+            android:id="@+id/cb_del"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:button="@drawable/checkbox_selector"
+            />
 
         <ImageView
             android:id="@+id/iv_gov"

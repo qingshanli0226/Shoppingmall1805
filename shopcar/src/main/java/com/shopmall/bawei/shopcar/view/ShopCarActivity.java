@@ -6,16 +6,15 @@ import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.widget.Toolbar;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.shopmall.bawei.framework.BaseFragment;
-import com.shopmall.bawei.framework.BasePresenter;
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.common.ARouterHelper;
+import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.CacheManager;
-import com.shopmall.bawei.framework.IView;
-import com.shopmall.bawei.framework.view.UpdateNumFromAdapter;
+import com.shopmall.bawei.framework.view.MyToolBar;
 import com.shopmall.bawei.net.mode.ShopCarBean;
 import com.shopmall.bawei.shopcar.R;
 import com.shopmall.bawei.shopcar.adapter.ShopCarAdapter;
@@ -25,7 +24,8 @@ import com.shopmall.bawei.shopcar.contract.ShopCarPresenterImpl;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarContract.IShopCarView> implements ShopCarContract.IShopCarView , View.OnClickListener {
+@Route(path = ARouterHelper.SHOP_CAR)
+public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarContract.IShopCarView> implements ShopCarContract.IShopCarView, View.OnClickListener {
 
     private CheckBox checkboxAll;
     private Button btnCheckOut;
@@ -44,6 +44,8 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
     private CheckBox cbAll;
     private boolean isEditMode = false;//编辑模式？
     private boolean newAllSelect;
+
+    private MyToolBar toolBar;
 
 
     private List<ShopCarBean> shopCarBeanList = new ArrayList<>();
@@ -107,7 +109,8 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
         llCheckAll = (LinearLayout) findViewById(R.id.ll_check_all);
         llDelete = (LinearLayout) findViewById(R.id.ll_delete);
         recyclerview = (RecyclerView) findViewById(R.id.recyclerview);
-        recyclerview.setLayoutManager(new LinearLayoutManager(getContext()));
+        toolBar = findViewById(R.id.toolbar);
+        recyclerview.setLayoutManager(new LinearLayoutManager(this));
         adapter = new ShopCarAdapter();/******/
         recyclerview.setAdapter(adapter);
         btnCheckOut = (Button) findViewById(R.id.btn_check_out);
@@ -115,7 +118,7 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
         tvShopcartTotal = (TextView) findViewById(R.id.tv_shopcart_total);
         checkboxAll = (CheckBox) findViewById(R.id.checkbox_all);
         cbAll = (CheckBox) findViewById(R.id.cb_all);
-        toolBar.setLeftVisible(false);
+        toolBar.setToolBarClickListner(this);
     }
 
     @Override
@@ -235,7 +238,6 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
 
     @Override
     public void showEmpty() {
-        showEmptyPa();
     }
 
 
@@ -246,7 +248,7 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
             if(deleteShopcarBeanList.size() > 0){
                 httpPresenter.deleteProducts(deleteShopcarBeanList);
             } else {
-                Toast.makeText(getContext(), "没有要删除的数据", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "没有要删除的数据", Toast.LENGTH_SHORT).show();
             }
         } else if(v.getId() == R.id.btn_check_out){
             /**
