@@ -6,6 +6,7 @@ import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.UpdateProductNumBean;
+import com.example.net.bean.UpdateProductSelectedBean;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.util.List;
@@ -18,11 +19,13 @@ public interface ShopCarContract {
         void onSelectAllError(ErrorBean bean);
         void onProductNumChangeOk(UpdateProductNumBean bean);
         void onProductNumChangeError(ErrorBean bean);
-
+        void onProductSelectChangeOk(UpdateProductSelectedBean bean);
+        void onProductSelectChangeError(ErrorBean bean);
     }
     public abstract class ShopCarPresenter extends BasePresenter<ShopCarView>{
         public abstract void removeManyProduct(List<ShopCarBean.ResultBean> beans);
         public abstract void selectAllProduct(boolean selected);
         public abstract void productNumChange(String id, int num, String name, String url, String price);
+        public abstract void productSelectChange(String id,boolean productSelected, String name, String url, String price);
     }
 }

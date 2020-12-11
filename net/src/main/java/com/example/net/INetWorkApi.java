@@ -11,6 +11,7 @@ import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.TagBean;
 import com.example.net.bean.UpdateProductNumBean;
+import com.example.net.bean.UpdateProductSelectedBean;
 
 import java.util.HashMap;
 
@@ -50,6 +51,9 @@ public interface INetWorkApi {
 
     @POST("updateProductNum")
     Observable<UpdateProductNumBean> updateProductNum(@Body RequestBody body);
+
+    @POST("updateProductSelected")
+    Observable<UpdateProductSelectedBean> updateProductSelected(@Body RequestBody body);
 
     @POST("selectAllProduct")
     Observable<SelectAllBean> selectAllProduct(@Body RequestBody body);

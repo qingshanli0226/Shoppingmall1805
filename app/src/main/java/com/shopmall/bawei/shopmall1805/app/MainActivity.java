@@ -63,7 +63,10 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
         vpMain.setAdapter(new FragmentAdapter(getSupportFragmentManager(),fragments));
         vpMain.setOffscreenPageLimit(5);
         CacheManager.getInstance().setShopcarDataChangeListener(this);
-
+        List<ShopCarBean.ResultBean> list = CacheManager.getInstance().getShopCarList();
+        if(list.size()>0){
+            commMain.showMsg(3,list.size());
+        }
     }
 
 

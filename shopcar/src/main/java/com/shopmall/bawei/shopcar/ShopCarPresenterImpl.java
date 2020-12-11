@@ -5,6 +5,7 @@ import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.UpdateProductNumBean;
+import com.example.net.bean.UpdateProductSelectedBean;
 import com.google.gson.JsonObject;
 import com.shoppmall.common.adapter.error.ExceptionUtil;
 
@@ -138,6 +139,52 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                     @Override
                     public void onError(Throwable e) {
                         iview.onProductNumChangeError(ExceptionUtil.getErrorBean(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void productSelectChange(String id, boolean productSelected, String name, String url, String price) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("productId",id);
+            jsonObject.put("productSelected",productSelected);
+            jsonObject.put("productName",name);
+            jsonObject.put("url",url);
+            jsonObject.put("productPrice",price);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonObject.toString());
+        RetrofitCreater.getiNetWorkApi().updateProductSelected(body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iview.showloading();
+                    }
+                })
+                .subscribe(new Observer<UpdateProductSelectedBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(UpdateProductSelectedBean bean) {
+                        iview.onProductSelectChangeOk(bean);
+                        iview.hideLoading(true,null);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iview.onProductSelectChangeError(ExceptionUtil.getErrorBean(e));
                     }
 
                     @Override

@@ -12,14 +12,17 @@ import com.example.net.Constants;
 import com.example.net.bean.ShopCarBean;
 import com.shoppmall.common.adapter.BaseRvAdapter;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class ShopCarAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
     private Context context;
     private IOnShopCarItemChildClickListener listener;
+    private List<Boolean> isChecks=new ArrayList<>();
     public ShopCarAdapter(Context context, IOnShopCarItemChildClickListener listener) {
         this.context = context;
         this.listener = listener;
     }
-
 
     @Override
     protected int getLayoutId(int viewType) {
@@ -34,14 +37,13 @@ public class ShopCarAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
         TextView tvPriceGov = baseViewHoder.getView(R.id.tv_price_gov);
         final NumberAddSubView numberAddSubView = baseViewHoder.getView(R.id.numberAddSubView);
         cbGov.setChecked(resultBean.isProductSelected());
-
         Glide.with(context).load(Constants.BASE_URl_IMAGE+resultBean.getUrl()).into(ivGov);
         tvDescGov.setText(resultBean.getProductName());
         tvPriceGov.setText("¥"+resultBean.getProductPrice());
         cbGov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listener.onProductSelectChange(baseViewHoder.getPosition());
+                listener.onProductSelectChange(baseViewHoder.getPosition(),cbGov.isSelected());
             }
         });
         numberAddSubView.setValue(Integer.parseInt(resultBean.getProductNum()));
@@ -62,4 +64,5 @@ public class ShopCarAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
     public int getViewType(int position) {
         return position;
     }
+
 }

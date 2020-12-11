@@ -19,6 +19,7 @@ import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.UpdateProductNumBean;
+import com.example.net.bean.UpdateProductSelectedBean;
 import com.shoppmall.common.adapter.error.ErrorBean;
 
 import java.io.Serializable;
@@ -49,21 +50,21 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     protected void initListener() {
         super.initListener();
 
-        emptyToolbar.setToolBarClickListner(new ToolBar.IToolBarClickListner() {
-            @Override
-            public void onLeftClick() {
-                String type = intent.getStringExtra("type");
-                Serializable extra = intent.getSerializableExtra("good");
-                ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good",extra).withString("type",type).navigation();
-                finish();
-            }
-
-            @Override
-            public void onRightClick() {
-
-            }
-        });
-        CacheManager.getInstance().setShopcarDataChangeListener(this);
+//        emptyToolbar.setToolBarClickListner(new ToolBar.IToolBarClickListner() {
+//            @Override
+//            public void onLeftClick() {
+//                String type = intent.getStringExtra("type");
+//                Serializable extra = intent.getSerializableExtra("good");
+//                ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good",extra).withString("type",type).navigation();
+//                finish();
+//            }
+//
+//            @Override
+//            public void onRightClick() {
+//
+//            }
+//        });
+//        CacheManager.getInstance().setShopcarDataChangeListener(this);
     }
 
     @Override
@@ -141,13 +142,13 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
 
     @Override
     public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
-        if(shopCarBeanList.size()>0){
-            llShopcar.setVisibility(View.VISIBLE);
-            llEmpty.setVisibility(View.GONE);
-        }else {
-            llShopcar.setVisibility(View.GONE);
-            llEmpty.setVisibility(View.VISIBLE);
-        }
+//        if(shopCarBeanList.size()>0){
+//            llShopcar.setVisibility(View.VISIBLE);
+//            llEmpty.setVisibility(View.GONE);
+//        }else {
+//            llShopcar.setVisibility(View.GONE);
+//            llEmpty.setVisibility(View.VISIBLE);
+//        }
     }
 
     @Override
@@ -197,6 +198,16 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     }
 
     @Override
+    public void onProductSelectChangeOk(UpdateProductSelectedBean bean) {
+
+    }
+
+    @Override
+    public void onProductSelectChangeError(ErrorBean bean) {
+
+    }
+
+    @Override
     public void showloading() {
 
     }
@@ -217,7 +228,8 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     }
 
     @Override
-    public void onProductSelectChange(int position) {
+    public void onProductSelectChange(int position, boolean isSelect) {
 
     }
+
 }

@@ -22,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager {
     private List<ShopCarBean.ResultBean> shopCarList=new ArrayList<>();
-    private List<ShopCarBean.ResultBean> deleteShopCarList=new ArrayList<>();
+    private List<ShopCarBean.ResultBean> shopCarEditList=new ArrayList<>();
     private static CacheManager instance;
     private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList=new ArrayList<>();
     private Context context;
@@ -80,6 +80,7 @@ public class CacheManager {
                       if(shopCarBean.getCode().equals("200")){
                           List<ShopCarBean.ResultBean> result = shopCarBean.getResult();
                           shopCarList.addAll(result);
+                          setEditList(result);
                           Log.i("Yoyo", "ok: "+result.size());
                           notifyShopCarDataChanged();
                       }else {
@@ -99,6 +100,20 @@ public class CacheManager {
                 });
     }
 
+    public void setEditList(List<ShopCarBean.ResultBean> result) {
+        shopCarEditList.clear();
+        for (ShopCarBean.ResultBean resultBean : result) {
+            ShopCarBean.ResultBean bean = new ShopCarBean.ResultBean();
+            bean.setProductSelected(false);
+            bean.setProductNum(resultBean.getProductNum());
+            bean.setUrl(resultBean.getUrl());
+            bean.setProductPrice(resultBean.getProductPrice());
+            bean.setProductId(resultBean.getProductId());
+            bean.setProductName(resultBean.getProductName());
+            shopCarEditList.add(bean);
+        }
+    }
+
     private void notifyShopCarDataChanged() {
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
@@ -106,14 +121,34 @@ public class CacheManager {
     }
     public void add(ShopCarBean.ResultBean resultBean){
         shopCarList.add(resultBean);
-        Log.i("Yoyo", "add: "+shopCarList.size());
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
         }
 
     }
+    public void addEdit(ShopCarBean.ResultBean resultBean){
+        ShopCarBean.ResultBean bean = new ShopCarBean.ResultBean();
+        bean.setProductSelected(false);
+        bean.setProductNum(resultBean.getProductNum());
+        bean.setUrl(resultBean.getUrl());
+        bean.setProductPrice(resultBean.getProductPrice());
+        bean.setProductId(resultBean.getProductId());
+        bean.setProductName(resultBean.getProductName());
+        shopCarEditList.add(resultBean);
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onDataChanged(shopCarList);
+        }
+    }
     public void upDataProductNum(int position,String num){
         ShopCarBean.ResultBean resultBean = shopCarList.get(position);
+        resultBean.setProductNum(num);
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onOneDataChanged(position,resultBean);
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
+        }
+    }
+    public void upDataEditProductNum(int position,String num){
+        ShopCarBean.ResultBean resultBean = shopCarEditList.get(position);
         resultBean.setProductNum(num);
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onOneDataChanged(position,resultBean);
@@ -124,10 +159,23 @@ public class CacheManager {
         for (ShopCarBean.ResultBean resultBean : shopCarList) {
             resultBean.setProductSelected(isAllSelect);
         }
+
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
+            Log.i("Edit", "onClick:selectok "+shopCarEditList.get(0).isProductSelected());
             iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
             iShopcarDataChangeListener.onAllSelected(isAllSelect);
+        }
+
+
+    }
+    public void selectAllEditProduct(boolean isAllSelect){
+        for (ShopCarBean.ResultBean resultBean : shopCarEditList) {
+            resultBean.setProductSelected(isAllSelect);
+        }
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onDataChanged(shopCarEditList);
+            iShopcarDataChangeListener.onAllSelected(isAllEditSelected());
         }
     }
     public void updateProductSelected(int position){
@@ -143,8 +191,29 @@ public class CacheManager {
             }
         }
     }
+    public void updateProductEditSelected(int position){
+        ShopCarBean.ResultBean resultBean = shopCarEditList.get(position);
+        resultBean.setProductSelected(!resultBean.isProductSelected());
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onOneDataChanged(position,resultBean);
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
+            if(isAllSelected()){
+                iShopcarDataChangeListener.onAllSelected(true);
+            }else {
+                iShopcarDataChangeListener.onAllSelected(false);
+            }
+        }
+    }
 
     private boolean isAllSelected() {
+        for (ShopCarBean.ResultBean resultBean : shopCarList) {
+            if(!resultBean.isProductSelected()){
+                return false;
+            }
+        }
+        return true;
+    }
+    private boolean isAllEditSelected() {
         for (ShopCarBean.ResultBean resultBean : shopCarList) {
             if(!resultBean.isProductSelected()){
                 return false;
@@ -167,6 +236,9 @@ public class CacheManager {
 
     public List<ShopCarBean.ResultBean> getShopCarList(){
         return  shopCarList;
+    }
+    public List<ShopCarBean.ResultBean> getShopCarEditList(){
+        return  shopCarEditList;
     }
     public void setShopcarDataChangeListener(IShopcarDataChangeListener listener) {
         if (!iShopcarDataChangeListenerList.contains(listener)) {

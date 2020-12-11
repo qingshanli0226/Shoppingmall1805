@@ -274,6 +274,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
             resultBean.setProductSelected(true);
             resultBean.setUrl(goodBean.getFigure());
             CacheManager.getInstance().add(resultBean);
+            CacheManager.getInstance().addEdit(resultBean);
         }else {
             Toast.makeText(this, "加入购物车失败", Toast.LENGTH_SHORT).show();
         }
