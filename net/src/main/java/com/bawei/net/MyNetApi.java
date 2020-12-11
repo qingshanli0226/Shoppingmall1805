@@ -6,6 +6,7 @@ import com.bawei.net.mode.BaseBean;
 import com.bawei.net.mode.HomeBean;
 import com.bawei.net.mode.InventoryBean;
 import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.OrderInfoBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.net.mode.ShopcarBean;
@@ -100,12 +101,12 @@ public interface MyNetApi {
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
-//    @POST("autoLogin")
-//    @FormUrlEncoded
-//    Observable<BaseBean<LoginBean>> autoLogin(@Field("token") String token);
-
     @POST("autoLogin")
     @FormUrlEncoded
-    Observable<LoginBean> autoLogin(@FieldMap HashMap<String,String> map);
+    Observable<LoginBean> autoLogin(@FieldMap HashMap<String, String> map);
+
+    @POST("logout")
+    @FormUrlEncoded
+    Observable<LogoutBean> logout(@FieldMap HashMap<String, String> map);
 
 }

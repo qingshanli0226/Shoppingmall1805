@@ -1,7 +1,6 @@
 package com.bawei.shopcar;
 
-import android.os.Handler;
-import android.os.Message;
+
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
@@ -11,7 +10,6 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.CacheManager;
@@ -24,17 +22,16 @@ import com.bawei.shopcar.presenter.ShopcarPresenterImpl;
 import java.util.List;
 
 public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarContract.IShopcarView> implements ShopcarContract.IShopcarView, View.OnClickListener {
+
     private RecyclerView shopcarRv;
     private ShopcarAdapter shopcarAdapter;
-    private TextView totalPriceTv;
     private CheckBox allSelectCheckBox;
+    private TextView totalPriceTv;
     private boolean newAllSelect;
-
     private boolean isEditMode = false;
     private RelativeLayout normalLayout;
-    private RelativeLayout editLayout;
     private CheckBox editAllSelectCheckBox;
-
+    private RelativeLayout editLayout;
 
     private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
         @Override
@@ -43,8 +40,8 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         }
 
         @Override
-        public void onOneDataChanged(int position, ShopcarBean shopcarBean) {
-            shopcarAdapter.notifyItemChanged(position);
+        public void onOneDataChanged(int postion, ShopcarBean shopcarBean) {
+            shopcarAdapter.notifyItemChanged(postion);
         }
 
         @Override
@@ -62,6 +59,22 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         }
     };
 
+    @Override
+    protected void initView() {
+        shopcarRv = findViewById(R.id.shopcarRv);
+        totalPriceTv = findViewById(R.id.sumValue);
+        allSelectCheckBox = findViewById(R.id.allSelect);
+        normalLayout = findViewById(R.id.normalLayout);
+        editLayout = findViewById(R.id.editLayout);
+        editAllSelectCheckBox = findViewById(R.id.allEditSelect);
+
+        shopcarRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        shopcarAdapter = new ShopcarAdapter();
+        shopcarRv.setAdapter(shopcarAdapter);
+
+        findViewById(R.id.deleteBtn).setOnClickListener(this);
+    }
 
     @Override
     protected void initHttpData() {
@@ -70,35 +83,22 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         totalPriceTv.setText(CacheManager.getInstance().getMoneyValue());
 
         CacheManager.getInstance().setShopcarDataChangeListener(iShopcarDataChangeListener);
-        if (CacheManager.getInstance().isAllSelected()) {
-            allSelectCheckBox.setChecked(true);
-        } else {
-            allSelectCheckBox.setChecked(false);
-        }
 
-        allSelectCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (allSelectCheckBox.isChecked()) {
-                    newAllSelect = true;
-                    httpPresenter.selectAllProduct(newAllSelect);
-                } else {
-                    newAllSelect = false;
-                    httpPresenter.selectAllProduct(newAllSelect);
-                }
-            }
-        });
+        allSelectCheckBox.setChecked(CacheManager.getInstance().isAllSelected());
 
-        editAllSelectCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (editAllSelectCheckBox.isChecked()) {
-                    CacheManager.getInstance().selectAllProductInEditMode(true);
-                } else {
-                    CacheManager.getInstance().selectAllProductInEditMode(false);
-                }
-            }
-        });
+        allSelectCheckBox.setOnClickListener(this);
+
+        editAllSelectCheckBox.setOnClickListener(this);
+    }
+
+    @Override
+    protected int layoutId() {
+        return R.layout.activity_shopcar;
+    }
+
+    @Override
+    protected void initListener() {
+
     }
 
     @Override
@@ -108,45 +108,13 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     }
 
     @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    protected int layoutId() {
-        return R.layout.activity_shopcar;
-    }
-
-    @Override
-    protected void initView() {
-        shopcarRv = findViewById(R.id.shopcarRv);
-        shopcarRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        shopcarAdapter = new ShopcarAdapter();
-        shopcarRv.setAdapter(shopcarAdapter);
-        totalPriceTv = findViewById(R.id.sumValue);
-        allSelectCheckBox = findViewById(R.id.allSelect);
-        normalLayout = findViewById(R.id.normalLayout);
-        editLayout = findViewById(R.id.editLayout);
-        editAllSelectCheckBox = findViewById(R.id.allEditSelect);
-        findViewById(R.id.deleteBtn).setOnClickListener(this);
-        findViewById(R.id.payBtn).setOnClickListener(this);
-
-        //沙箱环境
-        //EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
-    }
-
-    @Override
-    protected void initListener() {
-
-    }
-
-    @Override
     public void onLeftClick() {
 
     }
 
     @Override
     public void onRightClick() {
+        super.onRightClick();
         if (!isEditMode) {
             isEditMode = true;
             toolBar.setToolbarRightTv("完成");
@@ -172,20 +140,26 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
 
     @Override
     public void onProductSelected(String result, int position) {
-        Toast.makeText(getContext(), "该商品在购物车的选择发生改变", Toast.LENGTH_SHORT).show();
         CacheManager.getInstance().updateProductSelected(position);
     }
 
     @Override
     public void onAllSelected(String result) {
-        Toast.makeText(getContext(), "所有的商品的选择状态发生了改变,全选状态为:" + newAllSelect, Toast.LENGTH_SHORT).show();
         CacheManager.getInstance().selectAllProduct(newAllSelect);
     }
 
     @Override
     public void onDeleteProducts(String result) {
-        Toast.makeText(getContext(), "删除购物车数据成功", Toast.LENGTH_SHORT).show();
         CacheManager.getInstance().processDeleteProducts();
+    }
+
+    @Override
+    public void onInventory(List<InventoryBean> inventoryBean) {
+        if (checkInventoryIsEnough(inventoryBean)) {
+            httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
+        } else {
+            Toast.makeText(getContext(), "库存不足", Toast.LENGTH_SHORT).show();
+        }
     }
 
     private boolean checkInventoryIsEnough(List<InventoryBean> inventoryBeans) {
@@ -201,63 +175,13 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
                 }
             }
         }
-
         return true;
     }
 
     @Override
-    public void onInventory(List<InventoryBean> inventoryBean) {
-
-
-        if (checkInventoryIsEnough(inventoryBean)) {
-            httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
-        } else {
-            Toast.makeText(getContext(), ((String) inventoryBean.get(0).getProductName()) + "库存不充足", Toast.LENGTH_SHORT).show();
-        }
+    public void onOrderInfo(OrderInfoBean orderInfoBean) {
 
     }
-
-    @Override
-    public void onOrderInfo(final OrderInfoBean orderInfoBean) {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                PayTask payTask = new PayTask(getActivity());
-//                Map<String, String> resultMap = payTask.payV2(orderInfoBean.getOrderInfo(), true);
-//                if (resultMap.get("resultStatus").equals("9000")) {//返回值是9000时代表支付成功
-//                    handler.sendEmptyMessage(1);
-//                } else {
-//                    handler.sendEmptyMessage(2);
-//                }
-//            }
-//        };
-//
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-    }
-
-    private Handler handler = new Handler() {
-        @Override
-        public void handleMessage(Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what) {
-                case 1: {
-                    Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
-                    CacheManager.getInstance().removeSelectedProducts();
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-                    break;
-                }
-                case 2: {
-                    Toast.makeText(getContext(), "支付失败", Toast.LENGTH_SHORT).show();
-                    CacheManager.getInstance().removeSelectedProducts();
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-                    break;
-                }
-                default:
-                    break;
-            }
-        }
-    };
 
     @Override
     public void showLoaDing() {
@@ -274,24 +198,35 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
 
     }
 
+    @Override
+    public void onClick(View view) {
+        if (view.getId() == R.id.deleteBtn) {
+            List<ShopcarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
+            if (deleteShopcarBeanList.size() > 0) {
+                httpPresenter.deleteProducts(deleteShopcarBeanList);
+            } else {
+                Toast.makeText(getContext(), "没有删除的数据", Toast.LENGTH_SHORT).show();
+            }
+        }else
+        if (view.getId() == R.id.allSelect) {
+            if (allSelectCheckBox.isChecked()) {
+                newAllSelect = true;
+                httpPresenter.selectAllProduct(newAllSelect);
+            } else {
+                newAllSelect = false;
+                httpPresenter.selectAllProduct(newAllSelect);
+            }
+        }else
+        if (view.getId() == R.id.allEditSelect) {
+            CacheManager.getInstance().selectAllProductInEditMode(editAllSelectCheckBox.isChecked());
+        }else if (view.getId() == R.id.payBtn){
+            httpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
+        }
+    }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
-    }
-
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.deleteBtn) {
-            List<ShopcarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
-            if (deleteShopcarBeanList.size() > 0) {
-                httpPresenter.deleteProducts(deleteShopcarBeanList);
-            } else {
-                Toast.makeText(getContext(), "当前没有要删除的数据", Toast.LENGTH_SHORT).show();
-            }
-        } else if (v.getId() == R.id.payBtn) {
-            httpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
-        }
     }
 }

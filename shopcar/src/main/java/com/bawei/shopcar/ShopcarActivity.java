@@ -72,7 +72,7 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
 
     @Override
     protected void initData() {
-        //destroy();
+        destroy();
         List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
         shopcarAdapter.updateData(shopcarBeanList);
         totalPriceTv.setText(CacheManager.getInstance().getMoneyValue());

@@ -117,7 +117,7 @@ public class ProductDetailContractImpl extends ProductDetailContract.ProductDeta
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("productId", productId);
-            jsonObject.put("productName", productName);
+            jsonObject.put("productNum", productNum);
             jsonObject.put("productName", productName);
             jsonObject.put("url", url);
             jsonObject.put("productPrice", productPrice);

@@ -96,6 +96,11 @@ public abstract class BaseFragment<P extends BasePresenter, V extends IView> ext
 
     protected abstract void initPresenter();
 
+    @Override
+    public void onRightClick() {
+
+    }
+
     protected void initData() {
 
     }

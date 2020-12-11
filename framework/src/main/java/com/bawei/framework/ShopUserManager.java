@@ -50,6 +50,17 @@ public class ShopUserManager {
         }
     }
 
+    public void logoutUser() {
+        if (loginBean != null) {
+            this.loginBean = null;
+            editor.clear();
+            editor.commit();
+            for (IUserLoginChangedListener listener : listeners) {
+                listener.onUserLogout();
+            }
+        }
+    }
+
 
     public boolean isUserLogin() {
         return loginBean != null;//如果loginBean不为空则代表已经登录

@@ -1,9 +1,12 @@
 package com.bawei.shopmall.user;
 
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -13,17 +16,28 @@ import com.bawei.framework.BaseFragment;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
 import com.bawei.framework.ShopUserManager;
+import com.bawei.framework.ShopUserManager.IUserLoginChangedListener;
+import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.LogoutBean;
 import com.shopmall.bawei.shopmall1805.R;
+
+import java.util.HashMap;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserFragment extends BaseFragment<BasePresenter, IView> implements ShopUserManager.IUserLoginChangedListener, View.OnClickListener {
+public class UserFragment extends BaseFragment<BasePresenter, IView> implements IUserLoginChangedListener, View.OnClickListener {
 
     private TextView tvUsername;
     private ImageView ibUserSetting;
     private ImageView ibUserIconAvator;
+    private String message;
 
     @Override
     protected int layoutId() {
@@ -68,7 +82,12 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     public void onUserLogout() {
-
+        Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.remove(NetConfig.tokenName);
+        edit.commit();
+        tvUsername.setText("登录/注册");
     }
 
     @Override
@@ -87,6 +106,35 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
                 break;
             case R.id.ib_user_setting:
 
+                HashMap<String, String> map = new HashMap<>();
+                map.put(NetConfig.tokenName, ShopUserManager.getInstance().getToken());
+                RetrofitCreate.getApi().logout(map)
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe(new Observer<LogoutBean>() {
+                            @Override
+                            public void onSubscribe(Disposable d) {
+
+                            }
+
+                            @Override
+                            public void onNext(LogoutBean logoutBean) {
+                                if (logoutBean.getCode().equals("200")) {
+                                    message = logoutBean.getMessage() + logoutBean.getResult();
+                                    ShopUserManager.getInstance().logoutUser();
+                                }
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+
+                            }
+
+                            @Override
+                            public void onComplete() {
+
+                            }
+                        });
                 break;
         }
     }

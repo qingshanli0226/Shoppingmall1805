@@ -256,7 +256,11 @@ public class CacheManager {
 
             @Override
             public void onUserLogout() {
+                shopcarBeanList.clear();
 
+                for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+                    iShopcarDataChangeListener.onDataChanged(shopcarBeanList);
+                }
             }
         });
     }

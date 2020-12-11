@@ -29,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = NetConfig.MAIN_MAINACTIVITY)
-public class MainActivity extends BaseActivity<IPresenter, IView> {
+public class MainActivity extends BaseActivity<IPresenter, IView>{
 
     private List<Fragment> fragments = new ArrayList();
 
@@ -170,6 +170,8 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         public void onAllSelected(boolean isAllSelect) {
 
         }
+
+
     };
 
     private void initShopcarDataChangeLinstener() {
