@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--高度-->
+    <dimen name="Pcom_public_heightone">200dp</dimen>
+    <dimen name="Pcom_public_heighttow">150dp</dimen>
+    <dimen name="Pcom_public_heightthree">100dp</dimen>
+    <dimen name="Pcom_public_heightfour">60dp</dimen>
+    <!--宽度-->
+    <dimen name="Pcom_public_widthtone">200dp</dimen>
+    <dimen name="Pcom_public_widthtow">150dp</dimen>
+    <dimen name="Pcom_public_widththree">100dp</dimen>
+    <dimen name="Pcom_public_widthfour">60dp</dimen>
+    <!--字体-->
+    <dimen name="Pcom_public_textmaxsize">26sp</dimen>
+    <dimen name="Pcom_public_textmediumsize">22sp</dimen>
+    <dimen name="Pcom_public_textminsize">18sp</dimen>
+
+</resources>
