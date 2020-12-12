@@ -2,6 +2,7 @@ package com.example.framework;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 
 import com.example.net.BaseBean;
 import com.example.net.ConfigUrl;
@@ -53,6 +54,7 @@ public class CacheManager {
 
     //初始化service,完成自动登录功能
     private void initService() {
+
         Intent intent = new Intent(context,LoginService.class);
         context.startService(intent);
         //缓存第二步,通过回调监听登录事件,一旦监听到登陆成功,立马从服务端获取购物车数据,并且把数据塞到缓存里,初始化缓存
@@ -68,8 +70,32 @@ public class CacheManager {
             }
         });
     }
+
+    public ShopcarBean getShopId(String Id){
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if (Id.equals(shopcarBean.getProductId())){
+                return shopcarBean;
+            }
+        }
+        return null;
+    }
+
+    //更新缓存中商品的数量
+    public void updateProductNum(int position,String newNum){
+        ShopcarBean shopcarBean = shopcarBeanList.get(position);
+        shopcarBean.setProductNum(newNum);
+
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListenerList){
+            listener.onOneDataChanged(position,shopcarBean);
+        }
+    }
+
     //从服务端获取购物车的数据
-    private void getShopcarDataFromServer() {
+    public void getShopcarDataFromServer() {
+        if (shopcarBeanList!=null){
+            shopcarBeanList.clear();
+        }
+        Log.i("suibian", "onNext: ");
         new HttpRetrofitManager()
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
@@ -85,6 +111,8 @@ public class CacheManager {
                     @Override
                     public void onNext(BaseBean<List<ShopcarBean>> listBaseBean) {
                         shopcarBeanList.addAll(listBaseBean.getResult());
+                        Log.i("oneshuju", "onNext: "+listBaseBean.getResult().get(0).getProductName());
+                        notifyShopcarDataChanged();
                     }
 
                     @Override
@@ -101,6 +129,13 @@ public class CacheManager {
 
     }
 
+    //当页面想监听数据的改变，就注册一个listener
+    public void setShopcarDataChangeListener(IShopcarDataChangeListener listener) {
+        if (!iShopcarDataChangeListenerList.contains(listener)) {
+            iShopcarDataChangeListenerList.add(listener);
+        }
+    }
+
     //定义接口，当购物车数据发生改变时，通过该接口通知页面刷新
     public interface IShopcarDataChangeListener {
         void onDataChanged(List<ShopcarBean> shopcarBeanList);
@@ -112,8 +147,23 @@ public class CacheManager {
     //缓存第三步:提供修改缓存数据的接口
     public void add(ShopcarBean shopcarBean){
         shopcarBeanList.add(shopcarBean);
+
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
             listener.onDataChanged(shopcarBeanList);
+        }
+    }
+
+    public void upDataNum(String dataId,String dataNum){
+        int o = 0;
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if (shopcarBean.getProductId().equals(dataId)){
+                shopcarBean.setProductNum(dataNum);
+                for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+                    listener.onOneDataChanged(o,shopcarBean);
+                }
+                break;
+            }
+            o++;
         }
     }
 
@@ -137,4 +187,53 @@ public class CacheManager {
         }
         return selectedList;
     }
+
+    public boolean isAllSelected(){
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+            if (!shopcarBean.isProductSelected()) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+    public void selectAllProduct(boolean isAllSelect) {
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+            shopcarBean.setProductSelected(isAllSelect);
+        }
+
+        //通知UI更新页面
+        //通知UI，数据发生了改变，需要更新UI
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+//            listener.onMoneyChanged(getMoneyValue());
+            listener.onAllSelected(isAllSelect);
+        }
+
+    }
+    public void updateProductSelected(int position) {
+        ShopcarBean shopcarBean = shopcarBeanList.get(position);
+        boolean newProductselected = !shopcarBean.isProductSelected();
+        shopcarBean.setProductSelected(newProductselected);
+
+        //通知UI，数据发生了改变，需要更新UI
+        for (IShopcarDataChangeListener listener : iShopcarDataChangeListenerList) {
+            listener.onOneDataChanged(position, shopcarBean);
+//            listener.onMoneyChanged(getMoneyValue());
+            if (isAllSelected()) {
+                listener.onAllSelected(true);
+            } else {
+                listener.onAllSelected(false);
+            }
+        }
+    }
+    public ShopcarBean getShopcarBan(String productId) {
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+            if (productId.equals(shopcarBean.getProductId())) {
+                return shopcarBean;
+            }
+        }
+        return null;
+    }
+
 }

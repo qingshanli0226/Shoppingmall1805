@@ -2,6 +2,7 @@ package com.example.net;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,22 +44,24 @@ public class ShopUserManger {
         return loginBean!=null;
     }
     //该函数，将当前的登录程序的登录状态从未登录变成已登录
-    public void ShopLoginmange(LoginBean loginBean) {
+    public void ShopLoginManger(LoginBean loginBean) {
         this.loginBean = loginBean;
 
         //使用sp储存token
-            editor.putString("boluo",loginBean.getToken());
-            editor.commit();
-
+        editor.putString("token",loginBean.getToken());
+        Log.i("login", "ShopLoginmange: "+loginBean.getToken());
+        editor.commit();
 
         //通过接口回调通知其他的界面，当前用户已经登录
         for (IUserLoginChangeListener listenter:listeners) {
             listenter.onUserLogin(loginBean);
         }
+
+
     }
     public String getToken(){
 
-        return sharedPreferences.getString("boluo","");
+        return sharedPreferences.getString("token","");
     }
 
     public void requesterUserLoginChangeListener(IUserLoginChangeListener listener){

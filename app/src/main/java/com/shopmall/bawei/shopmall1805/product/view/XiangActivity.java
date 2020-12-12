@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.product.view;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,8 @@ import com.shopmall.bawei.shopmall1805.entity.ShopEntityDao;
 import com.shopmall.bawei.shopmall1805.product.contract.ProductDetailContract;
 import com.shopmall.bawei.shopmall1805.product.presenter.ProductDetailPresenterImpl;
 
+import java.util.List;
+
 public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, ProductDetailContract.IProductDetailView>implements ProductDetailContract.IProductDetailView {
 
     private ImageView imv;
@@ -36,17 +39,17 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
     private TextView tv_shopcar,tv_bj;
     private Button button;
     private ImageView ivGoodinfoPhoto,btnSub,btnAdd;
-    private TextView tvGoodinfoName,tvGoodinfoPrice,tvCount;
+    private TextView tvGoodinfoName,tvGoodinfoPrice,tvCount,tv_money;
     private Button btGoodinfoCancel,btGoodinfoConfim;
     private LinearLayout ll_bj;
     private String path,name,id,money;
+    private String s;
+    private int newNum;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_xiang;
     }
-
-
 
     protected void initView() {
         imv = (ImageView) findViewById(R.id.iv_good_info_image);
@@ -55,6 +58,7 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
         button = findViewById(R.id.btn_good_info_addcart);
         tv_bj = findViewById(R.id.tv_shopcart_edit);
         ll_bj = findViewById(R.id.ll_delete);
+        tv_money = findViewById(R.id.tv_good_info_price);
     }
 
     @Override
@@ -62,12 +66,14 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
         initView();
         Intent intent = getIntent();
         path = intent.getStringExtra("path");
-       name = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
          money = intent.getStringExtra("money");
          id = intent.getStringExtra("id");
 
          httpPresenter = new ProductDetailPresenterImpl();
         Glide.with(this).load(ConfigUrl.BASE_IMAGE+path).into(imv);
+
+        tv_money.setText("$"+money+"");
 
         ARouter.getInstance().inject(this);
 
@@ -131,13 +137,28 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
                     public void onClick(View view) {
 //                        onCheckOneProduct(1+"");
                         httpPresenter.checkOneProductNum(id,"1");
-                        Toast.makeText(XiangActivity.this, "加入成功", Toast.LENGTH_SHORT).show();
+
+                        popupWindow.dismiss();
                     }
                 });
                 btnAdd.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-//                        httpPresenter.checkOneProductNum(id,"1");
+                        s = tvCount.getText().toString();
+                        int num= Integer.parseInt(s);
+                        num++;
+                        tvCount.setText(num+"");
+                    }
+                });
+                btnSub.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        s = tvCount.getText().toString();
+                        int num= Integer.parseInt(s);
+                        if (num!=1){
+                            num--;
+                        }
+                        tvCount.setText(num+"");
                     }
                 });
                 if (!ShopUserManger.getInstance().isUserLogin()){
@@ -159,26 +180,57 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
 
     @Override
     public void onCheckOneProduct(String productNum) {
+        //判断是否有同一条数据
         if (Integer.valueOf(productNum)>=1){
-            httpPresenter.addOneProduct(id,"1",name,path,money);
+            if (checkIfShopcarListHasProduct()){
+                ShopcarBean shopcarBan = CacheManager.getInstance().getShopcarBan(id);
+                int oldNum = Integer.valueOf(shopcarBan.getProductNum());
+                newNum = oldNum+1;
+                httpPresenter.updateProductNum(id,String.valueOf(newNum),name,path,money);
+            }else {
+                httpPresenter.addOneProduct(id,"1",name,path,money);
+            }
         }
+    }
+
+    private boolean checkIfShopcarListHasProduct() {
+        List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if (shopcarBean.getProductId().equals(id)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean ShopcarListHashMap() {
+        List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if (id.equals(shopcarBean.getProductId())){
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
     public void onAddProduct(String addResult) {
-        Toast.makeText(this, ""+addResult, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "cg", Toast.LENGTH_SHORT).show();
         ShopcarBean shopcarBean = new ShopcarBean();
         shopcarBean.setProductId(id);
         shopcarBean.setProductName(name);
         shopcarBean.setProductNum("1");
-        shopcarBean.setProductPrice(path);
-        shopcarBean.setProductSelected(true);
+        shopcarBean.setProductPrice(money);
+        shopcarBean.setUrl(path);
+        shopcarBean.setProductSelected(false);
+
+
         CacheManager.getInstance().add(shopcarBean);
     }
 
     @Override
     public void onProductNumChange(String result) {
-
+        CacheManager.getInstance().upDataNum(id,String.valueOf(newNum));
     }
 
     @Override

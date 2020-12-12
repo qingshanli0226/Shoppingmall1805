@@ -31,9 +31,9 @@ public class ShopmallApplication extends Application {
                 .getInstance()
                 .init(this);
 
-        Intent intent = new Intent();
-        intent.setClass(this, LoginService.class);
-        startService(intent);
+//        Intent intent = new Intent();
+//        intent.setClass(this, LoginService.class);
+//        startService(intent);
 
         CacheManager.getInstance().init(this);
     }

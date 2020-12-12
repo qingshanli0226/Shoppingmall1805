@@ -36,6 +36,17 @@ public interface INetPresetenterWork {
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
+    //更新服务端购物车产品的选择
+    @POST("selectAllProduct")
+    Observable<BaseBean<String>> upDataSelected(@Body RequestBody requestBody);
+
+    @POST("updateProductSelected")
+    Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);
+
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
+
+
     //获取服务端购物车产品信息的接口
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();

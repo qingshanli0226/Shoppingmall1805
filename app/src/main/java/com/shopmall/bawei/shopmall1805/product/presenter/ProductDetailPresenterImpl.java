@@ -1,5 +1,7 @@
 package com.shopmall.bawei.shopmall1805.product.presenter;
 
+import android.util.Log;
+
 import com.example.net.BaseBean;
 import com.example.net.ConfigUrl;
 import com.example.net.HttpRetrofitManager;
@@ -141,7 +143,7 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
         new HttpRetrofitManager()
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
-                .getShortcartProducts()
+                .updateProductNum(requestBody)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .doOnSubscribe(new Consumer<Disposable>() {

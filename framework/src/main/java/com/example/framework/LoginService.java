@@ -36,7 +36,7 @@ public class LoginService extends Service {
         String token = ShopUserManger.getInstance().getToken();
         Log.e("###",""+token);
         if (token==null){
-            return START_STICKY;
+            return START_NOT_STICKY;
         }else {
             HashMap<String,String> map = new HashMap<>();
             map.put("token",token);
@@ -44,7 +44,6 @@ public class LoginService extends Service {
                     .getRetrofit(ConfigUrl.BASE_URL)
                     .create(INetPresetenterWork.class)
                     .Autologin(map)
-                    .delay(3, TimeUnit.MILLISECONDS)
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribeOn(Schedulers.io())
                     .subscribe(new Observer<BaseBean<LoginBean>>() {
@@ -56,9 +55,10 @@ public class LoginService extends Service {
                         @Override
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
-                            ShopUserManger.getInstance().ShopLoginmange(loginBean);
+                            ShopUserManger.getInstance().ShopLoginManger(loginBean);
                             ShopUserManger.getInstance().setName(loginBeanBaseBean.getResult().getName());
                             EventBus.getDefault().postSticky("自动登录成功");
+                            CacheManager.getInstance().getShopcarDataFromServer();
                         }
 
                         @Override
@@ -73,6 +73,6 @@ public class LoginService extends Service {
                     });
 
         }
-        return super.onStartCommand(intent, flags, startId);
+        return START_NOT_STICKY;
     }
 }

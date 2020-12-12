@@ -9,6 +9,7 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
+import com.example.framework.CacheManager;
 import com.example.net.ShopUserManger;
 import com.example.net.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
@@ -74,13 +75,14 @@ public  class LoginFragment extends BaseFragment<LogPresenter, LoginContract.Log
 
     @Override
     public void getLoginCode(LoginBean loginBean) {
-
             ShopUserManger.getInstance()
-                    .ShopLoginmange(loginBean);
+                    .ShopLoginManger(loginBean);
 
             ARouter.getInstance()
                     .build("/aa/aaa")
                     .navigation();
+
+
         Log.i("wft", "getLoginCode: "+loginBean.getToken());
     }
 
