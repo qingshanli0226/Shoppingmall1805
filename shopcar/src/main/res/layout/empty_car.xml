@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="#fff"
     android:id="@+id/ll_empty"
-    android:visibility="visible"
+    android:visibility="gone"
     android:orientation="vertical"
     android:layout_height="match_parent">
     <com.example.framework.view.ToolBar

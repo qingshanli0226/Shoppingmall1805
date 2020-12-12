@@ -150,8 +150,8 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             llDelete.setVisibility(View.GONE);
             llCheckAll.setVisibility(View.VISIBLE);
             recyclerview.setAdapter(adapter);
-        }
-        isEdit=!isEdit;
+    }
+    isEdit=!isEdit;
         adapter.updataData(list);
         editAdapter.updataData(editList);
     }

@@ -133,7 +133,11 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
 
     @Override
     public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
-        commMain.showMsg(3,shopCarBeanList.size());
+        if(shopCarBeanList.size()>0){
+            commMain.showMsg(3,shopCarBeanList.size());
+        }else {
+            commMain.hideMsg(3);
+        }
     }
 
     @Override
