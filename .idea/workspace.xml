@@ -6,7 +6,7 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Edit" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="Yoyo" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
@@ -217,10 +217,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="451" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606473327064" />
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1607665976122">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1607735543450">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1607665976122" />
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1607735543450" />
     <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606723195244">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -249,42 +249,46 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="852" y="304" key="AndroidProcessChooserDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1607414991574" />
+    <state width="455" height="466" key="DebuggerActiveHint" timestamp="1607739331815">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state width="455" height="466" key="DebuggerActiveHint/75.0.1845.1080@75.0.1845.1080" timestamp="1607739331815" />
     <state x="777" y="294" key="FileChooserDialogImpl" timestamp="1606722759949">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606722759949" />
-    <state width="1802" height="281" key="GridCell.Tab.0.bottom" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.0.bottom" timestamp="1607740300550">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.0.center" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300550" />
+    <state width="1802" height="332" key="GridCell.Tab.0.center" timestamp="1607740300550">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.0.left" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300550" />
+    <state width="1802" height="332" key="GridCell.Tab.0.left" timestamp="1607740300550">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.0.right" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300550" />
+    <state width="1802" height="332" key="GridCell.Tab.0.right" timestamp="1607740300550">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.1.bottom" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300550" />
+    <state width="1802" height="332" key="GridCell.Tab.1.bottom" timestamp="1607740300551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.1.center" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.1.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300551" />
+    <state width="1802" height="332" key="GridCell.Tab.1.center" timestamp="1607740300551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.1.left" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.1.center/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300551" />
+    <state width="1802" height="332" key="GridCell.Tab.1.left" timestamp="1607740300551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
-    <state width="1802" height="281" key="GridCell.Tab.1.right" timestamp="1607691690820">
+    <state width="1802" height="332" key="GridCell.Tab.1.left/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300551" />
+    <state width="1802" height="332" key="GridCell.Tab.1.right" timestamp="1607740300551">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="281" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1607691690820" />
+    <state width="1802" height="332" key="GridCell.Tab.1.right/75.0.1845.1080@75.0.1845.1080" timestamp="1607740300551" />
     <state x="638" y="118" key="SettingsEditor" timestamp="1607304510057">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -329,10 +333,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="654" y="250" key="run.anything.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607318007111" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1607689087913">
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1607737135904">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607689087913" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607737135904" />
     <state x="719" y="451" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606478836207">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -352,40 +356,24 @@
           <option name="timeStamp" value="31" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/detail/src/main/java/com/example/detail/detailpage/DetailActivity.java</url>
-          <line>275</line>
-          <option name="timeStamp" value="42" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/detail/src/main/java/com/example/detail/detailpage/DetailActivity.java</url>
-          <line>266</line>
-          <option name="timeStamp" value="48" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/shopcar/src/main/java/com/shopmall/bawei/shopcar/ShopCarPresenterImpl.java</url>
-          <line>116</line>
+          <line>134</line>
           <option name="timeStamp" value="80" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/shoppingcar/ShoppingCarFragment.java</url>
-          <line>241</line>
+          <line>256</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/shoppingcar/ShoppingCarFragment.java</url>
-          <line>90</line>
-          <option name="timeStamp" value="89" />
+          <line>181</line>
+          <option name="timeStamp" value="100" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/shoppingcar/ShoppingCarFragment.java</url>
-          <line>102</line>
-          <option name="timeStamp" value="90" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-field">
-          <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/manager/CacheManager.java</url>
-          <line>24</line>
-          <properties field="shopCarEditList" class="com.example.framework.manager.CacheManager" />
-          <option name="timeStamp" value="88" />
+          <url>file://$PROJECT_DIR$/framework/src/main/java/com/example/framework/view/LoadingPage.java</url>
+          <line>59</line>
+          <option name="timeStamp" value="119" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

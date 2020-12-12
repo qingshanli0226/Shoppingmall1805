@@ -123,6 +123,12 @@ public class CacheManager {
         shopCarList.add(resultBean);
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
+            if(isAllSelected()){
+                iShopcarDataChangeListener.onAllSelected(true);
+            }else {
+                iShopcarDataChangeListener.onAllSelected(false);
+            }
         }
 
     }
@@ -134,7 +140,7 @@ public class CacheManager {
         bean.setProductPrice(resultBean.getProductPrice());
         bean.setProductId(resultBean.getProductId());
         bean.setProductName(resultBean.getProductName());
-        shopCarEditList.add(resultBean);
+        shopCarEditList.add(bean);
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
         }
@@ -162,7 +168,6 @@ public class CacheManager {
 
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
-            Log.i("Edit", "onClick:selectok "+shopCarEditList.get(0).isProductSelected());
             iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
             iShopcarDataChangeListener.onAllSelected(isAllSelect);
         }
@@ -175,7 +180,23 @@ public class CacheManager {
         }
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarEditList);
+        }
+    }
+    public void deleteManyProduct(List<ShopCarBean.ResultBean> list){
+        List<ShopCarBean.ResultBean> deleteList=new ArrayList<>();
+        for (ShopCarBean.ResultBean deleteBean : list) {
+            for (ShopCarBean.ResultBean resultBean : shopCarList) {
+                if(resultBean.getProductId().equals(deleteBean.getProductId())){
+                    deleteList.add(resultBean);
+                }
+            }
+        }
+        shopCarList.removeAll(deleteList);
+        shopCarEditList.removeAll(list);
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onDataChanged(shopCarList);
             iShopcarDataChangeListener.onAllSelected(isAllEditSelected());
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
         }
     }
     public void updateProductSelected(int position){

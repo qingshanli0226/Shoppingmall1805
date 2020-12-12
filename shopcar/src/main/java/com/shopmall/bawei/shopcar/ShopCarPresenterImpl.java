@@ -1,5 +1,7 @@
 package com.shopmall.bawei.shopcar;
 
+import android.util.Log;
+
 import com.example.net.RetrofitCreater;
 import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
@@ -9,6 +11,7 @@ import com.example.net.bean.UpdateProductSelectedBean;
 import com.google.gson.JsonObject;
 import com.shoppmall.common.adapter.error.ExceptionUtil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -26,7 +29,21 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
 
     @Override
     public void removeManyProduct(List<ShopCarBean.ResultBean> beans) {
-        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), beans.toString());
+        JSONArray jsonArray = new JSONArray();
+        for (ShopCarBean.ResultBean bean : beans) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("productId",bean.getProductId());
+                jsonObject.put("productNum",bean.getProductNum());
+                jsonObject.put("productName",bean.getProductName());
+                jsonObject.put("url",bean.getUrl());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonArray.toString());
+        Log.i("Yoyo", "removeManyProduct: "+beans.toString());
 
         RetrofitCreater.getiNetWorkApi().removeManyProduct(body)
                 .subscribeOn(Schedulers.io())
@@ -45,12 +62,13 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
 
                     @Override
                     public void onNext(RemoveManyProductBean bean) {
-                        iview.onRemoveManyOk(bean);
                         iview.hideLoading(true,null);
+                        iview.onRemoveManyOk(bean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.i("Yoyo", "onError: "+e.getMessage());
                        iview.onRemoveManyError(ExceptionUtil.getErrorBean(e));
 
                     }

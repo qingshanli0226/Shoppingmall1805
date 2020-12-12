@@ -50,21 +50,6 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
     protected void initListener() {
         super.initListener();
 
-//        emptyToolbar.setToolBarClickListner(new ToolBar.IToolBarClickListner() {
-//            @Override
-//            public void onLeftClick() {
-//                String type = intent.getStringExtra("type");
-//                Serializable extra = intent.getSerializableExtra("good");
-//                ARouter.getInstance().build("/detailpage/DetailActivity").withSerializable("good",extra).withString("type",type).navigation();
-//                finish();
-//            }
-//
-//            @Override
-//            public void onRightClick() {
-//
-//            }
-//        });
-//        CacheManager.getInstance().setShopcarDataChangeListener(this);
     }
 
     @Override
@@ -142,13 +127,8 @@ public class ShopCarActivity extends BaseActivity implements CacheManager.IShopc
 
     @Override
     public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
-//        if(shopCarBeanList.size()>0){
-//            llShopcar.setVisibility(View.VISIBLE);
-//            llEmpty.setVisibility(View.GONE);
-//        }else {
-//            llShopcar.setVisibility(View.GONE);
-//            llEmpty.setVisibility(View.VISIBLE);
-//        }
+
+
     }
 
     @Override

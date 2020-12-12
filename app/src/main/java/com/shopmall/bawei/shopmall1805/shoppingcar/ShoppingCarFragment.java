@@ -50,6 +50,7 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
     private boolean isClickCheckBox=false;
     private boolean isClickCb=false;
     private int clickposition=-1;
+    List<ShopCarBean.ResultBean> deleteList=new ArrayList<>();
     @Override
     protected void initDate() {
         presenter=new ShopCarPresenterImpl();
@@ -93,10 +94,7 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             public void onClick(View v) {
                 presenter.selectAllProduct(cbAll.isChecked());
                 isClickCheckBox=true;
-                List<ShopCarBean.ResultBean> shopCarEditList = CacheManager.getInstance().getShopCarEditList();
-                for (ShopCarBean.ResultBean resultBean : shopCarEditList) {
-                    Log.i("Edit", "onClick:"+resultBean.isProductSelected());
-                }
+
             }
 
         });
@@ -104,6 +102,19 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             @Override
             public void onClick(View v) {
                 CacheManager.getInstance().selectAllEditProduct(cbAll.isChecked());
+            }
+        });
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                deleteList.clear();
+                List<ShopCarBean.ResultBean> shopCarEditList = CacheManager.getInstance().getShopCarEditList();
+                for (ShopCarBean.ResultBean resultBean : shopCarEditList) {
+                    if(resultBean.isProductSelected()){
+                        deleteList.add(resultBean);
+                    }
+                }
+                presenter.removeManyProduct(deleteList);
             }
         });
     }
@@ -152,25 +163,29 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
 
     @Override
     public void onDataChanged(List<ShopCarBean.ResultBean> shopCarBeanList) {
-       if(isEdit){
            if(shopCarBeanList.size()>0){
                showSuccess();
                list.clear();
-               list.addAll(shopCarBeanList);
-               llCheckAll.setVisibility(View.VISIBLE);
-           }else {
+               list.addAll(CacheManager.getInstance().getShopCarList());
+               editList.clear();
+               editList.addAll(CacheManager.getInstance().getShopCarEditList());
+               editAdapter.updataData(editList);
+               adapter.updataData(list);
+              if(isEdit){
+                  llCheckAll.setVisibility(View.VISIBLE);
+              }
+           }else if (shopCarBeanList.size()==0){
                list.clear();
                editList.clear();
+               editAdapter.updataData(editList);
+               adapter.updataData(list);
                showEmptyCarPage();
-
+               cbAll.setChecked(false);
+               Log.i("Yoyo", "onDataChanged:aaaaaaa ");
            }
 
-           adapter.updataData(list);
-       }else {
-           editList.clear();
-           editList.addAll(shopCarBeanList);
-           editAdapter.updataData(editList);
-       }
+
+
     }
 
     @Override
@@ -212,7 +227,7 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
 
     @Override
     public void onRemoveManyOk(RemoveManyProductBean bean) {
-        Toast.makeText(getContext(), ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+        CacheManager.getInstance().deleteManyProduct(deleteList);
     }
 
     @Override
