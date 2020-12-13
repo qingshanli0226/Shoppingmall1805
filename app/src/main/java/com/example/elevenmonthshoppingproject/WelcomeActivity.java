@@ -7,11 +7,13 @@ import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.framwork.service.LoginService;
 import com.example.framwork.BaseActivity;
-
+@Route(path = "/WeMain/WelMainActivity")
 public class WelcomeActivity extends BaseActivity {
     private ImageView welcomeImg;
-
+    private Intent intent;
 
 
     @Override
@@ -21,6 +23,8 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void iniView() {
+        intent=new Intent(this,LoginService .class);
+        startService(intent);
         welcomeImg = findViewById(R.id.welcome_img);
         ViewCompat.animate(welcomeImg).setListener(new ViewPropertyAnimatorListener() {
             @Override
@@ -60,6 +64,9 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        stopService(intent);
+    }
 }

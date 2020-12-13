@@ -10,6 +10,6 @@ public class LoginContract{
         void onLogin(LoginBean loginBean);
     }
     public static abstract class LoginPresenter extends BasePresenter<ILoginView>{
-        public abstract void login(String name,String password);
+        public abstract void getLogin(String name,String password);
     }
 }

@@ -7,9 +7,9 @@ import com.example.net.bean.RegisterBean;
 public class RegisterContract {
 
     public interface IRegisterView extends IView {
-        void onregister(RegisterBean registerBean);
+        void onRegister(RegisterBean registerBean);
     }
     public static abstract class RegisterPresenter extends BasePresenter<IRegisterView>{
-        public abstract void register(String name,String password);
+        public abstract void getRegister(String name,String password);
     }
 }

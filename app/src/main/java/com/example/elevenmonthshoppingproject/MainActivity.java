@@ -1,9 +1,13 @@
 package com.example.elevenmonthshoppingproject;
 
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.elevenmonthshoppingproject.adapter.PageFragment;
 import com.example.elevenmonthshoppingproject.classification.view.ClassIfiCationFragment;
 import com.example.elevenmonthshoppingproject.foundfragment.view.FoundFragment;
@@ -16,7 +20,7 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
-
+@Route(path = "/Main/MainActivity")
 public class MainActivity extends BaseActivity implements View.OnClickListener, OnTabSelectListener {
     private BottomBar bottomBar;
     private ViewPager viewPager;
@@ -28,6 +32,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private PersonalCenterFragment personalCenterFragment=new PersonalCenterFragment();
     private PageFragment pageFragment;
 
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
@@ -35,6 +40,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     protected void iniView() {
+        //获取token值
+//        iniToken();
+
+
+
         fragments.add(homeFragment);
         fragments.add(classIfiCationFragment);
         fragments.add(foundFragment);
@@ -50,7 +60,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         pageFragment=new PageFragment(getSupportFragmentManager(),fragments);
         viewPager.setAdapter(pageFragment);
 
+
+
     }
+
+//    private void iniToken() {
+
+//        Log.i("---","45"+token);
+//
+//
+//    }
 
     @Override
     protected void iniData() {
@@ -74,8 +93,34 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             viewPager.setCurrentItem(2);
         }else if (tabId==R.id.tab_shop){
             viewPager.setCurrentItem(3);
+//            String string = ShopUserManager.getInstance().getString(this);
+//            if (!ShopUserManager.getInstance().isUserLogin()) {
+//                onBottomBarLogin();
+//                return;
+//            }else {
+//
+////                ARouter.getInstance().build("/Main/MainActivity").navigation();
+//            }
+
         }else if (tabId==R.id.tab_personal_center){
             viewPager.setCurrentItem(4);
         }
+    }
+
+    private void onBottomBarLogin() {
+        //如果bottom当前id和用户没有登陆的情况下 跳转登陆
+
+            Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
+            ARouter.getInstance().build("/login/loginActivity").navigation();
+
+
+
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
     }
 }

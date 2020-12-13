@@ -1,2 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.user" />
+    package="com.example.user">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <application>
+        <activity android:name="com.example.user.view.LoginActivity"></activity>
+        <activity android:name=".view.RegisterActivity"></activity>
+    </application>
+
+</manifest>

@@ -1,18 +1,27 @@
 package com.example.framwork;
 
-public class BaseMVPActivity<T extends  IPresenter,V extends  IView> extends  BaseActivity{
-    @Override
-    protected int getLayoutId() {
-        return 0;
-    }
+import android.os.Bundle;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+public abstract class BaseMVPActivity<T extends  IPresenter,V extends  IView> extends AppCompatActivity {
 
     @Override
-    protected void iniView() {
-
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(getLayoutId());
+        iniView();
+        initPresenter();
+        initData();
     }
 
-    @Override
-    protected void iniData() {
+    protected abstract int getLayoutId();
+    protected abstract void iniView();
+    protected abstract void initPresenter();
 
-    }
+    protected abstract void initData();
+
+
+
 }

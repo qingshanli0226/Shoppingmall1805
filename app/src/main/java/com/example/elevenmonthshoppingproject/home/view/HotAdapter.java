@@ -1,5 +1,6 @@
 package com.example.elevenmonthshoppingproject.home.view;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -9,6 +10,7 @@ import com.example.common.ShopMallContants;
 import com.example.elevenmonthshoppingproject.R;
 import com.example.framwork.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
+import com.example.shopercar.view.ShoppingPageActivity;
 
 
 public class HotAdapter extends BaseRVAdapter<HomeBean.HotInfoBean> {
@@ -23,9 +25,20 @@ public class HotAdapter extends BaseRVAdapter<HomeBean.HotInfoBean> {
     }
 
     @Override
-    protected void cover(BaseViewHoder holder, int viewtype, HomeBean.HotInfoBean hotInfoBean) {
+    protected void cover(final BaseViewHoder holder, int viewtype, final HomeBean.HotInfoBean hotInfoBean) {
         Glide.with(holder.itemView.getContext()).load(ShopMallContants.Gui_Url+hotInfoBean.getFigure()).into((ImageView) holder.getView(R.id.img_hot));
         TextView txthot = holder.getView(R.id.txt_hot);
         txthot.setText(hotInfoBean.getName()+"");
+        ImageView hotimg = holder.getView(R.id.img_hot);
+        hotimg.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(holder.itemView.getContext(), ShoppingPageActivity.class);
+                intent.putExtra("hotimg",ShopMallContants.Gui_Url+hotInfoBean.getFigure());
+                intent.putExtra("hottxt",hotInfoBean.getName());
+                intent.putExtra("hotprice",hotInfoBean.getCover_price());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
     }
 }
