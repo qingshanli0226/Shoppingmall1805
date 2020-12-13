@@ -80,6 +80,47 @@ public class CacheManager {
         return null;
     }
 
+    //把它加入到删除队列中
+    public void addDeleteShopcarBean(ShopcarBean shopcarBean, int position) {
+        deleteShopcarBeanList.add(shopcarBean);
+        boolean isAllSelect = deleteShopcarBeanList.size() == shopcarBeanList.size();//判断下当前删除队列数据数目和购物车商品数目是否一致，一致代表是全选删除
+        //需要更新UI
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onOneDataChanged(position, shopcarBean);
+            if(isAllSelect) {
+                listener.onAllSelected(isAllSelect);
+            }
+        }
+    }
+    public boolean checkIfDataInDeleteShopcarBeanList(ShopcarBean shopcarBean) {
+        return deleteShopcarBeanList.contains(shopcarBean);
+    }
+
+    public void selectAllProductInEditMode(boolean isAllSelect) {
+        if (isAllSelect) {
+            deleteShopcarBeanList.clear();
+            deleteShopcarBeanList.addAll(shopcarBeanList);
+        } else {
+            deleteShopcarBeanList.clear();
+        }
+
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onAllSelected(isAllSelect);
+            listener.onDataChanged(shopcarBeanList);
+        }
+    }
+
+
+    //从删除队列中删除
+    public void deleteOneShopcarBean(ShopcarBean shopcarBean, int position) {
+        deleteShopcarBeanList.remove(shopcarBean);
+        //需要更新UI
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onOneDataChanged(position, shopcarBean);
+            listener.onAllSelected(false);
+        }
+    }
+
     //更新缓存中商品的数量
     public void updateProductNum(int position,String newNum){
         ShopcarBean shopcarBean = shopcarBeanList.get(position);
@@ -87,6 +128,7 @@ public class CacheManager {
 
         for (IShopcarDataChangeListener listener:iShopcarDataChangeListenerList){
             listener.onOneDataChanged(position,shopcarBean);
+            listener.onMoneyChanged(getMoneyValue());
         }
     }
 
@@ -153,6 +195,21 @@ public class CacheManager {
         }
     }
 
+    //总价
+    public String getMoneyValue() {
+        float totalPrice = 0;
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+            if (shopcarBean.isProductSelected()) {
+                float productPrice = Float.parseFloat((String) shopcarBean.getProductPrice());
+                int productNum = Integer.parseInt(shopcarBean.getProductNum());
+                totalPrice = totalPrice + productPrice*productNum;
+            }
+        }
+        return String.valueOf(totalPrice);
+    }
+
+
+
     public void upDataNum(String dataId,String dataNum){
         int o = 0;
         for (ShopcarBean shopcarBean : shopcarBeanList) {
@@ -181,9 +238,9 @@ public class CacheManager {
     public List<ShopcarBean> getSelectedProductBeanList() {
         List<ShopcarBean> selectedList = new ArrayList<>();
         for(ShopcarBean shopcarBean:shopcarBeanList) {
-//            if (shopcarBean.isProductSelected()) {
-//                selectedList.add(shopcarBean);
-//            }
+            if (shopcarBean.isProductSelected()) {
+                selectedList.add(shopcarBean);
+            }
         }
         return selectedList;
     }
@@ -194,7 +251,6 @@ public class CacheManager {
                 return false;
             }
         }
-
         return true;
     }
     public void selectAllProduct(boolean isAllSelect) {
@@ -206,7 +262,7 @@ public class CacheManager {
         //通知UI，数据发生了改变，需要更新UI
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
             listener.onDataChanged(shopcarBeanList);
-//            listener.onMoneyChanged(getMoneyValue());
+            listener.onMoneyChanged(getMoneyValue());
             listener.onAllSelected(isAllSelect);
         }
 
@@ -219,7 +275,7 @@ public class CacheManager {
         //通知UI，数据发生了改变，需要更新UI
         for (IShopcarDataChangeListener listener : iShopcarDataChangeListenerList) {
             listener.onOneDataChanged(position, shopcarBean);
-//            listener.onMoneyChanged(getMoneyValue());
+            listener.onMoneyChanged(getMoneyValue());
             if (isAllSelected()) {
                 listener.onAllSelected(true);
             } else {

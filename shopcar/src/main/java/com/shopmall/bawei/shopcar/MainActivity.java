@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -28,14 +29,15 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
     private String path;
     private RecyclerView recyclerView;
     private List<ShopEntity> list = new ArrayList<>();
-    private TextView bianji;
+    private TextView bianji,total;
     private ShopCarAdapter shopCarAdapter;
     private boolean i;
     private LinearLayout linearLayout,linearLayout1;
-    private CheckBox checkBox_all;
+    private CheckBox checkBox_all,checkBox_etAll;
     private boolean newAllSelect;
     private  List<ShopcarBean> shopcarBeanList;
-
+    private Button button_delete;
+    private boolean isEditMode = false;
 
     @Override
     protected int getLayoutId() {
@@ -50,6 +52,9 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         linearLayout = findViewById(R.id.ll_delete);
         linearLayout1 = findViewById(R.id.ll_check_all);
         checkBox_all = findViewById(R.id.checkbox_all);
+        total = findViewById(R.id.tv_shopcart_total);
+        checkBox_etAll = findViewById(R.id.cb_all);
+        button_delete = findViewById(R.id.btn_delete);
     }
 
     @Override
@@ -74,12 +79,15 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
             }
         });
 
+
         shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
 
         shopCarAdapter = new ShopCarAdapter(R.layout.item_shopcar,shopcarBeanList);
         recyclerView.setAdapter(shopCarAdapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         shopCarAdapter.setShopcarPresenter(httpPresenter);
+        total.setText(CacheManager.getInstance().getMoneyValue());
 
 
 
@@ -88,6 +96,8 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         }else {
             checkBox_all.setChecked(false);
         }
+
+
 
         checkBox_all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -102,10 +112,22 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
                 }
             }
         });
+
+        checkBox_etAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (checkBox_etAll.isChecked()){
+                    CacheManager.getInstance().selectAllProductInEditMode(true);
+                }else {
+                    CacheManager.getInstance().selectAllProductInEditMode(false);
+                }
+            }
+        });
     }
 
     @Override
     public void onProductNumChange(String result, int position, String newNum) {
+        Toast.makeText(this, "修改产品数量", Toast.LENGTH_SHORT).show();
         CacheManager.getInstance().updateProductNum(position,newNum);
     }
 
@@ -151,7 +173,8 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
 
     @Override
     public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
-
+        this.shopcarBeanList = shopcarBeanList;
+        shopCarAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -161,11 +184,15 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
 
     @Override
     public void onMoneyChanged(String moneyValue) {
-
+        total.setText(moneyValue);
     }
 
     @Override
     public void onAllSelected(boolean isAllSelect) {
-        checkBox_all.setChecked(isAllSelect);
+        if (isEditMode){
+            checkBox_etAll.setChecked(isAllSelect);
+        }else {
+            checkBox_all.setChecked(isAllSelect);
+        }
     }
 }

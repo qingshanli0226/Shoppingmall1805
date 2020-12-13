@@ -40,8 +40,8 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
                 .updateProductNum(requestBody)
-                .observeOn(Schedulers.io())
-                .subscribeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<BaseBean<String>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
