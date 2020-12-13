@@ -22,21 +22,20 @@ import java.util.List;
 import framework.BaseActivity;
 import framework.CacheManagerc;
 import framework.ShopUserManager;
-import framework.greendao.userBean;
 import framework.mvpc.JsonPresenter;
-import mode.ClothesBean;
 import mode.ShopcarBean;
 import view.Constants;
 import view.ShopmallConstant;
+import view.ToolBar;
 import view.loadinPage.ErrorBean;
 @Route(path = "/shop/GoShopActivity")
 public
-class GoShopActivity extends BaseActivity implements View.OnClickListener, CacheManagerc.IShopcarDataChangeListener{
+class GoShopActivity extends BaseActivity<JsonPresenter> implements View.OnClickListener, CacheManagerc.IShopcarDataChangeListener, ToolBar.IToolBarClickListner {
     private ImageView imiageGoShop;
     private TextView tliteGoshop;
     private TextView priceShop;
     private Button textGo;
-    private  userBean userBean;
+    private  ShopcarBean shopcarBean = new ShopcarBean();
     private ImageView shopcarGoShop;
     private Button shopcarCallect;
 
@@ -47,11 +46,17 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
 
     @Override
     protected void OnClickListener() {
-
+        shopcarGoShop.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build(ShopmallConstant.SHOP_ACTIVITY_PATH).navigation();
+                finish();
+            }
+        });
     }
     @Override
     protected void initData() {
-
+        tooBar = findViewById(R.id.tooBar);
         imiageGoShop = (ImageView) findViewById(R.id.Image_goShop);
         tliteGoshop = (TextView) findViewById(R.id.tlite_goshop);
         priceShop = (TextView) findViewById(R.id.Price_shop);
@@ -60,10 +65,10 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
         shopcarCallect = (Button) findViewById(R.id.shopcarCallect);
 
         textGo.setOnClickListener(this);
-        userBean = (framework.greendao.userBean) getIntent().getSerializableExtra("user");
-        Glide.with(GoShopActivity.this).load(Constants.BASE_URl_IMAGE+userBean.getUrl()).into(imiageGoShop);
-        tliteGoshop.setText(userBean.getName()+"");
-        priceShop.setText(userBean.getPrice()+"");
+        shopcarBean = (ShopcarBean) getIntent().getSerializableExtra("user");
+        Glide.with(GoShopActivity.this).load(Constants.BASE_URl_IMAGE+shopcarBean.getUrl()).into(imiageGoShop);
+        tliteGoshop.setText(shopcarBean.getProductName()+"");
+        priceShop.setText(shopcarBean.getProductPrice()+"");
        // CacheManager.getInstance().setShopcarDataChangeListener(this);
         CacheManagerc.getInstance().setiShopcarDataChangeListener(this);
     }
@@ -100,6 +105,10 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
                     onProductNumChange(2);
                 }
                 break;
+
+            case R.id.shopcarGoShop:
+
+                break;
         }
     }
 
@@ -132,7 +141,7 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
         final ImageView imageView = new ImageView(this);
         RelativeLayout.LayoutParams animLayoutParams  = new RelativeLayout.LayoutParams(100,100);
         imageView.setLayoutParams(animLayoutParams);
-        Glide.with(this).load(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+userBean.getUrl())
+        Glide.with(this).load(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+shopcarBean.getUrl())
                 .into(imageView);
         LinearLayout rootView = findViewById(R.id.rootView);
         rootView.addView(imageView);
@@ -156,11 +165,13 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
                 imageView.setTranslationY(nextPosition[1]);
 
                 if (value>=pathMeasure.getLength()){
-                    if (type == 1){
+                    Log.i("====","userBean1555"+shopcarBean.getProductName()+"价格"+shopcarBean.getProductPrice()+"ID"+shopcarBean.getProductId());
+                    boolean isFrist = CacheManagerc.getInstance().updateProductNum(shopcarBean.getProductId(), String.valueOf(shopcarBean.getProductNum()));
+                    //判断是否是第一次添加 如果是true  则不是  如果是false 则是第一次添加
+                    if (!isFrist){
                         addOneProductToCache();
-                    }else if (type==2){
-                        CacheManagerc.getInstance().updateProductNum(userBean.getId(),String.valueOf(userBean.getPrice()));
-                        Toast.makeText(GoShopActivity.this, "在原来基础上+1", Toast.LENGTH_SHORT).show();
+                    }else {
+                        Toast.makeText(GoShopActivity.this, "已添加，再此基础上加1", Toast.LENGTH_SHORT).show();
                     }
                     imageView.setVisibility(View.GONE);
                 }
@@ -169,12 +180,14 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
         valueAnimator.start();
     }
     private void addOneProductToCache() {
-        ClothesBean.ResultBean.ChildBean childBean = new ClothesBean.ResultBean.ChildBean();
-        childBean.setName(userBean.getName());
-        childBean.setPic(userBean.getUrl());
-        childBean.setParent_id(userBean.getPrice());
-        childBean.setIs_deleted("");
-        childBean.setP_catalog_id("");
+        shopcarBean.setProductId(shopcarBean.getProductId());
+        shopcarBean.setProductName(shopcarBean.getProductName());
+        shopcarBean.setUrl(shopcarBean.getUrl());
+        shopcarBean.setProductPrice(shopcarBean.getProductPrice());
+        shopcarBean.setProductNum("1");
+        shopcarBean.setProductSelected(true);
+        Log.i("====","+++"+shopcarBean.toString());
+        CacheManagerc.getInstance().add(shopcarBean);
     }
     @Override
     public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
@@ -198,6 +211,16 @@ class GoShopActivity extends BaseActivity implements View.OnClickListener, Cache
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

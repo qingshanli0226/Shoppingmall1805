@@ -1,9 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Binding">
-
-</android.support.constraint.ConstraintLayout>
+    tools:context=".BindingActivity">
+    <EditText
+        android:id="@+id/editPhone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        android:hint="请输入要输入绑定的电话"
+        android:background="@null"/>
+    <Button
+        android:id="@+id/buttonPhone"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        android:layout_marginLeft="@dimen/OView_left_space"
+        android:layout_marginRight="@dimen/OView_reght_space"
+        android:text="绑定电话"/>
+    <EditText
+        android:id="@+id/editSite"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        android:hint="请输入要输入绑定的个人地址"
+        android:background="@null"/>
+    <Button
+        android:id="@+id/buttonSite"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        android:layout_marginLeft="@dimen/OView_left_space"
+        android:layout_marginRight="@dimen/OView_reght_space"
+        android:text="绑定地址"/>
+</LinearLayout>

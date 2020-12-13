@@ -15,12 +15,13 @@ import java.util.List;
 
 import framework.BaseActivity;
 import framework.ShopUserManager;
+import framework.mvpc.JsonPresenter;
 import view.fragment.FragmentLogin;
 import view.fragment.FragmentRegister;
 import view.loadinPage.ErrorBean;
 
 @Route(path = "/usr/LoginRegisterActivity")
-public class UserActivity extends BaseActivity {
+public class UserActivity extends BaseActivity<JsonPresenter> {
     private  int toLoginFromIndex = -1;
 
     public static NoScrollViewPager userViewPager;
@@ -38,6 +39,7 @@ public class UserActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        tooBar = findViewById(R.id.tooBar);
         fragments.add(new FragmentLogin());
         fragments.add(new FragmentRegister());
         userViewPager = (NoScrollViewPager) findViewById(R.id.userViewPager);
@@ -84,6 +86,16 @@ public class UserActivity extends BaseActivity {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 

@@ -1,5 +1,8 @@
 package net;
 
+import android.content.Context;
+import android.content.SharedPreferences;
+
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
@@ -12,11 +15,14 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import view.ShopmallConstant;
 
 public
 class RxjavaRetortUlis {
     private static RxjavaRetortUlis rxjavaRetortUlis =null;
     private Retrofit build;
+    private Context context;
+    private String token;
     public static RxjavaRetortUlis getInstance(){
         if (rxjavaRetortUlis == null){
             synchronized (RxjavaRetortUlis.class){
@@ -29,8 +35,13 @@ class RxjavaRetortUlis {
         return rxjavaRetortUlis;
     }
 
-    public RxjavaRetortUlis() {
+    private RxjavaRetortUlis() {
         InitData();
+    }
+
+    public void init(Context application){
+        this.context = application;
+        token = application.getSharedPreferences(ShopmallConstant.spName, application.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null);
     }
 
     private void InitData() {
@@ -49,10 +60,24 @@ class RxjavaRetortUlis {
                 .readTimeout(15, TimeUnit.SECONDS)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addNetworkInterceptor(CreateTokenIntereptor())
+                .addInterceptor(createToken())
                 .build();
 
         return build;
 
+    }
+
+    private Interceptor createToken() {
+        Interceptor interceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request request = chain.request();
+                Request token = request.newBuilder()
+                        .addHeader("token", RxjavaRetortUlis.this.token).build();
+                return chain.proceed(token);
+            }
+        };
+        return interceptor;
     }
 
     private Interceptor CreateTokenIntereptor() {

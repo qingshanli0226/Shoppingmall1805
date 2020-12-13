@@ -7,15 +7,14 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 
 import framework.BaseFragment;
+import framework.mvpc.JsonPresenter;
 import view.ShopmallConstant;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentPersonAge extends BaseFragment implements View.OnClickListener,ToolBar.IToolBarClickListner {
+class FragmentPersonAge extends BaseFragment<JsonPresenter> implements View.OnClickListener,ToolBar.IToolBarClickListner {
     private ImageButton ibUserIconAvator;
-    //private ToolBar tooBarPerSonAge;
-
     @Override
     protected void createPresenter() {
 

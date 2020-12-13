@@ -15,7 +15,7 @@ import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentHomePage extends BaseFragment implements ToolBar.IToolBarClickListner {
+class FragmentHomePage extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner {
     private RecyclerView rv;
     private PrimereAdper primereAdpter;
     @Override

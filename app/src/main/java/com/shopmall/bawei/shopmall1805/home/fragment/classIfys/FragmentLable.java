@@ -17,7 +17,7 @@ import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentLable extends BaseFragment implements ToolBar.IToolBarClickListner {
+class FragmentLable extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner {
     private RecyclerView Rvc;
     private List<LableBean.ResultBean> resultBeans = new ArrayList<>();
     private LableAdper biaoAdper;

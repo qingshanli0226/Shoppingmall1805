@@ -124,7 +124,6 @@ class JsonModel implements Contact.centerUserImodel {
         hashMap.put("name",username);
         hashMap.put("password",password);
         FoodService foodService  = RxjavaRetortUlis.getInstance().create(FoodService.class);
-        //final  ReginsterAndLogin reginsterAndLogin = new ReginsterAndLogin(username, password);
         Observable<RegisterBean> register = null;
         Observable<LoginBean> login = null;
         if (count==1){
@@ -154,7 +153,10 @@ class JsonModel implements Contact.centerUserImodel {
                     .subscribe(new LoginBeanObserver(){
                         @Override
                         public void onNext(LoginBean loginBean) {
-                            JsonPresenter.loginBeanObserver.onNext(loginBean);
+                            if (loginBean!=null){
+                                Log.i("====","这是登录的返回"+loginBean.toString());
+                                JsonPresenter.loginBeanObserver.onNext(loginBean);
+                            }
                         }
                         @Override
                         public void onError(Throwable e) {

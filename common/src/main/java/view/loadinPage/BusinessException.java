@@ -1,4 +1,4 @@
-package com.shopmall.bawei.common;
+package view.loadinPage;
 
 
 public class BusinessException extends Exception {

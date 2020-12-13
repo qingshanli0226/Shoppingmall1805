@@ -1,8 +1,6 @@
-package com.shopmall.bawei.common;
+package view.loadinPage;
 
 import android.accounts.NetworkErrorException;
-
-
 
 import org.json.JSONException;
 

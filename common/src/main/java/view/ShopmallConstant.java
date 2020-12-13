@@ -41,6 +41,7 @@ public class ShopmallConstant {
     public static final String TO_LOGIN_KEY = "toLogin";
 
     public static final String LOGIN_ACTIVITY_PATH = "/usr/LoginRegisterActivity";
+    public static final String SHOP_ACTIVITY_PATH = "/shopcar/ShopCarActivity";
 
     public static final int  BUTTON_LOGIN_INDEX1 = 1;
     public static final int  BUTTON_LOGIN_INDEX2 = 2;

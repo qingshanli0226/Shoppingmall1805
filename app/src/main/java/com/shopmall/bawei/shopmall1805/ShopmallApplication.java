@@ -5,6 +5,10 @@ import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 
+import net.RxjavaRetortUlis;
+
+import framework.CacheManagerc;
+import framework.MessageMangerUlis;
 import framework.ShopUserManager;
 
 
@@ -18,8 +22,10 @@ public class ShopmallApplication extends Application {
         ARouter.openLog();
         ARouter.openDebug();
         ARouter.init(this);
-
+        CacheManagerc.getInstance().init(this);
         ShopUserManager.getInstance().init(this);
+        MessageMangerUlis.getInstance().init(this);
+        RxjavaRetortUlis.getInstance().init(this);
 
     }
 }

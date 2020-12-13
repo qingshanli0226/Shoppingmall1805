@@ -1,6 +1,7 @@
 package view.fragment;
 
 
+import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -17,13 +18,14 @@ import view.fragment.callbacklr.JsonDataCallBackLR;
 import view.loadinPage.ErrorBean;
 
 public
-class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
+class FragmentLogin extends BaseFragment<JsonPresenter>  implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
     private EditText loginUser;
     private EditText loginPassword;
 
     @Override
     protected void createPresenter() {
         presenter = new JsonPresenter(this);
+
     }
 
     @Override
@@ -57,9 +59,9 @@ class FragmentLogin extends BaseFragment  implements UserActivity.INameInterface
             presenter.loginAndRegister(2,loginUser.getText().toString().trim(),loginPassword.getText().toString().trim(),new JsonDataCallBackLR(){
                 @Override
                 public void loginBean(LoginBean loginBean) {
-                    setToast("====","登录成功");
-                    ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
-
+                        setToast("====","登录成功"+loginBean.toString());
+                        Log.i("====","token"+loginBean.getResult().getToken());
+                        ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
                     UserActivity loginRegisterActivity = (UserActivity)getActivity();
                     int toLoginFromIndex = loginRegisterActivity.getToLoginFromIndex();
                     if (toLoginFromIndex == ShopmallConstant.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT) {

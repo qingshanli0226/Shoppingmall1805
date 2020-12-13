@@ -21,13 +21,14 @@ import framework.BaseActivity;
 
 import framework.CacheManagerc;
 import framework.ShopUserManager;
+import framework.mvpc.JsonPresenter;
 import mode.ShopcarBean;
-import view.FragmentShopcar;
+import view.sview.FragmentShopcar;
 import view.ShopmallConstant;
 import view.loadinPage.ErrorBean;
 
 @Route(path = "/main/MainActivity")
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity<JsonPresenter> {
     private RadioGroup radioGroupMain;
     private RadioButton radioButtonShopcar;
 
@@ -73,14 +74,14 @@ public class MainActivity extends BaseActivity {
                 }
             }
         });
+        if (!ShopUserManager.getInstance().isUserLogin()){
+            Intent intent = new Intent(this, AutomactionLoginService.class);
+            startService(intent);//开启服务service
 
-        Intent intent = new Intent(this, AutomactionLoginService.class);
-        startService(intent);//开启服务service
-
+        }
     }
     @Override
     protected void initData() {
-
         radioGroupMain = (RadioGroup) findViewById(R.id.radioGroupMain);
         radioButtonShopcar = (RadioButton) findViewById(R.id.radioButtonShopcar);
 
@@ -142,7 +143,7 @@ public class MainActivity extends BaseActivity {
 
     @Override
     protected int getlayoutId() {
-        return R.layout.activity_main ;
+        return R.layout.activity_main;
     }
 
     @Override
@@ -157,6 +158,16 @@ public class MainActivity extends BaseActivity {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

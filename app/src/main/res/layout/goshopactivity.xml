@@ -6,10 +6,10 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <view.ToolBar
+        android:id="@+id/tooBar"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/Ucom_public_heightfour"
-        app:title_text="产品详情"
-        app:right_text=""/>
+        android:layout_height="60dp"
+        app:title_text="产品详情" />
     <ImageView
         android:id="@+id/Image_goShop"
         android:layout_width="match_parent"
@@ -47,12 +47,14 @@
         android:layout_height="0dp"
         android:orientation="horizontal"
         android:layout_weight="0.5">
+
         <ImageView
             android:id="@+id/shopcarGoShop"
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="@drawable/icon_good_detail_cart"/>
+            android:background="@drawable/icon_good_detail_cart" />
+
         <Button
             android:id="@+id/shopcarCallect"
             android:layout_width="0dp"

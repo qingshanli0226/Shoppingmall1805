@@ -37,6 +37,7 @@ class AutomactionLoginService extends Service {
         }
         HashMap<String,String> hashMap = new HashMap<>();
         hashMap.put("token",token);
+        Log.i("====","tokenService"+token);
 
 
 
@@ -45,16 +46,20 @@ class AutomactionLoginService extends Service {
                 .autoLogin(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<BaseBean<LoginBean>>() {
+                .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
-
                     @Override
-                    public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
-                        ShopUserManager.getInstance().saveLoginBean(loginBeanBaseBean.getResult());
-                        Log.i("LQS","登录成功........");
+                    public void onNext(LoginBean loginBeanBaseBean) {
+                        Log.i("====","ccc"+loginBeanBaseBean.getCode());
+                        if (loginBeanBaseBean.getCode().equals("200")){
+                            ShopUserManager.getInstance().saveLoginBean(loginBeanBaseBean);
+                            Toast.makeText(AutomactionLoginService.this, "登录成功", Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(AutomactionLoginService.this, "登录失败"+loginBeanBaseBean.getCode(), Toast.LENGTH_SHORT).show();
+                        }
                     }
 
                     @Override

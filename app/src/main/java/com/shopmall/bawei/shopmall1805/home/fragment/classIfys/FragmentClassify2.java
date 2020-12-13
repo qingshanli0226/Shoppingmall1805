@@ -23,14 +23,14 @@ import java.util.List;
 import framework.BaseFragment;
 
 
-import framework.greendao.userBean;
 import framework.mvpc.JsonPresenter;
 import mode.ClothesBean;
+import mode.ShopcarBean;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentClassify2 extends BaseFragment implements ToolBar.IToolBarClickListner {
+class FragmentClassify2 extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner {
     private List<String> list = new ArrayList<String>();
     private RecyclerView shopcarOne;
     private RecyclerView shopcarTow;
@@ -136,25 +136,34 @@ class FragmentClassify2 extends BaseFragment implements ToolBar.IToolBarClickLis
             }
         });
 
+        presenter.getshopcal(count,new JsonDataBack(){
+            @Override
+            public void clothesBean(ClothesBean e) {
+                clothesBeans.addAll(e.getResult().get(0).getChild());
+                hotProductListBeans.addAll(e.getResult().get(0).getHot_product_list());
+                Log.i("====","打印出来的的当前是"+hotProductListBeans.get(0).getName());
+                classifyUpAdaper.notifyDataSetChanged();
+                classIfyblowAdaper.notifyDataSetChanged();
+            }
+        });
 
     }
-        private void goShopBay(int i, int position) {//购买
-            userBean usernv = null;
 
-            if (i==1){
-                ClothesBean.ResultBean.ChildBean childBean = clothesBeans.get(position);
-                usernv = new userBean(childBean.getP_catalog_id(),childBean.getName(),childBean.getParent_id(),childBean.getPic());
-            }else if (i == 2){
-                ClothesBean.ResultBean.HotProductListBean hotProductListBean = hotProductListBeans.get(position);
-                usernv = new userBean(hotProductListBean.getBrand_id(),hotProductListBean.getName(),hotProductListBean.getCover_price(),hotProductListBean.getFigure());
-            }
-
-            if (usernv !=null){
+    private void goShopBay(int i, int position) {//购买
+            ShopcarBean shopcarBean = null;
+            ClothesBean.ResultBean.HotProductListBean hotProductListBean = hotProductListBeans.get(position);
+                shopcarBean = new ShopcarBean(hotProductListBean.getBrand_id()
+                        ,hotProductListBean.getName()
+                        ,"1",
+                        hotProductListBean.getFigure()
+                        ,hotProductListBean.getCover_price()
+                        ,true);
+            if (shopcarBean !=null){
                 Intent intent = new Intent(getContext(), GoShopActivity.class);
-                intent.putExtra("user",usernv);
+                intent.putExtra("user",shopcarBean);
                 startActivity(intent);
             }
-        }
+    }
 
     @Override
     protected int getlayoutId() {

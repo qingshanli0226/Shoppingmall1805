@@ -15,7 +15,7 @@ import view.UserActivity;
 import view.loadinPage.ErrorBean;
 
 public
-class FragmentRegister extends BaseFragment implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
+class FragmentRegister extends BaseFragment<JsonPresenter> implements UserActivity.INameInterface,View.OnClickListener,ToolBar.IToolBarClickListner {
     private EditText registerUser;
     private EditText registerPassword;
 

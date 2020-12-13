@@ -1,6 +1,8 @@
 package mode;
 
-public class ShopcarBean {
+import java.io.Serializable;
+
+public class ShopcarBean implements Serializable {
 
 
     /**
@@ -18,6 +20,19 @@ public class ShopcarBean {
     private String url;
     private String productPrice;
     private boolean productSelected;
+
+    public ShopcarBean(String productId, String productName, String productNum, String url, String productPrice, boolean productSelected) {
+        this.productId = productId;
+        this.productName = productName;
+        this.productNum = productNum;
+        this.url = url;
+        this.productPrice = productPrice;
+        this.productSelected = productSelected;
+    }
+
+    public ShopcarBean() {
+
+    }
 
     public String getProductId() {
         return productId;
@@ -65,5 +80,17 @@ public class ShopcarBean {
 
     public void setProductSelected(boolean productSelected) {
         this.productSelected = productSelected;
+    }
+
+    @Override
+    public String toString() {
+        return "ShopcarBean{" +
+                "productId='" + productId + '\'' +
+                ", productName='" + productName + '\'' +
+                ", productNum='" + productNum + '\'' +
+                ", url='" + url + '\'' +
+                ", productPrice='" + productPrice + '\'' +
+                ", productSelected=" + productSelected +
+                '}';
     }
 }

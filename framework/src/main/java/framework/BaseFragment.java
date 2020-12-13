@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.shopmall.bawei.framework.R;
 
+import framework.Mvp.Presenter;
 import framework.mvpc.JsonPresenter;
 import view.loadinPage.ErrorBean;
 import view.loadinPage.LoadIngPagec;
@@ -20,7 +21,7 @@ import view.loadinPage.LoadIngPagec;
 import view.ToolBar;
 
 public abstract
-class BaseFragment<P extends JsonPresenter> extends Fragment implements Contact.CenterUserIview, ToolBar.IToolBarClickListner{
+class BaseFragment<P extends Presenter> extends Fragment implements Contact.CenterUserIview, ToolBar.IToolBarClickListner{
     protected  P presenter;
 
     protected LoadIngPagec LoadIngPage;
@@ -95,8 +96,8 @@ class BaseFragment<P extends JsonPresenter> extends Fragment implements Contact.
         LoadIngPage.showSuccessView();
     }
 
-    public void showEmptyPage() {
-        LoadIngPage.showEmptyPage();
+    public void showLodingC() {
+        LoadIngPage.showLoadingpage();
     }
 
 }

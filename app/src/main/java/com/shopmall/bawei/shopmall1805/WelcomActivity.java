@@ -38,7 +38,7 @@ public class WelcomActivity extends BaseActivity {
     protected void initData() {
         ImageOne = (ImageView) findViewById(R.id.Image_one);
 
-
+        tooBar = findViewById(R.id.tooBar);
         ObjectAnimator scaleX = ObjectAnimator.ofFloat(ImageOne, "scaleX", 1.5f,1.0f);
         ObjectAnimator scaleY = ObjectAnimator.ofFloat(ImageOne, "scaleY", 1.5f,1.0f);
 
@@ -90,6 +90,16 @@ public class WelcomActivity extends BaseActivity {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

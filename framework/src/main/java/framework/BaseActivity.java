@@ -6,20 +6,29 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.widget.Toast;
 
+import com.shopmall.bawei.framework.R;
+
+import framework.Mvp.Presenter;
 import framework.mvpc.JsonPresenter;
+import view.ToolBar;
 
 
 public abstract
 
-class BaseActivity<P extends JsonPresenter> extends AppCompatActivity implements  Contact.CenterUserIview {
+class BaseActivity<P extends Presenter> extends AppCompatActivity implements  Contact.CenterUserIview ,ToolBar.IToolBarClickListner{
     protected  P jsonPresenter;
+    protected ToolBar tooBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getlayoutId());
         initData();
+        tooBar = (ToolBar) findViewById(R.id.tooBar);
+        tooBar.setToolBarClickListner(this);
         createPresenter();
         OnClickListener();
+
+
     }
 
     protected abstract void createPresenter();

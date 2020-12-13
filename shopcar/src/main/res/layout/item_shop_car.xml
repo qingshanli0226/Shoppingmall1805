@@ -4,12 +4,11 @@
     android:layout_height="100dp"
     >
 
-    <CheckBox android:layout_width="wrap_content"
+    <CheckBox
+        android:id="@+id/productSelect"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_marginLeft="5dp"
-        android:layout_centerVertical="true"
-        android:id="@+id/productSelect"/>
+        android:layout_centerVertical="true" />
 
     <ImageView android:layout_width="wrap_content"
         android:layout_height="match_parent"

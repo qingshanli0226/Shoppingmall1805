@@ -5,10 +5,11 @@ import android.widget.TextView;
 import com.shopmall.bawei.user.R;
 
 import framework.BaseActivity;
+import framework.mvpc.JsonPresenter;
 import view.loadinPage.ErrorBean;
 
 public
-class reginActivity extends BaseActivity {
+class reginActivity extends BaseActivity<JsonPresenter> {
     private EditText registerUser;
     private EditText registerPassword;
     private Button registerLoginButton;
@@ -25,7 +26,7 @@ class reginActivity extends BaseActivity {
     }
     @Override
     protected void initData() {
-
+        tooBar = findViewById(R.id.tooBar);
         registerUser = (EditText) findViewById(R.id.registerUser);
         registerPassword = (EditText) findViewById(R.id.registerPassword);
         registerLoginButton = (Button) findViewById(R.id.registerLoginButton);
@@ -50,6 +51,16 @@ class reginActivity extends BaseActivity {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

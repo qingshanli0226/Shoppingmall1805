@@ -1,8 +1,3 @@
-package com.shopmall.bawei.net;
-
-import android.util.Log;
-
-import com.shopmall.bawei.common.ShopmallConstant;
 
 import org.json.JSONException;
 
@@ -11,6 +6,7 @@ import java.net.SocketTimeoutException;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
+import view.ShopmallConstant;
 
 //自定义一个observer，让presenter实现类更清晰，干净
 public abstract class ShopmallObserver<T> implements Observer<T> {

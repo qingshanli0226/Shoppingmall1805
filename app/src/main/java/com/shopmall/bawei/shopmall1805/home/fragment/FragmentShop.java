@@ -4,11 +4,12 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 
 import framework.BaseFragment;
+import framework.mvpc.JsonPresenter;
 import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentShop extends BaseFragment implements ToolBar.IToolBarClickListner {
+class FragmentShop extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner {
     @Override
     protected void createPresenter() {
 

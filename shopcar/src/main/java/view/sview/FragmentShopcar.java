@@ -1,38 +1,34 @@
-package view.ShopView;
+package view.sview;
 
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.shopmall.bawei.shopcar.R;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseFragment;
 import framework.CacheManagerc;
 import framework.Contact;
 import framework.mvpc.JsonPresenter;
-import mode.BaseBean;
 import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
 import view.ToolBar;
 import view.adaper.ShopAdaper;
-import view.callbackdata.JsondataCallBackShop;
 import view.contract.ShopcarContractc;
 import view.loadinPage.ErrorBean;
-import view.presenter.ShopcarPresenterImplc;
+import view.spresenter.ShopcarPresenterImplc;
 
 public
-class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListner, View.OnClickListener, Contact.ICenterShoppingIview {
+class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner, View.OnClickListener, ShopcarContractc.IShopcarView {
     private RecyclerView shopcarRv;
     private TextView totalPriceTv;
     private CheckBox allSelectCheckBox;
@@ -41,7 +37,7 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
     private ShopcarPresenterImplc shopcarPresenterImplc;
     private ShopAdaper shopAdaper;
 
-    private boolean isEditMode = false; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
+    private boolean isEditMode = true; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
     private RelativeLayout normalLayout;//正常模式下的底部布局
     private RelativeLayout editLayout;//编辑模式下的底部布局
     private CheckBox editAllSelectCheckBox;
@@ -53,13 +49,24 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
         }
 
         @Override
-        public void onOneDataChanged(int position, ShopcarBean shopcarBean) {
-            shopAdaper.notifyItemChanged(position);
+        public void onOneDataChanged(final int position, ShopcarBean shopcarBean) {
+            if (shopcarRv.isComputingLayout()){
+                shopcarRv.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        shopAdaper.notifyItemChanged(position);
+                    }
+                });
+            }else {
+                shopAdaper.notifyItemChanged(position);
+            }
+
         }
 
         @Override
         public void onMoneyChanged(String moneyVilue) {
             totalPriceTv.setText(moneyVilue);
+            Log.i("====","这是"+moneyVilue);
         }
 
         @Override
@@ -73,8 +80,8 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
     };
     @Override
     protected void createPresenter() {
-         shopcarPresenterImplc = new ShopcarPresenterImplc(this);
-
+        shopcarPresenterImplc  = new ShopcarPresenterImplc();
+        shopcarPresenterImplc.attachView(this);
     }
     @Override
     protected int getlayoutId() {
@@ -141,50 +148,40 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
             }
 
         }else if (v.getId()==R.id.payBtn){
-            presenter.getshopcal(2,new JsondataCallBackShop(){
-                @Override
-                public void shopBean(BaseBean<List<ShopcarBean>> shopcarBean) {
-                    super.shopBean(shopcarBean);
-                }
-
-                @Override
-                public void Error(String error) {
-                    super.Error(error);
-                }
-            });
+            Toast.makeText(getContext(), "支付", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     //这是view层 当数据返回时 直接返回到这边的数据
-   // @Override
+    @Override
     public void onProductNumChange(String result, int position, String newNum) {
         //当服务端的商品数据发生改变后,本地缓存的商品数量也要改变，保证和服务端数据一致
         CacheManagerc.getInstance().updateProductNum(position,newNum);
     }
 
-    //@Override
+    @Override
     public void onProductSelected(String result, int position) {
         //该回调代表当前该商品在购物车选择的状态发生了改变
         Toast.makeText(getContext(), "该商品在购物车的选择发生了改变", Toast.LENGTH_SHORT).show();
         CacheManagerc.getInstance().updateProductSelected(position);
     }
 
-    //@Override
+    @Override
     public void onAllSelected(String result) {
         Toast.makeText(getContext(), "所有商品的选择状态发生了改变，全选状态是"+newAllSelect, Toast.LENGTH_SHORT).show();
         //更新本地缓存的数据选择状态
         CacheManagerc.getInstance().selectAllProduct(newAllSelect);
     }
 
-   // @Override
+   @Override
     public void onDeleteProducts(String result) {
         Toast.makeText(getContext(), "删除购物车数据成功", Toast.LENGTH_SHORT).show();
         //在换粗中，将删除列表中的商品在购物车上删掉
         CacheManagerc.getInstance().processDeleteProducts();
     }
 
-   // @Override
+   @Override
     public void onInventory(List<InventoryBean> inventoryBean) {
         if (checkInventoryIsEnough(inventoryBean)){
             shopcarPresenterImplc.getOrderInfo(CacheManagerc.getInstance()
@@ -210,7 +207,7 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
         return true;
     }
 
-   // @Override
+    @Override
     public void onOrderInfo(OrderInfoBean orderInfoBean) {
         //f服务端已经成功下蛋 使用支付宝完成支付功能
         Runnable runnable = new Runnable() {
@@ -272,21 +269,23 @@ class FragmentShopcar extends BaseFragment implements ToolBar.IToolBarClickListn
         }
     }
 
-
     //页面完善
     @Override
     public void showLoaDing() {
-        showLoaDing();
+        //showLodingC();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        Log.i("====","这是购物车页面的hideloading");
         hideLoadingPage(isSuccess,errorBean);
+
     }
 
     @Override
     public void showEmpty() {
         showEmpty();
     }
+
 
 }

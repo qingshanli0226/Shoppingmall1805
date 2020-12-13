@@ -5,10 +5,12 @@ import android.widget.TextView;
 import com.shopmall.bawei.user.R;
 
 import framework.BaseActivity;
+import framework.mvpc.JsonPresenter;
+import view.ToolBar;
 import view.loadinPage.ErrorBean;
 
 public
-class logActivity extends BaseActivity {
+class logActivity extends BaseActivity<JsonPresenter> implements ToolBar.IToolBarClickListner {
     private EditText loginUser;
     private EditText loginPassword;
     private Button loginLoginButton;
@@ -48,6 +50,16 @@ class logActivity extends BaseActivity {
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

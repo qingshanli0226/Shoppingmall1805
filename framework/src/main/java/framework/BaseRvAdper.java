@@ -84,8 +84,6 @@ class BaseRvAdper <T> extends  RecyclerView.Adapter<BaseRvAdper.BaseviewHoder>  
     }
 
 
-
-
     public static class BaseviewHoder extends RecyclerView.ViewHolder{
         HashMap<Integer,View> viewHashMap = new HashMap<>();
         public BaseviewHoder(@NonNull View itemView) {
