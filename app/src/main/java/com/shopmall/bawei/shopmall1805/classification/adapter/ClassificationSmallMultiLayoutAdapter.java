@@ -27,7 +27,7 @@ public class ClassificationSmallMultiLayoutAdapter extends BaseRvAdapter {
             case 1:
                 return R.layout.classification_often;
         }
-            return R.layout.classification_hot;
+        return R.layout.classification_hot;
 
     }
 
@@ -38,15 +38,15 @@ public class ClassificationSmallMultiLayoutAdapter extends BaseRvAdapter {
                 List<SkirstBean.HotProductListBean> h_6 = (List<SkirstBean.HotProductListBean>)o;
                 Log.i("TAG", "convert: ");
                 RecyclerView hot = baseViewHoder.getView(R.id.hot_class_re);
-                ClassificationSmallHotAdapter hotAdapter = new ClassificationSmallHotAdapter(R.layout.item_classification_hot, h_6);
                 hot.setLayoutManager(new LinearLayoutManager(context));
+                ClassificationSmallHotAdapter hotAdapter = new ClassificationSmallHotAdapter(R.layout.item_classification_hot, h_6);
                 hot.setAdapter(hotAdapter);
                 break;
             case 1:
                 List<SkirstBean.ChildBean> h_7 = (List<SkirstBean.ChildBean>)o;
                 RecyclerView often = baseViewHoder.getView(R.id.often_class_re);
-                ClassificationSmallOftenAdapter classificationSmallOften_adapter = new ClassificationSmallOftenAdapter(R.layout.item_classification_often, h_7);
                 often.setLayoutManager(new LinearLayoutManager(context));
+                ClassificationSmallOftenAdapter classificationSmallOften_adapter = new ClassificationSmallOftenAdapter(R.layout.item_classification_often, h_7);
                 often.setAdapter(classificationSmallOften_adapter);
 
                 break;

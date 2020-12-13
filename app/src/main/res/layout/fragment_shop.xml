@@ -4,11 +4,105 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".shopcar.view.ShopCarFragment">
-
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:orientation="vertical"
+        >
+<androidx.appcompat.widget.Toolbar
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:layout_weight="1"
+   >
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
 
+        <TextView
+            android:textSize="30dp"
+            android:textColor="#000"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/shopscar_title"
+            ></TextView>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000"
+            android:textSize="20dp"
+            android:id="@+id/shop_change"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/dp_10"
+            android:text="@string/shopscar_change"
+            ></TextView>
+    </RelativeLayout>
+
+
+</androidx.appcompat.widget.Toolbar>
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="0dp"
+    android:background="@color/colorGRAY"
+    android:layout_weight="10"
+    >
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#ECE5E5"
+        android:id="@+id/shop_rv"
+        ></androidx.recyclerview.widget.RecyclerView>
+
+</LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+          >
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="10"
+                android:layout_height="match_parent"
+                >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:id="@+id/shop_select"
+                android:text="@string/shopscar_select"></RadioButton>
+            <TextView
+                android:textColor="#000"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:text="@string/shopscar_count"
+                ></TextView>
+            <TextView
+                android:textColor="@color/colorRed"
+                android:layout_marginLeft="20dp"
+                android:gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textSize="20dp"
+                android:id="@+id/shop_count"
+                ></TextView>
+        </LinearLayout>
+            <Button
+                android:layout_width="0dp"
+                android:layout_weight="3"
+                android:layout_height="match_parent"
+                android:background="@color/colorRed"
+                android:text="@string/shopscar_pay"
+                android:textSize="20dp"
+                android:textColor="@color/colorWilte"
+                android:id="@+id/shop_pay"
+                >
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
 </FrameLayout>

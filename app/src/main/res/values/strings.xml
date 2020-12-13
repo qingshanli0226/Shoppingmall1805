@@ -5,4 +5,9 @@
     <string name="goodstitle">商品详情</string>
     <string name="goodstext">预售截止10月15日,预售期为限量礼盒版,包括特指木盒x1,画集x1,邮票x1套,书签x1,贴纸x1,信封x1</string>
     <string name="goodscar">加入购物车</string>
+    <string name="shopscar_title">购物车</string>
+    <string name="shopscar_change">编辑</string>
+    <string name="shopscar_count">合计:</string>
+    <string name="shopscar_select">全选</string>
+    <string name="shopscar_pay">去结算</string>
 </resources>

@@ -3,6 +3,7 @@ package mvp.view;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.common2.LoginBean;
 import com.example.common2.UrlHelp;
@@ -43,10 +44,9 @@ public class ShopUserManager {
         editor.putString(UrlHelp.tokenName,loginBean.getResult().getToken());
         editor.commit();
 
-        //发送广播,通知当前用户已经登录成功
-        Intent intent = new Intent();
-        intent.setAction(UrlHelp.LOGIN_ACTION);
-        context.sendBroadcast(intent);
+
+
+
     }
     //判断当亲用户是否登录
     public boolean isUserLogin(){
@@ -55,9 +55,10 @@ public class ShopUserManager {
     }
     public String getToken(){
         if (loginBean!=null){
+            Log.i("lhj", "getToken: "+loginBean.getResult().getToken());
             return loginBean.getResult().getToken();
         }else {
-            return "";
+            return sharedPreferences.getString(UrlHelp.tokenName,"");
         }
     }
 }

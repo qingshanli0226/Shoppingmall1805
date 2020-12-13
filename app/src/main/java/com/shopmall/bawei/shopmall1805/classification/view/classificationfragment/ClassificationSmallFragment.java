@@ -49,7 +49,7 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
 
     @Override
     protected void initData() {
-        homeAdapter = new ClassificationSmallMultiLayoutAdapter(getActivity());
+
 
     }
 
@@ -62,6 +62,7 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
         errorTv=findViewById(R.id.errorTv);
         normalContent=findViewById(R.id.normalContent);
         errorTv.setOnClickListener( this);
+        rec.setLayoutManager(new LinearLayoutManager(getContext()));
 
     }
 
@@ -89,12 +90,9 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             myAdapter.changeSelect(position);
 
-
                 switch (position) {
                     case 0:
-
                         uri = UrlHelp.SKIRT_URL;
-
                         break;
                     case 1:
 
@@ -137,18 +135,12 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
                         uri = UrlHelp.GAME_URL;
 
                         break;
-
-
                 }
-
                 ihttpPresenter.getIClassificationData(uri);
-
             }
         });
 
     }
-
-
     @Override
     public void showError(String code, String message) {
         errorTv.setVisibility(View.VISIBLE);
@@ -173,17 +165,16 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
     @Override
     public void onClassification(SkirstBean skirstBean) {
 
-
         List<SkirstBean.HotProductListBean> hot_product_list = skirstBean.getHot_product_list();
         List<SkirstBean.ChildBean> child = skirstBean.getChild();
         Log.i("TAG", "onClassification: "+skirstBean);
         data.add(hot_product_list);
         data.add(child);
 
-
+        homeAdapter = new ClassificationSmallMultiLayoutAdapter(getActivity());
         rec.setAdapter(homeAdapter);
         homeAdapter.updataData(data);
-        rec.setLayoutManager(new LinearLayoutManager(getContext()));
+
         homeAdapter.notifyDataSetChanged();
 
     }

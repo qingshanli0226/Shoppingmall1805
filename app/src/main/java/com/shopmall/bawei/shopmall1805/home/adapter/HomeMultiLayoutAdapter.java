@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.common2.HomeBean;
 import com.example.common2.UrlHelp;
-import com.shopmall.bawei.shopmall1805.goods.GoodsListActivity;
+import com.shopmall.bawei.shopmall1805.goods.view.GoodsActivity;
 import com.shopmall.bawei.shopmall1805.R;
 
 import com.shopmall.bawei.shopmall1805.adapter.BaseRvAdapter;
@@ -99,11 +99,12 @@ public class HomeMultiLayoutAdapter extends BaseRvAdapter {
                     homeDiscountAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                         @Override
                         public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                            Intent intent = new Intent(context, GoodsListActivity.class);
+                            Intent intent = new Intent(context, GoodsActivity.class);
 
 
                             intent.putExtra("goods_image",UrlHelp.BASE_URl_IMAGE+h_4.get(position).getFigure());
                             intent.putExtra("goods_title",h_4.get(position).getName());
+                            intent.putExtra("goods_Id",h_4.get(position).getProduct_id());
                             intent.putExtra("goods_pay",h_4.get(position).getCover_price());
 
                             context.startActivity(intent);
@@ -122,12 +123,12 @@ public class HomeMultiLayoutAdapter extends BaseRvAdapter {
                     homeNewAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                         @Override
                         public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                            Intent intent = new Intent(context, GoodsListActivity.class);
+                            Intent intent = new Intent(context, GoodsActivity.class);
 
                             intent.putExtra("goods_image",UrlHelp.BASE_URl_IMAGE+h5.get(position).getFigure());
                             intent.putExtra("goods_title",h5.get(position).getName());
                             intent.putExtra("goods_pay",h5.get(position).getCover_price());
-
+                            intent.putExtra("goods_Id",h5.get(position).getProduct_id());
                             context.startActivity(intent);
                         }
                     });
@@ -141,11 +142,12 @@ public class HomeMultiLayoutAdapter extends BaseRvAdapter {
                     homeHotAdapter.setOnItemChildClickListener(new BaseQuickAdapter.OnItemChildClickListener() {
                         @Override
                         public void onItemChildClick(BaseQuickAdapter adapter, View view, int position) {
-                            Intent intent = new Intent(context, GoodsListActivity.class);
+                            Intent intent = new Intent(context, GoodsActivity.class);
 
 
                             intent.putExtra("goods_image",UrlHelp.BASE_URl_IMAGE+h_6.get(position).getFigure());
                             intent.putExtra("goods_title",h_6.get(position).getName());
+                            intent.putExtra("goods_Id",h_6.get(position).getProduct_id());
                             intent.putExtra("goods_pay",h_6.get(position).getCover_price());
 
                             context.startActivity(intent);

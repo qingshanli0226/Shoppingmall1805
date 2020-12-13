@@ -15,7 +15,7 @@ public abstract class BaseMVPActivity<T extends IPresenter,V extends IView> exte
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         initPresenter();
-     //  ihttpPresenter.attachView((V)this);
+        ihttpPresenter.attachView((V)this);
         loadingBar = findViewById(R.id.loadingBar);
         initData();
 

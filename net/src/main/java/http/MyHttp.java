@@ -33,7 +33,7 @@ public class MyHttp {
                 .writeTimeout(5, TimeUnit.SECONDS)
                 .connectTimeout(5,TimeUnit.SECONDS)
                 //打印日志
-//                .addInterceptor(new TokenInterceptor())
+       .addInterceptor(new TokenInterceptor())
                 .addInterceptor(httpLoggingInterceptor);
 
         Retrofit build = new Retrofit.Builder()

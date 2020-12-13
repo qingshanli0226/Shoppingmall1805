@@ -3,10 +3,10 @@ package http;
 
 
 
+import com.example.common2.GetShopCarBean;
 import com.example.common2.HomeBean;
 import com.example.common2.LoginBean;
 import com.example.common2.RegisterBean;
-import com.example.common2.ShopcarBean;
 import com.example.common2.SkirstBean;
 import com.example.common2.TagBean;
 import com.example.common2.UrlHelp;
@@ -46,20 +46,24 @@ public interface ShopmallApiService {
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> params);
 
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<LoginBean> autologin(@FieldMap HashMap<String, String> params);
+
+
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
     @GET("getShortcartProducts")
-    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+    Observable<BaseBean<List<GetShopCarBean>>> getShortcartProducts();
 
 
-   /* @POST("checkOneProductInventory")
+
+
+    @POST("checkOneProductInventory")
     @FormUrlEncoded
     Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
-
-
-
-
+/*
 
     @POST("updateProductNum")
     Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);

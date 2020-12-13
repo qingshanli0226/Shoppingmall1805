@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".goods.GoodsListActivity">
+        <activity android:name=".goods.view.GoodsActivity">
 
         </activity>
 
@@ -31,6 +31,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <service android:name="mvp.view.UserService"></service>
     </application>
+
 
 </manifest>

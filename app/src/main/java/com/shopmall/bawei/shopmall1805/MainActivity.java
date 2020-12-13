@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
+import com.shopmall.bawei.shopmall1805.goods.view.GoodsCount;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomePagerAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter;
 import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
@@ -39,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mPager = (BaseVpAdapter) findViewById(R.id.m_pager);
         mPager.setscrollable(false);
         mLayout = (CommonTabLayout) findViewById(R.id.m_layout);
+
 
     }
 
@@ -93,6 +95,7 @@ public class MainActivity extends AppCompatActivity {
         }
         //设置数据
         mLayout.setTabData((ArrayList<CustomTabEntity>) data);
+        mLayout.showMsg(4, 10);
         mPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager(),fsRes));
     }
     private void initListener() {
