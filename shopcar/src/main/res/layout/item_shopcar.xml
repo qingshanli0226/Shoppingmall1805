@@ -4,20 +4,20 @@
     android:layout_width="match_parent"
     android:layout_height="130dp">
 
-    <RadioButton
-        android:id="@+id/item_shopcar_rb"
+    <CheckBox
+        android:id="@+id/item_shopcar_cb"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_marginLeft="5dp"
         >
-    </RadioButton>
+    </CheckBox>
     <ImageView
         android:id="@+id/item_shopcar_img"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_centerVertical="true"
-        android:layout_toRightOf="@id/item_shopcar_rb"
+        android:layout_toRightOf="@id/item_shopcar_cb"
         android:layout_marginLeft="10dp"
         android:src="@drawable/top_bar_left_back"
         >

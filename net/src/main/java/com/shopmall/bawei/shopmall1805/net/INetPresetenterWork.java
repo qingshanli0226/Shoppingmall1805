@@ -36,7 +36,6 @@ public interface INetPresetenterWork {
     @FormUrlEncoded
     Observable<LoginBean> autoLogin(@FieldMap HashMap<String, String> params);
 
-
     //检查商品
     @POST("checkOneProductInventory")
     @FormUrlEncoded
@@ -44,15 +43,23 @@ public interface INetPresetenterWork {
 
     //添加一个商品
     @POST("addOneProduct")
-    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
-
-    //更新商品
-    @POST("updateProductNum")
-    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);//添加一个商品
 
     @GET("getShortcartProducts")
-    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();//获取数据接口
 
+    @POST("updateProductSelected")
+    Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);//更新选中状态接口
+
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);//更新数量接口
+
+    @POST("selectAllProduct")
+    Observable<BaseBean<String>> selectAllProduct(@Body RequestBody requestBody);//全选状态接口
+
+
+    @POST("removeManyProduct")
+    Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
     //小裙子 接口
     @GET()
     Observable<ClothesBean> skirt(@Url String url);

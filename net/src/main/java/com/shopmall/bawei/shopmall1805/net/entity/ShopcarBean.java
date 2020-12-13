@@ -16,6 +16,8 @@ public class ShopcarBean {
     private String productPrice;
     private boolean productSelected;
 
+
+
     public String getProductId() {
         return productId;
     }

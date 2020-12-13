@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.app.adapter.BaseRvAdapter;
+import com.shopmall.bawei.shopmall1805.framework.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 
 import java.util.List;

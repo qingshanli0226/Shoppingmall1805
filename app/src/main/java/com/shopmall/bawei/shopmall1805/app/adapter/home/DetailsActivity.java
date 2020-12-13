@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.app.adapter.home;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +22,10 @@ import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
+import com.shopmall.bawei.shopmall1805.framework.service.CacheManager;
+import com.shopmall.bawei.shopmall1805.net.entity.ShopcarBean;
+
+import java.util.List;
 
 public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopCarContract.IProductDetailView> implements ShopCarContract.IProductDetailView {
     private ImageView detailImg;
@@ -44,6 +49,7 @@ public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopC
     private Button btPushi;
     private String product_id;
     private String productNum = "1";
+    private int num;
     @Override
     protected void initData() {
         toolbar.setToolBarTitle("商品详情");
@@ -146,7 +152,6 @@ public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopC
         detailPrice = findViewById(R.id.detail_price);
         detailShopcar = findViewById(R.id.detail_shopcar);
         detailJoinShopcarBt = findViewById(R.id.detail_join_shopcar_bt);
-
     }
     @Override
     protected int getLayoutId() {
@@ -155,18 +160,42 @@ public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopC
     @Override
     public void onCheckOneProduct(String productNum) {
        if(Integer.parseInt(productNum) >= 1){
-           httpPresenter.addOneProduct(product_id,"1",name,figure,cover_price);
+           if(checkIfShopcarListHasProduct()){
+               ShopcarBean shopcarBean = CacheManager.getInstance().geShopcarBean(product_id);
+               int oldNum = Integer.parseInt(shopcarBean.getProductNum());
+                num = oldNum+1;
+               Log.i("TAGa", "onCheckOneProduct: ");
+                httpPresenter.updateProductNum(product_id,String.valueOf(num),name,figure,cover_price);
+           }else {
+               Log.i("TAGs", "onCheckOneProduct: ");
+               httpPresenter.addOneProduct(product_id,"1",name,figure,cover_price);
+           }
        }
+    }
+    private boolean checkIfShopcarListHasProduct(){
+        List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if(product_id.equals(shopcarBean.getProductId())){
+                return true;
+            }
+        }
+        return false;
     }
     @Override
     public void onAddProduct(String addRyesult) {
-
+        ShopcarBean shopcarBean = new ShopcarBean();
+        shopcarBean.setUrl(figure);
+        shopcarBean.setProductSelected(true);
+        shopcarBean.setProductNum("1");
+        shopcarBean.setProductId(product_id);
+        shopcarBean.setProductPrice(cover_price);
+        CacheManager.getInstance().add(shopcarBean);
+        Toast.makeText(this, "加入购物车", Toast.LENGTH_SHORT).show();
     }
     @Override
     public void onProductNumChange(String result) {
 
     }
-
     @Override
     public void showLoaing() {
 
