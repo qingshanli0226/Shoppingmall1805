@@ -4,7 +4,9 @@ import com.example.net.bean.BaseBean;
 import com.example.net.bean.Biaobean;
 import com.example.net.bean.ClothesBean;
 import com.example.net.bean.HomeBean;
+import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.LoginBean;
+import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.RegisterBean;
 import com.example.net.bean.ShopcarBean;
 
@@ -32,6 +34,17 @@ public interface INetPresetenterWork {
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> autologin(@FieldMap HashMap<String,String> map);
+    //退出登录
+    @POST("logout")
+    Observable<BaseBean<String>> logotlogin();
+    //绑定电话
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updatePhone(@FieldMap HashMap<String,String> map);
+    //绑定地址
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updateAddress(@FieldMap HashMap<String,String> map);
     //检查服务端一个产品库存情况的接口
     @POST("checkOneProductInventory")
     @FormUrlEncoded
@@ -49,6 +62,21 @@ public interface INetPresetenterWork {
     @POST("updateProductNum")
     Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
 
+    //更新服务端购物车产品的选择
+    @POST("updateProductSelected")
+    Observable<BaseBean<String>> updateProdictSelected(@Body RequestBody requestBody);
+    //全选服务端购物车产品或者全不选
+    @POST("selectAllProduct")
+    Observable<BaseBean<String>> selectAllProduct(@Body RequestBody requestBody);
+    //从服务端购物车删除多个产品的接口
+    @POST("removeManyProduct")
+    Observable<BaseBean<String>> deleteManyProduct(@Body RequestBody requestBody);
+    //检 查 服 务 端 多 个 产 品 是 否 库 存 充 足
+    @POST("checkInventory")
+    Observable<BaseBean<List<IntonVoryBean>>> checjInventory(@Body RequestBody requestBody);
+    //下单接口
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")
     Observable<ClothesBean> skirt();

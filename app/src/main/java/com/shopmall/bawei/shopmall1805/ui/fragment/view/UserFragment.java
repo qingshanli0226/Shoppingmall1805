@@ -1,12 +1,14 @@
-package com.shopmall.bawei.shopmall1805.ui.fragment;
+package com.shopmall.bawei.shopmall1805.ui.fragment.view;
 
 
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -15,10 +17,14 @@ import com.example.framework.BaseFragment;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
+import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.ui.activity.view.BangActivity;
+import com.shopmall.bawei.shopmall1805.ui.fragment.contract.LogotContract;
+import com.shopmall.bawei.shopmall1805.ui.fragment.presenter.LogotPresenter;
 
 
-public class UserFragment extends BaseFragment<IPresenter, IView> implements View.OnClickListener {
+public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILogotView> implements ShopUsermange.IUserLoginChangeLiestener,LogotContract.ILogotView, View.OnClickListener {
 
     private ScrollView scrollview;
     private ImageButton ibUserIconAvator;
@@ -44,7 +50,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView> implements Vie
 
     @Override
     protected void initPreseter() {
-
+        httpresetnter = new LogotPresenter();
     }
 
     @Override
@@ -78,7 +84,15 @@ public class UserFragment extends BaseFragment<IPresenter, IView> implements Vie
     protected void initdate() {
         //点击跳转到注册界面
         ibUserIconAvator.setOnClickListener(this);
-//        tvUsername.setText(""+ ShopUsermange.getInstance().getName());
+        ibUserSetting.setOnClickListener(this);
+        //点击跳转到绑定信息界面
+        tvUserLocation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), BangActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
@@ -90,6 +104,49 @@ public class UserFragment extends BaseFragment<IPresenter, IView> implements Vie
     public void onClick(View v) {
         if (v == ibUserIconAvator){
             ARouter.getInstance().build("/user/LoginRegisterActivity").navigation();
+        }else if (v==ibUserSetting){//点击退出登录
+            httpresetnter.logotUser();
         }
+    }
+
+    @Override
+    public void onLogotSucess(String result) {
+        Toast.makeText(getContext(), "退出登录成功", Toast.LENGTH_SHORT).show();
+        ShopUsermange.getInstance().clearshopbean();
+    }
+
+    @Override
+    public void onErroy(String message) {
+        Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showsloading() {
+        showloading();
+    }
+
+    @Override
+    public void hideloading() {
+        hideLoading();
+    }
+
+    @Override
+    public void showErroy(String message) {
+        showerror(message);
+    }
+
+    @Override
+    public void showEmpty() {
+        showEnpty();
+    }
+
+    @Override
+    public void onUserLogin(LoginBean loginBean) {
+        tvUsername.setText(""+loginBean.getName() );
+    }
+
+    @Override
+    public void onUserlogout() {
+
     }
 }

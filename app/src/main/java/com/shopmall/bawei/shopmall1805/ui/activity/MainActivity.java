@@ -1,8 +1,6 @@
 package com.shopmall.bawei.shopmall1805.ui.activity;
 
-import android.content.Context;
 import android.support.v4.app.Fragment;
-import android.view.inputmethod.InputMethodManager;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -12,7 +10,6 @@ import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
 import com.example.net.Confing;
-import com.example.net.bean.LoginBean;
 import com.example.net.bean.ShopcarBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -21,7 +18,7 @@ import com.shopmall.bawei.shopmall1805.typefragment.TypeFragment;
 import com.shopmall.bawei.shopmall1805.home.view.HomeFragment;
 import com.shopmall.bawei.shopmall1805.ui.fragment.FindFragment;
 import com.shopmall.bawei.shopcar.view.ShopCarFragment;
-import com.shopmall.bawei.shopmall1805.ui.fragment.UserFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.view.UserFragment;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adpter.FragmentAdpter;
 import com.example.framework.MyViewPager;
@@ -136,4 +133,5 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
     public void onAllselected(boolean isAllSelect) {
 
     }
+
 }

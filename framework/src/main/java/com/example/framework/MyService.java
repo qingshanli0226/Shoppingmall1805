@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.widget.Toast;
 
 import com.example.framework.ShopUsermange;
 import com.example.net.Retrofitcreators;
@@ -46,11 +47,11 @@ public class MyService extends Service{
                         @Override
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
-//                            ShopUsermange.getInstance().setName(loginBean.getName());
+                            ShopUsermange.getInstance().setName(loginBean.getName());
 //                            ShopUsermange.getInstance().setPassword(loginBean.getPassword());
                             ShopUsermange.getInstance().ShopLoginmange(loginBean);
-                            CacheManager.getInstance().getshopCardateserver();
                             EventBus.getDefault().postSticky("自动登录成功");
+                            Toast.makeText(MyService.this, "自动登录成功", Toast.LENGTH_SHORT).show();
                         }
 
                         @Override
@@ -64,7 +65,7 @@ public class MyService extends Service{
                         }
                     });
         }
-        return super.onStartCommand(intent, flags, startId);
+        return START_NOT_STICKY;
     }
 
     @Nullable

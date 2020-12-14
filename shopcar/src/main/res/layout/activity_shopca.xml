@@ -46,6 +46,7 @@
             android:layout_height="match_parent"
             android:background="#eeee" />
 
+        <include layout="@layout/empty_cart"/>
     </FrameLayout>
 
     <FrameLayout

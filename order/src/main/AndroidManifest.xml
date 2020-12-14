@@ -1,2 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shopmall.bawei.order" />
+    package="com.shopmall.bawei.order">
+
+    <application>
+        <activity android:name=".view.OrderActivity"></activity>
+    </application>
+
+</manifest>

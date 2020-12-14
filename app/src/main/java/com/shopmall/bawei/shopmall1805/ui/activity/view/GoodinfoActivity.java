@@ -31,7 +31,7 @@ import com.shopmall.bawei.shopmall1805.ui.activity.presenter.GoodInfoPresenter;
 import java.util.List;
 
 @Route(path="/goodsinto/GoodinfoActivity")
-public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoContract.IGoodsInfoView> implements GoodsInfoContract.IGoodsInfoView,View.OnClickListener {
+public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoContract.IGoodsInfoView> implements GoodsInfoContract.IGoodsInfoView,View.OnClickListener,CacheManager.IShopcarDataCharListerter {
     private ImageButton ibGoodInfoBack;
     private ImageButton ibGoodInfoMore;
     private ImageView ivGoodInfoImage;
@@ -69,6 +69,10 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
 
     @Override
     protected void initdate() {
+        //判断一下如果登录过就让详情页面购物车数据发生改变
+        if (ShopUsermange.getInstance().isUserLogin()){
+            tvGoodInfoCart.setText("购物车:"+CacheManager.getInstance().getShopcarList().size());
+        }
         Intent intent = getIntent();
         PrimereBean goods_bean = (PrimereBean) intent.getSerializableExtra("goods_bean");
         productId = goods_bean.getId();
@@ -88,6 +92,8 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
 
     @Override
     protected void initview() {
+        //点击监听数据改变，改变后刷新Ui
+        CacheManager.getInstance().setshopcarChangedListenter(this);
         ibGoodInfoBack = findViewById(R.id.ib_good_info_back);
         ibGoodInfoMore = findViewById(R.id.ib_good_info_more);
         ivGoodInfoImage = findViewById(R.id.iv_good_info_image);
@@ -226,6 +232,11 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
     //往购物车添加一条数据
     @Override
     public void onAddOneproduct(String addresult) {
+        //使用贝塞尔曲线动画
+//        showShopCarAnimin(1);
+        onaddproduct();
+    }
+    private void onaddproduct() {
         Toast.makeText(this, "商品成功加入购物车", Toast.LENGTH_SHORT).show();
         ShopcarBean shopcarBean = new ShopcarBean();
         shopcarBean.setProductId(productId);
@@ -236,6 +247,14 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
         shopcarBean.setUrl(url);
         CacheManager.getInstance().add(shopcarBean);
     }
+    //使用贝塞尔曲线来完成加入购物车的动画
+    private void showShopCarAnimin(int type) {
+        //起始坐标
+        int[] startPoint = new int[2];
+    }
+
+
+
     //更新了一下服务端商品的数量
     @Override
     public void onProductchanged(String result) {
@@ -267,4 +286,25 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
     public void showEmpty() {
         showEnpty();
     }
+    //最新的数据拿到刷新ui
+    @Override
+    public void ondataChanged(List<ShopcarBean> shopcarBeanList) {
+            tvGoodInfoCart.setText("购物车:"+shopcarBeanList.size());
+    }
+
+    @Override
+    public void onOneChanged(int position, ShopcarBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onManeyvhanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllselected(boolean isAllSelect) {
+
+    }
+
 }

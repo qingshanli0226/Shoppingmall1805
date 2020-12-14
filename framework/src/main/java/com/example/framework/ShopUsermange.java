@@ -2,6 +2,7 @@ package com.example.framework;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.example.net.Confing;
 import com.example.net.bean.LoginBean;
@@ -66,6 +67,35 @@ public class ShopUsermange {
             listenter.onUserLogin(loginBean);
         }
     }
+    //将token和loginbean清空
+    public void clearshopbean(){
+        editor.putString(Confing.token,"");
+        loginBean = null;
+        for (IUserLoginChangeLiestener liestener : liesteners) {
+            liestener.onUserlogout();
+        }
+    }
+    //将电话存入缓存
+    public void setPhone(String phone){
+        if (phone!=null){
+            loginBean.setPhone(phone);
+        }
+    }
+    //将地址存入缓存
+    public void setAddress(String address){
+        if (address!=null){
+            loginBean.setAddress(address);
+        }
+    }
+    //让别的类拿到电话
+    public Object getPhone(){
+        Log.e("EE",""+loginBean.getPhone());
+        return loginBean.getPhone();
+    }
+    //让别的类拿到地址
+    public Object getAddress(){
+        return loginBean.getAddress();
+    }
     public String gettoken(){
         if (loginBean!=null){
             return loginBean.getToken();
@@ -75,7 +105,7 @@ public class ShopUsermange {
 
     }
     public void registerUserLoginChangeListenter(IUserLoginChangeLiestener liestener){
-        if (! liesteners.contains(liestener)){
+        if (!liesteners.contains(liestener)){
             liesteners.add(liestener);
         }
     }

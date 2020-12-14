@@ -90,6 +90,7 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     @Override
     public void onlogin(LoginBean loginBean) {
         ShopUsermange.getInstance().ShopLoginmange(loginBean);
+        ShopUsermange.getInstance().setName(loginBean.getName());
         LoginRegisterActivity activity = (LoginRegisterActivity)getActivity();
         int toLoginFilemIndex = activity.getToLoginFilemIndex();
         if (toLoginFilemIndex== Confing.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT){
