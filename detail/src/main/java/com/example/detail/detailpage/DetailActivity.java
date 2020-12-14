@@ -80,7 +80,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         btnGoodInfoAddcart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(UserManager.isLogin()){
+                if(UserManager.getInstance().isLogin()){
                     showPopwindow();
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
@@ -92,7 +92,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         tvGoodInfoCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(UserManager.isLogin()){
+                if(UserManager.getInstance().isLogin()){
                     ARouter.getInstance().build("/shopCar/ShopCarActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();
                     finish();
                 }else {
@@ -104,7 +104,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
         tvGoodInfoCollection.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(UserManager.isLogin()){
+                if(UserManager.getInstance().isLogin()){
 
                 }else {
                     ARouter.getInstance().build("/user/LoginActivity").withString("key","detail").withSerializable("good",extra).withString("type",type).navigation();

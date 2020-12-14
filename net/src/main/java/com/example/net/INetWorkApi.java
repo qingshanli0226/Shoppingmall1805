@@ -10,6 +10,7 @@ import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.TagBean;
+import com.example.net.bean.UpdatePhoneBean;
 import com.example.net.bean.UpdateProductNumBean;
 import com.example.net.bean.UpdateProductSelectedBean;
 
@@ -27,13 +28,12 @@ import retrofit2.http.Url;
 public interface INetWorkApi {
     @GET(Constants.HOME_URL)
     Observable<MainBean> loadMain();
-
     @GET
     Observable<GoodsBean> showGoods(@Url String url);
-
     @GET(Constants.TAG_URL)
     Observable<TagBean> showTag();
-
+    @GET("getShortcartProducts")
+    Observable<ShopCarBean> getShopCar();
     @POST("register")
     @FormUrlEncoded
     Observable<RegisterBean> register(@FieldMap HashMap<String,String> map);
@@ -45,19 +45,16 @@ public interface INetWorkApi {
     Observable<AutoLoginBean> autoLogin(@FieldMap HashMap<String,String> map);
     @POST("addOneProduct")
     Observable<AddProductBean> addOneProduct(@Body RequestBody body);
-
     @POST("removeManyProduct")
     Observable<RemoveManyProductBean> removeManyProduct(@Body RequestBody body);
-
     @POST("updateProductNum")
     Observable<UpdateProductNumBean> updateProductNum(@Body RequestBody body);
-
     @POST("updateProductSelected")
     Observable<UpdateProductSelectedBean> updateProductSelected(@Body RequestBody body);
-
     @POST("selectAllProduct")
     Observable<SelectAllBean> selectAllProduct(@Body RequestBody body);
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<UpdatePhoneBean> updatePhone(@FieldMap HashMap<String,Integer> map);
 
-    @GET("getShortcartProducts")
-    Observable<ShopCarBean> getShopCar();
 }

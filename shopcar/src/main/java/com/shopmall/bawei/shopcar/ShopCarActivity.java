@@ -16,6 +16,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.UserManager;
 import com.example.framework.view.ToolBar;
 import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
@@ -101,6 +102,17 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
 
             }
         });
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isLogin()){
+                    ARouter.getInstance().build("/order/OrderActivity").navigation();
+                }else {
+                    Toast.makeText(ShopCarActivity.this, "请绑定手机号和地址", Toast.LENGTH_SHORT).show();
+                    ARouter.getInstance().build("/user/BindTelAndAdressActivity").navigation();
+                }
+            }
+        });
     }
 
     @Override
@@ -148,7 +160,6 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
             }
         }
         checkboxAll.setChecked(isAllSelect);
-        Toast.makeText(this, ""+shopCarList.size(), Toast.LENGTH_SHORT).show();
         if(shopCarList.size()>0){
             showSuccess();
             list.clear();
@@ -364,4 +375,9 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
         }
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangeListener(this);
+    }
 }

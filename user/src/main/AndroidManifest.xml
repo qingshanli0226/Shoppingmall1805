@@ -3,9 +3,11 @@
     package="com.shopmall.bawei.user">
 
     <application>
-        <activity android:name=".register.RegisterActivity"></activity>
-        <activity android:name=".login.LoginActivity" android:label="@string/title_activity_login" />
-
+        <activity android:name=".telandadress.BindTelAndAdressActivity"></activity>
+        <activity android:name=".register.RegisterActivity" />
+        <activity
+            android:name=".login.LoginActivity"
+            android:label="@string/title_activity_login" />
     </application>
 
 </manifest>

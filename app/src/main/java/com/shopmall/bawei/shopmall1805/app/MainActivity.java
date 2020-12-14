@@ -88,7 +88,7 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
         commMain.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                if(UserManager.isLogin()){
+                if(UserManager.getInstance().isLogin()){
                     vpMain.setCurrentItem(position);
             }else {
                 Toast.makeText(MainActivity.this, "请先登录账户", Toast.LENGTH_SHORT).show();
@@ -154,5 +154,11 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
     @Override
     public void onAllSelected(boolean isAllSelect) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangeListener(this);
     }
 }

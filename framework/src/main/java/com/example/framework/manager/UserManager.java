@@ -48,8 +48,30 @@ public class UserManager {
     public void outLogin(){
         user=null;
     }
-    public static boolean isLogin(){
+    public  boolean isLogin(){
         return user!=null;
+    }
+    public  boolean isBindAdress(){
+        if(user.getAddress()!=null&&!user.getAddress().equals("")){
+            return true;
+        }
+        return false;
+    }
+    public  boolean isBindTel(){
+        if(user.getPhone()!=null&&!user.getPhone().equals("")){
+            return true;
+        }
+        return false;
+    }
+    public void updataAdress(String adress){
+        if(user!=null){
+            user.setAddress(adress);
+        }
+    }
+    public void updataTel(Integer phone){
+        if(user!=null){
+            user.setPhone(phone);
+        }
     }
     public interface IUserLoginChangedListener{
         void onUserLogin(LoginBean.ResultBean user);

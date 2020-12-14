@@ -164,7 +164,7 @@ public class LoginActivity extends BaseActivity<LoginPresenterImpl, LoginContrac
     }
 
     private void arouter() {
-        if(!UserManager.isLogin()&&!key.equals("detail")){
+        if(!UserManager.getInstance().isLogin()&&!key.equals("detail")){
             key="0";
         }
         switch (key){

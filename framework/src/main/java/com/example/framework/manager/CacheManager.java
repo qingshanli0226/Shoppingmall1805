@@ -52,7 +52,9 @@ public class CacheManager {
 
             @Override
             public void onUserLogout() {
-
+                shopCarEditList.clear();
+                shopCarList.clear();
+                UserManager.getInstance().UnRegisterUserLoginChangeListener(this);
             }
         });
     }
@@ -254,7 +256,6 @@ public class CacheManager {
         }
         return String.valueOf(sumPrice);
     }
-
     public List<ShopCarBean.ResultBean> getShopCarList(){
         return  shopCarList;
     }
@@ -264,6 +265,11 @@ public class CacheManager {
     public void setShopcarDataChangeListener(IShopcarDataChangeListener listener) {
         if (!iShopcarDataChangeListenerList.contains(listener)) {
             iShopcarDataChangeListenerList.add(listener);
+        }
+    }
+    public void unSetShopcarDataChangeListener(IShopcarDataChangeListener listener) {
+        if (iShopcarDataChangeListenerList.contains(listener)) {
+            iShopcarDataChangeListenerList.remove(listener);
         }
     }
     public interface  IShopcarDataChangeListener{

@@ -11,8 +11,10 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseFragment;
 import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.UserManager;
 import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
@@ -48,7 +50,6 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
     private String productNumChangeId="";
     private String productNumChangeNum="";
     private boolean isClickCheckBox=false;
-    private boolean isClickCb=false;
     private int clickposition=-1;
     List<ShopCarBean.ResultBean> deleteList=new ArrayList<>();
     @Override
@@ -115,6 +116,17 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
                     }
                 }
                 presenter.removeManyProduct(deleteList);
+            }
+        });
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isLogin()){
+                   ARouter.getInstance().build("/order/OrderActivity").navigation();
+               }else {
+                   Toast.makeText(getContext(), "请绑定手机号和地址", Toast.LENGTH_SHORT).show();
+                    ARouter.getInstance().build("/user/BindTelAndAdressActivity").navigation();
+               }
             }
         });
     }
@@ -323,5 +335,11 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             }
             cbAll.setChecked(isEditSelectAll);
         }
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        CacheManager.getInstance().unSetShopcarDataChangeListener(this);
     }
 }

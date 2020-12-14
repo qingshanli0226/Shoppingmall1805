@@ -7,6 +7,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.manager.CacheManager;
 import com.example.framework.manager.UserManager;
 import com.example.net.TokenInterceptorContext;
+import com.squareup.leakcanary.LeakCanary;
 
 public class  ShopMallApp extends Application {
     @Override
@@ -18,5 +19,8 @@ public class  ShopMallApp extends Application {
         TokenInterceptorContext.init(this);
         UserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);
+        if(!LeakCanary.isInAnalyzerProcess(this)){
+            LeakCanary.install(this);
+        }
     }
 }
