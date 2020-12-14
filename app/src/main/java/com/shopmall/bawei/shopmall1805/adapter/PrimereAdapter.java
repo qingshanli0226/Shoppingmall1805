@@ -145,6 +145,7 @@ public class PrimereAdapter extends BaseMultiItemQuickAdapter<HomeBean, BaseView
                         intent.putExtra("path",item.getHot_info().get(position).getFigure());
                         intent.putExtra("name",item.getHot_info().get(position).getName());
                         intent.putExtra("money",item.getHot_info().get(position).getCover_price());
+                        intent.putExtra("id",item.getHot_info().get(position).getProduct_id());
                         mContext.startActivity(intent);
                     }
                 });

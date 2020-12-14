@@ -195,9 +195,12 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
 
     private boolean checkIfShopcarListHasProduct() {
         List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
-        for (ShopcarBean shopcarBean : shopcarBeanList) {
-            if (shopcarBean.getProductId().equals(id)){
-                return true;
+        if (shopcarBeanList.size() != 0){
+            for (ShopcarBean shopcarBean : shopcarBeanList) {
+                Log.i("TAG", "checkIfShopcarListHasProduct: "+shopcarBean.getProductId());
+                if (shopcarBean.getProductId().equals(id)){
+                    return true;
+                }
             }
         }
         return false;

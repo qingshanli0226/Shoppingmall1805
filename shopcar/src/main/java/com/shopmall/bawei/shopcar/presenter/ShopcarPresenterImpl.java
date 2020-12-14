@@ -8,6 +8,7 @@ import com.example.net.ShopcarBean;
 import com.google.gson.JsonObject;
 import com.shopmall.bawei.shopcar.contract.ShopcarContract;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -152,6 +153,49 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
 
     @Override
     public void deleteProducts(List<ShopcarBean> products) {
+        JSONArray jsonArray = new JSONArray();
+        for(ShopcarBean shopcarBean:products) {
+            JSONObject jsonObject = new JSONObject();
+            try {
+                jsonObject.put("productId", shopcarBean.getProductId());
+                jsonObject.put("productName", shopcarBean.getProductName());
+                jsonObject.put("url", shopcarBean.getUrl());
+                jsonObject.put("productNum", shopcarBean.getProductNum());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonArray.toString());
+        new HttpRetrofitManager()
+                .getRetrofit(ConfigUrl.BASE_URL)
+                .create(INetPresetenterWork.class)
+                .removeManyProduct(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseBean<String> stringBaseBean) {
+                        iView.onDeleteProducts(stringBaseBean.getResult());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
 
     }
 

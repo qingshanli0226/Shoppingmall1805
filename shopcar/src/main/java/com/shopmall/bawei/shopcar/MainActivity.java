@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -63,21 +64,43 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
 
         httpPresenter = new ShopcarPresenterImpl();
 
+        //删除
+        button_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<ShopcarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
+                if (deleteShopcarBeanList.size()>0){
+                    httpPresenter.deleteProducts(deleteShopcarBeanList);
+                }else {
+                    Toast.makeText(MainActivity.this, "当前没有要删除的数据", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
         bianji.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (i){
-                    i = false;
+                if (isEditMode){
+                    isEditMode = false;
+                    shopCarAdapter.setEditMode(isEditMode);
                     linearLayout1.setVisibility(View.VISIBLE);
                     linearLayout.setVisibility(View.GONE);
 
                 }else {
-                    i = true;
+                    //编辑模式下
+                    isEditMode = true;
                     linearLayout1.setVisibility(View.GONE);
                     linearLayout.setVisibility(View.VISIBLE);
+                    shopCarAdapter.setEditMode(isEditMode);
+                    if (CacheManager.getInstance().isAllSelectInEditMode()) {
+                        checkBox_etAll.setChecked(true);
+                    }
+                    Log.i("TAG", "onClick: "+CacheManager.getInstance().getDeleteShopcarBeanList().size());
                 }
             }
         });
+
+
 
 
         shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
@@ -125,6 +148,9 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         });
     }
 
+
+
+
     @Override
     public void onProductNumChange(String result, int position, String newNum) {
         Toast.makeText(this, "修改产品数量", Toast.LENGTH_SHORT).show();
@@ -143,7 +169,8 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
 
     @Override
     public void onDeleteProducts(String result) {
-
+        Toast.makeText(this, "删除成功", Toast.LENGTH_SHORT).show();
+        CacheManager.getInstance().processDeleteProducts();
     }
 
     @Override
@@ -195,4 +222,6 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
             checkBox_all.setChecked(isAllSelect);
         }
     }
+
+
 }

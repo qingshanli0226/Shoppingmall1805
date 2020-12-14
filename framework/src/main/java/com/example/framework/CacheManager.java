@@ -96,6 +96,34 @@ public class CacheManager {
         return deleteShopcarBeanList.contains(shopcarBean);
     }
 
+    public void processDeleteProducts() {
+        //首先将删除列表中的数据在购物车缓存张删除
+        shopcarBeanList.removeAll(deleteShopcarBeanList);
+        //把删除列表清空
+        deleteShopcarBeanList.clear();
+
+        //通知UI刷新页面
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
+            listener.onAllSelected(false);
+        }
+
+    }
+
+    //从缓存中删除已经支付的商品
+    public void removeSelectedProducts() {
+        shopcarBeanList.removeAll(getSelectedProductBeanList());
+
+        for(CacheManager.IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
+            listener.onAllSelected(false);
+        }
+    }
+    public boolean isAllSelectInEditMode() {
+        return deleteShopcarBeanList.size() == shopcarBeanList.size();
+    }
     public void selectAllProductInEditMode(boolean isAllSelect) {
         if (isAllSelect) {
             deleteShopcarBeanList.clear();
@@ -103,7 +131,6 @@ public class CacheManager {
         } else {
             deleteShopcarBeanList.clear();
         }
-
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
             listener.onAllSelected(isAllSelect);
             listener.onDataChanged(shopcarBeanList);
@@ -131,6 +158,8 @@ public class CacheManager {
             listener.onMoneyChanged(getMoneyValue());
         }
     }
+
+
 
     //从服务端获取购物车的数据
     public void getShopcarDataFromServer() {
@@ -232,6 +261,10 @@ public class CacheManager {
     }
     public List<ShopcarBean> getShopcarBeanList(){
         return shopcarBeanList;
+    }
+
+    public List<ShopcarBean> getDeleteShopcarBeanList() {
+        return deleteShopcarBeanList;
     }
 
     //获取已经选择的商品列表

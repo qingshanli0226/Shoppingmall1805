@@ -30,6 +30,10 @@ public class ShopCarAdapter extends BaseQuickAdapter<ShopcarBean, BaseViewHolder
         super(layoutResId, data);
     }
 
+    public void setEditMode(boolean editMode) {
+        isEditMode = editMode;
+    }
+
     @Override
     protected void convert(final BaseViewHolder helper, final ShopcarBean item) {
         Glide.with(mContext).load(ConfigUrl.BASE_IMAGE+item.getUrl()).into((ImageView) helper.getView(R.id.iv_gov));
@@ -40,35 +44,34 @@ public class ShopCarAdapter extends BaseQuickAdapter<ShopcarBean, BaseViewHolder
         ImageView addNum = helper.getView(R.id.btn_add);
         ImageView subNum = helper.getView(R.id.btn_sub);
 
-
-
-
-
-        CheckBox view = helper.getView(R.id.cb_gov);
+        CheckBox checkBox = helper.getView(R.id.cb_gov);
         helper.addOnClickListener(R.id.cb_gov);
-        view.setChecked(item.isProductSelected());
+        checkBox.setChecked(item.isProductSelected());
         if (!isEditMode){
-            view.setChecked(item.isProductSelected());
-            initProductSelectCheckBoxClickListener(helper,view, item);
+            checkBox.setChecked(item.isProductSelected());
+            initProductSelectCheckBoxClickListener(helper,checkBox, item);
             initAddDecClickListener(helper,addNum,subNum,item);
         }else {
-            initEditModeCheckBoxClickListener(helper,view,item);
+            Log.i("TAG", "convert: +++++++++++++++");
+            initEditModeCheckBoxClickListener(helper,checkBox,item);
             if (CacheManager.getInstance().checkIfDataInDeleteShopcarBeanList(item)){
-                view.setChecked(true);
+                checkBox.setChecked(true);
             }else {
-                view.setChecked(false);
+                checkBox.setChecked(false);
             }
         }
 
 
     }
 
-    private void initEditModeCheckBoxClickListener(final BaseViewHolder helper, final CheckBox view, final ShopcarBean item) {
-        view.setOnClickListener(new View.OnClickListener() {
+    private void initEditModeCheckBoxClickListener(final BaseViewHolder helper, final CheckBox checkBox, final ShopcarBean item) {
+        checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (view.isChecked()) {
+                Log.i("TAG", "onClick: "+"666");
+                if (checkBox.isChecked()) {
                     //当前在编辑模式下，选择了该商品，需要把该商品添加到删除队列中
+
                     CacheManager.getInstance().addDeleteShopcarBean(item, helper.getPosition());
                 } else {
                     //在编辑模式下，该商品由已选择变为未选择，那么需要把它从删除队列中删除
@@ -102,12 +105,16 @@ public class ShopCarAdapter extends BaseQuickAdapter<ShopcarBean, BaseViewHolder
         });
     }
 
-    private void initProductSelectCheckBoxClickListener(final BaseViewHolder helper, CheckBox view, final ShopcarBean item) {
-        view.setOnClickListener(new View.OnClickListener() {
+    private void initProductSelectCheckBoxClickListener(final BaseViewHolder helper, final CheckBox checkBox, final ShopcarBean item) {
+        checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Toast.makeText(mContext, "这是单选框", Toast.LENGTH_SHORT).show();
-                shopcarPresenter.updateProductSelected(item.getProductId(),view.isSelected(),item.getProductName(),item.getUrl(), (String) item.getProductPrice(),helper.getPosition());
+                if (checkBox.isChecked()){
+                    shopcarPresenter.updateProductSelected(item.getProductId(),true,item.getProductName(),item.getUrl(), (String) item.getProductPrice(),helper.getPosition());
+                }else {
+                    shopcarPresenter.updateProductSelected(item.getProductId(),false,item.getProductName(),item.getUrl(), (String) item.getProductPrice(),helper.getPosition());
+                }
             }
         });
     }
