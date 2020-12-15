@@ -37,7 +37,7 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
     private CheckBox checkBox_all,checkBox_etAll;
     private boolean newAllSelect;
     private  List<ShopcarBean> shopcarBeanList;
-    private Button button_delete;
+    private Button button_delete,btn_checkout;
     private boolean isEditMode = false;
 
     @Override
@@ -56,6 +56,7 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         total = findViewById(R.id.tv_shopcart_total);
         checkBox_etAll = findViewById(R.id.cb_all);
         button_delete = findViewById(R.id.btn_delete);
+        btn_checkout = findViewById(R.id.btn_check_out);
     }
 
     @Override
@@ -63,6 +64,16 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         ARouter.getInstance().inject(this);
 
         httpPresenter = new ShopcarPresenterImpl();
+
+        ARouter.getInstance().inject(this);
+
+        btn_checkout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build("/me/order")
+                        .navigation();
+            }
+        });
 
         //删除
         button_delete.setOnClickListener(new View.OnClickListener() {
