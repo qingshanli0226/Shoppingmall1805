@@ -22,6 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager {
     private List<ShopCarBean.ResultBean> shopCarList=new ArrayList<>();
+    private List<ShopCarBean.ResultBean> shopCarPayList=new ArrayList<>();
     private List<ShopCarBean.ResultBean> shopCarEditList=new ArrayList<>();
     private static CacheManager instance;
     private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList=new ArrayList<>();
@@ -258,6 +259,15 @@ public class CacheManager {
     }
     public List<ShopCarBean.ResultBean> getShopCarList(){
         return  shopCarList;
+    }
+    public List<ShopCarBean.ResultBean> getShopCarPayList(){
+        shopCarPayList.clear();
+        for (ShopCarBean.ResultBean resultBean : shopCarList) {
+            if(resultBean.isProductSelected()){
+                shopCarPayList.add(resultBean);
+            }
+        }
+        return  shopCarPayList;
     }
     public List<ShopCarBean.ResultBean> getShopCarEditList(){
         return  shopCarEditList;

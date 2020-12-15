@@ -106,10 +106,12 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
             @Override
             public void onClick(View v) {
                 if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isLogin()){
-                    ARouter.getInstance().build("/order/OrderActivity").navigation();
+                    ARouter.getInstance().build("/order/OrderActivity").withString("key","shopCar").navigation();
+                    finish();
                 }else {
                     Toast.makeText(ShopCarActivity.this, "请绑定手机号和地址", Toast.LENGTH_SHORT).show();
-                    ARouter.getInstance().build("/user/BindTelAndAdressActivity").navigation();
+                    ARouter.getInstance().build("/user/BindTelAndAddressActivity").withString("key","shopCar").navigation();
+                    finish();
                 }
             }
         });

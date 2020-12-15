@@ -124,6 +124,7 @@
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:disklrucache:4.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.github.bumptech.glide:annotations:4.1.1@jar" level="project" />
     <orderEntry type="library" name="Gradle: com.alibaba:arouter-annotation:1.0.6@jar" level="project" />
+    <orderEntry type="library" name="Gradle: ./app/lib/alipaySdk-15.6.5-20190718211148.aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.leakcanary:leakcanary-android:1.6.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: com.squareup.leakcanary:leakcanary-analyzer:1.6.3@aar" level="project" />
     <orderEntry type="library" name="Gradle: androidx.constraintlayout:constraintlayout:2.0.4@aar" level="project" />

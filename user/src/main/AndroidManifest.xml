@@ -3,7 +3,7 @@
     package="com.shopmall.bawei.user">
 
     <application>
-        <activity android:name=".telandadress.BindTelAndAdressActivity"></activity>
+        <activity android:name=".telandadress.BindTelAndAddressActivity"></activity>
         <activity android:name=".register.RegisterActivity" />
         <activity
             android:name=".login.LoginActivity"

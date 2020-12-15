@@ -121,11 +121,16 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
         btnCheckOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isLogin()){
-                   ARouter.getInstance().build("/order/OrderActivity").navigation();
+               if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isBindTel()){
+                   List<ShopCarBean.ResultBean> shopCarPayList = CacheManager.getInstance().getShopCarPayList();
+                   if(shopCarPayList.size()>0){
+                       ARouter.getInstance().build("/order/OrderActivity").withString("key","main").navigation();
+                   }else {
+                       Toast.makeText(getContext(), "未选中商品", Toast.LENGTH_SHORT).show();
+                   }
                }else {
                    Toast.makeText(getContext(), "请绑定手机号和地址", Toast.LENGTH_SHORT).show();
-                    ARouter.getInstance().build("/user/BindTelAndAdressActivity").navigation();
+                    ARouter.getInstance().build("/user/BindTelAndAddressActivity").withString("key","main").navigation();
                }
             }
         });

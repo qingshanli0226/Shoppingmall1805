@@ -39,7 +39,7 @@ public class ShopCarEditAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
         cbGov.setChecked(resultBean.isProductSelected());
         Glide.with(context).load(Constants.BASE_URl_IMAGE+resultBean.getUrl()).into(ivGov);
         tvDescGov.setText(resultBean.getProductName());
-        tvPriceGov.setText("¥"+resultBean.getProductPrice());
+        tvPriceGov.setText("¥"+(Float.parseFloat(resultBean.getProductPrice()+"")*Integer.parseInt(resultBean.getProductNum())));
         cbGov.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

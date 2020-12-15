@@ -10,6 +10,7 @@ import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
 import com.example.net.bean.TagBean;
+import com.example.net.bean.UpDateAddressBean;
 import com.example.net.bean.UpdatePhoneBean;
 import com.example.net.bean.UpdateProductNumBean;
 import com.example.net.bean.UpdateProductSelectedBean;
@@ -55,6 +56,8 @@ public interface INetWorkApi {
     Observable<SelectAllBean> selectAllProduct(@Body RequestBody body);
     @POST("updatePhone")
     @FormUrlEncoded
-    Observable<UpdatePhoneBean> updatePhone(@FieldMap HashMap<String,Integer> map);
-
+    Observable<UpdatePhoneBean> updatePhone(@FieldMap HashMap<String,String> map);
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<UpDateAddressBean> updateAddress(@FieldMap HashMap<String,String> map);
 }

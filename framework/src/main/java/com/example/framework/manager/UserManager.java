@@ -63,16 +63,33 @@ public class UserManager {
         }
         return false;
     }
-    public void updataAdress(String adress){
+    public void saveAdress(String adress){
         if(user!=null){
             user.setAddress(adress);
         }
     }
-    public void updataTel(Integer phone){
+    public void saveTel(String phone){
         if(user!=null){
             user.setPhone(phone);
         }
     }
+
+    public String getName() {
+        return user.getName();
+    }
+    public String getTel() {
+        return user.getPhone()+"";
+    }
+    public String getId() {
+        return user.getId();
+    }
+    public String getAddress() {
+        return user.getAddress()+"";
+    }
+    public String getEmail() {
+        return user.getEmail()+"";
+    }
+
     public interface IUserLoginChangedListener{
         void onUserLogin(LoginBean.ResultBean user);
         void onUserLogout();
