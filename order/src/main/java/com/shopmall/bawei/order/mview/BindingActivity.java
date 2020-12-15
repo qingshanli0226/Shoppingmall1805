@@ -1,7 +1,6 @@
 package com.shopmall.bawei.order;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
+
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,6 +8,7 @@ import android.widget.EditText;
 import framework.BaseActivity;
 import view.ToolBar;
 import view.loadinPage.ErrorBean;
+
 
 public class BindingActivity extends BaseActivity implements View.OnClickListener, ToolBar.IToolBarClickListner {
     private EditText editPhone;
