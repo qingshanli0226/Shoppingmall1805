@@ -37,13 +37,17 @@ public class MyFragment extends Fragment {
         ibUserIconAvator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),UserMainActivity.class));
+                Intent intent = new Intent(getContext(), UserMainActivity.class);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
         tvUsername.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getContext(),UserMainActivity.class));
+                Intent intent = new Intent(getContext(), UserMainActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
             }
         });
         return view;

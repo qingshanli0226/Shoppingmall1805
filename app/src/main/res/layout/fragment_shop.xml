@@ -67,12 +67,12 @@
                 android:layout_weight="10"
                 android:layout_height="match_parent"
                 >
-            <RadioButton
+            <CheckBox
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:textSize="20dp"
                 android:id="@+id/shop_select"
-                android:text="@string/shopscar_select"></RadioButton>
+                android:text="@string/shopscar_select"></CheckBox>
             <TextView
                 android:textColor="#000"
                 android:layout_marginLeft="20dp"

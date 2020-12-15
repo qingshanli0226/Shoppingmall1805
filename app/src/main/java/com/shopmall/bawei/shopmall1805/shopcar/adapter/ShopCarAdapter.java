@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.shopcar.adapter;
 import android.media.tv.TvTrackInfo;
 import android.util.Log;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.RadioButton;
@@ -25,30 +26,20 @@ public class    ShopCarAdapter extends BaseQuickAdapter<GetShopCarBean, BaseView
 
     @Override
     protected void convert(BaseViewHolder helper, GetShopCarBean item) {
-        final RadioButton shopradio = helper.getView(R.id.shop_Radio);
+         CheckBox shopradio = helper.getView(R.id.shop_Radio);
         ImageView shopcaradd = helper.getView(R.id.shop_car_add);
         ImageView shopcarcut = helper.getView(R.id.shop_car_cut);
         ImageView shopimage = helper.getView(R.id.shop_car_image);
 
         helper.setText(R.id.shop_car_text,item.getProductName());
 
-    helper.setText(R.id.shop_car_pay,"￥"+item.getProductPrice());
+        helper.setText(R.id.shop_car_pay,"￥"+item.getProductPrice());
 
         helper.setText(R.id.shop_car_count,item.getProductNum());
+        helper.addOnClickListener(R.id.shop_Radio);
         Glide.with(mContext).load(item.getUrl()).into(shopimage);
-        final boolean flag=true;
-        shopradio.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked){
-                    shopradio.setChecked(true);
 
-                }else {
-                    shopradio.setChecked(false);
 
-                }
-            }
-        });
 
 
 

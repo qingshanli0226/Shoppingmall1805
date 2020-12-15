@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopmall1805;
 
 import android.os.Bundle;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -17,6 +19,11 @@ import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.view.FirstFragment;
 import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
 import com.shopmall.bawei.shopmall1805.shopcar.view.ShopCarFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 public class MainActivity extends AppCompatActivity {
@@ -31,9 +38,12 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        EventBus.getDefault().register(this);
         initView();
         initData();
         initListener();
+
+
     }
 
     private void initView() {
@@ -95,9 +105,13 @@ public class MainActivity extends AppCompatActivity {
         }
         //设置数据
         mLayout.setTabData((ArrayList<CustomTabEntity>) data);
-        mLayout.showMsg(4, 10);
+
+
         mPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager(),fsRes));
     }
+
+
+
     private void initListener() {
         //TabLayout监听
         mLayout.setOnTabSelectListener(new OnTabSelectListener() {
@@ -132,6 +146,15 @@ public class MainActivity extends AppCompatActivity {
         });
         //设置默认第0个
         mPager.setCurrentItem(0);
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getSize(Integer size){
+        mLayout.showMsg(3,size );
+    }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 
 }

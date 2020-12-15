@@ -85,6 +85,8 @@ public class CacheManager {
     }
 
 
+
+
     public interface IShopcarDataChangeListener{
         void onDataChanged(List<GetShopCarBean> shopcarBeanList);
         void onOneDataChanged(int position,GetShopCarBean shopcarBean);

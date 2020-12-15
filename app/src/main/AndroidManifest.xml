@@ -15,7 +15,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".goods.view.GoodsActivity">
+        <activity android:name=".goods.view.GoodsActivity" android:launchMode="singleTask">
 
         </activity>
 
