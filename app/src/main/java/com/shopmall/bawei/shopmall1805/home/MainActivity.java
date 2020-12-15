@@ -9,10 +9,14 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.bawei.deom.BaseActivity;
+import com.bawei.deom.BaseAroute;
 import com.bawei.deom.CacheManager;
+import com.bawei.deom.IPrine;
+import com.bawei.deom.IView;
 import com.bawei.deom.MyServer;
-import com.bawei.deom.autologin.AutologinCountroller;
-import com.bawei.deom.autologin.AutologinImpl;
+
+
+import com.bawei.deom.ShopUserManager;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
@@ -33,7 +37,7 @@ import bean.LoginBean;
 import bean.Shoppingcartproducts;
 
 
-public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountroller.AutoLoginView> implements AutologinCountroller.AutoLoginView {
+public class MainActivity extends BaseActivity {
 
     private ViewPager pager;
     private CommonTabLayout com;
@@ -58,7 +62,7 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
     }
     @Override
     protected void inPresone() {
-         prine=new AutologinImpl();
+
     }
     String token;
     @Override
@@ -99,7 +103,7 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
             public void onPageSelected(int i) {
             com.setCurrentTab(i);
                 Log.e("页数",pager.getCurrentItem()+"");
-                if (token.equals("123")&&pager.getCurrentItem()==3){
+                if (!ShopUserManager.getInstance().isUserLogin()){
                     Intent intent=new Intent(MainActivity.this, LoginActivity.class);
                     startActivity(intent);
                 }
@@ -119,8 +123,8 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
         @Override
         public void onDataChanged(List<Shoppingcartproducts.ResultBean> shopcarBeanlist) {
               count=shopcarBeanlist.size();
-              coutomEntiy3.setTitle("购物车"+count);
-              tabEntitys.set(3,coutomEntiy3);
+//            tabEntitys.set(3,new CoutomEntiy(coutomEntiy3.getTabTitle()+count,R.mipmap.main_cart,R.mipmap.main_cart));
+
             Log.e("coutomEntiys",coutomEntiy3.getTabTitle());
         }
 
@@ -138,6 +142,11 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
         public void onAllSelected(boolean isAllSelect) {
 
         }
+
+        @Override
+        public void onAllSelectedNum(int num) {
+
+        }
     };
     private void initShopcarDataChangeListener() {
         CacheManager.getInstance().setShopcarDataChangeListerner(iShopcarDataChangeListener);
@@ -145,11 +154,15 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
 
     private void updateShopcarCount() {
         //如果用户登录了，才可以刷新购物车数据，否则购物车数据并没有初始化，没必要刷新
-        if (token.equals("")||token.equals("123")) {
-            Toast.makeText(this,"当前用户没有登录", Toast.LENGTH_SHORT).show();
+        if (ShopUserManager.getInstance().isUserLogin()) {
+            count = CacheManager.getInstance().getShopcarBeanlist().size();
+//            if (count!=0){
+//                tabEntitys.set(3,new CoutomEntiy(coutomEntiy3.getTabTitle()+count,R.mipmap.main_cart,R.mipmap.main_cart));
+//            }
+
 
         } else {
-            count = CacheManager.getInstance().getShopcarBeanlist().size();
+            Toast.makeText(this,"当前用户没有登录", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -171,28 +184,12 @@ public class MainActivity extends BaseActivity<AutologinImpl,AutologinCountrolle
 
     }
 
-    @Override
-    public void onMyautologinView(LoginBean autoLoginBeen) {
 
-        getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
-            Toast.makeText(this, "自动登录", Toast.LENGTH_SHORT).show();
-            //Log.e("autotoken",autoLoginBeen.getResult().getToken());
-            Log.e("auot====","自动登录");
 
-    }
+
 
     @Override
-    public void loading() {
-
-    }
-
-    @Override
-    public void hideloading() {
-
-    }
-
-    @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
         stopService(intent);
     }

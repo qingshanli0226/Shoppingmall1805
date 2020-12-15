@@ -1,6 +1,7 @@
 package com.bawei.deom;
 
 import java.util.HashMap;
+import java.util.List;
 
 import bean.BaseBean;
 import bean.ClothesBean;
@@ -8,6 +9,7 @@ import bean.GetOrderInfo;
 import bean.HomeBean;
 import bean.InventoryBean;
 import bean.LoginBean;
+import bean.PhoneBean;
 import bean.RegisterBean;
 import bean.Shoppingcartproducts;
 import bean.TAGBean;
@@ -76,12 +78,23 @@ public interface UserInterface {
     //从服务端购物车删除一个产品的接口
     @POST("/removeManyProduct")
     Observable<BaseBean<String>>removeManyProduct(@Body RequestBody body);
+
+
+
     //检查服务端多个产品是否库存充足
     @POST("/checkInventory")
-    Observable<BaseBean<InventoryBean>>checkInventory(@Body RequestBody body);
+    Observable<BaseBean<List<InventoryBean>>>checkInventory(@Body RequestBody body);
     //向服务端下订单接口
     @POST("/getOrderInfo")
     Observable<BaseBean<GetOrderInfo>>getOrderInfo(@Body RequestBody body);
+    //更新地址
+    @POST("/updateAddress")
+    @FormUrlEncoded
+    Observable<PhoneBean>updateAddress(@FieldMap HashMap<String,String> map);
+    //更新电话
+    @POST("/updatePhone")
+    @FormUrlEncoded
+    Observable<PhoneBean>updatePhone(@FieldMap HashMap<String,String> map);
 
 
 }

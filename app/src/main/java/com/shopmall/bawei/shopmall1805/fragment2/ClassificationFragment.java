@@ -25,7 +25,7 @@ import java.util.List;
 
 import bean.typebean.BugBean;
 
-public class FenFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsView>implements SkirtCommuntroller.UsView {
+public class ClassificationFragment extends BaseFragment<SkirtImpl, SkirtCommuntroller.UsView>implements SkirtCommuntroller.UsView {
     private ListView zhonglei;
     private RecyclerView remai;
     private RecyclerView changyong;

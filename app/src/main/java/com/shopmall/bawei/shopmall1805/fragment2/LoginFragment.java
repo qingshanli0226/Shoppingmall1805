@@ -19,6 +19,7 @@ import com.bawei.deom.login.LoginCountroller;
 import com.bawei.deom.login.LoginImpl;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.login.LoginActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -87,11 +88,10 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
     public void onlogin(LoginBean loginBean) {
 
             Toast.makeText(getContext(), ""+loginBean.getMessage(), Toast.LENGTH_SHORT).show();
-            Log.e("登录的token",loginBean.getResult().getToken()+"");
             getActivity().getSharedPreferences("login",Context.MODE_PRIVATE).edit().putString("login",loginBean.getResult().getToken()).commit();
             ShopUserManager.getInstance().saveLoginBean(loginBean);
-
-        Intent intent=new Intent(getContext(), MainActivity.class);
+            Intent intent=new Intent(getContext(), MainActivity.class);
+           intent.putExtra("token",loginBean+"");
             startActivity(intent);
 
 

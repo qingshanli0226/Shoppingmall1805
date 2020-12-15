@@ -14,7 +14,7 @@ import android.widget.RadioButton;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.apter.zhuyeapter.MyFragmentPager;
 import com.shopmall.bawei.shopmall1805.fragment2.ThelabelFragment;
-import com.shopmall.bawei.shopmall1805.fragment2.FenFragment;
+import com.shopmall.bawei.shopmall1805.fragment2.ClassificationFragment;
 
 import java.util.ArrayList;
 
@@ -35,7 +35,7 @@ public class SpeciesFragment extends Fragment {
         if (arrayList!=null||arrayList.size()!=0){
             arrayList.clear();
         }
-        arrayList.add(new FenFragment());
+        arrayList.add(new ClassificationFragment());
         arrayList.add(new ThelabelFragment());
         myFragmentPager=new MyFragmentPager(getChildFragmentManager(),arrayList);
         pager.setAdapter(myFragmentPager);

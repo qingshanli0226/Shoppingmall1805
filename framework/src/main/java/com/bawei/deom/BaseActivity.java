@@ -21,8 +21,10 @@ public abstract class BaseActivity<Prine extends IPrine,PView extends IView> ext
         intView();
         inPresone();
         inData();
+        if (prine!=null){
+            prine.attach((PView)this);
+        }
 
-       prine.attach((PView)this);
 
     }
 
@@ -35,6 +37,12 @@ public abstract class BaseActivity<Prine extends IPrine,PView extends IView> ext
 
     protected abstract void intView();
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (prine!=null){
+            prine.onDestroy();
+        }
+    }
 
 }

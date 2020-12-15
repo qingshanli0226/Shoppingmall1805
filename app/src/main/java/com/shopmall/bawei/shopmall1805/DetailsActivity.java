@@ -224,12 +224,17 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
     }
 
     @Override
+    public void onAllSelectedNum(int num) {
+
+    }
+
+    @Override
     public void onClick(View v) {
 
     }
 
     @Override
-    protected void onDestroy() {
+    public void onDestroy() {
         super.onDestroy();
 
     }

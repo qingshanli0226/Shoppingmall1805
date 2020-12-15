@@ -1,15 +1,26 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
+import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.countroller.UserCountroller;
 import com.bawei.deom.countroller.UserIMPL;
 import com.bawei.deom.view.LoadingPage;
+import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.ShangTitle;
 import com.shopmall.bawei.shopmall1805.apter.PrimereAdpter;
+import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.mesage.MessageActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.List;
 
@@ -20,6 +31,9 @@ import bean.TAGBean;
 public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.UserView> implements UserCountroller.UserView {
     private RecyclerView rv;
     private PrimereAdpter primereAdpter;
+    private TextView toolerMessage;
+    private ImageView toolImage;
+
 
 
 
@@ -33,6 +47,17 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     @Override
     protected void initData() {
         prine.getskerak(loadingPage);
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolerMessage.setText(messageCount+"");
+        }
+        toolImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getContext(), MessageActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 
@@ -42,6 +67,10 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
         primereAdpter = new PrimereAdpter();
         rv.setAdapter(primereAdpter);
         rv.setLayoutManager(new LinearLayoutManager(getContext()));
+        toolImage = (ImageView) view.findViewById(R.id.tool_image);
+
+        toolerMessage = (TextView) view.findViewById(R.id.tooler_message);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -59,7 +88,13 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     public void hideloading() {
 
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageChanged(ShangTitle shopcarMessage) {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolerMessage.setText("消息"+messageCount+"");
+        }
+    }
 
     @Override
     public void onskerk(HomeBean homeBeanList) {
@@ -76,8 +111,9 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     }
 
-
-
-
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

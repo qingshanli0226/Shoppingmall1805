@@ -3,7 +3,9 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+
+    >
 
     <android.support.v7.widget.Toolbar
             style="@style/firstToolbar"
@@ -32,8 +34,10 @@
                     android:layout_width="@dimen/FirstImageWidth"
                     android:layout_height="@dimen/FirstEDtexHeight"
                     android:background="@mipmap/community_message_icon"
+                    android:id="@+id/tool_image"
                     ></ImageView>
                 <TextView
+                    android:id="@+id/tooler_message"
                     android:layout_marginLeft="@dimen/FirstTextMarginLeft"
                     android:layout_width="@dimen/FirstTextWidth"
                     android:layout_height="@dimen/FirstTextHeight"

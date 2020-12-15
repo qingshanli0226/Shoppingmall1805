@@ -4,7 +4,7 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId "com.shopmall.bawei.shopmall1805"
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 29
         versionCode 1
         versionName "1.0"
@@ -12,7 +12,7 @@ android {
         //aRouter的依赖
         javaCompileOptions {
             annotationProcessorOptions {
-                arguments = [AROUTER_MODULE_NAME :project.getName() ]
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
 
             }
         }
@@ -63,4 +63,7 @@ dependencies {
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.google.code.gson:gson:2.7'
+    implementation files('lib\\alipaySdk-15.7.5-20200422171619.aar')
+
+
 }

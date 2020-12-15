@@ -24,6 +24,16 @@ public class CacheManager {
     private List<Shoppingcartproducts.ResultBean> shopcarBeanlist=new ArrayList<>();
     private List<Shoppingcartproducts.ResultBean> deleteshocarBeanlist=new ArrayList<>();
     private static  CacheManager instance;
+    private LoginBean.ResultBean loging=new LoginBean.ResultBean();
+
+    public LoginBean.ResultBean getLoging() {
+        return loging;
+    }
+
+    public void setLoging(LoginBean.ResultBean loging) {
+        this.loging = loging;
+    }
+
     //监听多个页面数据的变化所以维护一个监听listener的列表
   private  List<IShopcarDataChangeListener> iShopcarDataChangeListeners=new ArrayList<>();
   private Context context;
@@ -42,7 +52,7 @@ public class CacheManager {
         initService();
     }
    //注册广播监听当前用户的登录状态
-    private void initService() {
+    public void initService() {
 
         Intent intent = new Intent(context,MyServer.class);
         context.startService(intent);//通过start启动service
@@ -50,7 +60,7 @@ public class CacheManager {
         ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangedListener() {
             @Override
             public void onUserLogin(LoginBean loginBean) {
-                getShopcarDataFromServer();//获取购物车数据。
+                getShopcarDataFromServer();//获取购物车数据
             }
 
             @Override
@@ -58,6 +68,7 @@ public class CacheManager {
 
             }
         });
+
     }
 
     private void getShopcarDataFromServer() {
@@ -110,8 +121,14 @@ public class CacheManager {
         for (Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
             if (shopcarBean.isProductSelected()){
                 selectedList.add(shopcarBean);
+
             }
         }
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+            listener.onAllSelectedNum(selectedList.size());
+        }
+
+
         return  selectedList;
    }
    //从缓存中删除已经支付的商品
@@ -178,8 +195,8 @@ public class CacheManager {
             if (shopcarBean.getProductId().equals(productId)){
                 shopcarBean.setProductNum(newNum);
                 for (IShopcarDataChangeListener listener: iShopcarDataChangeListeners){
-                    listener.onOneDataChanger(i,shopcarBean);
-                    listener.onMeneyChanged(getMoneyValue());
+                    listener.onOneDataChanger(i,shopcarBean);//刷新数据源
+                    listener.onMeneyChanged(getMoneyValue());//刷新金钱
                 }
                 break;
             }
@@ -202,10 +219,10 @@ public class CacheManager {
         return  null;
     }
 
-    private boolean isALLSelected() {
-          for ( Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
-              if (!shopcarBean.isProductSelected()){
-                  return  false;
+    public boolean isALLSelected() {
+          for ( Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){//遍历列表中的集合
+              if (!shopcarBean.isProductSelected()){//如果不为真
+                  return  false;//返回一个false
               }
           }
           return true;
@@ -223,7 +240,7 @@ public class CacheManager {
         }
    }
    //把它加入到删除队列
-   private void  addDeleteShopcarBean(Shoppingcartproducts.ResultBean shopcarBean,int postion){
+   public void  addDeleteShopcarBean(Shoppingcartproducts.ResultBean shopcarBean,int postion){
         deleteshocarBeanlist.add(shopcarBean);
         boolean isAllselect=deleteshocarBeanlist.size()== shopcarBeanlist.size();//判断当前删除队列数据数目和购物车数目是否一致，一致代表全选删除
        for ( IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
@@ -245,13 +262,13 @@ public class CacheManager {
         }
    }
    public void selectAllProductInEditMode(boolean isAllselect){
-        if (isAllselect){
-            deleteshocarBeanlist.clear();
-            deleteshocarBeanlist.addAll(shopcarBeanlist);
+        if (isAllselect){//如果编辑模式下全选为真
+            deleteshocarBeanlist.clear();//清除之前所有的删除队列
+            deleteshocarBeanlist.addAll(shopcarBeanlist);//将新的队列添加给删除队列
         }else {
-            deleteshocarBeanlist.clear();
+            deleteshocarBeanlist.clear();//如果编辑模式全选为假那么只清除掉所有的之前队列不用进行删除
         }
-        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){
+        for (IShopcarDataChangeListener listener:iShopcarDataChangeListeners){//循环编列接口
             listener.onAllSelected(isAllselect);
             listener.onDataChanged(shopcarBeanlist);
         }
@@ -283,6 +300,7 @@ public class CacheManager {
          void onOneDataChanger(int pstion,Shoppingcartproducts.ResultBean shopcarBeanlist);
          void onMeneyChanged(String moneyValue);
          void onAllSelected(boolean isAllSelect);
+         void onAllSelectedNum(int num);
     }
 
 }

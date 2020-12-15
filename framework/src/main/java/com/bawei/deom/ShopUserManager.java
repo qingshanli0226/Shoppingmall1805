@@ -2,6 +2,7 @@ package com.bawei.deom;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -43,7 +44,7 @@ public class ShopUserManager {
     //该函数，将当前应用程序的登录状态由未登录改成已登录
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
-
+        Log.e("AAAAA1",loginBean.getResult().getPhone()+"");
         //使用sp存储token
         editor.putString("token", loginBean.getResult().getToken());
         editor.commit();
@@ -67,7 +68,20 @@ public class ShopUserManager {
             return null;
         }
     }
-
+    public String getPhone() {
+        if (loginBean!=null) {
+            return loginBean.getResult().getPhone()+"";
+        } else {
+            return null;
+        }
+    }
+    public String getfamily() {
+        if (loginBean!=null) {
+            return loginBean.getResult().getAddress()+"";
+        } else {
+            return null;
+        }
+    }
     public String getToken() {
         if (loginBean!=null) {
             return loginBean.getResult().getToken();
@@ -87,7 +101,10 @@ public class ShopUserManager {
             listeners.remove(listener);
         }
     }
+    public void loginPhone(LoginBean loginBean){
 
+
+    }
     public interface IUserLoginChangedListener {
         void onUserLogin(LoginBean loginBean);
         void onUserLogout();

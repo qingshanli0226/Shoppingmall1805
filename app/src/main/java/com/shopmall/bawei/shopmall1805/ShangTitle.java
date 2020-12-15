@@ -5,34 +5,69 @@ import org.greenrobot.greendao.annotation.Generated;
 
 @Entity
 public class ShangTitle {
-    private String pic;
-    private String name;
-    private  String price;
-    @Generated(hash = 1941315893)
-    public ShangTitle(String pic, String name, String price) {
-        this.pic = pic;
-        this.name = name;
-        this.price = price;
+
+    int type;
+    String title;
+    String body;
+    long time;
+    boolean isRead;
+    String reserveOne;//预先保留两个字段
+    String reserveTwo;
+    @Generated(hash = 1118227197)
+    public ShangTitle(int type, String title, String body, long time,
+            boolean isRead, String reserveOne, String reserveTwo) {
+        this.type = type;
+        this.title = title;
+        this.body = body;
+        this.time = time;
+        this.isRead = isRead;
+        this.reserveOne = reserveOne;
+        this.reserveTwo = reserveTwo;
     }
     @Generated(hash = 437954575)
     public ShangTitle() {
     }
-    public String getPic() {
-        return this.pic;
+    public int getType() {
+        return this.type;
     }
-    public void setPic(String pic) {
-        this.pic = pic;
+    public void setType(int type) {
+        this.type = type;
     }
-    public String getName() {
-        return this.name;
+    public String getTitle() {
+        return this.title;
     }
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
-    public String getPrice() {
-        return this.price;
+    public String getBody() {
+        return this.body;
     }
-    public void setPrice(String price) {
-        this.price = price;
+    public void setBody(String body) {
+        this.body = body;
     }
+    public long getTime() {
+        return this.time;
+    }
+    public void setTime(long time) {
+        this.time = time;
+    }
+    public boolean getIsRead() {
+        return this.isRead;
+    }
+    public void setIsRead(boolean isRead) {
+        this.isRead = isRead;
+    }
+    public String getReserveOne() {
+        return this.reserveOne;
+    }
+    public void setReserveOne(String reserveOne) {
+        this.reserveOne = reserveOne;
+    }
+    public String getReserveTwo() {
+        return this.reserveTwo;
+    }
+    public void setReserveTwo(String reserveTwo) {
+        this.reserveTwo = reserveTwo;
+    }
+
 }
