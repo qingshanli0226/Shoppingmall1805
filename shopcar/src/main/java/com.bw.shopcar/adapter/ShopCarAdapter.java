@@ -81,14 +81,14 @@ public class ShopCarAdapter extends BaseAdapter<ShopCarBean> implements CacheMan
 
     private void initEditCheckBoxClickListener(final CheckBox produectSelectCheckBox, final ShopCarBean shopCarBean, final int position) {
         produectSelectCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                @Override
+                public void onClick(View v) {
                 if (produectSelectCheckBox.isChecked()) {
                     //当前在编辑模式下，选择了该商品，需要把该商品添加到删除队列中
                     CacheManager.getInstance().addDeleteShopCarBean(shopCarBean, position);
                 } else {
                     //在编辑模式下，该商品由已选择变为未选择，那么需要把它从删除队列中删除
-                    CacheManager.getInstance().addDeleteShopCarBean(shopCarBean, position);
+                    CacheManager.getInstance().deleteOneShopCarBean(shopCarBean, position);
                 }
             }
         });
@@ -133,7 +133,6 @@ public class ShopCarAdapter extends BaseAdapter<ShopCarBean> implements CacheMan
                 }else {
                     shopcarPresenter.updateProductSelected(shopCarBean.getProductId(),false,shopCarBean.getProductName(),shopCarBean.getUrl(),shopCarBean.getProductPrice(), position);
                 }
-
             }
         });
 

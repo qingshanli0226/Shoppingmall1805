@@ -13,8 +13,6 @@ public class ShopCarContract {
         void onProductSelected(String result, int position);
         void onAllSelected(String result);
         void onDeleteProducts(String result);
-//        void onInventory(List<InventoryBean> inventoryBean);
-//        void onOrderInfo(OrderInfoBean orderInfoBean);
 
     }
 
@@ -23,8 +21,7 @@ public class ShopCarContract {
         public abstract void updateProductSelected(String productId, boolean productSelected, String productName, String url, String productPrice, int position);
         public abstract void selectAllProduct(boolean isAllSelect);
         public abstract void deleteProducts(List<ShopCarBean> products);
-        public abstract void checkInventory(List<ShopCarBean> products);
-        public abstract void getOrderInfo(List<ShopCarBean> products);
+
     }
 
 }

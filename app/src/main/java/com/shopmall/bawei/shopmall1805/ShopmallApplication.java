@@ -9,10 +9,10 @@ import com.bw.framework.CacheManager;
 import com.bw.framework.ShopUserManager;
 import com.bw.framework.service.AutoLoginService;
 import com.bw.net.NetModel;
+import com.squareup.leakcanary.LeakCanary;
 
 public class ShopmallApplication extends Application {
 
-    private DaoSession daoSession;
 
     @Override
     public void onCreate() {
@@ -27,14 +27,12 @@ public class ShopmallApplication extends Application {
 
         CacheManager.getInstance().init(this);
 
-        DaoMaster.DevOpenHelper devOpenHelper = new DaoMaster.DevOpenHelper(getApplicationContext(),"daodao");
-        SQLiteDatabase writableDatabase = devOpenHelper.getWritableDatabase();
-        daoSession = new DaoMaster(writableDatabase).newSession();
-        GreenDaoBeanDao greenDaoBeanDao = daoSession.getGreenDaoBeanDao();
-        MyGreenManager.getMyGreenManager().setGreenDaoBeanDao(greenDaoBeanDao);
+        if (!LeakCanary.isInAnalyzerProcess(this)){
+            LeakCanary.install(this);
+        }
+
+
     }
 
-    public DaoSession getDaoSession() {
-        return daoSession;
-    }
+
 }

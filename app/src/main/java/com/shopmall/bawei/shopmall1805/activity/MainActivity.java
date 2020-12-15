@@ -12,8 +12,8 @@ import com.bw.framework.IPresenter;
 import com.bw.framework.IView;
 import com.bw.framework.ShopUserManager;
 import com.bw.net.bean.ShopCarBean;
+import com.bw.shopcar.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.fragment.CardFragment;
 import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
@@ -30,7 +30,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     private FindFragment findFragment;
     private TypeFragment typeFragment;
     private UserFragment userFragment;
-    private CardFragment cardFragment;
+    private ShopCarFragment cardFragment;
 
     @Override
     protected int getLayoutId() {
@@ -54,7 +54,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
         homeFragment = new HomeFragment();
         typeFragment = new TypeFragment();
         findFragment = new FindFragment();
-        cardFragment = new CardFragment();
+        cardFragment = new ShopCarFragment();
         userFragment = new UserFragment();
 
          getSupportFragmentManager().beginTransaction().add(R.id.frame_layout, homeFragment)

@@ -199,13 +199,5 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
 
     }
 
-    @Override
-    public void checkInventory(List<ShopCarBean> products) {
 
-    }
-
-    @Override
-    public void getOrderInfo(List<ShopCarBean> products) {
-
-    }
 }

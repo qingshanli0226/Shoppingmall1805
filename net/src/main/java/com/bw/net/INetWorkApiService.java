@@ -13,6 +13,7 @@ import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
@@ -96,9 +97,17 @@ public interface INetWorkApiService {
     @POST("removeManyProduct")
     Observable<Basebean<String>> removeManyProduct(@Body RequestBody requestBody);
 
-//    @POST("checkInventory")
-//    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
-//
-//    @POST("getOrderInfo")
-//    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<Basebean<String>> updatePhone(@FieldMap HashMap<String,String> map);
+
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<Basebean<String>> updateAddress(@FieldMap HashMap<String,String> map);
+
+    @POST("checkInventory")
+    Observable<Basebean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+
+    @POST("getOrderInfo")
+    Observable<Basebean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
 }

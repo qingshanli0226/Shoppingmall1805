@@ -21,13 +21,7 @@ import com.bw.framework.CacheManager;
 import com.bw.framework.ShopUserManager;
 import com.bw.net.Contants;
 import com.bw.net.bean.ShopCarBean;
-import com.bw.user.LoginFragment;
-import com.shopmall.bawei.shopmall1805.DaoSession;
-import com.shopmall.bawei.shopmall1805.GreenDaoBean;
-import com.shopmall.bawei.shopmall1805.GreenDaoBeanDao;
-import com.shopmall.bawei.shopmall1805.MyGreenManager;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ShopmallApplication;
 import com.shopmall.bawei.shopmall1805.home.Bean;
 
 import java.util.List;
@@ -307,5 +301,11 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     @Override
     public void onAllSelected(boolean isAllSelect) {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangerListener(this);
     }
 }

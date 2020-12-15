@@ -71,6 +71,18 @@ public class ShopUserManager {
         }
     }
 
+    public LoginBean getLoginBean(){
+        return loginBean;
+    }
+
+//    public void setAddress(String address){
+//        loginBean.setAddress(address);
+//    }
+//
+//    public void setPhone(String phone){
+//        loginBean.setPhone(phone);
+//    }
+
 
     //判断当前用户是否登录
     public boolean isUserLogin() {

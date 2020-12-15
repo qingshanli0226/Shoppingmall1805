@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_margin="8dp"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:id="@+id/toolbar"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#fff"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <ImageButton
+            android:id="@+id/ib_shopcart_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/top_bar_left_back" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="填写订单"
+            android:textColor="#303235"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:id="@+id/linear"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/startBtn"
+            android:text="请输入地址"
+            android:textSize="30sp"
+            android:gravity="center_vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/addressLinear"
+        android:visibility="gone"
+        android:layout_marginTop="30dp"
+        android:layout_below="@+id/toolbar"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="100dp">
+
+        <TextView
+            android:id="@+id/addressTv"
+            android:layout_width="match_parent"
+            android:text="XX省XX市XXX县XX街XXX路XX小区XX号"
+            android:textSize="26sp"
+            android:textColor="#000"
+            android:textStyle="bold"
+            android:layout_height="wrap_content"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:padding="5dp"
+            android:orientation="horizontal"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/nameTv"
+                android:text="XXX"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:layout_marginLeft="15dp"
+                android:id="@+id/numberTv"
+                android:text="XXXXXXXXXXXX"
+                android:textSize="18sp"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <View
+        android:id="@+id/myview"
+        android:layout_marginTop="190dp"
+        android:background="#FF9800"
+        android:layout_width="match_parent"
+        android:layout_marginBottom="20dp"
+        android:layout_height="3dp"/>
+
+    <LinearLayout
+        android:layout_marginTop="200dp"
+        android:id="@+id/lin_shoplist"
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="wrap_content">
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/goodsList"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:gravity="center_vertical"
+            android:layout_marginTop="30dp"
+            android:text="退换无忧"
+            android:layout_marginBottom="15dp"
+            android:textColor="#2C2C2C"
+            android:textSize="16sp" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+       android:orientation="horizontal"
+        android:layout_marginTop="450dp"
+        android:layout_height="40dp">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:gravity="center_vertical"
+                android:text="金额："
+                android:textAlignment="center"
+                android:textColor="#2C2C2C"
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/orderAllPrice"
+                android:layout_marginLeft="240dp"
+                android:text="￥1111"
+                android:textColor="#2C2C2C"
+                android:textSize="16sp"
+                android:gravity="center_vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"/>
+
+    </LinearLayout>
+
+
+
+
+
+    <RelativeLayout
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/orderPrice"
+            android:textSize="30sp"
+            android:layout_marginLeft="10dp"
+            android:layout_width="wrap_content"
+            android:text="￥100.00"
+            android:textColor="#F44336"
+            android:layout_height="wrap_content"/>
+
+        <Button
+            android:id="@+id/submitBtn"
+            android:text="提交订单"
+            android:textSize="15sp"
+            android:textColor="#fff"
+            android:background="#F44336"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </RelativeLayout>
+
+</RelativeLayout>

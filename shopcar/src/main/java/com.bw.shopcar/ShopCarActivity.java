@@ -14,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Autowired;
 import com.alibaba.android.arouter.facade.annotation.Route;
@@ -83,7 +84,29 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
         tvShopcartEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Log.i("---", "onClick: 点击编辑按钮");
                 edit();
+            }
+        });
+
+        btnDelete.setOnClickListener(new View.OnClickListener() {
+            List<ShopCarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
+
+            @Override
+            public void onClick(View v) {
+                if (deleteShopcarBeanList.size()>0){
+                    deleteProduct(deleteShopcarBeanList);
+                }else {
+                    Toast.makeText(ShopCarActivity.this, "当前购物车没有要删除的数据", Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        btnCheckOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/orderActivity/orderInfoActivity").navigation();
             }
         });
 
@@ -91,16 +114,23 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
 
     }
 
+    private void deleteProduct(List<ShopCarBean> deleteShopcarBeanList) {
+            httpPresenter.deleteProducts(deleteShopcarBeanList);
+    }
+
     private void edit() {
+        Log.i("---", "edit: "+isEditMode);
             if (!isEditMode) {//如果当前页面时非编辑模式，那么则进入编辑模式
                 isEditMode = true;//进入编辑模式
                 llDelete.setVisibility(View.VISIBLE);
                 llCheckAll.setVisibility(View.GONE);
                 shopCarAdapter.setEditMode(isEditMode);
                 tvShopcartEdit.setText("完成");
-                if (CacheManager.getInstance().isAllSelectInEditMode()){
+
+                if (CacheManager.getInstance().isAllSelectInEditMode()) {
                     cbAll.setChecked(true);
                 }
+
             } else {//从编辑模式进入到正常模式
                 isEditMode = false;
                 llDelete.setVisibility(View.GONE);
@@ -109,6 +139,8 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
                 tvShopcartEdit.setText("编辑");
             }
     }
+
+
 
 
     @Override
@@ -182,6 +214,7 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
     @Override
     public void onDeleteProducts(String result) {
 
+        CacheManager.getInstance().processDeleteProducts();
     }
 
     @Override
@@ -227,7 +260,7 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
         if (isEditMode) {
             cbAll.setChecked(isAllSelect);
         } else {
-            cbAll.setChecked(isAllSelect);
+            checkboxAll.setChecked(isAllSelect);
         }
     }
 }

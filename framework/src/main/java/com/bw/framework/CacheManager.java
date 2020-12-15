@@ -27,6 +27,7 @@ public class CacheManager{
     private Context context;
     private List<ShopCarBean> shopCarBeans = new ArrayList<>();
     private List<ShopCarBean> deleteShopCarBeans = new ArrayList<>();
+    private List<ShopCarBean> accountShopcarBeans = new ArrayList<>();
 
     private static CacheManager instance;
 
@@ -121,7 +122,6 @@ public class CacheManager{
                 selectProductList.add(shopCarBean);
             }
         }
-
         return selectProductList;
     }
 
@@ -173,15 +173,15 @@ public class CacheManager{
         }
     }
 
-    //更新缓存中商品数量
-    public void updatePositionProductNum(int productId,String newNum){
+    //更新缓存中某一下标商品数量
+    public void updatePositionProductNum(int position,String newNum){
 
-        ShopCarBean shopCarBean = shopCarBeans.get(productId);
+        ShopCarBean shopCarBean = shopCarBeans.get(position);
 
         shopCarBean.setProductNum(newNum);
         //通知UI 刷新数据
         for (IShopcarDataChangeListener listener : iShopcarDataChangeListeners) {
-            listener.onOneDataChanged(productId,shopCarBean);
+            listener.onOneDataChanged(position,shopCarBean);
             listener.onMoneyChanged(getMoneyValues());
         }
 
@@ -199,8 +199,21 @@ public class CacheManager{
             listener.onDataChanged(shopCarBeans);
         }
     }
-
-
+//    public List<ShopCarBean> getAccountShopcarBeans{
+//        return accountShopcarBeans;
+//    }
+//
+//    public void addOneAccountList(ShopCarBean shopCarBean){
+//        accountShopcarBeans.add(shopCarBean);
+//    }
+//
+//    public void clearAccountList(){
+//        accountShopcarBeans.clear();
+//    }
+//
+//    public void deleteOneAccountList(int position){
+//        accountShopcarBeans.remove(position);
+//    }
 
     //添加到删除的集合中
     public void addDeleteShopCarBean(ShopCarBean shopCarBean,int position){

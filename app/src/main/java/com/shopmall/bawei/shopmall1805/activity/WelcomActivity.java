@@ -28,6 +28,7 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> {
             @Override
             public void run() {
                 startActivity(new Intent(WelcomActivity.this, MainActivity.class));
+                finish();
             }
         },5000);
     }
