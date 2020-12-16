@@ -48,7 +48,6 @@ public class MyService extends Service{
                         public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                             LoginBean loginBean = loginBeanBaseBean.getResult();
                             ShopUsermange.getInstance().setName(loginBean.getName());
-//                            ShopUsermange.getInstance().setPassword(loginBean.getPassword());
                             ShopUsermange.getInstance().ShopLoginmange(loginBean);
                             EventBus.getDefault().postSticky("自动登录成功");
                             Toast.makeText(MyService.this, "自动登录成功", Toast.LENGTH_SHORT).show();

@@ -127,7 +127,11 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
 
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+    }
 
     @Override
     public void onProductChangeNum(String result, int position, String newNum) {

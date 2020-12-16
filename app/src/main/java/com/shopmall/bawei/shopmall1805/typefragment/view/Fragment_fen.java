@@ -71,6 +71,7 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
                 switch (position){
                     case 0:
                         httpresetnter.getskert();
+
                         break;
                     case 1:
                         httpresetnter.getjecket();

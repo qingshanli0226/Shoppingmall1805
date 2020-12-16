@@ -14,9 +14,11 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
+import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
+import com.example.framework.dao.ShopcarMessage;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ui.activity.view.BangActivity;
@@ -56,6 +58,7 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
     @Override
     protected void initView(View inflate) {
         ARouter.getInstance().inject(this);
+        ShopUsermange.getInstance().registerUserLoginChangeListenter(this);
         //初始化控件
         scrollview = inflate.findViewById(R.id.scrollview);
         ibUserIconAvator = inflate.findViewById(R.id.ib_user_icon_avator);
@@ -82,6 +85,8 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
 
     @Override
     protected void initdate() {
+
+
         //点击跳转到注册界面
         ibUserIconAvator.setOnClickListener(this);
         ibUserSetting.setOnClickListener(this);
@@ -104,15 +109,16 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
     public void onClick(View v) {
         if (v == ibUserIconAvator){
             ARouter.getInstance().build("/user/LoginRegisterActivity").navigation();
-        }else if (v==ibUserSetting){//点击退出登录
-            httpresetnter.logotUser();
         }
+//        else if (v==ibUserSetting){//点击退出登录
+//            httpresetnter.logotUser();
+//        }
     }
 
     @Override
     public void onLogotSucess(String result) {
-        Toast.makeText(getContext(), "退出登录成功", Toast.LENGTH_SHORT).show();
-        ShopUsermange.getInstance().clearshopbean();
+//        Toast.makeText(getContext(), "退出登录成功", Toast.LENGTH_SHORT).show();
+//        ShopUsermange.getInstance().clearshopbean();
     }
 
     @Override
@@ -142,11 +148,18 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
 
     @Override
     public void onUserLogin(LoginBean loginBean) {
+        tvUsername.setText(""+ ShopUsermange.getInstance().getName() );
         tvUsername.setText(""+loginBean.getName() );
     }
 
     @Override
     public void onUserlogout() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        ShopUsermange.getInstance().unRegisterUserLoginChangeListenter(this);
     }
 }

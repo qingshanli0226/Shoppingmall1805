@@ -15,10 +15,13 @@ import com.example.net.bean.LoginBean;
 import com.example.net.bean.RegisterBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
+import com.shopmall.bawei.user.bean.LoginsBean;
 import com.shopmall.bawei.user.contract.LoginContact;
 import com.shopmall.bawei.user.contract.RegisterContact;
 import com.shopmall.bawei.user.presenter.LoginPresenter;
 import com.shopmall.bawei.user.presenter.RegisterPresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterContact.LoginView> implements RegisterContact.LoginView, View.OnClickListener {
     private ImageButton ibLoginBack;
@@ -65,7 +68,8 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
     public void onregister(RegisterBean registerBean) {
         Toast.makeText(getContext(), ""+registerBean.getResult(), Toast.LENGTH_SHORT).show();
         //跳转登录界面
-        LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
+        int i = 0;
+        EventBus.getDefault().postSticky(new LoginsBean(i));
     }
 
     @Override
@@ -95,8 +99,9 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
 
     @Override
     public void onClick(View v) {
+        int i = 0;
         if (v ==tvRegisterLogin){
-            LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
+            EventBus.getDefault().postSticky(new LoginsBean(i));
         }else if (v == btnRegister){
             String name = etRegisterPhone.getText().toString();
             String password = etRegisterPwd.getText().toString();

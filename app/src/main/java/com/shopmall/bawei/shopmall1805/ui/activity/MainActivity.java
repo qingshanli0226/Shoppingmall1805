@@ -1,6 +1,8 @@
 package com.shopmall.bawei.shopmall1805.ui.activity;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -24,6 +26,9 @@ import com.shopmall.bawei.shopmall1805.adpter.FragmentAdpter;
 import com.example.framework.MyViewPager;
 import com.shopmall.bawei.shopmall1805.bean.TabEntity;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -43,9 +48,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
     @Override
     protected void initdate() {
 
-//        Intent intent = getIntent();
-//        int index = intent.getIntExtra("index", 0);
-//        common.setCurrentTab(index);
+
 
         common.setTabData(tabEntitys);
 
@@ -79,10 +82,23 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
         });
 
     }
+    @Subscribe
+    public void tablelayout(int index){
+        if (index!=0){
+            vr.setCurrentItem(0);
+        }
 
+    }
 
     @Override
     protected void initview() {
+//        ARouter.getInstance().inject(this);
+//        Intent intent = getIntent();
+//        int index = intent.getIntExtra("index", 0);
+//        if (index==0){
+//            common.setCurrentTab(index);
+//        }
+
         //初始化控件
         vr = findViewById(R.id.vr);
         common = findViewById(R.id.common);
@@ -134,4 +150,9 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
 
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+    }
 }

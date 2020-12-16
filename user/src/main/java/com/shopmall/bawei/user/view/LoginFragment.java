@@ -1,5 +1,5 @@
 package com.shopmall.bawei.user.view;
-import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -9,17 +9,17 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
 import com.example.framework.InputType;
 import com.example.framework.ShopUsermange;
 import com.example.net.Confing;
-import com.example.net.bean.HomeBean;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
+import com.shopmall.bawei.user.bean.LoginsBean;
 import com.shopmall.bawei.user.contract.LoginContact;
 import com.shopmall.bawei.user.presenter.LoginPresenter;
+
+import org.greenrobot.eventbus.EventBus;
 
 public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.LoginView> implements LoginContact.LoginView,View.OnClickListener {
     private ImageButton ibLoginBack;
@@ -32,14 +32,13 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     private ImageButton ibWeiBo;
     private ImageButton ibQq;
     private ImageButton ibWeChat;
-
+    private ViewPager viewPager;
     private int count;
 
     @Override
     protected void initPreseter() {
             httpresetnter = new LoginPresenter();
     }
-
     @Override
     protected void initView(View inflate) {
         //初始化控件
@@ -69,8 +68,10 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
 
     @Override
     public void onClick(View v) {
-        if (v == tvLoginRegister){
-            LoginRegisterActivity.vrLoginRegister.setCurrentItem(1);
+        int i =1;
+        if (v==tvLoginRegister){
+            LoginsBean loginBean=new LoginsBean(1);
+            EventBus.getDefault().post(loginBean);
         }else if (v==ibLoginVisible){
             count++;
             if (count % 2 == 0) {
@@ -130,5 +131,10 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     @Override
     public void showEmpty() {
         showEnpty();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
     }
 }

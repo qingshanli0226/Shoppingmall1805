@@ -8,7 +8,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.CacheManager;
 import com.example.framework.MyService;
 import com.example.framework.ShopUsermange;
+import com.example.framework.view.manager.MessageManager;
 import com.example.net.NetModel;
+import com.squareup.leakcanary.LeakCanary;
 
 
 public class ShopmallApplication extends Application {
@@ -24,7 +26,11 @@ public class ShopmallApplication extends Application {
         ARouter.init(this);
         NetModel.init(this);
         ShopUsermange.getInstance().init(this);
-
         CacheManager.getInstance().init(this);
+        MessageManager.getInstance().init(this);
+        //检查内存泄露
+        if (!LeakCanary.isInAnalyzerProcess(this)){
+           LeakCanary.install(this);
+        }
     }
 }

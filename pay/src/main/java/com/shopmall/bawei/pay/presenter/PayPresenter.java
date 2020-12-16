@@ -1,4 +1,4 @@
-package com.shopmall.bawei.order.presenter;
+package com.shopmall.bawei.pay.presenter;
 
 import com.example.framework.CacheManager;
 import com.example.net.Retrofitcreators;
@@ -6,7 +6,7 @@ import com.example.net.bean.BaseBean;
 import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.ShopcarBean;
-import com.shopmall.bawei.order.contract.OrderContract;
+import com.shopmall.bawei.pay.contract.PayContract;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -22,7 +22,7 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
 
-public class OrderPresenter extends OrderContract.IOrderPresenter {
+public class PayPresenter extends PayContract.IOrderPresenter {
     @Override
     public void checkIntonvory(List<ShopcarBean> shopcarBeanList) {
         JSONArray jsonArray = new JSONArray();

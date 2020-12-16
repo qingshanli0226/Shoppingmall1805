@@ -162,6 +162,7 @@ public class ShopCarFragment extends BaseFragment<ShopcarPresenterImpl, ShopCarC
         }else if (v == btnCheckOut){
             //点击进入到订单详情页面
             if (CacheManager.getInstance().getSelectedShopBeans().size()>0){
+
                 ARouter.getInstance().build("/order/Activity").navigation();
             }else {
                 Toast.makeText(getContext(), "当前没有购买的商品", Toast.LENGTH_SHORT).show();
@@ -173,6 +174,8 @@ public class ShopCarFragment extends BaseFragment<ShopcarPresenterImpl, ShopCarC
     @Override
     public void ondataChanged(List<ShopcarBean> shopcarBeanList) {
         shopCarAdpter.updataData(shopcarBeanList);
+        //更新选择去结算的数量
+        btnCheckOut.setText("去结算("+CacheManager.getInstance().getSelectedShopBeans().size()+")");
     }
     //刷新购物车上的商品数量
     @Override
@@ -195,7 +198,11 @@ public class ShopCarFragment extends BaseFragment<ShopcarPresenterImpl, ShopCarC
         }
     }
 
-
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+    }
 
     //更改服务端商品数量
     @Override
@@ -208,8 +215,8 @@ public class ShopCarFragment extends BaseFragment<ShopcarPresenterImpl, ShopCarC
     public void onProductSelected(String result, int position) {
         //更新本地缓存选择与服务端商品的选择保持一致
         CacheManager.getInstance().updateProductSelected(position);
-        //更新选择去结算的数量
-        btnCheckOut.setText("去结算("+CacheManager.getInstance().getSelectedShopBeans().size()+")");
+            //更新选择去结算的数量
+            btnCheckOut.setText("去结算("+CacheManager.getInstance().getSelectedShopBeans().size()+")");
 }
 
     @Override

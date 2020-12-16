@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 29
 
@@ -21,10 +21,15 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.example.framework.dao'
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {
+    implementation 'org.greenrobot:greendao:3.2.2'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation 'com.android.support:recyclerview-v7:28.0.0'//recyclerview
     implementation 'com.android.support:appcompat-v7:+'

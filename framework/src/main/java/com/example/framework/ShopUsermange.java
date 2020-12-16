@@ -15,6 +15,7 @@ public class ShopUsermange {
     String password;
 
     public String getName() {
+
         return name;
     }
 
@@ -69,7 +70,7 @@ public class ShopUsermange {
     }
     //将token和loginbean清空
     public void clearshopbean(){
-        editor.putString(Confing.token,"");
+        editor.clear();
         loginBean = null;
         for (IUserLoginChangeLiestener liestener : liesteners) {
             liestener.onUserlogout();

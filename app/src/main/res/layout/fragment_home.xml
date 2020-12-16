@@ -31,12 +31,20 @@
                 android:orientation="vertical"
                 >
                 <ImageView
+
                     android:layout_marginLeft="@dimen/dp_20"
                     android:layout_width="@dimen/dp_40"
                     android:layout_height="@dimen/dp_40"
                     android:background="@mipmap/community_message_icon"
                     ></ImageView>
 
+                <TextView
+                    android:id="@+id/iv_message"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/dp_20"
+                    android:gravity="center"
+                    android:text="@string/Please_message"></TextView>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>

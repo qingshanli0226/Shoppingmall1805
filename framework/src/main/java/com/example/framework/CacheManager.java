@@ -107,6 +107,12 @@ public class CacheManager {
             listerters.add(listerter);
         }
     }
+    //当页面销毁时，页面不需要再监听数据改变了，我们把它从列表中删除
+    public void unSetShopcarDataChangerListener(IShopcarDataCharListerter listener) {
+        if (listerters.contains(listener)) {
+            listerters.remove(listener);
+        }
+    }
     //更具id判断商品是否存，如果存在将这个消息返回
     public ShopcarBean getShopcarBan(String productId){
         for (ShopcarBean shopcarBean : shopcarBeans) {

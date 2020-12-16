@@ -17,27 +17,26 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.alipay.sdk.app.PayTask;
 import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
+import com.example.framework.dao.ShopcarMessage;
+import com.example.framework.view.manager.MessageManager;
 import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.ShopcarBean;
 import com.shopmall.bawei.order.R;
 import com.shopmall.bawei.order.adpter.OrderAdpter;
-import com.shopmall.bawei.order.contract.OrderContract;
-import com.shopmall.bawei.order.presenter.OrderPresenter;
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 import java.util.Map;
 
 @Route(path="/order/Activity")
-public class OrderActivity extends BaseActivity<OrderPresenter, OrderContract.IOrderView> implements OrderContract.IOrderView,View.OnClickListener , ShopUsermange.IUserLoginChangeLiestener {
-
+public class OrderActivity extends BaseActivity<IPresenter, IView> implements View.OnClickListener{
     private ImageButton ib_shopcart_back;
     private TextView tv_name;
     private TextView tv_phone;
@@ -51,7 +50,6 @@ public class OrderActivity extends BaseActivity<OrderPresenter, OrderContract.IO
 
     @Override
     protected void initpreseter() {
-        httpresenter = new OrderPresenter();
     }
 
     @Override
@@ -99,116 +97,11 @@ public class OrderActivity extends BaseActivity<OrderPresenter, OrderContract.IO
         if (id == R.id.ib_shopcart_back) {
                 finish();
         } else if (id == R.id.bt_buy) {
-            //首先检查选中商品的数量是否满足
-            httpresenter.checkIntonvory(CacheManager.getInstance().getSelectedShopBeans());
+            //跳转到支付模块
+            ARouter.getInstance().build("/pay/Activity").navigation();
         }
     }
-    //如果登录获取
-    @Override
-    public void onUserLogin(LoginBean loginBean) {
-
-    }
-
-    @Override
-    public void onUserlogout() {
-
-    }
-    //检查多个商品的库存
-    @Override
-    public void onCheckIntonvory(List<IntonVoryBean> intonVoryBeans) {
-        if (checkIntontnvory(intonVoryBeans)){
-            //库存足够的时候，发起订单
-            httpresenter.orderinfo(CacheManager.getInstance().getSelectedShopBeans());
-        }else {
-            Toast.makeText(this, "库存不足", Toast.LENGTH_SHORT).show();
-        }
-    }
-    //检查商品库存
-    private boolean checkIntontnvory(List<IntonVoryBean> intonVoryBeans) {
-        //获取选中的商品集合
-        List<ShopcarBean> selectedShopBeans = CacheManager.getInstance().getSelectedShopBeans();
-        for (IntonVoryBean intonVoryBean : intonVoryBeans) {
-            for (ShopcarBean selectedShopBean : selectedShopBeans) {
-                if (intonVoryBean.getProductId().equals(selectedShopBean.getProductId())){
-                    int num = Integer.parseInt(intonVoryBean.getProductNum());
-                    int needNum = Integer.parseInt(intonVoryBean.getProductNum());
-                    if (needNum>num){
-                        return false;
-                    }
-                }
-            }
-        }
-        return true;
-    }
-
-    private Handler handler = new Handler(){
-        @Override
-        public void handleMessage(@NonNull Message msg) {
-            super.handleMessage(msg);
-            switch (msg.what){
-                case 1:
-                    Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                    //然后跳转的主页面，并且显示HomeFragment
-                    ARouter.getInstance().build("/main/MainActivity").navigation();
-                    break;
-                case 2:
-                    Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                    //然后跳转的主页面，并且显示HomeFragment
-                    ARouter.getInstance().build("/main/MainActivity").navigation();
-                    break;
-            }
-        }
-    };
-    //下单的返回
-    @Override
-    public void getOrderInfo(final OrderInfoBean orderInfoBean) {
-        //首先将你选中的商品从购物车删除，因为提交订单之后，商品就没了
-        CacheManager.getInstance().removeselectshopBean();
-        //服务端成功下单
-        //使用支付宝完成支付功能
-        final Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                PayTask payTask = new PayTask(OrderActivity.this);
-                Map<String, String> stringStringMap = payTask.payV2(orderInfoBean.getOrderInfo(), true);
-                if (stringStringMap.get("resultStatus").equals("9000")){//9000代表支付成功
-                    //在子线程进行完成
-                    handler.sendEmptyMessage(1);
-                }else {
-                    //在子线程进行完成
-                    handler.sendEmptyMessage(2);
-                }
 
 
-            }
-        };
-        //开启线程
-        Thread thread = new Thread(runnable);
-        thread.start();
-    }
 
-    @Override
-    public void onErroy(String message) {
-
-    }
-
-    @Override
-    public void showsloading() {
-        showloading();
-    }
-
-    @Override
-    public void hideloading() {
-        hideLoading();
-    }
-
-    @Override
-    public void showErroy(String message) {
-        showerror(message);
-    }
-
-    @Override
-    public void showEmpty() {
-        showEnpty();
-    }
 }

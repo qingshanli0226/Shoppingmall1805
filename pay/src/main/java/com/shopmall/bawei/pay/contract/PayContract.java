@@ -1,4 +1,4 @@
-package com.shopmall.bawei.order.contract;
+package com.shopmall.bawei.pay.contract;
 
 import com.example.framework.BasePresenter;
 import com.example.framework.IView;
@@ -8,7 +8,7 @@ import com.example.net.bean.ShopcarBean;
 
 import java.util.List;
 
-public class OrderContract {
+public class PayContract {
     public interface IOrderView extends IView {
         void onCheckIntonvory(List<IntonVoryBean> intonVoryBeans);        //检查多个购物车服务端的商品数量
         void getOrderInfo(OrderInfoBean orderInfoBean);        //检查多个购物车服务端的商品数量
