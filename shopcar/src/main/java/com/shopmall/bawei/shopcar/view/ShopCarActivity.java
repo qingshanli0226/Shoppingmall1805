@@ -111,7 +111,6 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
     @Override
     protected void initView() {
         llEmptyShopcart = (LinearLayout) findViewById(R.id.ll_empty_shopcart);
-
         llCheckAll = (LinearLayout) findViewById(R.id.ll_check_all);
         llDelete = (LinearLayout) findViewById(R.id.ll_delete);
         recyclerview = (RecyclerView) findViewById(R.id.recyclerview);

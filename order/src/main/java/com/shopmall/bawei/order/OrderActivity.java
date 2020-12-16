@@ -18,6 +18,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.shopmall.bawei.common.ARouterHelper;
+import com.shopmall.bawei.common.FragmentHelper;
 import com.shopmall.bawei.framework.BaseActivity;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.UserManager;
@@ -130,11 +131,12 @@ public class OrderActivity extends BaseActivity<OrderImpl, OrderContract.IOrderV
                 case 1:
                     Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     CacheManager.getInstance().removeSelectedProducts();
-                    ARouter.getInstance().build(ARouterHelper.APP_MAIN).navigation();
+                    ARouter.getInstance().build(ARouterHelper.APP_MAIN).withInt("index",FragmentHelper.ORDER_INDEX).navigation();
                     break;
                 case 2:
                     Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                    ARouter.getInstance().build(ARouterHelper.APP_MAIN).navigation();
+                    CacheManager.getInstance().removeSelectedProducts();
+                    ARouter.getInstance().build(ARouterHelper.APP_MAIN).withInt("index",FragmentHelper.ORDER_INDEX).navigation();
                     break;
             }
         }
