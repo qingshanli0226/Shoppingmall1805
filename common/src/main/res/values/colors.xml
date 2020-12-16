@@ -5,4 +5,5 @@
     <color name="colorAccent">#D81B60</color>
     <color name="text_down_select">#FF5722</color>
     <color name="text_down_un_select">#0C0C0C</color>
+    <color name="address_yes">#F80606</color>
 </resources>

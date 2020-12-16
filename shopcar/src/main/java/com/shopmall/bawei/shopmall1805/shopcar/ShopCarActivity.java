@@ -1,6 +1,10 @@
 package com.shopmall.bawei.shopmall1805.shopcar;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.MessageQueue;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -10,10 +14,12 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopcar.R;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
@@ -49,6 +55,7 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     private boolean flag=false;
     private boolean newAllSelect;
     private Button btJiesuan;
+    private int newPosition;
     @Override
     protected void initPresenter() {
         httpPresenter = new ShopcarPresenterImpl();
@@ -81,6 +88,7 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     @Override
     protected void initData() {
         toolbar.setToolBarTitle("购物车");
+
         List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
         shopCarAdapter.upDataText(shopcarBeanList);
         shopcarAccomplishPrice.setText("￥"+CacheManager.getInstance().getMoneyValue());
@@ -107,9 +115,9 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             @Override
             public void onClick(View view) {
                 if(shopcarCompileCheckAll.isChecked()){
-                    CacheManager.getInstance().selectCompileAll(false);
+                    CacheManager.getInstance().selectCompileAll(true);
                 }else {
-                    CacheManager.getInstance().selectCompileAll(true );
+                    CacheManager.getInstance().selectCompileAll(false );
                 }
             }
         });
@@ -123,9 +131,7 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             shopCarAdapter.setEditModel(flag);
             shaopcarAccomplishRl.setVisibility(View.GONE);
             shaopcarCompileRl.setVisibility(View.VISIBLE);
-            if(CacheManager.getInstance().isAllSelectInEditMode()){
-                shopcarCompileCheckAll.setChecked(true);
-            }
+
         }else {
             flag = false;
             toolbar.setToolbarRightTv("编辑");
@@ -134,7 +140,6 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             shaopcarCompileRl.setVisibility(View.GONE);
         }
     }
-
     @Override
     protected void initView() {
         toolbar = findViewById(R.id.toolbar);
@@ -171,7 +176,7 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     }
     @Override
     public void onUpdateSelect(String result, int position) {
-        showMessage("购物车改变");
+        newPosition = position;
         CacheManager.getInstance().updateProductSelected(position);
     }
     @Override
@@ -185,7 +190,8 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     }
     @Override
     public void onDeleteProducts(String result) {
-
+        Toast.makeText(this, ""+result, Toast.LENGTH_SHORT).show();
+        CacheManager.getInstance().processDeleteProducts();
     }
     @Override
     public void onClick(View view) {
@@ -194,11 +200,47 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             if (deleteShopcarBeanList.size()>0) {
                 httpPresenter.deleteProducts(deleteShopcarBeanList);
             } else {
-                showMessage("当前没有要删除的数据");
+                showMessage("删除失败");
             }
         } else if (view.getId() == R.id.bt_jiesuan) {
-            //第一步检查购物车上商品在仓库中是否都有库存
-            Toast.makeText(this, "收藏", Toast.LENGTH_SHORT).show();
+            List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+            String names = shopcarBeanList.get(newPosition).getProductName();
+            String url = shopcarBeanList.get(newPosition).getUrl();
+            String productNum = shopcarBeanList.get(newPosition).getProductNum();
+            String allMoney = CacheManager.getInstance().getMoneyValue();
+
+            SharedPreferences address = getSharedPreferences("address", MODE_PRIVATE);
+            boolean loca = address.getBoolean("loca", false);
+            if(loca){
+                Log.i("TAG", "onClick: "+names);
+                ARouter.getInstance().build("/pay/PayActivity")
+                        .withString("url",url)
+                        .withString("names",names)
+                        .withString("productNum",productNum)
+                        .withString("allMoney",allMoney)
+                        .navigation();
+            }else {
+                dialog();
+            }
         }
+    }
+    private void dialog() {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setIcon(R.mipmap.ic_launcher);
+        builder.setTitle("提示");
+        builder.setMessage("是否去填写地址");
+        View inflate = getLayoutInflater().inflate(R.layout.view_dialog, null);
+        builder.setView(inflate);
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                startActivity(new Intent(ShopCarActivity.this,AddAddressActivity.class));
+            }
+        }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+
+            }
+        }).show();
     }
 }

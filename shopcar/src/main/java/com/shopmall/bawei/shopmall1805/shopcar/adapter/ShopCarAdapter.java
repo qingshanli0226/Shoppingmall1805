@@ -33,7 +33,6 @@ public class ShopCarAdapter extends BaseRvAdapter<ShopcarBean> {
     protected int getLayoutId(int viewType) {
         return R.layout.item_shopcar;
     }
-
     @Override
     public void convert(BaseViewHolder holder, int position, ShopcarBean shopcarBean) {
         Glide.with(holder.itemView.getContext()).load(ConfigUrl.BASE_IMAGE+shopcarBean.getUrl()).into((ImageView) holder.getView(R.id.item_shopcar_img));
@@ -93,11 +92,10 @@ public class ShopCarAdapter extends BaseRvAdapter<ShopcarBean> {
         });
     }
     private void initRadioButtonListener(final CheckBox checkBox, final ShopcarBean shopcarBean, final int position) {
-        checkBox. setOnClickListener(new View.OnClickListener() {
+        checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 shopcarPresenter.upDateSelect(shopcarBean.getProductId(),checkBox.isChecked(), shopcarBean.getProductName(), shopcarBean.getUrl(), shopcarBean.getProductPrice(), position);
-
             }
         });
     }

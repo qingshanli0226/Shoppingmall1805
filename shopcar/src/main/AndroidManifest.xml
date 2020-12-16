@@ -3,7 +3,8 @@
     package="com.shopmall.bawei.shopcar">
 
     <application>
-        <activity android:name="com.shopmall.bawei.shopmall1805.shopcar.ShopCarActivity"></activity>
+        <activity android:name="com.shopmall.bawei.shopmall1805.shopcar.AddAddressActivity"></activity>
+        <activity android:name="com.shopmall.bawei.shopmall1805.shopcar.ShopCarActivity" />
     </application>
 
 </manifest>

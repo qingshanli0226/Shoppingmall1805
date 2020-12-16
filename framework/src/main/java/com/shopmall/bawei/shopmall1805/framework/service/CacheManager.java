@@ -51,6 +51,20 @@ public class CacheManager {
         });
     }
 
+    public void processDeleteProducts() {
+        //首先将删除列表中的数据在购物车缓存张删除
+        shopcarBeanList.removeAll(deleteShopcarBeanList);
+        //把删除列表清空
+        deleteShopcarBeanList.clear();
+
+        //通知UI刷新页面
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
+            listener.onAllSelected(false);
+        }
+
+    }
     private void getShopcarDataFromServer(){
         RetrofitUtils.getiNetPresetenterWork().getShortcartProducts()
                 .subscribeOn(Schedulers.io())
@@ -189,8 +203,6 @@ public class CacheManager {
         return String.valueOf(totalPrice);
     }
 
-
-
     public boolean checkIfDataInDeleteShopcarBeanList(ShopcarBean shopcarBean){
         return shopcarBeanList.contains(shopcarBean);
     }
@@ -203,6 +215,5 @@ public class CacheManager {
         void onMoneyChanged(String moneyValue);
         void onAllSelected(boolean isAllSelect);
     }
-
 }
 
