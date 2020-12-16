@@ -1,11 +1,11 @@
 package com.shopmall.framework.mvptest.repository;
 
 import com.shopmall.framework.callback.Home;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.model.HomeModel;
 import com.shopmall.framework.view.LoadingPage;
 
-public class HpmeRepository extends Constart.HomeConstartRepository{
+public class HpmeRepository extends Contract.HomeConstartRepository{
 
     @Override
     protected void createModel() {

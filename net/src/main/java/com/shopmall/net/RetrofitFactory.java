@@ -56,7 +56,7 @@ public class RetrofitFactory {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .readTimeout(10,TimeUnit.SECONDS)
                 .writeTimeout(10,TimeUnit.SECONDS)
-                //.addInterceptor(createTokenAndDeviceCodeInterceptor())
+                .addInterceptor(createTokenAndDeviceCodeInterceptor())
                 .addNetworkInterceptor(createNetWorkInterceptor())
                 .build();
         return client;

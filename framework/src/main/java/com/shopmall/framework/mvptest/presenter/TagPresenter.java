@@ -1,13 +1,13 @@
 package com.shopmall.framework.mvptest.presenter;
 
 import com.shopmall.framework.callback.Tag;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.repository.TagRepository;
 import com.shopmall.framework.view.LoadingPage;
 
-public class TagPresenter extends Constart.TagConstartPresenter {
+public class TagPresenter extends Contract.TagConstartPresenter {
 
-    public TagPresenter(Constart.TagConstartView tagConstartView) {
+    public TagPresenter(Contract.TagConstartView tagConstartView) {
         super(tagConstartView);
     }
 

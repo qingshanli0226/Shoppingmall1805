@@ -9,12 +9,12 @@ import android.widget.Toast;
 import com.shopmall.bawei.user.R;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.presenter.RegisterPresenter;
 
 import java.util.HashMap;
 
-public class UserRegisterFragment extends BaseMVPFragment<RegisterPresenter> implements Constart.RegisterConstartView {
+public class UserRegisterFragment extends BaseMVPFragment<RegisterPresenter> implements Contract.RegisterConstartView {
     private ImageButton ibRegistBack;
     private EditText etRegistPhone;
     private EditText etRegistPwd;

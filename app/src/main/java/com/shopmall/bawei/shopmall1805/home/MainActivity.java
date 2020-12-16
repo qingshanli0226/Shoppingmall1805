@@ -16,15 +16,17 @@ import com.shopmall.bawei.shopmall1805.fragment.HomeFragment;
 import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
 import com.shopmall.bawei.shopmall1805.fragment.TypeFragment;
 import com.shopmall.framework.base.BaseMVPActivity;
+import com.shopmall.framework.manager.CacheManager;
 import com.shopmall.framework.service.LoginService;
 import com.shopmall.net.bean.MyTab;
 import com.shopmall.framework.manager.ShopUserManager;
+import com.shopmall.net.bean.ShopcarBean;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Route(path = "/app/MainActivity")
-public class MainActivity extends BaseMVPActivity {
+public class MainActivity extends BaseMVPActivity implements CacheManager.IShopCarDataChangeListener {
 
     private CommonTabLayout comm;
     private ArrayList<CustomTabEntity> tabEntities = new ArrayList<>();
@@ -99,6 +101,7 @@ public class MainActivity extends BaseMVPActivity {
     @Override
     protected void initView(Bundle savedInstanceState) {
         ARouter.getInstance().inject(this);
+        CacheManager.getInstance().setShopCarDataChangeListener(this);
 
         comm = (CommonTabLayout) findViewById(R.id.comm);
 
@@ -126,5 +129,35 @@ public class MainActivity extends BaseMVPActivity {
     protected void onDestroy() {
         super.onDestroy();
         stopService(intent);
+        CacheManager.getInstance().unSetShopCarDataChangerListener(this);
+    }
+
+    @Override
+    public void onDataChanged(List<ShopcarBean.ResultBean> shopCarBeanList) {
+        if (shopCarBeanList.size() != 0){
+            comm.showMsg(3,shopCarBeanList.size());
+        }else {
+            comm.hideMsg(3);
+        }
+    }
+
+    @Override
+    public void onOneDataChanged(int position, ShopcarBean.ResultBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
+
+    @Override
+    public void getDeleteAllSelect(boolean isAllSelect) {
+
     }
 }

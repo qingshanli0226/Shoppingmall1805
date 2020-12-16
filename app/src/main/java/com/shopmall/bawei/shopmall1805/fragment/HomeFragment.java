@@ -9,11 +9,11 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.HomeAdapter;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.presenter.HomePresenter;
 import com.shopmall.net.bean.HomeData;
 
-public class HomeFragment extends BaseMVPFragment<HomePresenter> implements Constart.HomeConstartView {
+public class HomeFragment extends BaseMVPFragment<HomePresenter> implements Contract.HomeConstartView {
     private RecyclerView homeRv;
     private HomeAdapter homeAdapter;
 

@@ -1,11 +1,11 @@
 package com.shopmall.framework.mvptest.repository;
 
 import com.shopmall.framework.callback.Sort;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.model.SortModel;
 import com.shopmall.framework.view.LoadingPage;
 
-public class SortRepository extends Constart.SortConstartRepository {
+public class SortRepository extends Contract.SortConstartRepository {
 
     @Override
     protected void createModel() {

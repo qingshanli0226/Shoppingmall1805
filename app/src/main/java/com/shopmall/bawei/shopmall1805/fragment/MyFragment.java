@@ -7,8 +7,9 @@ import android.widget.TextView;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.net.bean.LoginBean;
+import com.shopmall.framework.manager.CacheManager;
 import com.shopmall.framework.manager.ShopUserManager;
+import com.shopmall.net.bean.LoginBean;
 
 public class MyFragment extends BaseMVPFragment implements ShopUserManager.IUserLoginChangeListener {
     private ImageButton ibUserIconAvator;
@@ -53,7 +54,7 @@ public class MyFragment extends BaseMVPFragment implements ShopUserManager.IUser
     public void OnUserLogin(LoginBean loginBean) {
         tvUsername.setText(loginBean.getResult().getName());
         if (ShopUserManager.getInstance().getUserName()!=null){
-
+            CacheManager.getInstance().getShopCarDataFromServer();
         }
     }
 

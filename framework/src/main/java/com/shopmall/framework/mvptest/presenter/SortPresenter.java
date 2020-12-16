@@ -1,13 +1,13 @@
 package com.shopmall.framework.mvptest.presenter;
 
 import com.shopmall.framework.callback.Sort;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.repository.SortRepository;
 import com.shopmall.framework.view.LoadingPage;
 
-public class SortPresenter extends Constart.SortConstartPresenter {
+public class SortPresenter extends Contract.SortConstartPresenter {
 
-    public SortPresenter(Constart.SortConstartView sortConstartView) {
+    public SortPresenter(Contract.SortConstartView sortConstartView) {
         super(sortConstartView);
     }
 

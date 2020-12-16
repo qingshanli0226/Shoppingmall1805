@@ -1,13 +1,13 @@
 package com.shopmall.framework.mvptest.repository;
 
 import com.shopmall.framework.callback.ILogin;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.model.LoginModel;
 import com.shopmall.framework.view.LoadingPage;
 
 import java.util.HashMap;
 
-public class LoginRepository extends Constart.LoginConstartRepository{
+public class LoginRepository extends Contract.LoginConstartRepository{
 
     @Override
     protected void createModel() {

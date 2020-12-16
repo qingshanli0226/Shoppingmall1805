@@ -1,7 +1,7 @@
 package com.shopmall.framework.mvptest.model;
 
 import com.shopmall.framework.callback.Home;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.view.LoadingPage;
 import com.shopmall.net.Https;
 import com.shopmall.net.RetrofitFactory;
@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeModel implements Constart.HomeConstartModel {
+public class HomeModel implements Contract.HomeConstartModel {
 
     @Override
     public void homec(String url, final LoadingPage loadingPage, final Home home) {

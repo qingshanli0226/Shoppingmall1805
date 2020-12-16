@@ -8,11 +8,11 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.TagAdapter;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.presenter.TagPresenter;
 import com.shopmall.net.bean.TagBean;
 
-public class TagFragment extends BaseMVPFragment<TagPresenter> implements Constart.TagConstartView {
+public class TagFragment extends BaseMVPFragment<TagPresenter> implements Contract.TagConstartView {
     private RecyclerView rvTag;
     private TagAdapter tagAdapter;
 

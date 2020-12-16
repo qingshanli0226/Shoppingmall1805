@@ -1,15 +1,15 @@
 package com.shopmall.framework.mvptest.presenter;
 
 import com.shopmall.framework.callback.ILogin;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.repository.LoginRepository;
 import com.shopmall.framework.view.LoadingPage;
 
 import java.util.HashMap;
 
-public class LoginPresenter extends Constart.LoginConstartPresenter {
+public class LoginPresenter extends Contract.LoginConstartPresenter {
 
-    public LoginPresenter(Constart.LoginConstartView loginConstartView) {
+    public LoginPresenter(Contract.LoginConstartView loginConstartView) {
         super(loginConstartView);
     }
 

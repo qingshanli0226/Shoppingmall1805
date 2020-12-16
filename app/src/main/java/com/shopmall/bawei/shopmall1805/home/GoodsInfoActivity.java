@@ -15,8 +15,18 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.common.Constants;
+import com.shopmall.framework.callback.ITest;
+import com.shopmall.framework.manager.ShopUserManager;
+import com.shopmall.framework.service.ShopCarNet;
 import com.shopmall.net.bean.DetailsData;
 import com.shopmall.net.glide.Myglide;
+import com.shopmall.net.share.RestName;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
 
 public class GoodsInfoActivity extends AppCompatActivity {
     private ImageButton ibGoodInfoBack;
@@ -127,7 +137,38 @@ public class GoodsInfoActivity extends AppCompatActivity {
         bt_goodinfo_confim.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(GoodsInfoActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
+                if (ShopUserManager.getInstance().getUserName()==null){
+                    ARouter.getInstance().build("/user/UserActivity").navigation();
+                    return;
+                }
+
+                final HashMap<String, String> map = new HashMap<>();
+                map.put("productId",details.getId());
+                map.put("productNum",num+"");
+
+                ShopCarNet.getShopCarNet().checkOneProductInventory(Constants.CHECKONE__PRODUCT, map, new ITest() {
+                    @Override
+                    public void onTest(String msg) {
+                        if (msg.equals(RestName.PRODUCT_MESSAGE)){
+                            Toast.makeText(GoodsInfoActivity.this, "产品数量不足", Toast.LENGTH_SHORT).show();
+                        }else {
+                            JSONObject jsonObject = new JSONObject();
+                            try {
+                                jsonObject.put("productId",details.getId());
+                                jsonObject.put("productNum",String.valueOf(num));
+                                jsonObject.put("productName",details.getName());
+                                jsonObject.put("url",details.getImage());
+                                jsonObject.put("productPrice",details.getPrice());
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+
+                            ShopCarNet.getShopCarNet().addShopCarData(Constants.ADDONE_PRODUCT,jsonObject);
+                            Toast.makeText(GoodsInfoActivity.this, "已加入购物车", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+
                 popupWindow.dismiss();
             }
         });

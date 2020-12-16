@@ -1,13 +1,8 @@
 package com.shopmall.framework.manager;
 
-import android.content.Context;
-import android.content.Intent;
-import android.widget.Toast;
-
-import com.shopmall.framework.service.LoginService;
+import com.shopmall.common.Constants;
 import com.shopmall.net.Https;
 import com.shopmall.net.RetrofitFactory;
-import com.shopmall.net.bean.LoginBean;
 import com.shopmall.net.bean.ShopcarBean;
 
 import java.util.ArrayList;
@@ -21,15 +16,13 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager {
+    private static  CacheManager instance;
+
     private List<ShopcarBean.ResultBean> shopCarBeanList = new ArrayList<>();
 
     private List<ShopcarBean.ResultBean> deleteShopCarBeanList = new ArrayList<>();
 
-    private static  CacheManager instance;
-
     private List<IShopCarDataChangeListener> iShopCarDataChangeListenerList = new ArrayList<>();
-
-    private Context context;
 
     private ExecutorService executorService = Executors.newCachedThreadPool();
 
@@ -44,31 +37,12 @@ public class CacheManager {
         return instance;
     }
 
-    public void init(Context context){
-        this.context = context;
-        initService();
-    }
-
-    private void initService() {
-        Intent intent = new Intent(context, LoginService.class);
-        context.startService(intent);
-
-        ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangeListener() {
-            @Override
-            public void OnUserLogin(LoginBean loginBean) {
-                getShopCarDataFromServer();
-            }
-
-            @Override
-            public void OnUserLogout() {
-
-            }
-        });
-    }
-
-    private void getShopCarDataFromServer() {
+    public void getShopCarDataFromServer() {
+        if (shopCarBeanList != null){
+            shopCarBeanList.clear();
+        }
         RetrofitFactory.getInstance().create(Https.class)
-                .getShopCar("getShortcartProducts")
+                .getShopCar(Constants.GETSHORTCART_PRODUCT)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ShopcarBean>() {
@@ -85,7 +59,7 @@ public class CacheManager {
 
                     @Override
                     public void onError(Throwable e) {
-                        Toast.makeText(context, "请求购物车数据错误", Toast.LENGTH_SHORT).show();
+
                     }
 
                     @Override
@@ -132,6 +106,62 @@ public class CacheManager {
         }
     }
 
+    //勾选添加删除数据,判断是否存在，不存在添加，存在取消勾选删除
+    public void adddeleteshopcarBean(ShopcarBean.ResultBean shopcar,int postion){
+        if (!deleteShopCarBeanList.contains(shopcar)){
+            deleteShopCarBeanList.add(shopcar);
+        }else {
+            deleteShopCarBeanList.remove(shopcar);
+        }
+        notifyDeleteBoolean();
+    }
+
+    // 判断删除的数据和总数据是否一致
+    public boolean isDeleteAllSelect(){
+        if (shopCarBeanList.size()==deleteShopCarBeanList.size()){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+    //切换结算清空删除集合
+    public void delteclear(){
+        if (deleteShopCarBeanList!=null){
+            deleteShopCarBeanList.clear();
+        }
+        notifyDeleteBoolean();
+    }
+
+    //通知知注册页面删除否全选
+    public void notifyDeleteBoolean(){
+        for (IShopCarDataChangeListener listener : iShopCarDataChangeListenerList) {
+            listener.getDeleteAllSelect(isDeleteAllSelect());
+        }
+    }
+
+    //更改缓存中的购物车产品的选择状态
+    public void updateshopcarselect(ShopcarBean.ResultBean shopcar,int positon){
+        ShopcarBean.ResultBean resultBean = shopCarBeanList.get(positon);
+        if (shopcar.isProductSelected()){
+            resultBean.setProductSelected(false);
+        }else {
+            resultBean.setProductSelected(true);
+        }
+
+        updateshopcarbean(resultBean,positon);
+
+    }
+
+    //通知每个页面，当前位置发生改变，刷新该位置
+    public void updateshopcarbean(ShopcarBean.ResultBean shopcar,int postion){
+        for (IShopCarDataChangeListener listener : iShopCarDataChangeListenerList) {
+            listener.onOneDataChanged(postion,shopcar);
+            listener.onAllSelected(isAllSelected());
+            listener.onMoneyChanged(getMoneyValue());
+        }
+    }
+
     public void setShopCarBeanList(List<ShopcarBean.ResultBean> shopCarBeanList){
         this.shopCarBeanList = shopCarBeanList;
     }
@@ -158,7 +188,7 @@ public class CacheManager {
         }
     }
 
-    private String getMoneyValue() {
+    public String getMoneyValue() {
         float totalPrice = 0;
         for (ShopcarBean.ResultBean shopcarBean:shopCarBeanList){
             if (shopcarBean.isProductSelected()){
@@ -180,7 +210,7 @@ public class CacheManager {
         }
     }
 
-    public void updateProductNum(String productId,String newNum){
+    public void updateProductNum(String productId, String newNum){
         int i = 0;
         for (ShopcarBean.ResultBean shopcarBean:shopCarBeanList){
             if (shopcarBean.getProductId().equals(productId)){
@@ -279,8 +309,9 @@ public class CacheManager {
     }
 
     public void processDeleteProducts(){
+        //删除列表中购物车的缓存数据
         shopCarBeanList.removeAll(deleteShopCarBeanList);
-
+        //清空删除列表
         deleteShopCarBeanList.clear();
 
         for (IShopCarDataChangeListener listener:iShopCarDataChangeListenerList){
@@ -294,10 +325,12 @@ public class CacheManager {
         return executorService;
     }
 
+    //定义接口，当购物车数据发生改变，通过接口通知页面刷新
     public interface IShopCarDataChangeListener{
         void onDataChanged(List<ShopcarBean.ResultBean> shopCarBeanList);
         void onOneDataChanged(int position,ShopcarBean.ResultBean shopcarBean);
         void onMoneyChanged(String moneyValue);
         void onAllSelected(boolean isAllSelect);
+        void getDeleteAllSelect(boolean isAllSelect);
     }
 }

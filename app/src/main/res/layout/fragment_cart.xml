@@ -4,7 +4,82 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".fragment.CartFragment">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_50"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:layout_centerInParent="true"
+            style="@style/view_width_height_warp"
+            android:textSize="@dimen/sp_20"
+            android:text="购物车"
+            android:textColor="@color/color_black"/>
+
+        <TextView
+            android:id="@+id/shopCar_edit"
+            android:layout_marginRight="@dimen/dp_10"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            style="@style/view_width_height_warp"
+            android:textSize="@dimen/sp_15"
+            android:text="编辑"
+            android:textColor="@color/color_black"/>
+
+    </RelativeLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/color_white_3"
+        android:id="@+id/shopCar_recycle"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <LinearLayout
+        android:background="@color/color_white"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dp_60"
+        android:gravity="center_vertical">
+
+        <CheckBox
+            android:id="@+id/shopCar_allSelect"
+            android:layout_marginLeft="@dimen/dp_10"
+            style="@style/view_width_height_warp"
+            android:text="全选"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/sp_15"/>
+
+        <TextView
+            android:layout_marginLeft="@dimen/dp_10"
+            style="@style/view_width_height_warp"
+            android:text="合计："
+            android:textSize="@dimen/sp_15"/>
+
+        <TextView
+            android:id="@+id/shopCar_money"
+            android:layout_marginLeft="@dimen/dp_10"
+            style="@style/view_width_height_warp"
+            android:textSize="@dimen/sp_15"
+            android:text="0.0"
+            android:textColor="@color/color_red"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"/>
+
+        <Button
+            android:id="@+id/shopCar_compute"
+            android:layout_width="@dimen/dp_80"
+            android:layout_height="@dimen/dp_40"
+            android:textSize="@dimen/sp_15"
+            android:text="去计算"
+            android:background="@color/color_red"
+            android:textColor="@color/color_white"/>
+
+    </LinearLayout>
 
 </LinearLayout>

@@ -1,13 +1,13 @@
 package com.shopmall.framework.mvptest.presenter;
 
 import com.shopmall.framework.callback.Home;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.repository.HpmeRepository;
 import com.shopmall.framework.view.LoadingPage;
 
-public class HomePresenter extends Constart.HomeConstartPresenter {
+public class HomePresenter extends Contract.HomeConstartPresenter {
 
-    public HomePresenter(Constart.HomeConstartView homeConstartView) {
+    public HomePresenter(Contract.HomeConstartView homeConstartView) {
         super(homeConstartView);
     }
 

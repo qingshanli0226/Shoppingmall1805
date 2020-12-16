@@ -11,14 +11,14 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.user.R;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.net.bean.LoginBean;
 import com.shopmall.framework.manager.ShopUserManager;
 
 import java.util.HashMap;
 
-public class UserLoginFragment extends BaseMVPFragment<LoginPresenter> implements Constart.LoginConstartView {
+public class UserLoginFragment extends BaseMVPFragment<LoginPresenter> implements Contract.LoginConstartView {
     private ImageButton ibLoginBack;
     private EditText etLoginPhone;
     private EditText etLoginPwd;

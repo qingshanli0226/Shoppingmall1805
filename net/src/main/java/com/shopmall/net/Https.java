@@ -11,6 +11,8 @@ import com.shopmall.net.bean.TagBean;
 import java.util.HashMap;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.QueryMap;
@@ -40,4 +42,20 @@ public interface Https {
 
     @GET
     Observable<ShopcarBean> getShopCar(@Url String url);
+
+    @POST
+    Observable<RegisterBean> getAddOneProduct(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<RegisterBean> getCheckOneProductInventory(@Url String url,@QueryMap HashMap<String,String> map);
+
+    @POST
+    Observable<RegisterBean> getUpdateProductSelected(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<RegisterBean> getSelectAllProduct(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<RegisterBean> getUpdateProductNum(@Url String url, @Body RequestBody requestBody);
+
 }

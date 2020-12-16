@@ -1,7 +1,7 @@
 package com.shopmall.framework.mvptest.model;
 
 import com.shopmall.framework.callback.Tag;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.view.LoadingPage;
 import com.shopmall.net.Https;
 import com.shopmall.net.RetrofitFactory;
@@ -13,7 +13,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class TagModel implements Constart.TagConstartModel {
+public class TagModel implements Contract.TagConstartModel {
 
     @Override
     public void Tag(String url, final LoadingPage loadingPage, final Tag tag) {

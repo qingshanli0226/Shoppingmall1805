@@ -22,7 +22,7 @@ import com.shopmall.bawei.shopmall1805.adapter.SortHotAdapter;
 import com.shopmall.bawei.shopmall1805.home.GoodsInfoActivity;
 import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.presenter.SortPresenter;
 import com.shopmall.net.bean.DetailsData;
 import com.shopmall.net.bean.SortData;
@@ -30,7 +30,7 @@ import com.shopmall.net.bean.SortData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListFragment extends BaseMVPFragment<SortPresenter> implements Constart.SortConstartView {
+public class ListFragment extends BaseMVPFragment<SortPresenter> implements Contract.SortConstartView {
     private ListView listviewSort;
     private RecyclerView recycleSort;
     private ArrayAdapter<String> arrayAdapter;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:gravity="center_vertical"
+    android:layout_height="@dimen/dp_60"
+    android:background="@color/color_white">
+
+    <CheckBox
+        android:id="@+id/popu_shopCar_allSelect"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="全选"
+        android:textSize="15sp"
+        android:textColor="@color/color_black"
+        android:layout_marginLeft="@dimen/dp_10"/>
+
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <Button
+        android:id="@+id/popu_shopCar_delect"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_40"
+        android:text="删除"
+        android:textSize="@dimen/sp_15"
+        android:background="@drawable/shopcar_delete"/>
+
+    <Button
+        android:id="@+id/popu_shopCar_like"
+        android:layout_marginRight="@dimen/dp_10"
+        android:layout_width="@dimen/dp_80"
+        android:layout_height="@dimen/dp_40"
+        android:text="收藏"
+        android:textSize="@dimen/sp_15"
+        android:textColor="@color/color_red"
+        android:background="@drawable/shopcar_like"/>
+
+</LinearLayout>

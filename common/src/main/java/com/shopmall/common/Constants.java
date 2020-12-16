@@ -4,6 +4,8 @@ public class Constants {
 //    public static final String BASE = "http://192.168.51.104:8080";
     //系统默认的模拟器就用这个ip
     public static final String BASE = "http://49.233.0.68:8080";
+
+    //public static final String BASE = "http://10.161.2.49:8080";
     //使用第三方模拟器--当前电脑的ip地址
 //    public static final String BASE = "http://192.168.51.104:8080";
     //运行到自己的真实手机上：
@@ -110,6 +112,8 @@ public class Constants {
     public static final String GETSHORTCART_PRODUCT="getShortcartProducts";
     //更新服务端购物车产品的数量的接口
     public static final String UPDATE_PRODUCT="updateProductNum";
+
+    public static final String UPDATE_PRODUCTSELECTED="updateProductSelected";
     //检查服务端多个产品是否库存充足
     public static final String CHECKINVENTORY="checkInventory";
 
@@ -120,6 +124,8 @@ public class Constants {
 
     //全选服务端购物车产品或者全不选
     public static final String SELECTALL_PRODUCT="selectAllProduct";
+
+    public static final String UPDATE_PRODUCTNUM ="updateProductNum";
 }
 
 

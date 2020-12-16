@@ -1,14 +1,14 @@
 package com.shopmall.framework.mvptest.presenter;
 
 import com.shopmall.framework.callback.IRegister;
-import com.shopmall.framework.constart.Constart;
+import com.shopmall.framework.contract.Contract;
 import com.shopmall.framework.mvptest.repository.RegisterRepository;
 import com.shopmall.framework.view.LoadingPage;
 
 import java.util.HashMap;
 
-public class RegisterPresenter extends Constart.RegisterConstartPresenter {
-    public RegisterPresenter(Constart.RegisterConstartView registerConstartView) {
+public class RegisterPresenter extends Contract.RegisterConstartPresenter {
+    public RegisterPresenter(Contract.RegisterConstartView registerConstartView) {
         super(registerConstartView);
     }
 
