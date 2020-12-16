@@ -7,12 +7,19 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseFragment;
+import com.bawei.framework.MessageManager;
+import com.bawei.framework.greendao.MessageBean;
 import com.bawei.net.mode.HomeBean;
 import com.bawei.shopmall.home.contract.HomeContract;
 import com.bawei.shopmall.home.contract.HomeImpl;
 import com.shopmall.bawei.shopmall1805.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
 
@@ -32,6 +39,7 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
         homeRv.setAdapter(homeAdapter);
         errorTv = (TextView) findViewById(R.id.errorTv);
         errorTv.setOnClickListener(this);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -87,7 +95,13 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
         hideLoadingPage(isSuccess, errorBean);
     }
 
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageChanged(MessageBean messageBean) {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount != 0) {
+            toolBar.setToolbarRightTv(messageCount + "");
+        }
+    }
 
     @Override
     public void showEmpty() {
@@ -101,5 +115,12 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     @Override
     public void onRightClick() {
+        ARouter.getInstance().build("/message/MessageActivity").navigation();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
     }
 }

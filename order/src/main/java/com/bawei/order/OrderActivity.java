@@ -1,5 +1,6 @@
 package com.bawei.order;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -113,6 +114,7 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
         thread.start();
     }
 
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler() {
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -127,10 +129,10 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
                 case 2:
                     Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     savePayMessage("支付失败");
+                    CacheManager.getInstance().removeSelectedProducts();
                     ARouter.getInstance().build("/main/MainActivity").navigation();
                     break;
             }
-
         }
     };
 
@@ -143,7 +145,7 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
         messageBean.setType(MessageManager.PAY_TYPE);
         MessageManager.getInstance().addMessage(messageBean, new MessageManager.IMessageListener() {
             @Override
-            public void onResult(boolean isSuccess, List<MessageManager> messageManagerList) {
+            public void onResult(boolean isSuccess, List<MessageBean> messageManagerList) {
                 Toast.makeText(OrderActivity.this, "存储成功", Toast.LENGTH_SHORT).show();
                 EventBus.getDefault().post(messageBean);
             }

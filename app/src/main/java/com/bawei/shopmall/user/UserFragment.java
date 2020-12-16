@@ -3,6 +3,7 @@ package com.bawei.shopmall.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -15,12 +16,18 @@ import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
+import com.bawei.framework.MessageManager;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.framework.ShopUserManager.IUserLoginChangedListener;
+import com.bawei.framework.greendao.MessageBean;
 import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.LoginBean;
 import com.bawei.net.mode.LogoutBean;
 import com.shopmall.bawei.shopmall1805.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
@@ -37,7 +44,8 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
     private TextView tvUsername;
     private ImageView ibUserSetting;
     private ImageView ibUserIconAvator;
-    private String message;
+    private Handler handler = new Handler();
+    private ImageView ibUserMessage;
 
     @Override
     protected int layoutId() {
@@ -59,10 +67,22 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
         ibUserIconAvator = findViewById(R.id.ib_user_icon_avator);
         ibUserSetting = findViewById(R.id.ib_user_setting);
+        ibUserMessage = findViewById(R.id.ib_user_message);
 
         ibUserIconAvator.setOnClickListener(this);
         ibUserSetting.setOnClickListener(this);
+        ibUserMessage.setOnClickListener(this);
 
+        EventBus.getDefault().register(this);
+
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageChanged(MessageBean messageBean) {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount != 0) {
+            toolBar.setToolbarRightTv(messageCount + "");
+        }
     }
 
     @Override
@@ -82,18 +102,24 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     public void onUserLogout() {
-        Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
-        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
-        SharedPreferences.Editor edit = sharedPreferences.edit();
-        edit.remove(NetConfig.tokenName);
-        edit.commit();
-        tvUsername.setText("登录/注册");
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
+                SharedPreferences.Editor edit = sharedPreferences.edit();
+                edit.remove(NetConfig.tokenName);
+                edit.commit();
+                tvUsername.setText("登录/注册");
+            }
+        });
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         ShopUserManager.getInstance().unRegisterUserLoginChangeListener(this);
+        EventBus.getDefault().unregister(this);
     }
 
     @Override
@@ -105,7 +131,6 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
                 }
                 break;
             case R.id.ib_user_setting:
-
                 HashMap<String, String> map = new HashMap<>();
                 map.put(NetConfig.tokenName, ShopUserManager.getInstance().getToken());
                 RetrofitCreate.getApi().logout(map)
@@ -134,6 +159,9 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
                             }
                         });
+                break;
+            case R.id.ib_user_message:
+                ARouter.getInstance().build("/message/MessageActivity").navigation();
                 break;
         }
     }

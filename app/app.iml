@@ -180,5 +180,13 @@
     <orderEntry type="module" module-name="framework" />
     <orderEntry type="module" module-name="common" />
     <orderEntry type="module" module-name="net" />
+    <orderEntry type="module" module-name="order" />
+    <orderEntry type="module" module-name="shopcar" />
+    <orderEntry type="module" module-name="point" />
+    <orderEntry type="module" module-name="pay" />
+    <orderEntry type="module" module-name="user" />
+    <orderEntry type="module" module-name="framework" />
+    <orderEntry type="module" module-name="common" />
+    <orderEntry type="module" module-name="net" />
   </component>
 </module>

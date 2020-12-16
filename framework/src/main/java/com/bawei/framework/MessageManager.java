@@ -50,6 +50,21 @@ public class MessageManager {
         messageBeanDao = daoSession.getMessageBeanDao();
     }
 
+    public void queryMessage(final IMessageListener messageListener) {
+        executorService.execute(new Runnable() {
+            @Override
+            public void run() {
+                final List<MessageBean> messageBeanList = messageBeanDao.queryBuilder().orderDesc(MessageBeanDao.Properties.Time).limit(10).list();
+                handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        messageListener.onResult(true, messageBeanList);
+                    }
+                });
+            }
+        });
+    }
+
     public void addMessage(final MessageBean messageBean, final IMessageListener messageListener) {
         executorService.execute(new Runnable() {
             @Override
@@ -69,7 +84,7 @@ public class MessageManager {
     }
 
 
-    private int getMessageCount() {
+    public int getMessageCount() {
         return sharedPreferences.getInt(MESSAGE_SP_COUNT, 0);
     }
 
@@ -79,6 +94,6 @@ public class MessageManager {
     }
 
     public interface IMessageListener {
-        void onResult(boolean isSuccess, List<MessageManager> messageManagerList);
+        void onResult(boolean isSuccess, List<MessageBean> messageBeanList);
     }
 }
