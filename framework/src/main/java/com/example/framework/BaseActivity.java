@@ -26,8 +26,6 @@ public abstract class BaseActivity<P extends IPresenter,V extends IVIew> extends
         if (httpPresenter!=null){
             httpPresenter.attchView((V)this);
         }
-
-
     }
 
 

@@ -49,6 +49,13 @@ public interface INetPresetenterWork {
     @POST("removeManyProduct")
     Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
 
+    //更新用户绑定的电话
+    @POST("updatePhone")
+    Observable<BaseBean<String>> upDataUserPhone(@Query("phone")String phone);
+
+    //更新用户绑定的地址
+    @POST("updateAddress")
+    Observable<BaseBean<String>> upDataUserAddress(@Query("address")String address);
 
     //获取服务端购物车产品信息的接口
     @GET("getShortcartProducts")

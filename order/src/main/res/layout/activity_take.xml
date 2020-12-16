@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".TakeActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="新建收货地址"
+        android:gravity="center"
+        android:textSize="20dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="手机号"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/et_phone"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="地址"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <EditText
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:id="@+id/et_address"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="30dp"
+        android:text="详细地址"
+        android:layout_gravity="center"
+        android:gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="2dp"
+        android:layout_gravity="center"
+        android:background="#000"
+        />
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="200dp"
+        android:gravity="center"
+        android:layout_gravity="center"
+        >
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/et_dz"
+            />
+
+    </LinearLayout>
+
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:id="@+id/btn_sub"
+        android:text="提交"
+        />
+
+</LinearLayout>

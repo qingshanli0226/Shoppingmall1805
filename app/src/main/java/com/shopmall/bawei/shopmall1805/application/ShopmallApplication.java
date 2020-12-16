@@ -10,6 +10,7 @@ import com.example.framework.LoginService;
 import com.example.net.ShopUserManger;
 import com.shopmall.bawei.shopmall1805.entity.DaoMaster;
 import com.shopmall.bawei.shopmall1805.entity.DaoSession;
+import com.squareup.leakcanary.LeakCanary;
 
 public class ShopmallApplication extends Application {
 
@@ -31,6 +32,10 @@ public class ShopmallApplication extends Application {
                 .getInstance()
                 .init(this);
 
+        //检查内存泄露
+        if (!LeakCanary.isInAnalyzerProcess(this)){
+            LeakCanary.install(this);
+        }
 //        Intent intent = new Intent();
 //        intent.setClass(this, LoginService.class);
 //        startService(intent);

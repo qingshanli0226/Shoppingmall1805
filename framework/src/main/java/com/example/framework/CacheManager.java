@@ -224,6 +224,9 @@ public class CacheManager {
         }
     }
 
+    //改变缓存中用户的phone和address
+
+
     //总价
     public String getMoneyValue() {
         float totalPrice = 0;

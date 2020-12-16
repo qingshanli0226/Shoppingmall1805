@@ -13,7 +13,7 @@ import com.shopmall.bawei.shopmall1805.R;
 
 public class PersonalFragment extends Fragment {
 
-    private TextView textView;
+    private TextView textView,tv;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -22,6 +22,7 @@ public class PersonalFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_personal, container, false);
 
         textView = view.findViewById(R.id.tv_username);
+        tv = view.findViewById(R.id.tv_user_location);
         textView.setText(ShopUserManger.getInstance().getName());
 
         textView.setOnClickListener(new View.OnClickListener() {
@@ -29,6 +30,15 @@ public class PersonalFragment extends Fragment {
             public void onClick(View view) {
                 ARouter.getInstance()
                         .build("/duoduo/user")
+                        .navigation();
+            }
+        });
+
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance()
+                        .build("/order/address")
                         .navigation();
             }
         });
