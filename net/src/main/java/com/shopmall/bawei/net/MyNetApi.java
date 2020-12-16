@@ -4,7 +4,9 @@ import com.shopmall.bawei.common.UrlHelper;
 import com.shopmall.bawei.net.mode.AutoLogBean;
 import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.HomeBean;
+import com.shopmall.bawei.net.mode.InventoryBean;
 import com.shopmall.bawei.net.mode.LoginBean;
+import com.shopmall.bawei.net.mode.OrderInfoBean;
 import com.shopmall.bawei.net.mode.ShopCarBean;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;
@@ -57,12 +59,20 @@ public interface MyNetApi {
 
     @POST("removeManyProduct")
     Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
-//
-//    @POST("checkInventory")
-//    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
-//
-//    @POST("getOrderInfo")
-//    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+
+    @POST("checkInventory")
+    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> bindPhone(@Field("phone") String phone);
+
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> bindAddress(@Field("address") String address);
 
     @GET(UrlHelper.HOME_URL)
     Observable<BaseBean<HomeBean>> getHomeData();

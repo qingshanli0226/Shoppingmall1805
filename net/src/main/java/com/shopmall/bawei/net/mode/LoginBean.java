@@ -36,9 +36,9 @@ public class LoginBean {
     private String name;
     private String password;
     private Object email;
-    private Object phone;
+    private String phone;
     private Object point;
-    private Object address;
+    private String address;
     private Object money;
     private String avatar;
     private String token;
@@ -75,11 +75,11 @@ public class LoginBean {
         this.email = email;
     }
 
-    public Object getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Object phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -91,11 +91,11 @@ public class LoginBean {
         this.point = point;
     }
 
-    public Object getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Object address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 

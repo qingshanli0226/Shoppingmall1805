@@ -1,9 +1,12 @@
 package com.shopmall.bawei.shopcar.contract;
 
 import com.shopmall.bawei.common.ExceptionUtil;
+import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.net.NetFunction;
 import com.shopmall.bawei.net.OkHttpHelper;
 import com.shopmall.bawei.net.mode.BaseBean;
+import com.shopmall.bawei.net.mode.InventoryBean;
+import com.shopmall.bawei.net.mode.OrderInfoBean;
 import com.shopmall.bawei.net.mode.ShopCarBean;
 
 import org.json.JSONArray;
@@ -208,5 +211,118 @@ public class ShopCarPresenterImpl extends ShopCarContract.IShopCarPresenter {
 
                     }
                 });
+    }
+
+    @Override
+    public void checkInventory(List<ShopCarBean> products) {
+        JSONArray jsonArray = new JSONArray();
+        for(ShopCarBean shopCarBean:products){
+            JSONObject jsonObject = new JSONObject();
+            try{
+                jsonObject.put("productId",shopCarBean.getProductId());
+                jsonObject.put("productNum",shopCarBean.getProductNum());
+                jsonObject.put("productName",shopCarBean.getProductName());
+                jsonObject.put("url",shopCarBean.getUrl());
+                jsonArray.put(jsonObject);
+            } catch(JSONException e) {
+                e.printStackTrace();
+            }
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonArray.toString());
+        OkHttpHelper.getApi().checkInventory(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<BaseBean<List<InventoryBean>>,List<InventoryBean>>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showLoaDing();
+                    }
+                })
+                .subscribe(new Observer<List<InventoryBean>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(List<InventoryBean> list) {
+                        iView.onInventory(list);
+                        iView.hideLoading(true,null);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iView.hideLoading(false,ExceptionUtil.getErrorBean(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+                    }
+                });
+
+    }
+
+    @Override
+    public void getOrderInfo(List<ShopCarBean> products) {
+        JSONArray jsonArray = new JSONArray();
+        for (ShopCarBean shopCarBean:products){
+            JSONObject jsonObject = new JSONObject();
+            try{
+                jsonObject.put("productName",shopCarBean.getProductName());
+                jsonObject.put("productId",shopCarBean.getProductId());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e){
+                e.printStackTrace();
+            }
+        }
+
+        JSONObject object = new JSONObject();
+        try{
+            object.put("subject","buy");
+            object.put("totalPrice", CacheManager.getInstance().getMoneyValue());
+            object.put("body",jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), object.toString());
+
+        OkHttpHelper.getApi()
+                .getOrderInfo(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<BaseBean<OrderInfoBean>,OrderInfoBean>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showLoaDing();
+                    }
+                })
+                .subscribe(new Observer<OrderInfoBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(OrderInfoBean orderInfoBean) {
+                        iView.onOrderInfo(orderInfoBean);
+                        iView.hideLoading(true,null);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iView.hideLoading(false,ExceptionUtil.getErrorBean(e));
+                        iView.hideLoading(false,null);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
     }
 }

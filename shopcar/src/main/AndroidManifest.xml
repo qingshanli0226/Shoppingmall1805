@@ -2,6 +2,7 @@
     package="com.shopmall.bawei.shopcar" >
     <application>
         <activity android:name=".view.ShopCarActivity"/>
+        <activity android:name=".BindActivity"/>
     </application>
 
 </manifest>

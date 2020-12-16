@@ -46,6 +46,20 @@ public class UserManager{
         return instance;
     }
 
+    public boolean isBindPhone(){
+        if(loginBean.getPhone() != null){
+            return true;
+        }
+        return false;
+    }
+
+    public boolean isBindAddress(){
+        if(loginBean.getAddress() != null){
+            return true;
+        }
+        return false;
+    }
+
     public void init(Context context) {
         sharedPreferences = context.getSharedPreferences(UrlHelper.spName, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
@@ -71,6 +85,22 @@ public class UserManager{
     public String getName() {
         if (loginBean!=null) {
             return loginBean.getName();
+        } else {
+            return null;
+        }
+    }
+
+    public String getAddress(){
+        if(loginBean != null){
+            return loginBean.getAddress();
+        } else {
+            return null;
+        }
+    }
+
+    public String getPhone(){
+        if(loginBean != null){
+            return loginBean.getPhone();
         } else {
             return null;
         }

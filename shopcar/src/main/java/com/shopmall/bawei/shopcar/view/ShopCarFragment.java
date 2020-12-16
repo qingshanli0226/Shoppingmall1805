@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopcar.view;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -11,12 +12,18 @@ import android.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.ARouterHelper;
 import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.BasePresenter;
 import com.shopmall.bawei.framework.CacheManager;
 import com.shopmall.bawei.framework.IView;
+import com.shopmall.bawei.framework.UserManager;
 import com.shopmall.bawei.framework.view.UpdateNumFromAdapter;
+import com.shopmall.bawei.net.mode.InventoryBean;
+import com.shopmall.bawei.net.mode.OrderInfoBean;
 import com.shopmall.bawei.net.mode.ShopCarBean;
+import com.shopmall.bawei.shopcar.BindActivity;
 import com.shopmall.bawei.shopcar.R;
 import com.shopmall.bawei.shopcar.adapter.ShopCarAdapter;
 import com.shopmall.bawei.shopcar.contract.ShopCarContract;
@@ -24,6 +31,7 @@ import com.shopmall.bawei.shopcar.contract.ShopCarPresenterImpl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarContract.IShopCarView> implements ShopCarContract.IShopCarView , View.OnClickListener {
 
@@ -223,6 +231,36 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
         CacheManager.getInstance().processDeleteProducts();
     }
 
+    private boolean checkInventoryIsEnough(List<InventoryBean> inventoryBeans) {
+        List<ShopCarBean> shopcarBeanList = CacheManager.getInstance().getSelectedProductBeanList();
+        for(InventoryBean inventoryBean:inventoryBeans) {
+            for(ShopCarBean shopcarBean:shopcarBeanList) {
+                if (inventoryBean.getProductId().equals(shopcarBean.getProductId())) {
+                    int inventoryNum = Integer.parseInt(inventoryBean.getProductNum());
+                    int needNum = Integer.parseInt(inventoryBean.getProductNum());
+                    if (needNum > inventoryNum) {
+                        return false;
+                    }
+                }
+            }
+        }
+
+        return true;
+    }
+
+    @Override
+    public void onInventory(List<InventoryBean> list) {
+
+    }
+
+    @Override
+    public void onOrderInfo(OrderInfoBean orderInfoBean) {
+//服务端已经成功下订单
+        //使用支付宝完成支付功能
+
+
+    }
+
     @Override
     public void onError(String msg) {
 
@@ -254,6 +292,11 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenterImpl, ShopCarC
              *
              *
              */
+            if(UserManager.getInstance().isBindPhone() && UserManager.getInstance().isBindAddress()){
+                ARouter.getInstance().build(ARouterHelper.ORDER_ACTIVITY).navigation();
+            } else {
+                startActivity(new Intent(getContext(),BindActivity.class));
+            }
         }
     }
 }
