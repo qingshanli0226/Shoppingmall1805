@@ -1,5 +1,4 @@
 apply plugin: 'com.android.application'
-apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -22,12 +21,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    greendao {
-        schemaVersion 1
-        daoPackage 'Shoppingmall1805.app.src.main.java.com.bawei.shopmall.greendao.dao'
-        targetGenDir 'src/main/java'
-    }
-
 }
 
 dependencies {
@@ -79,8 +72,10 @@ dependencies {
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.google.code.gson:gson:2.7'
-    implementation 'org.greenrobot:greendao:3.2.2'
 
     implementation('com.alibaba:arouter-api:1.4.1') //ARouter依赖
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2' //ARouter依赖
+
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 }

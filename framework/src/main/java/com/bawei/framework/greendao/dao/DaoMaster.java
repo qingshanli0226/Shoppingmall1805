@@ -1,4 +1,4 @@
-package Shoppingmall1805.app.src.main.java.com.bawei.shopmall.greendao.dao;
+package com.bawei.framework.greendao.dao;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -21,12 +21,12 @@ public class DaoMaster extends AbstractDaoMaster {
 
     /** Creates underlying database table using DAOs. */
     public static void createAllTables(Database db, boolean ifNotExists) {
-        GoodsBeanDao.createTable(db, ifNotExists);
+        MessageBeanDao.createTable(db, ifNotExists);
     }
 
     /** Drops underlying database table using DAOs. */
     public static void dropAllTables(Database db, boolean ifExists) {
-        GoodsBeanDao.dropTable(db, ifExists);
+        MessageBeanDao.dropTable(db, ifExists);
     }
 
     /**
@@ -45,7 +45,7 @@ public class DaoMaster extends AbstractDaoMaster {
 
     public DaoMaster(Database db) {
         super(db, SCHEMA_VERSION);
-        registerDaoClass(GoodsBeanDao.class);
+        registerDaoClass(MessageBeanDao.class);
     }
 
     public DaoSession newSession() {

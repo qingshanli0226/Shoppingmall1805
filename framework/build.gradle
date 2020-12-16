@@ -1,5 +1,5 @@
 apply plugin: 'com.android.library'
-
+apply plugin: 'org.greenrobot.greendao'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.1"
@@ -26,7 +26,11 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.bawei.framework.greendao.dao'
+        targetGenDir 'src/main/java'
+    }
 }
 
 dependencies {
@@ -60,4 +64,7 @@ dependencies {
 
     implementation('com.alibaba:arouter-api:1.4.1') //ARouter依赖
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2' //ARouter依赖
+
+    implementation 'org.greenrobot:greendao:3.2.2'
+
 }

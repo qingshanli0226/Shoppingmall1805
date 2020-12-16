@@ -3,7 +3,6 @@ package com.bawei.shopcar.contract;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
 import com.bawei.net.mode.InventoryBean;
-import com.bawei.net.mode.OrderInfoBean;
 import com.bawei.net.mode.ShopcarBean;
 
 import java.util.List;
@@ -16,7 +15,6 @@ public class ShopcarContract {
         void onAllSelected(String result);
         void onDeleteProducts(String result);
         void onInventory(List<InventoryBean> inventoryBean);
-        void onOrderInfo(OrderInfoBean orderInfoBean);
     }
 
     public static abstract class ShopcarPresenter extends BasePresenter<IShopcarView> {
@@ -25,6 +23,5 @@ public class ShopcarContract {
         public abstract void selectAllProduct(boolean isAllSelect);
         public abstract void deleteProducts(List<ShopcarBean> products);
         public abstract void checkInventory(List<ShopcarBean> products);
-        public abstract void getOrderInfo(List<ShopcarBean> products);
     }
 }

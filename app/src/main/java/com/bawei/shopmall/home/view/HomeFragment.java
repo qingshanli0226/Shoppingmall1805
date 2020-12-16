@@ -87,6 +87,8 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
         hideLoadingPage(isSuccess, errorBean);
     }
 
+
+
     @Override
     public void showEmpty() {
         showEmptyPage();

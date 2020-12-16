@@ -50,6 +50,16 @@ public class ShopUserManager {
         }
     }
 
+    public void banDingPhone(String phone) {
+        LoginBean.ResultBean result = this.loginBean.getResult();
+        result.setPhone(phone);
+    }
+
+    public void banDingAddress(String address) {
+        LoginBean.ResultBean result = this.loginBean.getResult();
+        result.setAddress(address);
+    }
+
     public void logoutUser() {
         if (loginBean != null) {
             this.loginBean = null;
@@ -74,6 +84,22 @@ public class ShopUserManager {
         }
     }
 
+    public String getPhone() {
+        if (loginBean != null) {
+            return String.valueOf(loginBean.getResult().getPhone());
+        } else {
+            return null;
+        }
+    }
+
+    public String getAddress() {
+        if (loginBean != null) {
+            return String.valueOf(loginBean.getResult().getAddress());
+        } else {
+            return null;
+        }
+    }
+
     public String getToken() {
         if (loginBean != null) {
             return loginBean.getResult().getToken();
@@ -91,6 +117,22 @@ public class ShopUserManager {
     public void unRegisterUserLoginChangeListener(IUserLoginChangedListener listener) {
         if (listeners.contains(listener)) {
             listeners.remove(listener);
+        }
+    }
+
+    public boolean isBanDingPhone() {
+        if (loginBean.getResult().getPhone() != null) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public boolean isBanDingAddress() {
+        if (loginBean.getResult().getAddress() != null) {
+            return true;
+        } else {
+            return false;
         }
     }
 

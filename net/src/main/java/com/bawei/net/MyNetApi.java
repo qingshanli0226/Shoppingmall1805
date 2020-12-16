@@ -109,4 +109,12 @@ public interface MyNetApi {
     @FormUrlEncoded
     Observable<LogoutBean> logout(@FieldMap HashMap<String, String> map);
 
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updatePhone(@FieldMap HashMap<String, String> map);
+
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updateAddress(@FieldMap HashMap<String, String> map);
+
 }

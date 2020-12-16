@@ -10,12 +10,13 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.MyToolBar;
 import com.bawei.framework.BaseActivity;
 import com.bawei.framework.CacheManager;
+import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.InventoryBean;
-import com.bawei.net.mode.OrderInfoBean;
 import com.bawei.net.mode.ShopcarBean;
 import com.bawei.shopcar.contract.ShopcarContract;
 import com.bawei.shopcar.presenter.ShopcarPresenterImpl;
@@ -24,7 +25,7 @@ import java.util.List;
 
 
 @Route(path = "/shopcar/ShopcarActivity")
-public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarContract.IShopcarView> implements ShopcarContract.IShopcarView, View.OnClickListener,MyToolBar.IToolBarClickListner {
+public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarContract.IShopcarView> implements ShopcarContract.IShopcarView, View.OnClickListener, MyToolBar.IToolBarClickListner {
 
     private RecyclerView shopcarRv;
     private ShopcarAdapter shopcarAdapter;
@@ -125,7 +126,6 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
         myToolBar = findViewById(R.id.toolbar);
         myToolBar.setToolBarClickListner(this);
 
-        //EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
     }
 
     @Override
@@ -209,54 +209,11 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
     public void onInventory(List<InventoryBean> inventoryBean) {
 
         if (checkInventoryIsEnough(inventoryBean)) {
-            httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
+
         } else {
             Toast.makeText(this, ((String) inventoryBean.get(0).getProductName()) + "库存不充足", Toast.LENGTH_SHORT).show();
         }
     }
-
-    @Override
-    public void onOrderInfo(final OrderInfoBean orderInfoBean) {
-//        Runnable runnable = new Runnable() {
-//            @Override
-//            public void run() {
-//                PayTask payTask = new PayTask(ShopcarActivity.this);
-//                Map<String, String> resultMap = payTask.payV2(orderInfoBean.getOrderInfo(), true);
-//                if (resultMap.get("resultStatus").equals("9000")) {//返回值是9000时代表支付成功
-//                    handler.sendEmptyMessage(1);
-//                } else {
-//                    handler.sendEmptyMessage(2);
-//                }
-//            }
-//        };
-
-//        Thread thread = new Thread(runnable);
-//        thread.start();
-    }
-
-
-//    private Handler handler = new Handler() {
-//        @Override
-//        public void handleMessage(Message msg) {
-//            super.handleMessage(msg);
-//            switch (msg.what) {
-//                case 1: {
-//                    Toast.makeText(ShopcarActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-//                    CacheManager.getInstance().removeSelectedProducts();
-//                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-//                    break;
-//                }
-//                case 2: {
-//                    Toast.makeText(ShopcarActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-//                    CacheManager.getInstance().removeSelectedProducts();
-//                    ARouter.getInstance().build("/main/MainActivity").withInt("index", 0).navigation();
-//                    break;
-//                }
-//                default:
-//                    break;
-//            }
-//        }
-//    };
 
     @Override
     public void showLoaDing() {
@@ -289,6 +246,12 @@ public class ShopcarActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarC
                 Toast.makeText(this, "当前没有要删除的数据", Toast.LENGTH_SHORT).show();
             }
         } else if (v.getId() == R.id.payBtn) {
+            if (ShopUserManager.getInstance().isBanDingPhone() && ShopUserManager.getInstance().isBanDingAddress()) {
+                ARouter.getInstance().build("/order/OrderActivity").navigation();
+            } else {
+                Toast.makeText(this, "请绑定电话或地址", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build("/order/BanDing").navigation();
+            }
             httpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
         }
     }

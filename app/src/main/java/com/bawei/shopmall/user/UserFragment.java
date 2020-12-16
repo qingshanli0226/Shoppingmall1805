@@ -120,7 +120,6 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
                             @Override
                             public void onNext(LogoutBean logoutBean) {
                                 if (logoutBean.getCode().equals("200")) {
-                                    message = logoutBean.getMessage() + logoutBean.getResult();
                                     ShopUserManager.getInstance().logoutUser();
                                 }
                             }

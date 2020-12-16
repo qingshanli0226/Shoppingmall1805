@@ -10,7 +10,11 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
     }
@@ -28,8 +32,35 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project(path: ':framework')
+    implementation('com.alibaba:arouter-api:1.4.1') //ARouter依赖
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation project(path: ':common')
+    implementation project(path: ':net') //ARouter依赖
+    //RxJava依赖
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
+
+
+    //Retrofit依赖
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    //Gson converter gson解析
+    implementation 'com.squareup.retrofit2:converter-gson:2.4.0'
+
+    //RxJava2 Adapter
+    implementation "com.squareup.retrofit2:adapter-rxjava2:2.3.0"
+    //okhttp
+    implementation 'com.squareup.okhttp3:okhttp:3.4.1'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.1'
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'//万能适配器
+    implementation 'com.android.support:recyclerview-v7:30.0.0'//recyclerview
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    implementation files('libs\\alipaySdk-15.6.5-20190718211148.aar')
+    implementation 'org.greenrobot:eventbus:3.1.1' //EventBus依赖
+
 }

@@ -2,6 +2,7 @@ package com.bawei.shopcar;
 
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -10,11 +11,12 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.CacheManager;
+import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.InventoryBean;
-import com.bawei.net.mode.OrderInfoBean;
 import com.bawei.net.mode.ShopcarBean;
 import com.bawei.shopcar.contract.ShopcarContract;
 import com.bawei.shopcar.presenter.ShopcarPresenterImpl;
@@ -32,6 +34,7 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     private RelativeLayout normalLayout;
     private CheckBox editAllSelectCheckBox;
     private RelativeLayout editLayout;
+    private Button payBtn;
 
     private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
         @Override
@@ -66,7 +69,9 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         allSelectCheckBox = findViewById(R.id.allSelect);
         normalLayout = findViewById(R.id.normalLayout);
         editLayout = findViewById(R.id.editLayout);
+        payBtn = findViewById(R.id.payBtn);
         editAllSelectCheckBox = findViewById(R.id.allEditSelect);
+        payBtn.setOnClickListener(this);
 
         shopcarRv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -156,7 +161,7 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
     @Override
     public void onInventory(List<InventoryBean> inventoryBean) {
         if (checkInventoryIsEnough(inventoryBean)) {
-            httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
+
         } else {
             Toast.makeText(getContext(), "库存不足", Toast.LENGTH_SHORT).show();
         }
@@ -176,11 +181,6 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
             }
         }
         return true;
-    }
-
-    @Override
-    public void onOrderInfo(OrderInfoBean orderInfoBean) {
-
     }
 
     @Override
@@ -207,8 +207,7 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
             } else {
                 Toast.makeText(getContext(), "没有删除的数据", Toast.LENGTH_SHORT).show();
             }
-        }else
-        if (view.getId() == R.id.allSelect) {
+        } else if (view.getId() == R.id.allSelect) {
             if (allSelectCheckBox.isChecked()) {
                 newAllSelect = true;
                 httpPresenter.selectAllProduct(newAllSelect);
@@ -216,10 +215,17 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
                 newAllSelect = false;
                 httpPresenter.selectAllProduct(newAllSelect);
             }
-        }else
-        if (view.getId() == R.id.allEditSelect) {
+        } else if (view.getId() == R.id.allEditSelect) {
             CacheManager.getInstance().selectAllProductInEditMode(editAllSelectCheckBox.isChecked());
-        }else if (view.getId() == R.id.payBtn){
+        } else if (view.getId() == R.id.payBtn) {
+            Toast.makeText(getContext(), "点击", Toast.LENGTH_SHORT).show();
+            if (ShopUserManager.getInstance().isBanDingPhone() && ShopUserManager.getInstance().isBanDingAddress()) {
+                ARouter.getInstance().build("/order/OrderActivity").navigation();
+
+            } else {
+                Toast.makeText(getContext(), "请绑定电话或地址", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build("/order/BanDing").navigation();
+            }
             httpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
         }
     }
