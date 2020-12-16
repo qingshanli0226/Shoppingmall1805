@@ -8,9 +8,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.common.ShopMallContants;
 import com.example.elevenmonthshoppingproject.R;
+import com.example.elevenmonthshoppingproject.product.view.ProductDetailActivity;
 import com.example.framwork.BaseRVAdapter;
 import com.example.net.bean.HomeBean;
-import com.example.shopercar.view.ShoppingPageActivity;
 
 
 public class HotAdapter extends BaseRVAdapter<HomeBean.HotInfoBean> {
@@ -33,7 +33,8 @@ public class HotAdapter extends BaseRVAdapter<HomeBean.HotInfoBean> {
         hotimg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(holder.itemView.getContext(), ShoppingPageActivity.class);
+                Intent intent = new Intent(holder.itemView.getContext(), ProductDetailActivity.class);
+                intent.putExtra("hotid",hotInfoBean.getProduct_id());
                 intent.putExtra("hotimg",ShopMallContants.Gui_Url+hotInfoBean.getFigure());
                 intent.putExtra("hottxt",hotInfoBean.getName());
                 intent.putExtra("hotprice",hotInfoBean.getCover_price());

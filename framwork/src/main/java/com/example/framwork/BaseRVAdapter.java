@@ -54,7 +54,7 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
             }
         });
 
-        cover(holder,getViewtype(position),datelist.get(position));
+        cover(holder,position,datelist.get(position));
 
     }
 

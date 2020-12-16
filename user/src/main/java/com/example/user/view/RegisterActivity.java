@@ -19,6 +19,11 @@ public class RegisterActivity extends BaseMVPActivity<RegisterPresenterImpl, Reg
     private RegisterPresenterImpl registerPresenter;
 
     @Override
+    protected void iniHttpView() {
+
+    }
+
+    @Override
     protected int getLayoutId() {
         return R.layout.register_activity;
     }

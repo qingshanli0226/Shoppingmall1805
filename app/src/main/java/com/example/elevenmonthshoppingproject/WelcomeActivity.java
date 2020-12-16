@@ -23,7 +23,7 @@ public class WelcomeActivity extends BaseActivity {
 
     @Override
     protected void iniView() {
-        intent=new Intent(this,LoginService .class);
+        intent=new Intent(this,LoginService.class);
         startService(intent);
         welcomeImg = findViewById(R.id.welcome_img);
         ViewCompat.animate(welcomeImg).setListener(new ViewPropertyAnimatorListener() {

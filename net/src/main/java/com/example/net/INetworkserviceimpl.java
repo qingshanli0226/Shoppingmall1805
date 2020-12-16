@@ -4,6 +4,7 @@ import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.HomeBean;
+import com.example.net.bean.MessageBean;
 import com.example.net.bean.RegisterBean;
 import com.example.net.bean.ShopcarBean;
 import com.example.net.bean.TypeBean;
@@ -38,7 +39,7 @@ public interface INetworkserviceimpl {
 
     @POST("autoLogin")
     @FormUrlEncoded
-    Observable<AutoLoginBean> tokenbean(@FieldMap HashMap<String,String> map);
+    Observable<BaseBean<LoginBean>> tokenbean(@FieldMap HashMap<String,String> map);
 
     @POST("checkOneProductInventory")
     @FormUrlEncoded
@@ -67,4 +68,8 @@ public interface INetworkserviceimpl {
 
     @POST("getOrderInfo")
     Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<BaseBean<MessageBean>> getMessage(@FieldMap HashMap<String,String> map);
 }

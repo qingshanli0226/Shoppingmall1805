@@ -13,7 +13,8 @@ import com.example.elevenmonthshoppingproject.classification.view.ClassIfiCation
 import com.example.elevenmonthshoppingproject.foundfragment.view.FoundFragment;
 import com.example.elevenmonthshoppingproject.home.view.HomeFragment;
 import com.example.elevenmonthshoppingproject.personalcenterfragment.view.PersonalCenterFragment;
-import com.example.elevenmonthshoppingproject.shopcarfragment.view.ShopCarFragment;
+import com.example.framwork.ShopUserManager;
+import com.example.shopercar.view.ShopCarFragment;
 import com.example.framwork.BaseActivity;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnTabSelectListener;
@@ -71,6 +72,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 //
 //    }
 
+
+
     @Override
     protected void iniData() {
 
@@ -92,15 +95,13 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         }else if (tabId==R.id.tab_found){
             viewPager.setCurrentItem(2);
         }else if (tabId==R.id.tab_shop){
-            viewPager.setCurrentItem(3);
-//            String string = ShopUserManager.getInstance().getString(this);
-//            if (!ShopUserManager.getInstance().isUserLogin()) {
-//                onBottomBarLogin();
-//                return;
-//            }else {
-//
-////                ARouter.getInstance().build("/Main/MainActivity").navigation();
-//            }
+            if (!ShopUserManager.getInstance().isUserLogin()) {
+                onBottomBarLogin();
+            }else {
+                viewPager.setCurrentItem(3);
+
+//                ARouter.getInstance().build("/Main/MainActivity").navigation();
+            }
 
         }else if (tabId==R.id.tab_personal_center){
             viewPager.setCurrentItem(4);
@@ -109,12 +110,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     private void onBottomBarLogin() {
         //如果bottom当前id和用户没有登陆的情况下 跳转登陆
-
             Toast.makeText(this, "请先登录", Toast.LENGTH_SHORT).show();
             ARouter.getInstance().build("/login/loginActivity").navigation();
-
-
-
 
     }
 

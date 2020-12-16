@@ -57,5 +57,6 @@ dependencies {
     implementation project(path: ':user')//glide依赖
     implementation 'com.android.support:recyclerview-v7:29.0.0'
     implementation ('com.alibaba:arouter-api:1.4.1') //ARouter依赖
-    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2' //ARouter依赖
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    implementation files('libs\\alipaySdk-15.7.5-20200422171619.aar') //ARouter依赖
 }

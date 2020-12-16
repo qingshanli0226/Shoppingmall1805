@@ -53,10 +53,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
 
     }
 
-    @Override
-    protected void iniHttpData() {
-        homePresenter.getHomeData();
-    }
+
 
     @Override
     protected void iniPresenter() {
@@ -64,7 +61,10 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         homePresenter.attatch(this);
 
     }
-
+    @Override
+    protected void iniHttpData() {
+        homePresenter.getHomeData();
+    }
     @Override
     public void onError(String code, String message) {
         Toast.makeText(getContext(), "加载数据失败"+code+""+message, Toast.LENGTH_SHORT).show();

@@ -9,7 +9,8 @@ public class ShopMallContants {
 
     public static final String Gui_Url=Base_Url+"atguigu/img";
 
-
+    public static final String spName = "token";
+    public static final String tokenName = "token";
     //单例
     public static final String SHOPCAR_NAME="shopmall1805A";
 

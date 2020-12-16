@@ -32,7 +32,7 @@ public class ShopUserManager {
         }
         return instance;
     }
-
+    //必须在appliation里面调用  不然会为空
     public void init(Context context){
         sharedPreferences=context.getSharedPreferences("gtlname",Context.MODE_PRIVATE);
         editor=sharedPreferences.edit();
@@ -74,7 +74,7 @@ public class ShopUserManager {
         if (loginBean!=null){
             return loginBean.getToken();
         }else {
-            return "";
+            return sharedPreferences.getString("token", "");
         }
     }
     public void registerUserLoginChangeListener(IUserLoginChangedListener listener) {

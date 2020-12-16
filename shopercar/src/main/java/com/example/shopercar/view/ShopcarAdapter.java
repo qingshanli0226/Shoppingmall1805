@@ -1,4 +1,4 @@
-package com.example.elevenmonthshoppingproject.adapter;
+package com.example.shopercar.view;
 
 import android.view.View;
 import android.widget.CheckBox;
@@ -7,10 +7,10 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.common.ShopMallContants;
-import com.example.elevenmonthshoppingproject.R;
 import com.example.framwork.BaseRVAdapter;
 import com.example.framwork.CacheManager;
 import com.example.net.bean.ShopcarBean;
+import com.example.shopercar.R;
 import com.example.shopercar.presenter.ShopCarPresenterImpl;
 
 public class ShopcarAdapter extends BaseRVAdapter<ShopcarBean> {
@@ -40,7 +40,7 @@ public class ShopcarAdapter extends BaseRVAdapter<ShopcarBean> {
     @Override
     protected void cover(BaseViewHoder holder, int viewtype, ShopcarBean shopcarBean) {
         ImageView productImg = holder.getView(R.id.productImage);
-        Glide.with(holder.itemView.getContext()).load(ShopMallContants.Gui_Url+shopcarBean.getUrl()).into(productImg);
+        Glide.with(holder.itemView.getContext()).load(shopcarBean.getUrl()).into(productImg);
         TextView productNameTv = holder.getView(R.id.productName);
         productNameTv.setText(shopcarBean.getProductName());
         TextView productPriceTv = holder.getView(R.id.productPrice);

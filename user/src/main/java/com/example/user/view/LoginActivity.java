@@ -25,6 +25,10 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     private LoginPresenterImpl loginPresenter;
 
 
+    @Override
+    protected void iniHttpView() {
+
+    }
 
     @Override
     protected int getLayoutId() {
@@ -76,7 +80,6 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     public void onLogin(LoginBean loginBean) {
         Toast.makeText(this, "登陆成功", Toast.LENGTH_SHORT).show();
         //存储login
-        ShopUserManager.getInstance().init(this);
         ShopUserManager.getInstance().saveLoginbean(loginBean);
         ARouter.getInstance().build("/Main/MainActivity").navigation();
     }

@@ -13,8 +13,11 @@ public abstract class BaseMVPActivity<T extends  IPresenter,V extends  IView> ex
         setContentView(getLayoutId());
         iniView();
         initPresenter();
+        iniHttpView();
         initData();
     }
+
+    protected abstract void iniHttpView();
 
     protected abstract int getLayoutId();
     protected abstract void iniView();

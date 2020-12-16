@@ -4,7 +4,7 @@
 
     <uses-permission android:name="android.permission.INTERNET"/>
     <application android:theme="@style/AppTheme">
-        <activity android:name=".view.ShoppingPageActivity" android:theme="@style/AppTheme.FullSrcreen"></activity>
+        <activity android:name="com.example.shopercar.view.ShoppingPageActivity" android:theme="@style/AppTheme.FullSrcreen"></activity>
     </application>
 
 </manifest>

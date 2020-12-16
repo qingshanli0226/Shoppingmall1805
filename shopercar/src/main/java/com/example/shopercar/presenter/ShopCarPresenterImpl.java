@@ -17,7 +17,6 @@ import org.json.JSONObject;
 import java.util.List;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -43,7 +42,13 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iview.onProductNumChange(s,position,newNum);
+                        if (iview!=null){
+                            iview.onProductNumChange(s,position,newNum);
+                        }
+
+
+
+
                     }
 
                     @Override
@@ -74,7 +79,12 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iview.onProductSelect(s, position);
+                        if (iview!=null){
+                            iview.onProductSelect(s, position);
+                        }else {
+
+                        }
+
                     }
 
                     @Override
@@ -102,12 +112,17 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iview.onAllSelect(s);
+                        if (iview!=null){
+                            iview.onAllSelect(s);
+                        }else {
+
+                        }
+
                     }
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-                        iview.onError(errorCode, errorMessage);
+//                        iview.onError(errorCode, errorMessage);
                     }
                 });
     }
@@ -137,7 +152,10 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iview.onDeleteProduct(s);
+                        if (iview!=null){
+                            iview.onDeleteProduct(s);
+                        }
+
                     }
 
                     @Override
@@ -172,7 +190,10 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<List<InventoryBean>>() {
                     @Override
                     public void onNext(List<InventoryBean> inventoryBeans) {
-                        iview.onInventory(inventoryBeans);
+                        if (iview!=null){
+                            iview.onInventory(inventoryBeans);
+                        }
+
                     }
 
                     @Override
@@ -215,7 +236,12 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 .subscribe(new ShopMallObserver<OrderInfoBean>() {
                     @Override
                     public void onNext(OrderInfoBean orderInfoBean) {
-                        iview.onOnderInfo(orderInfoBean);
+                        if (iview!=null){
+                            iview.onOnderInfo(orderInfoBean);
+                        }else {
+
+                        }
+
                     }
 
                     @Override

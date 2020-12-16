@@ -49,20 +49,9 @@ public class CacheManager {
         this.context = context;
         initService();
     }
+    //第二步
     private void initService() {
-        Intent intent = new Intent(context, LoginService.class);
-        context.startService(intent);//通过start启动service
-        ShopUserManager.getInstance().registerUserLoginChangeListener(new ShopUserManager.IUserLoginChangedListener() {
-            @Override
-            public void onUserLogin(LoginBean loginBean) {
-                getShopcarDataFromServer();//获取购物车数据。
-            }
-
-            @Override
-            public void onUserLogout() {
-
-            }
-        });
+        getShopcarDataFromServer();//获取购物车数据。
     }
     //获取购物车的数据
     private void getShopcarDataFromServer() {
@@ -85,7 +74,7 @@ public class CacheManager {
                 });
     }
 
-
+    //通知数据改变
     private void notifyShopcarDataChanged() {
         for (IShopCarChangeLinsterner iShopCarChangeLinsterner : iShopcarDataChangeListenerList) {
             iShopCarChangeLinsterner.onDataChanged(shopcarBeanList);

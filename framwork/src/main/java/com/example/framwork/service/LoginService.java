@@ -11,6 +11,8 @@ import com.example.framwork.ShopUserManager;
 import com.example.net.RetorfitCreate;
 import com.example.net.ShopMallObserver;
 import com.example.net.bean.AutoLoginBean;
+import com.example.net.bean.BaseBean;
+import com.example.net.bean.LoginBean;
 
 import java.util.HashMap;
 
@@ -27,15 +29,16 @@ public class LoginService extends Service {
         RetorfitCreate.getiNetworkserviceimpl().tokenbean(hashMap)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ShopMallObserver<AutoLoginBean>() {
+                .subscribe(new ShopMallObserver<BaseBean<LoginBean>>() {
                     @Override
-                    public void onNext(AutoLoginBean autoLoginBean) {
+                    public void onNext(BaseBean<LoginBean> autoLoginBean) {
                         if (autoLoginBean.getCode().equals("200")){
                             Log.i("---",""+autoLoginBean.getResult().getToken());
                             Toast.makeText(getApplicationContext(), "自动登录成功", Toast.LENGTH_SHORT).show();
-                           getSharedPreferences("gtlname",MODE_PRIVATE).edit().putString("token",autoLoginBean.getResult().getToken()).commit();
+                            ShopUserManager.getInstance().saveLoginbean(autoLoginBean.getResult());
+                           //getSharedPreferences("gtlname",MODE_PRIVATE).edit().putString("token",autoLoginBean.getResult().getToken()).commit();
 
-                                ARouter.getInstance().build("/Main/MainActivity").navigation();
+                                //ARouter.getInstance().build("/Main/MainActivity").navigation();
 
                             return;
 
@@ -44,7 +47,7 @@ public class LoginService extends Service {
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
-
+                        Log.i("---",""+"");
                     }
                 });
 
