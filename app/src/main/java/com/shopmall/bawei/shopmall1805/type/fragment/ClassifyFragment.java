@@ -145,4 +145,9 @@ public class ClassifyFragment extends BaseFragment<TypePresenter, TypeContract.T
     public void showEmpty() {
 
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

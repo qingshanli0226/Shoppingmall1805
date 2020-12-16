@@ -157,4 +157,13 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     }
 
 
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

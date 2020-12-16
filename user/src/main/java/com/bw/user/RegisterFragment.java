@@ -90,4 +90,9 @@ public class RegisterFragment extends BaseFragment<RegisterPresenterImpl, Regist
     public void showEmpty() {
 
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

@@ -5,13 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.bw.framework.ToorBar
+    <com.bw.framework.view.ToolBar
         android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
         app:right_show="false"
         app:title_text="注册"
-        app:left_src="@mipmap/back" />
+        app:left_src="@mipmap/back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+<!--    <com.bw.framework.view.ToorBar-->
+<!--        android:id="@+id/toolbar"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:right_show="false"-->
+<!--        app:title_text="注册"-->
+<!--        app:left_src="@mipmap/back" />-->
 
 
     <EditText

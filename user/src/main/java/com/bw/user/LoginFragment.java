@@ -99,4 +99,9 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
         nameEditText.setText(name+"");
         passwordEditText.setText("");
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

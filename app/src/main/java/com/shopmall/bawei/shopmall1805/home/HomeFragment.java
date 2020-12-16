@@ -1,11 +1,16 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.os.Handler;
+import android.os.Message;
+import android.support.annotation.NonNull;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 
 import com.bw.framework.BaseFragment;
+import com.bw.framework.MessageManager;
+import com.bw.framework.dao.ShopcarMessage;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 
@@ -40,12 +45,29 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
         homeRv.setAdapter(homeFragmentAdapter);
 
 
+        MessageManager.getInstance().queryMessage((isSuccess, shopcarMessageList) -> {
 
+            Log.i("---", "initView: queryMessage："+shopcarMessageList.size());
 
-
-
+            for (ShopcarMessage shopcarMessage : shopcarMessageList) {
+                if (!shopcarMessage.getIsRead()){
+                   count++;
+                }
+            }
+            handler.sendEmptyMessage(101);
+        });
 
     }
+     private  int count = 0;
+     Handler handler = new Handler(){
+         @Override
+         public void handleMessage(@NonNull Message msg) {
+             super.handleMessage(msg);
+             if (msg.what == 101){
+                 toolbar.setToolbarRightTv(""+count);
+             }
+         }
+     };
 
     @Override
     protected void initPresenter() {
@@ -88,6 +110,11 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

@@ -237,4 +237,9 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenter, ShopCarContr
             tvShopcartEdit.setText("编辑");
         }
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

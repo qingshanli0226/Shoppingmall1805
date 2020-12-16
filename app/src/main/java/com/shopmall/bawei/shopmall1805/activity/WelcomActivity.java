@@ -32,4 +32,14 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> {
             }
         },5000);
     }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

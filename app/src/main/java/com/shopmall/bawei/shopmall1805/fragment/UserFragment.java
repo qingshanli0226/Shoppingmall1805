@@ -85,4 +85,9 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
 
 
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

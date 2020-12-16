@@ -10,10 +10,10 @@
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 
-    <com.bw.framework.ToorBar
+    <com.bw.framework.view.ToorBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.bw.framework.ToorBar>
+    </com.bw.framework.view.ToorBar>
 
 </LinearLayout>

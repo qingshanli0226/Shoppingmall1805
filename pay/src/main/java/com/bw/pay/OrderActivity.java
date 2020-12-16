@@ -3,18 +3,12 @@ package com.bw.pay;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
-import android.os.UserManager;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -28,6 +22,8 @@ import com.alipay.sdk.app.PayTask;
 import com.bw.framework.BaseActivity;
 import com.bw.framework.CacheManager;
 import com.bw.framework.ShopUserManager;
+import com.bw.framework.dao.ShopcarMessage;
+import com.bw.framework.MessageManager;
 import com.bw.net.InventoryBean;
 import com.bw.net.OrderInfoBean;
 import com.bw.net.bean.LoginBean;
@@ -42,7 +38,6 @@ import java.util.Map;
 @Route(path = "/orderActivity/orderInfoActivity")
 public class OrderActivity extends BaseActivity<AddressPresenter, AddressContract.AddressView> implements AddressContract.AddressView, CacheManager.IShopcarDataChangeListener,ShopUserManager.IUserLoginChangedListener{
 
-    private LinearLayout toolbar;
     private ImageButton ibShopcartBack;
     private TextView startBtn;
     private TextView addressTv;
@@ -71,14 +66,30 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
 
                 Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                 CacheManager.getInstance().removeSelectedProducts();
-
+                //支付成功，发送消息
+                savePayMessage("支付成功");
             }else {
                 Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                 CacheManager.getInstance().removeSelectedProducts();
+                savePayMessage("支付失败");
             }
         }
     };
 
+    private void savePayMessage(String message) {
+        ShopcarMessage shopcarMessage = new ShopcarMessage();
+        shopcarMessage.setBody(message);
+        shopcarMessage.setType(MessageManager.PAY_TYPE);
+        shopcarMessage.setIsRead(false);
+        shopcarMessage.setTime(System.currentTimeMillis());
+        shopcarMessage.setTitle("支付消息");
+
+        MessageManager.getInstance().addMessage(shopcarMessage, new MessageManager.IMessageListener() {
+            @Override
+            public void onResult(boolean isSuccess, List<ShopcarMessage> shopcarMessageList) {
+            }
+        });
+    }
 
 
     @Override
@@ -86,7 +97,6 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
         super.initView();
         ARouter.getInstance().inject(this);
         price = findViewById(R.id.orderAllPrice);
-        toolbar = (LinearLayout) findViewById(R.id.toolbar);
         ibShopcartBack = (ImageButton) findViewById(R.id.ib_shopcart_back);
         startBtn = (TextView) findViewById(R.id.startBtn);
         addressTv = (TextView) findViewById(R.id.addressTv);
@@ -265,6 +275,8 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
     public void onInventory(List<InventoryBean> inventoryBeans) {
         if (checkInventoryIsEnough(inventoryBeans)){
             httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
+
+
         }else {
             Toast.makeText(this, inventoryBeans.get(0).getProductName()+"库存不充足", Toast.LENGTH_SHORT).show();
         }
@@ -309,6 +321,22 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangerListener(this);
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
 
     }
 }

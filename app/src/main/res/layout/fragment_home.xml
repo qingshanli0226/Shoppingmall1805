@@ -6,17 +6,18 @@
     android:layout_gravity="center">
 
 
-    <com.bw.framework.ToorBar
+    <com.bw.framework.view.ToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         app:left_show="false"
         app:title_show="false"
         app:right_src="@mipmap/menu"
         app:right_text="消息"
         app:right_text_color="@android:color/white"
         android:background="@android:color/holo_red_light">
-    </com.bw.framework.ToorBar>
+    </com.bw.framework.view.ToolBar>
+
 
 
     <android.support.v7.widget.RecyclerView

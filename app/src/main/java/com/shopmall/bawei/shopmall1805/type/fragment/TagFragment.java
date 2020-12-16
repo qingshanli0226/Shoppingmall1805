@@ -74,4 +74,9 @@ public class TagFragment extends BaseFragment<TagPresenter, TagContract.TagView>
     public void showEmpty() {
 
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

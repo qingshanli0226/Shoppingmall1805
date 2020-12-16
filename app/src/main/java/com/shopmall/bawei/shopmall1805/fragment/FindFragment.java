@@ -22,4 +22,8 @@ public class FindFragment extends BaseFragment<IPresenter, IView> {
     }
 
 
+    @Override
+    public void onRightClick() {
+
+    }
 }

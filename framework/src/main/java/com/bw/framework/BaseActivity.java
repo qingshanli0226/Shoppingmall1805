@@ -4,10 +4,15 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
+import android.widget.Toolbar;
 
-public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity {
+import com.bw.framework.view.ToolBar;
+import com.shopmall.bawei.framework.R;
+
+public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity implements ToolBar.IToolBarClickListner{
 
     protected P httpPresenter;
+    protected ToolBar toolbar;
 
 
     @Override
@@ -16,11 +21,17 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
         setContentView(getLayoutId());
 
         initView();
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setToolBarClickListner(this);
+
         initPresenter();
         initData();
         if (httpPresenter != null){
             httpPresenter.accatchView((V) this);
         }
+
+
 
     }
 

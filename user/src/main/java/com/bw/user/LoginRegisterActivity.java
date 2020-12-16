@@ -45,6 +45,16 @@ public class LoginRegisterActivity extends BaseActivity {
         return toLoginFromIndex;
     }
 
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
+
     public interface INameInterface {
         void setName(String name);
     }

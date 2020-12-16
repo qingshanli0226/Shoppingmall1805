@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.home.presenter;
 
-import com.bw.framework.view.LoadingPage;
 import com.bw.net.RetraficCreator;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;

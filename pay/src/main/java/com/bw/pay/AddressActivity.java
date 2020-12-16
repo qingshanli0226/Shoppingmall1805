@@ -123,4 +123,14 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
     public void onUserLoginOut() {
 
     }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

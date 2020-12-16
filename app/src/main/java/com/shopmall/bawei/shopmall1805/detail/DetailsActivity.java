@@ -104,6 +104,7 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
             }else {
                 //先检查仓库中是否还有一件商品
                 checkHasProduct();
+
 //                httpPresenter.addProduct(bean.getProductId(),bean.getProductNum(),bean.getProductName(),bean.getUrl(),bean.getProductPrice());
             }
         });
@@ -154,6 +155,9 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
                 httpPresenter.updateProductNum(shopcarBan.getProductId(),String.valueOf(newNum),shopcarBan.getProductName(),shopcarBan.getUrl(),shopcarBan.getProductPrice());
             }else {
                 httpPresenter.addProduct(bean.getProductId(),"1",bean.getProductName(),bean.getUrl(),bean.getProductPrice());
+
+
+
             }
         }
     }
@@ -285,12 +289,11 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     @Override
     public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
-//        CacheManager.getInstance().setShopCarBeans(shopCarBeanList);
+        tvGoodInfoCart.setText("购物车："+shopCarBeanList.size());
     }
 
     @Override
     public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
-//        CacheManager.getInstance().updatePositionProductNum(position,String.valueOf(newNum));
     }
 
     @Override
@@ -307,5 +310,15 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
     protected void onDestroy() {
         super.onDestroy();
         CacheManager.getInstance().unSetShopCarDataChangerListener(this);
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
     }
 }

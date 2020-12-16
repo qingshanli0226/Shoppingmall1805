@@ -55,4 +55,9 @@ public class TypeFragment extends BaseFragment<IPresenter, IView> {
 
 
     }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

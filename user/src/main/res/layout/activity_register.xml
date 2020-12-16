@@ -7,14 +7,14 @@
     android:layout_height="match_parent"
     >
 
-    <com.bw.framework.ToorBar
+    <com.bw.framework.view.ToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:right_show="false"
         app:title_text="注册"
         app:left_src="@mipmap/back">
-    </com.bw.framework.ToorBar>
+    </com.bw.framework.view.ToolBar>
 
     <RelativeLayout android:layout_width="match_parent" android:layout_height="match_parent">
 

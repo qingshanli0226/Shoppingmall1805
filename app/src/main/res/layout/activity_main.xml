@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     style="@style/ActivityStyle"
     android:orientation="vertical"
     tools:context=".activity.MainActivity">
 
-    <com.bw.framework.ToorBar
-        android:id="@+id/main_bar"
+    <com.bw.framework.view.ToolBar
+        android:id="@+id/toolbar"
+        android:visibility="gone"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60"
-        android:visibility="gone"></com.bw.framework.ToorBar>
+        android:layout_height="wrap_content"/>
+
 
    <FrameLayout
        android:id="@+id/frame_layout"

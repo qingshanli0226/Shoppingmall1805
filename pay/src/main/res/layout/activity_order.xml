@@ -4,9 +4,12 @@
     android:layout_margin="8dp"
     android:orientation="vertical"
     android:layout_height="match_parent">
-
-    <LinearLayout
+    <com.bw.framework.view.ToolBar
         android:id="@+id/toolbar"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+    <LinearLayout
         android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

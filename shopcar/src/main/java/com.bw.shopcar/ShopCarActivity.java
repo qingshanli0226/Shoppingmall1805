@@ -263,4 +263,14 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
             checkboxAll.setChecked(isAllSelect);
         }
     }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

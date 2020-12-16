@@ -11,14 +11,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+
 import com.bw.framework.view.LoadingPage;
+import com.bw.framework.view.ToolBar;
+import com.shopmall.bawei.framework.R;
 
 
-public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
+public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment implements ToolBar.IToolBarClickListner {
 
     public Context context;
     protected P httpPresenter;
     private LoadingPage loadingPage;
+    protected ToolBar toolbar;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -37,6 +41,10 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
                 return getLayoutId();
             }
         };
+
+        toolbar = findViewById(R.id.toolbar);
+        toolbar.setToolBarClickListner(this);
+
         return loadingPage;
     }
 
@@ -46,14 +54,18 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        initView(loadingPage.successView());
+        initView(loadingPage.successView);
         initPresenter();
         if (httpPresenter != null){
             httpPresenter.accatchView((V)this);
         }
         initData();
 
+    }
 
+    @Override
+    public void onLeftClick() {
+        getActivity().finish();
     }
 
     public <T extends View> T findViewById(@IdRes int id) {

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.CacheManager;
+import com.bw.framework.MessageManager;
 import com.bw.framework.ShopUserManager;
 import com.bw.framework.service.AutoLoginService;
 import com.bw.net.NetModel;
@@ -26,7 +27,7 @@ public class ShopmallApplication extends Application {
         NetModel.init(this);
 
         CacheManager.getInstance().init(this);
-
+        MessageManager.getInstance().init(this);
         if (!LeakCanary.isInAnalyzerProcess(this)){
             LeakCanary.install(this);
         }
