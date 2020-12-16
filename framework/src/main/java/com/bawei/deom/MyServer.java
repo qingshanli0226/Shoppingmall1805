@@ -18,7 +18,6 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
 public class MyServer extends Service {
-
     @Nullable
     @Override
     public IBinder onBind(Intent intent) {
@@ -27,9 +26,10 @@ public class MyServer extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        String token = getSharedPreferences("login", MODE_PRIVATE).getString("login", "123");
+//        String token = getSharedPreferences("login", MODE_PRIVATE).getString("login", "123");
+        String token = ShopUserManager.getInstance().getToken();
 
-       if (TextUtils.isEmpty(token)){
+        if (TextUtils.isEmpty(token)){
            Log.e("LQS","当前token为空,无法自动登录");
        }
         HashMap<String,String> map=new HashMap<>();
@@ -47,9 +47,10 @@ public class MyServer extends Service {
                     @Override
                     public void onNext(LoginBean autoLoginBeen) {
                                  if (autoLoginBeen.getCode().equals("200")){
-                                     ShopUserManager.getInstance().saveLoginBean(autoLoginBeen);
+
                                      Toast.makeText(MyServer.this, "自动登录成功", Toast.LENGTH_SHORT).show();
                                      Log.e("自动登录","自动登录成功");
+                                     ShopUserManager.getInstance().saveLoginBean(autoLoginBeen);
 //                                     getSharedPreferences("login", Context.MODE_PRIVATE).edit().putString("login",autoLoginBeen.getResult().getToken()).commit();
                                  }
                                 ;

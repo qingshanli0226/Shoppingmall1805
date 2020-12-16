@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.mesage;
+package com.shopmall.bawei.shopmall1805.activity.mesage;
 
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;

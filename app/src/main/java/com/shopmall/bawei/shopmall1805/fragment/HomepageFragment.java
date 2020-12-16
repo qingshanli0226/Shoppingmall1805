@@ -10,13 +10,11 @@ import android.widget.TextView;
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.countroller.UserCountroller;
 import com.bawei.deom.countroller.UserIMPL;
-import com.bawei.deom.view.LoadingPage;
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ShangTitle;
 import com.shopmall.bawei.shopmall1805.apter.PrimereAdpter;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
-import com.shopmall.bawei.shopmall1805.mesage.MessageActivity;
+import com.shopmall.bawei.shopmall1805.activity.mesage.MessageActivity;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
@@ -62,6 +60,12 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
     protected void initView(View view) {
         rv = (RecyclerView) view.findViewById(R.id.rv);
         primereAdpter = new PrimereAdpter();
@@ -70,7 +74,7 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
         toolImage = (ImageView) view.findViewById(R.id.tool_image);
 
         toolerMessage = (TextView) view.findViewById(R.id.tooler_message);
-        EventBus.getDefault().register(this);
+
     }
 
     @Override
@@ -114,6 +118,12 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
         EventBus.getDefault().unregister(this);
     }
 }

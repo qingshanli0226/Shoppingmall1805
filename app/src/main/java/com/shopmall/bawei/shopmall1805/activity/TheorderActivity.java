@@ -1,14 +1,11 @@
-package com.shopmall.bawei.shopmall1805;
+package com.shopmall.bawei.shopmall1805.activity;
 
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -18,14 +15,14 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.bawei.deom.BaseActivity;
 import com.bawei.deom.CacheManager;
-import com.bawei.deom.Login;
 import com.bawei.deom.ShopUserManager;
 import com.bawei.deom.selectedordelete.ShopcarContract;
 import com.bawei.deom.selectedordelete.ShopcarPresenterImpl;
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
-import com.shopmall.bawei.shopmall1805.apter.ShopcarAdapter;
+import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.ShangTitle;
 import com.shopmall.bawei.shopmall1805.apter.ThrorderApter;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.activity.home.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 
@@ -34,7 +31,6 @@ import java.util.Map;
 
 import bean.GetOrderInfo;
 import bean.InventoryBean;
-import bean.LoginBean;
 import bean.Shoppingcartproducts;
 
 public class TheorderActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarContract.SelectedandDeletedCountrollerView> implements ShopcarContract.SelectedandDeletedCountrollerView {

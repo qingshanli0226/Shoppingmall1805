@@ -4,6 +4,7 @@ import android.animation.ValueAnimator;
 import android.content.Intent;
 import android.graphics.Path;
 import android.graphics.PathMeasure;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +21,11 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.deom.BaseActivity;
 import com.bawei.deom.CacheManager;
+import com.bawei.deom.ShopmallConstant;
 import com.bawei.deom.addPage.AddCountroller;
 import com.bawei.deom.addPage.AddImpl;
 import com.bumptech.glide.Glide;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.activity.home.MainActivity;
 import com.shopmall.bawei.shopmall1805.user.GoodsBean;
 
 import java.util.List;
@@ -95,13 +97,17 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
                     @Override
                     public void onClick(View v) {
                         num.setText(String.valueOf(size++));
+                        showShopcarAnim(1);
                     }
                 });
                 Button no=view.findViewById(R.id.no);
                 no.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        popupWindow.dismiss();
+                        if (popupWindow!=null){
+                            popupWindow.dismiss();
+                        }
+
                     }
                 });
                 Button yes=view.findViewById(R.id.yes);
@@ -110,7 +116,10 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
                     public void onClick(View v) {
 //                        checkHasProduct();
                         prine.CheckOneProductNum(shangp.getProductId(),String.valueOf(newNum));
-                        popupWindow.dismiss();
+                        if (popupWindow!=null){
+                            popupWindow.dismiss();
+                        }
+
                     }
                 });
                 popupWindow.setContentView(view);
@@ -180,6 +189,7 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
         shopcarBean.setProductSelected(true);
         shopcarBean.setUrl(shangp.getUrl());
         CacheManager.getInstance().add(shopcarBean);
+
     }
 
     @Override
@@ -238,43 +248,51 @@ public class DetailsActivity extends BaseActivity<AddImpl,AddCountroller.AddView
         super.onDestroy();
 
     }
+    //贝塞尔
     private void showShopcarAnim(final  int type) {
-        final  ImageView imageView=new ImageView(this);
-        final  RelativeLayout.LayoutParams params=new RelativeLayout.LayoutParams(100,900);
-        imageView.setLayoutParams(params);
-         Glide.with(DetailsActivity.this).load(shangp.getUrl()).into(imageView);
-         rootview.addView(imageView);
-         int []startPrint=new int[2];
-         imageView.getLocationInWindow(startPrint);
-
-         int endPoint[]=new int[2];
-         endPoint[0]=startPrint[0];
-         endPoint[1]=startPrint[1]-1000;
-
-         int[] control1=new int[2];
-         control1[0]=startPrint[0]+400;
-         control1[1]=startPrint[1]+600;
-
-         int[] countrol2=new int[2];
-         countrol2[0]=startPrint[0]+400;
-         countrol2[1]=startPrint[1]-300;
-        Path path=new Path();
-        path.moveTo(400,400);
+       int []startPoint=new int[2];
+       int []endPoint=new int[2];
+       int []controlPoint=new int[2];
+       int [] picImagePoint=new int[2];
+       image.getLocationInWindow(picImagePoint);
+       startPoint[0]=picImagePoint[0]+400;
+       startPoint[1]=picImagePoint[1];
+        Log.e("LQS 起始坐标", startPoint[0] + " " + startPoint[1]);
+        int []shopcarImgPoint=new int[2];
+        gouwu.getLocationInWindow(shopcarImgPoint);
+        endPoint[0]=shopcarImgPoint[0]+150;
+        endPoint[1]=shopcarImgPoint[1]-100;
+        Log.d("LQS 终点坐标", endPoint[0] + " " + endPoint[1]);
+        controlPoint[0]=startPoint[0]-300;
+        controlPoint[1]=startPoint[1]+100;
+        Log.d("LQS 控制点坐标", controlPoint[0] + " " + controlPoint[1]);
+        //实例化一个ImageView然后将该imageview添加到更布局
+        final  ImageView animImageView=new ImageView(this);
+        RelativeLayout.LayoutParams animLayoutParams=new RelativeLayout.LayoutParams(100,100);
+        animImageView.setLayoutParams(animLayoutParams);
+        Glide.with(this).load(shangp.getUrl()).into(animImageView);
+        rootview.addView(animImageView);
+        //使用贝塞尔曲线完成动画
+        final Path path=new Path();
+        path.moveTo(startPoint[0],startPoint[1]);
+        path.quadTo(controlPoint[0],controlPoint[1],endPoint[0],endPoint[1]);
         final PathMeasure pathMeasure=new PathMeasure(path,false);
-        finish(); float lenth=pathMeasure.getLength();
-        ValueAnimator valueAnimator=ValueAnimator.ofFloat(0,lenth);
-        valueAnimator.setDuration(5000);
-        valueAnimator.setInterpolator(new LinearInterpolator());
+        ValueAnimator valueAnimator=ValueAnimator.ofFloat(0,pathMeasure.getLength());//平移属性
+        valueAnimator.setDuration(1000);
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
             public void onAnimationUpdate(ValueAnimator animation) {
-                 float value=(float) animation.getAnimatedValue();
-                 float[]nextPostion=new float[2];
-                 pathMeasure.getPosTan(value,nextPostion,null);
-                 imageView.setTranslationX(nextPostion[0]);
-                 imageView.setTranslationY(nextPostion[1]);
-
+                float value=(float)animation.getAnimatedValue();
+                Log.d("LQS 动画已经平移的距离:", value + "");
+                float []nextPostion=new float[2];
+                pathMeasure.getPosTan(value,nextPostion,null);
+                animImageView.setTranslationX(nextPostion[0]);
+                animImageView.setTranslationY(nextPostion[1]);
+               if (value>=pathMeasure.getLength()){
+                   animImageView.setVisibility(View.GONE);
+               }
             }
         });
+        valueAnimator.start();
     }
 }

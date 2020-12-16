@@ -19,7 +19,7 @@ import com.shopmall.bawei.shopmall1805.apter.apter.HotAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter.RecommendAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter.SkirtAdapter;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
-import com.shopmall.bawei.shopmall1805.login.LoginActivity;
+import com.shopmall.bawei.shopmall1805.activity.login.LoginActivity;
 import com.shopmall.bawei.shopmall1805.user.GoodsBean;
 import com.youth.banner.Banner;
 import com.youth.banner.listener.OnBannerListener;

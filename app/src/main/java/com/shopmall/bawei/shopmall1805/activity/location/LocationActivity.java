@@ -1,8 +1,6 @@
-package com.shopmall.bawei.shopmall1805.location;
+package com.shopmall.bawei.shopmall1805.activity.location;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -10,12 +8,10 @@ import android.widget.Toast;
 
 import com.bawei.deom.BaseActivity;
 import com.bawei.deom.CacheManager;
-import com.bawei.deom.Login;
-import com.bawei.deom.ShopUserManager;
 import com.bawei.deom.personalinformation.InformationCountroller;
 import com.bawei.deom.personalinformation.InformationImpl;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.activity.home.MainActivity;
 
 import bean.LoginBean;
 import bean.PhoneBean;

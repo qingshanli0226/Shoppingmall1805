@@ -14,13 +14,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".TheorderActivity"></activity>
-        <activity android:name=".location.LocationActivity" />
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".activity.TheorderActivity"></activity>
+        <activity android:name=".activity.location.LocationActivity" />
+        <activity android:name=".activity.login.LoginActivity" />
         <activity android:name=".DetailsActivity" />
-        <activity android:name=".home.MainActivity" />
-        <activity android:name=".mesage.MessageActivity" />
-        <activity android:name=".WelcomActivity">
+        <activity android:name=".activity.home.MainActivity" />
+        <activity android:name=".activity.mesage.MessageActivity" />
+        <activity android:name=".activity.WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

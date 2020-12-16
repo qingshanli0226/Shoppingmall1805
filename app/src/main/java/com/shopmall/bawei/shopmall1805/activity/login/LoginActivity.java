@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.login;
+package com.shopmall.bawei.shopmall1805.activity.login;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;

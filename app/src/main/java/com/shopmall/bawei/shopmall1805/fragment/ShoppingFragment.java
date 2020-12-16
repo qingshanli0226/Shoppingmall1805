@@ -1,17 +1,10 @@
 package com.shopmall.bawei.shopmall1805.fragment;
 
-import android.annotation.SuppressLint;
-import android.app.AlertDialog;
-import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -23,23 +16,15 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alipay.sdk.app.EnvUtils;
-import com.alipay.sdk.app.PayTask;
 import com.bawei.deom.BaseFragment;
 import com.bawei.deom.CacheManager;
 import com.bawei.deom.selectedordelete.ShopcarContract;
 import com.bawei.deom.selectedordelete.ShopcarPresenterImpl;
-import com.shopmall.bawei.shopmall1805.DaoSession;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ShopmallApplication;
-import com.shopmall.bawei.shopmall1805.TheorderActivity;
+import com.shopmall.bawei.shopmall1805.activity.TheorderActivity;
 import com.shopmall.bawei.shopmall1805.apter.ShopcarAdapter;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
-import com.shopmall.bawei.shopmall1805.util.AuthResult;
-import com.shopmall.bawei.shopmall1805.util.OrderInfoUtil2_0;
-import com.shopmall.bawei.shopmall1805.util.PayResult;
 
 import java.util.List;
-import java.util.Map;
 
 import bean.GetOrderInfo;
 import bean.InventoryBean;
@@ -165,7 +150,6 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
         ibShopcartBack = (ImageButton) view.findViewById(R.id.ib_shopcart_back);
         tvShopcartEdit = (TextView) view.findViewById(R.id.tv_shopcart_edit);
         recyclerview = (RecyclerView) view.findViewById(R.id.recyclerview);
-
         llCheckAll = (LinearLayout) view.findViewById(R.id.ll_check_all);
         checkboxAll = (CheckBox) view.findViewById(R.id.checkbox_all);
         tvShopcartTotal = (TextView) view.findViewById(R.id.tv_shopcart_total);
@@ -175,7 +159,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
         btnDelete = (Button) view.findViewById(R.id.btn_delete);
         btnCollection = (Button) view.findViewById(R.id.btn_collection);
         shopcarAdapter=new ShopcarAdapter();
-
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
     }
 
     @Override

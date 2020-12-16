@@ -1,11 +1,9 @@
 package com.shopmall.bawei.shopmall1805.fragment2;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -18,8 +16,7 @@ import com.bawei.deom.ShopUserManager;
 import com.bawei.deom.login.LoginCountroller;
 import com.bawei.deom.login.LoginImpl;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
-import com.shopmall.bawei.shopmall1805.login.LoginActivity;
+import com.shopmall.bawei.shopmall1805.activity.home.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
 

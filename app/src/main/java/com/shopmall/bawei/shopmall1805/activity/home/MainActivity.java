@@ -1,7 +1,6 @@
-package com.shopmall.bawei.shopmall1805.home;
+package com.shopmall.bawei.shopmall1805.activity.home;
 
 
-import android.content.Context;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
@@ -9,10 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import com.bawei.deom.BaseActivity;
-import com.bawei.deom.BaseAroute;
 import com.bawei.deom.CacheManager;
-import com.bawei.deom.IPrine;
-import com.bawei.deom.IView;
 import com.bawei.deom.MyServer;
 
 
@@ -28,12 +24,11 @@ import com.shopmall.bawei.shopmall1805.fragment.HomepageFragment;
 import com.shopmall.bawei.shopmall1805.fragment.Myfragment;
 import com.shopmall.bawei.shopmall1805.fragment.ShoppingFragment;
 import com.shopmall.bawei.shopmall1805.fragment.SpeciesFragment;
-import com.shopmall.bawei.shopmall1805.login.LoginActivity;
+import com.shopmall.bawei.shopmall1805.activity.login.LoginActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bean.LoginBean;
 import bean.Shoppingcartproducts;
 
 
@@ -192,5 +187,7 @@ public class MainActivity extends BaseActivity {
     public void onDestroy() {
         super.onDestroy();
         stopService(intent);
+        CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
     }
+
 }

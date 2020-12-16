@@ -1,11 +1,12 @@
-package com.shopmall.bawei.shopmall1805;
+package com.shopmall.bawei.shopmall1805.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.shopmall.bawei.shopmall1805.home.MainActivity;
+import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.activity.home.MainActivity;
 
 import java.util.Timer;
 import java.util.TimerTask;
