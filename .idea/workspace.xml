@@ -224,6 +224,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="653" y="245" key="#PSD/75.0.1845.1080@75.0.1845.1080" timestamp="1608032980513" />
+    <state x="705" y="182" key="#app" timestamp="1608100282792">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="705" y="182" key="#app/75.0.1845.1080@75.0.1845.1080" timestamp="1608100282792" />
     <state x="451" y="194" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1606473327064">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -232,10 +236,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="741" y="375" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608032387564" />
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1608032787144">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1608082079814">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1608032787144" />
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1608082079814" />
     <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1606723195244">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -316,10 +320,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1258" y="320" key="chooseDestDirectoryDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606129655596" />
-    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1607657352461">
+    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608100311517">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1607657352461" />
+    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608100311517" />
     <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606194087228">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -336,6 +340,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="727" y="307" key="extract.method.dialog/75.0.1845.1080@75.0.1845.1080" timestamp="1607685919518" />
+    <state x="604" y="93" width="786" height="894" key="find.popup" timestamp="1608081706684">
+      <screen x="75" y="0" width="1845" height="1080" />
+    </state>
+    <state x="604" y="93" width="786" height="894" key="find.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1608081706684" />
     <state x="847" y="363" key="psd.add.jar.dependency.panel.dimension" timestamp="1608032979227">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -352,10 +360,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="654" y="250" key="run.anything.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607318007111" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1607996639933">
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1608082698739">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607996639933" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1608082698739" />
     <state x="719" y="451" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606478836207">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -376,12 +384,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/shoppingcar/ShoppingCarFragment.java</url>
-          <line>273</line>
+          <line>268</line>
           <option name="timeStamp" value="83" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/shoppingcar/ShoppingCarFragment.java</url>
-          <line>198</line>
+          <line>193</line>
           <option name="timeStamp" value="100" />
         </line-breakpoint>
       </breakpoints>

@@ -2,6 +2,7 @@ package com.example.net;
 
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.AutoLoginBean;
+import com.example.net.bean.CheckInventoryBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.MainBean;
@@ -60,4 +61,7 @@ public interface INetWorkApi {
     @POST("updateAddress")
     @FormUrlEncoded
     Observable<UpDateAddressBean> updateAddress(@FieldMap HashMap<String,String> map);
+    @POST("checkInventory")
+    Observable<CheckInventoryBean> checkInventory(@Body RequestBody body);
+
 }

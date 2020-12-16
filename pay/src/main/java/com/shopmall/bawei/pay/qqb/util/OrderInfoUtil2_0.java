@@ -78,7 +78,7 @@ public class OrderInfoUtil2_0 {
 
 		keyValues.put("app_id", app_id);
 
-		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\"0.01\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
+		keyValues.put("biz_content", "{\"timeout_express\":\"30m\",\"product_code\":\"QUICK_MSECURITY_PAY\",\"total_amount\":\""+payMoney+"\",\"subject\":\"1\",\"body\":\"我是测试数据\",\"out_trade_no\":\"" + getOutTradeNo() +  "\"}");
 
 		keyValues.put("charset", "utf-8");
 
@@ -91,6 +91,10 @@ public class OrderInfoUtil2_0 {
 		keyValues.put("version", "1.0");
 
 		return keyValues;
+	}
+	private static String payMoney;
+	public static void setmoney(String money) {
+		payMoney=money;
 	}
 
 	/**

@@ -58,12 +58,7 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
         presenter.attchView(this);
         List<ShopCarBean.ResultBean> shopCarList = CacheManager.getInstance().getShopCarList();
         getEditList();
-        boolean isAllSelect=true;
-        for (ShopCarBean.ResultBean resultBean : shopCarList) {
-            if(!resultBean.isProductSelected()){
-                isAllSelect=false;
-            }
-        }
+        boolean isAllSelect=CacheManager.getInstance().isAllSelected();
         checkboxAll.setChecked(isAllSelect);
         if(shopCarList.size()>0){
             showSuccess();

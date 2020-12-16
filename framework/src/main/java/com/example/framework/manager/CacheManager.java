@@ -120,6 +120,8 @@ public class CacheManager {
     private void notifyShopCarDataChanged() {
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
+            iShopcarDataChangeListener.onAllSelected(isAllSelected());
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
         }
     }
     public void add(ShopCarBean.ResultBean resultBean){
@@ -229,7 +231,7 @@ public class CacheManager {
         }
     }
 
-    private boolean isAllSelected() {
+    public boolean isAllSelected() {
         for (ShopCarBean.ResultBean resultBean : shopCarList) {
             if(!resultBean.isProductSelected()){
                 return false;
@@ -237,7 +239,7 @@ public class CacheManager {
         }
         return true;
     }
-    private boolean isAllEditSelected() {
+    public boolean isAllEditSelected() {
         for (ShopCarBean.ResultBean resultBean : shopCarList) {
             if(!resultBean.isProductSelected()){
                 return false;
