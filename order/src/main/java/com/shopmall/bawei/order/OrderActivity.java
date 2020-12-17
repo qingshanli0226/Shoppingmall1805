@@ -128,6 +128,7 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
                     String resultStatus = payResult.getResultStatus();
                     if (TextUtils.equals(resultStatus, "9000")) {
                         Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        //
                         finish();
                     } else {
                         Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
