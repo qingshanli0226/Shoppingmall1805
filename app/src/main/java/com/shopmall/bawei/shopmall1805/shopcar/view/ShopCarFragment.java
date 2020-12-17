@@ -3,12 +3,14 @@ package com.shopmall.bawei.shopmall1805.shopcar.view;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.IntentService;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,18 +34,27 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
     private CheckBox shopSelect;
     private TextView shopCount;
     private Button shopPay;
+    private RelativeLayout delete;
     private RecyclerView shopRv;
     private ShopCarAdapter  shopCarAdapter;
     private List<GetShopCarBean> shopcarBeanList;
+    private boolean flag=true;
+    private Button shopdeletno;
+    private Button shopdelet;
+
+
+
     @Override
     protected void initHttpData() {
     }
 
     @Override
     protected void initPresenter() {
+
         ihttpPresenter = new ShopCarPresenter();
 
     }
+
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_shop;
@@ -78,6 +89,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
                                int i1 = Integer.parseInt(shopcarBeanList.get(position).getProductNum());
                                GoodsCount.shopcountadd= GoodsCount.shopcountadd-i*i1;
                                shopCount.setText("￥"+GoodsCount.shopcountadd);
+
                            }
                             break;
                     }
@@ -88,7 +100,9 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
     }
     @Override
     protected void initView() {
-
+        shopdeletno = (Button) findViewById(R.id.shopdeletno);
+        shopdelet = (Button) findViewById(R.id.shopdelet);
+        delete = (RelativeLayout) findViewById(R.id.delete);
         shopRv = (RecyclerView) findViewById(R.id.shop_rv);
         shopChange = (TextView) findViewById(R.id.shop_change);
         shopSelect = (CheckBox) findViewById(R.id.shop_select);
@@ -100,6 +114,32 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
         if(shopcarBeanList!=null){
             shopCarAdapter.notifyDataSetChanged();
         }
+
+        shopChange.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (flag) {
+                    delete.setVisibility(View.VISIBLE);
+                    flag=false;
+                }else {
+                    delete.setVisibility(View.GONE);
+                    flag=true;
+                }
+            }
+        });
+
+        shopdelet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //删除已选中的条目
+            }
+        });
+        shopdelet.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                delete.setVisibility(View.GONE);
+            }
+        });
 
 
     }
