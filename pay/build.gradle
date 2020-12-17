@@ -32,13 +32,13 @@ dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation files('libs\\alipaySdk-15.6.5-20190718211148.aar')
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
     implementation project(':framework')
     implementation project(':net')
     implementation project(':common')
-
     implementation ('com.alibaba:arouter-api:1.4.1')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 
