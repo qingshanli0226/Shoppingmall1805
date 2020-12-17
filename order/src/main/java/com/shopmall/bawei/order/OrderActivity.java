@@ -10,11 +10,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.framework.CacheManager;
+import com.example.net.LoginBean;
+
+import java.util.List;
 
 @Route(path = "/me/order")
 public class OrderActivity extends AppCompatActivity {
 
-    private TextView tv;
+    private TextView tvPhone;
+    private TextView tvAddress;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,15 +28,18 @@ public class OrderActivity extends AppCompatActivity {
         initView();
 
 
-
         SharedPreferences dia1 = getSharedPreferences("dia", MODE_PRIVATE);
         boolean dis = dia1.getBoolean("dis", false);
 
-        if (dis){
+        if (dis) {
             Toast.makeText(this, "2525", Toast.LENGTH_SHORT).show();
-        }else {
+            List<LoginBean> loginBeansList = CacheManager.getInstance().getLoginBeansList();
+            tvPhone.setText(loginBeansList.get(0).getPhone()+"");
+            tvAddress.setText(loginBeansList.get(0).getAddress()+"");
+        } else {
             dialogShow();
         }
+
 
     }
 
@@ -44,10 +52,10 @@ public class OrderActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(OrderActivity.this, "跳转设置收货地址页面", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(OrderActivity.this,TakeActivity.class));
+                startActivity(new Intent(OrderActivity.this, TakeActivity.class));
                 SharedPreferences dia = getSharedPreferences("dia", MODE_PRIVATE);
                 SharedPreferences.Editor edit = dia.edit();
-                edit.putBoolean("dis",true);
+                edit.putBoolean("dis", true);
                 edit.commit();
             }
         });
@@ -64,6 +72,8 @@ public class OrderActivity extends AppCompatActivity {
     }
 
     private void initView() {
-        tv = (TextView) findViewById(R.id.tv);
+        tvPhone = (TextView) findViewById(R.id.tv_phone);
+        tvAddress = (TextView) findViewById(R.id.tv_address);
+
     }
 }

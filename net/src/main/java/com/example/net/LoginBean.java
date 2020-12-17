@@ -25,7 +25,9 @@ public class LoginBean {
         private String avatar;
         private String token;
 
-        public String getId() {
+
+
+    public String getId() {
             return id;
         }
 

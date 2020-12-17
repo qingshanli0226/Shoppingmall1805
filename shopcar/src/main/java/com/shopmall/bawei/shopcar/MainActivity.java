@@ -115,7 +115,6 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
 
 
         shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
-
         shopCarAdapter = new ShopCarAdapter(R.layout.item_shopcar,shopcarBeanList);
         recyclerView.setAdapter(shopCarAdapter);
 

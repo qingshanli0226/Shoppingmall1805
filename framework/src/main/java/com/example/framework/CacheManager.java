@@ -27,6 +27,7 @@ public class CacheManager {
     //当用户登录成功后 ,CacheManager会调用服务端接口请求购物车数据,拿到购物车数据后给shopcarBeanList赋值
     private List<ShopcarBean> shopcarBeanList = new ArrayList<>();
     private List<ShopcarBean> deleteShopcarBeanList = new ArrayList<>();
+    private List<LoginBean> loginBeansList = new ArrayList<>();
 
     private static CacheManager instance;
 
@@ -225,6 +226,13 @@ public class CacheManager {
     }
 
     //改变缓存中用户的phone和address
+    public void addLoginBeanPhone(LoginBean loginBean){
+        loginBeansList.add(loginBean);
+
+    }
+    public void addLoginBeanAddress(LoginBean loginBean){
+        loginBeansList.add(loginBean);
+    }
 
 
     //总价
@@ -268,6 +276,10 @@ public class CacheManager {
 
     public List<ShopcarBean> getDeleteShopcarBeanList() {
         return deleteShopcarBeanList;
+    }
+
+    public List<LoginBean> getLoginBeansList(){
+        return loginBeansList;
     }
 
     //获取已经选择的商品列表

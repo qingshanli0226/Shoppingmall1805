@@ -13,6 +13,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
+import com.example.net.LoginBean;
 import com.shopmall.bawei.order.contract.OrderContract;
 import com.shopmall.bawei.order.presenter.OrderPresenterImpl;
 @Route(path = "/order/address")
@@ -56,11 +57,17 @@ public class TakeActivity extends BaseActivity<OrderPresenterImpl, OrderContract
     @Override
     public void onUpDataPhone(String phone) {
         Log.i("TAG", "onUpDataPhone: "+phone);
+        LoginBean loginBean = new LoginBean();
+        loginBean.setPhone(phone);
+        CacheManager.getInstance().addLoginBeanPhone(loginBean);
     }
 
     @Override
     public void onUpDataAddress(String address) {
         Log.i("TAG", "onUpDataPhone: "+address);
+        LoginBean loginBean = new LoginBean();
+        loginBean.setAddress(address);
+        CacheManager.getInstance().addLoginBeanAddress(loginBean);
     }
 
     @Override
