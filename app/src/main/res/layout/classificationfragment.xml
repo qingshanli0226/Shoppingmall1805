@@ -16,9 +16,9 @@
             android:layout_height="50dp"
             android:layout_centerInParent="true"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="@dimen/txt_sizeEleven"
             app:tl_indicator_corner_radius="30dp"
-            app:tl_textsize="30sp"
+            app:tl_textsize="@dimen/txt_sizethirty"
             app:tl_indicator_color="@color/colorred"
              />
 
@@ -27,8 +27,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:layout_marginRight="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginRight="@dimen/txt_sizeEleven"
+            android:layout_marginTop="@dimen/txt_sizeEleven"
             android:background="@drawable/icon_search_white" />
 
         <View

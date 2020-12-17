@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="txt_sizefifteen">15sp</dimen>
-    <dimen name="txt_sizetwentyfive">25sp</dimen>
-    <dimen name="txt_sizethirty">30sp</dimen>
-    <dimen name="txt_sizefourty">40sp</dimen>
-    <dimen name="txt_sizefifty">50sp</dimen>
-    <dimen name="txt_sizesixty">60sp</dimen>
-    <dimen name="txt_sizeseventy">70sp</dimen>
-    <dimen name="txt_sizeeighty">80sp</dimen>
-    <dimen name="txt_sizeninty">90sp</dimen>
-    <dimen name="txt_sizeone_hundred">100sp</dimen>
+    <dimen name="txt_sizeFifteen">15sp</dimen>
+    <dimen name="txt_sizeTwentyFive">25sp</dimen>
+    <dimen name="txt_sizeThirty">30sp</dimen>
+    <dimen name="txt_sizeForty">40sp</dimen>
+    <dimen name="txt_sizeFifty">50sp</dimen>
+    <dimen name="txt_sizeSixty">60sp</dimen>
+    <dimen name="txt_sizeSeventy">70sp</dimen>
+    <dimen name="txt_sizeEighty">80sp</dimen>
+    <dimen name="txt_sizeNinety">90sp</dimen>
+    <dimen name="txt_sizeOne_hundred">100sp</dimen>
+    <dimen name="txt_TxtTweTeen">20sp</dimen>
+    <dimen name="txt_sizeEleven">10dp</dimen>
+    <dimen name="txt_sizeTweTeen">20dp</dimen>
+
 </resources>

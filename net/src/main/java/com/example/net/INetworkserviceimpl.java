@@ -71,5 +71,5 @@ public interface INetworkserviceimpl {
 
     @POST("updateAddress")
     @FormUrlEncoded
-    Observable<BaseBean<MessageBean>> getMessage(@FieldMap HashMap<String,String> map);
+    Observable<BaseBean<String>> getMessage(@FieldMap HashMap<String,String> map);
 }

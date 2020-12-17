@@ -21,11 +21,11 @@ public class AddressPresenterImpl extends AddressContract.AddressPresenter {
         hashMap.put("address",AddressName);
         RetorfitCreate.getiNetworkserviceimpl().getMessage(hashMap)
                 .subscribeOn(Schedulers.io())
-                .map(new NetFunction<BaseBean<MessageBean>,MessageBean>())
+                .map(new NetFunction<BaseBean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new ShopMallObserver<MessageBean>() {
+                .subscribe(new ShopMallObserver<String>() {
                     @Override
-                    public void onNext(MessageBean messageBean) {
+                    public void onNext(String messageBean) {
                         Log.i("---","123");
                             if (iview!=null) {
                                 iview.onAddress(messageBean);

@@ -304,9 +304,10 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, String message) {
+        hideLoading(isSuccess,message);
     }
+
 
     @Override
     public void onClick(View view) {
@@ -328,5 +329,6 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         super.onDestroy();
         shopCarPresenter.detachview();
         CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
+        handler.removeCallbacksAndMessages(null);
     }
 }

@@ -95,9 +95,10 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, String message) {
+        hideLoading(isSuccess,message);
     }
+
 
     @Override
     protected void onDestroy() {

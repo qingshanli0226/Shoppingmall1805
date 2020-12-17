@@ -1,6 +1,7 @@
 package com.example.elevenmonthshoppingproject.classification.view;
 
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
@@ -45,11 +46,7 @@ public class ClassIfiCationFragment extends BaseFragment {
 
             @Override
             public void onPageSelected(int position) {
-                if (position==0){
-                    tlSegment.setCurrentTab(0);
-                }else  if (position==1){
-                    tlSegment.setCurrentTab(1);
-                }
+               tlSegment.setCurrentTab(position);
             }
 
             @Override
@@ -62,10 +59,8 @@ public class ClassIfiCationFragment extends BaseFragment {
         tlSegment.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
             public void onTabSelect(int position) {
-                if (position==0){
-                    classPager.setCurrentItem(0);
-                }else  if (position==1){
-                    classPager.setCurrentItem(1);
+                if (position>0||position<=2) {
+                    classPager.setCurrentItem(position);
                 }
             }
 

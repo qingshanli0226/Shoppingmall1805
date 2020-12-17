@@ -255,7 +255,9 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, String message) {
 
     }
+
+
 }

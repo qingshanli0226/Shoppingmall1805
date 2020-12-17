@@ -8,15 +8,17 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+
+import com.example.framwork.view.LoginPage;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> extends Fragment {
     protected T ihttpPresenter;
-//    protected ProgressBar loadingBar;
+    protected ProgressBar loadingBar;
+    private LoginPage loginPage;
     private List<String> dataList = new ArrayList<>();
 
 
@@ -26,7 +28,14 @@ public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> ex
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(getLayoutId(), container, false);
-//        loadingBar=view.findViewById(R.id.loadingBar);
+        loadingBar=view.findViewById(R.id.loadingBar);
+
+        loginPage=new LoginPage(getContext()) {
+            @Override
+            protected int getsuccessId() {
+                return getLayoutId();
+            }
+        };
 
         iniView(view);
         iniData();
@@ -41,6 +50,19 @@ public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> ex
     protected abstract void iniData();
     protected abstract void iniPresenter();
     protected abstract void iniHttpData();
+
+
+    public void showLoad() {
+        loginPage.loadingPage();
+    }
+
+    public void hideLoadingPage(boolean isSuccess, String errorBean) {
+        if (isSuccess) {
+            loginPage.showsuccessPage();
+        } else {
+           loginPage.showError(errorBean);
+        }
+    }
 
 
 

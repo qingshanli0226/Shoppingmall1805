@@ -118,7 +118,9 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, String message) {
 
     }
+
+
 }

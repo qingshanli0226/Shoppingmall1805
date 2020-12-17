@@ -12,7 +12,7 @@
         android:id="@+id/txt_add"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="30sp"
+        android:textSize="@dimen/txt_sizethirty"
         android:text="您的地址:"
         />
 
@@ -30,7 +30,7 @@
         android:layout_below="@id/txt_add"
         android:text="提交"
         android:id="@+id/btn_smart"
-        android:textSize="30sp"
+        android:textSize="@dimen/txt_sizethirty"
         />
 
 </RelativeLayout>

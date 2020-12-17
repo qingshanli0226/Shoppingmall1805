@@ -15,7 +15,7 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="170dp"
-                android:background="#f00">
+                android:background="@color/colorred">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -36,24 +36,24 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="130dp"
                     android:text="登录/注册"
-                    android:textColor="#fff" />
+                    android:textColor="@color/gray_dark_bg" />
             </RelativeLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="8dp"
-                android:background="#eee" />
+                android:background="@color/gray_dark_bg" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="@dimen/txt_sizeEleven">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="我的订单"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
 
                 <TextView
                     android:id="@+id/tv_all_order"
@@ -68,66 +68,66 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#eee" />
+                android:background="@color/gray_dark_bg" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="10dp">
+                android:padding="@dimen/txt_sizeEleven">
 
                 <TextView
                     android:id="@+id/tv_user_pay"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/txt_sizeEleven"
                     android:drawableTop="@drawable/new_order_status_fukuan"
                     android:gravity="center"
                     android:text="待付款"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/txt_sizeEleven"
                     android:drawableTop="@drawable/new_order_status_fahuo"
                     android:gravity="center"
                     android:text="待发货"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
 
                 <TextView
                     android:id="@+id/tv_user_receive"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/txt_sizeEleven"
                     android:drawableTop="@drawable/new_order_status_shouhuo"
                     android:gravity="center"
                     android:text="待收获"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
 
                 <TextView
                     android:id="@+id/tv_user_finish"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/txt_sizeEleven"
                     android:drawableTop="@drawable/icon_order_status_finish"
                     android:gravity="center"
                     android:text="已完成"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
 
                 <TextView
                     android:id="@+id/tv_user_drawback"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:drawablePadding="10dp"
+                    android:drawablePadding="@dimen/txt_sizeEleven"
                     android:drawableTop="@drawable/new_order_status_help"
                     android:gravity="center"
                     android:text="售后/退款"
-                    android:textColor="#5d5d5d" />
+                    android:textColor="@color/colorGrey" />
             </LinearLayout>
 
             <View

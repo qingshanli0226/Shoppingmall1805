@@ -1,4 +1,4 @@
-package com.example.user;
+package com.example.framwork.view;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -7,7 +7,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public abstract class LoginPage extends FrameLayout {
@@ -20,14 +19,17 @@ public abstract class LoginPage extends FrameLayout {
 
     public LoginPage(Context context) {
         super(context);
+        init(context);
     }
 
     public LoginPage(Context context, AttributeSet attrs) {
         super(context, attrs);
+
     }
 
     public LoginPage(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+
     }
 
     //初始化
@@ -35,18 +37,18 @@ public abstract class LoginPage extends FrameLayout {
         LayoutParams layoutParams =new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         LayoutInflater layoutInflater = LayoutInflater.from(context);
 
-        errorView = layoutInflater.inflate(R.layout.view_error, null);
+        errorView = layoutInflater.inflate(com.example.framwork.R.layout.view_error, null);
         addView(errorView,layoutParams);
-        errorTv=errorView.findViewById(R.id.errorTv);
+        errorTv=errorView.findViewById(com.example.framwork.R.id.errorTv);
 
 
-        emptyView=layoutInflater.inflate(R.layout.view_error,null);
+        emptyView=layoutInflater.inflate(com.example.framwork.R.layout.view_error,null);
         addView(emptyView,layoutParams);
 
         successView=layoutInflater.inflate(getsuccessId(),null);
         addView(successView,layoutParams);
 
-        loadingView=layoutInflater.inflate(R.layout.view_loading,null);
+        loadingView=layoutInflater.inflate(com.example.framwork.R.layout.view_loading,null);
         loadingView.setBackgroundColor(Color.TRANSPARENT);
         addView(loadingView,layoutParams);
         showsuccessPage();
@@ -74,7 +76,7 @@ public abstract class LoginPage extends FrameLayout {
         emptyView.setVisibility(VISIBLE);
     }
     //显示正确页面
-    private void showsuccessPage() {
+    public void showsuccessPage() {
         errorView.setVisibility(GONE);
         successView.setVisibility(VISIBLE);
         loadingView.setVisibility(GONE);

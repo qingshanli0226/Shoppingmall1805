@@ -7,6 +7,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.elevenmonthshoppingproject.R;
 import com.example.elevenmonthshoppingproject.address.contract.AddressContract;
 import com.example.elevenmonthshoppingproject.address.presenter.AddressPresenterImpl;
@@ -20,9 +21,10 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
 
     private AddressPresenterImpl addressPresenter;
     @Override
-    public void onAddress(MessageBean messageBean) {
-        Log.i("---",""+messageBean.getMessage());
+    public void onAddress(String messageBean) {
+        Log.i("---",""+messageBean);
         Toast.makeText(this, "成功获取到信息", Toast.LENGTH_SHORT).show();
+        ARouter.getInstance().build("/Main/MainActivity").navigation();
     }
 
     @Override
@@ -56,7 +58,7 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
 
     @Override
     public void onError(String code, String message) {
-
+        Toast.makeText(this, "没有获取到地址信息"+code+message, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -65,9 +67,10 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
     }
 
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, String message) {
 
     }
+
 
     @Override
     protected void onDestroy() {

@@ -72,12 +72,12 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
 
     @Override
     public void showLoading() {
-//        loadingBar.setVisibility(View.VISIBLE);
+        showLoad();
     }
 
     @Override
-    public void hideLoading() {
-//        loadingBar.setVisibility(View.GONE);
+    public void hideLoading(boolean isSuccess, String message) {
+       hideLoadingPage(isSuccess,message);
     }
 
     @Override

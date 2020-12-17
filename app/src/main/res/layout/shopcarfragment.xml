@@ -16,7 +16,7 @@
             android:layout_weight="1"
             android:text="购物车"
             android:textColor="#303235"
-            android:textSize="20sp" />
+            android:textSize="@dimen/txt_TxtTweTeen" />
 
         <TextView
             android:id="@+id/tv_shopcart_edit"
@@ -39,7 +39,7 @@
         android:id="@+id/ll_check_all"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#fff"
+        android:background="@color/gray_dark_bg"
         android:orientation="horizontal"
         android:visibility="visible">
 
@@ -50,38 +50,38 @@
             android:layout_centerVertical="true"
             android:button="@null"
             android:drawableLeft="@drawable/checkbox_selector"
-            android:drawablePadding="10dp"
-            android:padding="10dp"
+            android:drawablePadding="@dimen/txt_sizeEleven"
+            android:padding="@dimen/txt_sizeEleven"
             android:paddingLeft="0dp"
             android:text="全选"
             android:textColor="#303235"
-            android:textSize="15sp" />
+            android:textSize="@dimen/txt_sizeFifteen" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
+            android:padding="@dimen/txt_sizeEleven"
             android:text="合计:"
             android:textColor="#303235"
-            android:textSize="15sp" />
+            android:textSize="@dimen/txt_sizeFifteen" />
 
         <TextView
             android:id="@+id/tv_shopcart_total"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:padding="10dp"
+            android:padding="@dimen/txt_sizeEleven"
             android:text="￥0.00"
-            android:textColor="#ed3f3f"
-            android:textSize="15sp" />
+            android:textColor="@color/colorRed"
+            android:textSize="@dimen/txt_sizeFifteen" />
 
         <Button
             android:id="@+id/btn_check_out"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="#ed3f3f"
+            android:background="@color/colorRed"
             android:text="去结算"
-            android:textColor="#fff" />
+            android:textColor="@color/gray_dark_bg" />
     </LinearLayout>
 
 

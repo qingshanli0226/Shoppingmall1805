@@ -23,6 +23,7 @@ public class MasterApplication extends Application {
             ARouter.openLog();
             ARouter.openDebug();
 
+
         ShopUserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);
         NetModule.init(this);

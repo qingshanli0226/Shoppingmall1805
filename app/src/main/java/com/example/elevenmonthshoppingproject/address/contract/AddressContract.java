@@ -7,7 +7,7 @@ import com.example.net.bean.MessageBean;
 public class AddressContract {
 
     public interface AddressIView extends IView{
-        void onAddress(MessageBean messageBean);
+        void onAddress(String messageBean);
     }
 
     public static abstract class AddressPresenter extends BasePresenter<AddressIView>{

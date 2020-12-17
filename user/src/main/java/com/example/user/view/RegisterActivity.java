@@ -78,9 +78,10 @@ public class RegisterActivity extends BaseMVPActivity<RegisterPresenterImpl, Reg
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, String message) {
+        hideLoading(isSuccess,message);
     }
+
 
     @Override
     protected void onDestroy() {

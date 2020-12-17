@@ -288,9 +288,10 @@ public class ShoppingPageActivity extends BaseMVPActivity<ShopCarPresenterImpl, 
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, String message) {
+        hideLoading(isSuccess,message);
     }
+
 
     @Override
     public void onClick(View view) {

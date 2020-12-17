@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:text="这是标题"
         android:id="@+id/txt_type"
-        android:textSize="30sp"
-        android:layout_marginLeft="30dp"
+        android:textSize="@dimen/txt_sizeThirty"
+        android:layout_marginLeft="@dimen/txt_sizeThirty"
         />
 </LinearLayout>
