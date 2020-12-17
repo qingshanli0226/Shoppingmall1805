@@ -32,11 +32,12 @@ import com.bw.pay.contract.AddressContract;
 import com.bw.pay.presenter.AddressPresenter;
 import com.shopmall.bawei.pay.R;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 @Route(path = "/orderActivity/orderInfoActivity")
-public class OrderActivity extends BaseActivity<AddressPresenter, AddressContract.AddressView> implements AddressContract.AddressView, CacheManager.IShopcarDataChangeListener,ShopUserManager.IUserLoginChangedListener{
+public class OrderActivity extends BaseActivity<AddressPresenter, AddressContract.AddressView> implements AddressContract.AddressView{
 
     private ImageButton ibShopcartBack;
     private TextView startBtn;
@@ -49,15 +50,12 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
     private TextView orderPrice;
     private TextView price;
     private Button submitBtn;
-    private List<ShopCarBean> selectedProductBeanList;
     private OrderGoodsAdapter orderGoodsAdapter;
     private LinearLayout linearLayout1;
     private LinearLayout linearLayout2;
     private PopupWindow popupWindow;
     private View popupView;
-    private ImageButton btnBack;
-    private LoginBean newLoginBean = new LoginBean();
-
+    private Button btnUpdate;
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -91,13 +89,28 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
         });
     }
 
+    private ShopUserManager.IUserLoginChangedListener loginBeanListener = new ShopUserManager.IUserLoginChangedListener() {
+
+        @Override
+        public void onUserLogin(LoginBean loginBean) {
+            addressTv.setText(loginBean.getAddress()+"");
+            numberTv.setText(loginBean.getPhone()+"");
+            nameTv.setText(loginBean.getName());
+        }
+
+        @Override
+        public void onUserLoginOut() {
+
+        }
+
+    };
+
 
     @Override
     protected void initView() {
         super.initView();
         ARouter.getInstance().inject(this);
         price = findViewById(R.id.orderAllPrice);
-        ibShopcartBack = (ImageButton) findViewById(R.id.ib_shopcart_back);
         startBtn = (TextView) findViewById(R.id.startBtn);
         addressTv = (TextView) findViewById(R.id.addressTv);
         nameTv = (TextView) findViewById(R.id.nameTv);
@@ -109,15 +122,41 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
         goodsList = (RecyclerView) findViewById(R.id.goodsList);
         orderPrice = (TextView) findViewById(R.id.orderPrice);
         submitBtn = (Button) findViewById(R.id.submitBtn);
+        btnUpdate = findViewById(R.id.btnUpdate);
 
-        CacheManager.getInstance().setShopCarDataChangerListener(this);
+
+        ShopUserManager.getInstance().registerUserLoginChangedListener(loginBeanListener);
 
         orderGoodsAdapter = new OrderGoodsAdapter();
         goodsList.setAdapter(orderGoodsAdapter);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this);
         linearLayoutManager.setOrientation(LinearLayoutManager.HORIZONTAL);
         goodsList.setLayoutManager(linearLayoutManager);
-        ShopUserManager.getInstance().registerUserLoginChangedListener(this);
+
+
+        btnUpdate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(OrderActivity.this,AddressActivity.class));
+            }
+        });
+
+
+        if (ShopUserManager.getInstance().isUserLogin()){
+            LoginBean loginBean = ShopUserManager.getInstance().getLoginBean();
+            if (loginBean.getAddress()!= null && loginBean.getPhone() != null){
+                linearLayout1.setVisibility(View.VISIBLE);
+                linearLayout2.setVisibility(View.GONE);
+
+                addressTv.setText(loginBean.getAddress()+"");
+                numberTv.setText(loginBean.getPhone()+"");
+                nameTv.setText(loginBean.getName());
+
+            }else {
+                linearLayout2.setVisibility(View.VISIBLE);
+                linearLayout1.setVisibility(View.GONE);
+            }
+        }
 
 
 
@@ -126,7 +165,6 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(OrderActivity.this,AddressActivity.class));
-                finish();
             }
         });
 
@@ -158,25 +196,15 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
             }
         });
 
-        btnBack = popupView.findViewById(R.id.btnBack);
-        btnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-                popupWindow.dismiss();
-                finish();
-            }
-        });
-
-
-
         //沙箱环境
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
 
     }
 
+
+
     private void checkInventory() {
-        httpPresenter.checkInventory(selectedProductBeanList);
+        httpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
     }
 
 
@@ -189,8 +217,8 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
     @Override
     protected void initData() {
         super.initData();
-        selectedProductBeanList = CacheManager.getInstance().getSelectedProductBeanList();
-        orderGoodsAdapter.updataData(selectedProductBeanList);
+
+        orderGoodsAdapter.updataData(CacheManager.getInstance().getSelectedProductBeanList());
 
         String moneyValues = CacheManager.getInstance().getMoneyValues();
 
@@ -203,47 +231,7 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
         return R.layout.activity_order;
     }
 
-    @Override
-    public void onDataChanged(List<ShopCarBean> shopCarBeanList) {
-        orderGoodsAdapter.updataData(shopCarBeanList);
-    }
 
-    @Override
-    public void onOneDataChanged(int position, ShopCarBean shopCarBean) {
-
-    }
-
-    @Override
-    public void onMoneyChanged(String moneyValue) {
-
-    }
-
-    @Override
-    public void onAllSelected(boolean isAllSelect) {
-
-    }
-
-    @Override
-    public void onUserLogin(LoginBean loginBean) {
-        Log.i("---", "onUserLogin: phone"+loginBean.getPhone());
-        Log.i("---", "onUserLogin: address"+loginBean.getAddress());
-
-
-//
-        if (loginBean.getAddress()!= null && loginBean.getPhone() != null){
-                linearLayout1.setVisibility(View.VISIBLE);
-                linearLayout2.setVisibility(View.GONE);
-        }else {
-            linearLayout2.setVisibility(View.VISIBLE);
-            linearLayout1.setVisibility(View.GONE);
-        }
-
-    }
-
-    @Override
-    public void onUserLoginOut() {
-
-    }
 
     @Override
     public void onUpdateNumberOk(String result) {
@@ -328,12 +316,12 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        CacheManager.getInstance().unSetShopCarDataChangerListener(this);
+        ShopUserManager.getInstance().unRegisterUserLoginChangedListener(loginBeanListener);
     }
 
     @Override
     public void onLeftClick() {
-
+        popupWindow.dismiss();
     }
 
     @Override

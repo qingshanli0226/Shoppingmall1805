@@ -273,12 +273,12 @@ public class DetailsActivity extends BaseActivity<DetailPresenter,DetailContract
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
     @Override

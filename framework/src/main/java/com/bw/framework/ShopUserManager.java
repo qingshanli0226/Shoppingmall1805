@@ -72,16 +72,25 @@ public class ShopUserManager {
     }
 
     public LoginBean getLoginBean(){
+
         return loginBean;
     }
 
-//    public void setAddress(String address){
-//        loginBean.setAddress(address);
-//    }
-//
-//    public void setPhone(String phone){
-//        loginBean.setPhone(phone);
-//    }
+    public void setAddress(String address){
+        loginBean.setAddress(address);
+        for (IUserLoginChangedListener listener : listeners) {
+            listener.onUserLogin(loginBean);
+        }
+
+    }
+
+    public void setPhone(String phone){
+        loginBean.setPhone(phone);
+        for (IUserLoginChangedListener listener : listeners) {
+            listener.onUserLogin(loginBean);
+        }
+    }
+
 
 
     //判断当前用户是否登录
@@ -109,6 +118,10 @@ public class ShopUserManager {
             listeners.remove(listener);
         }
     }
+
+
+
+
 
     public interface IUserLoginChangedListener {
         void onUserLogin(LoginBean loginBean);

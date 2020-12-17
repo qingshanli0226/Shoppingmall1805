@@ -16,6 +16,7 @@ import java.util.HashMap;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
 
@@ -32,6 +33,12 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<LoginBean>,LoginBean>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<LoginBean>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -41,12 +48,14 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
                     @Override
                     public void onNext(LoginBean loginBean) {
                         iView.onLogin(loginBean);
+                        iView.hidesLoading(true);
                         Log.e("---","p_token"+loginBean.getToken());
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         iView.onError(e.getMessage());
+                        iView.hidesLoading(false);
                     }
 
                     @Override

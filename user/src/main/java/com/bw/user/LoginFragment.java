@@ -80,12 +80,12 @@ public class LoginFragment extends BaseFragment<LoginPresenterImpl, LoginContrac
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
 

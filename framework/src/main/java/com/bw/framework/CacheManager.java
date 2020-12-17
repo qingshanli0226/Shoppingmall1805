@@ -65,6 +65,7 @@ public class CacheManager{
             public void onUserLoginOut() {
 
             }
+
         });
     }
 
@@ -82,6 +83,7 @@ public class CacheManager{
 
                     @Override
                     public void onNext(List<ShopCarBean> shopCarBeanList) {
+                        shopCarBeans.clear();
                         shopCarBeans.addAll(shopCarBeanList);
                         Log.i("---", "onNext: 购物车数量"+shopCarBeans.size());
                         notifyShopcarDataChanged();

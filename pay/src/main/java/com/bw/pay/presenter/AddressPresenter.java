@@ -21,6 +21,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -35,6 +36,12 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -45,11 +52,13 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                     public void onNext(String s) {
                         Log.i("---", "onNext: updatePhone："+s);
                         iView.onUpdateNumberOk(s);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         iView.onError(e.getMessage());
+                        iView.hidesLoading(false);
                     }
 
                     @Override
@@ -78,11 +87,13 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                     public void onNext(String s) {
                         iView.onUpdateAddressOk(s);
                         Log.i("---", "onNext: updateAddress："+s);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         iView.onError(e.getMessage());
+                        iView.hidesLoading(false);
                     }
 
                     @Override
@@ -114,6 +125,12 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<List<InventoryBean>>,List<InventoryBean>>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                .subscribe(new Observer<List<InventoryBean>>() {
                    @Override
                    public void onSubscribe(Disposable d) {
@@ -123,11 +140,12 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                    @Override
                    public void onNext(List<InventoryBean> inventoryBeans) {
                        iView.onInventory(inventoryBeans);
+                       iView.hidesLoading(true);
                    }
 
                    @Override
                    public void onError(Throwable e) {
-
+                       iView.hidesLoading(false);
                    }
 
                    @Override
@@ -176,11 +194,12 @@ public class AddressPresenter extends AddressContract.IAddressPresenter {
                     @Override
                     public void onNext(OrderInfoBean orderInfoBean) {
                         iView.onOrderInfo(orderInfoBean);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        iView.hidesLoading(false);
                     }
 
                     @Override

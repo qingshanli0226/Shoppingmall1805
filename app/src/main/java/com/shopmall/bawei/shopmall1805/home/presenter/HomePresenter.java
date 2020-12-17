@@ -39,6 +39,7 @@ public class HomePresenter extends HomeContract.HomePresenter {
 
                     @Override
                     public void onError(Throwable e) {
+                        iView.hidesLoading(false);
                     }
 
                     @Override

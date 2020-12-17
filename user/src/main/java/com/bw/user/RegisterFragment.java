@@ -77,12 +77,12 @@ public class RegisterFragment extends BaseFragment<RegisterPresenterImpl, Regist
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
 

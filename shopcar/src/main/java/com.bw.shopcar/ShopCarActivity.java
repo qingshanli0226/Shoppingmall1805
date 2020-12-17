@@ -110,8 +110,6 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
             }
         });
 
-
-
     }
 
     private void deleteProduct(List<ShopCarBean> deleteShopcarBeanList) {
@@ -224,12 +222,12 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
     @Override
@@ -272,5 +270,11 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenter, ShopCarContr
     @Override
     public void onRightClick() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangerListener(this);
     }
 }

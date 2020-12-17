@@ -17,6 +17,7 @@ import java.util.List;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 import okhttp3.MediaType;
 import okhttp3.RequestBody;
@@ -42,6 +43,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -52,11 +59,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                     public void onNext(String string) {
                         Log.i("---", "onNext: updataNum："+string);
                         iView.onProductNumChange(string,position,newNum);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        iView.hidesLoading(false);
                     }
 
                     @Override
@@ -85,6 +93,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -94,10 +108,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                     @Override
                     public void onNext(String string) {
                         iView.onProductSelected(string,position);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        iView.hidesLoading(false);
 
                     }
 
@@ -110,7 +126,7 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
     }
 
     @Override
-    public void selectAllProduct(boolean isAllSelect) {
+    public void selectAllProduct(final boolean isAllSelect) {
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("selected", isAllSelect);
@@ -124,6 +140,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>, String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                .subscribe(new Observer<String>() {
                    @Override
                    public void onSubscribe(Disposable d) {
@@ -134,11 +156,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                    public void onNext(String s) {
                        Log.i("---", "onNext: allSelect:"+s);
                        iView.onAllSelected(s);
+                       iView.hidesLoading(true);
                    }
 
                    @Override
                    public void onError(Throwable e) {
-
+                       iView.hidesLoading(false);
                    }
 
                    @Override
@@ -172,6 +195,12 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>,String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -182,12 +211,14 @@ public class ShopCarPresenter extends ShopCarContract.IShopCarPresenter {
                     public void onNext(String s) {
                         Log.i("---", "onNext: deleteProduct："+s);
                         iView.onDeleteProducts(s);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         iView.onError(e.getMessage());
                         Log.i("---", "onError: deleteProduct："+e.getMessage());
+                        iView.hidesLoading(false);
                     }
 
                     @Override

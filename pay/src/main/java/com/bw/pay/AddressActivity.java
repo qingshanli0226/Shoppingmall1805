@@ -20,13 +20,13 @@ import com.shopmall.bawei.pay.R;
 
 import java.util.List;
 
-public class AddressActivity extends BaseActivity<AddressPresenter, AddressContract.AddressView>implements AddressContract.AddressView ,ShopUserManager.IUserLoginChangedListener{
+public class AddressActivity extends BaseActivity<AddressPresenter, AddressContract.AddressView>implements AddressContract.AddressView{
 
     private EditText editNumber;
     private EditText editAddress;
     private Button submitBtn;
-    private LoginBean newLoginBean =new LoginBean();
-
+    private Button btnUpdateNumber;
+    private Button btnUpdateAddress;
 
     @Override
     protected void initView() {
@@ -35,17 +35,32 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
         editAddress = (EditText) findViewById(R.id.editAddress);
         submitBtn = (Button) findViewById(R.id.submitBtn);
 
-        ShopUserManager.getInstance().registerUserLoginChangedListener(this);
 
+
+        btnUpdateNumber = (Button) findViewById(R.id.btnUpdateNumber);
+        btnUpdateAddress = (Button) findViewById(R.id.btnUpdateAddress);
+
+        btnUpdateAddress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                httpPresenter.updateAddress(editAddress.getText().toString());
+            }
+        });
+
+        btnUpdateNumber.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                httpPresenter.updateNumber(editNumber.getText().toString());
+
+            }
+        });
 
         submitBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                httpPresenter.updateAddress(editAddress.getText().toString());
-                httpPresenter.updateNumber(editNumber.getText().toString());
-//                ShopUserManager.getInstance().saveLoginBean(newLoginBean);
                 Intent intent = new Intent(AddressActivity.this, OrderActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
     }
@@ -70,13 +85,13 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
     @Override
     public void onUpdateNumberOk(String result) {
         Log.i("---", "onUpdateNumberOk: "+result);
-        newLoginBean.setPhone(editNumber.getText().toString());
+        ShopUserManager.getInstance().setPhone(result);
     }
 
     @Override
     public void onUpdateAddressOk(String result) {
         Log.i("---", "onUpdateAddressOk: "+result);
-        newLoginBean.setAddress(editAddress.getText().toString());
+        ShopUserManager.getInstance().setAddress(result);
     }
 
     @Override
@@ -96,12 +111,12 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
     @Override
@@ -109,20 +124,6 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
 
     }
 
-    @Override
-    public void onUserLogin(LoginBean loginBean) {
-        newLoginBean.setId(loginBean.getId());
-        newLoginBean.setName(loginBean.getName());
-        newLoginBean.setToken(loginBean.getToken());
-        newLoginBean.setPassword(loginBean.getPassword());
-
-        Log.i("---", "onUserLogin: addressActivity："+loginBean.getName());
-    }
-
-    @Override
-    public void onUserLoginOut() {
-
-    }
 
     @Override
     public void onLeftClick() {

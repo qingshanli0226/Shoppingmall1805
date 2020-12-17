@@ -159,12 +159,12 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenter, ShopCarContr
 
     @Override
     public void showsLoaing() {
-
+        showLoading();
     }
 
     @Override
     public void hidesLoading(boolean isSuccess) {
-
+        hideLoadingPage(isSuccess);
     }
 
     @Override
@@ -241,5 +241,11 @@ public class ShopCarFragment extends BaseFragment<ShopCarPresenter, ShopCarContr
     @Override
     public void onRightClick() {
 
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangerListener(iShopcarDataChangeListener);
     }
 }

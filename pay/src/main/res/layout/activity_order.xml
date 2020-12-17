@@ -1,37 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="8dp"
     android:orientation="vertical"
     android:layout_height="match_parent">
+
     <com.bw.framework.view.ToolBar
         android:id="@+id/toolbar"
-        android:visibility="gone"
+        app:title_text="填写订单"
+        app:left_src="@mipmap/back"
+        app:left_show="true"
+        app:right_show="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
-    <LinearLayout
-        android:layout_alignParentTop="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#fff"
-        android:orientation="horizontal"
-        android:padding="10dp">
 
-        <ImageButton
-            android:id="@+id/ib_shopcart_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/top_bar_left_back" />
 
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:gravity="center"
-            android:text="填写订单"
-            android:textColor="#303235"
-            android:textSize="20sp" />
-    </LinearLayout>
+<!--    <LinearLayout-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:background="#fff"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:padding="10dp">-->
+
+<!--        <ImageButton-->
+<!--            android:id="@+id/ib_shopcart_back"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:background="@drawable/top_bar_left_back" />-->
+
+<!--        <TextView-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="match_parent"-->
+<!--            android:layout_weight="1"-->
+<!--            android:gravity="center"-->
+<!--            android:text="填写订单"-->
+<!--            android:textColor="#303235"-->
+<!--            android:textSize="20sp" />-->
+<!--    </LinearLayout>-->
 
 
     <LinearLayout
@@ -39,6 +46,7 @@
         android:layout_marginTop="30dp"
         android:layout_below="@+id/toolbar"
         android:orientation="vertical"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="100dp">
 
@@ -57,12 +65,11 @@
 
     <LinearLayout
         android:id="@+id/addressLinear"
-        android:visibility="gone"
         android:layout_marginTop="30dp"
         android:layout_below="@+id/toolbar"
         android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="100dp">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/addressTv"
@@ -96,30 +103,41 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
+
         </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:id="@+id/btnUpdate"
+            android:text="修改地址"
+            android:textSize="25sp"
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 
 
     <View
         android:id="@+id/myview"
-        android:layout_marginTop="190dp"
+        android:layout_below="@+id/addressLinear"
         android:background="#FF9800"
         android:layout_width="match_parent"
         android:layout_marginBottom="20dp"
         android:layout_height="3dp"/>
 
+
+
+
     <LinearLayout
-        android:layout_marginTop="200dp"
         android:id="@+id/lin_shoplist"
         android:layout_width="match_parent"
         android:orientation="vertical"
+        android:layout_below="@+id/myview"
         android:layout_height="wrap_content">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/goodsList"
             android:layout_width="match_parent"
-            android:layout_height="150dp"/>
+            android:layout_height="150dp" />
 
         <TextView
             android:layout_width="match_parent"

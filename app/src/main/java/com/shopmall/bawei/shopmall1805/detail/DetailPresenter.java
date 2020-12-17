@@ -45,7 +45,8 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
                     public void accept(Disposable disposable) throws Exception {
                         iView.showsLoaing();
                     }
-                }).subscribe(new Observer<String>() {
+                })
+                .subscribe(new Observer<String>() {
             @Override
             public void onSubscribe(Disposable d) {
 
@@ -55,11 +56,12 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
             public void onNext(String s) {
                 Log.i("---", "onNext  addProduct : "+s);
                 iView.onAddProductOk("加入购物车成功"+s);
+                iView.hidesLoading(true);
             }
 
             @Override
             public void onError(Throwable e) {
-
+                iView.hidesLoading(false);
             }
 
             @Override
@@ -79,6 +81,12 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>, String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -88,11 +96,12 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
                     @Override
                     public void onNext(String string) {
                         iView.onCheckOneProduct(string);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        iView.hidesLoading(false);
                     }
 
                     @Override
@@ -119,6 +128,12 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<Basebean<String>, String>())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsLoaing();
+                    }
+                })
                 .subscribe(new Observer<String>() {
                     @Override
                     public void onSubscribe(Disposable d) {
@@ -129,11 +144,12 @@ public class DetailPresenter extends DetailContract.DetailPresenter {
                     public void onNext(String string) {
                         Log.i("---", "onNext: updateProductNum："+string);
                         iView.onProductNumChange(string);
+                        iView.hidesLoading(true);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        iView.hidesLoading(false);
                     }
 
                     @Override

@@ -166,4 +166,10 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     public void onRightClick() {
 
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopCarDataChangerListener(iShopcarDataChangeListener);
+    }
 }
