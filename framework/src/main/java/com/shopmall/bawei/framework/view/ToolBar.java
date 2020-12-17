@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Color;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
@@ -38,6 +39,7 @@ public class ToolBar extends RelativeLayout {
     public ToolBar(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(context, attrs, 0);
+        Log.d("LQS  ", "attrs toolbar " + context.getClass().getSimpleName());
     }
 
     public ToolBar(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -96,6 +98,7 @@ public class ToolBar extends RelativeLayout {
             @Override
             public void onClick(View v) {
                 if (iToolBarClickListner!=null) {
+                    Log.d("LQS ", ToolBar.this.hashCode()+"");
                     iToolBarClickListner.onRightClick();
                 }
             }
@@ -181,6 +184,7 @@ public class ToolBar extends RelativeLayout {
 
     public void setToolBarClickListner(IToolBarClickListner toolBarClickListner) {
         iToolBarClickListner = toolBarClickListner;
+        Log.d("LQS ", hashCode()+"");
     }
 
     //封装ToolBar的控件的点击事件

@@ -66,5 +66,6 @@ dependencies {
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
     implementation (name: 'alipaySdk-15.7.5-20200422171619', ext: 'aar')
 
-
+//eventBus
+    implementation 'org.greenrobot:eventbus:3.2.0'
 }

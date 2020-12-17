@@ -3,18 +3,28 @@ package com.shopmall.bawei.shopmall1805.home.view;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPFragment;
+import com.shopmall.bawei.framework.dao.ShopcarMessage;
+import com.shopmall.bawei.framework.view.manager.MessageManager;
 import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenterImpl;
+import com.shopmall.bawei.shopmall1805.message.MessageListActivity;
 import com.shopmall.bawei.user.LoginRegisterActivity;
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
+import java.util.ArrayList;
 
 
 public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContract.IHomeView> implements HomeContract.IHomeView, View.OnClickListener {
@@ -40,7 +50,20 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
 
     @Override
     protected void initData() {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolbar.setToolbarRightTv(messageCount+"");
+        }
     }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageChanged(ShopcarMessage shopcarMessage) {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolbar.setToolbarRightTv(messageCount+"");
+        }
+    }
+
 
     @Override
     protected void initView() {
@@ -51,6 +74,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         errorTv = findViewById(R.id.errorTv);
         errorTv.setOnClickListener(this);
         normalContent = findViewById(R.id.normalContent);
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -94,8 +118,12 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     public void onRightClick() {
         super.onRightClick();
         //实现跳转到消息页面
+        ARouter.getInstance().build("/message/MessageListActivity").navigation();
+    }
 
-        Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
-        getActivity().startActivity(intent);
+    @Override
+    public void destroy() {
+        super.destroy();
+        EventBus.getDefault().unregister(this);
     }
 }

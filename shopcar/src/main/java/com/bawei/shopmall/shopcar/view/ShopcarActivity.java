@@ -5,10 +5,7 @@ import android.os.Message;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.*;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -19,11 +16,15 @@ import com.bawei.shopmall.shopcar.presenter.ShopcarPresenterImpl;
 import com.shopmall.bawei.common.ErrorBean;
 import com.shopmall.bawei.framework.BaseMVPActivity;
 import com.shopmall.bawei.framework.CacheManager;
+import com.shopmall.bawei.framework.dao.ShopcarMessage;
 import com.shopmall.bawei.framework.view.BottomBar;
+import com.shopmall.bawei.framework.view.ToolBar;
+import com.shopmall.bawei.framework.view.manager.MessageManager;
 import com.shopmall.bawei.net.mode.InventoryBean;
 import com.shopmall.bawei.net.mode.OrderInfoBean;
 import com.shopmall.bawei.net.mode.ShopcarBean;
 import com.shopmall.bawei.shopcar.R;
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 import java.util.Map;
@@ -224,6 +225,8 @@ public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
 
     @Override
     public void onOrderInfo(final OrderInfoBean orderInfoBean) {
+        //第一步将这些支付成功的商品，从购物车中删除。因为提交订单后，服务端会将购买的商品从它购物车数据中删除
+        CacheManager.getInstance().removeSelectedProducts();
 //服务端已经成功下订单
         //使用支付宝完成支付功能
         Runnable runnable = new Runnable() {
@@ -251,16 +254,14 @@ public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             switch (msg.what) {
                 case 1: {
                     showMessage("支付成功");
-                    //第一步将这些支付成功的商品，从购物车中删除
-                    CacheManager.getInstance().removeSelectedProducts();
+                    savePayMessage("支付成功");
                     //第二步跳转的主页面，并且显示HomeFragment
                     ARouter.getInstance().build("/main/MainActivity").withInt("index", BottomBar.HOME_INDEX).navigation();
                     break;
                 }
                 case 2: {
                     showMessage("支付失败");
-                    //第一步将这些支付成功的商品，从购物车中删除
-                    CacheManager.getInstance().removeSelectedProducts();
+                    savePayMessage("支付失败");
                     //第二步跳转的主页面，并且显示HomeFragment
                     ARouter.getInstance().build("/main/MainActivity").withInt("index", BottomBar.HOME_INDEX).navigation();
                     break;
@@ -270,6 +271,22 @@ public class ShopcarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
             }
         }
     };
+
+    private void savePayMessage(String message) {
+        final ShopcarMessage shopcarMessage = new ShopcarMessage();
+        shopcarMessage.setTime(System.currentTimeMillis());
+        shopcarMessage.setBody(message);
+        shopcarMessage.setIsRead(false);
+        shopcarMessage.setTitle("支付消息:");
+        shopcarMessage.setType(MessageManager.PAY_TYPE);
+        MessageManager.getInstance().addMessage(shopcarMessage, new MessageManager.IMessageListener() {
+            @Override
+            public void onResult(boolean isSuccess, List<ShopcarMessage> shopcarMessageList) {
+                Toast.makeText(ShopcarActivity.this,"存储成功", Toast.LENGTH_SHORT).show();
+                EventBus.getDefault().post(shopcarMessage);
+            }
+        });
+    }
 
     @Override
     public void showLoaing() {

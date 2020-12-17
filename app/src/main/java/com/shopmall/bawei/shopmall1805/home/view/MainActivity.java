@@ -2,7 +2,11 @@ package com.shopmall.bawei.shopmall1805.home.view;
 
 import android.Manifest;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Build;
+import android.os.Handler;
+import android.os.Message;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -22,6 +26,8 @@ import com.shopmall.bawei.framework.ShopUserManager;
 import com.shopmall.bawei.framework.view.BottomBar;
 import com.shopmall.bawei.net.mode.ShopcarBean;
 import com.shopmall.bawei.shopmall1805.R;
+
+import java.lang.ref.WeakReference;
 import java.util.List;
 
 
@@ -31,13 +37,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private BottomBar bottomBar;
     private Fragment[] fragments = new Fragment[] {new HomeFragment(), new TypeFragment(), new ShopcarFragment(),new MineFragment()};
     private Fragment currentFragment; //当前正在显示的Fragment
+    private Bitmap bitmap;
+    protected MyHandler myHandler;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void initView() {
         bottomBar = findViewById(R.id.bottomBar);
         bottomBar.setBottomBarSelectListener(this);
-
+        bitmap = BitmapFactory.decodeResource(getResources(),R.mipmap.adr);
 
         switchFragmentByIndex(getIntent());
         initPermission();
@@ -49,7 +57,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         updateShopcarCount();
         //注册listener监听购物车公共数据是否发生改变,改变后，要去刷新购物车数量
         initShopcarDataChangeListener();
+        /*myHandler = new MyHandler(this);
+        myHandler.sendEmptyMessage(1);*/
+        handler.sendEmptyMessage(1);
 
+    }
+
+    private Handler handler = new Handler() {
+        @Override
+        public void handleMessage(Message msg) {
+            super.handleMessage(msg);
+            //Log.d("LQS", "handler process message");
+            handler.sendEmptyMessageDelayed(1,1000);
+        }
+    };
+
+    private  static class MyHandler extends Handler {
+        private WeakReference<MainActivity> mainActivityRef;//弱引用变量
+        public MyHandler(MainActivity mainActivity) {
+            mainActivityRef = new WeakReference<>(mainActivity);
+        }
+        @Override
+        public void handleMessage( Message msg) {
+            super.handleMessage(msg);
+            Log.d("LQS", "myhandler process message");
+            if (mainActivityRef.get()!=null) {
+                mainActivityRef.get().myHandler.sendEmptyMessageDelayed(1, 1000);
+            } else {
+                Log.d("LQS", "MainActivity 已经被系统回收....");
+            }
+        }
     }
 
     private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener = new CacheManager.IShopcarDataChangeListener() {
@@ -178,5 +215,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     protected void destroy() {
         super.destroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
+        handler.removeCallbacksAndMessages(null);//将handler未处理的消息全部置为空
     }
 }

@@ -7,8 +7,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.bumptech.glide.Glide;
 import com.shopmall.bawei.common.ShopmallConstant;
 import com.shopmall.bawei.framework.BaseRVAdapter;
@@ -17,6 +19,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.product.view.ProductDetailActivity;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.youth.banner.Banner;
+import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
@@ -116,6 +119,14 @@ public class HomeAdapter extends BaseRVAdapter<Object> {
         for(HomeBean.BannerInfoBean item:bannerInfoBeans) {
             imageUrls.add(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+item.getImage());
         }
+        banner.setOnBannerListener(new OnBannerListener() {
+            @Override
+            public void OnBannerClick(int position) {
+                ARouter.getInstance().build("/main/MemLeakActivity").navigation();
+
+            }
+        });
+
         banner.setImages(imageUrls);
         banner.setDelayTime(5000);
         banner.start();

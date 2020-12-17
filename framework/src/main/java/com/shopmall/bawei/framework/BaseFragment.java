@@ -29,6 +29,9 @@ public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarC
          super.onCreateView(inflater, container, savedInstanceState);
          TAG = "LQS:" + getClass().getSimpleName();
 
+         Log.d("LQS", TAG);
+
+
          loadingPage = new LoadingPage(getActivity()) {
              @Override
              protected int getSuccessLayoutId() {
@@ -102,5 +105,14 @@ public abstract class BaseFragment extends Fragment implements ToolBar.IToolBarC
 
     public void showEmptyPage() {
         loadingPage.showEmptyPage();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        destroy();
+    }
+
+    public void destroy() {
     }
 }

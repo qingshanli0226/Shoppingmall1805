@@ -11,6 +11,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
@@ -40,7 +41,9 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iHttpView.onCheckOneProduct(s);
+                        if (iHttpView!=null) {
+                            iHttpView.onCheckOneProduct(s);
+                        }
                     }
 
                     @Override

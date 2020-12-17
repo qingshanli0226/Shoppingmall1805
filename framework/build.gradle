@@ -1,9 +1,10 @@
 apply plugin: 'com.android.library'
 
+//第二步
+apply plugin: 'org.greenrobot.greendao'
+
 android {
     compileSdkVersion 29
-
-
 
     defaultConfig {
         minSdkVersion 15
@@ -20,6 +21,13 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    //第四步配置GreenDao生成文件的目录
+    greendao {
+        schemaVersion 1
+        daoPackage 'com.shopmall.bawei.framework.dao'
+        targetGenDir 'src/main/java'
     }
 
 }
@@ -50,5 +58,8 @@ dependencies {
     //非必要依赖， log依赖，如果需要打印OkHttpLog需要添加
     implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
     implementation 'com.google.code.gson:gson:2.7'
+
+    //第三步
+    implementation 'org.greenrobot:greendao:3.2.2'
 
 }

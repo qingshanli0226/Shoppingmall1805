@@ -39,6 +39,7 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
     private String url;
     private int newNum;
     private ImageView shopcarImg;
+    private ValueAnimator valueAnimator;
 
     @Override
     protected void initPresenter() {
@@ -178,7 +179,7 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
         final PathMeasure pathMeasure = new PathMeasure(path, false);
 
         //使用属性动画，完成小图片在贝塞尔曲线上的平移
-        ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());//平移属性动画
+        valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());//平移属性动画
         valueAnimator.setDuration(1000);
         //注册更新的listener，获取下一个图片平移的坐标
         valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
@@ -276,5 +277,14 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
     @Override
     public void onAllSelected(boolean isAllSelect) {
 
+    }
+
+    @Override
+    protected void destroy() {
+        super.destroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+        if (valueAnimator.isRunning()) {
+            valueAnimator.cancel();
+        }
     }
 }
