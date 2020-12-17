@@ -100,7 +100,7 @@ public class UserManager {
             listeners.add(listener);
         }
     }
-    public void UnRegisterUserLoginChangeListener(IUserLoginChangedListener listener){
+    public void unRegisterUserLoginChangeListener(IUserLoginChangedListener listener){
         if(!listeners.contains(listener)){
             listeners.remove(listener);
         }

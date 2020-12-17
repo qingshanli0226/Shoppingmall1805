@@ -3,6 +3,8 @@ package com.example.net;
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.CheckInventoryBean;
+import com.example.net.bean.FindForPayBean;
+import com.example.net.bean.FindForSendBean;
 import com.example.net.bean.GetOrderInfoBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
@@ -37,6 +39,10 @@ public interface INetWorkApi {
     Observable<TagBean> showTag();
     @GET("getShortcartProducts")
     Observable<ShopCarBean> getShopCar();
+    @GET("findForSend")
+    Observable<FindForSendBean> findForSend();
+    @GET("findForPay")
+    Observable<FindForPayBean> findForPay();
     @POST("register")
     @FormUrlEncoded
     Observable<RegisterBean> register(@FieldMap HashMap<String,String> map);

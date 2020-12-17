@@ -13,6 +13,7 @@ import com.example.framework.base.BaseActivity;
 import com.example.framework.manager.CacheManager;
 import com.example.framework.manager.UserManager;
 import com.example.framework.view.MyVP;
+import com.example.net.bean.LoginBean;
 import com.example.net.bean.ShopCarBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -32,7 +33,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 @Route(path = "/main/MainActivity")
-public class MainActivity extends BaseActivity implements CacheManager.IShopcarDataChangeListener {
+public class MainActivity extends BaseActivity implements CacheManager.IShopcarDataChangeListener, UserManager.IUserLoginChangedListener {
     private ArrayList<CustomTabEntity> tabs=new ArrayList<>();
     private List<Fragment> fragments=new ArrayList<>();
 
@@ -160,5 +161,16 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
     protected void onDestroy() {
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangeListener(this);
+        UserManager.getInstance().unRegisterUserLoginChangeListener(this);
+    }
+
+    @Override
+    public void onUserLogin(LoginBean.ResultBean user) {
+
+    }
+
+    @Override
+    public void onUserLogout() {
+        vpMain.setCurrentItem(0);
     }
 }

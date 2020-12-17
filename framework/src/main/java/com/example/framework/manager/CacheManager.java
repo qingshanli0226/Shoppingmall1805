@@ -49,16 +49,22 @@ public class CacheManager {
             @Override
             public void onUserLogin(LoginBean.ResultBean loginBean) {
                 getShopcarDataFromServer();
+                findForPay();
             }
 
             @Override
             public void onUserLogout() {
                 shopCarEditList.clear();
                 shopCarList.clear();
-                UserManager.getInstance().UnRegisterUserLoginChangeListener(this);
+                UserManager.getInstance().unRegisterUserLoginChangeListener(this);
             }
         });
     }
+
+    private void findForPay() {
+        
+    }
+
     public ShopCarBean.ResultBean getShopcarBean(String productId){
         for (ShopCarBean.ResultBean resultBean : shopCarList) {
             if(productId.equals(resultBean.getProductId())){
@@ -72,6 +78,16 @@ public class CacheManager {
     }
     public void removePayListFromOtherList(){
         shopCarList.removeAll(shopCarPayList);
+        for (ShopCarBean.ResultBean bean : shopCarPayList) {
+            ShopCarBean.ResultBean newBean = new ShopCarBean.ResultBean();
+            for (ShopCarBean.ResultBean resultBean : shopCarEditList) {
+                if (resultBean.getProductId().equals(bean.getProductId())){
+                    newBean =resultBean;
+                }
+            }
+            shopCarEditList.remove(newBean);
+        }
+
         shopCarEditList.removeAll(shopCarPayList);
         for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
             iShopcarDataChangeListener.onDataChanged(shopCarList);
