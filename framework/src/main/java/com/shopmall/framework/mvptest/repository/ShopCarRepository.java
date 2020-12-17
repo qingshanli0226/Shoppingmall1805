@@ -36,6 +36,26 @@ public class ShopCarRepository extends Contract.ShopCarContractRepository {
     }
 
     @Override
+    public void removeManyProduct(String url, IShopCar iShopCar) {
+        mModel.removeManyProduct(url,iShopCar);
+    }
+
+    @Override
+    public void checkInventory(String url, IShopCar iShopCar) {
+        mModel.checkInventory(url,iShopCar);
+    }
+
+    @Override
+    public void updatePhone(String url, String phone, IShopCar iShopCar) {
+        mModel.updatePhone(url,phone,iShopCar);
+    }
+
+    @Override
+    public void updateAddress(String url, String address, IShopCar iShopCar) {
+        mModel.updateAddress(url,address,iShopCar);
+    }
+
+    @Override
     protected void createModel() {
         mModel = new ShopCarModel();
     }

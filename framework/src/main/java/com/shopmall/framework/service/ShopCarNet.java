@@ -42,7 +42,15 @@ public class ShopCarNet extends BaseUrl<ShopCarPresenter> implements Contract.Sh
     }
 
     public void updateProductNum(final String num, ShopcarBean.ResultBean shopCar, final int position){
-        mPresenter.updateProductNum(Constants.UPDATE_PRODUCTNUM,num,shopCar,position);
+        mPresenter.updateProductNum(Constants.UPDATE_PRODUCT,num,shopCar,position);
+    }
+
+    public void removeManyProduct(String url) {
+        mPresenter.removeManyProduct(url);
+    }
+
+    public void checkInventory(String url,ITest iTest){
+        mPresenter.checkInventory(url,iTest);
     }
 
     @Override

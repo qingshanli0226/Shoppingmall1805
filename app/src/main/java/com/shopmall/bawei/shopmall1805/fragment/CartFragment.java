@@ -11,11 +11,16 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.PopupWindow;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopcar.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPFragment;
+import com.shopmall.framework.callback.ITest;
 import com.shopmall.framework.manager.CacheManager;
+import com.shopmall.framework.manager.ShopUserManager;
 import com.shopmall.framework.service.ShopCarNet;
 import com.shopmall.net.bean.ShopcarBean;
 
@@ -34,6 +39,7 @@ public class CartFragment extends BaseMVPFragment implements CacheManager.IShopC
     @Override
     protected void createViewid(View inflate) {
         CacheManager.getInstance().setShopCarDataChangeListener(this);
+        ARouter.getInstance().inject(this);
 
         shopCarEdit = (TextView) inflate.findViewById(R.id.shopCar_edit);
         shopCarRecycle = (RecyclerView) inflate.findViewById(R.id.shopCar_recycle);
@@ -89,7 +95,37 @@ public class CartFragment extends BaseMVPFragment implements CacheManager.IShopC
             }
         });
 
+        buttonDelete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopCarNet.getShopCarNet().removeManyProduct(Constants.REMOVE_MANYPRODUCT);
+                shopCarAdapter.setIsSelect(false);
+                shopCarEdit.setText("编辑");
+                popupWindow.dismiss();
+            }
+        });
 
+        shopCarCompute.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ShopCarNet.getShopCarNet().checkInventory(Constants.CHECKINVENTORY, new ITest() {
+                    @Override
+                    public void onTest(String msg) {
+                        if (msg.equals("200")){
+                            String phone = ShopUserManager.getInstance().getPhone();
+                            String address = ShopUserManager.getInstance().getAddress();
+                            if (phone == null || address == null){
+                                ARouter.getInstance().build("/user/InfoMainActivity").navigation();
+                            }else {
+                                ARouter.getInstance().build("/order/OrderActivity").navigation();
+                            }
+                        }else {
+                            Toast.makeText(getContext(), ""+msg, Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
+            }
+        });
     }
 
     @Override

@@ -3,7 +3,8 @@
     package="com.shopmall.bawei.user">
 
     <application>
-        <activity android:name="com.shopmall.user.UserActivity"></activity>
+        <activity android:name="com.shopmall.user.InfoMainActivity"></activity>
+        <activity android:name="com.shopmall.user.UserActivity" />
     </application>
 
 </manifest>

@@ -79,6 +79,7 @@ public class CacheManager {
     private void notifyShopCarDataChanged() {
         for (IShopCarDataChangeListener listener:iShopCarDataChangeListenerList){
             listener.onDataChanged(shopCarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
         }
     }
 
@@ -104,6 +105,8 @@ public class CacheManager {
             listener.onMoneyChanged(getMoneyValue());
             listener.onAllSelected(false);
         }
+
+        getShopCarDataFromServer();
     }
 
     //勾选添加删除数据,判断是否存在，不存在添加，存在取消勾选删除

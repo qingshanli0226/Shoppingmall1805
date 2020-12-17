@@ -15,6 +15,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.common.Constants;
 import com.shopmall.framework.base.BaseMVPActivity;
 import com.shopmall.framework.manager.CacheManager;
 import com.shopmall.framework.service.ShopCarNet;
@@ -84,7 +85,10 @@ public class ShopCarActivity extends BaseMVPActivity implements CacheManager.ISh
         buttonDelete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                ShopCarNet.getShopCarNet().removeManyProduct(Constants.REMOVE_MANYPRODUCT);
+                shopCarAdapter.setIsSelect(false);
+                shopCarEdit.setText("编辑");
+                popupWindow.dismiss();
             }
         });
     }
@@ -103,6 +107,8 @@ public class ShopCarActivity extends BaseMVPActivity implements CacheManager.ISh
         shopCarRecycle.setLayoutManager(new LinearLayoutManager(this));
 
         shopCarAdapter.updataData(shopCarBeanList);
+
+        shopCarAllSelect.setChecked(CacheManager.getInstance().isAllSelected());
     }
 
     @Override

@@ -12,12 +12,9 @@ import java.util.List;
 public class ShopUserManager {
 
     private LoginBean loginBean;
-
     private static ShopUserManager instance;
-
     private Context context;
     private List<IUserLoginChangeListener> listeners = new LinkedList<>();
-
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
@@ -47,6 +44,22 @@ public class ShopUserManager {
         for (IUserLoginChangeListener listener:listeners){
             listener.OnUserLogin(loginBean);
         }
+    }
+
+    public void setPhone(String phone){
+        loginBean.getResult().setPhone(phone);
+    }
+
+    public void setAddress(String address){
+        loginBean.getResult().setAddress(address);
+    }
+
+    public String getPhone(){
+        return (String) loginBean.getResult().getPhone();
+    }
+
+    public String getAddress(){
+        return (String) loginBean.getResult().getAddress();
     }
 
     public String getToken(){

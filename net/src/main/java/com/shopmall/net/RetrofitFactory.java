@@ -74,7 +74,13 @@ public class RetrofitFactory {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
-                String token = context.getSharedPreferences(RestName.SHARE_NAME, RestName.SHARE_MODEL).getString(RestName.LOGIN_TOKEN, null);
+                String token;
+                String tokenValue = context.getSharedPreferences(RestName.SHARE_NAME, RestName.SHARE_MODEL).getString(RestName.LOGIN_TOKEN, null);
+                if (tokenValue == null){
+                    token = "1";
+                }else {
+                    token = tokenValue;
+                }
                 Request newRequest = request.newBuilder()
                         .addHeader("token", token)
                         .build();

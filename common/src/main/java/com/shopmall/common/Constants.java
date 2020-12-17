@@ -125,7 +125,13 @@ public class Constants {
     //全选服务端购物车产品或者全不选
     public static final String SELECTALL_PRODUCT="selectAllProduct";
 
-    public static final String UPDATE_PRODUCTNUM ="updateProductNum";
+    public static final String REMOVE_MANYPRODUCT = "removeManyProduct";
+
+    //更新用户绑定的电话
+    public static final String UPDATE_PHONE="updatePhone";
+
+    //更新地址的接口
+    public static final String UPDATE_ADDRESS="updateAddress";
 }
 
 

@@ -1,6 +1,7 @@
 package com.shopmall.net;
 
 
+import com.shopmall.net.bean.CheckBean;
 import com.shopmall.net.bean.HomeData;
 import com.shopmall.net.bean.LoginBean;
 import com.shopmall.net.bean.RegisterBean;
@@ -57,5 +58,17 @@ public interface Https {
 
     @POST
     Observable<RegisterBean> getUpdateProductNum(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<RegisterBean> getRemoveManyProduct(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<CheckBean> getCheckInventory(@Url String url, @Body RequestBody requestBody);
+
+    @POST
+    Observable<RegisterBean> getUpdatePhone(@Url String url,@QueryMap HashMap<String,String> map);
+
+    @POST
+    Observable<RegisterBean> getUpdateAddress(@Url String url,@QueryMap HashMap<String,String> map);
 
 }

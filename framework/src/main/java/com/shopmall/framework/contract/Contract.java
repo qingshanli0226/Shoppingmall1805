@@ -107,6 +107,14 @@ public interface Contract {
         void selectAllProduct(String url,boolean allSelect,IShopCar iShopCar);
 
         void updateProductNum(String url,String num,ShopcarBean.ResultBean shopCar,IShopCar iShopCar);
+
+        void removeManyProduct(String url,IShopCar iShopCar);
+
+        void checkInventory(String url,IShopCar iShopCar);
+
+        void updatePhone(String url,String phone,IShopCar iShopCar);
+
+        void updateAddress(String url,String address,IShopCar iShopCar);
     }
 
     /**
@@ -152,6 +160,14 @@ public interface Contract {
         public abstract void selectAllProduct(String url,boolean allSelect,IShopCar iShopCar);
 
         public abstract void updateProductNum(String url,String num,ShopcarBean.ResultBean shopCar,IShopCar iShopCar);
+
+        public abstract void removeManyProduct(String url,IShopCar iShopCar);
+
+        public abstract void checkInventory(String url,IShopCar iShopCar);
+
+        public abstract void updatePhone(String url,String phone,IShopCar iShopCar);
+
+        public abstract void updateAddress(String url,String address,IShopCar iShopCar);
     }
 
     /**
@@ -218,5 +234,13 @@ public interface Contract {
         public abstract void selectAllProduct(String url,boolean allSelect);
 
         public abstract void updateProductNum(String url,String num,ShopcarBean.ResultBean shopCar,int position);
+
+        public abstract void removeManyProduct(String url);
+
+        public abstract void checkInventory(String url, ITest iTest);
+
+        public abstract void updatePhone(String url,String phone);
+
+        public abstract void updateAddress(String url,String address);
     }
 }
