@@ -5,11 +5,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.shopcar.R;
 
 import java.util.List;
@@ -17,10 +19,12 @@ import java.util.List;
 import framework.BaseFragment;
 import framework.CacheManagerc;
 import framework.Contact;
+import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
 import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
+import view.ShopmallConstant;
 import view.ToolBar;
 import view.adaper.ShopAdaper;
 import view.contract.ShopcarContractc;
@@ -33,6 +37,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
     private TextView totalPriceTv;
     private CheckBox allSelectCheckBox;
     private boolean newAllSelect;
+    private Button deleteBtn;
 
     private ShopcarPresenterImplc shopcarPresenterImplc;
     private ShopAdaper shopAdaper;
@@ -50,6 +55,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
         @Override
         public void onOneDataChanged(final int position, ShopcarBean shopcarBean) {
+            Log.i("cccc","shopbean///"+shopcarBean.toString());
             if (shopcarRv.isComputingLayout()){
                 shopcarRv.post(new Runnable() {
                     @Override
@@ -66,7 +72,6 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
         @Override
         public void onMoneyChanged(String moneyVilue) {
             totalPriceTv.setText(moneyVilue);
-            Log.i("====","这是"+moneyVilue);
         }
 
         @Override
@@ -103,7 +108,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
         //监听数据 去刷新UI
         CacheManagerc.getInstance().setiShopcarDataChangeListener(iShopcarDataChangeListener);
-        if (CacheManagerc.getInstance().isAllSelected()){
+        if (!CacheManagerc.getInstance().isAllSelected()){
             allSelectCheckBox.setChecked(true);//是否全选 true
         }else {
             allSelectCheckBox.setChecked(false);//是否全选 false
@@ -114,9 +119,11 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
             @Override
             public void onClick(View v) {
                 if (allSelectCheckBox.isChecked()){
+
                     newAllSelect = true;
                     shopcarPresenterImplc.selectAllProduct(newAllSelect);
                 }else {
+
                     newAllSelect = false;
                     shopcarPresenterImplc.selectAllProduct(newAllSelect);
                 }
@@ -148,7 +155,9 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
             }
 
         }else if (v.getId()==R.id.payBtn){
-            Toast.makeText(getContext(), "支付", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "支付", Toast.LENGTH_SHORT).show();
+                ARouter.getInstance().build("/pay/PayActivity").navigation();
+
         }
     }
 
@@ -163,15 +172,14 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
     @Override
     public void onProductSelected(String result, int position) {
         //该回调代表当前该商品在购物车选择的状态发生了改变
-        Toast.makeText(getContext(), "该商品在购物车的选择发生了改变", Toast.LENGTH_SHORT).show();
+        Log.i("cccc","发生改变"+position);
         CacheManagerc.getInstance().updateProductSelected(position);
     }
 
     @Override
     public void onAllSelected(String result) {
-        Toast.makeText(getContext(), "所有商品的选择状态发生了改变，全选状态是"+newAllSelect, Toast.LENGTH_SHORT).show();
         //更新本地缓存的数据选择状态
-        CacheManagerc.getInstance().selectAllProduct(newAllSelect);
+        CacheManagerc.getInstance().goChangeSelectAllState(newAllSelect);
     }
 
    @Override
@@ -209,11 +217,12 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
     @Override
     public void onOrderInfo(OrderInfoBean orderInfoBean) {
-        //f服务端已经成功下蛋 使用支付宝完成支付功能
+        //f服务端已经成功下单 使用支付宝完成支付功能
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                Toast.makeText(getContext(), "可以支付", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), "可以支付", Toast.LENGTH_SHORT).show();
+
             }
         };
 
@@ -233,6 +242,8 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
         normalLayout = (RelativeLayout) findViewById(R.id.normalLayout);//支付框布局点击事件
         editLayout = (RelativeLayout) findViewById(R.id.editLayout);//编辑框布局点击事件
         editAllSelectCheckBox = (CheckBox) findViewById(R.id.allEditSelect);//编辑框中的全选
+        deleteBtn = (Button) findViewById(R.id.deleteBtn);
+        findViewById(R.id.deleteBtn).setOnClickListener(this);
         findViewById(R.id.deleteBtn).setOnClickListener(this);
         findViewById(R.id.payBtn).setOnClickListener(this);
 

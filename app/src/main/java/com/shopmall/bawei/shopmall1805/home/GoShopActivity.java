@@ -186,8 +186,9 @@ class GoShopActivity extends BaseActivity<JsonPresenter> implements View.OnClick
         shopcarBean.setProductPrice(shopcarBean.getProductPrice());
         shopcarBean.setProductNum("1");
         shopcarBean.setProductSelected(true);
-        Log.i("====","+++"+shopcarBean.toString());
         CacheManagerc.getInstance().add(shopcarBean);
+        jsonPresenter = new JsonPresenter(this);
+        jsonPresenter.addShcarshop(shopcarBean);
     }
     @Override
     public void onDataChanged(List<ShopcarBean> shopcarBeanList) {

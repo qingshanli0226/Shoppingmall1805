@@ -8,6 +8,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.user.R;
 
 import framework.BaseFragment;
+import framework.CacheManagerc;
 import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
 import mode.LoginBean;
@@ -61,6 +62,7 @@ class FragmentLogin extends BaseFragment<JsonPresenter>  implements UserActivity
                 public void loginBean(LoginBean loginBean) {
                         setToast("====","登录成功"+loginBean.toString());
                         Log.i("====","token"+loginBean.getResult().getToken());
+                        CacheManagerc.getInstance().getShopcarDataFromServer();
                         ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
                     UserActivity loginRegisterActivity = (UserActivity)getActivity();
                     int toLoginFromIndex = loginRegisterActivity.getToLoginFromIndex();

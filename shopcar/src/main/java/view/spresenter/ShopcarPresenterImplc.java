@@ -1,6 +1,7 @@
 package view.spresenter;
 
 import android.util.Log;
+import android.widget.Toast;
 
 import net.FoodService;
 import net.RxjavaRetortUlis;
@@ -169,7 +170,7 @@ class ShopcarPresenterImplc extends ShopcarContractc.ShopcarPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                      //  iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(e));
+                        iHttpView.hideLoading(false,ExceptionUtil.getErrorBean(e));
                     }
 
                     @Override

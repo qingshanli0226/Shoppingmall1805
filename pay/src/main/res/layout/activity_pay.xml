@@ -14,13 +14,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:orientation="vertical"
         android:layout_weight="2">
         <TextView
             android:id="@+id/payText"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
             android:gravity="center"
-            android:textSize="26sp"/>
+            android:textSize="@dimen/Pcom_public_textminsize"
+            android:text="地址:山西省长治市沁县XXXXXXX"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/Pcom_public_textminsize"
+            android:text="订单编号:1565135134846464645651515"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:textSize="@dimen/Pcom_public_textmaxsize"
+            android:textColor="#C12E2E"
+            android:text="名字：顺丰快递"/>
+
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"
@@ -45,7 +64,7 @@
                 android:id="@+id/payMoney"
                 android:text="金额："
                 android:gravity="center"
-                android:textSize="22sp"
+                android:textSize="@dimen/Pcom_public_textmediumsize"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"/>
@@ -58,7 +77,7 @@
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="2"
-                android:textSize="22sp"
+                android:textSize="@dimen/Pcom_public_textmediumsize"
                 android:text="支付"/>
         </LinearLayout>
     </RelativeLayout>

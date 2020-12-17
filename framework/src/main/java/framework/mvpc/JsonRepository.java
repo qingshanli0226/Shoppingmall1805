@@ -1,6 +1,7 @@
 package framework.mvpc;
 
 import framework.Contact;
+import mode.ShopcarBean;
 
 public
 class JsonRepository extends Contact.centerUserRepostory {
@@ -23,6 +24,11 @@ class JsonRepository extends Contact.centerUserRepostory {
     @Override
     public void shcarShop(int count) {
         model.shcarShop(count);
+    }
+
+    @Override
+    public void addShcarshop(ShopcarBean shopcarBean) {
+        model.addShcarshop(shopcarBean);
     }
 
 }

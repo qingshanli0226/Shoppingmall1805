@@ -81,7 +81,9 @@ public class ShopcarBean implements Serializable {
     public void setProductSelected(boolean productSelected) {
         this.productSelected = productSelected;
     }
-
+    public boolean getProductSelected() {
+        return productSelected;
+    }
     @Override
     public String toString() {
         return "ShopcarBean{" +

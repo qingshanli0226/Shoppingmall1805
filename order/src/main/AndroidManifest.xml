@@ -3,7 +3,7 @@
     package="com.shopmall.bawei.order">
 
     <application>
-        <activity android:name=".BindingActivity"></activity>
+        <activity android:name=".mview.BindingActivity"></activity>
     </application>
 
 </manifest>

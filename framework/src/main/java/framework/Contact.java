@@ -9,6 +9,8 @@ import framework.Mvp.Presenter;
 import framework.Mvp.Repository;
 import mode.InventoryBean;
 import mode.OrderInfoBean;
+import mode.ShopcarBean;
+import retrofit2.http.Url;
 
 public
 interface Contact {
@@ -21,6 +23,7 @@ interface Contact {
 
          void loginAndRegister(int count,String username,String password);
          void shcarShop(int count);
+         void addShcarshop(ShopcarBean shopcarBean);
     }
 
     abstract class centerUserRepostory extends Repository<centerUserImodel> {
@@ -28,6 +31,7 @@ interface Contact {
 
          public abstract void loginAndRegister(int count,String username,String password);
          public abstract  void shcarShop(int count);
+         public abstract void addShcarshop(ShopcarBean shopcarBean);
     }
 
     abstract class centetUserpepostory extends Presenter<centerUserRepostory,CenterUserIview> {
@@ -39,6 +43,7 @@ interface Contact {
         public abstract   void getshopcal(int count, JsonDataCallBace jsonDataCallBace);
         public abstract  void loginAndRegister(int count,String username,String password,JsonDataCallBace jsonDataCallBace);
         public  abstract  void shcarShop(int count,JsonDataCallBace jsonDataCallBace);
+        public  abstract void addShcarshop(ShopcarBean shopcarBean);
     }
 
     //购物车v层
@@ -61,4 +66,58 @@ interface Contact {
         }
         public abstract  void GainShopCar();//仓库层获取购物车数据//p层获取购物车数据
     }
+
+
+    //orderv层
+    interface ICenterOrderIview extends Iview{
+
+    }
+    //orderm层
+    interface ICenterOrderIModel extends Imodel{
+        void goBindingPhone(String Url);
+        void goBindingPoint(String Url);
+    }
+    //order仓库层
+    abstract  class CenterOrderReposotry extends Repository<ICenterOrderIModel>{
+        public abstract  void goBindingPhone(String Url);
+        public abstract  void goBindingPoint(String Url);
+    }
+    //orderP层
+    abstract class CenterOrderPresenter extends Presenter<CenterOrderReposotry,ICenterOrderIview>{
+
+        public CenterOrderPresenter(ICenterOrderIview iCenterOrderIview) {
+            super(iCenterOrderIview);
+        }
+
+        public abstract  void goBindingPhone(String Url);
+        public abstract  void goBindingPoint(String Url);
+    }
+
+
+    //Payv层
+    interface ICenterPayIview extends Iview{
+        void onSuccess(String success);
+        void onEerror(String Error);
+    }
+    //Paym层
+    interface ICenterPayIModel extends Imodel{
+        void getGoPayOrder(List<ShopcarBean> products);
+        void getCheckInventory(List<ShopcarBean> products);
+    }
+    //Pay仓库层
+    abstract  class CenterPayReposotry extends Repository<ICenterPayIModel>{
+        public abstract void getGoPayOrder(List<ShopcarBean> products);
+        public abstract void getCheckInventory(List<ShopcarBean> products);
+    }
+    //orderP层
+    abstract class CenterPayPresenter extends Presenter<CenterPayReposotry,ICenterPayIview>{
+
+        public CenterPayPresenter(ICenterPayIview iCenterPayIview) {
+            super(iCenterPayIview);
+        }
+        public abstract void getGoPayOrder(List<ShopcarBean> products);
+        public abstract void getCheckInventory(List<ShopcarBean> products);
+    }
+
+
 }

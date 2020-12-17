@@ -30,4 +30,13 @@ public class BaseBean<T> {
     public void setResult(T result) {
         this.result = result;
     }
+
+    @Override
+    public String toString() {
+        return "BaseBean{" +
+                "code='" + code + '\'' +
+                ", message='" + message + '\'' +
+                ", result=" + result +
+                '}';
+    }
 }

@@ -34,7 +34,9 @@ public class ShopUserManager {
         }
         return instance;
     }
-
+    public LoginBean getLoginBean(){
+        return loginBean;
+    }
     public void init(Context context) {
         this.context = context;
         sharedPreferences = this.context.getSharedPreferences(ShopmallConstant.spName, Context.MODE_PRIVATE);
@@ -45,6 +47,7 @@ public class ShopUserManager {
     public void saveLoginBean(LoginBean loginBean) {
         this.loginBean = loginBean;
         //使用sp存储token
+        Log.i("====","loginbean"+this.loginBean.getResult().toString());
         editor.putString(ShopmallConstant.tokenName, loginBean.getResult().getToken());
         editor.commit();
     }

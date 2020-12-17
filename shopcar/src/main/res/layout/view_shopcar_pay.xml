@@ -4,43 +4,48 @@
     android:layout_height="60dp">
 
 
-    <RelativeLayout android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <RelativeLayout
         android:id="@+id/normalLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:visibility="visible">
-        <CheckBox android:layout_width="wrap_content"
+
+        <CheckBox
+            android:id="@+id/allSelect"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="5dp"
-            android:layout_centerVertical="true"
-            android:id="@+id/allSelect"
-            android:text="全选"/>
+            android:layout_marginLeft="7dp"
+            android:text="全选" />
 
-        <TextView android:layout_width="wrap_content"
+        <TextView
+            android:id="@+id/sumNote"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:textSize="15sp"
-            android:text="总计"
-            android:gravity="center"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/allSelect"
-            android:id="@+id/sumNote"/>
-
-        <TextView android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:textSize="15sp"
             android:gravity="center"
+            android:text="总计"
+            android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/sumValue"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/sumNote"
-            android:id="@+id/sumValue"
-            android:textColor="@android:color/holo_red_dark"/>
+            android:gravity="center"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="15sp" />
 
-        <Button android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="支付"
-            android:layout_alignParentRight="true"
-            android:textColor="@android:color/white"
+        <Button
             android:id="@+id/payBtn"
-            android:background="@android:color/holo_red_dark"/>
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@android:color/holo_red_dark"
+            android:text="支付"
+            android:textColor="@android:color/white" />
 
     </RelativeLayout>
 

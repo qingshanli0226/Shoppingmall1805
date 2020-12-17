@@ -3,6 +3,7 @@ package view.adaper;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
@@ -38,8 +39,6 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
 
     @Override
     protected void convert(ShopcarBean itemData, BaseviewHoder holder, int position) {
-       /* Glide.with(holder.itemView.getContext()).load(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+itemData.getUrl())
-                .into((ImageView)holder.getView(R.id.productImage));*/
         TextView produceNameTv = holder.getView(R.id.productName);
         produceNameTv.setText(itemData.getProductName());
         TextView producePriceTv = holder.getView(R.id.productPrice);
@@ -50,12 +49,14 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
         //选择按钮
         CheckBox produectSelectCheckBox  = holder.getView(R.id.productSelect);
         if (!isEditMode){//正常模式
-            produectSelectCheckBox.setChecked(itemData.isProductSelected());
+            produectSelectCheckBox.setChecked(itemData.getProductSelected());
             initProDuctSeltctCheckBoxClickListener(produectSelectCheckBox,itemData,position);
             initAddDecClickListener(holder,itemData,position);
         }else {//编辑模式下
+            Log.i("pppp","编辑模式下"+itemData.toString());
             initEditModeCheckBoxClicklistener(produectSelectCheckBox,itemData,position);
             if (CacheManagerc.getInstance().checkIfDataInDeleteShopcarBeanList(itemData)){
+
                 produectSelectCheckBox.setChecked(true);
             }else {
                 produectSelectCheckBox.setChecked(false);
@@ -64,14 +65,12 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
     }
     //编辑模式下程序
     private void initEditModeCheckBoxClicklistener(final CheckBox produectSelectCheckBox, final ShopcarBean itemData, final int position) {
-        produectSelectCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        produectSelectCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+            public void onClick(View v) {
                 if (produectSelectCheckBox.isChecked()){
-                    //当在编辑模式下，选择了用该商品，须要吧该商品添加到删除队列中
                     CacheManagerc.getInstance().addDeleteShopcarBean(itemData,position);
                 }else {
-                    //在编辑模式下，该商品由已选择变成未选择，那么需要把它从删除队列中删除
                     CacheManagerc.getInstance().deleteOneShopcarBean(itemData,position);
                 }
             }
@@ -80,7 +79,6 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
 
     //正常模式下添加
     private void initAddDecClickListener(final BaseviewHoder holder, final ShopcarBean itemData, final int position) {
-            Log.i("====","正常模式下"+111);
             holder.getView(R.id.btnAdd).setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -88,6 +86,7 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
                     Toast.makeText(holder.itemView.getContext(), "+1", Toast.LENGTH_SHORT).show();
                     int oldNum = Integer.parseInt(itemData.getProductNum());
                     int newNum = oldNum+1;
+                    Log.i("cccc","正常模式吓得添加"+newNum);
                     shopcarPresenter.updateProductNum(itemData.getProductId(), String.valueOf(newNum), itemData.getProductName(), itemData.getUrl(),(String) itemData.getProductPrice(), position, String.valueOf(newNum));
                 }
             });
@@ -99,20 +98,27 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
                     int oldNum = Integer.parseInt(itemData.getProductNum());
                     Toast.makeText(holder.itemView.getContext(), "-1", Toast.LENGTH_SHORT).show();
                     if (oldNum>1){
-
-                        int newNum = oldNum -1;
+                        int newNum = oldNum-1;
+                        Log.i("cccc","正常模式吓得减小"+newNum);
                         shopcarPresenter.updateProductNum(itemData.getProductId(), String.valueOf(newNum), itemData.getProductName(), itemData.getUrl(), (String) itemData.getProductPrice(),position, String.valueOf(newNum));
                     }
                 }
             });
     }
+    boolean isshow = true;
     //正常模式下更新购物车产品的选择
-    private void initProDuctSeltctCheckBoxClickListener(CheckBox produectSelectCheckBox, final ShopcarBean itemData, final int position) {
-        produectSelectCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+    private void initProDuctSeltctCheckBoxClickListener(final CheckBox produectSelectCheckBox, final ShopcarBean itemData, final int position) {
+        produectSelectCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                Log.d("LQS", isChecked+"按钮的");
-              shopcarPresenter.updateProductSelected(itemData.getProductId(),isChecked,itemData.getProductName(),itemData.getUrl(),(String)itemData.getProductPrice(), position);
+            public void onClick(View v) {
+                Toast.makeText(produectSelectCheckBox.getContext(), "111", Toast.LENGTH_SHORT).show();
+                if (isshow){
+                    isshow =false;
+                    shopcarPresenter.updateProductSelected(itemData.getProductId(),isshow,itemData.getProductName(),itemData.getUrl(),(String)itemData.getProductPrice(), position);
+                }else {
+                    isshow = true;
+                    shopcarPresenter.updateProductSelected(itemData.getProductId(),isshow,itemData.getProductName(),itemData.getUrl(),(String)itemData.getProductPrice(), position);
+                }
 
             }
         });

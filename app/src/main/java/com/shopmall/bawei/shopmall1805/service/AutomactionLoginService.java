@@ -12,6 +12,7 @@ import net.FoodService;
 import net.RxjavaRetortUlis;
 import java.util.HashMap;
 
+import framework.CacheManagerc;
 import framework.ShopUserManager;
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -56,6 +57,7 @@ class AutomactionLoginService extends Service {
                         Log.i("====","ccc"+loginBeanBaseBean.getCode());
                         if (loginBeanBaseBean.getCode().equals("200")){
                             ShopUserManager.getInstance().saveLoginBean(loginBeanBaseBean);
+                            CacheManagerc.getInstance().getShopcarDataFromServer();
                             Toast.makeText(AutomactionLoginService.this, "登录成功", Toast.LENGTH_SHORT).show();
                         }else {
                             Toast.makeText(AutomactionLoginService.this, "登录失败"+loginBeanBaseBean.getCode(), Toast.LENGTH_SHORT).show();

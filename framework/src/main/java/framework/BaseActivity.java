@@ -22,10 +22,10 @@ class BaseActivity<P extends Presenter> extends AppCompatActivity implements  Co
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getlayoutId());
+        createPresenter();
         initData();
         tooBar = (ToolBar) findViewById(R.id.tooBar);
         tooBar.setToolBarClickListner(this);
-        createPresenter();
         OnClickListener();
 
 

@@ -126,10 +126,14 @@ public class JsonPresenter extends Contact.centetUserpepostory{
 
     }
 
+    @Override
+    public void addShcarshop(ShopcarBean shopcarBean) {
+        Repostory.addShcarshop(shopcarBean);
+    }
+
 
     @Override
     protected void createRepostory() {
-        Log.i("====","这是Presenter层");
         Repostory = new JsonRepository();
     }
 }

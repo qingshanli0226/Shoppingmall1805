@@ -41,12 +41,12 @@ class RxjavaRetortUlis {
 
     public void init(Context application){
         this.context = application;
-        token = application.getSharedPreferences(ShopmallConstant.spName, application.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null);
+        token = context.getSharedPreferences(ShopmallConstant.spName, context.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null);
     }
 
     private void InitData() {
          build = new Retrofit.Builder()
-                .baseUrl("http://49.233.0.68:8080")//挖煤很着急哦
+                .baseUrl("http://49.233.0.68:8080")
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(CreateClient())
@@ -59,7 +59,7 @@ class RxjavaRetortUlis {
                 .writeTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS)
                 .connectTimeout(15, TimeUnit.SECONDS)
-                .addNetworkInterceptor(CreateTokenIntereptor())
+                .addInterceptor(CreateTokenIntereptor())
                 .addInterceptor(createToken())
                 .build();
 
@@ -68,12 +68,13 @@ class RxjavaRetortUlis {
     }
 
     private Interceptor createToken() {
+
         Interceptor interceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request();
                 Request token = request.newBuilder()
-                        .addHeader("token", RxjavaRetortUlis.this.token).build();
+                        .addHeader("token", context.getSharedPreferences(ShopmallConstant.spName, context.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null)).build();
                 return chain.proceed(token);
             }
         };
@@ -81,6 +82,7 @@ class RxjavaRetortUlis {
     }
 
     private Interceptor CreateTokenIntereptor() {
+
         HttpLoggingInterceptor httpLoggingInterceptor = new HttpLoggingInterceptor();
         HttpLoggingInterceptor httpLoggingInterceptor1 = httpLoggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
 

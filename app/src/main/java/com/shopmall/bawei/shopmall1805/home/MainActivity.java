@@ -19,6 +19,7 @@ import java.util.List;
 
 import framework.BaseActivity;
 
+import framework.CacheManager;
 import framework.CacheManagerc;
 import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
@@ -169,5 +170,10 @@ public class MainActivity extends BaseActivity<JsonPresenter> {
     @Override
     public void onRightClick() {
 
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
     }
 }

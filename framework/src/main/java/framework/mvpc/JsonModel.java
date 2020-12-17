@@ -6,6 +6,9 @@ import android.util.Log;
 import net.FoodService;
 import net.RxjavaRetortUlis;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.List;
 
@@ -29,6 +32,8 @@ import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
 import mode.ShopcarBean;
+import okhttp3.MediaType;
+import okhttp3.RequestBody;
 
 public
 class JsonModel implements Contact.centerUserImodel {
@@ -36,7 +41,6 @@ class JsonModel implements Contact.centerUserImodel {
     private HashMap<String,String> hashMap = new HashMap<>();
     @Override
     public void getshopcal(int count) {
-        Log.i("====","count"+count);
         FoodService foodService  = RxjavaRetortUlis.getInstance().create(FoodService.class);
 
         Observable<ClothesBean> clothesBeanObservable = null;
@@ -120,7 +124,6 @@ class JsonModel implements Contact.centerUserImodel {
 
     @Override
     public void loginAndRegister(int count, final String username, String password) {
-
         hashMap.put("name",username);
         hashMap.put("password",password);
         FoodService foodService  = RxjavaRetortUlis.getInstance().create(FoodService.class);
@@ -142,7 +145,6 @@ class JsonModel implements Contact.centerUserImodel {
 
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("====","注册输出结果是 - >"+e.getMessage());
                             JsonPresenter.registerBeanObserver.onError(e);
                         }
                     });
@@ -154,13 +156,11 @@ class JsonModel implements Contact.centerUserImodel {
                         @Override
                         public void onNext(LoginBean loginBean) {
                             if (loginBean!=null){
-                                Log.i("====","这是登录的返回"+loginBean.toString());
                                 JsonPresenter.loginBeanObserver.onNext(loginBean);
                             }
                         }
                         @Override
                         public void onError(Throwable e) {
-                            Log.i("====","登录输出结果是 - >"+e.getMessage());
                             JsonPresenter.loginBeanObserver.onError(e);
 
                         }
@@ -186,6 +186,48 @@ class JsonModel implements Contact.centerUserImodel {
                     @Override
                     public void onError(Throwable e) {
                         super.onError(e);
+                    }
+                });
+    }
+
+    @Override
+    public void addShcarshop(ShopcarBean shopcarBean) {
+        Log.i("====","添加的商品"+shopcarBean.toString());
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("productId", shopcarBean.getProductId());
+            jsonObject.put("productNum", shopcarBean.getProductNum());
+            jsonObject.put("productName", shopcarBean.getProductName());
+            jsonObject.put("url", shopcarBean.getUrl());
+            jsonObject.put("productPrice", shopcarBean.getProductPrice());
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+
+        RxjavaRetortUlis.getInstance().create(FoodService.class)
+                .addOneProduct(requestBody)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.io())
+                .subscribe(new Observer<BaseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseBean<String> stringBaseBean) {
+                        Log.i("====","返回的数据"+stringBaseBean.toString());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
                     }
                 });
     }

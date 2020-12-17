@@ -5,7 +5,13 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".BindingActivity">
+    tools:context=".mview.BindingActivity">
+    <view.ToolBar
+        android:id="@+id/tooBar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        app:title_text="绑定界面"
+        app:right_show_only_img="true"/>
     <EditText
         android:id="@+id/editPhone"
         android:layout_width="match_parent"
@@ -32,4 +38,11 @@
         android:layout_marginLeft="@dimen/OView_left_space"
         android:layout_marginRight="@dimen/OView_reght_space"
         android:text="绑定地址"/>
+    <Button
+        android:id="@+id/resultButton"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/Ocom_public_heightfour"
+        android:layout_marginRight="@dimen/OView_reght_space"
+        android:layout_marginLeft="@dimen/OView_left_space"
+        android:text="返回支付页面"/>
 </LinearLayout>
