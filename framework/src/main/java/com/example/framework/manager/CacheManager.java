@@ -67,7 +67,22 @@ public class CacheManager {
         }
         return null;
     }
-
+    public void clearPayList(){
+        shopCarPayList.clear();
+    }
+    public void removePayListFromOtherList(){
+        shopCarList.removeAll(shopCarPayList);
+        shopCarEditList.removeAll(shopCarPayList);
+        for (IShopcarDataChangeListener iShopcarDataChangeListener : iShopcarDataChangeListenerList) {
+            iShopcarDataChangeListener.onDataChanged(shopCarList);
+            iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
+            if(isAllSelected()){
+                iShopcarDataChangeListener.onAllSelected(true);
+            }else {
+                iShopcarDataChangeListener.onAllSelected(false);
+            }
+        }
+    }
     private void getShopcarDataFromServer() {
         RetrofitCreater.getiNetWorkApi().getShopCar()
                 .subscribeOn(Schedulers.io())

@@ -15,6 +15,9 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseFragment;
 import com.example.framework.manager.CacheManager;
 import com.example.framework.manager.UserManager;
+import com.example.net.bean.CheckInventoryBean;
+import com.example.net.bean.GetOrderInfoBean;
+import com.example.net.bean.OrderBean;
 import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
@@ -52,6 +55,8 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
     private boolean isClickCheckBox=false;
     private int clickposition=-1;
     List<ShopCarBean.ResultBean> deleteList=new ArrayList<>();
+    private List<ShopCarBean.ResultBean> shopCarPayList;
+    private List<ShopCarBean.ResultBean> notEnoughList=new ArrayList<>();
     @Override
     protected void initDate() {
         presenter=new ShopCarPresenterImpl();
@@ -117,9 +122,19 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             @Override
             public void onClick(View v) {
                if(UserManager.getInstance().isBindAdress()&&UserManager.getInstance().isBindTel()){
-                   List<ShopCarBean.ResultBean> shopCarPayList = CacheManager.getInstance().getShopCarPayList();
+                   shopCarPayList = CacheManager.getInstance().getShopCarPayList();
                    if(shopCarPayList.size()>0){
-                       ARouter.getInstance().build("/order/OrderActivity").withString("key","main").navigation();
+                       List<OrderBean> orderBeanList=new ArrayList<>();
+                       for (ShopCarBean.ResultBean resultBean : shopCarPayList) {
+                           OrderBean bean = new OrderBean();
+                           bean.setProductId(resultBean.getProductId());
+                           bean.setProductName(resultBean.getProductName());
+                           bean.setProductNum(resultBean.getProductNum());
+                           bean.setUrl(resultBean.getUrl());
+                           orderBeanList.add(bean);
+                       }
+                       presenter.checkInventory(orderBeanList);
+
                    }else {
                        Toast.makeText(getContext(), "未选中商品", Toast.LENGTH_SHORT).show();
                    }
@@ -243,23 +258,12 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
     }
 
     @Override
-    public void onRemoveManyError(ErrorBean bean) {
-        Toast.makeText(getContext(), ""+bean.getErrorMessage(), Toast.LENGTH_SHORT).show();
-        hideLoading(true,null);
-    }
-
-    @Override
     public void onSelectAllOk(SelectAllBean bean) {
 
         CacheManager.getInstance().selectAllProduct(checkboxAll.isChecked());
 
     }
 
-    @Override
-    public void onSelectAllError(ErrorBean bean) {
-        Toast.makeText(getContext(), ""+bean.getErrorMessage(), Toast.LENGTH_SHORT).show();
-        hideLoading(true,null);
-    }
 
     @Override
     public void onProductNumChangeOk(UpdateProductNumBean bean) {
@@ -270,11 +274,7 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
         CacheManager.getInstance().upDataEditProductNum(index,productNumChangeNum);
     }
 
-    @Override
-    public void onProductNumChangeError(ErrorBean bean) {
-        Toast.makeText(getContext(), ""+bean.getErrorMessage(), Toast.LENGTH_SHORT).show();
-        hideLoading(true,null);
-    }
+
 
     @Override
     public void onProductSelectChangeOk(UpdateProductSelectedBean bean) {
@@ -290,11 +290,52 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
 
     }
 
+
     @Override
-    public void onProductSelectChangeError(ErrorBean bean) {
+    public void onCheckOk(CheckInventoryBean bean) {
+        if(bean.getCode().equals("200")){
+            List<CheckInventoryBean.ResultBean> result = bean.getResult();
+            int i = result.size();
+            boolean isEnough=true;
+            notEnoughList.clear();
+            for (int j = 0; j < result.size(); j++) {
+                if(Integer.parseInt(result.get(j).getProductNum())<Integer.parseInt(shopCarPayList.get(j).getProductNum())){
+                    isEnough=false;
+                    notEnoughList.add(shopCarPayList.get(j));
+                    Log.i("Check", "onCheckOk: "+result.get(j).getProductName());
+                }
+            }
+            if(isEnough){
+                presenter.getOrderInfo(shopCarPayList);
+            }else {
+                String notEnough="";
+                for (ShopCarBean.ResultBean resultBean : notEnoughList) {
+                    notEnough+=resultBean.getProductName()+"    ";
+                }
+                Toast.makeText(getContext(),notEnough +"库存不足", Toast.LENGTH_SHORT).show();
+            }
+        }else {
+            Toast.makeText(getContext(), ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onGetOrderInfoOk(GetOrderInfoBean bean) {
+        if(bean.getCode().equals("200")){
+
+            ARouter.getInstance().build("/order/OrderActivity").withString("key","main").navigation();
+        }else {
+            Toast.makeText(getContext(), ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void onError(ErrorBean bean) {
         Toast.makeText(getContext(), ""+bean.getErrorMessage(), Toast.LENGTH_SHORT).show();
         hideLoading(true,null);
     }
+
+
 
     @Override
     public void showloading() {
@@ -336,7 +377,6 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
             cbAll.setChecked(isEditSelectAll);
         }
     }
-
     @Override
     public void onDestroyView() {
         super.onDestroyView();

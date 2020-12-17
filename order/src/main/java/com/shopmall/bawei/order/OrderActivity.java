@@ -23,7 +23,6 @@ import com.alipay.sdk.app.PayTask;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.manager.CacheManager;
 import com.example.framework.manager.UserManager;
-import com.example.net.bean.CheckInventoryBean;
 import com.example.net.bean.ShopCarBean;
 import com.shopmall.bawei.pay.qqb.AuthResult;
 import com.shopmall.bawei.pay.qqb.PayResult;
@@ -52,6 +51,7 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
     public static final String RSA_PRIVATE = "";
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
+
     @Override
     protected void initPresenter() {
         presenter=new OrderPresenterImpl();
@@ -63,9 +63,8 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
         buyOrder.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                List<ShopCarBean.ResultBean> shopCarPayList = CacheManager.getInstance().getShopCarPayList();
-                //ToDo
-//                presenter.checkInventory();
+                OrderInfoUtil2_0.setmoney(moneyValue);
+                payV2(buyOrder);
             }
         });
     }
@@ -92,6 +91,8 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
         pricePay.setText("¥"+moneyValue);
         List<ShopCarBean.ResultBean> shopCarPayList = CacheManager.getInstance().getShopCarPayList();
         adapter.updataData(shopCarPayList);
+        CacheManager.getInstance().removePayListFromOtherList();
+        CacheManager.getInstance().clearPayList();
     }
 
     @Override
@@ -113,6 +114,7 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
         rvOrder.setLayoutManager(new LinearLayoutManager(this));
         adapter=new OrderAdapter(this);
         rvOrder.setAdapter(adapter);
+
     }
 
     @SuppressLint("HandlerLeak")
@@ -125,9 +127,10 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
                     String resultInfo = payResult.getResult();
                     String resultStatus = payResult.getResultStatus();
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(OrderActivity.this, "9000", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        Toast.makeText(OrderActivity.this, "不是9000", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
@@ -135,9 +138,10 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
                     AuthResult authResult = new AuthResult((Map<String, String>) msg.obj, true);
                     String resultStatus = authResult.getResultStatus();
                     if (TextUtils.equals(resultStatus, "9000") && TextUtils.equals(authResult.getResultCode(), "200")) {
-                        Toast.makeText(OrderActivity.this, "9000", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        Toast.makeText(OrderActivity.this, "不是9000", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
                 }
@@ -176,18 +180,6 @@ public class OrderActivity extends BaseActivity<OrderPresenterImpl, OrderContrac
         payThread.start();
     }
 
-    @Override
-    public void onCheckOk(CheckInventoryBean bean) {
-        if(bean.getCode().equals("200")){
-            List<CheckInventoryBean.ResultBean> result = bean.getResult();
-            int i = result.size();
-            Toast.makeText(this, ""+i, Toast.LENGTH_SHORT).show();
-            OrderInfoUtil2_0.setmoney(moneyValue);
-            payV2(buyOrder);
-        }else {
-            Toast.makeText(this, ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
-        }
-    }
 
     @Override
     public void showloading() {

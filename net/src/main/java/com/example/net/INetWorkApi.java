@@ -3,6 +3,7 @@ package com.example.net;
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.CheckInventoryBean;
+import com.example.net.bean.GetOrderInfoBean;
 import com.example.net.bean.GoodsBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.MainBean;
@@ -63,5 +64,6 @@ public interface INetWorkApi {
     Observable<UpDateAddressBean> updateAddress(@FieldMap HashMap<String,String> map);
     @POST("checkInventory")
     Observable<CheckInventoryBean> checkInventory(@Body RequestBody body);
-
+    @POST("getOrderInfo")
+    Observable<GetOrderInfoBean> getOrderInfo(@Body RequestBody body);
 }

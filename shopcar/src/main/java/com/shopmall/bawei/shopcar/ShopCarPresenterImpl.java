@@ -2,7 +2,11 @@ package com.shopmall.bawei.shopcar;
 
 import android.util.Log;
 
+import com.example.framework.manager.CacheManager;
 import com.example.net.RetrofitCreater;
+import com.example.net.bean.CheckInventoryBean;
+import com.example.net.bean.GetOrderInfoBean;
+import com.example.net.bean.OrderBean;
 import com.example.net.bean.RemoveManyProductBean;
 import com.example.net.bean.SelectAllBean;
 import com.example.net.bean.ShopCarBean;
@@ -69,7 +73,7 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                     @Override
                     public void onError(Throwable e) {
                         Log.i("Yoyo", "onError: "+e.getMessage());
-                       iview.onRemoveManyError(ExceptionUtil.getErrorBean(e));
+                       iview.onError(ExceptionUtil.getErrorBean(e));
 
                     }
 
@@ -109,7 +113,7 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        iview.onSelectAllError(ExceptionUtil.getErrorBean(e));
+                        iview.onError(ExceptionUtil.getErrorBean(e));
 
                     }
 
@@ -156,7 +160,7 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        iview.onProductNumChangeError(ExceptionUtil.getErrorBean(e));
+                        iview.onError(ExceptionUtil.getErrorBean(e));
                     }
 
                     @Override
@@ -202,7 +206,108 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
 
                     @Override
                     public void onError(Throwable e) {
-                        iview.onProductSelectChangeError(ExceptionUtil.getErrorBean(e));
+                        iview.onError(ExceptionUtil.getErrorBean(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void checkInventory(List<OrderBean> list) {
+        JSONArray jsonArray = new JSONArray();
+        try {
+            for (OrderBean orderBean : list) {
+                JSONObject object = new JSONObject();
+                object.put("productId",orderBean.getProductId());
+                object.put("productNum",orderBean.getProductNum());
+                object.put("productName",orderBean.getProductName());
+                object.put("url",orderBean.getUrl());
+                jsonArray.put(object);
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonArray.toString());
+        RetrofitCreater.getiNetWorkApi().checkInventory(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iview.showloading();
+                    }
+                })
+                .subscribe(new Observer<CheckInventoryBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(CheckInventoryBean bean) {
+                        iview.hideLoading(true,null);
+                        iview.onCheckOk(bean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iview.onError(ExceptionUtil.getErrorBean(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void getOrderInfo(List<ShopCarBean.ResultBean> list) {
+        JSONObject object = new JSONObject();
+        JSONArray body = new JSONArray();
+        try {
+            object.put("subject","buy");
+            object.put("totalPrice", CacheManager.getInstance().getMoneyValue()+"");
+            for (ShopCarBean.ResultBean resultBean : list) {
+                JSONObject jsonObject = new JSONObject();
+                jsonObject.put("productName",resultBean.getProductName());
+                jsonObject.put("productId",resultBean.getProductId());
+                body.put(jsonObject);
+            }
+            object.put("body",body);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), object.toString());
+        RetrofitCreater.getiNetWorkApi().getOrderInfo(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iview.showloading();
+                    }
+                })
+                .subscribe(new Observer<GetOrderInfoBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(GetOrderInfoBean bean) {
+                        iview.hideLoading(true,null);
+                        iview.onGetOrderInfoOk(bean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iview.onError(ExceptionUtil.getErrorBean(e));
                     }
 
                     @Override
