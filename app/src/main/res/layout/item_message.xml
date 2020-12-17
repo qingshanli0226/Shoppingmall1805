@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:orientation="horizontal"
+    android:layout_margin="@dimen/dp_10"
+    android:layout_height="@dimen/dp_100">
+
+    <TextView
+        android:id="@+id/message_type"
+        android:text="支付消息"
+        android:textSize="@dimen/sp_25"
+        android:gravity="center"
+        android:textColor="#FFEB3B"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/message_body"
+        android:text="支付成功"
+        android:gravity="center"
+        android:textSize="@dimen/sp_20"
+        android:textColor="#F44336"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="match_parent"/>
+
+    <TextView
+        android:id="@+id/message_time"
+        android:text="2020.12.17"
+        android:textSize="15sp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

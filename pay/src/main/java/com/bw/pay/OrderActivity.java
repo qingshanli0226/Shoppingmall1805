@@ -154,6 +154,7 @@ public class OrderActivity extends BaseActivity<AddressPresenter, AddressContrac
 //                Toast.makeText(OrderActivity.this, "点击支付", Toast.LENGTH_SHORT).show();
                 checkInventory();
                 popupWindow.dismiss();
+                finish();
             }
         });
 

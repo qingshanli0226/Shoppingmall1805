@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -8,12 +9,14 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bw.framework.BaseFragment;
 import com.bw.framework.MessageManager;
 import com.bw.framework.dao.ShopcarMessage;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
 
+import com.shopmall.bawei.shopmall1805.activity.MessageActivity;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomeFragmentAdapter;
 import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
@@ -21,7 +24,7 @@ import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Route(path = "fragment/homeFragment")
 public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHomeView> implements HomeContract.IHomeView {
 
 
@@ -45,17 +48,6 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
         homeRv.setAdapter(homeFragmentAdapter);
 
 
-        MessageManager.getInstance().queryMessage((isSuccess, shopcarMessageList) -> {
-
-            Log.i("---", "initView: queryMessage："+shopcarMessageList.size());
-
-            for (ShopcarMessage shopcarMessage : shopcarMessageList) {
-                if (!shopcarMessage.getIsRead()){
-                   count++;
-                }
-            }
-            handler.sendEmptyMessage(101);
-        });
 
     }
      private  int count = 0;
@@ -79,6 +71,18 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     protected void initData() {
         super.initData();
         httpPresenter.onGetHomeData();
+
+        MessageManager.getInstance().queryMessage((isSuccess, shopcarMessageList) -> {
+
+            Log.i("---", "initView: queryMessage："+shopcarMessageList.size());
+
+            for (ShopcarMessage shopcarMessage : shopcarMessageList) {
+                if (!shopcarMessage.getIsRead()){
+                    count++;
+                }
+            }
+            handler.sendEmptyMessage(101);
+        });
     }
 
     @Override
@@ -115,6 +119,13 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
 
     @Override
     public void onRightClick() {
+        Intent intent = new Intent(getContext(), MessageActivity.class);
+        startActivity(intent);
+        getActivity().finish();
+    }
 
+    @Override
+    public void onLeftClick() {
+        super.onLeftClick();
     }
 }

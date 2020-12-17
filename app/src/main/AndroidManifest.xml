@@ -16,6 +16,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Fullscreen">
         <activity android:name=".detail.DetailsActivity"></activity>
+        <activity android:name=".activity.MessageActivity"/>
         <activity android:name=".activity.MainActivity" android:launchMode="singleTop"></activity>
         <activity android:name=".activity.WelcomActivity">
             <intent-filter>
