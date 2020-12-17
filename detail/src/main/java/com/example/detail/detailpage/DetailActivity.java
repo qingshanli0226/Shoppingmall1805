@@ -269,7 +269,7 @@ public class DetailActivity extends BaseActivity<DetailPresenterImpl, DetailCont
             ShopCarBean.ResultBean resultBean = new ShopCarBean.ResultBean();
             resultBean.setProductId(goodBean.getProduct_id());
             resultBean.setProductName(goodBean.getName());
-            resultBean.setProductNum(goodBean.getNumber()+"");
+            resultBean.setProductNum(num+"");
             resultBean.setProductPrice(goodBean.getCover_price());
             resultBean.setProductSelected(true);
             resultBean.setUrl(goodBean.getFigure());

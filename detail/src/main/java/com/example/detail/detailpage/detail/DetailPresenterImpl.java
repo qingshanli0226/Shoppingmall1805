@@ -24,6 +24,7 @@ public class DetailPresenterImpl extends DetailContract.DetailPresenter {
             jsonObject.put("productName",name);
             jsonObject.put("url",url);
             jsonObject.put("productPrice",price);
+            jsonObject.put("productSelected",true);
         } catch (JSONException e) {
             e.printStackTrace();
         }

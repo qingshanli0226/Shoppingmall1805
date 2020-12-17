@@ -114,8 +114,10 @@ public class CacheManager {
                       if(shopCarBean.getCode().equals("200")){
                           List<ShopCarBean.ResultBean> result = shopCarBean.getResult();
                           shopCarList.addAll(result);
+                          for (ShopCarBean.ResultBean resultBean : result) {
+                              Log.i("Yoyo", "onNext: "+resultBean.isProductSelected());
+                          }
                           setEditList(result);
-                          Log.i("Yoyo", "ok: "+result.size());
                           notifyShopCarDataChanged();
                       }else {
                           Toast.makeText(context, ""+shopCarBean.getMessage(), Toast.LENGTH_SHORT).show();

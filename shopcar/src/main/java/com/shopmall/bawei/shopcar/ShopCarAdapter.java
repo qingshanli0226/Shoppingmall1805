@@ -12,13 +12,9 @@ import com.example.net.Constants;
 import com.example.net.bean.ShopCarBean;
 import com.shoppmall.common.adapter.BaseRvAdapter;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class ShopCarAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
     private Context context;
     private IOnShopCarItemChildClickListener listener;
-    private List<Boolean> isChecks=new ArrayList<>();
     public ShopCarAdapter(Context context, IOnShopCarItemChildClickListener listener) {
         this.context = context;
         this.listener = listener;
