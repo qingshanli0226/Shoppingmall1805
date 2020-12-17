@@ -24,7 +24,7 @@ public class GetError {
         } else if (e instanceof ConnectException) {
             error="4000,网络连接错误";
         } else {
-           error="20000,其他错误";
+           error="20000,"+e.getMessage();
         }
         return  error;
     }

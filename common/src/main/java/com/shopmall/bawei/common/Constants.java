@@ -115,7 +115,7 @@ public class Constants {
     //获取服务端购物车产品信息的接口
     public static final String GETSHORTCART_PRODUCT="getShortcartProducts";
     //更新服务端购物车产品的数量的接口
-    public static final String UPDATE_PRODUCT="updateProductNum";
+    public static final String UPDATE_PRODUCTNUM="updateProductNum";
     //updateProductSelected
     public static final String UPDATE_PRODUCTSELECTED="updateProductSelected";
     //检查服务端多个产品是否库存充足
@@ -125,9 +125,17 @@ public class Constants {
     public static final String GETORDERINFO="getOrderInfo";
     //从服务端购物车删除一个产品的接口
     public static final String REMOVEONE_PRODUCT="removeOneProduct";
+    //从服务端购物车删除多个产品的接口
+    public static final String REMOVEMANY_PRODUCT="removeManyProduct";
 
     //全选服务端购物车产品或者全不选
     public static final String SELECTALL_PRODUCT="selectAllProduct";
+
+    //更新用户绑定的电话
+    public static final String UPDATEPHONE="updatePhone";
+
+    //更新地址的接口
+    public static final String UPDATEADDRESS="updateAddress";
 
 
 }

@@ -4,5 +4,7 @@
     <application>
 
         <activity android:name=".UserMainActivity"/>
+
+        <activity android:name=".InfoMainActivity"/>
     </application>
 </manifest>

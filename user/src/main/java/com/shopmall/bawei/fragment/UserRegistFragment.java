@@ -7,13 +7,13 @@ import android.widget.Toast;
 
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseFragment;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.presenter.RegistPresenter;
 import com.shopmall.bawei.user.R;
 
 import java.util.HashMap;
 
-public class UserRegistFragment extends BaseFragment<RegistPresenter> implements Constart.RegistConstartView {
+public class UserRegistFragment extends BaseFragment<RegistPresenter> implements Constant.RegistConstartView {
 
     private EditText etRegistPhone;
     private EditText etRegistPwd;

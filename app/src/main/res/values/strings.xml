@@ -14,5 +14,14 @@
     <string name="add_shopcar">加入购物车</string>
     <string name="shop_like">收藏</string>
     <string name="shop_guest">客服</string>
+    <string name="message_no_read">未读</string>
+    <string name="message_yes_read">已读</string>
+    <string name="message_date">操作时间：</string>
+    <string name="message_date2">消费时间：</string>
+    <string name="message_time">2020-12-16 19:07</string>
+    <string name="message_titile">支付提示！！！</string>
+    <string name="message_order_no">您好，您的订单已生成！</string>
+    <string name="message_order_yes">您好，您已成功消费！</string>
+    <string name="message_defray">您有一比已支付信息的账单，请查看！</string>
 
 </resources>

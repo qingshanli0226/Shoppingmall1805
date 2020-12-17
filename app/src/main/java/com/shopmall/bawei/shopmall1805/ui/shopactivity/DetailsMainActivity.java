@@ -15,9 +15,11 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
 import com.shopmall.bawei.framework.callback.Itest;
+import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.shopcar.ShopCarNet;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.DetailsData;
+import com.shopmall.bean.ShopcarBean;
 import com.shopmall.glide.Myglide;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.restname.RestName;
@@ -26,8 +28,9 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class DetailsMainActivity extends BaseActivity {
+public class DetailsMainActivity extends BaseActivity implements ShopCarmanager.IShopcarDataChangeListener {
     private ImageView backDetails;
 
     private TextView shopCar;
@@ -47,7 +50,7 @@ public class DetailsMainActivity extends BaseActivity {
     private Button addShopYes;
     private PopupWindow popupWindow;
     private TextView shopLike;
-
+    private Circopview circopview;
     @Override
     protected void oncreatePresenter() {
 
@@ -210,7 +213,6 @@ public class DetailsMainActivity extends BaseActivity {
      * @param inflate
      */
     private void getpopuViewid(View inflate) {
-        ARouter.getInstance().inject(this);
         shop_image = inflate.findViewById(R.id.shop_image);
         shop_num = inflate.findViewById(R.id.shop_num);
         add_shop_name = inflate.findViewById(R.id.add_shop_name);
@@ -219,7 +221,6 @@ public class DetailsMainActivity extends BaseActivity {
         addShopYes = inflate.findViewById(R.id.add_shop_yes);
 
         addShopMoney = inflate.findViewById(R.id.add_shop_money);
-
 
         shopJian = inflate.findViewById(R.id.shop_jian);
         shopJia = inflate.findViewById(R.id.shop_jia);
@@ -237,14 +238,15 @@ public class DetailsMainActivity extends BaseActivity {
      * 初始化控件
      */
     protected void initview() {
-
+        ARouter.getInstance().inject(this);
+        ShopCarmanager.getShopCarmanager().registiShopcarDataChangeListener(this);
         shopCar = findViewById(R.id.shop_car);
         shopLike = findViewById(R.id.shop_like);
+        circopview = findViewById(R.id.circopview);
         imageDetails = findViewById(R.id.image_details);
         nameDetails = findViewById(R.id.name_details);
         moneyDetails = findViewById(R.id.money_details);
         jiaDetails = findViewById(R.id.jia_shopcar_details);
-
 
 
         backDetails = findViewById(R.id.back_details);
@@ -260,10 +262,49 @@ public class DetailsMainActivity extends BaseActivity {
         Myglide.getMyglide().tupian(this,imageDetails,details.getImage());
         nameDetails.setText(details.getName());
         moneyDetails.setText("￥"+details.getPice());
+        List<ShopcarBean.ResultBean> shopcarBeanList = ShopCarmanager.getShopCarmanager().getShopcarBeanList();
+        if (shopcarBeanList!=null){
+            circopview.setNum(shopcarBeanList.size()+"");
+        }else {
+            circopview.setVisibility(View.GONE);
+        }
+
     }
 
     @Override
     protected int layoutid() {
         return R.layout.activity_details_main;
+    }
+
+    @Override
+    public void shopcarData(List<ShopcarBean.ResultBean> shopcarBeans) {
+           circopview.setVisibility(View.VISIBLE);
+            circopview.setNum(shopcarBeans.size()+"");
+    }
+
+    @Override
+    public void undateshopcar(int positon, ShopcarBean.ResultBean shopcar) {
+
+    }
+
+    @Override
+    public void getMoney(String money) {
+
+    }
+
+    @Override
+    public void getallselect(boolean isallselect) {
+
+    }
+
+    @Override
+    public void getdeleteallselect(boolean isallselect) {
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        ShopCarmanager.getShopCarmanager().uniShopcarDataChangeListener(this);
     }
 }

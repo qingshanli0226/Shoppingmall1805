@@ -1,8 +1,10 @@
 package com.shopmall.bawei.framework.mvptest.model;
 
 
+import android.util.Log;
+
 import com.shopmall.bawei.framework.callback.ILogin;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
@@ -17,7 +19,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class LoginModel implements Constart.LoginConstartModel {
+public class LoginModel implements Constant.LoginConstartModel {
 
     @Override
     public void login(String url, HashMap<String, String> map, final LogingPage logingPage, final ILogin iLogin) {
@@ -41,12 +43,14 @@ public class LoginModel implements Constart.LoginConstartModel {
 
                     @Override
                     public void onNext(Loginbean loginbean) {
+                        Log.e("throw","成功");
                               logingPage.showsucessPage();
                               iLogin.Ok(loginbean);
                     }
 
                     @Override
                     public void onError(Throwable e) {
+                        Log.e("throw",e.getMessage());
                         logingPage.showsucessPage();
                         String errorBean = GetError.getErrorBean(e);
                         iLogin.No(errorBean);

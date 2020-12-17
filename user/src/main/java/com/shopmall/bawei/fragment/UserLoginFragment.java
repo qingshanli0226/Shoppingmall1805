@@ -10,7 +10,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseFragment;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.presenter.LoginPresenter;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bean.Loginbean;
@@ -18,7 +18,7 @@ import com.shopmall.bawei.framework.manager.ShopUserManager;
 
 import java.util.HashMap;
 
-public class UserLoginFragment extends BaseFragment<LoginPresenter> implements Constart.LoginConstartView {
+public class UserLoginFragment extends BaseFragment<LoginPresenter> implements Constant.LoginConstartView {
     private EditText etLoginPhone;
     private EditText etLoginPwd;
     private Button btnLogin;

@@ -230,18 +230,32 @@
             android:gravity="center"
             ></TextView>
 
-
-        <TextView
-            android:id="@+id/shop_car"
+        <RelativeLayout
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:padding="@dimen/dp_10"
-            android:drawableTop="@mipmap/icon_good_detail_cart"
-            android:drawablePadding="@dimen/dp_10"
-            android:text="@string/shop_car"
-            android:gravity="center"
-            ></TextView>
+
+            >
+            <TextView
+                android:id="@+id/shop_car"
+                style="@style/view_match_wrap"
+                android:padding="@dimen/dp_10"
+                android:drawableTop="@mipmap/icon_good_detail_cart"
+                android:drawablePadding="@dimen/dp_10"
+                android:text="@string/shop_car"
+                android:gravity="center"
+                ></TextView>
+           <com.shopmall.bawei.shopmall1805.ui.shopactivity.Circopview
+               android:id="@+id/circopview"
+               android:layout_marginRight="@dimen/dp_10"
+               android:layout_alignParentRight="true"
+               android:layout_width="@dimen/dp_30"
+               android:layout_height="@dimen/dp_30"
+
+               ></com.shopmall.bawei.shopmall1805.ui.shopactivity.Circopview>
+
+        </RelativeLayout>
+
 
         <Button
             android:id="@+id/jia_shopcar_details"

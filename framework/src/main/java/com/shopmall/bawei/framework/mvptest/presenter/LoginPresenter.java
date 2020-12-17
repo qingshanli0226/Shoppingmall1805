@@ -2,16 +2,16 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 
 import com.shopmall.bawei.framework.callback.ILogin;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.LoginRepository;
 
 import java.util.HashMap;
 
-public class LoginPresenter extends Constart.LoginConstartPresenter {
+public class LoginPresenter extends Constant.LoginConstartPresenter {
 
 
-    public LoginPresenter(Constart.LoginConstartView loginConstartView) {
+    public LoginPresenter(Constant.LoginConstartView loginConstartView) {
         super(loginConstartView);
     }
 

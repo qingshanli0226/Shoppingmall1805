@@ -57,6 +57,27 @@ public class ShopUserManager  {
         }
     }
 
+    //更改电话
+    public void setphone(String phone){
+          loginbean.getResult().setPhone(phone);
+    }
+
+    //更改收货地址
+    public void setaddress(String address){
+        loginbean.getResult().setAddress(address);
+    }
+
+    //更改电话
+    public String getphone(){
+       return (String)loginbean.getResult().getPhone();
+    }
+
+    //更改收货地址
+    public String getaddress(){
+        return (String)loginbean.getResult().getAddress();
+    }
+
+
     /**
      * 获取token值
      * @return

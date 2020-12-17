@@ -2,13 +2,13 @@ package com.shopmall.bawei.framework.mvptest.repository;
 
 
 import com.shopmall.bawei.framework.callback.ILogin;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.model.LoginModel;
 
 import java.util.HashMap;
 
-public class LoginRepository extends Constart.LoginConstartRepository{
+public class LoginRepository extends Constant.LoginConstartRepository{
 
 
     @Override

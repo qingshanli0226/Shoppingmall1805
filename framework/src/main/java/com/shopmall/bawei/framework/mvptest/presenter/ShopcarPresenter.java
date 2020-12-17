@@ -2,19 +2,22 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.IShopcar;
 import com.shopmall.bawei.framework.callback.Itest;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
+import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.framework.mvptest.repository.ShopcarRepository;
+import com.shopmall.bean.Checkinven;
 import com.shopmall.bean.Registbean;
 import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
-public class ShopcarPresenter extends Constart.ShopcarConstartPresenter {
+public class ShopcarPresenter extends Constant.ShopcarConstartPresenter {
 
-    public ShopcarPresenter(Constart.ShopcarConstartView shopcarConstartView) {
+    public ShopcarPresenter(Constant.ShopcarConstartView shopcarConstartView) {
         super(shopcarConstartView);
     }
      //添加商品
@@ -93,6 +96,125 @@ public class ShopcarPresenter extends Constart.ShopcarConstartPresenter {
             @Override
             public void onError(String mag) {
 
+            }
+        });
+    }
+    // 从服务端购物车删除多个产品
+    @Override
+    public void removeManyProduct(String url) {
+          mRepository.removeManyProduct(url, new IShopcar() {
+              @Override
+              public void onSucess(Object... objects) {
+                  if (objects!=null){
+                      Registbean registbean=(Registbean) objects[0];
+                      if (registbean.getCode().equals("200")){
+                            ShopCarmanager.getShopCarmanager().removeselect();
+                      }
+                  }
+              }
+
+              @Override
+              public void onError(String mag) {
+
+              }
+          });
+    }
+    //更新服务端购物车产品的数量
+    @Override
+    public void updateProductNum(String url, final int newnum, final ShopcarBean.ResultBean shopcar, final int positon) {
+        mRepository.updateProductNum(url,newnum, shopcar, new IShopcar() {
+            @Override
+            public void onSucess(Object... objects) {
+                    if (objects!=null){
+                        Registbean registbean=(Registbean) objects[0];
+                        if (registbean.getCode().equals("200")){
+                            ShopCarmanager.getShopCarmanager().updateshopcarnum(shopcar,newnum,positon);
+                        }
+                    }
+            }
+
+            @Override
+            public void onError(String mag) {
+
+            }
+        });
+    }
+    // 检查服务端多个产品是否库存充足
+    @Override
+    public void checkInventory(String url, final Itest itest) {
+         mRepository.checkInventory(url, new IShopcar() {
+             @Override
+             public void onSucess(Object... objects) {
+                 if (objects!=null){
+                     Checkinven checkinven =(Checkinven) objects[0];
+                     if (checkinven.getCode().equals("200")){
+                         List<Checkinven.ResultBean> result = checkinven.getResult();
+                         List<ShopcarBean.ResultBean> shopcarBeanList = ShopCarmanager.getShopCarmanager().getSelectshopcarBeanList();
+
+                         for (int i = 0; i <result.size() ; i++) {
+                             ShopcarBean.ResultBean resultBean = shopcarBeanList.get(i);
+                             Checkinven.ResultBean resultBean1 = result.get(i);
+                             if (Integer.parseInt(resultBean.getProductNum())>Integer.parseInt(resultBean1.getProductNum())){
+                                    itest.ontest(resultBean.getProductName()+"产品数量不足,库存："+resultBean1.getProductNum());
+                                    return;
+                             }
+                         }
+                         itest.ontest("200");
+                     }
+                 }
+             }
+
+             @Override
+             public void onError(String mag) {
+
+             }
+         });
+    }
+
+    @Override
+    public void updatePhone(String url, String phone) {
+             mRepository.updatePhone(url, phone, new IShopcar() {
+                 @Override
+                 public void onSucess(Object... objects) {
+
+                        if (objects!=null){
+                            Registbean registbean=(Registbean)objects[0];
+                            if (registbean.getCode().equals("200")){
+                                mView.get().Success(registbean.getMessage());
+                                if (registbean.getResult()!=null){
+                                    ShopUserManager.getInstance().setphone(registbean.getResult());
+                                }
+                            }
+                        }
+                 }
+
+                 @Override
+                 public void onError(String mag) {
+                      mView.get().Error(mag);
+                 }
+             });
+    }
+
+    @Override
+    public void updateAddress(String url, String address) {
+        mRepository.updateAddress(url,address, new IShopcar() {
+            @Override
+            public void onSucess(Object... objects) {
+                if (objects!=null){
+                    Registbean registbean=(Registbean)objects[0];
+                    if (registbean.getCode().equals("200")){
+                        mView.get().Success(registbean.getMessage());
+                        if (registbean.getResult()!=null){
+                            ShopUserManager.getInstance().setaddress(registbean.getResult());
+                        }
+
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String mag) {
+                mView.get().Error(mag);
             }
         });
     }

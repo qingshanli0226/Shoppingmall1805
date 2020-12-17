@@ -1,5 +1,6 @@
 package com.shopmall.bawei.net;
 
+import com.shopmall.bean.Checkinven;
 import com.shopmall.bean.HomeData;
 import com.shopmall.bean.Loginbean;
 import com.shopmall.bean.Registbean;
@@ -89,5 +90,31 @@ public interface Https {
      */
     @POST
     Observable<Registbean> getselectAllProduct(@Url String url,@Body RequestBody requestBody);
+    /**
+     * 从服务端购物车删除一个产品
+     */
+    @POST
+    Observable<Registbean> getremoveManyProduct(@Url String url,@Body RequestBody requestBody);
+    /**
+     * 更新服务端购物车产品的数量
+     */
+    @POST
+    Observable<Registbean> getupdateProductNum(@Url String url,@Body RequestBody requestBody);
+    /**
+     * 检查服务端多个产品是否库存充足
+     */
+    @POST
+    Observable<Checkinven> getcheckInventory(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 更新用户绑定的电话
+     */
+    @POST
+    Observable<Registbean> getupdatePhone(@Url String url, @QueryMap HashMap<String,String> map);
+    /**
+     * 更新用户收货地址
+     */
+    @POST
+    Observable<Registbean> getupdateAddress(@Url String url, @QueryMap HashMap<String,String> map);
+
 
 }

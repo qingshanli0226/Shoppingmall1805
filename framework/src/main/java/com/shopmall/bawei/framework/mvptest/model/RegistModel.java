@@ -1,7 +1,7 @@
 package com.shopmall.bawei.framework.mvptest.model;
 
 import com.shopmall.bawei.framework.callback.IRegist;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
@@ -16,7 +16,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class RegistModel implements Constart.RegistConstartModel {
+public class RegistModel implements Constant.RegistConstartModel {
     @Override
     public void regist(String url, HashMap<String, String> map, final LogingPage logingPage, final IRegist iRegist) {
         Https getinstance = HttpsFactory.getHttpsFactory().getinstance(Https.class);

@@ -2,14 +2,14 @@ package com.shopmall.bawei.framework.mvptest.presenter;
 
 
 import com.shopmall.bawei.framework.callback.Home;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.HpmeRepository;
 
-public class HomePresenter extends Constart.HomeConstartPresenter {
+public class HomePresenter extends Constant.HomeConstartPresenter {
 
 
-    public HomePresenter(Constart.HomeConstartView homeConstartView) {
+    public HomePresenter(Constant.HomeConstartView homeConstartView) {
         super(homeConstartView);
     }
 

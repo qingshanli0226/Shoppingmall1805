@@ -14,8 +14,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
+import com.shopmall.bawei.framework.shopcar.ShopCarNet;
 import com.shopmall.bawei.shopcaradapter.ShopcarAdapter;
 import com.shopmall.bean.ShopcarBean;
 
@@ -32,6 +34,7 @@ public class ShopCarMainActivity extends BaseActivity implements ShopCarmanager.
     private CheckBox shopcarAllselect;
     private TextView shopcarMoney;
     private Button shopcarJisuan;
+    private Button deletebutton;
     @Override
     protected void oncreatePresenter() {
 
@@ -45,6 +48,7 @@ public class ShopCarMainActivity extends BaseActivity implements ShopCarmanager.
         popupWindow.setWidth(RecyclerView.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(60);
         checkBox = inflate.findViewById(R.id.popu_shopcar_allselect);
+        deletebutton = inflate.findViewById(R.id.popu_shopcar_delect);
         shopcarBianji.setOnClickListener(new View.OnClickListener() {
             @Override
             @RequiresApi(api = Build.VERSION_CODES.KITKAT)
@@ -60,6 +64,43 @@ public class ShopCarMainActivity extends BaseActivity implements ShopCarmanager.
                     shopcarBianji.setText("编辑");
                 }
 
+            }
+        });
+
+
+        //计算的全选/全不选
+        shopcarAllselect.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                //  Toast.makeText(getContext(), ""+shopcarAllselect.isChecked(), Toast.LENGTH_SHORT).show();
+                ShopCarNet.getShopCarNet().selectAllProduct(shopcarAllselect.isChecked());
+            }
+        });
+
+        //删除的全选/全不选
+        checkBox.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkBox.isChecked()){
+                    ShopCarmanager.getShopCarmanager().deteallselect();
+                }else {
+                    ShopCarmanager.getShopCarmanager().clearalldeteshopcar();
+                }
+                // Toast.makeText(getContext(), ""+checkBox.isChecked(), Toast.LENGTH_SHORT).show();
+                shopcarAdapter.notifyDataSetChanged();
+            }
+        });
+
+        //点击删除按钮
+        deletebutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(ShopCarMainActivity.this, "删除", Toast.LENGTH_SHORT).show();
+                ShopCarNet.getShopCarNet().removeManyProduct(Constants.REMOVEMANY_PRODUCT);
+                shopcarAdapter.setIsselect(false);
+                shopcarBianji.setText("编辑");
+                popupWindow.dismiss();
             }
         });
     }
@@ -94,6 +135,8 @@ public class ShopCarMainActivity extends BaseActivity implements ShopCarmanager.
 
        shopcarAdapter.updataData(shopcarlist);
 
+        shopcarMoney.setText(ShopCarmanager.getShopCarmanager().getMoney());
+        shopcarAllselect.setChecked(ShopCarmanager.getShopCarmanager().isallselect());
 
     }
 

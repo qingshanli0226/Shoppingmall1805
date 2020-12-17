@@ -1,3 +1,25 @@
 <resources>
-    <string name="app_name">order</string>
+    <string name="app_name">Shopmall1805</string>
+    <string name="shop_details">商品详情</string>
+    <string name="shop_kuan">款式</string>
+    <string name="shop_num">数量</string>
+    <string name="button_no">取消</string>
+    <string name="button_yes">确认</string>
+    <string name="edit_hit">输入搜索信息</string>
+    <string name="title_msg">消息</string>
+    <string name="class_hot_tui">热卖推荐</string>
+    <string name="class_fen">常用分类</string>
+    <string name="login_regist">登陆/注册</string>
+    <string name="shop_car">购物车</string>
+    <string name="add_shopcar">加入购物车</string>
+    <string name="shop_like">收藏</string>
+    <string name="shop_guest">客服</string>
+    <string name="order_name">陈乾：</string>
+    <string name="order_phone">16638645430</string>
+    <string name="order_shouhuo">收货不便时，可选择暂存服务</string>
+    <string name="order_submit">提交订单</string>
+    <string name="order_heji">合计：</string>
+    <string name="order_num">共3件，</string>
+    <string name="order_color">颜色：黑色；尺码XL</string>
+
 </resources>

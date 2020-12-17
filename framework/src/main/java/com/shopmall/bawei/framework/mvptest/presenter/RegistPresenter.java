@@ -1,15 +1,15 @@
 package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.IRegist;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.RegistRepository;
 import com.shopmall.bean.Registbean;
 
 import java.util.HashMap;
 
-public class RegistPresenter extends Constart.RegistConstartPresenter {
-    public RegistPresenter(Constart.RegistConstartView registConstartView) {
+public class RegistPresenter extends Constant.RegistConstartPresenter {
+    public RegistPresenter(Constant.RegistConstartView registConstartView) {
         super(registConstartView);
     }
 

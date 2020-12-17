@@ -4,7 +4,7 @@ package com.shopmall.bawei.framework.mvptest.model;
 import android.util.Log;
 
 import com.shopmall.bawei.framework.callback.Home;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
@@ -17,7 +17,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class HomeModel implements Constart.HomeConstartModel {
+public class HomeModel implements Constant.HomeConstartModel {
 
     @Override
     public void homec(String url, final LogingPage logingPage, final Home home) {

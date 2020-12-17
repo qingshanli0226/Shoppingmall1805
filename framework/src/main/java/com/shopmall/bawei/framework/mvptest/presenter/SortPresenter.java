@@ -1,13 +1,13 @@
 package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.Sort;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.SortRepository;
 
-public class SortPresenter extends Constart.SortConstartPresenter {
+public class SortPresenter extends Constant.SortConstartPresenter {
 
-    public SortPresenter(Constart.SortConstartView sortConstartView) {
+    public SortPresenter(Constant.SortConstartView sortConstartView) {
         super(sortConstartView);
     }
 

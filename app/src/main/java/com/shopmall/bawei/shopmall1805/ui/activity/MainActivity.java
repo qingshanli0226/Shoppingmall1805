@@ -11,17 +11,17 @@ import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.framework.base.BaseActivity;
-import com.shopmall.bawei.framework.service.LoginService;
-import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.FindFragment;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.HomeFragment;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.IndividualFragment;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.ShopCarFragment;
-import com.shopmall.bawei.shopmall1805.ui.fragment_main.SortFragment;
-import com.shopmall.bean.Cus;
-import com.shopmall.bean.ShopcarBean;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
+import com.shopmall.bawei.framework.service.LoginService;
+import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.ui.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.HomeFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.IndividualFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.ShopCarFragment;
+import com.shopmall.bawei.shopmall1805.ui.fragment.SortFragment;
+import com.shopmall.bean.Cus;
+import com.shopmall.bean.ShopcarBean;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,8 +38,8 @@ public class MainActivity extends BaseActivity implements ShopCarmanager.IShopca
     private ShopCarFragment shopCarFragment;
     private IndividualFragment individualFragment;
     private int num;
-
     private Intent intent;
+
 
     @Override
     protected void oncreatePresenter() {
@@ -78,12 +78,13 @@ public class MainActivity extends BaseActivity implements ShopCarmanager.IShopca
     @Override
     protected void initview() {
         ARouter.getInstance().inject(this);
+        intent = new Intent(MainActivity.this, LoginService.class);
+        startService(intent);
         ShopCarmanager.getShopCarmanager().registiShopcarDataChangeListener(this);
         viewpagerMain = findViewById(R.id.viewpager_main);
         commonMain = findViewById(R.id.common_main);
 
-        intent = new Intent(MainActivity.this, LoginService.class);
-        startService(intent);
+
     }
 
     @Override

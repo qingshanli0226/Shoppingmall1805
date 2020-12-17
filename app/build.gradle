@@ -26,6 +26,11 @@ android {
 
 dependencies {
 
+    //导入LeakCanary的依赖，去定位页面的内存泄漏问题。
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
+
     implementation ('com.alibaba:arouter-api:1.4.1')
     annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 

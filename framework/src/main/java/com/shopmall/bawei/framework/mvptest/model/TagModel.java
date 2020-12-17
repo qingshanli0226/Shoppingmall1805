@@ -1,7 +1,7 @@
 package com.shopmall.bawei.framework.mvptest.model;
 
 import com.shopmall.bawei.framework.callback.Tag;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class TagModel implements Constart.TagConstartModel {
+public class TagModel implements Constant.TagConstartModel {
     @Override
     public void Tagdata(String url, final LogingPage logingPage, final Tag sort) {
         Https getinstance = HttpsFactory.getHttpsFactory().getinstance(Https.class);

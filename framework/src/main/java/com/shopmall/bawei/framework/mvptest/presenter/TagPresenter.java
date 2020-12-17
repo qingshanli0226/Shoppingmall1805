@@ -1,12 +1,12 @@
 package com.shopmall.bawei.framework.mvptest.presenter;
 
 import com.shopmall.bawei.framework.callback.Tag;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvptest.repository.TagRepository;
 
-public class TagPresenter extends Constart.TagConstartPresenter {
-    public TagPresenter(Constart.TagConstartView tagConstartView) {
+public class TagPresenter extends Constant.TagConstartPresenter {
+    public TagPresenter(Constant.TagConstartView tagConstartView) {
         super(tagConstartView);
     }
 

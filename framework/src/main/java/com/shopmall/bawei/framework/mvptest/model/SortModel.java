@@ -1,7 +1,7 @@
 package com.shopmall.bawei.framework.mvptest.model;
 
 import com.shopmall.bawei.framework.callback.Sort;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
@@ -14,7 +14,7 @@ import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 
-public class SortModel implements Constart.SortConstartModel {
+public class SortModel implements Constant.SortConstartModel {
 
     @Override
     public void Sort(String url, final LogingPage logingPage, final Sort sort) {

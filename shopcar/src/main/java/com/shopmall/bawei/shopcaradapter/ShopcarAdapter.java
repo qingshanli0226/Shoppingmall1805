@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.shopmall.bawei.framework.base.BaseRVAdapter;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
@@ -56,7 +57,7 @@ public class ShopcarAdapter extends BaseRVAdapter<ShopcarBean.ResultBean> {
         
     }
     //为false,正常
-    private void finshconvert(final ShopcarBean.ResultBean itemData, BaseViewHolder baseViewHolder, final int position) {
+    private void finshconvert(final ShopcarBean.ResultBean itemData, final BaseViewHolder baseViewHolder, final int position) {
               ShopCarmanager.getShopCarmanager().delteclear();
               if (itemData.isProductSelected()){
                   checkBox.setChecked(true);
@@ -71,16 +72,39 @@ public class ShopcarAdapter extends BaseRVAdapter<ShopcarBean.ResultBean> {
                   }
               });
 
+              jian.setOnClickListener(new View.OnClickListener() {
+                  @Override
+                  public void onClick(View v) {
+                      int num = Integer.parseInt(itemData.getProductNum());
+                      num--;
+                      if (num<1){
+                          Toast.makeText(baseViewHolder.itemView.getContext(), "已达到最少数量", Toast.LENGTH_SHORT).show();
+                      }else {
+                           ShopCarNet.getShopCarNet().updateProductNum(num,itemData,position);
+                      }
+                  }
+              });
+
+         jia.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int num = Integer.parseInt(itemData.getProductNum());
+                num++;
+
+                    ShopCarNet.getShopCarNet().updateProductNum(num,itemData,position);
+            }
+        });
+
     }
 
     //为true，编辑
     private void editconvert(final ShopcarBean.ResultBean itemData, final BaseViewHolder baseViewHolder, final int position) {
-        if (ShopCarmanager.getShopCarmanager().isallselect()){
+        if (ShopCarmanager.getShopCarmanager().isdelectallselect()){
             checkBox.setChecked(true);
-        }else if (ShopCarmanager.getShopCarmanager().getdeleteshopcarlist().size()==0){
+        }else if (ShopCarmanager.getShopCarmanager().isdeleteshopcarlist()){
             checkBox.setChecked(false);
         }
-
+       // Log.e("bianji",""+ShopCarmanager.getShopCarmanager().getdeleteshopcarlist());
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,6 +112,8 @@ public class ShopcarAdapter extends BaseRVAdapter<ShopcarBean.ResultBean> {
                // Toast.makeText(baseViewHolder.itemView.getContext(), ""+position, Toast.LENGTH_SHORT).show();
             }
         });
+//        jia.setEnabled(true);
+//        jian.setEnabled(true);
     }
 
     @Override

@@ -3,7 +3,7 @@ package com.shopmall.bawei.framework.shopcar;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseUrl;
 import com.shopmall.bawei.framework.callback.Itest;
-import com.shopmall.bawei.framework.constart.Constart;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.presenter.ShopcarPresenter;
 import com.shopmall.bean.ShopcarBean;
 
@@ -11,7 +11,7 @@ import org.json.JSONObject;
 
 import java.util.HashMap;
 
-public class ShopCarNet extends BaseUrl<ShopcarPresenter> implements Constart.ShopcarConstartView {
+public class ShopCarNet extends BaseUrl<ShopcarPresenter> implements Constant.ShopcarConstartView {
      private volatile static ShopCarNet shopCarNet;
      public static ShopCarNet getShopCarNet(){
            if (null==shopCarNet){
@@ -22,6 +22,10 @@ public class ShopCarNet extends BaseUrl<ShopcarPresenter> implements Constart.Sh
                }
            }
            return shopCarNet;
+     }
+
+     private ShopCarNet(){
+
      }
 
 
@@ -58,8 +62,19 @@ public class ShopCarNet extends BaseUrl<ShopcarPresenter> implements Constart.Sh
     }
 
 
+    // 从服务端购物车删除多个产品
+    public void removeManyProduct(String url){
+        mPresenter.removeManyProduct(url);
+    }
+    //更新服务端购物车产品的数量
+    public void updateProductNum(int newnum,ShopcarBean.ResultBean shopcar, int positon){
+        mPresenter.updateProductNum(Constants.UPDATE_PRODUCTNUM,newnum,shopcar,positon);
+    }
 
-
+    // 检查服务端多个产品是否库存充足
+    public void checkInventory(String url,Itest itest){
+         mPresenter.checkInventory(url,itest);
+    }
 
     @Override
     public void Success(Object... objects) {
