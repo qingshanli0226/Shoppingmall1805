@@ -1,5 +1,7 @@
 package com.shopmall.bawei.shopmall1805.apter;
 
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shopmall.bawei.shopmall1805.R;
@@ -18,6 +20,13 @@ public class MessageApter extends BaseRVAdapter<ShangTitle> {
         TextView bodyTv = baseViewHolder.getView(R.id.bodyTv);
         titleTv.setText(itemData.getTitle());
         bodyTv.setText(itemData.getBody());
+        ImageView imageView=baseViewHolder.getView(R.id.red);
+        if (itemData.getIsRead()){
+            imageView.setVisibility(View.GONE);
+        }else {
+            imageView.setVisibility(View.VISIBLE);
+
+        }
     }
 
     @Override

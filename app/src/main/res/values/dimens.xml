@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-  <dimen name="CommonTabLayout">100dp</dimen>
+  <dimen name="CommonTabLayout">80dp</dimen>
   <dimen name="CommonTabLayouticon">50dp</dimen>
   <dimen name="XQTextSize">28dp</dimen>
     <dimen name="Margin">10dp</dimen>

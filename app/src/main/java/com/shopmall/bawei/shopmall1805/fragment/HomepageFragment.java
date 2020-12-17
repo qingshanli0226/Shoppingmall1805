@@ -47,7 +47,7 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
         prine.getskerak(loadingPage);
         int messageCount = MessageManager.getInstance().getMessageCount();
         if (messageCount!=0) {
-            toolerMessage.setText(messageCount+"");
+            toolerMessage.setText("消息"+messageCount+"");
         }
         toolImage.setOnClickListener(new View.OnClickListener() {
             @Override

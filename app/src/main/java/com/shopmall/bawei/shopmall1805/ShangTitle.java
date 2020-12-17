@@ -2,10 +2,12 @@ package com.shopmall.bawei.shopmall1805;
 
 import org.greenrobot.greendao.annotation.Entity;
 import org.greenrobot.greendao.annotation.Generated;
+import org.greenrobot.greendao.annotation.Id;
 
 @Entity
 public class ShangTitle {
-
+    @Id(autoincrement = true)
+    Long id;
     int type;
     String title;
     String body;
@@ -13,9 +15,10 @@ public class ShangTitle {
     boolean isRead;
     String reserveOne;//预先保留两个字段
     String reserveTwo;
-    @Generated(hash = 1118227197)
-    public ShangTitle(int type, String title, String body, long time,
+    @Generated(hash = 1079106834)
+    public ShangTitle(Long id, int type, String title, String body, long time,
             boolean isRead, String reserveOne, String reserveTwo) {
+        this.id = id;
         this.type = type;
         this.title = title;
         this.body = body;
@@ -26,6 +29,12 @@ public class ShangTitle {
     }
     @Generated(hash = 437954575)
     public ShangTitle() {
+    }
+    public Long getId() {
+        return this.id;
+    }
+    public void setId(Long id) {
+        this.id = id;
     }
     public int getType() {
         return this.type;

@@ -8,7 +8,7 @@
            style="@style/TypefragmentRadioGroup"
             android:orientation="horizontal"
             android:background="@drawable/yuan2"
-               android:gravity="center"
+
             android:layout_gravity="center"
             >
             <RadioButton
