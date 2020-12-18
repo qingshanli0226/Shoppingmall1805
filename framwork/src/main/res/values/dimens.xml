@@ -10,4 +10,11 @@
     <dimen name="txt_sizeeighty">80sp</dimen>
     <dimen name="txt_sizeninty">90sp</dimen>
     <dimen name="txt_sizeone_hundred">100sp</dimen>
+    <dimen name="home_edit_width">500dp</dimen>
+    <dimen name="home_edit_height">30dp</dimen>
+    <dimen name="toolbar_height">60dp</dimen>
+    <dimen name="toolbar_right_text_size">20sp</dimen>
+    <dimen name="toolbar_top_margin_size">15dp</dimen>
+    <dimen name="toolbar_right_size">50dp</dimen>
+    <dimen name="toolbar_right_margin_size">5dp</dimen>
 </resources>

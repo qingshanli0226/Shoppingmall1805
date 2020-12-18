@@ -72,4 +72,9 @@ public interface INetworkserviceimpl {
     @POST("updateAddress")
     @FormUrlEncoded
     Observable<BaseBean<String>> getMessage(@FieldMap HashMap<String,String> map);
+
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> getPhone(@FieldMap HashMap<String,String> map);
+
 }

@@ -8,9 +8,11 @@ public class AddressContract {
 
     public interface AddressIView extends IView{
         void onAddress(String messageBean);
+        void onPhone(String phoneMessage);
     }
 
     public static abstract class AddressPresenter extends BasePresenter<AddressIView>{
         public abstract void getAddress(String AddressName);
+        public abstract void getPhone(String PhoneCard);
     }
 }

@@ -15,6 +15,7 @@ import com.example.elevenmonthshoppingproject.adapter.RvTypeAdapter;
 import com.example.elevenmonthshoppingproject.classification.contract.TypeContract;
 import com.example.elevenmonthshoppingproject.classification.presenter.TypePresenterImpl;
 import com.example.framwork.BaseMVPFragment;
+import com.example.framwork.view.LoginPage;
 import com.example.net.bean.TypeBean;
 
 import java.util.ArrayList;
@@ -114,12 +115,12 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
 
     @Override
     public void showLoading() {
-
+        loginPage.loadingPage();
     }
 
     @Override
     public void hideLoading(boolean isSuccess, String message) {
-
+        hideLoadingPage(isSuccess,message);
     }
 
 

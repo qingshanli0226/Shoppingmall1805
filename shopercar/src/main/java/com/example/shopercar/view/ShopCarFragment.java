@@ -84,6 +84,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
                     //第一步将这些支付成功的商品，从购物车中删除
                     CacheManager.getInstance().removeSelectedProducts();
                     //第二步跳转的主页面，并且显示HomeFragment
+
                     ARouter.getInstance().build("/main/MainActivity").withInt("index",3).navigation();
                     break;
                 }
@@ -305,7 +306,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
 
     @Override
     public void hideLoading(boolean isSuccess, String message) {
-        hideLoading(isSuccess,message);
+
     }
 
 

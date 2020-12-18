@@ -8,6 +8,7 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.framwork.view.LoginPage;
@@ -17,18 +18,17 @@ import java.util.List;
 
 public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> extends Fragment {
     protected T ihttpPresenter;
-    protected ProgressBar loadingBar;
-    private LoginPage loginPage;
-    private List<String> dataList = new ArrayList<>();
 
+    protected LoginPage loginPage;
 
+    protected Toolbar toolbar;
 
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(getLayoutId(), container, false);
-        loadingBar=view.findViewById(R.id.loadingBar);
+
+
 
         loginPage=new LoginPage(getContext()) {
             @Override
@@ -37,16 +37,30 @@ public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> ex
             }
         };
 
-        iniView(view);
+
+        
+        return loginPage;
+
+
+
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        iniView(loginPage);
+
         iniData();
         iniPresenter();
 //        ihttpPresenter.attatch((V) this);
         iniHttpData();
-
-        return view;
     }
+
+    protected abstract void iniView(View loginPage);
+
     protected abstract int getLayoutId();
-    protected abstract void iniView(View view);
+
     protected abstract void iniData();
     protected abstract void iniPresenter();
     protected abstract void iniHttpData();

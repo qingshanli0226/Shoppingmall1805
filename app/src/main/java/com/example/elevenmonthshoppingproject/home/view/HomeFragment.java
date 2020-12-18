@@ -1,6 +1,7 @@
 package com.example.elevenmonthshoppingproject.home.view;
 
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -21,6 +22,9 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     private RecyclerView rvHome;
     private RecyAdapter recyAdapter;
     private HomePresenterImpl homePresenter;
+    private TextView tvMessageHome;
+
+
 
     @Override
     public void onHomeData(HomeBean homeBean) {
@@ -33,6 +37,9 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         datelist.add(homeBean.getSeckill_info().getList());
         recyAdapter.updatelist(datelist);
         recyAdapter.setBaseRVAdapterlinterner(this);
+
+
+
     }
 
     @Override
@@ -43,9 +50,17 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     @Override
     protected void iniView(View view) {
         rvHome=view.findViewById(R.id.rv_home);
+        tvMessageHome = view.findViewById(R.id.tv_message_home);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         recyAdapter=new RecyAdapter();
         rvHome.setAdapter(recyAdapter);
+
+        tvMessageHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                loginPage.showEnptyPage();
+            }
+        });
     }
 
     @Override
@@ -72,7 +87,8 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
 
     @Override
     public void showLoading() {
-        showLoad();
+        loginPage.loadingPage();
+//        loginPage.showError("错误");
     }
 
     @Override

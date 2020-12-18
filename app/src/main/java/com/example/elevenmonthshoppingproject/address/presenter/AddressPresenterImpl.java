@@ -39,4 +39,27 @@ public class AddressPresenterImpl extends AddressContract.AddressPresenter {
                     }
                 });
     }
+
+    @Override
+    public void getPhone(String PhoneCard) {
+        HashMap<String, String> hashMap = new HashMap<>();
+        hashMap.put("phone",PhoneCard);
+        RetorfitCreate.getiNetworkserviceimpl().getPhone(hashMap)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<BaseBean<String>,String>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ShopMallObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        if (iview!=null) {
+                            iview.onPhone(s);
+                        }
+                    }
+
+                    @Override
+                    public void onRequestError(String errorCode, String errorMessage) {
+                        iview.onError(errorCode,errorMessage);
+                    }
+                });
+    }
 }
