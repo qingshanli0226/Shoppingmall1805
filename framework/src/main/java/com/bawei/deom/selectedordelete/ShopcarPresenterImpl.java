@@ -23,6 +23,7 @@ import okhttp3.RequestBody;
 
 public class ShopcarPresenterImpl extends ShopcarContract.SelectedandDeletedCountrollerShow {
 
+
     @Override
     public void updateProductNum(String productId, String productNum, String productName, String url, String productPrice, final int position, final String newNum) {
         JSONObject jsonObject = new JSONObject();
@@ -273,5 +274,17 @@ public class ShopcarPresenterImpl extends ShopcarContract.SelectedandDeletedCoun
                         }
                     });
 
+    }
+
+    @Override
+    public void confirmServerPayResult(GetOrderInfo getOrderInfo, boolean flag) {
+        JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("",getOrderInfo.getOutTradeNo());
+            jsonObject.put("",getOrderInfo.getOrderInfo());
+            jsonObject.put("",flag);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 }

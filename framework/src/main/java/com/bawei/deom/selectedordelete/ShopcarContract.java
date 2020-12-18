@@ -5,6 +5,7 @@ import com.bawei.deom.IView;
 
 import java.util.List;
 
+import bean.ConfirmServerPayResultBean;
 import bean.GetOrderInfo;
 import bean.InventoryBean;
 import bean.Shoppingcartproducts;
@@ -17,6 +18,7 @@ public class ShopcarContract {
           void onDeleteProducts(String result);
           void onInventory(List<InventoryBean> inventoryBean);
           void onOrderInfo(GetOrderInfo orderInfoBean);
+          void onConfirmServerPayResult(ConfirmServerPayResultBean confirmServerPayResultBean);
     }
    public static abstract  class   SelectedandDeletedCountrollerShow extends BaseAroute<SelectedandDeletedCountrollerView>{
        public abstract void updateProductNum(String productId, String productNum, String productName, String url, String productPrice, int position, String newNum);
@@ -25,5 +27,6 @@ public class ShopcarContract {
        public abstract void deleteProducts(List<Shoppingcartproducts.ResultBean> products);
        public abstract void checkInventory(List<Shoppingcartproducts.ResultBean> products);
        public abstract void getOrderInfo(List<Shoppingcartproducts.ResultBean> products);
+       public abstract void confirmServerPayResult(GetOrderInfo getOrderInfo,boolean flag);
    }
 }
