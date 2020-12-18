@@ -13,12 +13,12 @@
         android:layout_weight="3.5"
         android:orientation="vertical">
         <TextView
-            android:id="@+id/textPayone"
+            android:id="@+id/textPayonec"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3.5"/>
         <TextView
-            android:id="@+id/textPayTow"
+            android:id="@+id/textPayTowc"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="3.5"/>
