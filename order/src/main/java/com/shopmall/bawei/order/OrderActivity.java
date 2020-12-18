@@ -28,18 +28,12 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
         initView();
 
-        SharedPreferences dia1 = getSharedPreferences("dia", MODE_PRIVATE);
-        boolean dis = dia1.getBoolean("dis", false);
 
-        if (dis) {
-            LoginBean loginBean = new LoginBean();
-            tvPhone.setText(loginBean.getPhone()+"");
+        dialogShow();
 
-            tvAddress.setText(loginBean.getAddress()+"");
+        tvPhone.setText(CacheManager.getInstance().getPhone()+"");
 
-        } else {
-            dialogShow();
-        }
+        tvAddress.setText(CacheManager.getInstance().getAddress()+"");
     }
 
     private void dialogShow() {
@@ -52,10 +46,7 @@ public class OrderActivity extends AppCompatActivity {
             public void onClick(DialogInterface dialogInterface, int i) {
                 Toast.makeText(OrderActivity.this, "跳转设置收货地址页面", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(OrderActivity.this, TakeActivity.class));
-                SharedPreferences dia = getSharedPreferences("dia", MODE_PRIVATE);
-                SharedPreferences.Editor edit = dia.edit();
-                edit.putBoolean("dis", true);
-                edit.commit();
+
             }
         });
 

@@ -57,7 +57,7 @@ public class TakeActivity extends BaseActivity<OrderPresenterImpl, OrderContract
     public void onUpDataPhone(String phone) {
         Log.i("TAG", "onUpDataPhone: "+phone);
 
-        CacheManager.getInstance().addLoginBeanPhone(phone);
+        CacheManager.getInstance().setLoginBeanPhone(phone);
     }
 
     @Override
@@ -65,7 +65,7 @@ public class TakeActivity extends BaseActivity<OrderPresenterImpl, OrderContract
         Log.i("TAG", "onUpDataPhone: "+address);
 
 
-        CacheManager.getInstance().addLoginBeanAddress(address);
+        CacheManager.getInstance().setLoginBeanAddress(address);
     }
 
     @Override

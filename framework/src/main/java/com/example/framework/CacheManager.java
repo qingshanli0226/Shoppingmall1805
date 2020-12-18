@@ -30,6 +30,7 @@ public class CacheManager {
     private List<LoginBean> loginBeansList = new ArrayList<>();
 
     private static CacheManager instance;
+    private LoginBean loginBean = new LoginBean();
 
     //有多个页面监听数据的变化,所以维护一个监听listener的列表
     private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList = new ArrayList<>();
@@ -226,17 +227,22 @@ public class CacheManager {
     }
 
     //改变缓存中用户的phone和address
-    public void addLoginBeanPhone(String phone){
-        LoginBean loginBean = new LoginBean();
-        loginBean.setPhone(phone);
-        Log.i("wftPhone", "addLoginBeanPhone: "+loginBean.getPhone());
-        loginBeansList.add(loginBean);
-
+    public void setLoginBeanPhone(String phone){
+        Log.i("TAG", "setLoginBeanPhone: "+phone);
+            loginBean.setPhone(phone);
     }
-    public void addLoginBeanAddress(String address){
-        LoginBean loginBean = new LoginBean();
-        loginBean.setAddress(address);
-        loginBeansList.add(loginBean);
+    public void setLoginBeanAddress(String address){
+            loginBean.setAddress(address);
+            Log.i("phone", "setLoginBeanAddress: "+loginBean.getPhone()+"");
+    }
+    public Object getPhone(){
+
+        return loginBean.getPhone();
+    }
+
+    public Object getAddress(){
+
+        return loginBean.getAddress();
     }
 
 

@@ -37,7 +37,7 @@ public class OrderPresenterImpl extends OrderContract.OrderPresenter {
                     @Override
                     public void onNext(BaseBean<String> loginBeanBaseBean) {
                         Log.i("TAG", "onNext: "+loginBeanBaseBean.getMessage());
-                        iView.onUpDataPhone(loginBeanBaseBean.getResult()+"");
+                        iView.onUpDataPhone(loginBeanBaseBean.getResult());
                     }
 
                     @Override
