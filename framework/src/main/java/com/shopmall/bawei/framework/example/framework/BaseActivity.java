@@ -1,21 +1,20 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.framework.view.LogingPage;
+import com.shopmall.bawei.framework.example.framework.view.LoadingPage;
 
 
-public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity {
+public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity implements ToolBar.IToolBarClickListner {
 
     protected P httpresenter;
-    protected LogingPage  logingPage;
+    protected LoadingPage logingPage;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        logingPage = new LogingPage(this) {
+        logingPage = new LoadingPage(this) {
             @Override
             protected int getsuccessId() {
                 return getlayoutid();
@@ -51,11 +50,26 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     protected abstract int getlayoutid();
 
     @Override
+    public void onRightClick() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+        finish();
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
         if (httpresenter!=null){
             httpresenter.ondechView();
         }
+
+    }
+
+    @Override
+    public void onPointerCaptureChanged(boolean hasCapture) {
 
     }
 }

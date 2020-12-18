@@ -1,10 +1,10 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
-public class BasePresenter<T extends IView> implements IPresenter<T> {
-    protected T iView;
+public class BasePresenter<V extends IView> implements IPresenter<V> {
+    protected V iView;
 
     @Override
-    public void attchView(T iView) {
+    public void attchView(V iView) {
         this.iView = iView;
     }
 

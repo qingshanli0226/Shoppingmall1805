@@ -11,17 +11,18 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import com.example.framework.BaseFragment;
-import com.example.framework.BaseRVAdapter;
 import com.example.net.Confing;
 import com.example.net.bean.ClothesBean;
-import com.shopmall.bawei.shopmall1805.typefragment.presenter.ClothesPresenter;
-import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.BaseRVAdapter;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adpter.Clother_RAdpter;
-import com.shopmall.bawei.shopmall1805.adpter.Colother_CAdpter;
+import com.shopmall.bawei.shopmall1805.adapter.Clother_RAdpter;
+import com.shopmall.bawei.shopmall1805.adapter.Colother_CAdpter;
 import com.shopmall.bawei.shopmall1805.bean.PrimereBean;
 import com.shopmall.bawei.shopmall1805.typefragment.contract.ClothesContract;
+import com.shopmall.bawei.shopmall1805.typefragment.presenter.ClothesPresenter;
+import com.shopmall.bawei.shopmall1805.ui.activity.GoodinfoActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 

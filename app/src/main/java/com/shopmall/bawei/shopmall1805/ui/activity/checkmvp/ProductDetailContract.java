@@ -1,8 +1,8 @@
-package com.shopmall.bawei.shopmall1805.product.contract;
+package com.shopmall.bawei.shopmall1805.ui.activity.checkmvp;
 
 
-import com.shopmall.bawei.framework.BasePresenter;
-import com.shopmall.bawei.framework.IView;
+import com.shopmall.bawei.framework.example.framework.BasePresenter;
+import com.shopmall.bawei.framework.example.framework.IView;
 
 public class ProductDetailContract {
 

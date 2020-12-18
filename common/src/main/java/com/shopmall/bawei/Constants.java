@@ -1,4 +1,4 @@
-package com.shopmall.bawei.common;
+package com.shopmall.bawei;
 
 public class Constants {
 //    public static final String BASE = "http://192.168.51.104:8080";

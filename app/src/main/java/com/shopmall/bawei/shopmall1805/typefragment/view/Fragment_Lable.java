@@ -5,10 +5,10 @@ import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
-import com.example.framework.BaseFragment;
 import com.example.net.bean.Biaobean;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adpter.LableAdpter;
+import com.shopmall.bawei.shopmall1805.adapter.LableAdpter;
 import com.shopmall.bawei.shopmall1805.typefragment.contract.LableContract;
 import com.shopmall.bawei.shopmall1805.typefragment.presenter.LablePresenter;
 

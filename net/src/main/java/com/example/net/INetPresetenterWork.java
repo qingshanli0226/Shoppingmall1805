@@ -4,13 +4,18 @@ import com.example.net.bean.BaseBean;
 import com.example.net.bean.Biaobean;
 import com.example.net.bean.ClothesBean;
 import com.example.net.bean.HomeBean;
+import com.example.net.bean.InventoryBean;
 import com.example.net.bean.LoginBean;
+import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.RegisterBean;
+import com.example.net.bean.ShopcarBean;
 
 import java.util.HashMap;
 import java.util.List;
 
 import io.reactivex.Observable;
+import okhttp3.RequestBody;
+import retrofit2.http.Body;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -25,6 +30,11 @@ public interface INetPresetenterWork {
     @POST("login")
     @FormUrlEncoded
     Observable<BaseBean<LoginBean>> login(@FieldMap HashMap<String, String> map);
+
+    //自动登录
+    @POST("autoLogin")
+    @FormUrlEncoded
+    Observable<BaseBean<LoginBean>> autoLogin(@FieldMap HashMap<String,String> map);
 
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")
@@ -86,5 +96,43 @@ public interface INetPresetenterWork {
     //发现Fragment里面的热帖
     @GET("HOT_POST_URL.json")
     Observable<BaseBean<ClothesBean>> hot_post();
+
+
+    @GET("getShortcartProducts")
+    Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
+
+    @POST("checkOneProductInventory")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> checkOneProductInventoryBean(@FieldMap HashMap<String,String> map);
+
+    @POST("addOneProduct")
+    Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
+
+    @POST("updateProductNum")
+    Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
+
+    @POST("updateProductSelected")
+    Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);
+
+    @POST("selectAllProduct")
+    Observable<BaseBean<String>> selectAllProduct(@Body RequestBody requestBody);
+
+    @POST("removeManyProduct")
+    Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
+
+    @POST("checkInventory")
+    Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
+
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updatePhone(@FieldMap HashMap<String,String> map);
+
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<BaseBean<String>> updateAddress(@FieldMap HashMap<String,String> map);
+
 
 }

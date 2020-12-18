@@ -6,22 +6,26 @@ import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.framework.BaseActivity;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
+import com.shopmall.bawei.framework.example.framework.BaseActivity;
+import com.shopmall.bawei.framework.example.framework.IPresenter;
+import com.shopmall.bawei.framework.example.framework.IView;
+import com.shopmall.bawei.framework.example.framework.service.MyService;
 import com.shopmall.bawei.shopmall1805.R;
 
 public class WelcomActivity extends BaseActivity<IPresenter, IView> implements ViewPropertyAnimatorListener {
     private ImageView ivWelcom;
-
+    private String token;
 
     @Override
     protected void initpreseter() {
-
     }
 
     @Override
     protected void initdate() {
+
+        Intent intent = new Intent();
+        intent.setClass(this, MyService.class);
+        startService(intent);
         ViewCompat.animate(ivWelcom).scaleX(1.0f).scaleY(1.0f).setListener(this).setDuration(2000);
     }
 
@@ -49,10 +53,12 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> implements V
     public void onAnimationEnd(View view) {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
+        finish();
     }
 
     @Override
     public void onAnimationCancel(View view) {
 
     }
+
 }

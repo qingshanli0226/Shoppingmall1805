@@ -1,10 +1,7 @@
 package com.shopmall.bawei.user.presenter;
 
 import com.example.net.Retrofitcreators;
-import com.example.net.bean.BaseBean;
-import com.example.net.bean.LoginBean;
 import com.example.net.bean.RegisterBean;
-import com.shopmall.bawei.user.contract.LoginContact;
 import com.shopmall.bawei.user.contract.RegisterContact;
 
 import java.util.HashMap;

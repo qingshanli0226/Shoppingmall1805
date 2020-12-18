@@ -11,12 +11,14 @@
         android:layout_centerVertical="true"
         android:id="@+id/productSelect"/>
 
-    <ImageView android:layout_width="wrap_content"
+    <ImageView
+        android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerVertical="true"
         android:layout_toRightOf="@id/productSelect"
         android:layout_marginLeft="5dp"
         android:id="@+id/productImage"
+        android:src="@drawable/ic_launcher"
         />
 
     <LinearLayout android:layout_width="wrap_content"

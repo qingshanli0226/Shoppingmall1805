@@ -8,4 +8,6 @@ public class Confing {
     public static final String BASE_IMAGE = BASE_URL+"atguigu/img";
 
     public static final String spName = "shallname";
+
+
 }

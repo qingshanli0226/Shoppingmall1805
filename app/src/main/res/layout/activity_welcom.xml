@@ -7,7 +7,7 @@
        style="@style/Base_Layout_Match_Match"
         android:scaleX="1.5"
         android:scaleY="1.5"
-        android:src="@drawable/shpping"
+        android:src="@drawable/skirt23"
         android:scaleType="fitXY"
         ></ImageView>
 </LinearLayout>

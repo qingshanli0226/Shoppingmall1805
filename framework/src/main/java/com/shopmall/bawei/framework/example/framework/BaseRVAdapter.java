@@ -1,4 +1,4 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -97,6 +97,7 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
             }
 
             return (V)view;
+
         }
     }
 

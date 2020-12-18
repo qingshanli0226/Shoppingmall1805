@@ -2,15 +2,23 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.shopmall.bawei.shopmall1805">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
-        android:name=".ShopmallApplication"
+        android:name=".aplacation.ShopmallApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:label="硅谷商城"
+        android:roundIcon="@drawable/atguigu_logo"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".home.MainActivity">
+        <activity android:name=".message.MessageActivity"></activity>
+        <activity android:name=".ui.activity.CallcenterActivity" />
+        <activity android:name=".ui.activity.GoodinfoActivity" />
+        <activity android:name=".ui.activity.MainActivity" />
+        <activity
+            android:name=".ui.activity.WelcomActivity"
+            android:theme="@style/AppTheme.FullScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

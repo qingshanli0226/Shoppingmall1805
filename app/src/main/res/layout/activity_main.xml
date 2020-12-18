@@ -6,11 +6,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".ui.activity.MainActivity">
-    <com.example.framework.MyViewPager
+    <com.shopmall.bawei.framework.example.framework.MyViewPager
         android:id="@+id/vr"
         style="@style/Base_Layout_Match_Match"
         android:layout_height="@dimen/dp_0"
-        android:layout_weight="10"></com.example.framework.MyViewPager>
+        android:layout_weight="10"></com.shopmall.bawei.framework.example.framework.MyViewPager>
     <com.flyco.tablayout.CommonTabLayout
         android:id="@+id/common"
         style="@style/Base_Layout_Match_Match"
@@ -19,7 +19,7 @@
         app:tl_iconMargin="@dimen/dp_5f"
         app:tl_iconWidth="@dimen/dp_40"
         app:tl_iconHeight="@dimen/dp_40"
-        app:tl_textSelectColor="@color/color_Blue"
+        app:tl_textSelectColor="@color/color_Red"
         app:tl_textUnselectColor="@color/color_Black"
        ></com.flyco.tablayout.CommonTabLayout>
 

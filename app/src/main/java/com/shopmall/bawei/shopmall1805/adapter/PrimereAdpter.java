@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.adpter;
+package com.shopmall.bawei.shopmall1805.adapter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -91,10 +91,10 @@ public class PrimereAdpter extends BaseRVAdapter<Object> {
             @Override
             public void onItemClick(int position) {
                 PrimereBean goodsBean = new PrimereBean(recommendInfoBeans.get(position).getProduct_id(), recommendInfoBeans.get(position).getName(), recommendInfoBeans.get(position).getCover_price(), Confing.BASE_IMAGE + recommendInfoBeans.get(position).getFigure());
-
                 Intent intent = new Intent(baseViewHolder.itemView.getContext(), GoodinfoActivity.class);
                 intent.putExtra("goods_bean", goodsBean);
                 baseViewHolder.itemView.getContext().startActivity(intent);
+
             }
         });
     }

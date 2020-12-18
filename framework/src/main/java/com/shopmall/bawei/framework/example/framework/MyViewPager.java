@@ -1,4 +1,4 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
 import android.content.Context;
 import android.support.v4.view.ViewPager;

@@ -1,19 +1,16 @@
 package com.shopmall.bawei.shopmall1805.ui.fragment;
 
 
-
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
 import android.widget.TextView;
 
-
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.example.framework.BaseFragment;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.IPresenter;
+import com.shopmall.bawei.framework.example.framework.IView;
+import com.shopmall.bawei.framework.example.framework.manager.UserManage;
 import com.shopmall.bawei.shopmall1805.R;
 
 
@@ -77,6 +74,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView> implements Vie
     protected void initdate() {
         //点击跳转到注册界面
         ibUserIconAvator.setOnClickListener(this);
+        tvUsername.setText(UserManage.getInstance().quUsername()+"");
     }
 
     @Override

@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/438fb22c7ba2f7958fdada88229d52ce/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da68efe93be4ce97f6b20a970497def0/BaseRecyclerViewAdapterHelper-2.9.22/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/438fb22c7ba2f7958fdada88229d52ce/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/438fb22c7ba2f7958fdada88229d52ce/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da68efe93be4ce97f6b20a970497def0/BaseRecyclerViewAdapterHelper-2.9.22/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/da68efe93be4ce97f6b20a970497def0/BaseRecyclerViewAdapterHelper-2.9.22/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.9.22/5eb4157033d255980f8214676877c8510fe7bf0e/BaseRecyclerViewAdapterHelper-2.9.22-javadoc.jar!/" />

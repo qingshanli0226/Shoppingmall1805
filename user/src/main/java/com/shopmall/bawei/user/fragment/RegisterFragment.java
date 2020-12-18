@@ -1,4 +1,4 @@
-package com.shopmall.bawei.user.view;
+package com.shopmall.bawei.user.fragment;
 
 import android.view.View;
 import android.widget.Button;
@@ -61,7 +61,7 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
     public void onregister(RegisterBean registerBean) {
         Toast.makeText(getContext(), ""+registerBean.getResult(), Toast.LENGTH_SHORT).show();
         //跳转登录界面
-        LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
+        LoginRegisterActivity.loginRegister.setCurrentItem(0);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
     @Override
     public void onClick(View v) {
         if (v ==tvRegisterLogin){
-            LoginRegisterActivity.vrLoginRegister.setCurrentItem(0);
+            LoginRegisterActivity.loginRegister.setCurrentItem(0);
         }else if (v == btnRegister){
             String name = etRegisterPhone.getText().toString();
             String password = etRegisterPwd.getText().toString();

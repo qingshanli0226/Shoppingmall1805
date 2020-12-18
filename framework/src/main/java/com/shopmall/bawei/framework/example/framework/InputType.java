@@ -1,4 +1,4 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
 public interface InputType {
     int TYPE_CLASS_TEXT = 1;

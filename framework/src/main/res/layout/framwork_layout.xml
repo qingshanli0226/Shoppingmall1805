@@ -12,10 +12,10 @@
         android:layout_centerInParent="true"
         android:visibility="gone"/>
 
-    <com.shopmall.bawei.framework.view.ToolBar
+    <com.shopmall.bawei.framework.example.framework.ToolBar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-    </com.shopmall.bawei.framework.view.ToolBar>
+    </com.shopmall.bawei.framework.example.framework.ToolBar>
 
 </LinearLayout>

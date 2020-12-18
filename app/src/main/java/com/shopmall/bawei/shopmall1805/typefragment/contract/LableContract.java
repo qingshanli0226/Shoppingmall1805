@@ -1,8 +1,8 @@
 package com.shopmall.bawei.shopmall1805.typefragment.contract;
 
-import com.example.framework.BasePresenter;
-import com.example.framework.IView;
 import com.example.net.bean.Biaobean;
+import com.shopmall.bawei.framework.example.framework.BasePresenter;
+import com.shopmall.bawei.framework.example.framework.IView;
 
 import java.util.List;
 

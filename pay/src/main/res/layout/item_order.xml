@@ -1,6 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content" android:orientation="horizontal">
 
-</android.support.constraint.ConstraintLayout>
+    <ImageView
+        android:id="@+id/orderImg"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:src="@mipmap/new_img_loading_2"
+        android:layout_margin="10dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        >
+        <TextView
+            android:id="@+id/orderName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="卫龙"
+            android:textColor="#000"
+            />
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="￥"
+                android:textColor="#000"
+                />
+
+            <TextView
+                android:id="@+id/orderPrice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="9.90"
+                android:textSize="20sp"
+                android:textColor="#000"
+                />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="×"
+                />
+            <TextView
+                android:id="@+id/orderNum"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="1"
+                />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>

@@ -1,4 +1,4 @@
-package com.shopmall.bawei.shopmall1805.adpter;
+package com.shopmall.bawei.shopmall1805.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;

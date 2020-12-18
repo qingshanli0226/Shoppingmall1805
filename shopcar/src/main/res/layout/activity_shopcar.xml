@@ -5,18 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.shopmall.bawei.framework.view.ToolBar
+
+    <include layout="@layout/toobar"
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:title_text="购物车"
-        app:right_text="编辑"
-        app:left_src="@mipmap/back"
-        app:left_show="false"
-        app:right_show_only_text="true"
-        android:layout_alignParentTop="true">
-
-    </com.shopmall.bawei.framework.view.ToolBar>
+        />
 
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"

@@ -1,4 +1,4 @@
-package com.shopmall.bawei.user.view;
+package com.shopmall.bawei.user.fragment;
 
 import android.view.View;
 import android.widget.Button;
@@ -11,7 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.net.bean.LoginBean;
 import com.shopmall.bawei.framework.example.framework.BaseFragment;
 import com.shopmall.bawei.framework.example.framework.InputType;
-import com.shopmall.bawei.framework.example.framework.user.UserManage;
+import com.shopmall.bawei.framework.example.framework.manager.UserManage;
 import com.shopmall.bawei.user.LoginRegisterActivity;
 import com.shopmall.bawei.user.R;
 import com.shopmall.bawei.user.contract.LoginContact;
@@ -68,7 +68,7 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     @Override
     public void onClick(View v) {
         if (v == tvLoginRegister){
-            LoginRegisterActivity.vrLoginRegister.setCurrentItem(1);
+            LoginRegisterActivity.loginRegister.setCurrentItem(1);
         }else if (v==ibLoginVisible){
             count++;
             if (count % 2 == 0) {
@@ -88,8 +88,9 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     @Override
     public void onlogin(LoginBean loginBean) {
         Toast.makeText(getContext(), "登陆成功", Toast.LENGTH_SHORT).show();
-        UserManage.getInstance().saveToken(loginBean.getToken()+"");
-        UserManage.getInstance().saveUsername(etLoginPhone.getText().toString().trim()+"");
+        //存储token值
+        UserManage.getInstance().saveLoginBean(loginBean);
+
         ARouter.getInstance().build("/activity/MainActivity").navigation();
         getActivity().finish();
 

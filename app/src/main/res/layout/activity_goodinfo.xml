@@ -1,12 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/rootView"
     android:orientation="vertical"
     android:background="#fff"
     tools:context=".ui.activity.GoodinfoActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#fff"
+        android:orientation="vertical"
+        >
+
     <LinearLayout
         style="@style/Base_Layout_Match_Wrap"
         android:padding="@dimen/dp_10">
@@ -131,4 +139,5 @@
             />
     </LinearLayout>
 
-</LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

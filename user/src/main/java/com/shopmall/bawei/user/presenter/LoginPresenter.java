@@ -1,6 +1,7 @@
 package com.shopmall.bawei.user.presenter;
 
-import com.example.net.Confing;
+import android.util.Log;
+
 import com.example.net.Retrofitcreators;
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.LoginBean;
@@ -38,6 +39,7 @@ public class LoginPresenter extends LoginContact.LoginPresenter {
                     @Override
                     public void onNext(BaseBean<LoginBean> loginBeanBaseBean) {
                         iView.hideloading();
+                        Log.i("---", "onNext: login："+loginBeanBaseBean.getResult().getToken());
                             if (loginBeanBaseBean.getCode().equals("200")){
                                 iView.onlogin(loginBeanBaseBean.getResult());
                             }else {

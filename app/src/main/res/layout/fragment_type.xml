@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tl="http://schemas.android.com/tools"
-    android:orientation="vertical">
-
+    android:orientation="vertical"
+    tools:context=".typefragment.TypeFragment">
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="55dp"
-        >
-       <com.flyco.tablayout.SegmentTabLayout
-           android:id="@+id/segment_f2"
-           android:layout_centerInParent="true"
-           android:layout_width="180dp"
-           android:layout_height="40dp"
-           tl:tl_bar_color="#ffffff"
-           app:tl_indicator_color="#DD001B"
-           app:tl_textSelectColor="#ffffff"
-           app:tl_textUnselectColor="#DD001B"
-           app:tl_bar_stroke_color="#DD001B"
-           tl:tl_indicator_corner_radius="20dp"
-           ></com.flyco.tablayout.SegmentTabLayout>
-
-        <ImageView
-            android:layout_centerInParent="true"
-            android:layout_alignParentRight="true"
-            android:layout_marginRight="20dp"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@mipmap/icon_search_white"
-            ></ImageView>
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="1">
+        <LinearLayout
+            android:layout_centerHorizontal="true"
+            android:layout_width="@dimen/dp_150"
+            android:background="@drawable/biao"
+            android:layout_height="@dimen/dp_40"
+            android:layout_marginTop="@dimen/dp_18"
+            >
+            <Button
+                android:id="@+id/bt_fen"
+                style="@style/Base_Layout_Match_Match"
+                android:layout_width="@dimen/dp_0"
+                android:text="@string/Good_Type"
+                android:background="@drawable/biao_fe"
+                android:textSize="@dimen/dp_20"
+                android:layout_weight="1"></Button>
+            <Button
+                style="@style/Base_Layout_Match_Match"
+                android:id="@+id/bt_biao"
+                android:layout_width="@dimen/dp_0"
+                android:text="@string/Good_Biao"
+                android:textSize="@dimen/dp_20"
+                android:background="@drawable/biao_bi"
+                android:layout_weight="1"></Button>
+        </LinearLayout>
     </RelativeLayout>
+    <LinearLayout
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_2"
+        android:background="@color/color_Gray"></LinearLayout>
+    <com.shopmall.bawei.framework.example.framework.MyViewPager
+        android:id="@+id/vr_fen"
+        style="@style/Base_Layout_Match_Match"
+        android:layout_height="@dimen/dp_0"
+        android:layout_weight="10">
+    </com.shopmall.bawei.framework.example.framework.MyViewPager>
 
-    <View
-        android:layout_marginLeft="@dimen/dp_10"
-        android:layout_marginRight="@dimen/dp_10"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="#F0F0F0"
-        ></View>
 
-    <FrameLayout
-        android:id="@+id/frame_f2"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
 
-        ></FrameLayout>
 </LinearLayout>

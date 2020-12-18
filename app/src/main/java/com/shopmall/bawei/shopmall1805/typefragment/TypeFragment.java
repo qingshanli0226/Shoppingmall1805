@@ -5,13 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.BaseFragment;
+import com.shopmall.bawei.framework.example.framework.MyViewPager;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.adpter.Fragment_fen_Adpter;
-import com.example.framework.MyViewPager;
+import com.shopmall.bawei.shopmall1805.adapter.Fragment_fen_Adpter;
 import com.shopmall.bawei.shopmall1805.typefragment.view.Fragment_Lable;
 import com.shopmall.bawei.shopmall1805.typefragment.view.Fragment_fen;
-
 
 import java.util.ArrayList;
 import java.util.List;

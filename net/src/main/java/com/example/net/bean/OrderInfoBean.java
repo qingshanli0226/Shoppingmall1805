@@ -1,4 +1,4 @@
-package com.shopmall.bawei.net.mode;
+package com.example.net.bean;
 
 public class OrderInfoBean {
 

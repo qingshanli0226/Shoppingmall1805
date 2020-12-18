@@ -1,2 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shopmall.bawei.user" />
+    package="com.shopmall.bawei.user"
+
+
+    >
+    <application
+        >
+        <activity android:name=".LoginRegisterActivity">
+
+        </activity>
+    </application>
+
+</manifest>

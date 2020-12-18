@@ -14,22 +14,22 @@ import android.widget.TextView;
 import com.shopmall.bawei.framework.R;
 
 //在基类中定义加载页面，错误页面，空白页面
-public abstract class LogingPage extends FrameLayout {
+public abstract class LoadingPage extends FrameLayout {
     private View loadingView;
     private View erroyView;
     private TextView erroyTv;
     private View emptyView;
     private View sucessView;
-    public LogingPage(@NonNull Context context) {
+    public LoadingPage(@NonNull Context context) {
         super(context);
         init(context);
     }
 
-    public LogingPage(@NonNull  Context context, @Nullable  AttributeSet attrs) {
+    public LoadingPage(@NonNull  Context context, @Nullable  AttributeSet attrs) {
         super(context, attrs);
     }
 
-    public LogingPage(@NonNull  Context context, @Nullable  AttributeSet attrs, int defStyleAttr) {
+    public LoadingPage(@NonNull  Context context, @Nullable  AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
     }
 

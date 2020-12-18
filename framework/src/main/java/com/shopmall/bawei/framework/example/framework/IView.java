@@ -1,6 +1,4 @@
-package com.example.framework;
-
-import com.example.framework.view.LogingPage;
+package com.shopmall.bawei.framework.example.framework;
 
 public interface IView {
     void onErroy(String message);

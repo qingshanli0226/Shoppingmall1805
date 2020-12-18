@@ -1,4 +1,4 @@
-package com.example.framework;
+package com.shopmall.bawei.framework.example.framework;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,17 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.framework.view.LogingPage;
+import com.shopmall.bawei.framework.example.framework.view.LoadingPage;
+
 
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
 
     protected P httpresetnter;
-    protected LogingPage logingPage;
+    protected LoadingPage logingPage;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        logingPage = new LogingPage(getContext()) {
+        logingPage = new LoadingPage(getContext()) {
             @Override
             protected int getsuccessId() {
                 return getlayoutid();

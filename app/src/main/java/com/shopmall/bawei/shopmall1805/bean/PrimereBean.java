@@ -1,7 +1,6 @@
 package com.shopmall.bawei.shopmall1805.bean;
 
 import java.io.Serializable;
-import java.sql.ParameterMetaData;
 
 public class PrimereBean implements Serializable {
     String id;
