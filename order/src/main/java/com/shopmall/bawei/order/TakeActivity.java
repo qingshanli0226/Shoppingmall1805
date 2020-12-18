@@ -34,19 +34,18 @@ public class TakeActivity extends BaseActivity<OrderPresenterImpl, OrderContract
         etAddress = (EditText) findViewById(R.id.et_address);
         etDz = (EditText) findViewById(R.id.et_dz);
         btnSub = (Button) findViewById(R.id.btn_sub);
-        httpPresenter = new OrderPresenterImpl();
     }
 
     @Override
     protected void initData() {
-        initView();
         ARouter.getInstance().inject(this);
+        httpPresenter = new OrderPresenterImpl();
         btnSub.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 String phone = etPhone.getText().toString();
                 String address = etAddress.getText().toString();
-                httpPresenter.upDataPhone(phone);
+                httpPresenter.upDataPhone(phone+"");
                 httpPresenter.upDataAddress(address);
                 Toast.makeText(TakeActivity.this, "提交完成", Toast.LENGTH_SHORT).show();
                 startActivity(new Intent(TakeActivity.this,OrderActivity.class));
@@ -57,17 +56,16 @@ public class TakeActivity extends BaseActivity<OrderPresenterImpl, OrderContract
     @Override
     public void onUpDataPhone(String phone) {
         Log.i("TAG", "onUpDataPhone: "+phone);
-        LoginBean loginBean = new LoginBean();
-        loginBean.setPhone(phone);
-        CacheManager.getInstance().addLoginBeanPhone(loginBean);
+
+        CacheManager.getInstance().addLoginBeanPhone(phone);
     }
 
     @Override
     public void onUpDataAddress(String address) {
         Log.i("TAG", "onUpDataPhone: "+address);
-        LoginBean loginBean = new LoginBean();
-        loginBean.setAddress(address);
-        CacheManager.getInstance().addLoginBeanAddress(loginBean);
+
+
+        CacheManager.getInstance().addLoginBeanAddress(address);
     }
 
     @Override

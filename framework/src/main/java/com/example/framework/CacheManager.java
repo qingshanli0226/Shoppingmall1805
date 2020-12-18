@@ -226,11 +226,16 @@ public class CacheManager {
     }
 
     //改变缓存中用户的phone和address
-    public void addLoginBeanPhone(LoginBean loginBean){
+    public void addLoginBeanPhone(String phone){
+        LoginBean loginBean = new LoginBean();
+        loginBean.setPhone(phone);
+        Log.i("wftPhone", "addLoginBeanPhone: "+loginBean.getPhone());
         loginBeansList.add(loginBean);
 
     }
-    public void addLoginBeanAddress(LoginBean loginBean){
+    public void addLoginBeanAddress(String address){
+        LoginBean loginBean = new LoginBean();
+        loginBean.setAddress(address);
         loginBeansList.add(loginBean);
     }
 

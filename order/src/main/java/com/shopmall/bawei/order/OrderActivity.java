@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,20 +28,18 @@ public class OrderActivity extends AppCompatActivity {
         setContentView(R.layout.activity_order);
         initView();
 
-
         SharedPreferences dia1 = getSharedPreferences("dia", MODE_PRIVATE);
         boolean dis = dia1.getBoolean("dis", false);
 
         if (dis) {
-            Toast.makeText(this, "2525", Toast.LENGTH_SHORT).show();
-            List<LoginBean> loginBeansList = CacheManager.getInstance().getLoginBeansList();
-            tvPhone.setText(loginBeansList.get(0).getPhone()+"");
-            tvAddress.setText(loginBeansList.get(0).getAddress()+"");
+            LoginBean loginBean = new LoginBean();
+            tvPhone.setText(loginBean.getPhone()+"");
+
+            tvAddress.setText(loginBean.getAddress()+"");
+
         } else {
             dialogShow();
         }
-
-
     }
 
     private void dialogShow() {
@@ -69,11 +68,11 @@ public class OrderActivity extends AppCompatActivity {
 
         AlertDialog alertDialog = builder.create();
         alertDialog.show();
+
     }
 
     private void initView() {
         tvPhone = (TextView) findViewById(R.id.tv_phone);
         tvAddress = (TextView) findViewById(R.id.tv_address);
-
     }
 }

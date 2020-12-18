@@ -13,6 +13,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface INetPresetenterWork {
     //注册 接口
@@ -51,11 +52,11 @@ public interface INetPresetenterWork {
 
     //更新用户绑定的电话
     @POST("updatePhone")
-    Observable<BaseBean<String>> upDataUserPhone(@Query("phone")String phone);
+    Observable<BaseBean<String>> upDataUserPhone(@QueryMap HashMap<String,String> map);
 
     //更新用户绑定的地址
     @POST("updateAddress")
-    Observable<BaseBean<String>> upDataUserAddress(@Query("address")String address);
+    Observable<BaseBean<String>> upDataUserAddress(@QueryMap HashMap<String,String> map);
 
     //获取服务端购物车产品信息的接口
     @GET("getShortcartProducts")

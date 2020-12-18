@@ -1,10 +1,15 @@
 package com.shopmall.bawei.order.presenter;
 
+import android.util.Log;
+
 import com.example.net.BaseBean;
 import com.example.net.ConfigUrl;
 import com.example.net.HttpRetrofitManager;
 import com.example.net.INetPresetenterWork;
+import com.example.net.LoginBean;
 import com.shopmall.bawei.order.contract.OrderContract;
+
+import java.util.HashMap;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -16,27 +21,28 @@ public class OrderPresenterImpl extends OrderContract.OrderPresenter {
 
     @Override
     public void upDataPhone(String phone) {
-        new HttpRetrofitManager()
+        HashMap<String,String> map = new HashMap<>();
+        map.put("phone",phone);
+         HttpRetrofitManager.getHttpRetrofitManager()
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
-                .upDataUserPhone(phone)
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribeOn(Schedulers.io())
+                .upDataUserPhone(map)
+                 .subscribeOn(Schedulers.io())
+                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<BaseBean<String>>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
                     }
-
                     @Override
-                    public void onNext(BaseBean<String> stringBaseBean) {
-
-                        iView.onUpDataPhone(stringBaseBean.getMessage());
+                    public void onNext(BaseBean<String> loginBeanBaseBean) {
+                        Log.i("TAG", "onNext: "+loginBeanBaseBean.getMessage());
+                        iView.onUpDataPhone(loginBeanBaseBean.getResult()+"");
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("TAG", "onError: "+e.getMessage());
                     }
 
                     @Override
@@ -48,10 +54,12 @@ public class OrderPresenterImpl extends OrderContract.OrderPresenter {
 
     @Override
     public void upDataAddress(String address) {
-        new HttpRetrofitManager()
+        HashMap<String,String> map = new HashMap<>();
+        map.put("address",address);
+         HttpRetrofitManager.getHttpRetrofitManager()
                 .getRetrofit(ConfigUrl.BASE_URL)
                 .create(INetPresetenterWork.class)
-                .upDataUserAddress(address)
+                .upDataUserAddress(map)
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Observer<BaseBean<String>>() {
@@ -61,8 +69,8 @@ public class OrderPresenterImpl extends OrderContract.OrderPresenter {
                     }
 
                     @Override
-                    public void onNext(BaseBean<String> stringBaseBean) {
-                        iView.onUpDataAddress(stringBaseBean.getMessage());
+                    public void onNext(BaseBean<String> loginBeanBaseBean) {
+                        iView.onUpDataAddress(loginBeanBaseBean.getResult()+"");
                     }
 
                     @Override
