@@ -1,19 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.bawei.shopmall.find.FindFragment">
 
     <com.bawei.common.view.MyToolBar
         android:id="@+id/toolbar"
-        style="@style/BannerStyle.MyToolBarStyle" />
+        style="@style/BannerStyle.MyToolBarStyle"
+        android:visibility="visible"
+        app:left_show="false"
+        app:right_show="false"
+        app:title_text="消息" />
 
-    <TextView
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/find_recycler"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="这是发现页面"
-        android:textSize="50sp" />
+        android:layout_height="match_parent" />
 
-</FrameLayout>
+</LinearLayout>

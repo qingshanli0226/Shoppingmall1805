@@ -18,6 +18,7 @@ import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IView;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.user.R;
 import com.bawei.user.contact.UserContract;
@@ -139,6 +140,11 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
         } else {
             Toast.makeText(this, "注册失败" + registerBean.getMessage(), Toast.LENGTH_SHORT).show();
         }
+
+    }
+
+    @Override
+    public void logout(LogoutBean logoutBean) {
 
     }
 

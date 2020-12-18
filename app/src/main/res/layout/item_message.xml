@@ -12,6 +12,12 @@
         android:src="@mipmap/new_message_icon" />
 
     <TextView
+        android:id="@+id/tv_number"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:gravity="center" />
+
+    <TextView
         android:id="@+id/message_title"
         android:layout_width="0dp"
         android:layout_height="100dp"

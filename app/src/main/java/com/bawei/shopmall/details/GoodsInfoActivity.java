@@ -79,21 +79,15 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
             ll_root.setVisibility(View.GONE);
         } else if (v == tvMoreShare) {
             Toast.makeText(GoodsInfoActivity.this, R.string.share, Toast.LENGTH_SHORT).show();
-//            showShare();
         } else if (v == tvMoreSearch) {
             Toast.makeText(GoodsInfoActivity.this, R.string.search, Toast.LENGTH_SHORT).show();
         } else if (v == tvMoreHome) {
-            //Constants.isBackHome = true;
             finish();
         } else if (v == tvGoodInfoCallcenter) {
             Toast.makeText(GoodsInfoActivity.this, R.string.customer_service, Toast.LENGTH_SHORT).show();
-            //Intent intent = new Intent(this, CallCenterActivity.class);
-            //startActivity(intent);
         } else if (v == tvGoodInfoCollection) {
             Toast.makeText(GoodsInfoActivity.this, R.string.Collection, Toast.LENGTH_SHORT).show();
         } else if (v == tvGoodInfoCart) {
-            //Intent intent = new Intent(this, ShoppingCartActivity.class);
-            //startActivity(intent);
 
             ARouter.getInstance().build("/shopcar/ShopcarActivity").navigation();
         } else if (v == btnGoodInfoAddcart) {
@@ -209,7 +203,6 @@ public class GoodsInfoActivity extends BaseActivity<ProductDetailContractImpl, P
         String figure = goodsBean.getFigure();
         String product_id = goodsBean.getProductId();
 
-        //Glide.with(this).load(Constants.BASE_URl_IMAGE + figure).into(ivGoodInfoImage);
         if (name != null) {
             tvGoodInfoName.setText(name);
         }

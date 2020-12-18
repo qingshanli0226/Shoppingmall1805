@@ -117,4 +117,7 @@ public interface MyNetApi {
     @FormUrlEncoded
     Observable<BaseBean<String>> updateAddress(@FieldMap HashMap<String, String> map);
 
+    @POST("confirmServerPayResult")
+    Observable<BaseBean<String>> confirmServerPayResult(@Body RequestBody requestBody);
+
 }

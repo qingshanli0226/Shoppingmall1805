@@ -8,10 +8,13 @@ import com.bawei.framework.MessageManager;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.framework.greendao.dao.DaoSession;
 import com.bawei.net.NetModule;
+import com.squareup.leakcanary.LeakCanary;
+import com.squareup.leakcanary.RefWatcher;
 
 public class ShopMallApplication extends Application {
 
     private DaoSession daoSession;
+    private RefWatcher refWatcher;
 
     @Override
     public void onCreate() {
@@ -27,5 +30,9 @@ public class ShopMallApplication extends Application {
         ShopUserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);
         MessageManager.getInstance().init(this);
+
+        if (!LeakCanary.isInAnalyzerProcess(this)) {
+            refWatcher = LeakCanary.install(this);
+        }
     }
 }

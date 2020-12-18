@@ -2,8 +2,11 @@ package com.bawei.user.contact;
 
 import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.ExceptionUtil;
+import com.bawei.common.view.NetConfig;
+import com.bawei.framework.ShopUserManager;
 import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.LoginBean;
+import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 
 import java.util.HashMap;
@@ -94,6 +97,38 @@ public class UserContractImpl extends UserContract.IUserPresenter {
                     public void onError(Throwable e) {
                         ErrorBean errorBean = ExceptionUtil.getErrorBean(e);
                         iView.hideLoading(true, errorBean);
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void logoutUser() {
+        HashMap<String, String> map = new HashMap<>();
+        map.put(NetConfig.tokenName, ShopUserManager.getInstance().getToken());
+        RetrofitCreate.getApi().logout(map)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<LogoutBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(LogoutBean logoutBean) {
+                        if (logoutBean.getCode().equals("200")) {
+                            ShopUserManager.getInstance().logoutUser();
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
                     }
 
                     @Override

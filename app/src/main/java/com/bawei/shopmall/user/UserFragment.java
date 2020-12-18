@@ -3,7 +3,6 @@ package com.bawei.shopmall.user;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.os.Handler;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,39 +11,32 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.BaseFragment;
-import com.bawei.framework.BasePresenter;
-import com.bawei.framework.IView;
 import com.bawei.framework.MessageManager;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.framework.ShopUserManager.IUserLoginChangedListener;
 import com.bawei.framework.greendao.MessageBean;
-import com.bawei.net.RetrofitCreate;
 import com.bawei.net.mode.LoginBean;
 import com.bawei.net.mode.LogoutBean;
+import com.bawei.net.mode.RegisterBean;
+import com.bawei.user.contact.UserContract;
+import com.bawei.user.contact.UserContractImpl;
 import com.shopmall.bawei.shopmall1805.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import java.util.HashMap;
-
-import io.reactivex.Observer;
-import io.reactivex.android.schedulers.AndroidSchedulers;
-import io.reactivex.disposables.Disposable;
-import io.reactivex.schedulers.Schedulers;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class UserFragment extends BaseFragment<BasePresenter, IView> implements IUserLoginChangedListener, View.OnClickListener {
+public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IUserView> implements IUserLoginChangedListener, View.OnClickListener, UserContract.IUserView {
 
     private TextView tvUsername;
     private ImageView ibUserSetting;
     private ImageView ibUserIconAvator;
-    private Handler handler = new Handler();
     private ImageView ibUserMessage;
 
     @Override
@@ -92,28 +84,25 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     protected void initPresenter() {
-
+        httpPresenter = new UserContractImpl();
     }
 
     @Override
     public void onUserLogin(LoginBean loginBean) {
-        tvUsername.setText(loginBean.getResult().getName());
+        if (ShopUserManager.getInstance().isUserLogin()) {
+            tvUsername.setText(loginBean.getResult().getName());
+        } else {
+            tvUsername.setText("登录/注册");
+            Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+        }
     }
+
 
     @Override
     public void onUserLogout() {
-        handler.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
-                SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
-                SharedPreferences.Editor edit = sharedPreferences.edit();
-                edit.remove(NetConfig.tokenName);
-                edit.commit();
-                tvUsername.setText("登录/注册");
-            }
-        });
+        tvUsername.setText("登录/注册");
     }
+
 
     @Override
     public void onDestroy() {
@@ -131,34 +120,7 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
                 }
                 break;
             case R.id.ib_user_setting:
-                HashMap<String, String> map = new HashMap<>();
-                map.put(NetConfig.tokenName, ShopUserManager.getInstance().getToken());
-                RetrofitCreate.getApi().logout(map)
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Observer<LogoutBean>() {
-                            @Override
-                            public void onSubscribe(Disposable d) {
-
-                            }
-
-                            @Override
-                            public void onNext(LogoutBean logoutBean) {
-                                if (logoutBean.getCode().equals("200")) {
-                                    ShopUserManager.getInstance().logoutUser();
-                                }
-                            }
-
-                            @Override
-                            public void onError(Throwable e) {
-
-                            }
-
-                            @Override
-                            public void onComplete() {
-
-                            }
-                        });
+                httpPresenter.logoutUser();
                 break;
             case R.id.ib_user_message:
                 ARouter.getInstance().build("/message/MessageActivity").navigation();
@@ -173,6 +135,40 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     public void onRightClick() {
+
+    }
+
+    @Override
+    public void login(LoginBean loginBean) {
+
+    }
+
+    @Override
+    public void register(RegisterBean registerBean) {
+
+    }
+
+    @Override
+    public void logout(LogoutBean logoutBean) {
+        Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+        SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
+        SharedPreferences.Editor edit = sharedPreferences.edit();
+        edit.remove(NetConfig.tokenName);
+        edit.commit();
+    }
+
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
 
     }
 }

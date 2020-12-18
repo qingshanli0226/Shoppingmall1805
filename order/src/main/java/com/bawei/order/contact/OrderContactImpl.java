@@ -71,4 +71,34 @@ public class OrderContactImpl extends OrderContact.OrderPresenter {
                     }
                 });
     }
+
+    @Override
+    public void PostConfirmServerPayResult(OrderInfoBean orderInfoBean, boolean clientPayResult) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("outTradeNo", orderInfoBean.getOutTradeNo());
+            jsonObject.put("result", orderInfoBean.getOrderInfo());
+            jsonObject.put("clientPayResult", clientPayResult);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+
+        RetrofitCreate.getApi().confirmServerPayResult(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<BaseBean<String>, String>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new ShopmallObserver<String>() {
+                    @Override
+                    public void onNext(String s) {
+                        iView.onConfirmServerPayResult(s);
+                    }
+
+                    @Override
+                    public void onRequestError(String errorCode, String errorMessage) {
+                        iView.hideLoading(false, ExceptionUtil.getErrorBean(errorCode, errorMessage));
+                    }
+                });
+    }
 }

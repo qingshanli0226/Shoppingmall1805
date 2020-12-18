@@ -14,8 +14,10 @@ public class MessageAdapter extends BaseRvAdapter<MessageBean> {
 
     @Override
     protected void convert(MessageBean itemData, BaseViewHolder baseViewHolder, int position) {
+        TextView id = baseViewHolder.getView(R.id.tv_number);
         TextView title = baseViewHolder.getView(R.id.message_title);
         TextView body = baseViewHolder.getView(R.id.message_body);
+        id.setText(itemData.getId() + "");
         title.setText(itemData.getTitle());
         body.setText(itemData.getBody());
     }

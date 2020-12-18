@@ -218,7 +218,6 @@ public class ShopcarFragment extends BaseFragment<ShopcarPresenterImpl, ShopcarC
         } else if (view.getId() == R.id.allEditSelect) {
             CacheManager.getInstance().selectAllProductInEditMode(editAllSelectCheckBox.isChecked());
         } else if (view.getId() == R.id.payBtn) {
-            Toast.makeText(getContext(), "点击", Toast.LENGTH_SHORT).show();
             if (ShopUserManager.getInstance().isBanDingPhone() && ShopUserManager.getInstance().isBanDingAddress()) {
                 ARouter.getInstance().build("/order/OrderActivity").navigation();
 
