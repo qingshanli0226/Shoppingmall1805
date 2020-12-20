@@ -30,8 +30,6 @@ public class UserService extends Service {
             Toast.makeText(this, "空", Toast.LENGTH_SHORT).show();
             return START_STICKY;
         }else {
-
-
         HashMap<String, String> map = new HashMap<>();
         map.put("token",token);
         MyHttp.getShopmallApiService().autologin(map)

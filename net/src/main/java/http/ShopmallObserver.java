@@ -24,7 +24,6 @@ public abstract class ShopmallObserver<T> implements Observer<T> {
 
     @Override
     public void onError(Throwable e) {
-        Log.d("LQS error message-----", e.getMessage());
         if (e instanceof JSONException) {
             onRequestError(UrlHelp.JSCON_ERROR_CODE, UrlHelp.JSON_ERROR_MESSAGE);
         } else if (e instanceof HttpException) {

@@ -31,12 +31,7 @@
           android:layout_width="match_parent"
           android:orientation="horizontal"
           android:layout_height="wrap_content">
-         <View
-             android:layout_marginTop="12dp"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="1dp"
-             android:background="#DDDDDD"/>
+         <View style="@style/MainView"/>
          <ImageView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
@@ -44,12 +39,7 @@
             android:src="@drawable/home_bottom_parent_bg"
              >
          </ImageView>
-         <View
-             android:layout_marginTop="12dp"
-             android:layout_width="0dp"
-             android:layout_weight="1"
-             android:layout_height="1dp"
-             android:background="#DDDDDD"/>
+         <View style="@style/MainView"/>
       </LinearLayout>
 
 
@@ -63,12 +53,7 @@
              android:layout_height="wrap_content"
              android:id="@+id/m_layout"
              app:tl_iconGravity="TOP"
-             app:tl_iconMargin="4dp"
-             app:tl_iconHeight="30dp"
-             app:tl_iconWidth="30dp"
-             app:tl_textSelectColor="#383838"
-             app:tl_textUnselectColor="#929292"
-             app:tl_textsize="10sp"
+            style="@style/MainTableLayout"
              >
 
          </com.flyco.tablayout.CommonTabLayout>

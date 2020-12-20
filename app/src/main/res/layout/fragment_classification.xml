@@ -33,32 +33,20 @@
                            android:id="@+id/rg"
                            >
                            <RadioButton
-                               android:textColor="@drawable/text_select"
-                               android:layout_width="0dp"
-                               android:layout_weight="1"
-                               android:gravity="center"
-                               android:layout_height="wrap_content"
-                               android:button="@null"
+                               style="@style/ClassificationRadioButton"
                                android:checked="true"
-                               android:padding="@dimen/dp_10"
                                android:id="@+id/radio_left"
                                android:background="@drawable/l_select_fen"
-                               android:text="分类"
-
-                               ></RadioButton>
+                               android:text="@string/Classification"
+                               >
+                           </RadioButton>
                            <RadioButton
-                               android:textColor="@drawable/text_select"
+                               style="@style/ClassificationRadioButton"
                                android:background="@drawable/r_select_fen"
-                               android:layout_width="0dp"
-                               android:layout_weight="1"
-                               android:gravity="center"
-                               android:layout_height="wrap_content"
-                               android:button="@null"
-                               android:padding="@dimen/dp_10"
                                android:id="@+id/radio_regit"
-
-                               android:text="标签"
-                               ></RadioButton>
+                               android:text="@string/Label"
+                               >
+                           </RadioButton>
                        </RadioGroup>
                         <ImageView
                             android:layout_width="wrap_content"

@@ -21,7 +21,7 @@ public class ClassificationPresenter extends ClassificationContract.Classificati
 
     @Override
     public void getIClassificationData(String url) {
-        Log.i("TAG", "getIClassificationData: ");
+        Log.i("getIClassificationData", "getIClassificationData: ");
         MyHttp.getShopmallApiService()
                 .getskirt(url)
                 .subscribeOn(Schedulers.io())
@@ -35,18 +35,20 @@ public class ClassificationPresenter extends ClassificationContract.Classificati
                 .doFinally(new Action() {
                     @Override
                     public void run() throws Exception {
+                        Log.i("TAG1", "run: ");
                         iHttpView.hideLoading();
                     }
                 })
                 .subscribe(new ShopmallObserver<BaseBean<SkirstBean>>() {
                     @Override
                     public void onNext(BaseBean<SkirstBean> skirstBeanBaseBean) {
-                        Log.i("TAG", "onNext: "+skirstBeanBaseBean.getResult());
+                        Log.i("TAG2", "run: ");
                         iHttpView.onClassification(skirstBeanBaseBean.getResult());
                     }
 
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
+                        Log.i("TAG3", "run: ");
                         iHttpView.showError(errorCode,errorMessage);
                     }
                 });

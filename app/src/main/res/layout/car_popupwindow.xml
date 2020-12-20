@@ -42,7 +42,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="数量:"
+            android:text="@string/Quantity"
             android:layout_marginRight="@dimen/dp_10"
             android:layout_gravity="center"
             >
@@ -62,7 +62,7 @@
             android:layout_gravity="center"
             android:id="@+id/car_count"
             android:layout_marginRight="@dimen/dp_10"
-            android:textColor="#000"
+            android:textColor="@color/colorBlack"
             >
         </TextView>
         <ImageView
@@ -83,10 +83,10 @@
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="取消"
+            android:text="@string/no"
             android:id="@+id/no"
-            android:background="#8E8A8A"
-            android:textColor="#000"
+            android:background="@color/main_text_true"
+            android:textColor="@color/colorBlack"
             >
         </Button>
         <Button
@@ -94,7 +94,7 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="@color/colorRed"
-            android:text="确定"
+            android:text="@string/yes"
             android:id="@+id/yes"
             android:textColor="@color/colorWilte"
             >

@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".shopcar.view.ShopCarFragment">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -132,4 +133,8 @@
             </Button>
         </LinearLayout>
     </LinearLayout>
+
+
+
+
 </FrameLayout>

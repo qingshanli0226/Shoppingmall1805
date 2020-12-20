@@ -63,7 +63,7 @@ public interface ShopmallApiService {
     @POST("checkOneProductInventory")
     @FormUrlEncoded
     Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
-/*
+
 
     @POST("updateProductNum")
     Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
@@ -81,5 +81,5 @@ public interface ShopmallApiService {
     Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
 
     @POST("getOrderInfo")
-    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);*/
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
 }

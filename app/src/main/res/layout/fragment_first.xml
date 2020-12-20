@@ -61,9 +61,8 @@
                         android:layout_gravity="center"
                         android:textSize="12dp"
                         android:background="@null"
-
                         android:textColorHint="#000"
-                        android:hint="请输入搜索信息"
+                        android:hint="@string/home_title"
                         >
                     </EditText>
                 </LinearLayout>
@@ -73,9 +72,9 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/emailimg"
                     android:button="@null"
-                    android:text="消息"
+                    android:text="@string/home_message"
                     android:id="@+id/emailbutton"
-                    android:textColor="#fff"
+                    android:textColor="@color/colorWilte"
                     >
                 </RadioButton>
             </RelativeLayout>

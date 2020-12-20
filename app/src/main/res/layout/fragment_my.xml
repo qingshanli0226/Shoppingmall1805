@@ -44,7 +44,7 @@
                        android:layout_centerHorizontal="true"
                        android:layout_marginTop="130dp"
                        android:text="登录/注册"
-                       android:textColor="#fff" />
+                       android:textColor="@color/colorWilte" />
                </RelativeLayout>
 
                <View

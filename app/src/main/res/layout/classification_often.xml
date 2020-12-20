@@ -8,7 +8,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:text="常用分类"
+        android:text="@string/classification_often"
         android:textSize="15dp"
         ></TextView>
     <androidx.recyclerview.widget.RecyclerView

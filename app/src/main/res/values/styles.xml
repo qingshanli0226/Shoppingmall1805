@@ -20,4 +20,39 @@
         <item name="android:textColor">#5d5d5d</item>
     </style>
 
+    <!--TableLayout-->
+    <style name="MainTableLayout">
+        <item name="tl_iconMargin">4dp</item>
+        <item name="tl_iconHeight">30dp</item>
+        <item name="tl_iconWidth">30dp</item>
+        <item name="tl_textsize">10sp</item>
+        <item name="tl_textSelectColor">@color/main_text_true</item>
+        <item name="tl_textUnselectColor">@color/main_text_false</item>
+    </style>
+
+    <!--MainView-->
+    <style name="MainView">
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">1dp</item>
+        <item name="android:background">@color/colorThread</item>
+    </style>
+
+    <!--ClassificationRadioButton-->
+    <style name="ClassificationRadioButton">
+        <item name="android:textColor">@drawable/text_select</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:button">@null</item>
+        <item name="android:padding">@dimen/dp_10</item>
+    </style>
+
+
+
+
+
+
 </resources>

@@ -162,22 +162,6 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
         loadingBar.setVisibility(View.GONE);
     }
 
-    @Override
-    public void onClassification(SkirstBean skirstBean) {
-
-        List<SkirstBean.HotProductListBean> hot_product_list = skirstBean.getHot_product_list();
-        List<SkirstBean.ChildBean> child = skirstBean.getChild();
-        Log.i("TAG", "onClassification: "+skirstBean);
-        data.add(hot_product_list);
-        data.add(child);
-
-        homeAdapter = new ClassificationSmallMultiLayoutAdapter(getActivity());
-        rec.setAdapter(homeAdapter);
-        homeAdapter.updataData(data);
-
-        homeAdapter.notifyDataSetChanged();
-
-    }
 
     @Override
     protected void initHttpData() {
@@ -202,6 +186,26 @@ public class ClassificationSmallFragment extends BaseMVPFragment<ClassificationP
         }
     }
 
+    @Override
+    public void onClassification(SkirstBean skirstBean) {
+
+
+
+            List<SkirstBean.HotProductListBean> hot_product_list = skirstBean.getHot_product_list();
+            List<SkirstBean.ChildBean> child = skirstBean.getChild();
+            Log.i("---", "onClassification: "+skirstBean);
+            data.add(hot_product_list);
+            data.add(child);
+
+            homeAdapter = new ClassificationSmallMultiLayoutAdapter(getActivity());
+            rec.setAdapter(homeAdapter);
+            homeAdapter.updataData(data);
+
+            homeAdapter.notifyDataSetChanged();
+
+
+
+    }
 
 
     class MyAdapter extends BaseAdapter {

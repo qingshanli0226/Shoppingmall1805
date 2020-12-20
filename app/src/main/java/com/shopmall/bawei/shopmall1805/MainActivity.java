@@ -1,17 +1,16 @@
 package com.shopmall.bawei.shopmall1805;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.viewpager.widget.ViewPager;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.example.common2.GetShopCarBean;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
-import com.shopmall.bawei.shopmall1805.goods.view.GoodsCount;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomePagerAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter;
 import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
@@ -20,13 +19,12 @@ import com.shopmall.bawei.shopmall1805.home.view.FirstFragment;
 import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
 import com.shopmall.bawei.shopmall1805.shopcar.view.ShopCarFragment;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
-
 import java.util.ArrayList;
 import java.util.List;
-public class MainActivity extends AppCompatActivity {
+
+import mvp.CacheManager;
+@Route(path = "/main/MainActivity")
+public class MainActivity extends AppCompatActivity implements CacheManager.IShopcarDataChangeListener {
     private ArrayList<Integer> selectedIconRes = new ArrayList<>();         //tab选中图标集合
     private ArrayList<Integer> unselectedIconRes = new ArrayList<>();       //tab未选中图标集合
     private ArrayList<String> titleRes = new ArrayList<>();                 //tab标题集合
@@ -34,24 +32,19 @@ public class MainActivity extends AppCompatActivity {
     private List<CustomTabEntity> data = new ArrayList<>();                 //CommonTabLayout 所需数据集合
     private BaseVpAdapter mPager;
     private CommonTabLayout mLayout;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        EventBus.getDefault().register(this);
         initView();
         initData();
         initListener();
-
-
     }
-
     private void initView() {
         mPager = (BaseVpAdapter) findViewById(R.id.m_pager);
         mPager.setscrollable(false);
         mLayout = (CommonTabLayout) findViewById(R.id.m_layout);
-
-
     }
 
     private void initData() {
@@ -107,9 +100,14 @@ public class MainActivity extends AppCompatActivity {
         mLayout.setTabData((ArrayList<CustomTabEntity>) data);
 
 
-        mPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager(),fsRes));
-    }
+        mPager.setAdapter(new HomePagerAdapter(getSupportFragmentManager(), fsRes));
 
+        List<GetShopCarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+
+
+        mLayout.showMsg(3, shopcarBeanList.size());
+        CacheManager.getInstance().setiShopcarDataChangeListener(this);
+    }
 
 
     private void initListener() {
@@ -147,14 +145,30 @@ public class MainActivity extends AppCompatActivity {
         //设置默认第0个
         mPager.setCurrentItem(0);
     }
-    @Subscribe(threadMode = ThreadMode.MAIN)
-    public void getSize(Integer size){
-        mLayout.showMsg(3,size );
-    }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        EventBus.getDefault().unregister(this);
+        //  EventBus.getDefault().unregister(this);
     }
 
+    @Override
+    public void onDataChanged(List<GetShopCarBean> shopcarBeanList) {
+        mLayout.showMsg(3, shopcarBeanList.size());
+    }
+
+    @Override
+    public void onOneDataChanged(int position, GetShopCarBean shopcarBean) {
+
+    }
+
+    @Override
+    public void onMoneyChanged(String moneyValue) {
+
+    }
+
+    @Override
+    public void onAllSelected(boolean isAllSelect) {
+
+    }
 }

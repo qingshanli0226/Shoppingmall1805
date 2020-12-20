@@ -100,18 +100,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="由"></TextView>
+                android:text="@string/goods_text"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="尚硅谷"
+                android:text="@string/goods_text2"
                 android:textColor="@color/colorRed"></TextView>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="发货"></TextView>
+                android:text="@string/goods_text3"></TextView>
         </LinearLayout>
         <LinearLayout
             android:layout_marginTop="20dp"
@@ -131,7 +131,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/main_user"
                     android:button="@null"
-                    android:text="联系客服"
+                    android:text="@string/goods_Customer"
                     ></RadioButton>
                 <RadioButton
                     android:gravity="center"
@@ -140,7 +140,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/good_uncollected"
                     android:button="@null"
-                    android:text="收藏"
+                    android:text="@string/goods_Collect"
                     ></RadioButton>
                 <RadioButton
                     android:gravity="center"
@@ -149,7 +149,7 @@
                     android:layout_height="wrap_content"
                     android:drawableTop="@drawable/main_cart"
                     android:button="@null"
-                    android:text="购物车"
+                    android:text="@string/shopscar_title"
                     ></RadioButton>
             </LinearLayout>
             <Button

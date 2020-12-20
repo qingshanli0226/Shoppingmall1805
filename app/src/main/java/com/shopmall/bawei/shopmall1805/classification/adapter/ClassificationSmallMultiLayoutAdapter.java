@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.classification.adapter;
 import android.content.Context;
 import android.util.Log;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,6 +20,8 @@ public class ClassificationSmallMultiLayoutAdapter extends BaseRvAdapter {
     public ClassificationSmallMultiLayoutAdapter(Context context) {
         this.context = context;
     }
+
+
     @Override
     protected int getLayoutId(int viewType) {
         switch (viewType) {
@@ -28,12 +31,17 @@ public class ClassificationSmallMultiLayoutAdapter extends BaseRvAdapter {
                 return R.layout.classification_often;
         }
         return R.layout.classification_hot;
+    }
+    @Override
+    public int getViewType(int position) {
 
+        return position;
     }
 
+
     @Override
-    protected void convert(BaseViewHoder baseViewHoder, int viewType, Object o) {
-        switch (viewType) {
+    protected void convert(Object o, BaseViewHolder baseViewHoder, int position) {
+        switch (position) {
             case 0:
                 List<SkirstBean.HotProductListBean> h_6 = (List<SkirstBean.HotProductListBean>)o;
                 Log.i("TAG", "convert: ");
@@ -53,10 +61,8 @@ public class ClassificationSmallMultiLayoutAdapter extends BaseRvAdapter {
         }
     }
 
-    @Override
-    public int getViewType(int position) {
-        return position;
-    }
+
+
 
 
 }
