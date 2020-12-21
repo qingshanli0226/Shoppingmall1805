@@ -5,21 +5,17 @@
     android:gravity="center"
     android:layout_margin="10dp"
     android:layout_height="wrap_content">
-
-
     <ImageView
         android:layout_width="80dp"
         android:layout_height="80dp"
         android:id="@+id/xin_im"
         android:layout_gravity="center"
         >
-
     </ImageView>
     <TextView
         android:layout_width="80dp"
         android:layout_height="wrap_content"
         android:id="@+id/xin_te"
-
         android:lines="2"
         android:ellipsize="end"
         >
@@ -31,9 +27,8 @@
         android:id="@+id/xin_te2"
        android:layout_gravity="center"
         android:gravity="center"
-        android:textColor="#D60606"
+        android:textColor="@color/colorRed"
         >
-
     </TextView>
 
 

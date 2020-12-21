@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/you_te"
                 android:layout_gravity="center"
-                android:textColor="#D60606"
+                android:textColor="@color/colorRed"
                 >
 
             </TextView>

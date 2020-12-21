@@ -24,6 +24,33 @@
     <string name="Label">标签</string>
     <string name="home_title">请输入搜索信息</string>
     <string name="home_message">消息</string>
+    <string name="shopcar_delete">删除</string>
+    <string name="shopcar_cancels">取消</string>
+    <string name="shopcar_productName">产品名称</string>
+    <string name="shopcar_productPrice">产品价格</string>
+    <!--我的-->
+    <string name="user">登录/注册</string>
+    <string name="order">查看全部订单</string>
+    <string name="user_pay">代付款</string>
+    <string name="user_receive">待收货</string>
+    <string name="user_finish">已完成</string>
+    <string name="user_drawback">退款/售后</string>
+    <string name="user_location">收货地址</string>
+    <string name="user_collect">我的收藏</string>
+    <string name="user_coupon">我的优惠券</string>
+    <string name="user_score">我的瓜子</string>
+    <string name="user_prize">我的奖品</string>
+    <string name="user_ticket">我的电子票</string>
+    <string name="user_invitation">邀请分享</string>
+    <string name="user_callcente">客服中心</string>
+    <string name="user_feedback">服务反馈</string>
+    <string name="user_usercenter">个人中心</string>
+    <!--Home-->
+    <string name="home_discount">今日闪购  距 · 结束</string>
+    <string name="home_more">查看更多</string>
+    <string name="home_new">新品推荐</string>
+    <string name="home_recommend">这里都是买的棒棒哒</string>
+
 
 
 </resources>

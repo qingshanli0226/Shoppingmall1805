@@ -38,36 +38,39 @@ public interface ShopmallApiService {
     @GET(UrlHelp.TAG_URL)
     Observable<TagBean>gettag();
 
+    //注册
     @POST("register")
     @FormUrlEncoded
     Observable<RegisterBean> register(@FieldMap HashMap<String, String> params);
 
+    //登录
     @POST("login")
     @FormUrlEncoded
     Observable<LoginBean> login(@FieldMap HashMap<String, String> params);
 
+    //自动登录
     @POST("autoLogin")
     @FormUrlEncoded
     Observable<LoginBean> autologin(@FieldMap HashMap<String, String> params);
 
-
+    //添加
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
+    //获取购物车商品
     @GET("getShortcartProducts")
     Observable<BaseBean<List<GetShopCarBean>>> getShortcartProducts();
 
-
-
-
+    //检查服务端一个产品库存情况的接口
     @POST("checkOneProductInventory")
     @FormUrlEncoded
     Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
 
-
+    //更新服务端购物车数量
     @POST("updateProductNum")
     Observable<BaseBean<String>> updateProductNum(@Body RequestBody requestBody);
 
+    //更新服务端商品选择
     @POST("updateProductSelected")
     Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);
 

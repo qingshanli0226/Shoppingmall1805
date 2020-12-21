@@ -10,4 +10,5 @@
     <color name="main_text_true">#494848</color>
     <color name="main_text_false">#B3B1B1</color>
     <color name="colorBlack">#000</color>
+    <color name="color_shopcar">#ECE5E5</color>
 </resources>

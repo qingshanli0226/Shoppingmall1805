@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:orientation="vertical"
-    android:background="#F1EDED"
+    android:background="@color/color_shopcar"
     android:layout_marginTop="10dp"
     android:layout_height="wrap_content">
     <LinearLayout
@@ -18,7 +18,7 @@
             android:layout_marginLeft="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="这里都是买的棒棒哒"
+            android:text="@string/home_recommend"
             android:textColor="#000"
             android:layout_gravity="center"
             ></TextView>
@@ -43,7 +43,7 @@
                 android:layout_centerVertical="true"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="查看更多"
+                android:text="@string/home_more"
                 ></TextView>
 
         </RelativeLayout>
