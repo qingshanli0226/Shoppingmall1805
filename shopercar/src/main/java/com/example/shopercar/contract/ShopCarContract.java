@@ -4,6 +4,7 @@ import com.example.framwork.BasePresenter;
 import com.example.framwork.IView;
 import com.example.net.InventoryBean;
 import com.example.net.OrderInfoBean;
+import com.example.net.bean.ConfirmServerPayResultBean;
 import com.example.net.bean.ShopcarBean;
 
 import java.util.List;
@@ -16,6 +17,7 @@ public class ShopCarContract {
         void onDeleteProduct(String result);
         void onInventory(List<InventoryBean> inventoryBeans);
         void onOnderInfo(OrderInfoBean orderInfoBean);
+        void onConfirmServerPay(ConfirmServerPayResultBean confirmServerPayResultBean);
     }
 
     public static abstract class ShopCarPresenter extends BasePresenter<ShopCarIView>{
@@ -25,5 +27,6 @@ public class ShopCarContract {
         public abstract void deleteProducts(List<ShopcarBean> products);
         public abstract void checkInventory(List<ShopcarBean> products);
         public abstract void getOrderInfo(List<ShopcarBean> products);
+        public abstract void getConfirmServerPay();
     }
 }

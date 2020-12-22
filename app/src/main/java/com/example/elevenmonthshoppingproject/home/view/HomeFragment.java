@@ -1,5 +1,13 @@
 package com.example.elevenmonthshoppingproject.home.view;
 
+import android.content.BroadcastReceiver;
+import android.content.ContentValues;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -7,12 +15,21 @@ import android.widget.Toast;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.elevenmonthshoppingproject.R;
 import com.example.elevenmonthshoppingproject.home.contract.HomeContract;
 import com.example.elevenmonthshoppingproject.home.presenter.HomePresenterImpl;
 import com.example.framwork.BaseMVPFragment;
 import com.example.framwork.BaseRVAdapter;
+import com.example.framwork.ShopCarGreen;
+import com.example.framwork.sql.MySqlOpenHelper;
+import com.example.framwork.view.manager.MessageManager;
 import com.example.net.bean.HomeBean;
+import com.example.net.bean.MoneyBean;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,7 +41,8 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     private HomePresenterImpl homePresenter;
     private TextView tvMessageHome;
 
-
+    private MyBroadcaseReceiver myBroadcaseReceiver;
+    private String pay;
 
     @Override
     public void onHomeData(HomeBean homeBean) {
@@ -40,6 +58,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
 
 
 
+
     }
 
     @Override
@@ -47,8 +66,24 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         return R.layout.homefragment;
     }
 
+//    @Subscribe(threadMode = ThreadMode.MAIN)
+//    public void onMessageChanged(ShopCarGreen shopcarMessage) {
+//        int messageCount = MessageManager.getInstance().getMessageCount();
+//        if (messageCount!=0) {
+//            toolbar.setToolbarRightTv(messageCount+"");
+//        }
+//    }
+
+    @Override
+    protected void iniEven() {
+
+    }
+
     @Override
     protected void iniView(View view) {
+         myBroadcaseReceiver = new MyBroadcaseReceiver();
+         getActivity().registerReceiver(myBroadcaseReceiver,new IntentFilter("unorderbroadcast"));
+
         rvHome=view.findViewById(R.id.rv_home);
         tvMessageHome = view.findViewById(R.id.tv_message_home);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -58,17 +93,20 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         tvMessageHome.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                loginPage.showEnptyPage();
+                Log.i("*---","**");
+                ARouter.getInstance().build("/message/MessageListActivity").navigation();
             }
         });
+
     }
 
     @Override
     protected void iniData() {
-
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolbar.setToolbarRightTv(messageCount+"");
+        }
     }
-
-
 
     @Override
     protected void iniPresenter() {
@@ -105,5 +143,28 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     public void onDestroy() {
         super.onDestroy();
         homePresenter.detachview();
+//        EventBus.getDefault().unregister(this);
+        getActivity().unregisterReceiver(myBroadcaseReceiver);
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
+
+    public class MyBroadcaseReceiver extends  BroadcastReceiver{
+
+        @Override
+        public void onReceive(final Context context, Intent intent) {
+             pay = intent.getStringExtra("pay");
+
+            Toast.makeText(getContext(), ""+pay, Toast.LENGTH_SHORT).show();
+
+        }
     }
 }

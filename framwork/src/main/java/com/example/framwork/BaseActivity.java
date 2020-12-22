@@ -1,6 +1,5 @@
 package com.example.framwork;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.Nullable;
@@ -14,6 +13,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         setContentView(getLayoutId());
         iniView();
         iniData();
+
+
+
+
 
 
     }

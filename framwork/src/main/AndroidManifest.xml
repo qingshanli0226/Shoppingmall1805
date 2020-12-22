@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.framwork" >
-    <application android:theme="@style/AppTheme" android:name="com.example.elevenmonthshoppingproject.MasterApplication">
+    <application android:theme="@style/AppTheme">
         <service android:name=".service.LoginService"></service>
 
     </application>

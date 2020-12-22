@@ -2,6 +2,7 @@ package com.example.net;
 
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.BaseBean;
+import com.example.net.bean.ConfirmServerPayResultBean;
 import com.example.net.bean.LoginBean;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.MessageBean;
@@ -76,5 +77,8 @@ public interface INetworkserviceimpl {
     @POST("updatePhone")
     @FormUrlEncoded
     Observable<BaseBean<String>> getPhone(@FieldMap HashMap<String,String> map);
+
+    @POST("getOrderInfo")
+    Observable<BaseBean<ConfirmServerPayResultBean>> getConfirmServerPayResult(@Body RequestBody requestBody);
 
 }

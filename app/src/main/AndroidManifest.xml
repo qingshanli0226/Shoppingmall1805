@@ -29,6 +29,9 @@
         <activity
             android:name="com.example.shopercar.view.ShoppingPageActivity"
             android:launchMode="singleTask" />
+        <activity android:name=".message.MessageListActivity" android:theme="@style/AppTheme.FullSrcreen"></activity>
+
+        <receiver android:name=".home.view.HomeFragment$MyBroadcaseReceiver"></receiver>
     </application>
 
 </manifest>

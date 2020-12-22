@@ -4,9 +4,13 @@
     android:layout_height="match_parent"
     >
 
-    <ProgressBar android:layout_width="500dp" android:layout_height="500dp"
-        android:id="@+id/loadingBar"
-        />
+
+
+    <com.example.framwork.view.ToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    </com.example.framwork.view.ToolBar>
 
 
 </LinearLayout>

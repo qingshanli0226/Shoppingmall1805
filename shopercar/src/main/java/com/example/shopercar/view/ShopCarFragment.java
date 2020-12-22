@@ -1,6 +1,8 @@
 package com.example.shopercar.view;
 
+import android.content.ContentValues;
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Handler;
 import android.os.Message;
 import android.view.View;
@@ -20,8 +22,10 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.example.framwork.BaseMVPFragment;
 import com.example.framwork.CacheManager;
+import com.example.framwork.sql.MySqlOpenHelper;
 import com.example.net.InventoryBean;
 import com.example.net.OrderInfoBean;
+import com.example.net.bean.ConfirmServerPayResultBean;
 import com.example.net.bean.ShopcarBean;
 import com.example.shopercar.R;
 import com.example.shopercar.contract.ShopCarContract;
@@ -43,6 +47,8 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
     private Button saveBtn;
     private Button deleteBtn;
 
+    private MySqlOpenHelper mySqlOpenHelper;
+    private SQLiteDatabase sqLiteDatabase;
     private boolean newAllSelect;
 
     private boolean isEditMode = false; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
@@ -81,6 +87,12 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
             switch (msg.what) {
                 case 1: {
                     Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
+                    mySql();
+
+                    Intent intent = new Intent();
+                    intent.setAction("unorderbroadcast");
+                    intent.putExtra("pay","");
+                    getContext().sendBroadcast(intent);
                     //第一步将这些支付成功的商品，从购物车中删除
                     CacheManager.getInstance().removeSelectedProducts();
                     //第二步跳转的主页面，并且显示HomeFragment
@@ -102,10 +114,24 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         }
     };
 
+    private void mySql() {
+        mySqlOpenHelper=new MySqlOpenHelper(getContext(),"MoneyHouse.db", null, 2);
+        sqLiteDatabase=mySqlOpenHelper.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("money","");
+        sqLiteDatabase.insert("house",null,contentValues);
+    }
+
     private ShopCarPresenterImpl shopCarPresenter;
+
     @Override
     protected int getLayoutId() {
         return R.layout.activity_shopcar;
+    }
+
+    @Override
+    protected void iniEven() {
+
     }
 
     @Override
@@ -161,7 +187,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
             normalLayout.setVisibility(View.GONE);
             editLayout.setVisibility(View.VISIBLE);
             if (CacheManager.getInstance().isAllSelectInEditMode()) {
-                editAllSelectCheckBox.setChecked(true);
+                allEditSelect.setChecked(true);
             }
         } else {//从编辑模式进入到正常模式
             isEditMode = false;
@@ -295,6 +321,11 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
     }
 
     @Override
+    public void onConfirmServerPay(ConfirmServerPayResultBean confirmServerPayResultBean) {
+
+    }
+
+    @Override
     public void onError(String code, String message) {
 
     }
@@ -331,5 +362,15 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         shopCarPresenter.detachview();
         CacheManager.getInstance().unSetShopcarDataChangerListener(iShopcarDataChangeListener);
         handler.removeCallbacksAndMessages(null);
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
     }
 }

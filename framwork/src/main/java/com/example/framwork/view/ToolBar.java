@@ -28,7 +28,7 @@ public class ToolBar extends RelativeLayout {
     private int rightTextColor;
     private float rightTextSize;
 
-    private IToolBarClickListner iToolBarClickLinsterner;
+    private IToolBarClickListner iToolBarClickListner;
 
     public ToolBar(Context context) {
         super(context);
@@ -74,8 +74,8 @@ public class ToolBar extends RelativeLayout {
         toolBarLeftImg.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (iToolBarClickLinsterner!=null) {
-                    iToolBarClickLinsterner.onLeftClick();
+                if (iToolBarClickListner!=null) {
+                    iToolBarClickListner.onLeftClick();
                 }
             }
         });
@@ -83,8 +83,8 @@ public class ToolBar extends RelativeLayout {
         toolbarRightImg.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (iToolBarClickLinsterner!=null) {
-                    iToolBarClickLinsterner.onRightClick();
+                if (iToolBarClickListner!=null) {
+                    iToolBarClickListner.onRightClick();
                 }
             }
         });
@@ -92,9 +92,9 @@ public class ToolBar extends RelativeLayout {
         toolbarRightTv.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (iToolBarClickLinsterner!=null) {
+                if (iToolBarClickListner!=null) {
                     Log.d("---",ToolBar.this.hashCode()+"");
-                    iToolBarClickLinsterner.onRightClick();
+                    iToolBarClickListner.onRightClick();
                 }
             }
         });
@@ -177,7 +177,7 @@ public class ToolBar extends RelativeLayout {
     }
 
     public void setToolBarClickListner(IToolBarClickListner toolBarClickListner) {
-        iToolBarClickLinsterner = toolBarClickListner;
+        iToolBarClickListner = toolBarClickListner;
     }
 
     //ToolBar的点击事件

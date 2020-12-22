@@ -21,6 +21,13 @@ import com.roughike.bottombar.OnTabSelectListener;
 
 import java.util.ArrayList;
 import java.util.List;
+
+/**
+ *MessageManger  EvenBus  ToolBar
+ */
+
+
+
 @Route(path = "/Main/MainActivity")
 public class MainActivity extends BaseActivity implements View.OnClickListener, OnTabSelectListener {
     private BottomBar bottomBar;

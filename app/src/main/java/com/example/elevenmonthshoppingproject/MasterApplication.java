@@ -7,6 +7,7 @@ import com.example.framwork.CacheManager;
 import com.example.framwork.DaoMaster;
 import com.example.framwork.DaoSession;
 import com.example.framwork.ShopUserManager;
+import com.example.framwork.view.manager.MessageManager;
 import com.example.net.NetModule;
 
 
@@ -14,7 +15,7 @@ import org.greenrobot.greendao.database.Database;
 
 public class MasterApplication extends Application {
 
-    private DaoSession daoSession;
+
 
     @Override
     public void onCreate() {
@@ -23,19 +24,15 @@ public class MasterApplication extends Application {
             ARouter.openLog();
             ARouter.openDebug();
 
-
+        MessageManager.getInstance().init(this);
         ShopUserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);
         NetModule.init(this);
         ARouter.init(this);
 
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this, "hot-db");
-        Database db = helper.getWritableDb();
-        daoSession = new DaoMaster(db).newSession();
+
 
     }
 
-    public DaoSession getDaoSession() {
-        return daoSession;
-    }
+
 }

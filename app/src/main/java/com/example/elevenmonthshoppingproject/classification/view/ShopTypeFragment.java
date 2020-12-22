@@ -39,6 +39,11 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
     }
 
     @Override
+    protected void iniEven() {
+
+    }
+
+    @Override
     protected void iniView(View view) {
 
 
@@ -124,4 +129,13 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
     }
 
 
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

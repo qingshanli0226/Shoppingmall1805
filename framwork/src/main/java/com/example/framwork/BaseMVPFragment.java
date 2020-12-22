@@ -4,7 +4,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -12,16 +11,15 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 
 import com.example.framwork.view.LoginPage;
+import com.example.framwork.view.ToolBar;
 
-import java.util.ArrayList;
-import java.util.List;
 
-public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> extends Fragment {
+public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> extends Fragment implements ToolBar.IToolBarClickListner {
     protected T ihttpPresenter;
 
     protected LoginPage loginPage;
 
-    protected Toolbar toolbar;
+    protected ToolBar toolbar;
 
 
     @Nullable
@@ -29,16 +27,19 @@ public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> ex
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
 
-
         loginPage=new LoginPage(getContext()) {
             @Override
             protected int getsuccessId() {
+
                 return getLayoutId();
             }
         };
 
 
-        
+
+
+        iniEven();
+
         return loginPage;
 
 
@@ -46,11 +47,17 @@ public abstract class BaseMVPFragment<T extends  IPresenter,V extends  IView> ex
 
     }
 
+    protected abstract void iniEven();
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        iniView(loginPage);
 
+
+
+        iniView(loginPage);
+//        toolbar=loginPage.findViewById(R.id.toolbar);
+//        toolbar.setToolBarClickListner(this);
         iniData();
         iniPresenter();
 //        ihttpPresenter.attatch((V) this);
