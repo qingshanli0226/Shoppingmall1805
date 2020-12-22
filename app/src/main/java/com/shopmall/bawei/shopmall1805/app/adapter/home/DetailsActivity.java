@@ -19,6 +19,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.contract.ShopCarContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ShopCarPresenterImpl;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
@@ -202,8 +203,8 @@ public class DetailsActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopC
     }
 
     @Override
-    public void hideLoading() {
-
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoading(isSuccess,errorBean);
     }
 
     @Override

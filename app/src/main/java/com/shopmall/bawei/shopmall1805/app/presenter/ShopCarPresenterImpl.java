@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.app.presenter;
 
 import com.shopmall.bawei.shopmall1805.app.contract.ShopCarContract;
+import com.shopmall.bawei.shopmall1805.common.ExceptionUtils;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
 import com.shopmall.bawei.shopmall1805.net.entity.BaseBean;
@@ -31,7 +32,11 @@ public class ShopCarPresenterImpl extends ShopCarContract.ProductDetailPresenter
                     public void onNext(BaseBean<String> stringBaseBean) {
                         iHttpView.onCheckOneProduct(stringBaseBean.getResult());
                  }
-         });
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+                        iHttpView.hideLoading(false, ExceptionUtils.getErrorBean(errorCold,errorMsg));
+                    }
+                });
     }
     @Override
     public void addOneProduct(String productId, String productNum, String productName, String url, String productPrice) {
@@ -56,6 +61,11 @@ public class ShopCarPresenterImpl extends ShopCarContract.ProductDetailPresenter
                         String result = stringBaseBean.getResult();
                         iHttpView.onAddProduct(result);
                     }
+
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+
+                    }
                 });
     }
     @Override
@@ -78,6 +88,11 @@ public class ShopCarPresenterImpl extends ShopCarContract.ProductDetailPresenter
                     @Override
                     public void onNext(BaseBean<String> stringBaseBean) {
                         iHttpView.onProductNumChange(stringBaseBean.getResult());
+                    }
+
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+
                     }
                 });
 

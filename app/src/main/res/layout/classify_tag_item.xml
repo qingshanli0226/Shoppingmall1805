@@ -5,18 +5,15 @@
     android:layout_height="wrap_content"
     >
     <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
         android:src="@drawable/tag_bg"
+        style="@style/textBasicsUse"
         android:layout_margin="10dp"
         >
     </ImageView>
     <TextView
         android:id="@+id/fenlei_two_tv_item"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="文本"
-        android:textSize="20sp"
+        style="@style/textBasicsUse"
+        android:textSize="@dimen/toolbar_right_text_size"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         >

@@ -2,6 +2,7 @@ package com.shopmall.bawei.shopmall1805.app.presenter;
 
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
 
+import com.shopmall.bawei.shopmall1805.common.ExceptionUtils;
 import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
@@ -9,6 +10,8 @@ import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
 
 import java.util.List;
 import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
 public class ClassifyRightPresenterImpl extends ClassifyRightContract.FenleiTwoPresenter {
 
@@ -18,6 +21,12 @@ public class ClassifyRightPresenterImpl extends ClassifyRightContract.FenleiTwoP
                 .tag()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+
+                    }
+                })
                 .subscribe(new BaseObserver<ClassifyTagEntity>(){
                     @Override
                     public void onNext(ClassifyTagEntity classifyTagEntity) {
@@ -25,6 +34,11 @@ public class ClassifyRightPresenterImpl extends ClassifyRightContract.FenleiTwoP
                             List<ClassifyTagEntity.ResultBean> result = classifyTagEntity.getResult();
                             iHttpView.onFenleiRightData(result);
                  }
-         }});
+         }
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+
+                    }
+                });
     }
 }

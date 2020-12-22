@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.user.presenter;
 
+import com.shopmall.bawei.shopmall1805.common.ExceptionUtils;
 import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
@@ -25,7 +26,11 @@ public class LoginPresenterImpl extends LoginContract.LoginPresenter {
                             iHttpView.onLoginDate(loginBean);
                      }
                 }
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+                        iHttpView.hideLoading(false, ExceptionUtils.getErrorBean(errorCold,errorMsg));
+                    }
 
-         });
+                });
     }
 }

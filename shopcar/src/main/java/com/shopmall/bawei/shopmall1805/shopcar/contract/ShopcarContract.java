@@ -18,11 +18,13 @@ public class ShopcarContract {
         void onNumberChanger(String result,int position,String newNumber);
         void onAllSelect(String result);
         void onDeleteProducts(String result);
+        void onOrderInfoBean(OrderInfoBean orderInfoBean);
     }
     public static abstract class ShopcarPresenter extends BasePresenter<IShopcarView> {
         public abstract void upDateSelect(String id,boolean select,String name,String url,String price,int position);
         public abstract void upNumberChanger(String productId, String productNum, String productName, String url, String productPrice, int position, String newNum);
         public abstract void upSelectAll(boolean isSelect);
         public abstract void deleteProducts(List<ShopcarBean> products);
+        public abstract void getOrderInfo(List<ShopcarBean> shopcarBeanList);
     }
 }

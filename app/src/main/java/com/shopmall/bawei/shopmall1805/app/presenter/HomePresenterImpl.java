@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.app.presenter;
 
 import com.shopmall.bawei.shopmall1805.app.contract.HomeContract;
+import com.shopmall.bawei.shopmall1805.common.ExceptionUtils;
 import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
@@ -21,7 +22,7 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iHttpView.showLoaing();
+
                     }
                 })
                 .subscribe(new BaseObserver<HomeBean>() {
@@ -29,8 +30,11 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
                     public void onNext(HomeBean homeBean) {
                         if(homeBean!=null){
                             iHttpView.onHomeDatas(homeBean);
-                            iHttpView.hideLoading();
                         }
+                    }
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+
                     }
                 });
     }

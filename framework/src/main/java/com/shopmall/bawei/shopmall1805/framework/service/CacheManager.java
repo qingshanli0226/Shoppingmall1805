@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 
 import com.shopmall.bawei.framework.R;
+import com.shopmall.bawei.shopmall1805.common.ExceptionUtils;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
 import com.shopmall.bawei.shopmall1805.net.BaseObserver;
 import com.shopmall.bawei.shopmall1805.net.RetrofitUtils;
@@ -26,6 +27,7 @@ public class CacheManager {
     private Context context;
     public CacheManager() {}
     private static CacheManager instance;
+    private LoginBean.ResultBean loginBean = new LoginBean.ResultBean();
     public static CacheManager getInstance() {
         if(instance == null){
             instance = new CacheManager();
@@ -50,7 +52,6 @@ public class CacheManager {
             }
         });
     }
-
     public void processDeleteProducts() {
         //首先将删除列表中的数据在购物车缓存张删除
         shopcarBeanList.removeAll(deleteShopcarBeanList);
@@ -63,7 +64,6 @@ public class CacheManager {
             listener.onMoneyChanged(getMoneyValue());
             listener.onAllSelected(false);
         }
-
     }
     private void getShopcarDataFromServer(){
         RetrofitUtils.getiNetPresetenterWork().getShortcartProducts()
@@ -77,7 +77,21 @@ public class CacheManager {
                         shopcarBeanList.addAll(result);
                         notifyShopcarDataChanged();//去通知
                     }
+                    @Override
+                    public void onRequestError(String errorCold, String errorMsg) {
+
+                    }
                 });
+    }
+
+    public List<ShopcarBean> getSelectProductList(){
+        List<ShopcarBean> list = new ArrayList<>();
+        for (ShopcarBean shopcarBean : shopcarBeanList) {
+            if(shopcarBean.isProductSelected()){
+                list.add(shopcarBean);
+            }
+        }
+        return list;
     }
 
     //更新缓存中商品的数量
@@ -91,7 +105,40 @@ public class CacheManager {
             listener.onMoneyChanged(getMoneyValue());
         }
     }
+    //添加和获取电话
+    public void addPhone(String phone){
+        if (phone!=null){
+            loginBean.setPhone(phone);
+        }
+    }
+    public Object getPhone(){
+        return loginBean.getPhone();
+    }
 
+    //添加和获取名字
+    public void addName(String name){
+        if(name!=null){
+            loginBean.setName(name);
+        }
+
+    }
+    public Object getName(){
+        return loginBean.getName();
+    }
+
+    //添加和获取地址
+    public void addAddress(String address){
+        if(address!=null){
+            loginBean.setAddress(address);
+        }
+    }
+    public Object getAddress(){
+        return loginBean.getAddress();
+    }
+
+    public void deleteAllShopCar(){
+        shopcarBeanList.clear();
+    }
     public boolean isAllSelectInEditMode() {
         return deleteShopcarBeanList.size() == shopcarBeanList.size();
     }
@@ -123,7 +170,6 @@ public class CacheManager {
             }
         }
     }
-
     public List<ShopcarBean> getDeleteShopcarBeanList() {
         return deleteShopcarBeanList;
     }
@@ -132,16 +178,12 @@ public class CacheManager {
         for(ShopcarBean shopcarBean:shopcarBeanList) {
             shopcarBean.setProductSelected(isAllSelect);
         }
-
         for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
             listener.onDataChanged(shopcarBeanList);
             listener.onMoneyChanged(getMoneyValue());
             listener.onAllSelected(isAllSelect);
         }
-
     }
-
-
     public boolean isAccomplish(){
         for (ShopcarBean shopcarBean : shopcarBeanList) {
             if(!shopcarBean.isProductSelected()){

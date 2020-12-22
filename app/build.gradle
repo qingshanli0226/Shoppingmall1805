@@ -65,5 +65,6 @@ dependencies {
     implementation project(':point')
     implementation project(':net')
     implementation project(':common')
-
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
+    releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
 }

@@ -10,38 +10,48 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.shopmall.bawei.pay.R;
+import com.shopmall.bawei.shopmall1805.common.ARouterUtils;
+import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseActivity;
+import com.shopmall.bawei.shopmall1805.framework.service.CacheManager;
 import com.shopmall.bawei.shopmall1805.framework.view.Toolbar;
+import com.shopmall.bawei.shopmall1805.net.entity.ShopcarBean;
+import com.shopmall.bawei.shopmall1805.pay.adapter.PayAdapter;
 import com.shopmall.bawei.shopmall1805.pay.zf.PayResult;
 import com.shopmall.bawei.shopmall1805.pay.zf.util.OrderInfoUtil2_0;
 
+import java.util.List;
 import java.util.Map;
 
 
-@Route(path = "/pay/PayActivity")
+@Route(path = ARouterUtils.PAY_INTERFACE)
 public class PayActivity extends BaseActivity {
     private Toolbar toolbar;
     private TextView tvAllPrice;
     private Button btGoZhi;
-    private   String allMoney;
     private  String price;
-
+    private TextView payNameTv;
+    private TextView payPhoneTv;
+    private TextView payAddressTv;
+    private String moneyValue;
+    private PayAdapter payAdapter;
+    private RecyclerView rvPay;
     public static final String APPID = "2016102100732202";
-
     /**
      * 用于支付宝账户登录授权业务的入参 pid。
      */
     public static final String PID = "";
-
     /**
      * 用于支付宝账户登录授权业务的入参 target_id。
      */
     public static final String TARGET_ID = "";
-
     /**
      *  pkcs8 格式的商户私钥。
      *
@@ -66,17 +76,13 @@ public class PayActivity extends BaseActivity {
                 case SDK_PAY_FLAG: {
                     @SuppressWarnings("unchecked")
                     PayResult payResult = new PayResult((Map<String, String>) msg.obj);
-                    /**
-                     * 对于支付结果，请商户依赖服务端的异步通知结果。同步通知结果，仅作为支付结束的通知。
-                     */
                     String resultInfo = payResult.getResult();// 同步返回需要验证的信息
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                        finish();
                     } else {
-                        // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
                         Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     }
                     break;
@@ -88,23 +94,61 @@ public class PayActivity extends BaseActivity {
     };
     @Override
     protected void initData() {
-        allMoney = getIntent().getStringExtra("allMoney");
-        Toast.makeText(this, ""+allMoney, Toast.LENGTH_SHORT).show();
-        tvAllPrice.setText("总计:"+allMoney);
+        initGetMessager();
+        initSetItemData();
+    }
+    private void initSetItemData() {
+        List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
+        if(shopcarBeanList!=null){
+            payAdapter=new PayAdapter(R.layout.pay_item,shopcarBeanList);
+            rvPay.setAdapter(payAdapter);
+            payAdapter.notifyDataSetChanged();
+        }
+        moneyValue = CacheManager.getInstance().getMoneyValue();
+        if(moneyValue!=null){
+            Toast.makeText(this, ""+moneyValue, Toast.LENGTH_SHORT).show();
+            tvAllPrice.setText(ShopmallConstant.PAY_ALL_PRICE+moneyValue);
+        }
+    }
+    private void initGetMessager() {
+        Object phone = CacheManager.getInstance().getPhone();
+        Object address = CacheManager.getInstance().getAddress();
+        Object name = CacheManager.getInstance().getName();
+
+        if(name!=null){
+            payNameTv.setText(ShopmallConstant.PAY_NAME +name.toString());
+        }else {
+            payNameTv.setText(ShopmallConstant.PAY_NO_ADDITION);
+        }
+        if(phone!=null){
+            payPhoneTv.setText(ShopmallConstant.PAY_PHONE+phone.toString());
+        }else {
+            payPhoneTv.setText(ShopmallConstant.PAY_NO_ADDITION);
+        }
+        if(address!=null){
+            payAddressTv.setText(ShopmallConstant.PAY_ADDRESS+phone.toString());
+        }else {
+            payAddressTv.setText(ShopmallConstant.PAY_NO_ADDITION);
+        }
 
         btGoZhi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                payV2(allMoney);
+                payV2(moneyValue);
             }
         });
     }
+
     @Override
     protected void initView() {
         toolbar = findViewById(R.id.toolbar);
         tvAllPrice = findViewById(R.id.tv_all_price);
         btGoZhi = findViewById(R.id.bt_go_zhi);
-
+        payNameTv = findViewById(R.id.pay_name_tv);
+        payPhoneTv = findViewById(R.id.pay_phone_tv);
+        payAddressTv = findViewById(R.id.pay_address_tv);
+        rvPay = findViewById(R.id.rv_pay);
+        rvPay.setLayoutManager(new LinearLayoutManager(this));
     }
     @Override
     protected int getLayoutId() {
@@ -115,7 +159,6 @@ public class PayActivity extends BaseActivity {
      */
     public void payV2(String allMoney) {
         if (TextUtils.isEmpty(APPID) || (TextUtils.isEmpty(RSA2_PRIVATE) && TextUtils.isEmpty(RSA_PRIVATE))) {
-
             return;
         }
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);
@@ -135,7 +178,6 @@ public class PayActivity extends BaseActivity {
         final String orderInfo = orderParam + "&" + sign;
 
         final Runnable payRunnable = new Runnable() {
-
             @Override
             public void run() {
                 PayTask alipay = new PayTask(PayActivity.this);
@@ -148,7 +190,6 @@ public class PayActivity extends BaseActivity {
                 mHandler.sendMessage(msg);
             }
         };
-
         // 必须异步调用
         Thread payThread = new Thread(payRunnable);
         payThread.start();

@@ -8,6 +8,7 @@ import android.widget.Toast;
 import androidx.annotation.IdRes;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
 import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
@@ -61,13 +62,13 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     public void showLoaing() {
 
     }
-    @Override
-    public void hideLoading() {
 
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoading(isSuccess,errorBean);
     }
     @Override
     public void showEmpty() {
-
     }
     @Override
     public void onLoginDate(LoginBean loginBean) {

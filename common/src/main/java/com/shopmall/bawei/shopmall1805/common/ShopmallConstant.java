@@ -56,4 +56,11 @@ public class ShopmallConstant {
     public static final String SOU_SHI = "首饰";
     public static final String GENG_DUO = "更多";
 
+    public static final String PAY_NAME="名字";
+    public static final String PAY_PHONE="电话";
+    public static final String PAY_ADDRESS="地址";
+    public static final String PAY_NO_ADDITION="未填写";
+    public static final String PAY_ALL_PRICE="总价";
+
+
 }

@@ -13,6 +13,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.classify.ChannelInfoAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyLeftContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyLeftPresenterImpl;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
@@ -27,8 +28,6 @@ public class ChannelInfoActivity extends BaseMVPActivity<ClassifyLeftPresenterIm
     private RecyclerView rvChannelInfo;
     private ChannelInfoAdapter channelInfoAdapter;
     private List<ClothesBean.ResultBean.HotProductListBean> listBeans=new ArrayList<>();
-
-
     @Override
     protected void initData() {
 
@@ -110,10 +109,12 @@ public class ChannelInfoActivity extends BaseMVPActivity<ClassifyLeftPresenterIm
     public void showLoaing() {
 
     }
-    @Override
-    public void hideLoading() {
 
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+        hideLoading(isSuccess,errorBean);
     }
+
     @Override
     public void showEmpty() {
 

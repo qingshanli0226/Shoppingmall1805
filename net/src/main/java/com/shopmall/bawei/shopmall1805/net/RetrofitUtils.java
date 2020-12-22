@@ -1,12 +1,10 @@
 package com.shopmall.bawei.shopmall1805.net;
 
-import com.shopmall.bawei.shopmall1805.common.AllParameter;
 import com.shopmall.bawei.shopmall1805.common.ConfigUrl;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 
 import java.util.concurrent.TimeUnit;
 
-import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

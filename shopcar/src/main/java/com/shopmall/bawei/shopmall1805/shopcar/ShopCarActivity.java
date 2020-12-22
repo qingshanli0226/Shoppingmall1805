@@ -22,10 +22,13 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.shopmall.bawei.shopcar.R;
+import com.shopmall.bawei.shopmall1805.common.ARouterUtils;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPActivity;
 import com.shopmall.bawei.shopmall1805.framework.service.CacheManager;
 import com.shopmall.bawei.shopmall1805.framework.view.Toolbar;
+import com.shopmall.bawei.shopmall1805.net.entity.OrderInfoBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ShopcarBean;
 import com.shopmall.bawei.shopmall1805.shopcar.adapter.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.shopcar.contract.ShopcarContract;
@@ -61,7 +64,6 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
         httpPresenter = new ShopcarPresenterImpl();
         shopCarAdapter.setShopcarPresenter(httpPresenter);
     }
-
     private CacheManager.IShopcarDataChangeListener iShopcarDataChangeListener=new CacheManager.IShopcarDataChangeListener() {
         @Override
         public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
@@ -168,9 +170,12 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
     @Override
     public void showLoaing() {
     }
+
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
     }
+
     @Override
     public void showEmpty() {
     }
@@ -194,6 +199,13 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
         CacheManager.getInstance().processDeleteProducts();
     }
     @Override
+    public void onOrderInfoBean(OrderInfoBean orderInfoBean) {
+        Log.i("TAG", "onOrderInfoBean: "+orderInfoBean);
+        if(orderInfoBean!=null){
+            ARouter.getInstance().build(ARouterUtils.PAY_INTERFACE).navigation();
+        }
+    }
+    @Override
     public void onClick(View view) {
         if (view.getId() == R.id.shopcar_compile_delete_bt) {
             List<ShopcarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
@@ -205,20 +217,10 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
         } else if (view.getId() == R.id.bt_jiesuan) {
             List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
             String names = shopcarBeanList.get(newPosition).getProductName();
-            String url = shopcarBeanList.get(newPosition).getUrl();
-            String productNum = shopcarBeanList.get(newPosition).getProductNum();
-            String allMoney = CacheManager.getInstance().getMoneyValue();
-
             SharedPreferences address = getSharedPreferences("address", MODE_PRIVATE);
             boolean loca = address.getBoolean("loca", false);
             if(loca){
-                Log.i("TAG", "onClick: "+names);
-                ARouter.getInstance().build("/pay/PayActivity")
-                        .withString("url",url)
-                        .withString("names",names)
-                        .withString("productNum",productNum)
-                        .withString("allMoney",allMoney)
-                        .navigation();
+                httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectProductList());
             }else {
                 dialog();
             }
@@ -239,7 +241,6 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
         }).setNegativeButton("取消", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-
             }
         }).show();
     }

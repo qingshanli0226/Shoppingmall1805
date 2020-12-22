@@ -9,6 +9,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.classify.ClassifyTagAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.ClassifyRightContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.ClassifyRightPresenterImpl;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
 
@@ -54,7 +55,7 @@ public class ClassifyRightFragment extends BaseMVPFragment<ClassifyRightPresente
 
     }
     @Override
-    public void hideLoading() {
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
 
     }
     @Override

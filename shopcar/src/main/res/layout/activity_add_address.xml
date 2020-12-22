@@ -97,7 +97,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="所在地区"
+            android:text="详细地址"
             android:textSize="15sp"
             android:textStyle="bold"
             android:layout_marginTop="5dp"
@@ -127,26 +127,6 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         >
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="详细地址"
-            android:textSize="15sp"
-            android:textStyle="bold"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="10dp"
-            >
-        </TextView>
-        <EditText
-            android:id="@+id/address_detail_edit"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="5dp"
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:hint="街道,楼牌号等"
-            >
-        </EditText>
     </LinearLayout>
     <EditText
         android:layout_width="match_parent"

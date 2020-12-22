@@ -11,6 +11,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.app.adapter.home.HomeAdapter;
 import com.shopmall.bawei.shopmall1805.app.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.app.presenter.HomePresenterImpl;
+import com.shopmall.bawei.shopmall1805.common.ErrorBean;
 import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.framework.BaseMVPFragment;
 
@@ -58,9 +59,9 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl,HomeContract
     public void showLoaing() {
         showLoading();
     }
+
     @Override
-    public void hideLoading() {
-        hideLoadingPage(true);
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
     }
     @Override
     public void showEmpty() {

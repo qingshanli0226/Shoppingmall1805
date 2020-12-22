@@ -37,7 +37,6 @@ public abstract class BaseActivity extends AppCompatActivity implements Toolbar.
     public void onRightClick() {
 
     }
-
     protected void printLog(String message){
         Log.i(TAG, message);
     }

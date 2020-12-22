@@ -36,8 +36,7 @@
     </TextView>
     <TextView
         android:id="@+id/pop_kuan"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/textBasicsUse"
         android:text="款式"
         android:layout_below="@id/pop_img"
         android:layout_marginLeft="2dp"
@@ -46,8 +45,7 @@
     </TextView>
     <TextView
         android:id="@+id/pop_size"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/textBasicsUse"
         android:text="M  L  XL"
         android:layout_below="@id/pop_kuan"
         android:layout_marginLeft="2dp"
@@ -56,8 +54,7 @@
     </TextView>
     <TextView
         android:id="@+id/pop_number"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        style="@style/textBasicsUse"
         android:text="数量"
         android:layout_below="@id/pop_size"
         android:layout_marginLeft="2dp"

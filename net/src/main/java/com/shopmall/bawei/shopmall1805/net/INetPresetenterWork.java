@@ -6,7 +6,9 @@ import com.shopmall.bawei.shopmall1805.net.entity.BaseBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
 import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
+import com.shopmall.bawei.shopmall1805.net.entity.InventoryBean;
 import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
+import com.shopmall.bawei.shopmall1805.net.entity.OrderInfoBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ShopcarBean;
 
 import java.util.HashMap;
@@ -19,6 +21,8 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 
 public interface INetPresetenterWork {
@@ -40,10 +44,21 @@ public interface INetPresetenterWork {
     @POST("checkOneProductInventory")
     @FormUrlEncoded
     Observable<BaseBean<String>> checkOneProductInventory(@FieldMap HashMap<String, String> params);
-
     //添加一个商品
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);//添加一个商品
+
+
+    @POST("updatePhone")
+    Observable<BaseBean<String>> upDataPhoneIn(@QueryMap HashMap<String,String> map);//更新手机号
+
+
+    @POST("updateAddress")
+    Observable<BaseBean<String>> upDataAddressIn(@QueryMap HashMap<String,String> map);//更新地址
+
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);//向服务端下订单接口
+
 
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();//获取数据接口
