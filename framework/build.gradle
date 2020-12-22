@@ -28,6 +28,8 @@ android {
 }
 greendao {
     schemaVersion 1 //当前数据库版本
+    daoPackage 'com.shopmall.bawei.framework.dao'
+    targetGenDir 'src/main/java'
 }
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
@@ -36,6 +38,8 @@ dependencies {
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    implementation 'org.greenrobot:greendao:3.3.0' // add library
 
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'

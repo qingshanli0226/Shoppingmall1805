@@ -84,4 +84,52 @@ public class OrderImpl extends OrderContract.IOrderPresenter {
                     }
                 });
     }
+
+    @Override
+    public void confirmServerPayResult(OrderInfoBean orderInfoBean, boolean isPaySuccess) {
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("outTradeNo",orderInfoBean.getOutTradeNo());
+            jsonObject.put("result",orderInfoBean.getOrderInfo());
+            jsonObject.put("clientPayResult",isPaySuccess);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+
+        OkHttpHelper.getApi()
+                .confirmServerPayResult(requestBody)
+                .subscribeOn(Schedulers.io())
+                .map(new NetFunction<BaseBean<Boolean>,Boolean>())
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showLoaDing();
+                    }
+                })
+                .subscribe(new Observer<Boolean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Boolean aBoolean) {
+                        iView.onConfirmServerPayResult(aBoolean);
+                        iView.hideLoading(true,null);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iView.hideLoading(false,ExceptionUtil.getErrorBean(e));
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+
+    }
 }

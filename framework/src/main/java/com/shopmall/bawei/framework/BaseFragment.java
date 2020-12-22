@@ -21,6 +21,14 @@ public abstract class BaseFragment<P extends BasePresenter,V extends IView> exte
 
     protected LoadingPage loadingPage;
 
+    @Override
+    public void onLeftClick() {
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 
     @Nullable
     @Override

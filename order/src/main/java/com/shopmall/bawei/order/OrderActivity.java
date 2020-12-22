@@ -65,8 +65,8 @@ public class OrderActivity extends BaseActivity<OrderImpl, OrderContract.IOrderV
         tvName.setText(UserManager.getInstance().getName());
         tvPhone.setText(UserManager.getInstance().getPhone());
         tvAdress.setText(UserManager.getInstance().getAddress());
-        tvPrice.setText(CacheManager.getInstance().getMoneyValue());
-        tvPriceJie.setText(CacheManager.getInstance().getMoneyValue());
+        tvPrice.setText("￥"+CacheManager.getInstance().getMoneyValue());
+        tvPriceJie.setText("￥"+CacheManager.getInstance().getMoneyValue());
     }
 
     @Override
@@ -97,14 +97,21 @@ public class OrderActivity extends BaseActivity<OrderImpl, OrderContract.IOrderV
                 PayTask payTask = new PayTask(OrderActivity.this);
                 Map<String,String> resultMap = payTask.payV2(orderInfoBean.getOrderInfo(),true);
                 if(resultMap.get("resultStatus").equals("9000")){
+                    httpPresenter.confirmServerPayResult(orderInfoBean,true);
                     handler.sendEmptyMessage(1);
                 } else {
+                    httpPresenter.confirmServerPayResult(orderInfoBean,false);
                     handler.sendEmptyMessage(2);
                 }
             }
         };
         Thread thread = new Thread(runnable);
         thread.start();
+
+    }
+
+    @Override
+    public void onConfirmServerPayResult(boolean payResult) {
 
     }
 
@@ -139,6 +146,7 @@ public class OrderActivity extends BaseActivity<OrderImpl, OrderContract.IOrderV
                     ARouter.getInstance().build(ARouterHelper.APP_MAIN).withInt("index",FragmentHelper.ORDER_INDEX).navigation();
                     break;
             }
+
         }
     };
 }

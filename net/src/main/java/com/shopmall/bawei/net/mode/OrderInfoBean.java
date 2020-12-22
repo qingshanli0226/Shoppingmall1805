@@ -20,4 +20,12 @@ public class OrderInfoBean {
     public void setOutTradeNo(String outTradeNo) {
         this.outTradeNo = outTradeNo;
     }
+
+    @Override
+    public String toString() {
+        return "OrderInfoBean{" +
+                "orderInfo='" + orderInfo + '\'' +
+                ", outTradeNo='" + outTradeNo + '\'' +
+                '}';
+    }
 }

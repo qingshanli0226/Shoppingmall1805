@@ -1,5 +1,9 @@
 package com.shopmall.bawei.shopmall1805.user.view;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.app.Notification;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -29,14 +33,11 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
     private ImageButton ibUserMessage;
     private ImageButton ibUserIconAvator;
     private TextView tvUsername;
-
+    private TextView tvUserPay;
 
     @Override
     protected void initView() {
-
-
-
-
+        tvUserPay = (TextView) findViewById(R.id.tv_user_pay);
         ibUserSetting = (ImageButton) findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
         ibUserIconAvator = (ImageButton) findViewById(R.id.ib_user_icon_avator);
@@ -61,6 +62,17 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
             case R.id.ib_user_icon_avator:
                 toLogin();
                 break;
+            case R.id.tv_user_pay:
+                toPay();
+                break;
+        }
+    }
+
+    private void toPay() {
+        if(UserManager.getInstance().isUserLogin()) {
+            startActivity(new Intent(getContext(), UnPaidActivity.class));
+        } else {
+            toLogin();
         }
     }
 
@@ -75,6 +87,7 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
         }
     }
 
+
     @Override
     protected int layoutId() {
         return R.layout.fragment_user;
@@ -85,6 +98,8 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
         ibUserSetting.setOnClickListener(this);
         ibUserMessage.setOnClickListener(this);
         ibUserIconAvator.setOnClickListener(this);
+        tvUserPay.setOnClickListener(this);
+
     }
 
     @Override

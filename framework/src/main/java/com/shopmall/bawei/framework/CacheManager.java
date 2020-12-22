@@ -11,6 +11,7 @@ import com.shopmall.bawei.net.OkHttpHelper;
 import com.shopmall.bawei.net.ShopMallObserver;
 import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.LoginBean;
+import com.shopmall.bawei.net.mode.PayBean;
 import com.shopmall.bawei.net.mode.ShopCarBean;
 
 import java.util.ArrayList;
@@ -29,9 +30,12 @@ public class CacheManager {
     private List<ShopCarBean> shopCarBeanList = new ArrayList<>();
     private List<ShopCarBean> deleteShopCarBeanList = new ArrayList<>();
 
+
     private static CacheManager instance;
     //有多个页面监听数据的变化，所以维护一个监听listener的列表
     private List<IShopcarDataChangeListener> iShopcarDataChangeListenerList = new ArrayList<>();
+
+
 
     private Context context;
 
@@ -39,8 +43,6 @@ public class CacheManager {
 
     private CacheManager(){
     }
-
-
 
     public static CacheManager getInstance(){
         if(instance == null){
@@ -70,6 +72,8 @@ public class CacheManager {
             }
         });
     }
+
+
     //从服务端获取购物车的数据
     private void getShopCarDataFromServer() {
         OkHttpHelper.getApi().getShortCartProducts()
@@ -299,8 +303,6 @@ public class CacheManager {
     }
 
 
-
-
     public String getMoneyValue() {
         float totalPrice = 0;
         for (ShopCarBean shopCarBean:shopCarBeanList){
@@ -320,5 +322,4 @@ public class CacheManager {
         void onMoneyChanged(String moneyValue);
         void onAllSelected(boolean isAllSelect);
     }
-
 }

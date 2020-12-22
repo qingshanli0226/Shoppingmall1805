@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.home.view;
 
+import android.content.Intent;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -102,15 +103,13 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
     @Override
     public void showEmpty() {
     }
-
-    @Override
-    public void onLeftClick() {
-
-    }
+    
 
     @Override
     public void onRightClick() {
 //        Intent intent = new Intent(getActivity(), LoginRegisterActivity.class);
 //        getActivity().startActivity(intent);
+
+        startActivity(new Intent(getContext(),MessageActivity.class));
     }
 }

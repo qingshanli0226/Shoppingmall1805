@@ -7,6 +7,7 @@ import com.shopmall.bawei.net.mode.HomeBean;
 import com.shopmall.bawei.net.mode.InventoryBean;
 import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.net.mode.OrderInfoBean;
+import com.shopmall.bawei.net.mode.PayBean;
 import com.shopmall.bawei.net.mode.ShopCarBean;
 import com.shopmall.bawei.net.mode.TagBean;
 import com.shopmall.bawei.net.mode.TypeBean;
@@ -73,6 +74,12 @@ public interface MyNetApi {
     @POST("updateAddress")
     @FormUrlEncoded
     Observable<BaseBean<String>> bindAddress(@Field("address") String address);
+
+    @POST("confirmServerPayResult")
+    Observable<BaseBean<Boolean>> confirmServerPayResult(@Body RequestBody requestBody);
+
+    @GET("findForPay")
+    Observable<BaseBean<List<PayBean>>> findForPay();
 
     @GET(UrlHelper.HOME_URL)
     Observable<BaseBean<HomeBean>> getHomeData();
