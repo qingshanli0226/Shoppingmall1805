@@ -6,6 +6,7 @@ import java.util.List;
 import bean.BaseBean;
 import bean.ClothesBean;
 import bean.ConfirmServerPayResultBean;
+import bean.FindForPayBean;
 import bean.GetOrderInfo;
 import bean.HomeBean;
 import bean.InventoryBean;
@@ -98,5 +99,7 @@ public interface UserInterface {
     Observable<PhoneBean>updatePhone(@FieldMap HashMap<String,String> map);
     @POST("/confirmServerPayResult")//请求：请求服务端，是否支付成功
     Observable<ConfirmServerPayResultBean>confirmServerPayResult(@Body RequestBody body);
+    @GET("/findForPay")//请求：请求服务端，是否支付成功
+    Observable<FindForPayBean>findForPay();
 
 }

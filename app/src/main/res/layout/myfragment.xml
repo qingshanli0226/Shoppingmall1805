@@ -86,11 +86,13 @@
                     android:layout_weight="1"
                     android:drawablePadding="10dp"
                     android:drawableTop="@mipmap/new_order_status_fukuan"
+                    android:textSize="10sp"
                     android:gravity="center"
                     android:text="待付款"
                     android:textColor="#5d5d5d" />
 
                 <TextView
+                    android:id="@+id/tv_delivery"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"

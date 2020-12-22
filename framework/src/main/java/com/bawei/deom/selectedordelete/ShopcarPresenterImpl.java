@@ -11,6 +11,8 @@ import org.json.JSONObject;
 import java.util.List;
 
 import bean.BaseBean;
+import bean.ConfirmServerPayResultBean;
+import bean.FindForPayBean;
 import bean.GetOrderInfo;
 import bean.InventoryBean;
 import bean.Shoppingcartproducts;
@@ -280,11 +282,64 @@ public class ShopcarPresenterImpl extends ShopcarContract.SelectedandDeletedCoun
     public void confirmServerPayResult(GetOrderInfo getOrderInfo, boolean flag) {
         JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("",getOrderInfo.getOutTradeNo());
-            jsonObject.put("",getOrderInfo.getOrderInfo());
-            jsonObject.put("",flag);
+            jsonObject.put("outTradeNo",getOrderInfo.getOutTradeNo());
+            jsonObject.put("result",getOrderInfo.getOrderInfo());
+            jsonObject.put("clientPayResult",flag);
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        RequestBody requestBody=RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonObject.toString());
+        ClassInterface.getUserInterface().confirmServerPayResult(requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<ConfirmServerPayResultBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(ConfirmServerPayResultBean confirmServerPayResultBean) {
+                              pView.onConfirmServerPayResult(confirmServerPayResultBean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void findForPay() {
+        ClassInterface.getUserInterface().findForPay()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<FindForPayBean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(FindForPayBean findForPayBean) {
+                               pView.onFindForPay(findForPayBean.getResult());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }

@@ -16,6 +16,7 @@ import com.alipay.sdk.app.PayTask;
 import com.bawei.deom.BaseActivity;
 import com.bawei.deom.CacheManager;
 import com.bawei.deom.ShopUserManager;
+import com.bawei.deom.bean.ReceivegoodsBeen;
 import com.bawei.deom.selectedordelete.ShopcarContract;
 import com.bawei.deom.selectedordelete.ShopcarPresenterImpl;
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
@@ -29,6 +30,8 @@ import org.greenrobot.eventbus.EventBus;
 import java.util.List;
 import java.util.Map;
 
+import bean.ConfirmServerPayResultBean;
+import bean.FindForPayBean;
 import bean.GetOrderInfo;
 import bean.InventoryBean;
 import bean.Shoppingcartproducts;
@@ -138,16 +141,35 @@ public class TheorderActivity extends BaseActivity<ShopcarPresenterImpl, Shopcar
               PayTask payTask=new PayTask(TheorderActivity.this);
               Map<String,String> resultMap=payTask.payV2(orderInfoBean.getOrderInfo(),true);
               if (resultMap.get("resultStatus").equals("9000")){
+                  List<Shoppingcartproducts.ResultBean> selectedProductBeanList = CacheManager.getInstance().getSelectedProductBeanList();
+                  CacheManager.getInstance().setDelivery(selectedProductBeanList.size()+"");
                    handler.sendEmptyMessage(1);
+                   prine.confirmServerPayResult(orderInfoBean,true);
+
+
               }else {
+                  List<Shoppingcartproducts.ResultBean> selectedProductBeanList = CacheManager.getInstance().getSelectedProductBeanList();
+                  CacheManager.getInstance().setReceivegoods(selectedProductBeanList.size()+"");
                   handler.sendEmptyMessage(2);
+                  prine.confirmServerPayResult(orderInfoBean,false);
               }
           }
       };
       Thread thread=new Thread(runnable);
       thread.start();
     }
-   private Handler handler=new Handler(){
+
+    @Override
+    public void onConfirmServerPayResult(ConfirmServerPayResultBean confirmServerPayResultBean) {
+        Toast.makeText(this, "支付成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onFindForPay(List<FindForPayBean.ResultBean> list) {
+
+    }
+
+    private Handler handler=new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
             super.handleMessage(msg);
@@ -159,6 +181,7 @@ public class TheorderActivity extends BaseActivity<ShopcarPresenterImpl, Shopcar
                     CacheManager.getInstance().removerSelectedProduct();//删除掉支付成功的商品
                     Intent intent = new Intent(TheorderActivity.this, MainActivity.class);
                     startActivity(intent);
+
                     break;
                 }
                 case 2: {

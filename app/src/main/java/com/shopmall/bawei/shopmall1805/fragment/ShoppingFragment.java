@@ -26,6 +26,8 @@ import com.shopmall.bawei.shopmall1805.apter.ShopcarAdapter;
 
 import java.util.List;
 
+import bean.ConfirmServerPayResultBean;
+import bean.FindForPayBean;
 import bean.GetOrderInfo;
 import bean.InventoryBean;
 import bean.Shoppingcartproducts;
@@ -202,6 +204,16 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
 
     @Override
     public void onOrderInfo(GetOrderInfo orderInfoBean) {
+
+    }
+
+    @Override
+    public void onConfirmServerPayResult(ConfirmServerPayResultBean confirmServerPayResultBean) {
+
+    }
+
+    @Override
+    public void onFindForPay(List<FindForPayBean.ResultBean> list) {
 
     }
 

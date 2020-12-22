@@ -27,9 +27,17 @@ public abstract class BaseFragment<Prine extends IPrine,PView extends IView> ext
                  return getlayoutview();
              }
          };
+        iscreate();
+
         return loadingPage;
     }
-@Override
+
+    private void iscreate() {
+
+    }
+
+
+    @Override
 public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
     initView(loadingPage);

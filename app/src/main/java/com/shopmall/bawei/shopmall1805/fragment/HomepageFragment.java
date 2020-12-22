@@ -38,13 +38,13 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     @Override
     protected void inPrine() {
         prine=new UserIMPL();
-
+        prine.getskerak(loadingPage);
 
     }
 
     @Override
     protected void initData() {
-        prine.getskerak(loadingPage);
+
         int messageCount = MessageManager.getInstance().getMessageCount();
         if (messageCount!=0) {
             toolerMessage.setText("消息"+messageCount+"");

@@ -14,7 +14,7 @@ import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
 public class ShopmallApplication extends Application {
    public static DaoSession daoSession;
     Intent intent;
-    Context context;
+    public  Context context;
 
     @Override
     public void onCreate() {

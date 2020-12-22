@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.util.Log;
 
+import com.bawei.deom.bean.ReceivegoodsBeen;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -25,6 +27,31 @@ public class CacheManager {
     private List<Shoppingcartproducts.ResultBean> deleteshocarBeanlist=new ArrayList<>();
     private static  CacheManager instance;
     private LoginBean.ResultBean loging=new LoginBean.ResultBean();
+    private String Receivegoods;
+    private String delivery;
+    List<Shoppingcartproducts.ResultBean> selectedList=new ArrayList<>();
+   public  List<Shoppingcartproducts.ResultBean> recelivelist=new ArrayList<>();
+   public List<Shoppingcartproducts.ResultBean> successful(){
+       List<Shoppingcartproducts.ResultBean> selectedList=new ArrayList<>();
+       for (Shoppingcartproducts.ResultBean shopcarBean:CacheManager.getInstance().getSelectedProductBeanList()){
+                    selectedList.add(shopcarBean);
+       }return recelivelist;
+   }
+    public String getDelivery() {
+        return delivery;
+    }
+
+    public void setDelivery(String delivery) {
+        this.delivery = delivery;
+    }
+
+    public String getReceivegoodsBeen() {
+        return Receivegoods;
+    }
+
+    public void setReceivegoods(String Receivegoods) {
+        this.Receivegoods = Receivegoods;
+    }
 
     public LoginBean.ResultBean getLoging() {
         return loging;
@@ -117,7 +144,7 @@ public class CacheManager {
    }
    //获得已经选择的商品列表
    public  List<Shoppingcartproducts.ResultBean> getSelectedProductBeanList(){
-        List<Shoppingcartproducts.ResultBean> selectedList=new ArrayList<>();
+
         for (Shoppingcartproducts.ResultBean shopcarBean:shopcarBeanlist){
             if (shopcarBean.isProductSelected()){
                 selectedList.add(shopcarBean);
@@ -302,5 +329,6 @@ public class CacheManager {
          void onAllSelected(boolean isAllSelect);
          void onAllSelectedNum(int num);
     }
+
 
 }
