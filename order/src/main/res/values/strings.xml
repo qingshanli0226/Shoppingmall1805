@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">order</string>
+    <!--订单地址-->
+    <string name="app_title">填写订单</string>
+    <string name="app_order_name">姓名:</string>
+    <string name="app_order_phone">手机号:</string>
+    <string name="app_order_address">地址:</string>
 </resources>

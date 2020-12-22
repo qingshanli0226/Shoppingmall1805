@@ -18,6 +18,7 @@ import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.common2.GetShopCarBean;
+import com.shopmall.bawei.order.OrderActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.shopcar.adapter.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.shopcar.contract.ShopCarContract;
@@ -185,10 +186,13 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
 
             }
         });
+
         shopPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ihttpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
+                //跳转到订单页面
+                startActivity(new Intent(getContext(), OrderActivity.class));
+              //  ihttpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
             }
 
         });
@@ -258,6 +262,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
 
         return true;
     }
+
     @Override
     public void onOrderInfo(final OrderInfoBean orderInfoBean) {
         Runnable runnable = new Runnable() {
