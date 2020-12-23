@@ -350,7 +350,7 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
                 }
             }
             if(isEnough){
-                ARouter.getInstance().build("/order/OrderActivity").withString("key","main").navigation();
+                presenter.getOrderInfo(shopCarPayList);
             }else {
                 String notEnough="";
                 for (ShopCarBean.ResultBean resultBean : notEnoughList) {
@@ -365,7 +365,13 @@ public class ShopCarActivity extends BaseActivity<ShopCarPresenterImpl, ShopCarC
 
     @Override
     public void onGetOrderInfoOk(GetOrderInfoBean bean) {
-
+        if(bean.getCode().equals("200")){
+            String outTradeNo = bean.getResult().getOutTradeNo();
+            String orderInfo = bean.getResult().getOrderInfo();
+            ARouter.getInstance().build("/order/OrderActivity").withString("outTradeNo",outTradeNo).withString("orderInfo",orderInfo).withString("key","main").navigation();
+        }else {
+            Toast.makeText(this, ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
+        }
     }
 
     @Override

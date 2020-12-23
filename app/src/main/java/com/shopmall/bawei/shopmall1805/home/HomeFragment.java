@@ -1,15 +1,22 @@
 package com.shopmall.bawei.shopmall1805.home;
 
+import android.os.Bundle;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.framework.base.BaseFragment;
+import com.example.framework.manager.MSGManager;
 import com.example.net.bean.MainBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shoppmall.common.adapter.error.ErrorBean;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +32,10 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
     @Override
     protected void initDate() {
         presenter.loadMain();
+        int i = MSGManager.getInstance().getMessageCount();
+        if(i>0){
+            toolBar.setToolBarRightTv(i+"");
+        }
     }
 
 
@@ -32,6 +43,13 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
     protected void initLisenter() {
 
     }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EventBus.getDefault().register(this);
+    }
+
     @Override
     protected void initView() {
         presenter=new HomePresenterImpl();
@@ -76,5 +94,15 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
     public void showEmpty() {
         showEmptyPage();
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void payBack(String back){
+        if(back.equals("payBack")){
+            toolBar.setToolBarRightTv(MSGManager.getInstance().getMessageCount()+"");
+        }
+    }
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        EventBus.getDefault().unregister(this);
+    }
 }

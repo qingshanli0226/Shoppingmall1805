@@ -1,4 +1,4 @@
-package com.shoppmall.common.adapter;
+package com.shoppmall.common.adapter.adapter;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;

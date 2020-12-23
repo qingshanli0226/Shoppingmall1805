@@ -24,7 +24,7 @@ import com.shopmall.bawei.shopmall1805.adapter.ChannelAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.HotAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.RecommendAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.SeckillAdapter;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 

@@ -26,7 +26,7 @@ public class UserManager {
     }
     public void saveToken(){
         editor.putString("token",user.getToken());
-        editor.apply();
+        editor.commit();
     }
     public static UserManager getInstance(){
        if(userManager==null){

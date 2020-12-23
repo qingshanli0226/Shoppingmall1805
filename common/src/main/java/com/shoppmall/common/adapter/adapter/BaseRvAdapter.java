@@ -1,4 +1,4 @@
-package com.shoppmall.common.adapter;
+package com.shoppmall.common.adapter.adapter;
 
 import android.util.SparseArray;
 import android.view.LayoutInflater;

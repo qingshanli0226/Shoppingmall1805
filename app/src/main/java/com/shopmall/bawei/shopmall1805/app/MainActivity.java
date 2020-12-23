@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseActivity;
 import com.example.framework.manager.CacheManager;
+import com.example.framework.manager.MSGManager;
 import com.example.framework.manager.UserManager;
 import com.example.framework.view.MyVP;
 import com.example.net.bean.LoginBean;
@@ -25,7 +26,7 @@ import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.shoppingcar.ShoppingCarFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
 import com.shopmall.bawei.shopmall1805.user.UserFragment;
-import com.shoppmall.common.adapter.FragmentAdapter;
+import com.shoppmall.common.adapter.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +50,7 @@ public class MainActivity extends BaseActivity implements CacheManager.IShopcarD
 
     @Override
     protected void initData() {
+
         tabs.add(new VPTab("首页",R.drawable.main_home_press,R.drawable.main_home));
         tabs.add(new VPTab("分类",R.drawable.main_type_press,R.drawable.main_type));
         tabs.add(new VPTab("发现",R.drawable.main_community_press,R.drawable.main_community));

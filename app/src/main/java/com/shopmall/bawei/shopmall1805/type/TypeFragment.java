@@ -11,7 +11,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.type.list.ListFragment;
 import com.shopmall.bawei.shopmall1805.type.tag.TagFragment;
-import com.shoppmall.common.adapter.FragmentAdapter;
+import com.shoppmall.common.adapter.adapter.FragmentAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

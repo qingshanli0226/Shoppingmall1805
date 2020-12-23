@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
 import com.example.net.bean.GoodsBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 import java.util.List;
 

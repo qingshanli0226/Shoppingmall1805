@@ -45,8 +45,6 @@ public class ToolBar extends RelativeLayout {
         super(context, attrs);
         this.context=context;
         init(context,attrs,0);
-        NullPointerException nullPointerException = new NullPointerException(hashCode()+"");
-        nullPointerException.printStackTrace();
     }
 
     public ToolBar(Context context, AttributeSet attrs, int defStyleAttr) {

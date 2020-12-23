@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide;
 import com.example.framework.view.NumberAddSubView;
 import com.example.net.Constants;
 import com.example.net.bean.ShopCarBean;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 public class ShopCarAdapter extends BaseRvAdapter<ShopCarBean.ResultBean> {
     private Context context;

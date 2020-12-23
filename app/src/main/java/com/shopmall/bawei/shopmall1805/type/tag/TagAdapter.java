@@ -5,7 +5,7 @@ import android.widget.TextView;
 
 import com.example.net.bean.TagBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 import java.util.ArrayList;
 import java.util.List;

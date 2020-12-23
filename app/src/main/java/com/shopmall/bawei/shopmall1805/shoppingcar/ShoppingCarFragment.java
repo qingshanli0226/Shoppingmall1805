@@ -1,6 +1,5 @@
 package com.shopmall.bawei.shopmall1805.shoppingcar;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -208,7 +207,6 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
                adapter.updataData(list);
                showEmptyCarPage();
                cbAll.setChecked(false);
-               Log.i("Yoyo", "onDataChanged:aaaaaaa ");
            }
 
 
@@ -302,7 +300,6 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
                 if(Integer.parseInt(result.get(j).getProductNum())<Integer.parseInt(shopCarPayList.get(j).getProductNum())){
                     isEnough=false;
                     notEnoughList.add(shopCarPayList.get(j));
-                    Log.i("Check", "onCheckOk: "+result.get(j).getProductName());
                 }
             }
             if(isEnough){
@@ -322,8 +319,9 @@ public class ShoppingCarFragment extends BaseFragment<ShopCarPresenterImpl, Shop
     @Override
     public void onGetOrderInfoOk(GetOrderInfoBean bean) {
         if(bean.getCode().equals("200")){
-
-            ARouter.getInstance().build("/order/OrderActivity").withString("key","main").navigation();
+            String outTradeNo = bean.getResult().getOutTradeNo();
+            String orderInfo = bean.getResult().getOrderInfo();
+            ARouter.getInstance().build("/order/OrderActivity").withString("outTradeNo",outTradeNo).withString("orderInfo",orderInfo).withString("key","main").navigation();
         }else {
             Toast.makeText(getContext(), ""+bean.getMessage(), Toast.LENGTH_SHORT).show();
         }

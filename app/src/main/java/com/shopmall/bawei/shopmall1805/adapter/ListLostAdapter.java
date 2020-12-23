@@ -1,7 +1,7 @@
 package com.shopmall.bawei.shopmall1805.adapter;
 
 import com.example.net.bean.GoodsBean;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 public class ListLostAdapter extends BaseRvAdapter<GoodsBean> {
     @Override

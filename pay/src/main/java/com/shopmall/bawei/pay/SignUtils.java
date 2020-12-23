@@ -1,4 +1,4 @@
-package com.shopmall.bawei.pay.qqb;
+package com.shopmall.bawei.pay;
 
 import java.security.KeyFactory;
 import java.security.PrivateKey;

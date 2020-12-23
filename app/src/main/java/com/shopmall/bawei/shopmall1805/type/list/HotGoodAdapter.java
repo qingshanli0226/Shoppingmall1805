@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide;
 import com.example.net.Constants;
 import com.example.net.bean.GoodsBean;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 public class HotGoodAdapter extends BaseRvAdapter<GoodsBean.ResultBean.HotProductListBean> {
     private Context context;

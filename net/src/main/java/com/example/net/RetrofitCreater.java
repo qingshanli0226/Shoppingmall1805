@@ -20,9 +20,9 @@ public class RetrofitCreater {
 
     private static INetWorkApi createApi() {
         OkHttpClient client = new OkHttpClient.Builder()
-                .readTimeout(5000, TimeUnit.MILLISECONDS)
-                .writeTimeout(5000, TimeUnit.MILLISECONDS)
-                .connectTimeout(5000, TimeUnit.MILLISECONDS)
+                .readTimeout(15000, TimeUnit.MILLISECONDS)
+                .writeTimeout(15000, TimeUnit.MILLISECONDS)
+                .connectTimeout(15000, TimeUnit.MILLISECONDS)
                 .addInterceptor(new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
                 .addInterceptor(new TokenInterceptor())
                 .build();

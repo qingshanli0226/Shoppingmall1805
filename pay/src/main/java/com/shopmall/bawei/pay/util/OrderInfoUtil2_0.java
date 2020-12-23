@@ -1,6 +1,6 @@
-package com.shopmall.bawei.pay.qqb.util;
+package com.shopmall.bawei.pay.util;
 
-import com.shopmall.bawei.pay.qqb.SignUtils;
+import com.shopmall.bawei.pay.SignUtils;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;

@@ -47,8 +47,6 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
             }
         }
         RequestBody body = RequestBody.create(MediaType.parse("application/json; charset=utf-8"), jsonArray.toString());
-        Log.i("Yoyo", "removeManyProduct: "+beans.toString());
-
         RetrofitCreater.getiNetWorkApi().removeManyProduct(body)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

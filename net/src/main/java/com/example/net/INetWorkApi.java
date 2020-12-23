@@ -3,6 +3,7 @@ package com.example.net;
 import com.example.net.bean.AddProductBean;
 import com.example.net.bean.AutoLoginBean;
 import com.example.net.bean.CheckInventoryBean;
+import com.example.net.bean.ConfirmServerPayResultBean;
 import com.example.net.bean.FindForPayBean;
 import com.example.net.bean.FindForSendBean;
 import com.example.net.bean.GetOrderInfoBean;
@@ -72,4 +73,7 @@ public interface INetWorkApi {
     Observable<CheckInventoryBean> checkInventory(@Body RequestBody body);
     @POST("getOrderInfo")
     Observable<GetOrderInfoBean> getOrderInfo(@Body RequestBody body);
+    @POST("confirmServerPayResult")
+    Observable<ConfirmServerPayResultBean> confirmServerPayResult(@Body RequestBody body);
+
 }

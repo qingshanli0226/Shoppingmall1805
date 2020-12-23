@@ -1,4 +1,4 @@
-package com.shopmall.bawei.order;
+package com.shopmall.bawei.order.shoporder;
 
 import android.content.Context;
 import android.widget.ImageView;
@@ -7,7 +7,8 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.example.net.Constants;
 import com.example.net.bean.ShopCarBean;
-import com.shoppmall.common.adapter.BaseRvAdapter;
+import com.shopmall.bawei.order.R;
+import com.shoppmall.common.adapter.adapter.BaseRvAdapter;
 
 public class OrderAdapter extends BaseRvAdapter<ShopCarBean.ResultBean>{
     private Context context;
