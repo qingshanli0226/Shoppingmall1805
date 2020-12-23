@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -21,12 +22,20 @@ import com.shopmall.bawei.framework.BaseFragment;
 import com.shopmall.bawei.framework.BasePresenter;
 import com.shopmall.bawei.framework.IView;
 import com.shopmall.bawei.framework.UserManager;
+import com.shopmall.bawei.net.NetFunction;
+import com.shopmall.bawei.net.OkHttpHelper;
+import com.shopmall.bawei.net.mode.BaseBean;
 import com.shopmall.bawei.net.mode.LoginBean;
 import com.shopmall.bawei.shopmall1805.R;
 
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
+
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 
 public class UserFragment extends BaseFragment<BasePresenter, IView> implements IView, View.OnClickListener, UserManager.IUserLoginChangedListener {
     private ImageButton ibUserSetting;
@@ -54,7 +63,7 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.ib_user_setting:
-
+                logout();
                 break;
             case R.id.ib_user_message:
 
@@ -66,6 +75,44 @@ public class UserFragment extends BaseFragment<BasePresenter, IView> implements 
                 toPay();
                 break;
         }
+    }
+
+    private void logout() {
+        if(UserManager.getInstance().isUserLogin()) {
+            OkHttpHelper.getApi().logout()
+                    .subscribeOn(Schedulers.io())
+                    .map(new NetFunction<BaseBean<String>, String>())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Observer<String>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+
+                        }
+
+                        @Override
+                        public void onNext(String s) {
+                            showMessage(s);
+                            UserManager.getInstance().checkOutLoginBean();
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            Toast.makeText(getContext(), "退出失败", Toast.LENGTH_SHORT).show();
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        } else {
+            Toast.makeText(getContext(), "请先登录", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void showMessage(String s) {
+        Toast.makeText(getContext(), ""+s, Toast.LENGTH_SHORT).show();
+        tvUsername.setText("登录/注册");
     }
 
     private void toPay() {

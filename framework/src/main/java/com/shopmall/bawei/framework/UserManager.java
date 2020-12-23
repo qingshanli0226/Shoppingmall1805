@@ -77,6 +77,14 @@ public class UserManager{
         }
     }
 
+    public void checkOutLoginBean(){
+        loginBean = null;
+        editor.clear().commit();
+        for(IUserLoginChangedListener listener:listeners){
+            listener.onUserLogout();
+        }
+    }
+
 
     public boolean isUserLogin() {
         return loginBean != null;

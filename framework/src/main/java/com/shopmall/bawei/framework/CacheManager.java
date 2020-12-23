@@ -68,9 +68,14 @@ public class CacheManager {
 
             @Override
             public void onUserLogout() {
-
+                removeShopCarData();
             }
         });
+    }
+
+    private void removeShopCarData() {
+        shopCarBeanList.clear();
+        notifyShopCarDataChanged();
     }
 
 
