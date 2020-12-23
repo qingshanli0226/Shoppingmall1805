@@ -99,7 +99,7 @@ public class OrderActivity extends AppCompatActivity {
 
                         shopcarMessage.setTitle("支付消息");
                         shopcarMessage.setBody("支付成功");
-                        shopcarMessage.setIsRead(true);
+                        shopcarMessage.setIsRead(false);
                         shopcarMessage.setType(MessageManager.PAY_TYPE);
                         shopcarMessage.setTime(System.currentTimeMillis());
                         

@@ -14,7 +14,7 @@ public class MessageManager {
 
     private static MessageManager instance;
     private Context applicationContext;
-    private final String DB_NAME = "shopcar.db";
+    private final String DB_NAME = "shopcar";
     private final String MESSAGE_SP_NAME = "shopcarCountSp";
     private final String MESSAGE_SP_COUNT = "shopcarCount";
     private SharedPreferences sharedPreferences;
@@ -66,7 +66,7 @@ public class MessageManager {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-//                shopcarMessageDao.insert(shopcarMessage);
+                shopcarMessageDao.insert(shopcarMessage);
 
                 upadateMesageCount(getMessageCount()+1);
                 handler.post(new Runnable() {//在主线程里回调接口，这样UI收到回调时，可以直接刷新UI
@@ -119,7 +119,7 @@ public class MessageManager {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-//                shopcarMessageList = shopcarMessageDao.queryBuilder().list();
+                shopcarMessageList = shopcarMessageDao.queryBuilder().list();
 
                 handler.post(new Runnable() {
                     @Override
