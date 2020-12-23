@@ -25,6 +25,12 @@ public class ReceliveGoodApter extends BaseQuickAdapter<FindForPayBean.ResultBea
         super(layoutResId, data);
     }
 
+
+    /**
+     * 陈乾是傻子
+     * @param helper
+     * @param item
+     */
     @Override
     protected void convert(BaseViewHolder helper, FindForPayBean.ResultBean item) {
           helper.setText(R.id.recelivegoods_id,item.getTradeNo());

@@ -7,6 +7,7 @@ import bean.BaseBean;
 import bean.ClothesBean;
 import bean.ConfirmServerPayResultBean;
 import bean.FindForPayBean;
+import bean.FindForSendBean;
 import bean.GetOrderInfo;
 import bean.HomeBean;
 import bean.InventoryBean;
@@ -101,5 +102,7 @@ public interface UserInterface {
     Observable<ConfirmServerPayResultBean>confirmServerPayResult(@Body RequestBody body);
     @GET("/findForPay")//请求：请求服务端，是否支付成功
     Observable<FindForPayBean>findForPay();
+     @GET("/findForSend")
+    Observable<FindForSendBean>findForSend();
 
 }

@@ -14,7 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ReceliveGoodActivity"></activity>
+        <activity android:name=".activity.delivery.DeliveryActivity"></activity>
+        <activity android:name=".activity.receivegoods.ReceliveGoodActivity" />
         <activity android:name=".activity.TheorderActivity" />
         <activity android:name=".activity.location.LocationActivity" />
         <activity android:name=".activity.login.LoginActivity" />
