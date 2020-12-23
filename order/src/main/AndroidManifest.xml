@@ -3,7 +3,9 @@
     package="com.bawei.order">
 
     <application>
-        <activity android:name=".BanDingUserMessageActivity"></activity>
+        <activity android:name=".ForSendActivity"></activity>
+        <activity android:name=".ForPayActivity" />
+        <activity android:name=".BanDingUserMessageActivity" />
         <activity android:name=".OrderActivity" />
     </application>
 

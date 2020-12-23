@@ -19,7 +19,6 @@ import com.bawei.framework.ShopUserManager;
 import com.bawei.framework.ShopUserManager.IUserLoginChangedListener;
 import com.bawei.framework.greendao.MessageBean;
 import com.bawei.net.mode.LoginBean;
-import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.user.contact.UserContract;
 import com.bawei.user.contact.UserContractImpl;
@@ -38,6 +37,8 @@ public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IU
     private ImageView ibUserSetting;
     private ImageView ibUserIconAvator;
     private ImageView ibUserMessage;
+    private TextView tvUserPay;
+    private TextView tvUserSend;
 
     @Override
     protected int layoutId() {
@@ -60,10 +61,14 @@ public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IU
         ibUserIconAvator = findViewById(R.id.ib_user_icon_avator);
         ibUserSetting = findViewById(R.id.ib_user_setting);
         ibUserMessage = findViewById(R.id.ib_user_message);
+        tvUserPay = findViewById(R.id.tv_user_pay);
+        tvUserSend = findViewById(R.id.tv_user_send);
 
         ibUserIconAvator.setOnClickListener(this);
         ibUserSetting.setOnClickListener(this);
         ibUserMessage.setOnClickListener(this);
+        tvUserPay.setOnClickListener(this);
+        tvUserSend.setOnClickListener(this);
 
         EventBus.getDefault().register(this);
 
@@ -91,18 +96,17 @@ public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IU
     public void onUserLogin(LoginBean loginBean) {
         if (ShopUserManager.getInstance().isUserLogin()) {
             tvUsername.setText(loginBean.getResult().getName());
-        } else {
-            tvUsername.setText("登录/注册");
-            Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
         }
     }
 
 
     @Override
     public void onUserLogout() {
-        tvUsername.setText("登录/注册");
+        if (!ShopUserManager.getInstance().isUserLogin()) {
+            tvUsername.setText("登录/注册");
+            Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+        }
     }
-
 
     @Override
     public void onDestroy() {
@@ -121,9 +125,16 @@ public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IU
                 break;
             case R.id.ib_user_setting:
                 httpPresenter.logoutUser();
+                ShopUserManager.getInstance().logoutUser();
                 break;
             case R.id.ib_user_message:
                 ARouter.getInstance().build("/message/MessageActivity").navigation();
+                break;
+            case R.id.tv_user_pay:
+                ARouter.getInstance().build("/order/ForPayActivity").navigation();
+                break;
+            case R.id.tv_user_send:
+                ARouter.getInstance().build("/order/ForSendActivity").navigation();
                 break;
         }
     }
@@ -149,8 +160,8 @@ public class UserFragment extends BaseFragment<UserContractImpl, UserContract.IU
     }
 
     @Override
-    public void logout(LogoutBean logoutBean) {
-        Toast.makeText(getContext(), "退出成功", Toast.LENGTH_SHORT).show();
+    public void logout(String message) {
+        Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences(NetConfig.tokenName, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         edit.remove(NetConfig.tokenName);

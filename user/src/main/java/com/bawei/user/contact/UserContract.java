@@ -3,7 +3,6 @@ package com.bawei.user.contact;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
 import com.bawei.net.mode.LoginBean;
-import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 
 public class UserContract {
@@ -12,7 +11,7 @@ public class UserContract {
 
         void register(RegisterBean registerBean);
 
-        void logout(LogoutBean logoutBean);
+        void logout(String message);
     }
 
     public static abstract class IUserPresenter extends BasePresenter<IUserView> {

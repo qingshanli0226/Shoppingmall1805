@@ -97,6 +97,7 @@
                     android:textColor="#5d5d5d" />
 
                 <TextView
+                    android:id="@+id/tv_user_send"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
@@ -114,7 +115,7 @@
                     android:drawableTop="@drawable/new_order_status_shouhuo"
                     android:drawablePadding="10dp"
                     android:gravity="center"
-                    android:text="待收获"
+                    android:text="待收货"
                     android:textColor="#5d5d5d" />
 
                 <TextView

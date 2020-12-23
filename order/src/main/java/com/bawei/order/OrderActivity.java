@@ -48,6 +48,8 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
 
     private OderGoodsAdapter adapter;
 
+    private Thread thread;
+
     @Override
     protected int layoutId() {
         return R.layout.activity_order;
@@ -116,24 +118,13 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
                 }
             }
         };
-        Thread thread = new Thread(runnable);
+        thread = new Thread(runnable);
         thread.start();
     }
 
     @Override
     public void onConfirmServerPayResult(String result) {
-        boolean aBoolean = Boolean.parseBoolean(result);
-        if (aBoolean) {
-            Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-            savePayMessage("支付成功");
-            CacheManager.getInstance().removeSelectedProducts();
-            ARouter.getInstance().build("/main/MainActivity").navigation();
-        } else {
-            Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-            savePayMessage("支付失败");
-            CacheManager.getInstance().removeSelectedProducts();
-            ARouter.getInstance().build("/main/MainActivity").navigation();
-        }
+        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("HandlerLeak")
@@ -145,14 +136,26 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
 
             switch (msg.what) {
                 case 1:
+
+                    Toast.makeText(OrderActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    savePayMessage("支付成功");
+                    CacheManager.getInstance().removeSelectedProducts();
+                    ARouter.getInstance().build("/main/MainActivity").navigation();
                     httpPresenter.PostConfirmServerPayResult(orderInfoBean, true);
                     break;
                 case 2:
+
+                    Toast.makeText(OrderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    savePayMessage("支付失败");
+                    CacheManager.getInstance().removeSelectedProducts();
+                    ARouter.getInstance().build("/main/MainActivity").navigation();
                     httpPresenter.PostConfirmServerPayResult(orderInfoBean, false);
                     break;
             }
         }
     };
+
+    private String payMessage;
 
     private void savePayMessage(String message) {
         final MessageBean messageBean = new MessageBean();
@@ -161,15 +164,17 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
         messageBean.setIsRead(false);
         messageBean.setTitle("支付消息");
         messageBean.setType(MessageManager.PAY_TYPE);
-        MessageManager.getInstance().addMessage(messageBean, new MessageManager.IMessageListener() {
-            @Override
-            public void onResult(boolean isSuccess, List<MessageBean> messageManagerList) {
-                Toast.makeText(OrderActivity.this, "存储成功", Toast.LENGTH_SHORT).show();
-                EventBus.getDefault().post(messageBean);
-            }
-        });
-
+        payMessage = message;
+        MessageManager.getInstance().addMessage(messageBean, messageListener);
     }
+
+    private MessageManager.IMessageListener messageListener = new MessageManager.IMessageListener() {
+        @Override
+        public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {
+            Toast.makeText(OrderActivity.this, "存储成功", Toast.LENGTH_SHORT).show();
+            EventBus.getDefault().post(payMessage);
+        }
+    };
 
     @Override
     public void showLoaDing() {
@@ -184,5 +189,9 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
     @Override
     public void showEmpty() {
 
+    }
+
+    @Override
+    protected void destroy() {
     }
 }

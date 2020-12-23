@@ -252,6 +252,7 @@ public class CacheManager {
             @Override
             public void onUserLogin(LoginBean loginBean) {
                 getShopcarDataFromServer();
+
             }
 
             @Override

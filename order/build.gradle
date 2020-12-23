@@ -61,6 +61,6 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:30.0.0'//recyclerview
     implementation 'com.github.bumptech.glide:glide:4.11.0'
     implementation files('libs\\alipaySdk-15.6.5-20190718211148.aar')
-    implementation 'org.greenrobot:eventbus:3.1.1' //EventBus依赖
+    implementation 'org.greenrobot:eventbus:3.1.1'//EventBus依赖
 
 }

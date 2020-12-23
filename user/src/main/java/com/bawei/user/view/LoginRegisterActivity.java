@@ -18,7 +18,6 @@ import com.bawei.framework.BaseActivity;
 import com.bawei.framework.IView;
 import com.bawei.framework.ShopUserManager;
 import com.bawei.net.mode.LoginBean;
-import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.user.R;
 import com.bawei.user.contact.UserContract;
@@ -33,11 +32,9 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
     private ImageButton ibLoginVisible;
     private Button btnLogin;
     private TextView tvLoginRegister;
-    private TextView tvLoginForgetPwd;
     private ImageButton ibWeibo;
     private ImageButton ibQq;
     private ImageButton ibWechat;
-    private RegisterBean registerBean;
 
     private int count;
     private boolean isLogin = true;
@@ -55,7 +52,6 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
         ibLoginVisible = (ImageButton) findViewById(R.id.ib_login_visible);
         btnLogin = (Button) findViewById(R.id.btn_login);
         tvLoginRegister = (TextView) findViewById(R.id.tv_login_register);
-        tvLoginForgetPwd = (TextView) findViewById(R.id.tv_login_forget_pwd);
         ibWeibo = (ImageButton) findViewById(R.id.ib_weibo);
         ibQq = (ImageButton) findViewById(R.id.ib_qq);
         ibWechat = (ImageButton) findViewById(R.id.ib_wechat);
@@ -144,7 +140,7 @@ public class LoginRegisterActivity extends BaseActivity<UserContractImpl, IView>
     }
 
     @Override
-    public void logout(LogoutBean logoutBean) {
+    public void logout(String message) {
 
     }
 

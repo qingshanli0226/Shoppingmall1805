@@ -4,9 +4,11 @@ import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.ExceptionUtil;
 import com.bawei.common.view.NetConfig;
 import com.bawei.framework.ShopUserManager;
+import com.bawei.net.NetFunction;
 import com.bawei.net.RetrofitCreate;
+import com.bawei.net.ShopmallObserver;
+import com.bawei.net.mode.BaseBean;
 import com.bawei.net.mode.LoginBean;
-import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.RegisterBean;
 
 import java.util.HashMap;
@@ -113,26 +115,15 @@ public class UserContractImpl extends UserContract.IUserPresenter {
         RetrofitCreate.getApi().logout(map)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Observer<LogoutBean>() {
+                .map(new NetFunction<BaseBean<String>,String>())
+                .subscribe(new ShopmallObserver<String>() {
                     @Override
-                    public void onSubscribe(Disposable d) {
-
+                    public void onNext(String s) {
+                        iView.logout(s);
                     }
 
                     @Override
-                    public void onNext(LogoutBean logoutBean) {
-                        if (logoutBean.getCode().equals("200")) {
-                            ShopUserManager.getInstance().logoutUser();
-                        }
-                    }
-
-                    @Override
-                    public void onError(Throwable e) {
-
-                    }
-
-                    @Override
-                    public void onComplete() {
+                    public void onRequestError(String errorCode, String errorMessage) {
 
                     }
                 });

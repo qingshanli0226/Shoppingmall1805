@@ -3,10 +3,11 @@ package com.bawei.net;
 
 import com.bawei.common.view.NetConfig;
 import com.bawei.net.mode.BaseBean;
+import com.bawei.net.mode.FindForPayBean;
+import com.bawei.net.mode.FindForSendBean;
 import com.bawei.net.mode.HomeBean;
 import com.bawei.net.mode.InventoryBean;
 import com.bawei.net.mode.LoginBean;
-import com.bawei.net.mode.LogoutBean;
 import com.bawei.net.mode.OrderInfoBean;
 import com.bawei.net.mode.RegisterBean;
 import com.bawei.net.mode.ShopcarBean;
@@ -107,7 +108,7 @@ public interface MyNetApi {
 
     @POST("logout")
     @FormUrlEncoded
-    Observable<LogoutBean> logout(@FieldMap HashMap<String, String> map);
+    Observable<BaseBean<String>> logout(@FieldMap HashMap<String, String> map);
 
     @POST("updatePhone")
     @FormUrlEncoded
@@ -119,5 +120,11 @@ public interface MyNetApi {
 
     @POST("confirmServerPayResult")
     Observable<BaseBean<String>> confirmServerPayResult(@Body RequestBody requestBody);
+
+    @GET("findForPay")
+    Observable<FindForPayBean> getFindForPay();
+
+    @GET("findForSend")
+    Observable<FindForSendBean> getFindForSend();
 
 }
