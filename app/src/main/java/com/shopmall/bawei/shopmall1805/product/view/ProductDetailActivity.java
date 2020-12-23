@@ -80,7 +80,8 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
         priceTv.setText(prodctPrice);
         picWebView.setWebViewClient(new WebViewClient());
         picWebView.setWebChromeClient(new WebChromeClient());
-        picWebView.loadUrl(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+url);
+        //picWebView.loadUrl(ShopmallConstant.BASE_RESOURCE_IMAGE_URL+url);
+        picWebView.loadUrl("https://www.qq.com/");
 
         findViewById(R.id.productDetailShopcar).setOnClickListener(this);
         shopcarImg = findViewById(R.id.productDetailShopcar);
@@ -121,6 +122,9 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
 
     @Override
     public void onAddProduct(String addResult) {
+        if (isDestroy) {
+            return;
+        }
         Log.d("LQS", " width = " + picWebView.getMeasuredWidth());
         Log.d("LQS", " height = " + picWebView.getMeasuredHeight());
 
@@ -209,6 +213,9 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
 
     @Override
     public void onProductNumChange(String result) {
+        if (isDestroy) {
+            return;
+        }
         //已经成功的把购物车商品数据增加了一个
         //更新本地缓存中的商品数量，始终让两个数据保持一致
         showShopcarAnim(2);
@@ -279,11 +286,13 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
 
     }
 
+    boolean isDestroy = false;
     @Override
     protected void destroy() {
+        isDestroy = true;
         super.destroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(this);
-        if (valueAnimator.isRunning()) {
+        if (valueAnimator!=null&&valueAnimator.isRunning()) {
             valueAnimator.cancel();
         }
     }

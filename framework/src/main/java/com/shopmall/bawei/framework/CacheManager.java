@@ -35,7 +35,6 @@ public class CacheManager {
     //当用户登录成功后，CacheManger会调用服务端接口请求购物车数据。拿到购物车数据后，给shopcarBeanList赋值
     private List<ShopcarBean>  shopcarBeanList = new ArrayList<>();//缓存第一步:,定义单例，并且在单例中使用列表来存储缓存数据
     private List<ShopcarBean>  deleteShopcarBeanList = new ArrayList<>();
-    private List<Bitmap> bitmapList = new ArrayList<>();
 
     private static CacheManager instance;
 
@@ -151,9 +150,6 @@ public class CacheManager {
 
     //当页面想监听数据的改变，就注册一个listener
     public void setShopcarDataChangeListener(IShopcarDataChangeListener listener) {
-        Bitmap bitmap = BitmapFactory.decodeResource(context.getResources(),R.mipmap.adr);
-        bitmapList.add(bitmap);
-        bitmap = null;
         if (!iShopcarDataChangeListenerList.contains(listener)) {
             iShopcarDataChangeListenerList.add(listener);
         }

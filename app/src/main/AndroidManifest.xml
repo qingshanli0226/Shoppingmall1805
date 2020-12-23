@@ -21,7 +21,8 @@
         <activity android:name=".home.view.MainActivity"
                   android:launchMode="singleTask"
         />
-        <activity android:name=".message.MessageListActivity"/>
+        <activity android:name=".message.MessageListActivity"
+        android:screenOrientation="portrait"/>
         <activity android:name=".MemLeakActivity"/>
     </application>
 

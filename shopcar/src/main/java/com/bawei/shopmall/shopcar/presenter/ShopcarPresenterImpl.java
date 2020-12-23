@@ -55,8 +55,10 @@ public class ShopcarPresenterImpl extends ShopcarContract.ShopcarPresenter {
                 .subscribe(new ShopmallObserver<String>() {
                     @Override
                     public void onNext(String s) {
-                        iHttpView.onProductNumChange(s, position, newNum);
-                        iHttpView.hideLoading(true,null);
+                        if (iHttpView!=null) {
+                            iHttpView.onProductNumChange(s, position, newNum);
+                            iHttpView.hideLoading(true, null);
+                        }
                     }
 
                     @Override

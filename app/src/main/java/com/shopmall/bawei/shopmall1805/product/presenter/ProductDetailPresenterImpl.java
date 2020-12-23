@@ -71,6 +71,7 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
         RetroCreator.getShopmallApiServie().addOneProduct(requestBody)
+                .delay(10,TimeUnit.SECONDS)
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<BaseBean<String>, String>())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -110,6 +111,8 @@ public class ProductDetailPresenterImpl extends ProductDetailContract.ProductDet
 
         RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
         RetroCreator.getShopmallApiServie().updateProductNum(requestBody)
+                .delay(10,TimeUnit.SECONDS)
+
                 .subscribeOn(Schedulers.io())
                 .map(new NetFunction<BaseBean<String>, String>())
                 .observeOn(AndroidSchedulers.mainThread())
