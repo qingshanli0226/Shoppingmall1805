@@ -27,7 +27,6 @@ public class CacheManager{
     private Context context;
     private List<ShopCarBean> shopCarBeans = new ArrayList<>();
     private List<ShopCarBean> deleteShopCarBeans = new ArrayList<>();
-    private List<ShopCarBean> accountShopcarBeans = new ArrayList<>();
 
     private static CacheManager instance;
 

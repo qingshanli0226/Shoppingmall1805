@@ -12,7 +12,11 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
     }
 
     buildTypes {
@@ -34,6 +38,10 @@ dependencies {
     implementation project(':framework')
     implementation project(':net')
     implementation project(':common')
-
-
+    implementation 'com.android.support:recyclerview-v7:+'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'//glide依赖
+    implementation 'com.flyco.tablayout:FlycoTabLayout_Lib:2.0.2@aar'//flycotablayout
+    //aRouter 依赖
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
 }

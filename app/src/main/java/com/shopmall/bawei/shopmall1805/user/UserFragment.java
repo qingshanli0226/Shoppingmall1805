@@ -1,6 +1,6 @@
-package com.shopmall.bawei.shopmall1805.fragment;
+package com.shopmall.bawei.shopmall1805.user;
 
-import android.content.Context;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -12,13 +12,19 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.BaseFragment;
 import com.bw.framework.IPresenter;
 import com.bw.framework.IView;
+import com.bw.framework.OrderManager;
 import com.bw.framework.ShopUserManager;
+import com.bw.net.ForPayBean;
+import com.bw.net.ForSendBean;
 import com.bw.net.bean.LoginBean;
-import com.bw.net.bean.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.user.contract.UserContract;
+import com.shopmall.bawei.shopmall1805.user.presenter.UserPresenter;
+
+import java.util.List;
 
 @Route(path = "/fragment/userFragment")
-public class UserFragment extends BaseFragment<IPresenter, IView> {
+public class UserFragment extends BaseFragment<IPresenter, IView>implements OrderManager.IOrderChangeListener {
 
     private ScrollView scrollview;
     private ImageButton ibUserIconAvator;
@@ -41,6 +47,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
     private ImageButton ibUserSetting;
     private ImageButton ibUserMessage;
 
+    private  Handler handler;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_user;
@@ -68,8 +75,15 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
         tvUsercenter = (TextView) findViewById(R.id.tv_usercenter);
         ibUserSetting = (ImageButton) findViewById(R.id.ib_user_setting);
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
+        handler = new Handler();
+
+        OrderManager.getInstance().setOrderChangeListeners(this);
 
 
+        Log.i("---", "initView: forSentBeanSize："+OrderManager.getInstance().getForSendBeanList().size());
+
+        tvUserPay.setText("待付款"+OrderManager.getInstance().getForPayBeanList().size());
+        tvUserReceive.setText("待收货"+OrderManager.getInstance().getForSendBeanList().size());
 
         if (ShopUserManager.getInstance().isUserLogin()){
             String name = ShopUserManager.getInstance().getName();
@@ -82,12 +96,65 @@ public class UserFragment extends BaseFragment<IPresenter, IView> {
         }
 
 
+        tvUserPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/order/AllOrderActivity").navigation();
+            }
+        });
+
 
 
     }
 
     @Override
+    protected void initPresenter() {
+        super.initPresenter();
+    }
+
+    @Override
+    protected void initData() {
+        super.initData();
+
+    }
+
+    @Override
     public void onRightClick() {
+
+    }
+
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        OrderManager.getInstance().unSetOrderChangeListeners(this);
+    }
+
+    @Override
+    public void onForPayChange(List<ForPayBean> forPayBeanList) {
+        Log.e("---", "onForPayChange: "+forPayBeanList.size() );
+
+
+       handler.post(new Runnable() {
+            @Override
+            public void run() {
+                tvUserPay.setText("待付款"+forPayBeanList.size());
+            }
+        });
+
+    }
+
+    @Override
+    public void onForSendChange(List<ForSendBean> forSendBeanList) {
+        Log.e("---", "onForSendChange: "+forSendBeanList.size() );
+
+        handler.post(new Runnable() {
+            @Override
+            public void run() {
+                tvUserReceive.setText("待收货"+forSendBeanList.size());
+            }
+        });
 
     }
 }

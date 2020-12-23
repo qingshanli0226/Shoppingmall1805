@@ -110,4 +110,12 @@ public interface INetWorkApiService {
 
     @POST("getOrderInfo")
     Observable<Basebean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+
+    @POST("confirmServerPayResult")
+    Observable<Basebean<String>> confirmServerPayResultv(@Body RequestBody requestBody);
+
+    @GET("findForPay")
+    Observable<Basebean<List<ForPayBean>>> findForPay();
+    @GET("findForSend")
+    Observable<Basebean<List<ForSendBean>>> findForSend();
 }

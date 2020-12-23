@@ -1,5 +1,6 @@
 package com.shopmall.bawei.shopmall1805.activity;
 
+import android.content.Intent;
 import android.widget.FrameLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -14,10 +15,10 @@ import com.bw.framework.ShopUserManager;
 import com.bw.net.bean.ShopCarBean;
 import com.bw.shopcar.ShopCarFragment;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.user.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.HomeFragment;
 import com.shopmall.bawei.shopmall1805.type.TypeFragment;
-import com.shopmall.bawei.shopmall1805.fragment.UserFragment;
+import com.shopmall.bawei.shopmall1805.user.UserFragment;
 
 import java.util.List;
 
@@ -140,6 +141,11 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
 
         }
     };
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+    }
 
     private void initShopcarDataChangeListener() {
         CacheManager.getInstance().setShopCarDataChangerListener(iShopcarDataChangeListener);

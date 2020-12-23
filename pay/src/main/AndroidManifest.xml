@@ -5,6 +5,7 @@
     <application>
         <activity android:name="com.bw.pay.AddressActivity"></activity>
         <activity android:name="com.bw.pay.OrderActivity" />
+        <activity android:name="com.bw.pay.PayActivity"/>
     </application>
 
 </manifest>

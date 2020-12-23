@@ -34,9 +34,6 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
         editNumber = (EditText) findViewById(R.id.editNumber);
         editAddress = (EditText) findViewById(R.id.editAddress);
         submitBtn = (Button) findViewById(R.id.submitBtn);
-
-
-
         btnUpdateNumber = (Button) findViewById(R.id.btnUpdateNumber);
         btnUpdateAddress = (Button) findViewById(R.id.btnUpdateAddress);
 
@@ -51,7 +48,6 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
             @Override
             public void onClick(View v) {
                 httpPresenter.updateNumber(editNumber.getText().toString());
-
             }
         });
 
@@ -101,6 +97,11 @@ public class AddressActivity extends BaseActivity<AddressPresenter, AddressContr
 
     @Override
     public void onOrderInfo(OrderInfoBean orderInfoBean) {
+
+    }
+
+    @Override
+    public void onConfirmServerPayResult(String result) {
 
     }
 

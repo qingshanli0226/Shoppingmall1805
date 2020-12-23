@@ -121,7 +121,6 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     public void onRightClick() {
         Intent intent = new Intent(getContext(), MessageActivity.class);
         startActivity(intent);
-        getActivity().finish();
     }
 
     @Override
