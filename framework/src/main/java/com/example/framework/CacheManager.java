@@ -244,7 +244,23 @@ public class CacheManager {
 
         return loginBean.getAddress();
     }
+    //当页面销毁时，页面不需要再监听数据改变了，我们把它从列表中删除
+    public void unSetShopcarDataChangerListener(IShopcarDataChangeListener listener) {
+        if (iShopcarDataChangeListenerList.contains(listener)) {
+            iShopcarDataChangeListenerList.remove(listener);
+        }
+    }
 
+    //获取已经选择的商品
+    public List<ShopcarBean> getSelectedShopBeans() {
+        List<ShopcarBean> selectedList = new ArrayList<>();
+        for(ShopcarBean shopcarBean:shopcarBeanList) {
+            if (shopcarBean.isProductSelected()) {
+                selectedList.add(shopcarBean);
+            }
+        }
+        return selectedList;
+    }
 
     //总价
     public String getMoneyValue() {
@@ -289,9 +305,7 @@ public class CacheManager {
         return deleteShopcarBeanList;
     }
 
-    public List<LoginBean> getLoginBeansList(){
-        return loginBeansList;
-    }
+
 
     //获取已经选择的商品列表
     public List<ShopcarBean> getSelectedProductBeanList() {

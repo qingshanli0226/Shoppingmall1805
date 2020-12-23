@@ -1,20 +1,18 @@
 package com.shopmall.bawei.shopcar;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
 import com.example.net.ShopcarBean;
@@ -39,6 +37,7 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
     private  List<ShopcarBean> shopcarBeanList;
     private Button button_delete,btn_checkout;
     private boolean isEditMode = false;
+    private ImageButton imageButton;
 
     @Override
     protected int getLayoutId() {
@@ -57,6 +56,7 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         checkBox_etAll = findViewById(R.id.cb_all);
         button_delete = findViewById(R.id.btn_delete);
         btn_checkout = findViewById(R.id.btn_check_out);
+        imageButton = findViewById(R.id.ib_shopcart_back);
     }
 
     @Override
@@ -70,8 +70,19 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         btn_checkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ARouter.getInstance().build("/me/order")
-                        .navigation();
+                if (CacheManager.getInstance().getSelectedShopBeans().size()>0){
+                    ARouter.getInstance().build("/me/order")
+                            .navigation();
+                }else {
+                    Toast.makeText(MainActivity.this, "没有东西买什么买", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
+
+        imageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
             }
         });
 
@@ -123,13 +134,11 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         total.setText(CacheManager.getInstance().getMoneyValue());
 
 
-
         if (CacheManager.getInstance().isAllSelected()){
             checkBox_all.setChecked(true);
         }else {
             checkBox_all.setChecked(false);
         }
-
 
 
         checkBox_all.setOnClickListener(new View.OnClickListener() {
@@ -233,5 +242,9 @@ public class MainActivity extends BaseActivity<ShopcarPresenterImpl, ShopcarCont
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+    }
 }

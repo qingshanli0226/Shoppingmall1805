@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.CacheManager;
 import com.example.framework.LoginService;
+import com.example.framework.MessageManager;
 import com.example.net.ShopUserManger;
 import com.shopmall.bawei.shopmall1805.entity.DaoMaster;
 import com.shopmall.bawei.shopmall1805.entity.DaoSession;
@@ -41,6 +42,7 @@ public class ShopmallApplication extends Application {
 //        startService(intent);
 
         CacheManager.getInstance().init(this);
+        MessageManager.getInstance().init(this);
     }
 
     public DaoSession getDaoSession() {

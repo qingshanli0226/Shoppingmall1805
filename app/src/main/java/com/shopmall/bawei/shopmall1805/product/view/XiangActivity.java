@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.GridView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -45,6 +46,7 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
     private String path,name,id,money;
     private String s;
     private int newNum;
+    private ImageButton imageButton;
 
     @Override
     protected int getLayoutId() {
@@ -59,6 +61,7 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
         tv_bj = findViewById(R.id.tv_shopcart_edit);
         ll_bj = findViewById(R.id.ll_delete);
         tv_money = findViewById(R.id.tv_good_info_price);
+        imageButton = findViewById(R.id.ib_good_info_back);
     }
 
     @Override
@@ -69,6 +72,13 @@ public class XiangActivity extends BaseActivity<ProductDetailPresenterImpl, Prod
         name = intent.getStringExtra("name");
          money = intent.getStringExtra("money");
          id = intent.getStringExtra("id");
+
+         imageButton.setOnClickListener(new View.OnClickListener() {
+             @Override
+             public void onClick(View view) {
+                 finish();
+             }
+         });
 
          httpPresenter = new ProductDetailPresenterImpl();
         Glide.with(this).load(ConfigUrl.BASE_IMAGE+path).into(imv);
