@@ -15,6 +15,7 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.framework.BaseFragment;
 import com.example.framework.dao.ShopcarMessage;
+import com.example.framework.view.ToolBar;
 import com.example.framework.view.manager.MessageManager;
 import com.example.net.bean.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
@@ -24,21 +25,21 @@ import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenter;
 import com.shopmall.bawei.shopmall1805.message.MessageActivity;
 
 import org.greenrobot.eventbus.Subscribe;
-public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.SkerakView> implements HomeContract.SkerakView {
+public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.SkerakView> implements HomeContract.SkerakView,ToolBar.IToolBarClickListenter {
     private RecyclerView rv;
     private PrimereAdpter primereAdpter;
-    private EditText ed;
-    private TextView ivMessage;
+    private ToolBar toolbar;
 
     @Override
     protected void initPreseter() {
         httpresetnter= new HomePresenter();
+        //注册点击事件
+        toolbar.setiToolBarClickListenter(this);
     }
 
     @Override
     protected void initView(View inflate) {
-        ivMessage = inflate.findViewById(R.id.iv_message);
-        ed = inflate.findViewById(R.id.ed);
+        toolbar = inflate.findViewById(R.id.toolbar);
         rv = inflate.findViewById(R.id.rv);
         primereAdpter = new PrimereAdpter();
         rv.setAdapter(primereAdpter);
@@ -50,23 +51,17 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
         httpresetnter.getskerak();
         int messageCount = MessageManager.getInstance().getMessageCount();
         if (messageCount!=0){
-            ivMessage.setText("消息:"+messageCount);
+            toolbar.setToolBarRightTv("消息:"+messageCount);
         }
-        //点击跳转到消息页面
-        ivMessage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), MessageActivity.class);
-                startActivity(intent);
-            }
-        });
+
+
     }
     //接受EvenBus发货来的数据
     @Subscribe
     public void onMessageChanged(ShopcarMessage shopcarMessage){
         int messageCount = MessageManager.getInstance().getMessageCount();
         if (messageCount!=0){
-            ivMessage.setText(""+messageCount);
+            toolbar.setToolBarRightTv("消息"+messageCount);
         }
     }
     @Override
@@ -109,5 +104,16 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.Skera
         primereAdpter.addOneData(homeBeanList.getSeckill_info().getList());
         primereAdpter.addOneData(homeBeanList.getRecommend_info());
         primereAdpter.addOneData(homeBeanList.getHot_info());
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+    //点击跳转到消息页面
+    @Override
+    public void onRightClick() {
+        Intent intent = new Intent(getContext(), MessageActivity.class);
+        startActivity(intent);
     }
 }

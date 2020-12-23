@@ -83,4 +83,6 @@ public class LoginRegisterActivity extends BaseActivity<IPresenter,IView> {
         super.onDestroy();
         EventBus.getDefault().unregister(this);
     }
+
+
 }

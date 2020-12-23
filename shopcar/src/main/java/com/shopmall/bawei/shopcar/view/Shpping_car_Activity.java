@@ -46,6 +46,7 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
     private Button btnCollection;
     private boolean isEditMode = false; // 当为true时进入编辑模式，当为false则为正常模式
     private ShopCarAdpter shopCarAdpter;
+    private boolean newAllSelcted;
     @Override
     protected void initpreseter() {
         httpresenter = new ShopcarPresenterImpl();
@@ -58,6 +59,39 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
         tvShopcartEdit.setOnClickListener(this);
         List<ShopcarBean> shopcarList = CacheManager.getInstance().getShopcarList();
         shopCarAdpter.updataData(shopcarList);
+        //商品价格
+        tvShopcartTotal.setText(""+CacheManager.getInstance().getMoney());
+        //判断商品是否全部选择，全部选择就让为true，不然的话就为false
+        if (CacheManager.getInstance().isAllSelected()){
+            checkboxAll.setChecked(true);
+        }else {
+            checkboxAll.setChecked(false);
+        }
+        //设置正常的点击事件
+        checkboxAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkboxAll.isChecked()){
+                    newAllSelcted = true;
+                    httpresenter.selectedAllProduct(newAllSelcted);
+                }else {
+                    newAllSelcted = false;
+                    httpresenter.selectedAllProduct(newAllSelcted);
+                }
+            }
+        });
+        //编辑模式的点击事件
+        cbAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (cbAll.isChecked()){
+                    //在编辑模式下所有商品被选择了
+                    CacheManager.getInstance().selectAllProductInEditMode(true);
+                }else{
+                    CacheManager.getInstance().selectAllProductInEditMode(false);
+                }
+            }
+        });
     }
 
     @Override
@@ -98,11 +132,13 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
                 tvShopcartEdit.setText("完成");
                 llCheckAll.setVisibility(View.GONE);
                 llDelete.setVisibility(View.VISIBLE);
+                shopCarAdpter.setEditMode(isEditMode);//存在目前的状态
             }else {
                 isEditMode = false;
                 llDelete.setVisibility(View.GONE);
                 tvShopcartEdit.setText("完成");
                 llCheckAll.setVisibility(View.VISIBLE);
+                shopCarAdpter.setEditMode(isEditMode);//存进目前的状态
             }
         }
     }
@@ -119,12 +155,17 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
     }
     @Override
     public void onManeyvhanged(String moneyValue) {
-
+        tvShopcartTotal.setText(""+moneyValue);
     }
 
     @Override
     public void onAllselected(boolean isAllSelect) {
-
+        //如果为编辑模式
+        if (isEditMode){
+            cbAll.setChecked(isAllSelect);
+        }else {
+            checkboxAll.setChecked(isAllSelect);
+        }
     }
 
     @Override
@@ -132,20 +173,20 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(this);
     }
-
+    //刷新Ui
     @Override
     public void onProductChangeNum(String result, int position, String newNum) {
         CacheManager.getInstance().updateProduceNum(position,newNum);
     }
-
+    //刷新单选
     @Override
     public void onProductSelected(String result, int position) {
-
+        CacheManager.getInstance().updateProductSelected(position);
     }
 
     @Override
     public void onProductAllSelected(String result) {
-
+        CacheManager.getInstance().selectAllProduct(newAllSelcted);
     }
 
     @Override
@@ -177,4 +218,6 @@ public class Shpping_car_Activity extends BaseActivity<ShopcarPresenterImpl, Sho
     public void showEmpty() {
         showEnpty();
     }
+
+
 }

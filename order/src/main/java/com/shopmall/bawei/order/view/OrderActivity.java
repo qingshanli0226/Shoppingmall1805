@@ -54,6 +54,7 @@ public class OrderActivity extends BaseActivity<IPresenter, IView> implements Vi
 
     @Override
     protected void initdate() {
+
         //获取选择的列表
         List<ShopcarBean> selectedShopBeans = CacheManager.getInstance().getSelectedShopBeans();
         orderAdpter.updataData(selectedShopBeans);
@@ -97,11 +98,12 @@ public class OrderActivity extends BaseActivity<IPresenter, IView> implements Vi
         if (id == R.id.ib_shopcart_back) {
                 finish();
         } else if (id == R.id.bt_buy) {
-            //跳转到支付模块
-            ARouter.getInstance().build("/pay/Activity").navigation();
+
+                //跳转到支付模块
+                ARouter.getInstance().build("/pay/Activity").navigation();
+
         }
     }
-
 
 
 }

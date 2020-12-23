@@ -3,6 +3,7 @@ package com.example.net;
 import com.example.net.bean.BaseBean;
 import com.example.net.bean.Biaobean;
 import com.example.net.bean.ClothesBean;
+import com.example.net.bean.FindPayBean;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.LoginBean;
@@ -77,6 +78,15 @@ public interface INetPresetenterWork {
     //下单接口
     @POST("getOrderInfo")
     Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+    //是否支付成功
+    @POST("confirmServerPayResult")
+    Observable<BaseBean<String>> confirmServerPayResult(@Body RequestBody requestBody);
+    //查找代付款借口
+    @GET("findForPay")
+    Observable<BaseBean<List<FindPayBean>>> getFindPay();
+    //查找代发货借口
+    @GET("findForSend")
+    Observable<BaseBean<List<FindSendBean>>> getFindSend();
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")
     Observable<ClothesBean> skirt();

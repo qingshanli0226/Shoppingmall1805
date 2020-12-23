@@ -74,4 +74,5 @@ public class Fragment_Lable extends BaseFragment<LablePresenter, LableContract.b
     public void showEmpty() {
         showEnpty();
     }
+
 }

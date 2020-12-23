@@ -13,7 +13,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".message.MessageActivity"></activity>
+        <activity android:name=".ui.fragment.view.FindForSendActivity"></activity>
+        <activity android:name="com.shopmall.bawei.pay.view.FindForPayActivity" />
+        <activity android:name=".message.MessageActivity" />
         <activity android:name=".ui.activity.CallcenterActivity" />
         <activity android:name=".ui.activity.view.BangActivity" />
         <activity android:name=".ui.activity.view.GoodinfoActivity" />

@@ -99,4 +99,6 @@ public class BangActivity extends BaseActivity<BindPresenter, BindContract.IBind
     public void showEmpty() {
         showEnpty();
     }
+
+
 }

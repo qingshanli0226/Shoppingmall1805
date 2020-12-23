@@ -117,4 +117,6 @@ public class RegisterFragment extends BaseFragment<RegisterPresenter, RegisterCo
             }
         }
     }
+
+
 }

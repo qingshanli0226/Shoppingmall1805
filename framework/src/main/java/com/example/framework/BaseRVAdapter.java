@@ -12,6 +12,7 @@ import java.util.List;
 
 public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapter.BaseViewHolder> {
     private IRecyclerViewItemClickListener iRecyclerViewItemClickListener;
+    private IRecyclerViewItemLongClickListener iRecyclerViewItemClickLongListener;
     private ArrayList<T> dataList = new ArrayList<>();
 
     public void updataData(List<T> datas) {
@@ -54,6 +55,15 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
                 }
             }
         });
+        baseViewHolder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (iRecyclerViewItemClickLongListener!=null){
+                    iRecyclerViewItemClickLongListener.onItemClick(position);//设置Item长点击事件;
+                }
+                return true;
+            }
+        });
 
         T itemData = getItemData(position);
         convert(itemData, baseViewHolder, position);//通过position，将itemData转换成需要的类型，并且将baseViewHoder也转换成需要的viewHolder
@@ -74,7 +84,11 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
     public IRecyclerViewItemClickListener getiRecyclerViewItemClickListener() {
         return iRecyclerViewItemClickListener;
     }
-
+    //长点击事件
+    public void setiRecyclerViewItemLongClickListener(IRecyclerViewItemLongClickListener iRecyclerViewItemClickLongListener){
+        this.iRecyclerViewItemClickLongListener = iRecyclerViewItemClickLongListener;
+    }
+    //段点击事件
     public void setiRecyclerViewItemClickListener(IRecyclerViewItemClickListener iRecyclerViewItemClickListener) {
         this.iRecyclerViewItemClickListener = iRecyclerViewItemClickListener;
     }
@@ -101,6 +115,9 @@ public abstract class BaseRVAdapter<T> extends RecyclerView.Adapter<BaseRVAdapte
     }
 
     public interface IRecyclerViewItemClickListener {
+        void onItemClick(int position);
+    }
+    public interface IRecyclerViewItemLongClickListener {
         void onItemClick(int position);
     }
 

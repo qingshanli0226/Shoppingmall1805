@@ -3,6 +3,7 @@ package com.example.framework.view.manager;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Handler;
+import android.util.Log;
 
 import com.example.framework.dao.DaoMaster;
 import com.example.framework.dao.DaoSession;
@@ -98,7 +99,16 @@ public class MessageManager {
     }
     //修改消息
     public void updateMessage(@NonNull ShopcarMessage shopcarMessage, final IMessageListenter iMessageListenter){
-        shopcarMessageDao.update(shopcarMessage);
+        ShopcarMessage unique = shopcarMessageDao.queryBuilder().where(ShopcarMessageDao.Properties.Time.eq(shopcarMessage.getTime())).unique();
+        if (unique!=null){
+            if (unique.getIsRead()){
+                Log.e("###",""+unique.getIsRead());
+            }else {
+                unique.setIsRead(true);
+                shopcarMessageDao.update(unique);
+            }
+        }
+
         handler.post(new Runnable() {
             @Override
             public void run() {
@@ -108,7 +118,7 @@ public class MessageManager {
             }
         });
     }
-    //删除消息
+    //查询消息
     public void quereMessage(final IMessageListenter iMessageListenter){
         final List<ShopcarMessage> list = shopcarMessageDao.queryBuilder().orderDesc(ShopcarMessageDao.Properties.Time).limit(50).list();
         handler.post(new Runnable() {
@@ -119,6 +129,11 @@ public class MessageManager {
                 }
             }
         });
+    }
+    //查询信息
+    public List<ShopcarMessage> queresmessage(){
+        List<ShopcarMessage> list = shopcarMessageDao.queryBuilder().list();
+        return list;
     }
     //使用接口回调来刷新Ui
     public interface IMessageListenter{

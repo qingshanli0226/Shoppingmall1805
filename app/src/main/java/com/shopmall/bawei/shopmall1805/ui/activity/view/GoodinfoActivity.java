@@ -319,70 +319,6 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
         });
         valueAnimator.start();
     }
-    //使用贝塞尔曲线来完成加入购物车的动画
-    private void showShopCarAnimin(final int type) {
-        //起始坐标
-        int[] startPoint = new int[2];
-        //终点坐标
-        int[] endPoint = new int[2];
-        //控制点坐标
-        int[] controlPoint = new int[2];
-
-        int[] picwebViewPoint = new int[2];
-        ivGoodInfoImage.getLocationInWindow(picwebViewPoint);
-        startPoint[0] = picwebViewPoint[0] + 400;
-        startPoint[1] = picwebViewPoint[1];
-        Log.e("zld","起始坐标"+startPoint[0]+":"+startPoint[1]);
-
-        int[] shopcarImageview = new int[2];
-        tvGoodInfoCart.getLocationInWindow(shopcarImageview);
-        endPoint[0] = shopcarImageview[0] +150;
-        endPoint[1] = shopcarImageview[1] -100;
-        Log.e("zld","终点坐标"+endPoint[0]+":"+endPoint[1]);
-
-        controlPoint[0] = startPoint[0] - 300;
-        controlPoint[1] = startPoint[1] + 100;
-        Log.e("zld","控制点坐标"+controlPoint[0]+":"+controlPoint[1]);
-
-        //实例化一个imageview，然后将recycle添加到根部局中
-        final ImageView imageView = new ImageView(this);
-        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(100, 100);
-        imageView.setLayoutParams(layoutParams);
-        Glide.with(this).load(Confing.BASE_IMAGE+url).into(imageView);
-        //蒋小图标添加到根部局中
-        root.addView(imageView);
-        //使用贝塞尔曲线完成动画
-        final Path path = new Path();
-        path.moveTo(startPoint[0],startPoint[1]);
-        path.quadTo(controlPoint[0],controlPoint[1],endPoint[0],endPoint[1]);
-        final PathMeasure pathMeasure = new PathMeasure(path, false);
-        //使用属性动画，完成小图片在贝塞尔曲线上的平移
-        final ValueAnimator valueAnimator = ValueAnimator.ofFloat(0, pathMeasure.getLength());
-        valueAnimator.setDuration(1000);
-        //注册一个listerter，获取下一个平移坐标
-        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                float animatedValue = (float) animation.getAnimatedValue();
-                Log.e("zld","动画已经平移的距离"+animatedValue);
-                float[] nextPoint = new float[2];
-                pathMeasure.getPosTan(animatedValue,nextPoint,null);
-                imageView.setTranslationX(nextPoint[0]);//将小图标移动下一个坐标处
-                imageView.setTranslationY(nextPoint[1]);
-                if (animatedValue>=pathMeasure.getLength()){
-                    if (type == 1){
-                        onaddproduct();
-                    }else {
-                        Toast.makeText(GoodinfoActivity.this, "商品已存在，再原本的基础上加了1", Toast.LENGTH_SHORT).show();
-                        CacheManager.getInstance().updateProductNum(productId,String.valueOf(newNum));
-                    }
-                    imageView.setVisibility(View.GONE);
-                }
-            }
-        });
-        valueAnimator.start();
-    }
-
 
 
     //更新了一下服务端商品的数量
@@ -445,4 +381,6 @@ public class GoodinfoActivity extends BaseActivity<GoodInfoPresenter, GoodsInfoC
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(this);
     }
+
+
 }

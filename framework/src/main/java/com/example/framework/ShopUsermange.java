@@ -97,6 +97,7 @@ public class ShopUsermange {
     public Object getAddress(){
         return loginBean.getAddress();
     }
+    //别的类能够拿到Token值
     public String gettoken(){
         if (loginBean!=null){
             return loginBean.getToken();

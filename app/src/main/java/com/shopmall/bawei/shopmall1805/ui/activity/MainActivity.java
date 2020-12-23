@@ -10,6 +10,7 @@ import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
+import com.example.framework.PayBean;
 import com.example.framework.ShopUsermange;
 import com.example.net.Confing;
 import com.example.net.bean.ShopcarBean;
@@ -44,7 +45,11 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
     protected void initpreseter() {
 
     }
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getindex(PayBean payBean){
+        Toast.makeText(this, ""+payBean.getIndex(), Toast.LENGTH_SHORT).show();
+        vr.setCurrentItem(payBean.getIndex());
+    }
     @Override
     protected void initdate() {
 
@@ -155,4 +160,6 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(this);
     }
+
+
 }

@@ -137,4 +137,6 @@ public class LoginFragment extends BaseFragment<LoginPresenter, LoginContact.Log
     public void onDestroy() {
         super.onDestroy();
     }
+
+
 }

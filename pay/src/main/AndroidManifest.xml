@@ -4,6 +4,7 @@
 
     <application>
         <activity android:name=".view.PayActivity"></activity>
+        <activity android:name=".view.FindForPayActivity"></activity>
     </application>
 
 </manifest>

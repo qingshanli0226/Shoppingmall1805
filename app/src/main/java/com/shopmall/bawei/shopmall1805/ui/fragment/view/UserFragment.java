@@ -3,7 +3,6 @@ package com.shopmall.bawei.shopmall1805.ui.fragment.view;
 
 
 import android.content.Intent;
-import android.support.v4.app.Fragment;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ScrollView;
@@ -11,15 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.BaseFragment;
 import com.example.framework.CacheManager;
-import com.example.framework.IPresenter;
-import com.example.framework.IView;
 import com.example.framework.ShopUsermange;
-import com.example.framework.dao.ShopcarMessage;
 import com.example.net.bean.LoginBean;
+import com.shopmall.bawei.pay.view.FindForPayActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ui.activity.view.BangActivity;
 import com.shopmall.bawei.shopmall1805.ui.fragment.contract.LogotContract;
@@ -27,7 +23,7 @@ import com.shopmall.bawei.shopmall1805.ui.fragment.presenter.LogotPresenter;
 
 
 public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILogotView> implements ShopUsermange.IUserLoginChangeLiestener,LogotContract.ILogotView, View.OnClickListener {
-
+    private TextView tvUserSend;
     private ScrollView scrollview;
     private ImageButton ibUserIconAvator;
     private TextView tvUsername;
@@ -61,6 +57,7 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
         ShopUsermange.getInstance().registerUserLoginChangeListenter(this);
         //初始化控件
         scrollview = inflate.findViewById(R.id.scrollview);
+        tvUserSend = inflate.findViewById(R.id.tv_user_send);
         ibUserIconAvator = inflate.findViewById(R.id.ib_user_icon_avator);
         tvUsername = inflate.findViewById(R.id.tv_username);
         tvAllOrder = inflate.findViewById(R.id.tv_all_order);
@@ -85,11 +82,17 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
 
     @Override
     protected void initdate() {
-
-
+//        int size = CacheManager.getInstance().getSelectedPaySucessBeans().size();
+//        Toast.makeText(getContext(), ""+size, Toast.LENGTH_SHORT).show();
+//        tvUserPay.setText("待付款"+size);
         //点击跳转到注册界面
         ibUserIconAvator.setOnClickListener(this);
+        //点击退出登陆
         ibUserSetting.setOnClickListener(this);
+        //点击跳入待支付
+        tvUserPay.setOnClickListener(this);
+        //点击跳入到待发货
+        tvUserSend.setOnClickListener(this);
         //点击跳转到绑定信息界面
         tvUserLocation.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +116,13 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
 //        else if (v==ibUserSetting){//点击退出登录
 //            httpresetnter.logotUser();
 //        }
+        else if (v == tvUserPay){
+            Intent intent = new Intent(getContext(), FindForPayActivity.class);
+            startActivity(intent);
+        }else if (v == tvUserSend){
+            Intent intent = new Intent(getContext(), FindForSendActivity.class);
+            startActivity(intent);
+        }
     }
 
     @Override
@@ -120,7 +130,6 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
 //        Toast.makeText(getContext(), "退出登录成功", Toast.LENGTH_SHORT).show();
 //        ShopUsermange.getInstance().clearshopbean();
     }
-
     @Override
     public void onErroy(String message) {
         Toast.makeText(getContext(), ""+message, Toast.LENGTH_SHORT).show();
@@ -162,4 +171,6 @@ public class UserFragment extends BaseFragment<LogotPresenter, LogotContract.ILo
         super.onDestroy();
         ShopUsermange.getInstance().unRegisterUserLoginChangeListenter(this);
     }
+
+
 }

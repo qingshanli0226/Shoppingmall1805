@@ -57,4 +57,6 @@ public class WelcomActivity extends BaseActivity<IPresenter, IView> implements V
     public void onAnimationCancel(View view) {
 
     }
+
+
 }

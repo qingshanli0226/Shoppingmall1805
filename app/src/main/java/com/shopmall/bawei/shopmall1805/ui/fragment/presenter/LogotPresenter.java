@@ -1,9 +1,13 @@
 package com.shopmall.bawei.shopmall1805.ui.fragment.presenter;
 
+import com.example.net.FindSendBean;
 import com.example.net.Retrofitcreators;
 import com.example.net.bean.BaseBean;
+import com.example.net.bean.FindPayBean;
 import com.shopmall.bawei.shopmall1805.ui.fragment.contract.LogotContract;
 import com.shopmall.bawei.user.contract.LoginContact;
+
+import java.util.List;
 
 import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -52,4 +56,5 @@ public class LogotPresenter extends LogotContract.ILogotPresenter {
                     }
                 });
     }
+
 }

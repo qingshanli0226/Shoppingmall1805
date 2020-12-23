@@ -7,13 +7,18 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 
 import com.example.framework.view.LogingPage;
+import com.example.framework.view.ToolBar;
+import com.shopmall.bawei.framework.R;
 
-public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment {
+public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment  {
 
     protected P httpresetnter;
     protected LogingPage logingPage;
+    private ToolBar toolBar;
+    private ProgressBar loadgedBar;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,6 +40,7 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
         if (httpresetnter!=null) {
             httpresetnter.attchView((V) this);
         }
+
         initdate();
 
     }

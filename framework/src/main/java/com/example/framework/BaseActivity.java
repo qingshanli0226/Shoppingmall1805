@@ -4,14 +4,19 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
 
 import com.example.framework.view.LogingPage;
+import com.example.framework.view.ToolBar;
+import com.shopmall.bawei.framework.R;
 
 
 public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity {
 
     protected P httpresenter;
     protected LogingPage  logingPage;
+    private ToolBar toolBar;
+    private ProgressBar loadgedBar;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,6 +26,7 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
                 return getlayoutid();
             }
         };
+
         setContentView(logingPage);
         initview();
         initpreseter();
@@ -28,6 +34,7 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
         if (httpresenter!=null){
             httpresenter.attchView((V)this);
         }
+
 
     }
     public void showloading(){

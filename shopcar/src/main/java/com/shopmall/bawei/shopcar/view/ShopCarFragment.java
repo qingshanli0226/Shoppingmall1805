@@ -258,4 +258,5 @@ public class ShopCarFragment extends BaseFragment<ShopcarPresenterImpl, ShopCarC
     public void showEmpty() {
         showEnpty();
     }
+
 }

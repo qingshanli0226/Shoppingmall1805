@@ -3,6 +3,7 @@ package com.shopmall.bawei.pay.presenter;
 import com.example.framework.CacheManager;
 import com.example.net.Retrofitcreators;
 import com.example.net.bean.BaseBean;
+import com.example.net.bean.ConfirmBean;
 import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.ShopcarBean;
@@ -123,6 +124,55 @@ public class PayPresenter extends PayContract.IOrderPresenter {
                         }else {
                             iView.hideloading();
                             iView.onErroy(orderInfoBeanBaseBean.getMessage());
+                        }
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+
+    @Override
+    public void ConfirmServerPayResult(OrderInfoBean orderInfoBean,boolean flag) {
+        JSONObject jsonObject = new JSONObject();
+        try {
+            jsonObject.put("outTradeNo",orderInfoBean.getOutTradeNo());
+            jsonObject.put("result",orderInfoBean.getOrderInfo());
+            jsonObject.put("clientPayResult",flag);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody = RequestBody.create(MediaType.parse("application/json;charset=utf-8"), jsonObject.toString());
+        Retrofitcreators.getiNetPresetenterWork().confirmServerPayResult(requestBody)
+                .subscribeOn(Schedulers.io())
+                .doOnSubscribe(new Consumer<Disposable>() {
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                        iView.showsloading();
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<BaseBean<String>>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(BaseBean<String> value) {
+                        if (value.getCode().equals("200")){
+                            iView.hideloading();
+                            iView.getConfirmServerPayResult(value.getResult());
+                        }else {
+                            iView.hideloading();
+                            iView.onErroy(value.getMessage());
                         }
                     }
 

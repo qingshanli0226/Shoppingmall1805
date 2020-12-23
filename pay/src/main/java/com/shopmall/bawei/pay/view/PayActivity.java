@@ -1,8 +1,10 @@
 package com.shopmall.bawei.pay.view;
 
+import android.annotation.SuppressLint;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CompoundButton;
@@ -13,13 +15,17 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
 import com.example.framework.IPresenter;
 import com.example.framework.IView;
+import com.example.framework.PayBean;
 import com.example.framework.dao.ShopcarMessage;
 import com.example.framework.view.manager.MessageManager;
+import com.example.net.bean.ConfirmBean;
+import com.example.net.bean.FindPayBean;
 import com.example.net.bean.IntonVoryBean;
 import com.example.net.bean.OrderInfoBean;
 import com.example.net.bean.ShopcarBean;
@@ -29,6 +35,7 @@ import com.shopmall.bawei.pay.presenter.PayPresenter;
 
 import org.greenrobot.eventbus.EventBus;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -39,10 +46,11 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
     private RadioButton btZhi;
     private Button btPay;
     private TextView tvPrice;
-
-
-
-
+    private ConfirmBean confirmBean;
+    private List<ShopcarBean> selectedShopBeans = new ArrayList<>();
+    private boolean flag;
+    private OrderInfoBean orderInfoBean = new OrderInfoBean();
+    String moneys;
     @Override
     protected void initpreseter() {
         httpresenter = new PayPresenter();
@@ -50,6 +58,10 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
 
     @Override
     protected void initdate() {
+        String money = CacheManager.getInstance().getMoney();
+        moneys = money;
+        selectedShopBeans= CacheManager.getInstance().getSelectedShopBeans();
+        Log.e("zld11",""+selectedShopBeans.size());
         tvPrice.setText(CacheManager.getInstance().getMoney());
         btPay.setText("微信支付"+CacheManager.getInstance().getMoney());
         btWei.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -91,6 +103,8 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
         btPay = findViewById(R.id.bt_pay);
         tvPrice = findViewById(R.id.tv_price);
 
+        //沙箱环境
+        EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
     }
 
     @Override
@@ -124,6 +138,9 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
         }
         return true;
     }
+
+    PayBean payBean = new PayBean();
+    @SuppressLint("HandlerLeak")
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(@NonNull Message msg) {
@@ -131,15 +148,32 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
             switch (msg.what){
                 case 1:
                     Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    EventBus.getDefault().post("增加");
+                    CacheManager.getInstance().setSelectedPaySucessBeans(selectedShopBeans);
                     savePayMessage("支付成功");
                     //然后跳转的主页面，并且显示HomeFragment
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index",0).navigation();
+                    payBean.setIndex(0);
+                    EventBus.getDefault().post(payBean);
+                    ARouter.getInstance().build("/main/MainActivity").navigation();
+                    httpresenter.ConfirmServerPayResult(orderInfoBean,flag);
+
                     break;
                 case 2:
+                    //将支付失败的存到代付款的缓存当中
+                    FindPayBean findPayBean = new FindPayBean();
+                    findPayBean.setTime(""+System.currentTimeMillis());
+                    findPayBean.setTradeNo(orderInfoBean.getOutTradeNo());
+                    findPayBean.setOrderInfo(orderInfoBean.getOrderInfo());
+                    findPayBean.setTotalPrice(moneys);
+                    CacheManager.getInstance().addPayList(findPayBean);
                     Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    CacheManager.getInstance().setSelectedPayEorryBeans(CacheManager.getInstance().getSelectedShopBeans());
                     savePayMessage("支付失败");
                     //然后跳转的主页面，并且显示HomeFragment
-                    ARouter.getInstance().build("/main/MainActivity").withInt("index",0).navigation();
+                    payBean.setIndex(0);
+                    EventBus.getDefault().post(payBean);
+                    ARouter.getInstance().build("/main/MainActivity").navigation();
+                    httpresenter.ConfirmServerPayResult(orderInfoBean,flag);
                     break;
             }
         }
@@ -162,7 +196,10 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
     }
 
     @Override
-    public void getOrderInfo(final OrderInfoBean orderInfoBean) {
+    public void getOrderInfo(final OrderInfoBean orderInfoBeans) {
+
+        orderInfoBean.setOutTradeNo(orderInfoBeans.getOutTradeNo());
+        orderInfoBean.setOrderInfo(orderInfoBeans.getOrderInfo());
         //首先将你选中的商品从购物车删除，因为提交订单之后，商品就没了
         CacheManager.getInstance().removeselectshopBean();
         //服务端成功下单
@@ -171,14 +208,19 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
             @Override
             public void run() {
                 PayTask payTask = new PayTask(PayActivity.this);
-                Map<String, String> stringStringMap = payTask.payV2(orderInfoBean.getOrderInfo(), true);
+                Map<String, String> stringStringMap = payTask.payV2(orderInfoBeans.getOrderInfo(), true);
                 if (stringStringMap.get("resultStatus").equals("9000")){//9000代表支付成功
                     //在子线程进行完成
                     handler.sendEmptyMessage(1);
+                    flag = true;
+
                 }else {
                     //在子线程进行完成
                     handler.sendEmptyMessage(2);
+                   flag = false;
                 }
+
+
 
 
             }
@@ -186,6 +228,11 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
         //开启线程
         Thread thread = new Thread(runnable);
         thread.start();
+    }
+
+    @Override
+    public void getConfirmServerPayResult(String result) {
+        Log.e("###",result);
     }
 
     @Override
@@ -212,4 +259,6 @@ public class PayActivity extends BaseActivity<PayPresenter, PayContract.IOrderVi
     public void showEmpty() {
         showEnpty();
     }
+
+
 }

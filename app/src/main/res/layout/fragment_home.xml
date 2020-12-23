@@ -1,54 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     tools:context=".home.view.HomeFragment">
-
-    <android.support.v7.widget.Toolbar
-        style="@style/Base_Layout_Match_Match"
-        android:layout_height="@dimen/sp_60"
-        android:background="@color/colorOrange"
-        >
-        <LinearLayout
-           style="@style/Base_Layout_Match_Wrap"
-            android:orientation="horizontal"
-            android:layout_marginLeft="@dimen/dp_30"
-            >
-            <EditText
-                android:id="@+id/ed"
-                android:layout_width="@dimen/dp_320"
-                android:layout_height="@dimen/dp_40"
-                android:enabled="false"
-                android:drawableLeft="@mipmap/home_search_icon"
-                android:background="@drawable/yuan"
-                android:layout_gravity="center"
-                android:hint="@string/Please_Enter"
-                ></EditText>
-            <LinearLayout
-                style="@style/Base_Layout_Match_Wrap"
-                android:orientation="vertical"
-                >
-                <ImageView
-
-                    android:layout_marginLeft="@dimen/dp_20"
-                    android:layout_width="@dimen/dp_40"
-                    android:layout_height="@dimen/dp_40"
-                    android:background="@mipmap/community_message_icon"
-                    ></ImageView>
-
-                <TextView
-                    android:id="@+id/iv_message"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/dp_20"
-                    android:gravity="center"
-                    android:text="@string/Please_message"></TextView>
-            </LinearLayout>
-        </LinearLayout>
-    </android.support.v7.widget.Toolbar>
     <android.support.v7.widget.RecyclerView
+        android:layout_below="@+id/toolbar"
         android:id="@+id/rv"
         style="@style/Base_Layout_Match_Match"></android.support.v7.widget.RecyclerView>
-</LinearLayout>
+    <com.example.framework.view.ToolBar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/sp_60"
+        android:background="@color/GoodInfo_Tv_Price_Color"
+        app:left_show="false"
+        app:right_text_size="15"
+        app:right_src="@mipmap/community_message_icon"
+        app:right_text="消息"
+        app:right_text_color="@color/colorWhite"
+        app:title_show="false"></com.example.framework.view.ToolBar>
+    <EditText
+        android:id="@+id/ed"
+        android:drawableLeft="@mipmap/home_search_icon"
+        android:background="@drawable/yuan"
+        android:layout_width="@dimen/home_edit_width"
+        android:layout_height="@dimen/home_edit_height"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:hint="请输入搜索内容"
+        android:layout_marginTop="@dimen/toolbar_top_margin_size"
+        android:layout_marginLeft="@dimen/toolbar_left_margin_size"></EditText>
+
+</RelativeLayout>

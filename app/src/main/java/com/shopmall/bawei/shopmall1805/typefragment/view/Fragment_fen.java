@@ -202,4 +202,6 @@ public class Fragment_fen extends BaseFragment<ClothesPresenter, ClothesContract
             });
         }
     }
+
+
 }
