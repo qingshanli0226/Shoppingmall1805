@@ -21,6 +21,7 @@ import com.shopmall.bawei.framework.callback.Itest;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.framework.shopcar.ShopCarNet;
+import com.shopmall.bawei.pay.ui.pay.util.OrderInfoUtil2_0;
 import com.shopmall.bawei.shopcaradapter.ShopcarAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.ShopcarBean;
@@ -61,7 +62,7 @@ public class ShopCarFragment extends BaseFragment implements ShopCarmanager.ISho
     @Override
     protected void createEnvent() {
         final PopupWindow popupWindow=new PopupWindow();
-        View inflate = LayoutInflater.from(getContext()).inflate(R.layout.popu_shopcar, null);
+        final View inflate = LayoutInflater.from(getContext()).inflate(R.layout.popu_shopcar, null);
         popupWindow.setContentView(inflate);
         popupWindow.setWidth(RecyclerView.LayoutParams.MATCH_PARENT);
         popupWindow.setHeight(60);
@@ -124,7 +125,12 @@ public class ShopCarFragment extends BaseFragment implements ShopCarmanager.ISho
         shopcarJisuan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               ShopCarNet.getShopCarNet().checkInventory(Constants.CHECKINVENTORY, new Itest() {
+                boolean ishopcarBeanList = ShopCarmanager.getShopCarmanager().isShopcarBeanList();
+                if (!ishopcarBeanList){
+                    Toast.makeText(getContext(), "请选中商品后再进行结算！！！", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                ShopCarNet.getShopCarNet().checkInventory(Constants.CHECKINVENTORY, new Itest() {
                    @Override
                    public void ontest(String msg) {
                        if (msg.equals("200")){
@@ -133,6 +139,8 @@ public class ShopCarFragment extends BaseFragment implements ShopCarmanager.ISho
                            if (getphone==null||getaddress==null){
                                ARouter.getInstance().build("/user/InfoMainActivity").navigation();
                            }else {
+                               String money = ShopCarmanager.getShopCarmanager().getMoney();
+                               OrderInfoUtil2_0.setMoney(money);
                                ARouter.getInstance().build("/order/OrderActivity").navigation();
                            }
                        }else {
@@ -197,4 +205,6 @@ public class ShopCarFragment extends BaseFragment implements ShopCarmanager.ISho
         super.onDestroy();
         ShopCarmanager.getShopCarmanager().uniShopcarDataChangeListener(this);
     }
+
+
 }

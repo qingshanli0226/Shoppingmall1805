@@ -136,6 +136,10 @@ public class Constants {
 
     //更新地址的接口
     public static final String UPDATEADDRESS="updateAddress";
+    //请求服务端，是否支付成功
+    public static final String CONFIRMSERVERPAYRESULT="confirmServerPayResult";
+    //查找待支付的订单
+    public static final String FINDFORPAY="findForPay";
 
 
 }

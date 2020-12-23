@@ -12,11 +12,13 @@ import com.shopmall.bawei.framework.mvp.IModel;
 import com.shopmall.bawei.framework.mvp.Iview;
 import com.shopmall.bawei.framework.mvp.Presenter;
 import com.shopmall.bawei.framework.mvp.Repository;
+import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 /**
  * 服务，管理层
@@ -135,6 +137,14 @@ public interface Constant {
         void updatePhone(String url,String phone,IShopcar iShopcar);
         // 更新地址的接口
         void updateAddress(String url,String address,IShopcar iShopcar);
+        // 向服务端下订单接口
+        void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop,IShopcar iShopcar);
+        // 从服务端购物车删除多个产品
+        void orderremoveManyProduct(String url,IShopcar iShopcar);
+        // 请求服务端，是否支付成功
+        void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean,IShopcar iShopcar);
+        // 查找待支付的订单
+        void findForPay(String url,IShopcar iShopcar);
     }
 
 
@@ -200,6 +210,14 @@ public interface Constant {
         public abstract void updatePhone(String url,String phone,IShopcar iShopcar);
         // 更新地址的接口
         public abstract void updateAddress(String url,String address,IShopcar iShopcar);
+        // 向服务端下订单接口
+        public abstract void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop,IShopcar iShopcar);
+        // 从服务端购物车删除多个产品
+        public abstract void orderremoveManyProduct(String url,IShopcar iShopcar);
+        // 请求服务端，是否支付成功
+       public abstract void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean,IShopcar iShopcar);
+        // 查找待支付的订单
+        public abstract void findForPay(String url, IShopcar iShopcar);
     }
 
 
@@ -300,6 +318,14 @@ public interface Constant {
         public abstract void updatePhone(String url,String phone);
         // 更新地址的接口
         public abstract void updateAddress(String url,String address);
+        // 向服务端下订单接口
+        public abstract void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop);
+        // 从服务端购物车删除多个产品
+        public abstract void orderremoveManyProduct(String url);
+        // 请求服务端，是否支付成功
+        public abstract void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean);
+        // 查找待支付的订单
+        public abstract void findForPay(String url);
     }
 
 

@@ -13,7 +13,7 @@ import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.TagResultAdapter;
 import com.shopmall.bean.TagData;
 
-public class TagFragment_Sort extends BaseFragment<TagPresenter> implements Constant.TagConstartView {
+public class TagFragmentSort extends BaseFragment<TagPresenter> implements Constant.TagConstartView {
 
     private RecyclerView recycleTag2;
     private TagResultAdapter tagResultAdapter;

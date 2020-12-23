@@ -123,7 +123,7 @@ public class ShopCarMainActivity extends BaseActivity implements ShopCarmanager.
 
     @Override
     protected void initData() {
-       shopcarlist=ShopCarmanager.getShopCarmanager().getShopcarBeanList();
+       shopcarlist= ShopCarmanager.getShopCarmanager().getShopcarBeanList();
         if (shopcarlist==null) {
             Toast.makeText(this, "购物车暂无商品", Toast.LENGTH_SHORT).show();
             return;

@@ -15,7 +15,7 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
 
-public class ShopCarmanager{
+public class ShopCarmanager {
 
      private volatile static ShopCarmanager shopCarmanager;
      //添加数据的集合
@@ -80,6 +80,16 @@ public class ShopCarmanager{
              notifydeleteboolean();
     }
 
+    //判断数据中是否有数据
+    public boolean isShopcarBeanList(){
+        for (ShopcarBean.ResultBean resultBean : shopcarBeanList) {
+             if (resultBean.isProductSelected()){
+                 return true;
+             }
+        }
+        return false;
+    }
+
 
     //切换结算清空删除集合
     public void delteclear(){
@@ -87,6 +97,13 @@ public class ShopCarmanager{
              deleteshopcarBeanList.clear();
          }
          notifydeleteboolean();
+    }
+
+    //下订单后，删除缓存选中的数据
+    public void deleteselectorder(){
+        List<ShopcarBean.ResultBean> selectshopcarBeanList = getSelectshopcarBeanList();
+        shopcarBeanList.removeAll(selectshopcarBeanList);
+        notifyShopcarDataChanged();
     }
 
 

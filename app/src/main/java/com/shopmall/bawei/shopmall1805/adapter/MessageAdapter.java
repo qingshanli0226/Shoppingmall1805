@@ -1,13 +1,13 @@
 package com.shopmall.bawei.shopmall1805.adapter;
 
 import android.graphics.Color;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shopmall.bawei.framework.base.BaseRVAdapter;
 import com.shopmall.bawei.framework.greendaobean.MessageBean;
+import com.shopmall.bawei.framework.manager.GreendaoManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.glide.Myglide;
 
@@ -30,7 +30,7 @@ public class MessageAdapter extends BaseRVAdapter<MessageBean> {
     }
 
     @Override
-    protected void convert(MessageBean itemData, BaseViewHolder baseViewHolder, int position) {
+    protected void convert(final MessageBean itemData, final BaseViewHolder baseViewHolder, final int position) {
 
 
         messageTitle = baseViewHolder.itemView.findViewById(R.id.message_title);
@@ -56,20 +56,32 @@ public class MessageAdapter extends BaseRVAdapter<MessageBean> {
         }
 
         Myglide.getMyglide().centercenglide(baseViewHolder.itemView.getContext(),messageImage,itemData.getUrl());
-        Log.e("msg",itemData.getMsg());
+       // Log.e("msg",itemData.getMsg());
         if (itemData.getMsg().equals("您有一比已支付信息的账单，请查看！")){
-            messageTop.setBackgroundColor(Color.parseColor("#FF8400"));
+            messageTop.setBackgroundColor(Color.parseColor("#1EC400"));
             messageOrder.setText(R.string.message_order_yes);
             messageTishi.setText(R.string.message_date2);
         }else {
-            messageTop.setBackgroundColor(Color.parseColor("#1EC400"));
+            messageTop.setBackgroundColor(Color.parseColor("#FF8400"));
             messageOrder.setText(R.string.message_order_no);
             messageTishi.setText(R.string.message_date);
         }
 
         messageTime.setText(itemData.getDate());
 
+
+
+        baseViewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GreendaoManager.getInstance().update(itemData);
+
+                notifyItemChanged(position);
+            }
+        });
+
        }
+
 
     @Override
     protected int getViewType(int position) {

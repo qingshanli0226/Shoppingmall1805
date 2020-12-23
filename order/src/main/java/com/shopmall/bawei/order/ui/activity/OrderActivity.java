@@ -13,21 +13,29 @@ import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.greendaobean.MessageBean;
 import com.shopmall.bawei.framework.manager.GreendaoManager;
 import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
+import com.shopmall.bawei.framework.mvptest.presenter.ShopcarPresenter;
+import com.shopmall.bawei.framework.notice.Notify;
 import com.shopmall.bawei.order.R;
 import com.shopmall.bawei.order.adapter.OrderAdapter;
+import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.ShopcarBean;
+import com.shopmall.restname.RestName;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+
+
 @Route(path = "/order/OrderActivity")
-public class OrderActivity extends BaseActivity {
+public class OrderActivity extends BaseActivity<ShopcarPresenter> implements Constant.ShopcarConstartView {
     private LinearLayout orderTitle;
     private TextView orderName;
     private TextView orderPhone;
@@ -43,7 +51,7 @@ public class OrderActivity extends BaseActivity {
     private ImageView orderBack;
     @Override
     protected void oncreatePresenter() {
-
+         mPresenter=new ShopcarPresenter(this);
     }
 
     @Override
@@ -59,32 +67,8 @@ public class OrderActivity extends BaseActivity {
          orderSubmit.setOnClickListener(new View.OnClickListener() {
              @Override
              public void onClick(View v) {
-                 AlertDialog.Builder alert =new AlertDialog.Builder(OrderActivity.this);
-                 alert.setTitle("支付提示！");
-                 alert.setMessage("是否继续支付，前往购买结算此商品！！！");
-                 alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                     @Override
-                     public void onClick(DialogInterface dialog, int which) {
-                         ARouter.getInstance().build("/pay/PayMainActivity").navigation();
-                     }
-                 });
-                 alert.setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                     @Override
-                     public void onClick(DialogInterface dialog, int which) {
-                         Toast.makeText(OrderActivity.this, "取消", Toast.LENGTH_SHORT).show();
-                         MessageBean messageBean = new MessageBean();
-                         messageBean.setTitle("支付提示！");
-                         messageBean.setRead(false);
-                         messageBean.setMsg("您有一比未支付信息的账单，请查看！");
-                         messageBean.setDate(getdate());
-                         messageBean.setUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608091421071&di=e1d6c83c2c67972a86a4207bef44f88a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F19%2F04%2F04%2F1c71da9c6caac2d9db76db9fff2600ed.jpg");
-                         GreendaoManager.getInstance().insert(messageBean);
-                     }
-                 });
-                 AlertDialog alertDialog=alert.create();
-                 alertDialog.setCanceledOnTouchOutside(false);
-                 alertDialog.show();
-
+                 List<ShopcarBean.ResultBean> selectshopcarBeanList = ShopCarmanager.getShopCarmanager().getSelectshopcarBeanList();
+                 mPresenter.getOrderInfo(Constants.GETORDERINFO,selectshopcarBeanList);
              }
          });
     }
@@ -122,8 +106,9 @@ public class OrderActivity extends BaseActivity {
         selectshopcarBeanList = ShopCarmanager.getShopCarmanager().getSelectshopcarBeanList();
         orderNum.setText("共"+selectshopcarBeanList.size()+"件");
         orderDanNum.setText("共"+selectshopcarBeanList.size()+"件");
-        orderMoney.setText("￥"+ShopCarmanager.getShopCarmanager().getMoney());
-        orderDanMoney.setText("￥"+ShopCarmanager.getShopCarmanager().getMoney());
+        orderMoney.setText("￥"+ ShopCarmanager.getShopCarmanager().getMoney());
+        orderDanMoney.setText("￥"+ ShopCarmanager.getShopCarmanager().getMoney());
+        RestName.money=ShopCarmanager.getShopCarmanager().getMoney();
         orderAdapter=new OrderAdapter();
         orderRecycle.setAdapter(orderAdapter);
         orderAdapter.updataData(selectshopcarBeanList);
@@ -135,10 +120,60 @@ public class OrderActivity extends BaseActivity {
         String format = simpleDateFormat.format(date);
         return format;
 
+
     }
 
     @Override
     protected int layoutid() {
         return R.layout.activity_order_main;
+    }
+   private OrderBean orderBean = null;
+    @Override
+    public void Success(Object... objects) {
+        String msg=(String) objects[1];
+
+        if (msg.equals("order")){
+             orderBean=(OrderBean)objects[0];
+             mPresenter.orderremoveManyProduct(Constants.REMOVEMANY_PRODUCT);
+            Toast.makeText(this, "生成订单", Toast.LENGTH_SHORT).show();
+        }else if (msg.equals("remove")){
+            AlertDialog.Builder alert =new AlertDialog.Builder(OrderActivity.this);
+            alert.setTitle("支付提示！");
+            alert.setMessage("是否继续支付，前往购买结算此商品！！！");
+            alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    RestName.orderBean=orderBean;
+                    ARouter.getInstance().build("/pay/PayMainActivity").navigation();
+                    finish();
+                }
+            });
+            alert.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Toast.makeText(OrderActivity.this, "取消", Toast.LENGTH_SHORT).show();
+                    MessageBean messageBean = new MessageBean();
+                    messageBean.setTitle("支付提示！");
+                    messageBean.setRead(false);
+                    messageBean.setMsg("您有一比未支付信息的账单，请查看！");
+                    messageBean.setDate(getdate());
+                    messageBean.setUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608091421071&di=e1d6c83c2c67972a86a4207bef44f88a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F19%2F04%2F04%2F1c71da9c6caac2d9db76db9fff2600ed.jpg");
+                    GreendaoManager.getInstance().insert(messageBean);
+                    Notify.setnotify(OrderActivity.this,1,"您有一比未支付信息的账单，请查看！",R.mipmap.ic_launcher_round,"支付提示！");
+                    finish();
+                }
+            });
+            AlertDialog alertDialog=alert.create();
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.show();
+        }
+
+
+
+    }
+
+    @Override
+    public void Error(String s) {
+
     }
 }

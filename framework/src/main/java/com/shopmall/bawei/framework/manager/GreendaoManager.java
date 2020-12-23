@@ -2,6 +2,7 @@ package com.shopmall.bawei.framework.manager;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import com.shopmall.bawei.framework.greendaobean.DaoMaster;
 import com.shopmall.bawei.framework.greendaobean.DaoSession;
@@ -11,6 +12,8 @@ import com.shopmall.bawei.framework.greendaobean.MessageBeanDao;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class GreendaoManager {
     private SharedPreferences sharedPreferences;
@@ -19,6 +22,9 @@ public class GreendaoManager {
     private MessageBeanDao messageBeanDao;
     private volatile static GreendaoManager greendaoManager=null;
     private List<ImessageChangeListener> islamicCalendars=new ArrayList<>();
+    //创建一个可缓存线程池，如果线程池长度超过处理需要，可灵活回收空闲线程，若无可回收，则新建线程。
+    private ExecutorService executorService= Executors.newCachedThreadPool();
+    private List<MessageBean> list=new ArrayList<>();
     private Context context;
        public static GreendaoManager getInstance(){
              if (null==greendaoManager){
@@ -36,6 +42,7 @@ public class GreendaoManager {
        }
 
        public void init(Context context){
+
            sharedPreferences=context.getSharedPreferences("message",0);
            editor=sharedPreferences.edit();
            editor.commit();
@@ -67,30 +74,56 @@ public class GreendaoManager {
        }
 
        //增加
-       public void insert(MessageBean messageBean){
-           messageBeanDao.insert(messageBean);
-           int count = sharedPreferences.getInt("count", 0);
-           editor.putInt("count",count+1);
-           editor.commit();
+       public void insert(final MessageBean messageBean){
+
+                   messageBeanDao.insert(messageBean);
+                   int count = sharedPreferences.getInt("count", 0);
+                   editor.putInt("count",count+1);
+                   editor.commit();
+
 
            notifymessagechange();
        }
 
        //删除
-      public void delete(MessageBean messageBean){
-            messageBeanDao.delete(messageBean);
-           int count = sharedPreferences.getInt("count", 0);
-           editor.putInt("count",count-1);
-          editor.commit();
+      public void delete(final MessageBean messageBean){
+
+                   messageBeanDao.delete(messageBean);
+                   int count = sharedPreferences.getInt("count", 0);
+                   editor.putInt("count",count-1);
+                   editor.commit();
+
+
           notifymessagechange();
       }
 
       //查找
     public List<MessageBean> selectall(){
-        List<MessageBean> list = messageBeanDao.queryBuilder().list();
-        Collections.reverse(list);
+
+
+                 list = messageBeanDao.queryBuilder().list();
+                 Collections.reverse(list);
 
         return list;
+
+    }
+
+    //修改
+    public void update(MessageBean messageBean){
+        MessageBean unique = messageBeanDao.queryBuilder().where(MessageBeanDao.Properties.Date.eq(messageBean.getDate())).unique();
+
+        if (messageBean.getRead()){
+            Log.e("message",""+unique.getRead());
+        }else {
+            if (unique!=null){
+                unique.setRead(true);
+                messageBeanDao.update(unique);
+            }
+            int count = sharedPreferences.getInt("count", 0);
+            editor.putInt("count",count-1);
+            editor.commit();
+            notifymessagechange();
+        }
     }
 
     public interface ImessageChangeListener{

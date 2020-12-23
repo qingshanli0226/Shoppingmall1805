@@ -1,5 +1,7 @@
 package com.shopmall.bawei.framework.mvptest.presenter;
 
+import android.util.Log;
+
 import com.shopmall.bawei.framework.callback.IShopcar;
 import com.shopmall.bawei.framework.callback.Itest;
 import com.shopmall.bawei.framework.constart.Constant;
@@ -7,6 +9,7 @@ import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.framework.mvptest.repository.ShopcarRepository;
 import com.shopmall.bean.Checkinven;
+import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.Registbean;
 import com.shopmall.bean.ShopcarBean;
 
@@ -217,6 +220,92 @@ public class ShopcarPresenter extends Constant.ShopcarConstartPresenter {
                 mView.get().Error(mag);
             }
         });
+    }
+
+    @Override
+    public void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop) {
+             mRepository.getOrderInfo(url, shop, new IShopcar() {
+                 @Override
+                 public void onSucess(Object... objects) {
+                        if (objects!=null){
+                                OrderBean orderBean=(OrderBean)objects[0];
+                                if (orderBean.getCode().equals("200")){
+                                    mView.get().Success(orderBean,"order");
+                                }
+                        }
+                 }
+
+                 @Override
+                 public void onError(String mag) {
+
+                 }
+             });
+    }
+
+    //生成订单后删除生成后的数据
+    @Override
+    public void orderremoveManyProduct(String url) {
+        Log.e("delete",""+url);
+        mRepository.orderremoveManyProduct(url, new IShopcar() {
+            @Override
+            public void onSucess(Object... objects) {
+                if (objects!=null){
+                    Registbean registbean=(Registbean) objects[0];
+                    if (registbean.getCode().equals("200")){
+                        ShopCarmanager.getShopCarmanager().deleteselectorder();
+                        mView.get().Success(registbean,"remove");
+                    }
+                }
+            }
+
+            @Override
+            public void onError(String mag) {
+
+            }
+        });
+    }
+    // 请求服务端，是否支付成功
+    @Override
+    public void confirmServerPayResult(String url, final boolean isShop, OrderBean orderBean) {
+        mRepository.confirmServerPayResult(url,isShop, orderBean, new IShopcar() {
+            @Override
+            public void onSucess(Object... objects) {
+                  if (objects!=null){
+                      if (isShop){
+                          mView.get().Success(objects,isShop);
+                      }else {
+                          mView.get().Success(objects,isShop);
+                      }
+
+                  }
+            }
+
+            @Override
+            public void onError(String mag) {
+                if (mag!=null){
+                    mView.get().Error(mag);
+                }
+            }
+        });
+    }
+//查找待支付的订单
+    @Override
+    public void findForPay(String url) {
+       mRepository.findForPay(url, new IShopcar() {
+           @Override
+           public void onSucess(Object... objects) {
+                 if (objects!=null){
+                     mView.get().Success(objects);
+                 }
+           }
+
+           @Override
+           public void onError(String mag) {
+                if (mag!=null){
+                    mView.get().Error(mag);
+                }
+           }
+       });
     }
 
 

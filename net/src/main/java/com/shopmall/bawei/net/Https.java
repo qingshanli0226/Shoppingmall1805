@@ -3,6 +3,8 @@ package com.shopmall.bawei.net;
 import com.shopmall.bean.Checkinven;
 import com.shopmall.bean.HomeData;
 import com.shopmall.bean.Loginbean;
+import com.shopmall.bean.OrderBean;
+import com.shopmall.bean.OrderPaybean;
 import com.shopmall.bean.Registbean;
 import com.shopmall.bean.ShopcarBean;
 import com.shopmall.bean.SortData;
@@ -115,6 +117,20 @@ public interface Https {
      */
     @POST
     Observable<Registbean> getupdateAddress(@Url String url, @QueryMap HashMap<String,String> map);
-
+    /**
+     * 更新用户收货地址
+     */
+    @POST
+    Observable<OrderBean> getOrderInfo(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 请求服务端，是否支付成功
+     */
+    @POST
+    Observable<Registbean> getconfirmServerPayResult(@Url String url, @Body RequestBody requestBody);
+    /**
+     * 查找待支付的订单
+     */
+    @GET
+    Observable<OrderPaybean> getfindForPay(@Url String url);
 
 }

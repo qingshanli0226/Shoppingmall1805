@@ -3,11 +3,13 @@ package com.shopmall.bawei.framework.mvptest.repository;
 import com.shopmall.bawei.framework.callback.IShopcar;
 import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.model.ShopcarModel;
+import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.List;
 
 public class ShopcarRepository extends Constant.ShopcarConstartRepository {
     @Override
@@ -49,14 +51,34 @@ public class ShopcarRepository extends Constant.ShopcarConstartRepository {
     public void checkInventory(String url, IShopcar iShopcar) {
         mModel.checkInventory(url,iShopcar);
     }
-
+    //更新收货电话
     @Override
     public void updatePhone(String url, String phone, IShopcar iShopcar) {
         mModel.updatePhone(url,phone,iShopcar);
     }
-
+    //更新收货地址
     @Override
     public void updateAddress(String url, String address, IShopcar iShopcar) {
         mModel.updateAddress(url,address,iShopcar);
+    }
+    //向服务端下订单接口
+    @Override
+    public void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop, IShopcar iShopcar) {
+       mModel.getOrderInfo(url,shop,iShopcar);
+    }
+    //生成订单后删除生成后的数据
+    @Override
+    public void orderremoveManyProduct(String url, IShopcar iShopcar) {
+       mModel.orderremoveManyProduct(url,iShopcar);
+    }
+    // 请求服务端，是否支付成功
+    @Override
+    public void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean, IShopcar iShopcar) {
+       mModel.confirmServerPayResult(url,isShop,orderBean,iShopcar);
+    }
+
+    @Override
+    public void findForPay(String url, IShopcar iShopcar) {
+        mModel.findForPay(url,iShopcar);
     }
 }

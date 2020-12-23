@@ -9,8 +9,8 @@ import com.flyco.tablayout.SegmentTabLayout;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.shopmall1805.R;
-import com.shopmall.bawei.shopmall1805.ui.fragmentsort.ClassFragment_Sort;
-import com.shopmall.bawei.shopmall1805.ui.fragmentsort.TagFragment_Sort;
+import com.shopmall.bawei.shopmall1805.ui.fragmentsort.ClassFragmentSort;
+import com.shopmall.bawei.shopmall1805.ui.fragmentsort.TagFragmentSort;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +20,8 @@ public class SortFragment extends BaseFragment {
     private SegmentTabLayout segmentF2;
     private FrameLayout frameF2;
 
-   private ClassFragment_Sort classFragment_Sort;
-   private TagFragment_Sort tagFragment_Sort;
+   private ClassFragmentSort classFragment_Sort;
+   private TagFragmentSort tagFragment_Sort;
     private List<Fragment> fragments=new ArrayList<>();
 
 
@@ -37,8 +37,8 @@ public class SortFragment extends BaseFragment {
 
         segmentF2.setTabData(strings);
 
-        classFragment_Sort=new ClassFragment_Sort();
-        tagFragment_Sort=new TagFragment_Sort();
+        classFragment_Sort=new ClassFragmentSort();
+        tagFragment_Sort=new TagFragmentSort();
         fragments.add(classFragment_Sort);
         fragments.add(tagFragment_Sort);
         getChildFragmentManager().beginTransaction()

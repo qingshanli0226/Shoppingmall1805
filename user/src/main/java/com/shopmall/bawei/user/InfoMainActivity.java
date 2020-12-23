@@ -43,8 +43,18 @@ public class InfoMainActivity extends BaseActivity<ShopcarPresenter> implements 
     @Override
     protected void initData() {
         String userName = ShopUserManager.getInstance().getUserName();
+        String address = ShopUserManager.getInstance().getaddress();
+        String phone = ShopUserManager.getInstance().getphone();
         if (userName!=null){
             infoName.setText(userName+"");
+        }
+
+        if (address!=null){
+            infoAdress.setText(address+"");
+        }
+
+        if (phone!=null){
+            infoPhone.setText(phone+"");
         }
 
         infoPhoneTijiao.setOnClickListener(new View.OnClickListener() {
@@ -73,7 +83,8 @@ public class InfoMainActivity extends BaseActivity<ShopcarPresenter> implements 
                     Toast.makeText(InfoMainActivity.this, "电话或地址暂未提交成功", Toast.LENGTH_SHORT).show();
                     return;
                 }else {
-                    Toast.makeText(InfoMainActivity.this, "购买成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(InfoMainActivity.this, "提交成功", Toast.LENGTH_SHORT).show();
+                    finish();
                 }
             }
         });

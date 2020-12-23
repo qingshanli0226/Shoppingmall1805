@@ -30,7 +30,7 @@ import com.shopmall.bean.SortData;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassFragment_Sort extends BaseFragment<SortPresenter> implements Constant.SortConstartView {
+public class ClassFragmentSort extends BaseFragment<SortPresenter> implements Constant.SortConstartView {
     private ListView listviewSort;
     private RecyclerView recycleSort;
     private ArrayAdapter<String> arrayAdapter;

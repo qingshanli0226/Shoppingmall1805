@@ -55,6 +55,7 @@ public class ShopUserManager  {
         for (IUserListener iUserListener : iUserListeners) {
               iUserListener.OnUserLogin(loginbean);
         }
+        ShopCarmanager.getShopCarmanager().ShopcarData();
     }
 
     //更改电话

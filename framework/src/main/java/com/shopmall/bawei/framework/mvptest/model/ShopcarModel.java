@@ -8,6 +8,8 @@ import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.net.Https;
 import com.shopmall.bawei.net.HttpsFactory;
 import com.shopmall.bean.Checkinven;
+import com.shopmall.bean.OrderBean;
+import com.shopmall.bean.OrderPaybean;
 import com.shopmall.bean.Registbean;
 import com.shopmall.bean.ShopcarBean;
 
@@ -367,5 +369,165 @@ public class ShopcarModel implements Constant.ShopcarConstartModel {
 
                     }
                 });
+    }
+
+    @Override
+    public void getOrderInfo(String url, List<ShopcarBean.ResultBean> shop, final IShopcar iShopcar) {
+                JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("subject","buy");
+            jsonObject.put("subject",""+ShopCarmanager.getShopCarmanager().getMoney());
+            JSONArray jsonArray=new JSONArray();
+            for (ShopcarBean.ResultBean resultBean : shop) {
+                JSONObject jsonObject1=new JSONObject();
+                jsonObject1.put("productId",resultBean.getProductId());
+                jsonObject1.put("productNum",resultBean.getProductNum());
+                jsonObject1.put("productName",resultBean.getProductName());
+                jsonArray.put(jsonObject1);
+            }
+            jsonObject.put("body",jsonArray);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        RequestBody requestBody=RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonObject.toString());
+          Log.e("json",jsonObject.toString());
+        HttpsFactory.getHttpsFactory().getinstance(Https.class)
+                  .getOrderInfo(url,requestBody)
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Observer<OrderBean>() {
+                      @Override
+                      public void onSubscribe(Disposable d) {
+
+                      }
+
+                      @Override
+                      public void onNext(OrderBean orderBean) {
+                             iShopcar.onSucess(orderBean);
+                      }
+
+                      @Override
+                      public void onError(Throwable e) {
+                          iShopcar.onSucess(e.getMessage());
+                      }
+
+                      @Override
+                      public void onComplete() {
+
+                      }
+                  });
+
+    }
+    //生成订单后删除生成后的数据
+    @Override
+    public void orderremoveManyProduct(String url, final IShopcar iShopcar) {
+        List<ShopcarBean.ResultBean> selectshopcarBeanList = ShopCarmanager.getShopCarmanager().getSelectshopcarBeanList();
+        JSONArray jsonArray=new JSONArray();
+        for (ShopcarBean.ResultBean resultBean : selectshopcarBeanList) {
+            JSONObject jsonObject=new JSONObject();
+            try {
+                jsonObject.put("productId",resultBean.getProductId());
+                jsonObject.put("productNum",resultBean.getProductNum());
+                jsonObject.put("productName",resultBean.getProductName());
+                jsonObject.put("url",resultBean.getUrl());
+                jsonArray.put(jsonObject);
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        RequestBody requestBody=RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonArray.toString());
+        HttpsFactory.getHttpsFactory().getinstance(Https.class)
+                .getremoveManyProduct(url,requestBody)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Registbean>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Registbean registbean) {
+                        iShopcar.onSucess(registbean);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        iShopcar.onError(e.getMessage());
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
+    }
+    // 请求服务端，是否支付成功
+    @Override
+    public void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean, final IShopcar iShopcar) {
+           JSONObject jsonObject=new JSONObject();
+        try {
+            jsonObject.put("outTradeNo",orderBean.getResult().getOutTradeNo());
+            jsonObject.put("result",orderBean.getResult().getOrderInfo());
+            jsonObject.put("clientPayResult",isShop);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+         RequestBody requestBody=RequestBody.create(MediaType.parse("application/json;charset=utf-8"),jsonObject.toString());
+
+        HttpsFactory.getHttpsFactory().getinstance(Https.class)
+                  .getconfirmServerPayResult(url,requestBody)
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Observer<Registbean>() {
+                      @Override
+                      public void onSubscribe(Disposable d) {
+
+                      }
+
+                      @Override
+                      public void onNext(Registbean registbean) {
+                              iShopcar.onSucess(registbean);
+                      }
+
+                      @Override
+                      public void onError(Throwable e) {
+                             iShopcar.onError(e.getMessage());
+                      }
+
+                      @Override
+                      public void onComplete() {
+
+                      }
+                  });
+    }
+
+    @Override
+    public void findForPay(String url, final IShopcar iShopcar) {
+          HttpsFactory.getHttpsFactory().getinstance(Https.class)
+                  .getfindForPay(url)
+                  .subscribeOn(Schedulers.io())
+                  .observeOn(AndroidSchedulers.mainThread())
+                  .subscribe(new Observer<OrderPaybean>() {
+                      @Override
+                      public void onSubscribe(Disposable d) {
+
+                      }
+
+                      @Override
+                      public void onNext(OrderPaybean orderPaybean) {
+                               iShopcar.onSucess(orderPaybean);
+                      }
+
+                      @Override
+                      public void onError(Throwable e) {
+                             iShopcar.onError(e.getMessage());
+                      }
+
+                      @Override
+                      public void onComplete() {
+
+                      }
+                  });
     }
 }

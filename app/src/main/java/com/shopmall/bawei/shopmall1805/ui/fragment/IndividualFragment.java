@@ -6,7 +6,6 @@ import android.widget.TextView;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.framework.base.BaseFragment;
-import com.shopmall.bawei.framework.manager.ShopCarmanager;
 import com.shopmall.bawei.framework.manager.ShopUserManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bean.Loginbean;
@@ -15,10 +14,8 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
 
     private ImageView logMy;
     private TextView usersMy;
-
-
-
-
+    private TextView fahuoMy;
+    private TextView individualPay;
 
     @Override
     protected void createViewid(View inflate) {
@@ -26,6 +23,9 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
 
         logMy = inflate.findViewById(R.id.log_my);
 
+        fahuoMy = inflate.findViewById(R.id.fahuo_my);
+
+        individualPay = inflate.findViewById(R.id.individual_pay);
 
         usersMy = inflate.findViewById(R.id.users_my);
         ShopUserManager.getInstance().RegistUserLogin(this);
@@ -37,6 +37,20 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
             @Override
             public void onClick(View v) {
                 ARouter.getInstance().build("/user/UserMainActivity").navigation();
+            }
+        });
+        //发货地址
+        fahuoMy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/user/InfoMainActivity").navigation();
+            }
+        });
+
+        individualPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ARouter.getInstance().build("/order/OrderPayActivity").navigation();
             }
         });
     }
@@ -63,9 +77,6 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
     @Override
     public void OnUserLogin(Loginbean loginbean) {
         usersMy.setText(loginbean.getResult().getName());
-        if (ShopUserManager.getInstance().getUserName()!=null){
-            ShopCarmanager.getShopCarmanager().ShopcarData();
-        }
 
     }
 

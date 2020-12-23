@@ -13,19 +13,30 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
+import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
+import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.greendaobean.MessageBean;
 import com.shopmall.bawei.framework.manager.GreendaoManager;
+import com.shopmall.bawei.framework.mvptest.presenter.ShopcarPresenter;
+import com.shopmall.bawei.framework.notice.Notify;
 import com.shopmall.bawei.pay.R;
 import com.shopmall.bawei.pay.ui.pay.AuthResult;
 import com.shopmall.bawei.pay.ui.pay.PayResult;
 import com.shopmall.bawei.pay.ui.pay.util.OrderInfoUtil2_0;
+import com.shopmall.bean.OrderBean;
+import com.shopmall.restname.RestName;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 @Route(path = "/pay/PayMainActivity")
-public class PayMainActivity extends BaseActivity {
+public class PayMainActivity extends BaseActivity<ShopcarPresenter> implements Constant.ShopcarConstartView {
+
+//    @Autowired(name="orderbean")
+//    private OrderBean orderBean;
+
+
     /**
      * 用于支付宝支付业务的入参 app_id。
      */
@@ -56,7 +67,7 @@ public class PayMainActivity extends BaseActivity {
 
     private static final int SDK_PAY_FLAG = 1;
     private static final int SDK_AUTH_FLAG = 2;
-
+    private OrderBean orderBean;
     @SuppressLint("HandlerLeak")
     private Handler mHandler = new Handler() {
         @SuppressWarnings("unused")
@@ -74,18 +85,11 @@ public class PayMainActivity extends BaseActivity {
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         showAlert(PayMainActivity.this, getString(R.string.pay_success) + payResult);
-                        MessageBean messageBean = new MessageBean();
-                        messageBean.setTitle("支付提示！");
-                        messageBean.setRead(false);
-                        messageBean.setMsg("您有一比已支付信息的账单，请查看！");
-                        messageBean.setDate(getdate());
-                        messageBean.setUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608091421071&di=e1d6c83c2c67972a86a4207bef44f88a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F19%2F04%2F04%2F1c71da9c6caac2d9db76db9fff2600ed.jpg");
-                        GreendaoManager.getInstance().insert(messageBean);
-                        finish();
+                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,true,orderBean);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
-                        Toast.makeText(PayMainActivity.this, "支付出现异常,请稍候再试！！！", Toast.LENGTH_SHORT).show();
-                        finish();
+
+                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,false,orderBean);
                     }
                     break;
                 }
@@ -115,7 +119,7 @@ public class PayMainActivity extends BaseActivity {
 
     @Override
     protected void oncreatePresenter() {
-
+       mPresenter=new ShopcarPresenter(this);
     }
 
     @Override
@@ -130,6 +134,9 @@ public class PayMainActivity extends BaseActivity {
 
     @Override
     protected void initData() {
+        orderBean=RestName.orderBean;
+        OrderInfoUtil2_0.setMoney(RestName.money);
+       Log.e("log", RestName.orderBean.getResult().getOutTradeNo());
         payV2();
     }
 
@@ -202,5 +209,38 @@ public class PayMainActivity extends BaseActivity {
         String format = simpleDateFormat.format(date);
         return format;
 
+    }
+
+    @Override
+    public void Success(Object... objects) {
+        boolean isPay=(Boolean) objects[1];
+        if (isPay){
+            MessageBean messageBean = new MessageBean();
+            messageBean.setTitle("支付提示！");
+            messageBean.setRead(false);
+            messageBean.setMsg("您有一比已支付信息的账单，请查看！");
+            messageBean.setDate(getdate());
+            messageBean.setUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608091421071&di=e1d6c83c2c67972a86a4207bef44f88a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F19%2F04%2F04%2F1c71da9c6caac2d9db76db9fff2600ed.jpg");
+            GreendaoManager.getInstance().insert(messageBean);
+
+            Notify.setnotify(PayMainActivity.this,1,"您有一比已支付信息的账单，请查看！",R.mipmap.baocuo,"支付提示！");
+
+        }else {
+            MessageBean messageBean = new MessageBean();
+            messageBean.setTitle("支付提示！");
+            messageBean.setRead(false);
+            messageBean.setMsg("您有一比未支付信息的账单，请查看！");
+            messageBean.setDate(getdate());
+            messageBean.setUrl("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1608091421071&di=e1d6c83c2c67972a86a4207bef44f88a&imgtype=0&src=http%3A%2F%2Fbpic.588ku.com%2Felement_pic%2F19%2F04%2F04%2F1c71da9c6caac2d9db76db9fff2600ed.jpg");
+            GreendaoManager.getInstance().insert(messageBean);
+            Notify.setnotify(PayMainActivity.this,1,"您有一比未支付信息的账单，请查看！",R.mipmap.baocuo,"支付提示！");
+            Toast.makeText(PayMainActivity.this, "支付出现异常,请稍候再试！！！", Toast.LENGTH_SHORT).show();
+        }
+        finish();
+    }
+
+    @Override
+    public void Error(String s) {
+        Toast.makeText(this, "s", Toast.LENGTH_SHORT).show();
     }
 }

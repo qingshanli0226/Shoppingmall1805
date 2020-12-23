@@ -1,7 +1,11 @@
 package com.shopmall.restname;
 
-public class RestName {
+import com.shopmall.bean.OrderBean;
 
+public class RestName {
+      public static String money;
+
+      public static OrderBean orderBean;
       //share名字
       public static final String SHARE_NAME="1805A";
       //share的Model
