@@ -6,8 +6,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bawei.deom.BaseFragment;
+import com.bawei.deom.NetConnectManager;
 import com.bawei.deom.countroller.UserCountroller;
 import com.bawei.deom.countroller.UserIMPL;
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
@@ -33,12 +35,31 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     private ImageView toolImage;
 
 
+    @Override
+    protected void initHttpData() {
+        if (NetConnectManager.getInstance().isConnected()){
+            prine.getskerak(loadingPage);
+        }else {
+            Toast.makeText(getContext(), "当前无网络连接", Toast.LENGTH_SHORT).show();
+        }
+    }
 
+    @Override
+    protected void onDisConnected() {
+        super.onDisConnected();
+        Toast.makeText(getContext(), "当前无网络连接", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onConnected() {
+        super.onConnected();
+        prine.getskerak(loadingPage);
+    }
 
     @Override
     protected void inPrine() {
         prine=new UserIMPL();
-        prine.getskerak(loadingPage);
+
 
     }
 
@@ -126,4 +147,5 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
         super.onStop();
         EventBus.getDefault().unregister(this);
     }
+
 }

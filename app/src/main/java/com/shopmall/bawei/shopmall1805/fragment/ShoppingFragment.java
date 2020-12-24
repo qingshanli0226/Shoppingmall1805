@@ -52,6 +52,11 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
 
 
     @Override
+    protected void initHttpData() {
+
+    }
+
+    @Override
     protected void inPrine() {
         loadingPage.showSuccessView();
         prine=new ShopcarPresenterImpl();
@@ -73,6 +78,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
             checkboxAll.setChecked(true);//那么将正常模式下的全选设置为true
         }else {
             cbAll.setChecked(false);//为真将编辑模式下的全选设置成false
+
         }
 
          checkboxAll.setOnClickListener(new View.OnClickListener() {
@@ -84,6 +90,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
                  }else {
                      newAllselect=false;//如果不被选中
                      prine.selectAllProduct(newAllselect);
+                     CacheManager.getInstance().getSelectedProductBeanList().clear();
                  }
              }
          });
@@ -137,6 +144,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
             @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN_MR1)
             @Override
             public void onClick(View v) {
+                CacheManager.getInstance().getSelectedProductBeanList().clear();
                 Intent intent=new Intent(getContext(), TheorderActivity.class);
                 startActivity(intent);
 
@@ -179,6 +187,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
     public void onAllSelected(String request) {
         Toast.makeText(getContext(), "所以商品的选择状态发生了改变全选状态为"+newAllselect, Toast.LENGTH_SHORT).show();
          CacheManager.getInstance().selectAllProduct(newAllselect);//全选的状态存到缓存中
+        CacheManager.getInstance().getSelectedProductBeanList().clear();
         btnCheckOut.setText("去支付"+CacheManager.getInstance().getSelectedProductBeanList().size());
     }
 
@@ -186,6 +195,7 @@ public class ShoppingFragment extends BaseFragment<ShopcarPresenterImpl, Shopcar
     public void ononProductSelected(String result, int postion) {
         Toast.makeText(getContext(), "商品选择发生变化", Toast.LENGTH_SHORT).show();
         CacheManager.getInstance().updateProductSelected(postion);//将商品选择的变化放入缓存中方便一会更具状态进行操作
+         CacheManager.getInstance().getSelectedProductBeanList().clear();
            btnCheckOut.setText("去支付"+CacheManager.getInstance().getSelectedProductBeanList().size());
     }
 

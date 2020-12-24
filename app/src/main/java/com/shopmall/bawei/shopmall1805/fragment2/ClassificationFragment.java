@@ -50,6 +50,11 @@ public class ClassificationFragment extends BaseFragment<SkirtImpl, SkirtCommunt
   public static BugCommonlyUsedApter bugChangApter;
 
     @Override
+    protected void initHttpData() {
+
+    }
+
+    @Override
     protected void inPrine() {
 
           prine=new SkirtImpl();

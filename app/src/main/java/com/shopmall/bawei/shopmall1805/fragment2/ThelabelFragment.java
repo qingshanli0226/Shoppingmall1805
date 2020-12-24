@@ -23,6 +23,11 @@ public class ThelabelFragment extends BaseFragment<UserIMPL, UserCountroller.Use
     ThelabelApter biaoQianApter;
 
     @Override
+    protected void initHttpData() {
+
+    }
+
+    @Override
     protected void inPrine() {
        prine=new UserIMPL();
     }

@@ -22,6 +22,10 @@ public class RegisterFragment extends BaseFragment<LoginImpl, LoginCountroller.L
     private Button registerbutton;
 
 
+    @Override
+    protected void initHttpData() {
+
+    }
 
     @Override
     protected void inPrine() {

@@ -24,6 +24,11 @@ import bean.typebean.SkirtBean;
 public class FoundFragment extends BaseFragment<UserIMPL,UserCountroller.UserView>implements UserCountroller.UserView {
 
     @Override
+    protected void initHttpData() {
+
+    }
+
+    @Override
     protected void inPrine() {
         prine=new UserIMPL();
     }

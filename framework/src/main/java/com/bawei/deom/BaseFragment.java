@@ -11,6 +11,9 @@ import android.view.ViewGroup;
 
 import com.bawei.deom.view.LoadingPage;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public abstract class BaseFragment<Prine extends IPrine,PView extends IView> extends Fragment {
 
@@ -45,9 +48,11 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     if (prine!=null){
         prine.attach((PView)this);
     }
-
+        initHttpData();
     initData();
 }
+
+    protected abstract void initHttpData();
 
     protected abstract void inPrine();
 
@@ -66,4 +71,17 @@ public void onActivityCreated(@Nullable Bundle savedInstanceState) {
             prine.onDestroy();
         }
     }
+     @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onConnectChange(Boolean isConnected){
+        if (isConnected){
+            onConnected();
+        }else {
+            onDisConnected();
+        }
+     }
+
+    protected void onDisConnected() {
+    }
+
+    protected  void onConnected(){};
 }

@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.deom.CacheManager;
+import com.bawei.deom.NetConnectManager;
 import com.bawei.deom.NetModule;
 import com.bawei.deom.ShopUserManager;
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
@@ -31,6 +32,7 @@ public class ShopmallApplication extends Application {
         ShopUserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);
         MessageManager.getInstance().init(this);
+        NetConnectManager.getInstance().init(this);
     }
      public DaoSession getDaoSession(){
         return daoSession;

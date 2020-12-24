@@ -30,6 +30,10 @@ public class LoginFragment extends BaseFragment<LoginImpl,LoginCountroller.Login
     private TextView goregister;
 
 
+    @Override
+    protected void initHttpData() {
+
+    }
 
     @Override
     protected void inPrine() {
