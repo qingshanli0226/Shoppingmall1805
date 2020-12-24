@@ -79,11 +79,16 @@ public class CacheManager {
                     }
                     @Override
                     public void onRequestError(String errorCold, String errorMsg) {
-
-                    }
-                });
+                    }});
     }
-
+    public void removeSelectedProducts(){
+        shopcarBeanList.removeAll(getSelectProductList());
+        for(IShopcarDataChangeListener listener:iShopcarDataChangeListenerList) {
+            listener.onDataChanged(shopcarBeanList);
+            listener.onMoneyChanged(getMoneyValue());
+            listener.onAllSelected(false);
+        }
+    }
     public List<ShopcarBean> getSelectProductList(){
         List<ShopcarBean> list = new ArrayList<>();
         for (ShopcarBean shopcarBean : shopcarBeanList) {
@@ -136,9 +141,6 @@ public class CacheManager {
         return loginBean.getAddress();
     }
 
-    public void deleteAllShopCar(){
-        shopcarBeanList.clear();
-    }
     public boolean isAllSelectInEditMode() {
         return deleteShopcarBeanList.size() == shopcarBeanList.size();
     }

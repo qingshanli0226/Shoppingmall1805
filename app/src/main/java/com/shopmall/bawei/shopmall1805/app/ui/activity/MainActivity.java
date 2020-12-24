@@ -2,12 +2,12 @@ package com.shopmall.bawei.shopmall1805.app.ui.activity;
 
 
 
-import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.flyco.tablayout.CommonTabLayout;
 import com.flyco.tablayout.listener.CustomTabEntity;
@@ -19,6 +19,7 @@ import com.shopmall.bawei.shopmall1805.app.ui.fragment.HomeFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.PeoPleCenterFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.SendFragment;
 import com.shopmall.bawei.shopmall1805.app.ui.fragment.ShopCarFragment;
+import com.shopmall.bawei.shopmall1805.common.ARouterUtils;
 import com.shopmall.bawei.shopmall1805.common.ShopmallConstant;
 import com.shopmall.bawei.shopmall1805.framework.BaseActivity;
 import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
@@ -26,6 +27,7 @@ import com.shopmall.bawei.shopmall1805.framework.ShopUserManager;
 import java.util.ArrayList;
 import java.util.List;
 
+@Route(path = ARouterUtils.PAY_SUCCEED)
 public class MainActivity extends BaseActivity {
     private FrameLayout framlayout;
     private CommonTabLayout commons;

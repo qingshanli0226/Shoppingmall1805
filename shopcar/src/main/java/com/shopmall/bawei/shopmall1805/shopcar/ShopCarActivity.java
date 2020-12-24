@@ -215,11 +215,10 @@ public class ShopCarActivity extends BaseMVPActivity<ShopcarPresenterImpl, Shopc
                 showMessage("删除失败");
             }
         } else if (view.getId() == R.id.bt_jiesuan) {
-            List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
-            String names = shopcarBeanList.get(newPosition).getProductName();
             SharedPreferences address = getSharedPreferences("address", MODE_PRIVATE);
             boolean loca = address.getBoolean("loca", false);
             if(loca){
+                Log.i("TAG", "onClick: asdadaf");
                 httpPresenter.getOrderInfo(CacheManager.getInstance().getSelectProductList());
             }else {
                 dialog();

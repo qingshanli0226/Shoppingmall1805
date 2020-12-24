@@ -5,6 +5,7 @@ package com.shopmall.bawei.shopmall1805.net;
 import com.shopmall.bawei.shopmall1805.net.entity.BaseBean;
 import com.shopmall.bawei.shopmall1805.net.entity.ClassifyTagEntity;
 import com.shopmall.bawei.shopmall1805.net.entity.ClothesBean;
+import com.shopmall.bawei.shopmall1805.net.entity.FindForBean;
 import com.shopmall.bawei.shopmall1805.net.entity.HomeBean;
 import com.shopmall.bawei.shopmall1805.net.entity.InventoryBean;
 import com.shopmall.bawei.shopmall1805.net.entity.LoginBean;
@@ -59,6 +60,8 @@ public interface INetPresetenterWork {
     @POST("getOrderInfo")
     Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);//向服务端下订单接口
 
+    @GET("findForPay")
+    Observable<FindForBean> getFindForPay();//获取待支付订单
 
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();//获取数据接口

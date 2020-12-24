@@ -18,19 +18,13 @@ import com.shopmall.bawei.shopmall1805.user.LoginActivity;
 public class PeoPleCenterFragment extends BaseFragment {
     private ImageButton ibUserIconAvator;
     private TextView tvUserLocation;
+    private TextView tvUserPay;
     @Override
     protected int getLayoutId() {
         return R.layout.fragment_people_center;
     }
     @Override
     protected void initData() {
-
-    }
-    @Override
-    protected void initView() {
-        ibUserIconAvator = findViewById(R.id.ib_user_icon_avator);
-        tvUserLocation = findViewById(R.id.tv_user_location);
-
         ibUserIconAvator.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -45,5 +39,18 @@ public class PeoPleCenterFragment extends BaseFragment {
                         .navigation();
             }
         });
+        tvUserPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ARouter.getInstance().build(ARouterUtils.ORDER_NO_PAYMENT).navigation();
+            }
+        });
+    }
+    @Override
+    protected void initView() {
+        ibUserIconAvator = findViewById(R.id.ib_user_icon_avator);
+        tvUserLocation = findViewById(R.id.tv_user_location);
+        tvUserPay = findViewById(R.id.tv_user_pay);
+
     }
 }

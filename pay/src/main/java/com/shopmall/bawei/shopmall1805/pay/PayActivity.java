@@ -10,10 +10,12 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.shopmall.bawei.pay.R;
@@ -80,14 +82,30 @@ public class PayActivity extends BaseActivity {
                     String resultStatus = payResult.getResultStatus();
                     // 判断resultStatus 为9000则代表支付成功
                     if (TextUtils.equals(resultStatus, "9000")) {
-                        Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
-                        finish();
+                        handler.sendEmptyMessage(1);
                     } else {
-                        Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                        handler.sendEmptyMessage(2);
                     }
                     break;
                 }
                 default:
+                    break;
+            }
+        }
+    };
+    private Handler handler = new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    Toast.makeText(PayActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
+                    CacheManager.getInstance().removeSelectedProducts();
+                    ARouter.getInstance().build(ARouterUtils.PAY_SUCCEED).navigation();
+                case 2:
+                    Toast.makeText(PayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
+                    CacheManager.getInstance().removeSelectedProducts();
+                    ARouter.getInstance().build(ARouterUtils.PAY_SUCCEED).navigation();
                     break;
             }
         }
@@ -138,7 +156,6 @@ public class PayActivity extends BaseActivity {
             }
         });
     }
-
     @Override
     protected void initView() {
         toolbar = findViewById(R.id.toolbar);
