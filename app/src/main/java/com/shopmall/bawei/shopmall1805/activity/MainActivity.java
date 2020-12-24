@@ -6,6 +6,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.bw.framework.BaseActivity;
 import com.bw.framework.CacheManager;
@@ -22,6 +23,7 @@ import com.shopmall.bawei.shopmall1805.user.UserFragment;
 
 import java.util.List;
 
+@Route(path = "/activity/MainActivity")
 public class MainActivity extends BaseActivity<IPresenter, IView> {
 
     private FrameLayout frameLayout;
@@ -145,6 +147,52 @@ public class MainActivity extends BaseActivity<IPresenter, IView> {
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
+        setIntent(intent);
+        switchFragmentByIndex(intent);
+    }
+
+    private void switchFragmentByIndex(Intent intent) {
+
+        int index = intent.getIntExtra("index", 0);
+
+        switch (index){
+            case 0:
+                getSupportFragmentManager().beginTransaction().show(homeFragment)
+                        .hide(typeFragment)
+                        .hide(findFragment)
+                        .hide(cardFragment)
+                        .hide(userFragment).commit();
+                break;
+            case 1:
+                getSupportFragmentManager().beginTransaction().show(typeFragment)
+                        .hide(homeFragment)
+                        .hide(findFragment)
+                        .hide(cardFragment)
+                        .hide(userFragment).commit();
+                break;
+            case 2:
+                getSupportFragmentManager().beginTransaction().show(findFragment)
+                        .hide(typeFragment)
+                        .hide(homeFragment)
+                        .hide(cardFragment)
+                        .hide(userFragment).commit();
+                break;
+            case 3:
+                getSupportFragmentManager().beginTransaction().show(cardFragment)
+                        .hide(typeFragment)
+                        .hide(findFragment)
+                        .hide(homeFragment)
+                        .hide(userFragment).commit();
+                break;
+            case 4:
+                getSupportFragmentManager().beginTransaction().show(userFragment)
+                        .hide(typeFragment)
+                        .hide(homeFragment)
+                        .hide(cardFragment)
+                        .hide(findFragment).commit();
+                break;
+        }
+
     }
 
     private void initShopcarDataChangeListener() {

@@ -16,6 +16,10 @@ import com.bw.framework.view.LoadingPage;
 import com.bw.framework.view.ToolBar;
 import com.shopmall.bawei.framework.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public abstract class BaseFragment<P extends IPresenter,V extends IView> extends Fragment implements ToolBar.IToolBarClickListner {
 
@@ -44,6 +48,7 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
 
         toolbar = findViewById(R.id.toolbar);
         toolbar.setToolBarClickListner(this);
+        EventBus.getDefault().register(this);
 
         return loadingPage;
     }
@@ -82,6 +87,23 @@ public abstract class BaseFragment<P extends IPresenter,V extends IView> extends
 
     protected  void myToast(String message){
         Toast.makeText(getContext(),message+"",Toast.LENGTH_SHORT).show();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onConnectChange(boolean isConnected){
+        if (isConnected){
+            onConnected();
+        }else {
+            onDisConnected();
+        }
+    }
+
+    protected void onDisConnected() {
+
+    }
+
+    protected void onConnected(){
+
     }
 
     public void showLoading() {

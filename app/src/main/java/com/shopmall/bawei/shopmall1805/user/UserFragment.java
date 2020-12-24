@@ -1,6 +1,7 @@
 package com.shopmall.bawei.shopmall1805.user;
 
 import android.os.Handler;
+import android.os.UserManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
@@ -24,7 +25,7 @@ import com.shopmall.bawei.shopmall1805.user.presenter.UserPresenter;
 import java.util.List;
 
 @Route(path = "/fragment/userFragment")
-public class UserFragment extends BaseFragment<IPresenter, IView>implements OrderManager.IOrderChangeListener {
+public class UserFragment extends BaseFragment<IPresenter, IView>implements OrderManager.IOrderChangeListener, ShopUserManager.IUserLoginChangedListener {
 
     private ScrollView scrollview;
     private ImageButton ibUserIconAvator;
@@ -77,6 +78,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView>implements Orde
         ibUserMessage = (ImageButton) findViewById(R.id.ib_user_message);
         handler = new Handler();
 
+        ShopUserManager.getInstance().registerUserLoginChangedListener(this);
         OrderManager.getInstance().setOrderChangeListeners(this);
 
 
@@ -129,6 +131,7 @@ public class UserFragment extends BaseFragment<IPresenter, IView>implements Orde
     public void onDestroy() {
         super.onDestroy();
         OrderManager.getInstance().unSetOrderChangeListeners(this);
+        ShopUserManager.getInstance().unRegisterUserLoginChangedListener(this);
     }
 
     @Override
@@ -155,6 +158,16 @@ public class UserFragment extends BaseFragment<IPresenter, IView>implements Orde
                 tvUserReceive.setText("待收货"+forSendBeanList.size());
             }
         });
+
+    }
+
+    @Override
+    public void onUserLogin(LoginBean loginBean) {
+        tvUsername.setText(loginBean.getName());
+    }
+
+    @Override
+    public void onUserLoginOut() {
 
     }
 }

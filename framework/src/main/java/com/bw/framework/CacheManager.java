@@ -200,21 +200,7 @@ public class CacheManager{
             listener.onDataChanged(shopCarBeans);
         }
     }
-//    public List<ShopCarBean> getAccountShopcarBeans{
-//        return accountShopcarBeans;
-//    }
-//
-//    public void addOneAccountList(ShopCarBean shopCarBean){
-//        accountShopcarBeans.add(shopCarBean);
-//    }
-//
-//    public void clearAccountList(){
-//        accountShopcarBeans.clear();
-//    }
-//
-//    public void deleteOneAccountList(int position){
-//        accountShopcarBeans.remove(position);
-//    }
+
 
     //添加到删除的集合中
     public void addDeleteShopCarBean(ShopCarBean shopCarBean,int position){

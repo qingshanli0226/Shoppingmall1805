@@ -12,6 +12,7 @@ import android.view.View;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.bw.framework.BaseFragment;
 import com.bw.framework.MessageManager;
+import com.bw.framework.NetContentManager;
 import com.bw.framework.dao.ShopcarMessage;
 import com.bw.net.bean.HomeFragmentBean;
 import com.shopmall.bawei.shopmall1805.R;
@@ -64,7 +65,23 @@ public class HomeFragment extends BaseFragment<HomePresenter, HomeContract.IHome
     @Override
     protected void initPresenter() {
         super.initPresenter();
-        httpPresenter = new HomePresenter();
+        if (NetContentManager.getInstance().isConnected()){
+            httpPresenter = new HomePresenter();
+        }else {
+            showError("当前网络无连接");
+        }
+    }
+
+    @Override
+    protected void onConnected() {
+        super.onConnected();
+        httpPresenter.onGetHomeData();
+    }
+
+    @Override
+    protected void onDisConnected() {
+        super.onDisConnected();
+        showError("当前网络无连接");
     }
 
     @Override
