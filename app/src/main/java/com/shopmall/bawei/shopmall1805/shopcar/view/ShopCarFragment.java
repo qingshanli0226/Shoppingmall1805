@@ -16,14 +16,12 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.common2.GetShopCarBean;
 import com.shopmall.bawei.order.OrderActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.shopcar.adapter.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.shopcar.contract.ShopCarContract;
 import com.shopmall.bawei.shopmall1805.shopcar.presenter.ShopCarPresenter;
-import com.shopmall.bawei.user.view.UserMainActivity;
 
 import java.util.List;
 import java.util.Map;
@@ -33,7 +31,6 @@ import http.OrderInfoBean;
 import mvp.CacheManager;
 import mvp.view.BaseMVPFragment;
 import mvp.view.BottomBar;
-import mvp.view.ShopUserManager;
 
 public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarContract.ISetShopCar> implements ShopCarContract.ISetShopCar {
 

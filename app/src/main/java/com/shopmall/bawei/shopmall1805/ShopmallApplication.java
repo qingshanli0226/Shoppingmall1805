@@ -7,8 +7,8 @@ import com.alibaba.android.arouter.launcher.ARouter;
 
 import http.NetModule;
 import mvp.CacheManager;
-import mvp.view.ShopUserManager;
-import mvp.view.UserService;
+import mvp.ShopUserManager;
+import mvp.UserService;
 
 public class ShopmallApplication extends Application {
 

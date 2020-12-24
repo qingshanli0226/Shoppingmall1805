@@ -5,18 +5,11 @@ import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-
 import com.bumptech.glide.Glide;
-import com.chad.library.adapter.base.BaseQuickAdapter;
-import com.chad.library.adapter.base.BaseViewHolder;
 import com.example.common2.GetShopCarBean;
-import com.example.common2.UrlHelp;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.adapter.BaseRvAdapter;
 import com.shopmall.bawei.shopmall1805.shopcar.presenter.ShopCarPresenter;
-
-import java.util.List;
 
 import mvp.CacheManager;
 
@@ -36,7 +29,6 @@ public class   ShopCarAdapter extends BaseRvAdapter<GetShopCarBean> {
     protected int getLayoutId(int viewType) {
         return R.layout.item_shopcar;
     }
-
     @Override
     protected void convert(final GetShopCarBean itemData, BaseViewHolder helper,final int position) {
         ImageView productImg = helper.getView(R.id.productImage);

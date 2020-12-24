@@ -3,8 +3,6 @@ package com.shopmall.bawei.shopmall1805.home.view;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -12,7 +10,7 @@ import android.widget.TextView;
 import com.example.common2.HomeBean;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomeMultiLayoutAdapter;
-import com.shopmall.bawei.shopmall1805.home.comtract.HomeContract;
+import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 import com.shopmall.bawei.shopmall1805.home.presenter.HomePresenterImpl;
 
 

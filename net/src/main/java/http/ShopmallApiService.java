@@ -9,6 +9,8 @@ import com.example.common2.LoginBean;
 import com.example.common2.RegisterBean;
 import com.example.common2.SkirstBean;
 import com.example.common2.TagBean;
+import com.example.common2.UpdaptePhoneBean;
+import com.example.common2.UpdataAddressBean;
 import com.example.common2.UrlHelp;
 
 import java.util.HashMap;
@@ -17,6 +19,7 @@ import java.util.List;
 import io.reactivex.Observable;
 import okhttp3.RequestBody;
 import retrofit2.http.Body;
+import retrofit2.http.Field;
 import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
@@ -53,6 +56,17 @@ public interface ShopmallApiService {
     @FormUrlEncoded
     Observable<LoginBean> autologin(@FieldMap HashMap<String, String> params);
 
+    //更新用户绑定的电话
+    @POST("updatePhone")
+    @FormUrlEncoded
+    Observable<UpdaptePhoneBean> updatePhone(@Field("phone")String phone);
+
+    //更新用户绑定的电话
+    @POST("updateAddress")
+    @FormUrlEncoded
+    Observable<UpdataAddressBean> updateAddress(@Field("address")String address);
+
+
     //添加
     @POST("addOneProduct")
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
@@ -74,15 +88,19 @@ public interface ShopmallApiService {
     @POST("updateProductSelected")
     Observable<BaseBean<String>> updateProductSelected(@Body RequestBody requestBody);
 
+    //全选服务端购物车产品或者全不选
     @POST("selectAllProduct")
     Observable<BaseBean<String>> selectAllProduct(@Body RequestBody requestBody);
 
+    //从服务端购物车删除一个产品的接口
     @POST("removeManyProduct")
     Observable<BaseBean<String>> removeManyProduct(@Body RequestBody requestBody);
 
+    //检查服务端多个产品是否库存充足
     @POST("checkInventory")
     Observable<BaseBean<List<InventoryBean>>> checkInventory(@Body RequestBody requestBody);
 
+    //向服务端下订单接口
     @POST("getOrderInfo")
     Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
 }

@@ -2,14 +2,11 @@ package mvp;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
-import android.view.animation.AnimationUtils;
 import android.widget.Toast;
 
-import com.example.common2.AddShopCarBean;
 import com.example.common2.GetShopCarBean;
 import com.example.common2.LoginBean;
 import com.example.common2.UrlHelp;
@@ -26,7 +23,6 @@ import http.MyHttp;
 import http.ShopmallObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
-import mvp.view.ShopUserManager;
 
 public class CacheManager {
     //当用户登录成功后,CacheManger会调用服务端接口请求购物车拿数据.拿到购物车数据后,给shopcarBeanList赋值

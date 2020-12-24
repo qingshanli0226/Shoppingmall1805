@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@mipmap/back"
+            android:id="@+id/bank"
             >
         </ImageView>
         <TextView
@@ -91,6 +92,12 @@
         android:layout_weight="10"
         >
         <!--展示去结算的数据-->
+<androidx.recyclerview.widget.RecyclerView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/order_rv"
+    ></androidx.recyclerview.widget.RecyclerView>
+
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"

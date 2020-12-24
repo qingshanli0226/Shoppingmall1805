@@ -1,9 +1,6 @@
 package com.shopmall.bawei.shopmall1805.goods.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -16,10 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
-import com.example.common2.AddShopCarBean;
 import com.example.common2.GetShopCarBean;
-import com.example.common2.LoginBean;
-import com.example.common2.UrlHelp;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.goods.contract.AddShopCarContract;
 import com.shopmall.bawei.shopmall1805.goods.presenter.AddShopCarPresenter;
@@ -29,7 +23,7 @@ import java.util.List;
 
 import mvp.CacheManager;
 import mvp.view.BaseMVPActivity;
-import mvp.view.ShopUserManager;
+import mvp.ShopUserManager;
 
 public class GoodsActivity extends BaseMVPActivity<AddShopCarPresenter, AddShopCarContract.IAddShopCar> implements AddShopCarContract.IAddShopCar, CacheManager.IShopcarDataChangeListener {
     private ImageView bank;

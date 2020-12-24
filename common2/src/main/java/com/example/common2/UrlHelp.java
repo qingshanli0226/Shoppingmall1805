@@ -35,6 +35,9 @@ public class UrlHelp {
 
     public static final String spName = "shopmall";
     public static final String tokenName = "token";
+    public static final String userAddress = "useraddress";
+    public static final String userPhone = "userphone";
+    public static final String userName = "username";
 
     public static final String LOGIN_ACTION = "com.mvp.view.shopmall.LOGIN_ACTION";
 

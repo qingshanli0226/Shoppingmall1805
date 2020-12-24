@@ -1,13 +1,10 @@
 package com.shopmall.bawei.shopmall1805.home.presenter;
 
-import android.util.Log;
-
 import com.example.common2.HomeBean;
-import com.shopmall.bawei.shopmall1805.home.comtract.HomeContract;
+import com.shopmall.bawei.shopmall1805.home.contract.HomeContract;
 
 import http.BaseBean;
 import http.MyHttp;
-import http.NetFunction;
 import http.ShopmallObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;

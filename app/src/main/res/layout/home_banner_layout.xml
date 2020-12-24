@@ -4,7 +4,7 @@
     android:layout_height="wrap_content">
    <com.youth.banner.Banner
        android:layout_width="match_parent"
-       android:layout_height="130dp"
+       android:layout_height="200dp"
        android:id="@+id/m_banner"
       ></com.youth.banner.Banner>
 

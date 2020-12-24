@@ -5,4 +5,8 @@
     <string name="app_order_name">姓名:</string>
     <string name="app_order_phone">手机号:</string>
     <string name="app_order_address">地址:</string>
+    <string name="app_ok">确定</string>
+    <string name="shopcar_productName">产品名称</string>
+    <string name="shopcar_productPrice">产品价格</string>
+    <string name="order_count">数量:</string>
 </resources>

@@ -1,6 +1,9 @@
 package com.shopmall.bawei.shopmall1805;
 
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -13,10 +16,10 @@ import com.flyco.tablayout.listener.CustomTabEntity;
 import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shopmall.bawei.shopmall1805.home.adapter.HomePagerAdapter;
 import com.shopmall.bawei.shopmall1805.adapter.BaseVpAdapter;
-import com.shopmall.bawei.shopmall1805.fragment.ClassificationFragment;
-import com.shopmall.bawei.shopmall1805.fragment.FindFragment;
+import com.shopmall.bawei.shopmall1805.classification.view.classificationfragment.ClassificationFragment;
+import com.shopmall.bawei.shopmall1805.findfragment.FindFragment;
 import com.shopmall.bawei.shopmall1805.home.view.FirstFragment;
-import com.shopmall.bawei.shopmall1805.fragment.MyFragment;
+import com.shopmall.bawei.shopmall1805.myfragment.MyFragment;
 import com.shopmall.bawei.shopmall1805.shopcar.view.ShopCarFragment;
 
 import java.util.ArrayList;
@@ -45,6 +48,17 @@ public class MainActivity extends AppCompatActivity implements CacheManager.ISho
         mPager = (BaseVpAdapter) findViewById(R.id.m_pager);
         mPager.setscrollable(false);
         mLayout = (CommonTabLayout) findViewById(R.id.m_layout);
+
+        DisplayMetrics metrics = new DisplayMetrics();
+            getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                int screenHeight = metrics.heightPixels;//屏幕高度像素
+                int screenWidth = metrics.widthPixels;//屏幕宽度像素
+                 //density = densityDpi / 160
+                float density = metrics.density;// "屏幕密度"（0.75 / 1.0 / 1.5）
+        int densityDpi = metrics.densityDpi;// 屏幕密度dpi（120 / 160 / 240）每一英寸的屏幕所包含的像素数.值越高的设备，其屏幕显示画面的效果也就越精细
+                // 屏幕宽度算法:屏幕宽度（像素）/"屏幕密度"   px = dp * (dpi / 160)
+                int height = (int) (screenHeight / density);//屏幕高度dp
+        Log.i("屏幕", "initView: "+height+"----"+densityDpi);
     }
 
     private void initData() {

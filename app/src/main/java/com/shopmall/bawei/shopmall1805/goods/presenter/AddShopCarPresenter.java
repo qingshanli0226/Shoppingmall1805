@@ -6,7 +6,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
-import java.util.logging.Handler;
 
 import http.BaseBean;
 import http.MyHttp;

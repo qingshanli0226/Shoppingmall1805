@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.Toast;
 
 import com.example.common2.LoginBean;
 import com.example.common2.RegisterBean;
@@ -15,7 +14,7 @@ import com.shopmall.bawei.user.contract.UserContract;
 import com.shopmall.bawei.user.presenter.UserPresneter;
 
 import mvp.view.BaseMVPActivity;
-import mvp.view.ShopUserManager;
+import mvp.ShopUserManager;
 
 public class UserMainActivity extends BaseMVPActivity<UserPresneter, UserContract.IUser> implements UserContract.IUser {
     private ImageButton ibLoginBack;
@@ -23,9 +22,6 @@ public class UserMainActivity extends BaseMVPActivity<UserPresneter, UserContrac
     private EditText etLoginPwd;
     private Button btnLogin;
     private Button btnRegister;
-
-    private LoginBean uuu;
-
 
     @Override
     protected void initView() {
@@ -43,7 +39,6 @@ public class UserMainActivity extends BaseMVPActivity<UserPresneter, UserContrac
                 ihttpPresenter.getILoginBean(text, text1);
             }
         });
-
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,7 +47,6 @@ public class UserMainActivity extends BaseMVPActivity<UserPresneter, UserContrac
                 ihttpPresenter.getIRegisterBean(text, text1);
             }
         });
-
         ibLoginBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,16 +75,11 @@ public class UserMainActivity extends BaseMVPActivity<UserPresneter, UserContrac
 
     }
 
-
     @Override
     public void onLogin(LoginBean loginBean) {
 
-
-
-
-        if (loginBean.getCode().equals("200")){
-
-              ShopUserManager.getInstance().saveLoginBean(loginBean);
+        if (loginBean.getCode().equals("200")) {
+            ShopUserManager.getInstance().saveLoginBean(loginBean);
             finish();
         }
 
