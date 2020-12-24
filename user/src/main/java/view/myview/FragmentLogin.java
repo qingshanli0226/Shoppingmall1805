@@ -13,6 +13,7 @@ import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
 import mode.LoginBean;
 import view.ShopmallConstant;
+import view.SkipFinalUlis;
 import view.ToolBar;
 import view.UserActivity;
 import view.fragment.callbacklr.JsonDataCallBackLR;
@@ -60,18 +61,17 @@ class FragmentLogin extends BaseFragment<JsonPresenter>  implements UserActivity
             presenter.loginAndRegister(2,loginUser.getText().toString().trim(),loginPassword.getText().toString().trim(),new JsonDataCallBackLR(){
                 @Override
                 public void loginBean(LoginBean loginBean) {
-                        setToast("====","登录成功"+loginBean.toString());
-                        Log.i("====","token"+loginBean.getResult().getToken());
                         CacheManagerc.getInstance().getShopcarDataFromServer();
-                        ShopUserManager.getInstance().saveLoginBean(loginBean);//把登录后的用户信息存储起来
+                    LoginBean.ResultBean result = loginBean.getResult();
+                    ShopUserManager.getInstance().saveLoginBean(result);//把登录后的用户信息存储起来
                     UserActivity loginRegisterActivity = (UserActivity)getActivity();
                     int toLoginFromIndex = loginRegisterActivity.getToLoginFromIndex();
                     if (toLoginFromIndex == ShopmallConstant.TO_LOGIN_FROM_SHOPCAR_FRAGMTNT) {
-                        ARouter.getInstance().build("/main/MainActivity").withInt("index", ShopmallConstant.BUTTON_LOGIN_INDEX1).navigation();
+                        ARouter.getInstance().build(SkipFinalUlis.MAIN_ACTIVITY).withInt("index", ShopmallConstant.BUTTON_LOGIN_INDEX1).navigation();
                     } else if (toLoginFromIndex == ShopmallConstant.TO_LOGIN_FROM_MINE_FRAGMENT) {
-                        ARouter.getInstance().build("/main/MainActivity").withInt("index", ShopmallConstant.BUTTON_LOGIN_INDEX2).navigation();
+                        ARouter.getInstance().build(SkipFinalUlis.MAIN_ACTIVITY).withInt("index", ShopmallConstant.BUTTON_LOGIN_INDEX2).navigation();
                     }else {
-                        ARouter.getInstance().build("/shopcar/ShopcarActivity").navigation();
+                        ARouter.getInstance().build(SkipFinalUlis.SHOPCAR_ACTIVITY).navigation();
                     }
                 }
                 @Override
