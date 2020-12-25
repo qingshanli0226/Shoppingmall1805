@@ -27,6 +27,7 @@ import com.shopmall.bawei.shopmall1805.adpter.FragmentAdpter;
 import com.example.framework.MyViewPager;
 import com.shopmall.bawei.shopmall1805.bean.TabEntity;
 
+import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
@@ -73,8 +74,8 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
                         vr.setCurrentItem(position);
 
                     }
-                }else {
-                    vr.setCurrentItem(position);
+                } else {
+                   vr.setCurrentItem(position);
                    number=position;
 
                 }
@@ -159,6 +160,7 @@ public class MainActivity extends BaseActivity<IPresenter, IView> implements Cac
     protected void onDestroy() {
         super.onDestroy();
         CacheManager.getInstance().unSetShopcarDataChangerListener(this);
+        EventBus.getDefault().unregister(this);
     }
 
 

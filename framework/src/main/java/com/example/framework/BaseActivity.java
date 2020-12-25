@@ -10,6 +10,10 @@ import com.example.framework.view.LogingPage;
 import com.example.framework.view.ToolBar;
 import com.shopmall.bawei.framework.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public abstract class BaseActivity<P extends IPresenter,V extends IView> extends AppCompatActivity {
 
@@ -20,6 +24,7 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         logingPage = new LogingPage(this) {
             @Override
             protected int getsuccessId() {
@@ -63,6 +68,27 @@ public abstract class BaseActivity<P extends IPresenter,V extends IView> extends
         if (httpresenter!=null){
             httpresenter.ondechView();
         }
+        destory();
+
+    }
+
+    private void destory() {
+
+    }
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getIsConnect(Boolean isConnect){
+        if (isConnect){
+            onConnected();
+        }else {
+            onDeConnected();
+        }
+    }
+
+    private void onDeConnected() {
+
+    }
+
+    private void onConnected() {
 
     }
 }

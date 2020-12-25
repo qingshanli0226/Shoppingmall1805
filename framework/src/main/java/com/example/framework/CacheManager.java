@@ -23,21 +23,21 @@ import io.reactivex.schedulers.Schedulers;
 
 public class CacheManager {
     private static CacheManager instance;
-    //TODO 缓存第一步 --> 定义单例，并且将单例中使用列表缓存数据
+    /** 缓存第一步 --> 定义单例，并且将单例中使用列表缓存数据*/
     private List<ShopcarBean> shopcarBeans = new ArrayList<>();
-    //TODO 定义一个删除的集合，将所有删除数据放在这个集合当中
+    /** 定义一个删除的集合，将所有删除数据放在这个集合当中*/
     private List<ShopcarBean> deleteShopBeans = new ArrayList<>();
-    //TODO 有多个页面要进行刷新，所以维护一个listerter监听列表
+    /** 有多个页面要进行刷新，所以维护一个listerter监听列表*/
     private List<IShopcarDataCharListerter> listerters = new ArrayList<>();
-    //TODO 定义一个待支付的集合
+    /** 定义一个待支付的集合*/
     private List<FindPayBean> findPayBeanList = new ArrayList<>();
-    //TODO 定义一个待发货的集合
+    /** 定义一个待发货的集合*/
     private List<FindSendBean> findSendBeanList = new ArrayList<>();
-    //TODO 定义一个支付成功的集合，将支付成功的加入到集合当中
+    /** 定义一个支付成功的集合，将支付成功的加入到集合当中*/
     List<ShopcarBean> selectedPaySucessList = new ArrayList<>();
-    //TODO 定义一个支付失败的集合，将支付成功的加入到集合当中
+    /** 定义一个支付失败的集合，将支付成功的加入到集合当中*/
     List<ShopcarBean> selectedPayErroyList = new ArrayList<>();
-    //TODO 有多个页面要进行刷新，所以维护一个listerter监听列表
+    /** 有多个页面要进行刷新，所以维护一个listerter监听列表*/
     private List<IShopcarPayCharListerter> paylisterters = new ArrayList<>();
     private Context context;
     public CacheManager(){
@@ -53,12 +53,17 @@ public class CacheManager {
         initService();
 
     }
-    //TODO 初始化sercice判断登录状态
+
+    /**
+     * 初始化sercice判断登录状态
+     */
     private void initService() {
         Intent intent = new Intent();
         intent.setClass(context, MyService.class);
         context.startService(intent);
-        //TODO 缓存第二步 --> 通过回调监听登录事件，一旦监听到登录成功，就立马从服务端获得数据，并且将数据赛道集合当中
+        /**
+         * 缓存第二步 --> 通过回调监听登录事件，一旦监听到登录成功，就立马从服务端获得数据，并且将数据赛道集合当中
+         */
         ShopUsermange.getInstance().registerUserLoginChangeListenter(new ShopUsermange.IUserLoginChangeLiestener() {
             @Override
             public void onUserLogin(LoginBean loginBean) {
@@ -72,7 +77,10 @@ public class CacheManager {
             }
         });
     }
-    //TODO 从服务端获取购物车数据
+
+    /**
+     * 从服务端获取购物车数据
+     */
     public void getshopCardateserver(){
         Retrofitcreators.getiNetPresetenterWork().getShortcartProducts()
                 .subscribeOn(Schedulers.io())
@@ -98,7 +106,10 @@ public class CacheManager {
                     }
                 });
     }
-    //TODO 从服务端获取待支付数据
+
+    /**
+     * 从服务端获取待支付数据
+     */
     public void getfindpay(){
         Retrofitcreators.getiNetPresetenterWork().getFindPay()
                 .subscribeOn(Schedulers.io())
@@ -130,18 +141,25 @@ public class CacheManager {
                     }
                 });
     }
-    //TODO 让别的类可以拿到待支付集合
+
+    /**
+     * 让别的类可以拿到待支付集合
+     * @return
+     */
     public List<FindPayBean> getfindpayList(){
         return findPayBeanList;
     }
-    //TODO 将待支付的重新支付成功的数据从缓存中删除
+    /**
+     *  将待支付的重新支付成功的数据从缓存中删除
+     * @param findPayBean
+     */
     public void removePay(FindPayBean findPayBean){
         findPayBeanList.remove(findPayBean);
         for (IShopcarPayCharListerter paylisterter : paylisterters) {
             paylisterter.onPayList(findPayBeanList);
         }
     }
-    //TODO 提供修改缓存数据的接口
+    /**提供修改缓存数据的接口*/
     public void addPayList(FindPayBean findPayBean){
         findPayBeanList.add(findPayBean);
         //通过接口回调刷新Ui
@@ -149,7 +167,7 @@ public class CacheManager {
             paylisterter.onPayList(findPayBeanList);
         }
     }
-    //TODO 从服务端获取待发货数据
+    /**从服务端获取待发货数据*/
     public void getfindSend(){
         Retrofitcreators.getiNetPresetenterWork().getFindSend()
                 .subscribeOn(Schedulers.io())
@@ -180,58 +198,66 @@ public class CacheManager {
                     }
                 });
     }
-    //TODO 让别的类可以拿到待发货集合
+    /**让别的类可以拿到待发货集合*/
     public List<FindSendBean> getfindsendList(){
         return findSendBeanList;
     }
-    //TODO 缓存第三部，提供修改缓存数据的接口
+    /**提供修改待发货缓存数据的接口*/
+    public void addSendList(FindSendBean findSendBean){
+        findSendBeanList.add(findSendBean);
+        //通过接口回调刷新Ui
+        for (IShopcarPayCharListerter paylisterter : paylisterters) {
+            paylisterter.onSendList(findSendBeanList);
+        }
+    }
+    /**缓存第三部，提供修改缓存数据的接口*/
     public void add(ShopcarBean shopcarBean){
         shopcarBeans.add(shopcarBean);//提供接口，添加一个数据到服务器当中
         for (IShopcarDataCharListerter listerter : listerters) {
             listerter.ondataChanged(shopcarBeans);
         }
     }
-    //TODO 遍历这个listenter集合，让他逐步去通知刷新购物车数据变化
+    /**遍历这个listenter集合，让他逐步去通知刷新购物车数据变化*/
     public void notifyShopCarDateChanged(){
         for (IShopcarDataCharListerter listerter : listerters) {
             listerter.ondataChanged(shopcarBeans);
         }
     }
-    //TODO 遍历这个paylistenter集合，让他逐步去通知刷新购物车数据变化
+    /**遍历这个paylistenter集合，让他逐步去通知刷新购物车数据变化*/
     public void notifyShopCarpayChanged(){
         for (IShopcarPayCharListerter listerter : paylisterters) {
             listerter.onPayList(findPayBeanList);
         }
     }
-    //TODO 缓存第三部 --> 提供方法，可以让别的类获取到缓存
+    /**缓存第三部 --> 提供方法，可以让别的类获取到缓存*/
     public List<ShopcarBean> getShopcarList(){
         return shopcarBeans;
     }
-    //TODO 当页面想监听数据的时候，就注册一个listenter
+    /** 当页面想监听数据的时候，就注册一个listenter*/
     public void setshopcarChangedListenter(IShopcarDataCharListerter listerter){
         if (!listerters.contains(listerter)){
             listerters.add(listerter);
         }
     }
-    //TODO 当页面想监听数据的时候，就注册一个paylistenter
+    /**当页面想监听数据的时候，就注册一个paylistenter*/
     public void setshopcarpayListenter(IShopcarPayCharListerter listerter){
         if (!paylisterters.contains(listerter)){
             paylisterters.add(listerter);
         }
     }
-    //TODO 当页面销毁时，页面不需要再监听数据改变了，我们把它从列表中删除
+    /**当页面销毁时，页面不需要再监听数据改变了，我们把它从列表中删除*/
     public void unSetShopcarDataChangerListener(IShopcarDataCharListerter listener) {
         if (listerters.contains(listener)) {
             listerters.remove(listener);
         }
     }
-    //TODO 当页面销毁时，待支付页面不需要再监听数据改变了，我们把它从列表中删除
+    /**当页面销毁时，待支付页面不需要再监听数据改变了，我们把它从列表中删除*/
     public void unSetShopcarpayChangerListener(IShopcarPayCharListerter listener) {
         if (paylisterters.contains(listener)) {
             paylisterters.remove(listener);
         }
     }
-    //TODO 更具id判断商品是否存，如果存在将这个消息返回
+    /**更具id判断商品是否存，如果存在将这个消息返回*/
     public ShopcarBean getShopcarBan(String productId){
         for (ShopcarBean shopcarBean : shopcarBeans) {
             if (productId.equals(shopcarBean.getProductId())){
@@ -240,7 +266,7 @@ public class CacheManager {
         }
         return null;
     }
-    //TODO 更新缓存中一个条目的商品数量
+    /** 更新缓存中一个条目的商品数量*/
     public void updateProduceNum(int position,String newNum){
         ShopcarBean shopcarBean = shopcarBeans.get(position);
         shopcarBean.setProductNum(newNum);
@@ -253,7 +279,7 @@ public class CacheManager {
     }
 
 
-    //TODO 更新缓存中购物车的商品的数量
+    /**更新缓存中购物车的商品的数量*/
     public void updateProductNum(String productId,String newNum){
         int i = 0;
         for (ShopcarBean shopcarBean : shopcarBeans) {
@@ -270,7 +296,7 @@ public class CacheManager {
             i++;
         }
     }
-    //TODO 将你删除的商品从购物车集合中删除
+    /**将你删除的商品从购物车集合中删除*/
     public void delteShopBeanDeleteList(){
         //首先将你删除的数据在购物车缓存集合中删除
         shopcarBeans.removeAll(deleteShopBeans);
@@ -284,19 +310,19 @@ public class CacheManager {
             listerter.onAllselected(false);
         }
     }
-    //TODO 将选择的商品支付成功加入已经支付成功的集合
+    /**将选择的商品支付成功加入已经支付成功的集合*/
     public void setSelectedPaySucessBeans(List<ShopcarBean> selectedListBeans){
         //成功的将选中存入
         this.selectedPaySucessList = selectedListBeans;
 
 
     }
-    //TODO 将选择的商品支付失败加入已经支付成功的集合
+    /**将选择的商品支付失败加入已经支付成功的集合*/
     public void setSelectedPayEorryBeans(List<ShopcarBean> selectedListBeans){
         //失败的将选中存入
        this.selectedPaySucessList =selectedListBeans;
     }
-    // TODO 让别的类能够拿到支付成功的集合
+    /**让别的类能够拿到支付成功的集合*/
     public List<ShopcarBean> getSelectedPaySucessBeans(){
         List<ShopcarBean> getselectedSucessList = new ArrayList<>();
         for (ShopcarBean shopcarBean : selectedPaySucessList) {
@@ -304,11 +330,11 @@ public class CacheManager {
         }
         return getselectedSucessList;
     }
-    // TODO 让别的类能够拿到支付成功的集合
+    /**让别的类能够拿到支付成功的集合*/
     public List<ShopcarBean> getSelectedPayErroyBeans(){
         return selectedPayErroyList;
     }
-    //TODO 获取已经选择的商品
+    /**获取已经选择的商品*/
     public List<ShopcarBean> getSelectedShopBeans() {
         List<ShopcarBean> selectedList = new ArrayList<>();
         for(ShopcarBean shopcarBean:shopcarBeans) {
@@ -318,7 +344,7 @@ public class CacheManager {
         }
         return selectedList;
     }
-    //TODO 将选中的商品从缓存中删除
+    /**将选中的商品从缓存中删除*/
     public void removeselectshopBean(){
         shopcarBeans.removeAll(getSelectedShopBeans());
         //利用接口回调刷新ui
@@ -328,7 +354,7 @@ public class CacheManager {
             listerter.onAllselected(false);
         }
     }
-    //TODO 将你要删除的列表信息存到定义的删除集合当中
+    /**将你要删除的列表信息存到定义的删除集合当中*/
     public void addDeleteShopBeans(ShopcarBean shopcarBean,int position){
         deleteShopBeans.add(shopcarBean);
         //判断一下当前的商品数量和你要删除的商品数量是否一样，如果一样的话，就代表全选删除
@@ -341,7 +367,7 @@ public class CacheManager {
             }
         }
     }
-    //TODO 删除一个删除列表的数据
+    /**删除一个删除列表的数据*/
     public void deleteOneShopBeans(ShopcarBean shopcarBean,int position){
         deleteShopBeans.remove(shopcarBean);
         //需要更新子类ui
@@ -350,15 +376,15 @@ public class CacheManager {
             listerter.onAllselected(false);
         }
     }
-    //TODO 看一看删除列表是否存在这个数据
+    /** 看一看删除列表是否存在这个数据*/
     public boolean checkDeleteInfoShopCarBeanList(ShopcarBean shopcarBean){
         return deleteShopBeans.contains(shopcarBean);
     }
-    //TODO 让别的类可以拿到你要删除的数据
+    /**让别的类可以拿到你要删除的数据*/
     public List<ShopcarBean> getdeleteShopBeanList(){
         return deleteShopBeans;
     }
-    //TODO 因为状态只有两个，一个true，一个false，所以改成相反的即可
+    /**因为状态只有两个，一个true，一个false，所以改成相反的即可*/
     public void updateProductSelected(int position){
         ShopcarBean shopcarBean = shopcarBeans.get(position);
         boolean newProductSelected = !shopcarBean.isProductSelected();
@@ -377,7 +403,7 @@ public class CacheManager {
     }
 
 
-    //TODO 计算当前选中商品的价格
+    /** 计算当前选中商品的价格*/
     public String getMoney(){
         float totalPrice = 0;
         for (ShopcarBean shopcarBean : shopcarBeans) {
@@ -389,7 +415,7 @@ public class CacheManager {
         }
         return String.valueOf(totalPrice);
     }
-    //TODO 看一看商品是否选择，如果没选择返回false，如果选择了的话就返回true
+    /**看一看商品是否选择，如果没选择返回false，如果选择了的话就返回true*/
     public boolean isAllSelected() {
         for(ShopcarBean shopcarBean:shopcarBeans) {
             if (!shopcarBean.isProductSelected()) {
@@ -398,7 +424,7 @@ public class CacheManager {
         }
         return true;
     }
-    //TODO 将所有的商品都加入到删除列表当中
+    /** 将所有的商品都加入到删除列表当中*/
     public void selectAllProductInEditMode(boolean isAllSelect) {
         if (isAllSelect) {
             deleteShopBeans.clear();
@@ -411,7 +437,7 @@ public class CacheManager {
             listener.ondataChanged(shopcarBeans);
         }
     }
-    //TODO 将所有的商品选择状态对应着全选框
+    /**将所有的商品选择状态对应着全选框*/
     public void selectAllProduct(boolean isAllSelect) {
         for(ShopcarBean shopcarBean:shopcarBeans) {
             shopcarBean.setProductSelected(isAllSelect);
@@ -424,20 +450,21 @@ public class CacheManager {
             listener.onAllselected(isAllSelect);
         }
     }
-    //TODO 判断删除的集合长度和商品总数量集合的长度是否一致
+    /** 判断删除的集合长度和商品总数量集合的长度是否一致*/
     public boolean isAllSelectInEditMode() {
         return deleteShopBeans.size() == shopcarBeans.size();
     }
-    //TODO 定义接口，当购物车数据发生改变的时候，通过接口来通知ui刷新
+    // 定义接口，当购物车数据发生改变的时候，通过接口来通知ui刷新
     public interface IShopcarDataCharListerter{
         void ondataChanged(List<ShopcarBean> shopcarBeanList);
         void onOneChanged(int position,ShopcarBean shopcarBean);
         void onManeyvhanged(String moneyValue);
         void onAllselected(boolean isAllSelect);
     }
-    //TODO 定义接口，当待支付数据发生改变的时候，通过接口来通知ui刷新
+    /** 定义接口，当待支付数据发生改变的时候，通过接口来通知ui刷新*/
     public interface IShopcarPayCharListerter{
         void onPayList(List<FindPayBean> shopcarBeanList);
+        void onSendList(List<FindSendBean> findSendBeans);
 
     }
 }

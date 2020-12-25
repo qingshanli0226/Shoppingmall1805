@@ -18,6 +18,7 @@ import com.example.framework.IPresenter;
 import com.example.framework.IView;
 import com.example.framework.dao.ShopcarMessage;
 import com.example.framework.view.manager.MessageManager;
+import com.example.net.FindSendBean;
 import com.example.net.bean.ConfirmBean;
 import com.example.net.bean.FindPayBean;
 import com.example.net.bean.IntonVoryBean;
@@ -42,6 +43,7 @@ public class FindForPayActivity extends BaseActivity<PayPresenter, PayContract.I
     private ConfirmBean confirmBean;
     private OrderInfoBean orderInfoBean;
     private FindPayBean findPayBean = new FindPayBean();
+    private FindSendBean findSendBean = new FindSendBean();
     private boolean flag;
     @Override
     protected void initpreseter() {
@@ -64,6 +66,14 @@ public class FindForPayActivity extends BaseActivity<PayPresenter, PayContract.I
                     httpresenter.ConfirmServerPayResult(orderInfoBean ,flag);
                     //将缓存中数据删除
                     CacheManager.getInstance().removePay(findPayBean);
+                    //往待收货中添加
+                    findSendBean.setSubject("buy");
+                    findSendBean.setBody("????");
+                    findSendBean.setTime(""+System.currentTimeMillis());
+                    findSendBean.setTotalPrice(""+findPayBean.getTotalPrice());
+                    findSendBean.setOrderInfo(findPayBean.getOrderInfo());
+                    findSendBean.setTradeNo(findPayBean.getTradeNo());
+                    CacheManager.getInstance().addSendList(findSendBean);
                     break;
                 case 2:
                     Toast.makeText(FindForPayActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
@@ -192,6 +202,11 @@ public class FindForPayActivity extends BaseActivity<PayPresenter, PayContract.I
     @Override
     public void onPayList(List<FindPayBean> shopcarBeanList) {
         findPayAdpter.updataData(shopcarBeanList);
+    }
+
+    @Override
+    public void onSendList(List<FindSendBean> findSendBeans) {
+
     }
 
     @Override

@@ -23,6 +23,7 @@ import com.example.framework.IView;
 import com.example.framework.dao.ShopcarMessage;
 import com.example.framework.view.manager.MessageManager;
 import com.shopmall.bawei.shopmall1805.R;
+import com.shopmall.bawei.shopmall1805.bean.Messagebean;
 import com.shopmall.bawei.shopmall1805.ui.activity.MainActivity;
 
 import org.greenrobot.eventbus.EventBus;
@@ -36,6 +37,7 @@ public class MessageActivity extends BaseActivity<IPresenter, IView> {
     private RecyclerView rvMessage;
     private MessageAdpter messageAdpter;
     private Handler handler=new Handler();
+    private IMessageLister iMessageLister;
     @Override
     protected void initpreseter() {
 
@@ -43,6 +45,7 @@ public class MessageActivity extends BaseActivity<IPresenter, IView> {
 
     @Override
     protected void initdate() {
+
         MessageManager.getInstance().quereMessage(new MessageManager.IMessageListenter() {
             @Override
             public void onresult(boolean issucess, final List<ShopcarMessage> shopcarMessages) {
@@ -53,7 +56,6 @@ public class MessageActivity extends BaseActivity<IPresenter, IView> {
                     public void onItemClick(int position) {
 
                         ShopcarMessage shopcarMessage = shopcarMessages.get(position);
-
 
                         MessageManager.getInstance().updateMessage(shopcarMessage, new MessageManager.IMessageListenter() {
                             @Override
@@ -81,6 +83,9 @@ public class MessageActivity extends BaseActivity<IPresenter, IView> {
                                     public void onresult(boolean issucess, final List<ShopcarMessage> shopcarMessages) {
                                         Toast.makeText(MessageActivity.this, "删除成功", Toast.LENGTH_SHORT).show();
                                         List<ShopcarMessage> queresmessage = MessageManager.getInstance().queresmessage();
+//                                        //使用EventBus更新消息数量
+//                                        iMessageLister.onMessageCount(queresmessage.size());
+                                        //重新赋值
                                         messageAdpter.updataData(queresmessage);
                                     }
                                 });
@@ -119,7 +124,9 @@ public class MessageActivity extends BaseActivity<IPresenter, IView> {
     protected int getlayoutid() {
         return R.layout.activity_message;
     }
-
+    public interface IMessageLister{
+        void onMessageCount(int size);
+    }
     @Override
     protected void onDestroy() {
         super.onDestroy();
