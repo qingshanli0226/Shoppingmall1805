@@ -1,5 +1,7 @@
 package com.example.elevenmonthshoppingproject;
 
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -47,9 +49,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
         //获取token值
 //        iniToken();
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        int heightPixels = displayMetrics.heightPixels;
+        int widthPixels = displayMetrics.widthPixels;
+
+        float density = displayMetrics.density;//屏幕密度
+
+        int densityDpi = displayMetrics.densityDpi;
+
+
+
+
+        float v = heightPixels / density;
+        float v1 = widthPixels / density;
+
+
+        int i = (int) (v1* (densityDpi / 160));
+
+
+
+        Log.i("---",""+densityDpi);
+        Log.i("---",""+heightPixels);
+        Log.i("---",""+widthPixels);
+        Log.i("---",""+v);
+        Log.i("---",""+v1);
+        Log.i("---",""+density);
+
 
 
 
@@ -79,12 +108,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 //
 //    }
 
-
-
-    @Override
-    protected void iniData() {
-
-    }
 
     @Override
     public void onClick(View view) {

@@ -23,7 +23,7 @@ public class TypePresenterImpl extends TypeContract.TypeIPresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iview.showLoading();
+                        iview.showLoadings();
                     }
                 })
                 .subscribe(new ShopMallObserver<TypeBean>() {
@@ -37,7 +37,6 @@ public class TypePresenterImpl extends TypeContract.TypeIPresenter {
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
                         iview.onError(errorCode,errorMessage);
-                        iview.hideLoading(false,errorMessage);
                     }
                 });
 

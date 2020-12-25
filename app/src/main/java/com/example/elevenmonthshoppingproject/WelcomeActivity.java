@@ -1,9 +1,12 @@
 package com.example.elevenmonthshoppingproject;
 
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.ViewPropertyAnimatorListener;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -11,18 +14,19 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.example.framwork.service.LoginService;
 import com.example.framwork.BaseActivity;
 @Route(path = "/WeMain/WelMainActivity")
-public class WelcomeActivity extends BaseActivity {
+public class WelcomeActivity extends AppCompatActivity {
     private ImageView welcomeImg;
     private Intent intent;
 
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.welcome_main;
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.welcome_main);
+        initView();
     }
 
-    @Override
-    protected void iniView() {
+    public void initView() {
         intent=new Intent(this,LoginService.class);
         startService(intent);
         welcomeImg = findViewById(R.id.welcome_img);
@@ -56,13 +60,6 @@ public class WelcomeActivity extends BaseActivity {
 
     }
 
-    @Override
-    protected void iniData() {
-
-
-
-
-    }
 
     @Override
     protected void onDestroy() {

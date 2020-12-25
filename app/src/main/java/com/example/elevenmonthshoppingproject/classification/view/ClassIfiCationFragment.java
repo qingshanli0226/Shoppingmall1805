@@ -26,16 +26,16 @@ public class ClassIfiCationFragment extends BaseFragment {
 
 
     @Override
-    protected int getlayoutid() {
+    protected int getLayoutId() {
         return R.layout.classificationfragment;
     }
 
     @Override
-    protected void iniView(View view) {
+    protected void initView( ) {
         fragments.add(shopTypeFragment);
         fragments.add(labelFragment);
 
-        classPager =view.findViewById(R.id.class_pager);
+        classPager =findViewById(R.id.class_pager);
         typeFragmentAdapter=new TypeFragmentAdapter(getChildFragmentManager(),fragments,mTitles);
         classPager.setAdapter(typeFragmentAdapter);
         classPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -54,7 +54,7 @@ public class ClassIfiCationFragment extends BaseFragment {
 
             }
         });
-        tlSegment = view.findViewById(R.id.tl_segment);
+        tlSegment = findViewById(R.id.tl_segment);
         tlSegment.setTabData(mTitles);
         tlSegment.setOnTabSelectListener(new OnTabSelectListener() {
             @Override
@@ -72,8 +72,10 @@ public class ClassIfiCationFragment extends BaseFragment {
 
     }
 
+
+
     @Override
-    protected void iniData() {
+    protected void initData() {
 
     }
 }

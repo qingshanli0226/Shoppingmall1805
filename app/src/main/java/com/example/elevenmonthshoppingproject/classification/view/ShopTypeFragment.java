@@ -16,6 +16,8 @@ import com.example.elevenmonthshoppingproject.classification.contract.TypeContra
 import com.example.elevenmonthshoppingproject.classification.presenter.TypePresenterImpl;
 import com.example.framwork.BaseMVPFragment;
 import com.example.framwork.view.LoginPage;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.TypeBean;
 
 import java.util.ArrayList;
@@ -38,17 +40,13 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
         return R.layout.shoptypefragment;
     }
 
-    @Override
-    protected void iniEven() {
-
-    }
 
     @Override
-    protected void iniView(View view) {
+    protected void initView( ) {
 
 
-        listType = view.findViewById(R.id.list_type);
-        rvShopmall = view.findViewById(R.id.rv_shopmall);
+        listType = findViewById(R.id.list_type);
+        rvShopmall = findViewById(R.id.rv_shopmall);
 
         skrittypeAdapter=new ArrayAdapter<String>(getContext(),R.layout.support_simple_spinner_dropdown_item,skirt);
         listType.setAdapter(skrittypeAdapter);
@@ -79,17 +77,17 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
     }
 
     @Override
-    protected void iniData() {
+    protected void initData() {
 
     }
 
     @Override
-    protected void iniPresenter() {
+    protected void initPresenter() {
         typePresenter=new TypePresenterImpl();
     }
 
     @Override
-    protected void iniHttpData() {
+    protected void initHttpData() {
         typePresenter.attatch(this);
         if (typeResult!=null){
             typeResult.clear();
@@ -119,12 +117,12 @@ public class ShopTypeFragment extends BaseMVPFragment<TypePresenterImpl, TypeCon
     }
 
     @Override
-    public void showLoading() {
-        loginPage.loadingPage();
+    public void showLoadings() {
+       showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
         hideLoadingPage(isSuccess,message);
     }
 

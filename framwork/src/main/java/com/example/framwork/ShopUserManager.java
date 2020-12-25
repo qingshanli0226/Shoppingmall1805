@@ -61,6 +61,14 @@ public class ShopUserManager {
 
 
     }
+    //判断地址是否为空
+    public boolean isAddress(){
+        return loginBean.getAddress()!=null;
+    }
+    //判断电话是否为空
+    public  boolean isPhone(){
+        return  loginBean.getPhone()!=null;
+    }
     //判断登陆状态
     public boolean isUserLogin(){
         return loginBean!=null;

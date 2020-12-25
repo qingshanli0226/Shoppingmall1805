@@ -5,6 +5,10 @@
     >
 
 
+    <ProgressBar android:layout_width="500dp" android:layout_height="500dp"
+        android:id="@+id/loadingBar"
+        android:layout_centerInParent="true"
+        android:visibility="gone"/>
 
     <com.example.framwork.view.ToolBar
         android:id="@+id/toolbar"

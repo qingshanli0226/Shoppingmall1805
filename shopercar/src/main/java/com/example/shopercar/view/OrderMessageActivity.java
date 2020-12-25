@@ -1,5 +1,9 @@
 package com.example.shopercar.view;
 
+
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.sqlite.SQLiteDatabase;
@@ -8,36 +12,34 @@ import android.os.Message;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
+import com.example.framwork.BaseActivity;
+import com.example.framwork.BaseMVPActivity;
 import com.example.framwork.BaseMVPFragment;
 import com.example.framwork.CacheManager;
-import com.example.framwork.ShopUserManager;
 import com.example.framwork.sql.MySqlOpenHelper;
 import com.example.net.InventoryBean;
-import com.example.net.NetBusinessException;
 import com.example.net.OrderInfoBean;
 import com.example.net.bean.ConfirmServerPayResultBean;
 import com.example.net.bean.ErrorBean;
 import com.example.net.bean.ShopcarBean;
-import com.example.shopercar.R;
 import com.example.shopercar.contract.ShopCarContract;
 import com.example.shopercar.presenter.ShopCarPresenterImpl;
+
 
 import java.util.List;
 import java.util.Map;
 
-public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopCarContract.ShopCarIView> implements ShopCarContract.ShopCarIView,View.OnClickListener{
+@Route(path = "/Order/OrderActivity")
+public class OrderMessageActivity extends BaseMVPActivity<ShopCarPresenterImpl, ShopCarContract.ShopCarIView> implements ShopCarContract.ShopCarIView, View.OnClickListener {
+
     private RecyclerView shopcarRv;
     private ShopcarAdapter shopcarAdapter;
     private TextView txtShopCar;
@@ -77,7 +79,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         @Override
         public void onAllSelected(boolean isAllSelect) {
             if (isEditMode) {
-                allEditSelect.setChecked(isAllSelect);
+                editAllSelectCheckBox.setChecked(isAllSelect);
             } else {
                 allSelect.setChecked(isAllSelect);
             }
@@ -89,13 +91,13 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
             super.handleMessage(msg);
             switch (msg.what) {
                 case 1: {
-                    Toast.makeText(getContext(), "支付成功", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderMessageActivity.this, "支付成功", Toast.LENGTH_SHORT).show();
                     mySql();
 
                     Intent intent = new Intent();
                     intent.setAction("unorderbroadcast");
                     intent.putExtra("pay","");
-                    getContext().sendBroadcast(intent);
+                    OrderMessageActivity.this.sendBroadcast(intent);
                     //第一步将这些支付成功的商品，从购物车中删除
                     CacheManager.getInstance().removeSelectedProducts();
                     //第二步跳转的主页面，并且显示HomeFragment
@@ -104,7 +106,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
                     break;
                 }
                 case 2: {
-                    Toast.makeText(getContext(), "支付失败", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(OrderMessageActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
                     //第一步将这些支付成功的商品，从购物车中删除
                     CacheManager.getInstance().removeSelectedProducts();
                     //第二步跳转的主页面，并且显示HomeFragment
@@ -118,7 +120,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
     };
 
     private void mySql() {
-        mySqlOpenHelper=new MySqlOpenHelper(getContext(),"MoneyHouse.db", null, 2);
+        mySqlOpenHelper=new MySqlOpenHelper(OrderMessageActivity.this,"MoneyHouse.db", null, 2);
         sqLiteDatabase=mySqlOpenHelper.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("money","");
@@ -127,70 +129,57 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
 
     private ShopCarPresenterImpl shopCarPresenter;
 
+
     @Override
     protected int getLayoutId() {
-        return R.layout.activity_shopcar;
+        return com.example.shopercar.R.layout.activity_order_info;
     }
 
-    private String productName,productNum,productPrice;
+
     @Override
     protected void initView() {
-        shopcarRv = findViewById(R.id.shopcarRv);
-        txtShopCar = findViewById(R.id.txt_shopCar);
-        txtEditor = findViewById(R.id.txt_editor);
-        normalLayout = findViewById(R.id.normalLayout);
-        allSelect = findViewById(R.id.allSelect);
-        sumNote = findViewById(R.id.sumNote);
-        sumValue = findViewById(R.id.sumValue);
-        payBtn =findViewById(R.id.payBtn);
-        editLayout = findViewById(R.id.editLayout);
-        allEditSelect = findViewById(R.id.allEditSelect);
-        saveBtn = findViewById(R.id.saveBtn);
-        deleteBtn = findViewById(R.id.deleteBtn);
-
-        payBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //支付判断地址电话是否为空
-                if (!ShopUserManager.getInstance().isAddress()||!ShopUserManager.getInstance().isPhone()) {
-                    ARouter.getInstance().build("/Address/AddressActivity").navigation();
-                } else {
-                    List<ShopcarBean> selectedProductBeanList = CacheManager.getInstance().getSelectedProductBeanList();
-                    for (int i = 0; i < selectedProductBeanList.size(); i++) {
-                         productName = selectedProductBeanList.get(i).getProductName();
-                         productNum = selectedProductBeanList.get(i).getProductNum();
-                         productPrice = selectedProductBeanList.get(i).getProductPrice();
-                    }
-                    ARouter.getInstance().build("/Order/OrderActivity")
-                            .withString("name",productName)
-                            .withString("num",productNum)
-                            .withString("price",productPrice)
-                            .navigation();
-                }
-                Toast.makeText(getContext(), "正在支付...", Toast.LENGTH_SHORT).show();
-
-            }
-        });
+        shopcarRv = findViewById(com.example.shopercar.R.id.shopcarRv);
+        txtShopCar = findViewById(com.example.shopercar.R.id.txt_shopCar);
+        txtEditor = findViewById(com.example.shopercar.R.id.txt_editor);
+        normalLayout = findViewById(com.example.shopercar.R.id.normalLayout);
+        allSelect = findViewById(com.example.shopercar.R.id.allSelect);
+        sumNote = findViewById(com.example.shopercar.R.id.sumNote);
+        sumValue = findViewById(com.example.shopercar.R.id.sumValue);
+        payBtn =findViewById(com.example.shopercar.R.id.payBtn);
+        editLayout = findViewById(com.example.shopercar.R.id.editLayout);
+        allEditSelect = findViewById(com.example.shopercar.R.id.allEditSelect);
+        saveBtn = findViewById(com.example.shopercar.R.id.saveBtn);
+        deleteBtn = findViewById(com.example.shopercar.R.id.deleteBtn);
 
 
 
-        shopcarRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+
+
+        shopcarRv.setLayoutManager(new LinearLayoutManager(this));
         shopcarAdapter = new ShopcarAdapter();
         shopcarRv.setAdapter(shopcarAdapter);
 
-        txtEditor.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                editor();
-            }
-        });
+//        txtEditor.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                editor();
+//            }
+//        });
 
         EnvUtils.setEnv(EnvUtils.EnvEnum.SANDBOX);//设置沙箱环境.
     }
 
     @Override
     protected void initData() {
+        payBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
+                Toast.makeText(OrderMessageActivity.this, "正在支付...", Toast.LENGTH_SHORT).show();
+                shopCarPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
+            }
+        });
     }
 
     private void editor() {
@@ -218,10 +207,12 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         shopCarPresenter.attatch(this);
         shopcarAdapter.setShopcarAdapter(shopCarPresenter);
 
+
+
     }
 
     @Override
-    protected void initHttpData() {
+    protected void iniHttpView() {
         //获取购物车数据
         List<ShopcarBean> shopcarBeanList = CacheManager.getInstance().getShopcarBeanList();
         shopcarAdapter.updatelist(shopcarBeanList);
@@ -240,7 +231,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
             @Override
             public void onClick(View v) {
                 if (allSelect.isChecked()) {
-                     newAllSelect= true;
+                    newAllSelect= true;
                     shopCarPresenter.selectAllProduct(newAllSelect);
                 } else {
                     newAllSelect = false;
@@ -284,21 +275,21 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
 
     @Override
     public void onProductSelect(String result, int position) {
-        Toast.makeText(getContext(), "该商品在购物车的选择发生改变", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "该商品在购物车的选择发生改变", Toast.LENGTH_SHORT).show();
         //需要保证服务端购物车该商品选择的状态和本地该商品在购物车上选择的状态一致性
         CacheManager.getInstance().updateProductSelected(position);
     }
 
     @Override
     public void onAllSelect(String result) {
-        Toast.makeText(getContext(), "所有的商品的选择状态发生了改变,全选状态为:"+newAllSelect, Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "所有的商品的选择状态发生了改变,全选状态为:"+newAllSelect, Toast.LENGTH_SHORT).show();
         //更新本地缓存的数据的选择状态
         CacheManager.getInstance().selectAllProduct(newAllSelect);
     }
 
     @Override
     public void onDeleteProduct(String result) {
-        Toast.makeText(getContext(), "删除购物车数据成功", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "删除购物车数据成功", Toast.LENGTH_SHORT).show();
         //在缓存中，将删除列表中商品在购物车上删掉
         CacheManager.getInstance().processDeleteProducts();
     }
@@ -309,7 +300,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
             //充足情况下，向服务端下订单
             shopCarPresenter.getOrderInfo(CacheManager.getInstance().getSelectedProductBeanList());
         } else {
-            Toast.makeText(getContext(), ((String)inventoryBeans.get(0).getProductName()) + "库存不充足", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, ((String)inventoryBeans.get(0).getProductName()) + "库存不充足", Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -321,7 +312,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
         Runnable runnable = new Runnable() {
             @Override
             public void run() {
-                PayTask payTask = new PayTask(getActivity());
+                PayTask payTask = new PayTask(OrderMessageActivity.this);
                 Map<String,String> resultMap = payTask.payV2(orderInfoBean.getOrderInfo(), true);
                 if (resultMap.get("resultStatus").equals("9000")) {//返回值是9000时代表支付成功
                     handler.sendEmptyMessage(1);
@@ -353,20 +344,20 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenterImpl, ShopC
 
     @Override
     public void hideLoading(boolean isSuccess, ErrorBean message) {
-           hideLoadingPage(isSuccess,message);
+        hideLoadingPage(isSuccess,message);
     }
 
 
     @Override
     public void onClick(View view) {
-        if (view.getId() == R.id.deleteBtn) {
+        if (view.getId() == com.example.shopercar.R.id.deleteBtn) {
             List<ShopcarBean> deleteShopcarBeanList = CacheManager.getInstance().getDeleteShopcarBeanList();
             if (deleteShopcarBeanList.size()>0) {
                 shopCarPresenter.deleteProducts(deleteShopcarBeanList);
             } else {
-                Toast.makeText(getContext(), "当前没有要删除的数据", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "当前没有要删除的数据", Toast.LENGTH_SHORT).show();
             }
-        } else if (view.getId() == R.id.payBtn) {
+        } else if (view.getId() == com.example.shopercar.R.id.payBtn) {
             //第一步检查购物车上商品在仓库中是否都有库存
             shopCarPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
         }

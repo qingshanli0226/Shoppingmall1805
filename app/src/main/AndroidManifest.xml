@@ -5,6 +5,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
+        android:requestLegacyExternalStorage="true"
+        android:usesCleartextTraffic="true"
         android:name=".MasterApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -12,7 +14,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".address.view.AddressMessageActivity"></activity>
+        <activity android:name=".address.view.AddressMessageActivity" />
         <activity
             android:name=".WelcomeActivity"
             android:theme="@style/AppTheme.FullSrcreen">
@@ -25,13 +27,15 @@
         <activity android:name=".product.view.ProductDetailActivity" />
         <activity
             android:name=".MainActivity"
-            android:theme="@style/AppTheme.FullSrcreen"></activity>
+            android:theme="@style/AppTheme.FullSrcreen" />
         <activity
             android:name="com.example.shopercar.view.ShoppingPageActivity"
             android:launchMode="singleTask" />
-        <activity android:name=".message.MessageListActivity" android:theme="@style/AppTheme.FullSrcreen"></activity>
+        <activity
+            android:name=".message.MessageListActivity"
+            android:theme="@style/AppTheme.FullSrcreen" />
 
-        <receiver android:name=".home.view.HomeFragment$MyBroadcaseReceiver"></receiver>
+        <receiver android:name=".home.view.HomeFragment$MyBroadcaseReceiver" />
     </application>
 
 </manifest>

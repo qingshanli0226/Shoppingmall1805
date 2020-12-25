@@ -11,6 +11,8 @@ import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framwork.BaseMVPActivity;
 import com.example.framwork.ShopUserManager;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.LoginBean;
 import com.example.user.R;
 import com.example.user.contract.LoginContract;
@@ -36,13 +38,31 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
 
+
+
+
+    }
+
+    private void login() {
+        loginPresenter.getLogin(etLoginPhone.getText().toString(),etLoginPwd.getText().toString());
+    }
+
+    @Override
+    protected void initPresenter() {
+
+
+        loginPresenter=new LoginPresenterImpl();
+        loginPresenter.attatch(this);
+    }
+
+    @Override
+    protected void initData() {
         etLoginPhone = findViewById(R.id.et_login_phone);
         etLoginPwd = findViewById(R.id.et_login_pwd);
         btnLogin = findViewById(R.id.btn_login);
         tvLoginRegister = findViewById(R.id.tv_login_register);
-
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,22 +78,6 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
                 startActivity(intent);
             }
         });
-
-    }
-
-    private void login() {
-        loginPresenter.getLogin(etLoginPhone.getText().toString(),etLoginPwd.getText().toString());
-    }
-
-    @Override
-    protected void initPresenter() {
-        loginPresenter=new LoginPresenterImpl();
-        loginPresenter.attatch(this);
-    }
-
-    @Override
-    protected void initData() {
-
     }
 
     @Override
@@ -90,13 +94,13 @@ public class LoginActivity extends BaseMVPActivity<LoginPresenterImpl, LoginCont
     }
 
     @Override
-    public void showLoading() {
-
+    public void showLoadings() {
+        showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
-        hideLoading(isSuccess,message);
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
+        hideLoadingPage(isSuccess,message);
     }
 
 

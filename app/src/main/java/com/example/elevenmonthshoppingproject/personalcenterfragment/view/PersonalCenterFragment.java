@@ -14,18 +14,18 @@ public class PersonalCenterFragment extends BaseFragment implements View.OnClick
     private Intent intent;
 
     @Override
-    protected int getlayoutid() {
+    protected int getLayoutId() {
         return R.layout.personalcenterfragment;
     }
 
     @Override
-    protected void iniView(View view) {
-        tvUserLocation = view.findViewById(R.id.tv_user_location);
+    protected void initView() {
+        tvUserLocation = findViewById(R.id.tv_user_location);
         tvUserLocation.setOnClickListener(this);
     }
 
     @Override
-    protected void iniData() {
+    protected void initData() {
 
     }
 

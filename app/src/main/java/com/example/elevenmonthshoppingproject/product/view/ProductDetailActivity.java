@@ -22,6 +22,8 @@ import com.example.elevenmonthshoppingproject.product.presenter.ProductDetailPre
 import com.example.framwork.BaseMVPActivity;
 import com.example.framwork.CacheManager;
 import com.example.framwork.ShopUserManager;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.ShopcarBean;
 
 import java.util.List;
@@ -174,16 +176,6 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
 
     @Override
     protected void iniHttpView() {
-
-    }
-
-    @Override
-    protected int getLayoutId() {
-        return R.layout.activity_shopping_page;
-    }
-
-    @Override
-    protected void iniView() {
         ivGoodInfoImage = findViewById(R.id.iv_good_info_image);
         tvGoodInfoName = findViewById(R.id.tv_good_info_name);
         tvGoodInfoPrice = findViewById(R.id.tv_good_info_price);
@@ -207,6 +199,16 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
         tvGoodInfoPrice.setText(prodctPrice);
         tvGoodInfoName.setText(productName);
         Glide.with(this).load(proDuctimg).into(ivGoodInfoImage);
+    }
+
+    @Override
+    protected int getLayoutId() {
+        return R.layout.activity_shopping_page;
+    }
+
+    @Override
+    protected void initView() {
+
 
 
 
@@ -250,13 +252,13 @@ public class ProductDetailActivity extends BaseMVPActivity<ProductDetailPresente
     }
 
     @Override
-    public void showLoading() {
-
+    public void showLoadings() {
+        showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
-
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
+        hideLoadingPage(isSuccess,message);
     }
 
 

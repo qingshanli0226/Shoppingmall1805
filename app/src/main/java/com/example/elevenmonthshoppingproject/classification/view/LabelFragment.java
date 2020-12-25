@@ -7,17 +7,17 @@ import com.example.framwork.BaseFragment;
 
 public class LabelFragment extends BaseFragment {
     @Override
-    protected int getlayoutid() {
+    protected int getLayoutId() {
         return R.layout.labelfragment;
     }
 
     @Override
-    protected void iniView(View view) {
+    protected void initView() {
 
     }
 
     @Override
-    protected void iniData() {
+    protected void initData() {
 
     }
 }

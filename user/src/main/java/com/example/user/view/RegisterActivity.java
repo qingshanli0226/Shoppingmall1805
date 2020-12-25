@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.framwork.BaseMVPActivity;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.RegisterBean;
 import com.example.user.R;
 import com.example.user.contract.RegisterContract;
@@ -29,7 +31,7 @@ public class RegisterActivity extends BaseMVPActivity<RegisterPresenterImpl, Reg
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
         etLoginPhone = findViewById(R.id.et_login_phone);
         etLoginPwd = findViewById(R.id.et_login_pwd);
         btnLogin = findViewById(R.id.btn_login);
@@ -73,13 +75,13 @@ public class RegisterActivity extends BaseMVPActivity<RegisterPresenterImpl, Reg
     }
 
     @Override
-    public void showLoading() {
-
+    public void showLoadings() {
+        showLoading();
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
-        hideLoading(isSuccess,message);
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
+       hideLoadingPage(isSuccess,message);
     }
 
 

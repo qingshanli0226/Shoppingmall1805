@@ -39,7 +39,7 @@ public class MessageListActivity extends BaseMVPActivity<IPresenter, IView> {
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
 
         mySqlOpenHelper=new MySqlOpenHelper(this,"MoneyHouse.db", null, 2);
         SQLiteDatabase  sqLiteDatabase=mySqlOpenHelper.getReadableDatabase();

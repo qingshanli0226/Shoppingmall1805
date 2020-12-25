@@ -251,4 +251,9 @@ public class ShopCarPresenterImpl extends ShopCarContract.ShopCarPresenter {
                 });
     }
 
+    @Override
+    public void getConfirmServerPay() {
+
+    }
+
 }

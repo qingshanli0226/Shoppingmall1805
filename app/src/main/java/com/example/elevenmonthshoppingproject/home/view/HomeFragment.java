@@ -21,9 +21,12 @@ import com.example.elevenmonthshoppingproject.home.contract.HomeContract;
 import com.example.elevenmonthshoppingproject.home.presenter.HomePresenterImpl;
 import com.example.framwork.BaseMVPFragment;
 import com.example.framwork.BaseRVAdapter;
+import com.example.framwork.ConnectManager;
 import com.example.framwork.ShopCarGreen;
 import com.example.framwork.sql.MySqlOpenHelper;
 import com.example.framwork.view.manager.MessageManager;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.HomeBean;
 import com.example.net.bean.MoneyBean;
 
@@ -56,9 +59,6 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         recyAdapter.updatelist(datelist);
         recyAdapter.setBaseRVAdapterlinterner(this);
 
-
-
-
     }
 
     @Override
@@ -66,26 +66,20 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
         return R.layout.homefragment;
     }
 
-//    @Subscribe(threadMode = ThreadMode.MAIN)
-//    public void onMessageChanged(ShopCarGreen shopcarMessage) {
-//        int messageCount = MessageManager.getInstance().getMessageCount();
-//        if (messageCount!=0) {
-//            toolbar.setToolbarRightTv(messageCount+"");
-//        }
-//    }
-
-    @Override
-    protected void iniEven() {
-
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageChanged(ShopCarGreen shopcarMessage) {
+        int messageCount = MessageManager.getInstance().getMessageCount();
+        if (messageCount!=0) {
+            toolbar.setToolbarRightTv(messageCount+"");
+        }
     }
-
     @Override
-    protected void iniView(View view) {
+    protected void initView() {
          myBroadcaseReceiver = new MyBroadcaseReceiver();
          getActivity().registerReceiver(myBroadcaseReceiver,new IntentFilter("unorderbroadcast"));
 
-        rvHome=view.findViewById(R.id.rv_home);
-        tvMessageHome = view.findViewById(R.id.tv_message_home);
+        rvHome=findViewById(R.id.rv_home);
+        tvMessageHome = findViewById(R.id.tv_message_home);
         rvHome.setLayoutManager(new LinearLayoutManager(getContext()));
         recyAdapter=new RecyAdapter();
         rvHome.setAdapter(recyAdapter);
@@ -101,7 +95,7 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     }
 
     @Override
-    protected void iniData() {
+    protected void initData() {
         int messageCount = MessageManager.getInstance().getMessageCount();
         if (messageCount!=0) {
             toolbar.setToolbarRightTv(messageCount+"");
@@ -109,14 +103,33 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     }
 
     @Override
-    protected void iniPresenter() {
+    protected void initPresenter() {
         homePresenter=new HomePresenterImpl();
         homePresenter.attatch(this);
 
     }
+
     @Override
-    protected void iniHttpData() {
+    protected void onDisConnected() {
+        super.onDisConnected();
+//        showError("当前无网络");
+    }
+
+    @Override
+    protected void onConnected() {
+        super.onConnected();
         homePresenter.getHomeData();
+    }
+
+    @Override
+    protected void initHttpData() {
+
+        if (ConnectManager.getInstance().isConnected()){
+            homePresenter.getHomeData();
+        }else {
+            showError("当前无网络");
+        }
+
     }
     @Override
     public void onError(String code, String message) {
@@ -124,14 +137,14 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     }
 
     @Override
-    public void showLoading() {
-        loginPage.loadingPage();
+    public void showLoadings() {
+          showLoading();
 //        loginPage.showError("错误");
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
-       hideLoadingPage(isSuccess,message);
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
+        hideLoadingPage(isSuccess,message);
     }
 
     @Override
@@ -143,7 +156,6 @@ public class HomeFragment extends BaseMVPFragment<HomePresenterImpl, HomeContrac
     public void onDestroy() {
         super.onDestroy();
         homePresenter.detachview();
-//        EventBus.getDefault().unregister(this);
         getActivity().unregisterReceiver(myBroadcaseReceiver);
     }
 

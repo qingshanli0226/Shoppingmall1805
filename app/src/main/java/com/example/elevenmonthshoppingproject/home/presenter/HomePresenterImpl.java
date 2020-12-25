@@ -28,7 +28,7 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
                 .doOnSubscribe(new Consumer<Disposable>() {
                     @Override
                     public void accept(Disposable disposable) throws Exception {
-                        iview.showLoading();//显示加载的UI
+                        iview.showLoadings();//显示加载的UI
                     }
                 })
                 .subscribe(new ShopMallObserver<HomeBean>() {
@@ -42,7 +42,6 @@ public class HomePresenterImpl extends HomeContract.HomePresenter {
                     @Override
                     public void onRequestError(String errorCode, String errorMessage) {
                             iview.onError(errorCode,errorMessage);
-                            iview.hideLoading(false,errorMessage);
                     }
                 });
     }

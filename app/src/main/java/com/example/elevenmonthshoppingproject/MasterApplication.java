@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framwork.CacheManager;
+import com.example.framwork.ConnectManager;
 import com.example.framwork.DaoMaster;
 import com.example.framwork.DaoSession;
 import com.example.framwork.ShopUserManager;
@@ -23,7 +24,7 @@ public class MasterApplication extends Application {
 
             ARouter.openLog();
             ARouter.openDebug();
-
+        ConnectManager.getInstance().init(this);
         MessageManager.getInstance().init(this);
         ShopUserManager.getInstance().init(this);
         CacheManager.getInstance().init(this);

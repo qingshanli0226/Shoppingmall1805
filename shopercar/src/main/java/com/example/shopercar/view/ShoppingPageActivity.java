@@ -18,6 +18,8 @@ import com.example.framwork.BaseMVPActivity;
 import com.example.framwork.CacheManager;
 import com.example.net.InventoryBean;
 import com.example.net.OrderInfoBean;
+import com.example.net.bean.ConfirmServerPayResultBean;
+import com.example.net.bean.ErrorBean;
 import com.example.net.bean.ShopcarBean;
 import com.example.shopercar.R;
 import com.example.shopercar.contract.ShopCarContract;
@@ -122,7 +124,7 @@ public class ShoppingPageActivity extends BaseMVPActivity<ShopCarPresenterImpl, 
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
         shopcarRv = findViewById(R.id.shopcarRv);
         txtShopCar = findViewById(R.id.txt_shopCar);
         txtEditor = findViewById(R.id.txt_editor);
@@ -278,17 +280,22 @@ public class ShoppingPageActivity extends BaseMVPActivity<ShopCarPresenterImpl, 
     }
 
     @Override
+    public void onConfirmServerPay(ConfirmServerPayResultBean confirmServerPayResultBean) {
+
+    }
+
+    @Override
     public void onError(String code, String message) {
 
     }
 
     @Override
-    public void showLoading() {
+    public void showLoadings() {
 
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
 
     }
 

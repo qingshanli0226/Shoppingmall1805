@@ -8,12 +8,16 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.elevenmonthshoppingproject.R;
 import com.example.elevenmonthshoppingproject.address.contract.AddressContract;
 import com.example.elevenmonthshoppingproject.address.presenter.AddressPresenterImpl;
 import com.example.framwork.BaseMVPActivity;
+import com.example.net.NetBusinessException;
+import com.example.net.bean.ErrorBean;
 
+@Route(path = "/Address/AddressActivity")
 public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl, AddressContract.AddressIView> implements AddressContract.AddressIView, View.OnClickListener {
 
     private EditText editMessage;
@@ -48,7 +52,7 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
     }
 
     @Override
-    protected void iniView() {
+    protected void initView() {
         editMessage = findViewById(R.id.edit_message);
         btnSmart = findViewById(R.id.btn_smart);
         txtPhone = findViewById(R.id.txt_phone);
@@ -83,13 +87,18 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
     }
 
     @Override
+    public void showLoadings() {
+
+    }
+
+    @Override
     public void showLoading() {
 
     }
 
     @Override
-    public void hideLoading(boolean isSuccess, String message) {
-
+    public void hideLoading(boolean isSuccess, ErrorBean message) {
+        hideLoadingPage(isSuccess,message);
     }
 
 
@@ -105,6 +114,7 @@ public class AddressMessageActivity extends BaseMVPActivity<AddressPresenterImpl
             case R.id.btn_smart:
                 String message = editMessage.getText().toString().trim();
                 addressPresenter.getAddress(message);
+
                 break;
             case R.id.btn_phone:
                 String phone = editPhoneCard.getText().toString().trim();
