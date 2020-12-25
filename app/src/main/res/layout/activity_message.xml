@@ -4,11 +4,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#efefef"
     tools:context=".message.MessageActivity">
     <com.example.framework.view.ToolBar
         android:id="@+id/toolbar"
-        
+        app:left_show="true"
+        android:background="#ffffff"
+        app:right_show="false"
+        app:title_text="消息"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_message"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         />
 </LinearLayout>

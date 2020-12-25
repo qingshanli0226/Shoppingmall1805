@@ -11,6 +11,7 @@ import com.example.framework.greendao.DaoSession;
 import com.example.framework.greendao.MessageBean;
 import com.example.framework.greendao.MessageBeanDao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -26,6 +27,8 @@ public class MSGManager {
     private SharedPreferences.Editor editor;
     private ExecutorService executorService= Executors.newCachedThreadPool();
     private Handler handler=new Handler();
+    private List<MessageBean> messageBeans=new ArrayList<>();
+
     public static MSGManager getInstance() {
         if(msgManager==null){
             msgManager=new MSGManager();
@@ -45,6 +48,12 @@ public class MSGManager {
         messageBeanDao = daoSession.getMessageBeanDao();
         sharedPreferences = context.getSharedPreferences(MESSAGE_SP_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
+        queryMessage(new IMessageListener() {
+            @Override
+            public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {
+               messageBeans.addAll(messageBeanList);
+            }
+        });
     }
     public void updateMessageCount(int count){
         editor.putInt(MESSAGE_SP_COUNT,count);
@@ -63,7 +72,9 @@ public class MSGManager {
                     @Override
                     public void run() {
                         if(messageListener!=null){
+                            messageBeans.add(0,messageBean);
                             messageListener.onResult(true,null);
+
                         }
                     }
                 });
@@ -82,7 +93,9 @@ public class MSGManager {
                     @Override
                     public void run() {
                         if(messageListener!=null){
+                            messageBeans.remove(messageBean);
                             messageListener.onResult(true,null);
+
                         }
                     }
                 });
@@ -122,7 +135,9 @@ public class MSGManager {
     }
 
 
-
+    public List<MessageBean> getMessageBeanList(){
+        return  messageBeans;
+    }
 
     public interface  IMessageListener{
         void onResult(boolean isSuccess, List<MessageBean> messageBeanList);

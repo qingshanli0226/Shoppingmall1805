@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
+
 import com.example.framework.service.ShopMallService;
 import com.example.net.RetrofitCreater;
 import com.example.net.bean.FindForPayBean;
@@ -44,6 +45,7 @@ public class CacheManager {
     public void init(Context context){
         this.context=context;
         initService();
+
     }
 
     private void initService() {
@@ -360,6 +362,7 @@ public class CacheManager {
     public List<FindForPayBean.ResultBean> getFindForPayList(){
         return  findForPayList;
     }
+
     public List<ShopCarBean.ResultBean> getShopCarPayList(){
         shopCarPayList.clear();
         for (ShopCarBean.ResultBean resultBean : shopCarList) {

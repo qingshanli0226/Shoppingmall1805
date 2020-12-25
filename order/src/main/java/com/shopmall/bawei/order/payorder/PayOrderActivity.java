@@ -87,6 +87,11 @@ public class PayOrderActivity extends BaseActivity<OrderPresenterImpl, OrderCont
                 });
                 builder.show();
             }
+
+            @Override
+            public Boolean onItemLongClick(int position) {
+                return false;
+            }
         });
     }
 

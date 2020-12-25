@@ -39,6 +39,13 @@ public class UserFragment extends BaseFragment implements UserManager.IUserLogin
     }
 
     @Override
+    public void onRightClick() {
+        super.onRightClick();
+        ARouter.getInstance().build("/message/MessageActivity").navigation();
+
+    }
+
+    @Override
     protected void initView() {
 
         tvUserSend = (TextView) findViewById(R.id.tv_user_send);

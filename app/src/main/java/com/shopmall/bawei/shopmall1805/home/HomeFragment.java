@@ -8,6 +8,7 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.framework.base.BaseFragment;
 import com.example.framework.manager.MSGManager;
 import com.example.net.bean.MainBean;
@@ -42,6 +43,12 @@ public class HomeFragment extends BaseFragment<HomePresenterImpl, HomeContract.H
     @Override
     protected void initLisenter() {
 
+    }
+
+    @Override
+    public void onRightClick() {
+        super.onRightClick();
+        ARouter.getInstance().build("/message/MessageActivity").navigation();
     }
 
     @Override

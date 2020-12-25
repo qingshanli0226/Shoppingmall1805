@@ -255,10 +255,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="741" y="375" key="#com.intellij.ide.actions.ChooseComponentsToExportDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608032387564" />
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1608684968993">
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser" timestamp="1608859265056">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1608684968993" />
+    <state x="1151" y="364" key="#com.intellij.ide.util.MemberChooser/75.0.1845.1080@75.0.1845.1080" timestamp="1608859265056" />
     <state x="1039" y="468" key="#com.intellij.refactoring.move.MoveHandler.SelectRefactoringDialog" timestamp="1608549639716">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -271,10 +271,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="777" y="418" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.packages/75.0.1845.1080@75.0.1845.1080" timestamp="1608549557481" />
-    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608268662380">
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1608860758896">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608268662380" />
+    <state x="1189" y="289" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608860758896" />
     <state x="727" y="286" key="#com.intellij.refactoring.typeMigration.ui.FailedConversionsDialog" timestamp="1607426349908">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -295,22 +295,22 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="777" y="294" key="FileChooserDialogImpl/75.0.1845.1080@75.0.1845.1080" timestamp="1606722759949" />
-    <state width="1802" height="350" key="GridCell.Tab.0.bottom" timestamp="1608549859275">
+    <state width="1802" height="445" key="GridCell.Tab.0.bottom" timestamp="1608859345011">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="350" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1608549859275" />
-    <state width="1802" height="350" key="GridCell.Tab.0.center" timestamp="1608549859275">
+    <state width="1802" height="445" key="GridCell.Tab.0.bottom/75.0.1845.1080@75.0.1845.1080" timestamp="1608859345011" />
+    <state width="1802" height="445" key="GridCell.Tab.0.center" timestamp="1608859345011">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="350" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1608549859275" />
-    <state width="1802" height="350" key="GridCell.Tab.0.left" timestamp="1608549859274">
+    <state width="1802" height="445" key="GridCell.Tab.0.center/75.0.1845.1080@75.0.1845.1080" timestamp="1608859345011" />
+    <state width="1802" height="445" key="GridCell.Tab.0.left" timestamp="1608859345011">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="350" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1608549859274" />
-    <state width="1802" height="350" key="GridCell.Tab.0.right" timestamp="1608549859275">
+    <state width="1802" height="445" key="GridCell.Tab.0.left/75.0.1845.1080@75.0.1845.1080" timestamp="1608859345011" />
+    <state width="1802" height="445" key="GridCell.Tab.0.right" timestamp="1608859345011">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="1802" height="350" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1608549859275" />
+    <state width="1802" height="445" key="GridCell.Tab.0.right/75.0.1845.1080@75.0.1845.1080" timestamp="1608859345011" />
     <state width="1802" height="344" key="GridCell.Tab.1.bottom" timestamp="1608347693165">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -331,18 +331,18 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="638" y="118" key="SettingsEditor/75.0.1845.1080@75.0.1845.1080" timestamp="1608272758240" />
-    <state width="498" height="498" key="SwitcherDM" timestamp="1607496759111">
+    <state width="498" height="498" key="SwitcherDM" timestamp="1608771607892">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state width="498" height="498" key="SwitcherDM/75.0.1845.1080@75.0.1845.1080" timestamp="1607496759111" />
+    <state width="498" height="498" key="SwitcherDM/75.0.1845.1080@75.0.1845.1080" timestamp="1608771607892" />
     <state x="1258" y="320" key="chooseDestDirectoryDialog" timestamp="1606129655596">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="1258" y="320" key="chooseDestDirectoryDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1606129655596" />
-    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608186740916">
+    <state x="470" y="339" width="776" height="629" key="com.android.tools.idea.avdmanager.AvdListDialog" timestamp="1608793664952">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="462" y="102" width="736" height="887" key="com.android.tools.idea.avdmanager.AvdListDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608186740916" />
+    <state x="470" y="339" width="776" height="629" key="com.android.tools.idea.avdmanager.AvdListDialog/75.0.1845.1080@75.0.1845.1080" timestamp="1608793664952" />
     <state x="1139" y="367" key="com.intellij.ide.util.TipDialog" timestamp="1606194087228">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
@@ -379,10 +379,10 @@
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
     <state x="654" y="250" key="run.anything.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1607318007111" />
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1608595952037">
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup" timestamp="1608811312909">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>
-    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1608595952037" />
+    <state x="1122" y="240" width="672" height="678" key="search.everywhere.popup/75.0.1845.1080@75.0.1845.1080" timestamp="1608811312909" />
     <state x="719" y="451" key="vcs.readOnlyHandler.ReadOnlyStatusDialog" timestamp="1606478836207">
       <screen x="75" y="0" width="1845" height="1080" />
     </state>

@@ -47,6 +47,16 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
                 }
             }
         });
+        baseViewHoder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Boolean flag=false;
+                if(iBaseRecyclerViewListener!=null){
+                    flag = iBaseRecyclerViewListener.onItemLongClick(position);
+                }
+                return flag;
+            }
+        });
         convert(baseViewHoder, getViewType(position),dataList.get(position));
     }
 
@@ -82,5 +92,6 @@ public abstract class BaseRvAdapter<T> extends RecyclerView.Adapter<BaseRvAdapte
     }
     public interface IBaseRecyclerViewListener{
         void onItemClick(int position);
+        Boolean onItemLongClick(int position);
     }
 }
