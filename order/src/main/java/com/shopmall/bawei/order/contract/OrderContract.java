@@ -5,8 +5,9 @@ import com.example.framework.IVIew;
 
 public class OrderContract {
 
-    public interface IOrderView extends IVIew{
+    public interface IOrderView extends IVIew {
         void onUpDataPhone(String phone);
+
         void onUpDataAddress(String address);
     }
 

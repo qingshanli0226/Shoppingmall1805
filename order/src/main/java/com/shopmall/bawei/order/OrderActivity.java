@@ -23,19 +23,24 @@ import android.widget.Toast;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
+import com.example.framework.BaseActivity;
 import com.example.framework.CacheManager;
 import com.example.framework.DaoSession;
 import com.example.framework.MessageManager;
 import com.example.framework.ShopcarMessage;
+import com.example.net.IntonVoryBean;
+import com.example.net.OrderInfoBean;
 import com.example.net.ShopcarBean;
 import com.shopmall.bawei.order.adapter.OrderAdapter;
+import com.shopmall.bawei.order.contract.TakeContract;
+import com.shopmall.bawei.order.presenter.TakePresenterImpl;
 import com.shopmall.bawei.order.util.OrderInfoUtil2_0;
 
 import java.util.List;
 import java.util.Map;
 
 @Route(path = "/me/order")
-public class OrderActivity extends AppCompatActivity {
+public class OrderActivity extends BaseActivity<TakePresenterImpl,TakeContract.ITakeView> implements TakeContract.ITakeView {
     private TextView tvPhone;
     private TextView tvAddress;
     private ImageButton ibShopcartBack;
@@ -47,6 +52,8 @@ public class OrderActivity extends AppCompatActivity {
     private Button btBuy;
     private OrderAdapter orderAdapter;
     ShopcarMessage shopcarMessage = new ShopcarMessage();
+    private OrderInfoBean orderInfoBean = new OrderInfoBean();
+
 
     /**
      * 用于支付宝支付业务的入参 app_id。
@@ -102,7 +109,7 @@ public class OrderActivity extends AppCompatActivity {
                         shopcarMessage.setIsRead(false);
                         shopcarMessage.setType(MessageManager.PAY_TYPE);
                         shopcarMessage.setTime(System.currentTimeMillis());
-                        
+                        httpPresenter.ConfirmServerPayResult(orderInfoBean,true);
                         MessageManager.getInstance().addMessage(shopcarMessage, new MessageManager.IMessageListener() {
                             @Override
                             public void onResult(boolean isSuccess, List<ShopcarMessage> shopcarMessageList) {
@@ -118,7 +125,7 @@ public class OrderActivity extends AppCompatActivity {
                         shopcarMessage.setIsRead(false);
                         shopcarMessage.setType(MessageManager.ADR_TYPE);
                         shopcarMessage.setTime(System.currentTimeMillis());
-                        
+                        httpPresenter.ConfirmServerPayResult(orderInfoBean,false);
                         MessageManager.getInstance().addMessage(shopcarMessage, new MessageManager.IMessageListener() {
                             @Override
                             public void onResult(boolean isSuccess, List<ShopcarMessage> shopcarMessageList) {
@@ -151,41 +158,11 @@ public class OrderActivity extends AppCompatActivity {
 
 
 
+
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_order);
-        initView();
-        dialogShow();
-
-
-        tvPhone.setText(CacheManager.getInstance().getPhone() + "");
-        tvAddress.setText(CacheManager.getInstance().getAddress() + "");
-        btBuy.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                payV2(view);
-            }
-        });
-
-        List<ShopcarBean> selectedShopBeans = CacheManager.getInstance().getSelectedShopBeans();
-
-        orderAdapter = new OrderAdapter(R.layout.item_order, selectedShopBeans);
-        rvOrder.setAdapter(orderAdapter);
-        rvOrder.setLayoutManager(new LinearLayoutManager(this));
-        orderAdapter.notifyDataSetChanged();
-
-        String moneyValue = CacheManager.getInstance().getMoneyValue();
-        tvPrice.setText(moneyValue+"");
-        tvPriceJie.setText(moneyValue+"");
-        OrderInfoUtil2_0.setTotalMoney(moneyValue);
-
-        ibShopcartBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
+    protected int getLayoutId() {
+        return R.layout.activity_order;
     }
 
     private void dialogShow() {
@@ -213,7 +190,7 @@ public class OrderActivity extends AppCompatActivity {
 
     }
 
-    private void initView() {
+    protected void initView() {
         tvPhone = (TextView) findViewById(R.id.tv_phone);
         tvAddress = (TextView) findViewById(R.id.tv_address);
         ibShopcartBack = (ImageButton) findViewById(R.id.ib_shopcart_back);
@@ -223,6 +200,46 @@ public class OrderActivity extends AppCompatActivity {
         llGoodsRoot = (RelativeLayout) findViewById(R.id.ll_goods_root);
         tvPriceJie = (TextView) findViewById(R.id.tv_price_jie);
         btBuy = (Button) findViewById(R.id.bt_buy);
+    }
+
+    @Override
+    protected void initData() {
+        initView();
+        dialogShow();
+
+        httpPresenter = new TakePresenterImpl();
+        tvPhone.setText(CacheManager.getInstance().getPhone() + "");
+        tvAddress.setText(CacheManager.getInstance().getAddress() + "");
+        btBuy.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                List<ShopcarBean> selectedShopBeans = CacheManager
+                        .getInstance()
+                        .getSelectedShopBeans();
+                httpPresenter.checkIntonvory(selectedShopBeans);
+
+                payV2(view);
+            }
+        });
+
+        List<ShopcarBean> selectedShopBeans = CacheManager.getInstance().getSelectedShopBeans();
+
+        orderAdapter = new OrderAdapter(R.layout.item_order, selectedShopBeans);
+        rvOrder.setAdapter(orderAdapter);
+        rvOrder.setLayoutManager(new LinearLayoutManager(this));
+        orderAdapter.notifyDataSetChanged();
+
+        String moneyValue = CacheManager.getInstance().getMoneyValue();
+        tvPrice.setText(moneyValue+"");
+        tvPriceJie.setText(moneyValue+"");
+        OrderInfoUtil2_0.setTotalMoney(moneyValue);
+
+        ibShopcartBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
     }
 
     public void payV2(View v) {
@@ -266,4 +283,66 @@ public class OrderActivity extends AppCompatActivity {
         payThread.start();
     }
 
+    @Override
+    public void onCheckIntonvory(List<IntonVoryBean> intonVoryBeans) {
+        if (checkIntontnvory(intonVoryBeans)){
+            //库存足够的时候，发起订单
+            httpPresenter.orderinfo(CacheManager.getInstance().getSelectedShopBeans());
+        }else {
+            Toast.makeText(this, "库存不足", Toast.LENGTH_SHORT).show();
+        }
+    }
+    //检查商品库存
+    private boolean checkIntontnvory(List<IntonVoryBean> intonVoryBeans) {
+        //获取选中的商品集合
+        List<ShopcarBean> selectedShopBeans = CacheManager.getInstance().getSelectedShopBeans();
+        for (IntonVoryBean intonVoryBean : intonVoryBeans) {
+            for (ShopcarBean selectedShopBean : selectedShopBeans) {
+                if (intonVoryBean.getProductId().equals(selectedShopBean.getProductId())){
+                    int num = Integer.parseInt(intonVoryBean.getProductNum());
+                    int needNum = Integer.parseInt(intonVoryBean.getProductNum());
+                    if (needNum>num){
+                        return false;
+                    }
+                }
+            }
+        }
+        return true;
+    }
+    @Override
+    public void getOrderInfo(OrderInfoBean orderInfoBean) {
+        orderInfoBean.setOrderInfo(orderInfoBean.getOrderInfo());
+        orderInfoBean.setOutTradeNo(orderInfoBean.getOutTradeNo());
+        payV2(new View(this));
+    }
+
+    @Override
+    public void getConfirmServerPayResult(String result) {
+        Toast.makeText(this, ""+result, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onErroy(String message) {
+
+    }
+
+    @Override
+    public void showsloading() {
+
+    }
+
+    @Override
+    public void hideloading() {
+
+    }
+
+    @Override
+    public void showErroy(String message) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
 }

@@ -62,6 +62,24 @@ public interface INetPresetenterWork {
     @GET("getShortcartProducts")
     Observable<BaseBean<List<ShopcarBean>>> getShortcartProducts();
 
+    //查找代付款借口
+    @GET("findForPay")
+    Observable<BaseBean<List<FindPayBean>>> getFindPay();
+
+    //查找代发货借口
+    @GET("findForSend")
+    Observable<BaseBean<List<FindSendBean>>> getFindSend();
+
+    //检 查 服 务 端 多 个 产 品 是 否 库 存 充 足
+    @POST("checkInventory")
+    Observable<BaseBean<List<IntonVoryBean>>> checjInventory(@Body RequestBody requestBody);
+    //下单接口
+    @POST("getOrderInfo")
+    Observable<BaseBean<OrderInfoBean>> getOrderInfo(@Body RequestBody requestBody);
+    //是否支付成功
+    @POST("confirmServerPayResult")
+    Observable<BaseBean<String>> confirmServerPayResult(@Body RequestBody requestBody);
+
     //小裙子 接口
     @GET("atguigu/json/SKIRT_URL.json")
     Observable<ClothesBean> skirt();
