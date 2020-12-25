@@ -14,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.alibaba.android.arouter.launcher.ARouter;
+import com.shopmall.bawei.pay.zfb.util.OrderInfoUtil2_0;
 import com.shopmall.bawei.shopcar.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.common.Constants;
@@ -108,6 +109,10 @@ public class CartFragment extends BaseMVPFragment implements CacheManager.IShopC
         shopCarCompute.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                boolean allSelected = CacheManager.getInstance().isAllSelected();
+                if (!allSelected){
+                    return;
+                }
                 ShopCarNet.getShopCarNet().checkInventory(Constants.CHECKINVENTORY, new ITest() {
                     @Override
                     public void onTest(String msg) {
@@ -117,6 +122,8 @@ public class CartFragment extends BaseMVPFragment implements CacheManager.IShopC
                             if (phone == null || address == null){
                                 ARouter.getInstance().build("/user/InfoMainActivity").navigation();
                             }else {
+                                String moneyValue = CacheManager.getInstance().getMoneyValue();
+                                OrderInfoUtil2_0.setMoney(moneyValue);
                                 ARouter.getInstance().build("/order/OrderActivity").navigation();
                             }
                         }else {

@@ -187,14 +187,14 @@ public class ShopCarPresenter extends Contract.ShopCarContractPresenter {
 
             @Override
             public void onError(String mag) {
-
+                mView.get().Error(mag);
             }
         });
     }
 
     @Override
     public void updateAddress(String url, String address) {
-        mRepository.updatePhone(url, address, new IShopCar() {
+        mRepository.updateAddress(url, address, new IShopCar() {
             @Override
             public void onSuccess(Object... objects) {
                 if (objects != null){
@@ -210,7 +210,7 @@ public class ShopCarPresenter extends Contract.ShopCarContractPresenter {
 
             @Override
             public void onError(String mag) {
-
+                mView.get().Error(mag);
             }
         });
     }

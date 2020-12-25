@@ -1,6 +1,7 @@
 package com.shopmall.user;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,10 +36,12 @@ public class InfoMainActivity extends BaseMVPActivity<ShopCarPresenter> implemen
             infoName.setText(userName+"");
         }
 
+        Log.i("---", "initData: 略略略略略略");
+
         infoPhoneTj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phone = infoPhone.getText().toString();
+                String phone = infoPhone.getText().toString().trim();
                 mPresenter.updatePhone(Constants.UPDATE_PHONE,phone);
             }
         });
@@ -46,7 +49,7 @@ public class InfoMainActivity extends BaseMVPActivity<ShopCarPresenter> implemen
         infoAddressTj.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String address = infoAddress.getText().toString();
+                String address = infoAddress.getText().toString().trim();
                 mPresenter.updateAddress(Constants.UPDATE_ADDRESS,address);
             }
         });
@@ -54,9 +57,9 @@ public class InfoMainActivity extends BaseMVPActivity<ShopCarPresenter> implemen
         infoSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String phone = ShopUserManager.getInstance().getPhone();
-                String address = ShopUserManager.getInstance().getAddress();
-                if (phone==null||address==null){
+                String phone1 = ShopUserManager.getInstance().getPhone();
+                String address1 = ShopUserManager.getInstance().getAddress();
+                if (phone1==null||address1==null){
                     Toast.makeText(InfoMainActivity.this, "电话号码或地址未提交成功", Toast.LENGTH_SHORT).show();
                     return;
                 }else {

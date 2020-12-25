@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">pay</string>
+    <string name="pay_success">支付成功:</string>
+    <string name="confirm">确定</string>
+    <string name="auth_success">授权成功:</string>
+    <string name="auth_failed">授权失败:</string>
+    <string name="error_missing_appid_rsa_private">错误: 需要配置 PayDemoActivity 中的 APPID 和 RSA_PRIVATE</string>
 </resources>
