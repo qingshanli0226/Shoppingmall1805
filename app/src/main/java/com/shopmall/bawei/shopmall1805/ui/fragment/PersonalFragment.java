@@ -12,11 +12,13 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.example.net.ShopUserManger;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ui.activity.MessageActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.ReceiveActivity;
+import com.shopmall.bawei.shopmall1805.ui.activity.UserPayActivity;
 
 
 public class PersonalFragment extends Fragment {
 
-    private TextView textView,tv;
+    private TextView textView,tv,tvUserPay,tvUserReceive;
     private ImageButton imageButton;
 
     @Override
@@ -28,6 +30,8 @@ public class PersonalFragment extends Fragment {
         textView = view.findViewById(R.id.tv_username);
         tv = view.findViewById(R.id.tv_user_location);
         imageButton = view.findViewById(R.id.ib_user_message);
+        tvUserPay = view.findViewById(R.id.tv_user_pay);
+        tvUserReceive = view.findViewById(R.id.tv_user_receive);
 
         textView.setText(ShopUserManger.getInstance().getName());
 
@@ -54,6 +58,20 @@ public class PersonalFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getActivity(), MessageActivity.class));
+            }
+        });
+
+        tvUserPay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), UserPayActivity.class));
+            }
+        });
+
+        tvUserReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getActivity(), ReceiveActivity.class));
             }
         });
 

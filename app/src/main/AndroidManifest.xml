@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.shopmall.bawei.shopmall1805">
+    package="com.shopmall.bawei.shopmall1805" >
 
     <uses-permission android:name="android.permission.INTERNET" /> <!-- if you want to load images from the internet -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -16,13 +16,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
-        <activity android:name=".ui.activity.MessageActivity"></activity>
+        android:usesCleartextTraffic="true" >
+        <activity android:name=".ui.activity.ReceiveActivity" >
+        </activity>
+        <activity android:name=".ui.activity.UserPayActivity" />
+        <activity android:name=".ui.activity.MessageActivity" />
         <activity android:name=".product.view.XiangActivity" />
         <activity android:name=".ui.activity.HomeActivity" />
         <activity
             android:name=".ui.activity.WelcomActivity"
-            android:theme="@style/AppTheme.FullScreen">
+            android:theme="@style/AppTheme.FullScreen" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
