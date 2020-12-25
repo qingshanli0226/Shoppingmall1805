@@ -186,7 +186,7 @@ public class TheorderActivity extends BaseActivity<ShopcarPresenterImpl, Shopcar
                 }
                 case 2: {
                     Toast.makeText(TheorderActivity.this, "支付失败", Toast.LENGTH_SHORT).show();
-                    savePayMessage("支付成功");
+                    savePayMessage("支付失败");
                     CacheManager.getInstance().removerSelectedProduct();
                     Intent intent = new Intent(TheorderActivity.this, MainActivity.class);
                     startActivity(intent);

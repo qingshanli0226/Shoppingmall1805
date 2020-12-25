@@ -4,20 +4,29 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.bawei.deom.BaseActivity;
+
 import com.shopmall.bawei.shopmall1805.MessageManager.MessageManager;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ShangTitle;
 import com.shopmall.bawei.shopmall1805.apter.MessageApter;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
+import com.shopmall.bawei.shopmall1805.layout.RefreshLayout;
 
 import java.util.List;
 
-public class MessageActivity extends BaseActivity {
+public class MessageActivity extends BaseActivity implements RefreshLayout.IRefreshListener {
     private RecyclerView messageRecyle;
     MessageApter messageApter=new MessageApter();
+
+    private RefreshLayout refreshLayout;
+
+
+
+
 
     @Override
     protected int getLayoutId() {
@@ -31,10 +40,11 @@ public class MessageActivity extends BaseActivity {
 
     @Override
     protected void inData() {
+        refreshLayout.addRefreshListener(this);
         MessageManager.getInstance().querMessage(new MessageManager.IMessageListener() {
             @Override
             public void onResult(boolean isSuccess, final List<ShangTitle> shangTitles) {
-                messageApter.updataData(shangTitles);
+              messageApter.updataData(shangTitles);
 
                 messageApter.setiRecyclerViewItemClickListener(new BaseRVAdapter.IRecyclerViewItemClickListener() {
                         @Override
@@ -64,6 +74,21 @@ public class MessageActivity extends BaseActivity {
     @Override
     protected void intView() {
         messageRecyle = (RecyclerView) findViewById(R.id.message_recyle);
+        refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
+    }
+
+    @Override
+    public void onRefresh() {
+        messageApter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onLoadMore() {
+        messageApter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onRefreshComplete() {
 
     }
 }

@@ -1,14 +1,21 @@
 package com.shopmall.bawei.shopmall1805.apter;
 
+import android.content.Context;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.ShangTitle;
+import com.shopmall.bawei.shopmall1805.activity.mesage.MessageActivity;
 import com.shopmall.bawei.shopmall1805.apter.apter2.BaseRVAdapter;
 
+import java.util.List;
+
 public class MessageApter extends BaseRVAdapter<ShangTitle> {
+
     @Override
     protected int getLayoutId(int viewType) {
         return R.layout.item_shopcar_message;

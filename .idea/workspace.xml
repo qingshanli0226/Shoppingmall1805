@@ -10,40 +10,31 @@
     </shared>
   </component>
   <component name="AndroidLogFilters">
-    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="DDDDDD" />
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="不能上拉加载" />
     <option name="TOOL_WINDOW_LOG_LEVEL" value="verbose" />
     <option name="TOOL_WINDOW_CONFIGURED_FILTER" value="Show only selected application" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0cb5bb8-f662-4259-832d-660d73cdae7b" name="Default Changelist" comment="欢迎页面">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/NetConnectManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileContent/fileContent.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/classAnalysis.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/jarAnalysis.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/jarAnalysis.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/javaCompile.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/javaCompile/taskJars.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/4.6/taskHistory/taskHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/ShopmallApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/ShopmallApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/FoundFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/FoundFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/ShoppingFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/ShoppingFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ClassificationFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ClassificationFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/LoginFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/LoginFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/RegisterFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/RegisterFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ThelabelFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ThelabelFragment.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/iteam_deliver.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/iteam_deliver.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/BaseFragment.java" beforeDir="false" afterPath="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/BaseFragment.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/home_view_banner.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/home_view_banner.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +45,7 @@
   <component name="DefaultGradleProjectSettings">
     <option name="isMigrated" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="127.0.0.1:21513" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="127.0.0.1:21523" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -86,8 +77,8 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="411">
-              <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
+            <state relative-caret-position="558">
+              <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
             </state>
           </provider>
         </entry>
@@ -96,8 +87,8 @@
         <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml">
           <provider editor-type-id="android-designer2" />
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="558">
-              <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+            <state relative-caret-position="-44">
+              <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -105,21 +96,76 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="398">
-              <caret line="44" column="87" selection-start-line="44" selection-start-column="87" selection-end-line="44" selection-end-column="87" />
+            <state relative-caret-position="38">
+              <caret line="160" column="39" lean-forward="true" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#8494#8705#0" expanded="true" />
+                <element signature="e#8704#8705#0" expanded="true" />
+                <element signature="e#9617#10192#0" expanded="true" />
+                <element signature="e#10191#10192#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/NetConnectManager.java">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="739">
-              <caret line="46" column="122" selection-start-line="46" selection-start-column="102" selection-end-line="46" selection-end-column="122" />
+            <state relative-caret-position="234">
+              <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1387#1388#0" expanded="true" />
-                <element signature="e#1442#1443#0" expanded="true" />
+                <element signature="e#926#927#0" expanded="true" />
+                <element signature="e#974#975#0" expanded="true" />
+                <element signature="e#1125#2566#0" expanded="true" />
+                <element signature="e#2064#2494#0" expanded="true" />
+                <element signature="e#2493#2494#0" expanded="true" />
+                <element signature="e#2539#2540#0" expanded="true" />
+                <element signature="e#2565#2566#0" expanded="true" />
+                <element signature="e#2903#2904#0" expanded="true" />
+                <element signature="e#2930#2931#0" expanded="true" />
+                <element signature="e#3000#3001#0" expanded="true" />
+                <element signature="e#3051#3052#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="589">
+              <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+              <folding>
+                <element signature="e#616#617#0" expanded="true" />
+                <element signature="e#668#669#0" expanded="true" />
+                <element signature="e#1286#1287#0" expanded="true" />
+                <element signature="e#1310#1311#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml">
+          <provider editor-type-id="android-designer2" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="217">
+              <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#4981#6032#0" expanded="true" />
+                <element signature="e#6031#6032#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -154,17 +200,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/framework/build.gradle" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/shoppfragment.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/dimens.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/values/styles.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/typefragment.xml" />
         <option value="$USER_HOME$/Documents/AndroidStudio/DeviceExplorer/oppo-pcrt00-127.0.0.1_21523/data/data/com.shopmall.bawei.shopmall1805/shared_prefs/count.xml" />
         <option value="$PROJECT_DIR$/app/src/main/res/layout/item_shopcar_message.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/MessageManager/MessageManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java" />
         <option value="$PROJECT_DIR$/net/src/main/java/bean/confirmServerPayResultBean.java" />
         <option value="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/bean/ReceivegoodsBeen.java" />
         <option value="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/BaseMyFragment.java" />
@@ -177,7 +218,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/iteam_recelivegood.xml" />
         <option value="$PROJECT_DIR$/net/src/main/java/bean/typebean/ReceliveGoodbeans.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter/ReceliveGoodApter.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java" />
         <option value="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/CacheManager.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/ReceliveGoodActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/home/MainActivity.java" />
@@ -194,7 +234,6 @@
         <option value="$PROJECT_DIR$/app/src/main/res/layout/iteam_deliver.xml" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/ShopmallApplication.java" />
         <option value="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/BaseFragment.java" />
-        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/FoundFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/ShoppingFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ClassificationFragment.java" />
@@ -202,14 +241,22 @@
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/RegisterFragment.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment2/ThelabelFragment.java" />
         <option value="$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/NetConnectManager.java" />
-        <option value="$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml" />
         <option value="$PROJECT_DIR$/common/src/main/java/com/bawei/deom/RefreshLayout.java" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/home_view_banner.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java" />
+        <option value="$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml" />
+        <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java" />
         <option value="$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="953" />
+  <component name="ProjectFrameBounds" extendedState="1">
+    <option name="x" value="307" />
+    <option name="y" value="223" />
     <option name="width" value="974" />
     <option name="height" value="1047" />
   </component>
@@ -219,7 +266,6 @@
     </navigator>
     <panes>
       <pane id="PackagesPane" />
-      <pane id="AndroidView" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -262,6 +308,80 @@
               <item name="main" type="462c0819:PsiDirectoryNode" />
               <item name="java" type="462c0819:PsiDirectoryNode" />
               <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="activity" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="activity" type="462c0819:PsiDirectoryNode" />
+              <item name="mesage" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="apter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="apter" type="462c0819:PsiDirectoryNode" />
+              <item name="apter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="apter" type="462c0819:PsiDirectoryNode" />
+              <item name="apter2" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="apter" type="462c0819:PsiDirectoryNode" />
+              <item name="zhuyeapter" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Shoppingmall1805" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="app" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="shopmall1805" type="462c0819:PsiDirectoryNode" />
+              <item name="fragment" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Shoppingmall1805" type="b2602c69:ProjectViewProjectNode" />
@@ -418,6 +538,7 @@
           <select />
         </subPane>
       </pane>
+      <pane id="AndroidView" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -451,11 +572,11 @@
       <recent name="com.shopmall.bawei.shopmall1805" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.shopmall.bawei.shopmall1805.layout" />
       <recent name="com.shopmall.bawei.shopmall1805.MessageManager" />
       <recent name="com.bawei.deom" />
       <recent name="com.shopmall.bawei.shopmall1805.apter" />
       <recent name="com.shopmall.bawei.shopmall1805.apter.apter2" />
-      <recent name="com.shopmall.bawei.shopmall1805.fragment2" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="E:\ziliao\Shoppingmall1805\net\src\main\java\bean" />
@@ -566,11 +687,11 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="953" y="0" width="974" height="1047" extended-state="0" />
+    <frame x="953" y="313" width="974" height="734" extended-state="0" />
     <editor active="true" />
     <layout>
       <window_info id="Captures" order="0" sideWeight="0.5071942" side_tool="true" weight="0.18496802" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" sideWeight="0.49280575" visible="true" weight="0.036105033" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49280575" visible="true" weight="0.032822758" />
       <window_info id="Structure" order="2" sideWeight="0.50369006" side_tool="true" weight="0.18496802" />
       <window_info id="Favorites" order="3" sideWeight="0.50369006" side_tool="true" weight="0.18496802" />
       <window_info id="Build Variants" order="4" sideWeight="0.5014493" side_tool="true" weight="0.23027718" />
@@ -578,15 +699,15 @@
       <window_info id="Designer" order="6" />
       <window_info id="Resources Explorer" order="7" weight="0.25053304" />
       <window_info id="Capture Tool" order="8" />
-      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4936034" weight="0.4154013" />
-      <window_info anchor="bottom" id="Logcat" order="1" sideWeight="0.49840087" weight="0.2936078" />
+      <window_info anchor="bottom" id="Run" order="0" sideWeight="0.4936034" weight="0.41949618" />
+      <window_info active="true" anchor="bottom" id="Logcat" order="1" sideWeight="0.49840087" visible="true" weight="0.7216667" />
       <window_info anchor="bottom" id="TODO" order="2" weight="0.329718" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.4968017" weight="0.3329718" />
       <window_info anchor="bottom" id="Terminal" order="4" weight="0.20476706" />
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.5063966" side_tool="true" weight="0.4934924" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.37852496" />
-      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49733475" visible="true" weight="0.21029572" />
-      <window_info anchor="bottom" id="Android Profiler" order="8" show_stripe_button="false" weight="0.329718" />
+      <window_info anchor="bottom" id="Build" order="7" sideWeight="0.49733475" weight="0.20607375" />
+      <window_info anchor="bottom" id="Android Profiler" order="8" weight="0.329718" />
       <window_info anchor="bottom" id="Messages" order="9" weight="0.329718" />
       <window_info anchor="bottom" id="Find" order="10" weight="0.329718" />
       <window_info anchor="right" id="Device File Explorer" order="0" sideWeight="0.54120266" side_tool="true" weight="0.3001066" />
@@ -594,7 +715,7 @@
       <window_info anchor="right" id="Gradle" order="2" weight="0.32995737" />
       <window_info anchor="right" id="Theme Preview" order="3" />
       <window_info anchor="right" id="Palette&#9;" order="4" />
-      <window_info anchor="right" id="Preview" order="5" sideWeight="0.45879734" weight="0.38621444" />
+      <window_info anchor="right" id="Preview" order="5" sideWeight="0.45879734" weight="0.3501094" />
     </layout>
     <layout-to-restore>
       <window_info id="Captures" order="0" side_tool="true" weight="0.25" />
@@ -670,69 +791,6 @@
     <option name="LAST_COMMIT_MESSAGE" value="欢迎页面" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter/SkirtAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="155">
-          <caret line="13" column="13" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter2/BugCommonlyUsedApter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter2/ThelabelApter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="12" column="13" selection-start-line="12" selection-start-column="13" selection-end-line="12" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter2/BugHotApter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/ThrorderApter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="341">
-          <caret line="20" column="97" lean-forward="true" selection-start-line="20" selection-start-column="8" selection-end-line="20" selection-end-column="97" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/BaseActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="23" selection-start-line="23" selection-end-line="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter2/BaseRVAdapter.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="319">
-          <caret line="22" selection-start-line="22" selection-end-line="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/personalinformation/InformationCountroller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/personalinformation/InformationImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_recelive_good.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
@@ -858,16 +916,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3069">
-          <caret line="137" column="24" selection-start-line="137" selection-start-column="24" selection-end-line="137" selection-end-column="24" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/net/src/main/java/bean/GetOrderInfo.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -907,16 +955,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="51" column="67" selection-start-line="51" selection-start-column="67" selection-end-line="51" selection-end-column="67" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/selectedordelete/ShopcarContract.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="465">
@@ -947,13 +985,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="313">
           <caret line="99" column="23" lean-forward="true" selection-start-line="8" selection-start-column="8" selection-end-line="99" selection-end-column="23" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/daa57d08ae2614102780f748b1de2d1f/jars/classes.jar!/android/support/v7/widget/RecyclerView.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="203">
-          <caret line="212" column="123" selection-start-line="212" selection-start-column="109" selection-end-line="212" selection-end-column="123" />
         </state>
       </provider>
     </entry>
@@ -1169,42 +1200,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="121" column="5" selection-start-line="121" selection-start-column="5" selection-end-line="121" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
+    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/bawei/deom/RefreshLayout.java" />
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/home_view_act.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/FoundFragment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="248">
-          <caret line="27" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml">
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/home_view_banner.xml">
       <provider editor-type-id="android-designer2" />
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="18" column="16" lean-forward="true" selection-start-line="18" selection-start-column="16" selection-end-line="18" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml">
-      <provider editor-type-id="android-designer2" />
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="558">
-          <caret line="18" column="12" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
+        <state relative-caret-position="155">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/NetConnectManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="739">
+        <state relative-caret-position="606">
           <caret line="46" column="122" selection-start-line="46" selection-start-column="102" selection-end-line="46" selection-end-column="122" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -1214,22 +1225,147 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/common/src/main/java/com/bawei/deom/RefreshLayout.java">
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/HomepageFragment.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="44" column="96" selection-start-line="44" selection-start-column="96" selection-end-line="44" selection-end-column="96" />
+        <state relative-caret-position="162">
+          <caret line="69" column="32" selection-start-line="69" selection-start-column="32" selection-end-line="69" selection-end-column="32" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#323#324#0" expanded="true" />
-            <element signature="e#353#354#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/framework/src/main/java/com/bawei/deom/countroller/UserIMPL.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/apter2/BugHotApter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="279">
+          <caret line="25" column="82" selection-start-line="25" selection-start-column="82" selection-end-line="25" selection-end-column="82" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/loginfragment.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/fragment/FoundFragment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="27" selection-start-line="27" selection-end-line="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/daa57d08ae2614102780f748b1de2d1f/jars/classes.jar!/android/support/v7/widget/LinearLayoutManager.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="155">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$USER_HOME$/.gradle/caches/transforms-1/files-1.1/recyclerview-v7-28.0.0.aar/daa57d08ae2614102780f748b1de2d1f/jars/classes.jar!/android/support/v7/widget/RecyclerView.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-4805">
+          <caret line="155" lean-forward="true" selection-start-line="155" selection-end-line="155" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Android/Sdk/sources/android-29/android/view/ViewGroup.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1912">
+          <caret line="6743" column="29" selection-start-line="6743" selection-start-column="15" selection-end-line="6743" selection-end-column="29" />
+          <folding>
+            <element signature="e#266451#266452#0" expanded="true" />
+            <element signature="e#266488#266489#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/apter/MessageApter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="589">
+          <caret line="33" column="50" selection-start-line="33" selection-start-column="50" selection-end-line="33" selection-end-column="50" />
+          <folding>
+            <element signature="e#616#617#0" expanded="true" />
+            <element signature="e#668#669#0" expanded="true" />
+            <element signature="e#1286#1287#0" expanded="true" />
+            <element signature="e#1310#1311#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/TheorderActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="188" column="40" selection-start-line="188" selection-start-column="40" selection-end-line="188" selection-end-column="40" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4981#6032#0" expanded="true" />
+            <element signature="e#6031#6032#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/activity/mesage/MessageActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="234">
+          <caret line="48" column="81" selection-start-line="48" selection-start-column="81" selection-end-line="48" selection-end-column="81" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#926#927#0" expanded="true" />
+            <element signature="e#974#975#0" expanded="true" />
+            <element signature="e#1125#2566#0" expanded="true" />
+            <element signature="e#2064#2494#0" expanded="true" />
+            <element signature="e#2493#2494#0" expanded="true" />
+            <element signature="e#2539#2540#0" expanded="true" />
+            <element signature="e#2565#2566#0" expanded="true" />
+            <element signature="e#2903#2904#0" expanded="true" />
+            <element signature="e#2930#2931#0" expanded="true" />
+            <element signature="e#3000#3001#0" expanded="true" />
+            <element signature="e#3051#3052#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/load_layoud.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="558">
+          <caret line="18" column="20" selection-start-line="18" selection-start-column="20" selection-end-line="18" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/redresh_layoud.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-44">
+          <caret line="4" selection-start-line="4" selection-end-line="4" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/src/main/res/layout/activity_message.xml">
+      <provider editor-type-id="android-designer2" />
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="217">
+          <caret line="13" column="44" lean-forward="true" selection-start-line="13" selection-start-column="44" selection-end-line="13" selection-end-column="44" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/src/main/java/com/shopmall/bawei/shopmall1805/layout/RefreshLayout.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="398">
-          <caret line="44" column="87" selection-start-line="44" selection-start-column="87" selection-end-line="44" selection-end-column="87" />
+        <state relative-caret-position="38">
+          <caret line="160" column="39" lean-forward="true" selection-start-line="160" selection-start-column="39" selection-end-line="160" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#8494#8705#0" expanded="true" />
+            <element signature="e#8704#8705#0" expanded="true" />
+            <element signature="e#9617#10192#0" expanded="true" />
+            <element signature="e#10191#10192#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

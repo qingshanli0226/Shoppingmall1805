@@ -3,6 +3,8 @@ package com.shopmall.bawei.shopmall1805.fragment;
 import android.content.Intent;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -65,8 +67,17 @@ public class HomepageFragment extends BaseFragment<UserIMPL, UserCountroller.Use
 
     @Override
     protected void initData() {
-
+        DisplayMetrics metrics = new DisplayMetrics();
+            getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+                 int screenHeight = metrics.heightPixels;//屏幕高度像素
+                 int screenWidth = metrics.widthPixels;//屏幕宽度像素
+                 //density = densityDpi / 160
+                 float density = metrics.density;// "屏幕密度"（0.75 / 1.0 / 1.5）
+                 int densityDpi = metrics.densityDpi;// 屏幕密度dpi（120 / 160 / 240）每一英寸的屏幕所包含的像素数.值越高的设备，其屏幕显示画面的效果也就越精细
+                 // 屏幕宽度算法:屏幕宽度（像素）/"屏幕密度"   px = dp * (dpi / 160)
+              int height = (int) (screenHeight / density);//屏幕高度dp
         int messageCount = MessageManager.getInstance().getMessageCount();
+        Log.e("适配","屏幕密度"+density+"densityDpi"+densityDpi+"屏幕高度dp"+height+"messageCount"+messageCount);
         if (messageCount!=0) {
             toolerMessage.setText("消息"+messageCount+"");
         }

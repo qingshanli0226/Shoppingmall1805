@@ -4,12 +4,15 @@
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context=".activity.mesage.MessageActivity"
-
     >
-
+    <com.shopmall.bawei.shopmall1805.layout.RefreshLayout
+        android:layout_width="match_parent"
+        android:id="@+id/refreshLayout"
+        android:layout_height="wrap_content">
     <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/message_recyle"
         ></android.support.v7.widget.RecyclerView>
+    </com.shopmall.bawei.shopmall1805.layout.RefreshLayout>
 </LinearLayout>
