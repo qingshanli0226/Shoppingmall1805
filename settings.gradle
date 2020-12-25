@@ -1,2 +1,3 @@
 include ':app', ':common', ':framework', ':net', ':pay', ':point', ':shopcar', ':user', ':order'
 rootProject.name='shopmall'
+//, ':myapplication'

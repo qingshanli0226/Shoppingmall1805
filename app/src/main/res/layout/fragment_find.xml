@@ -15,9 +15,16 @@
         app:right_show="false"
         app:title_text="消息" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/find_recycler"
+    <com.bawei.framework.RefreshLayout
+        android:id="@+id/refreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/find_recycler"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.bawei.framework.RefreshLayout>
+
 
 </LinearLayout>

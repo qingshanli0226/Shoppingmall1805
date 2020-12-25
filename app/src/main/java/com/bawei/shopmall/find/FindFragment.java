@@ -12,6 +12,7 @@ import com.bawei.framework.BaseFragment;
 import com.bawei.framework.BasePresenter;
 import com.bawei.framework.IView;
 import com.bawei.framework.MessageManager;
+import com.bawei.framework.RefreshLayout;
 import com.bawei.framework.greendao.MessageBean;
 import com.bawei.shopmall.message.MessageAdapter;
 import com.shopmall.bawei.shopmall1805.R;
@@ -21,10 +22,11 @@ import java.util.List;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class FindFragment extends BaseFragment<BasePresenter, IView> implements IView, MyToolBar.IToolBarClickListner {
+public class FindFragment extends BaseFragment<BasePresenter, IView> implements IView, MyToolBar.IToolBarClickListner, RefreshLayout.IRefreshListener {
 
     private MessageAdapter messageAdapter;
     private RecyclerView findRecycler;
+    private RefreshLayout refreshLayout;
 
     @Override
     protected int layoutId() {
@@ -37,6 +39,33 @@ public class FindFragment extends BaseFragment<BasePresenter, IView> implements 
         findRecycler.setLayoutManager(new LinearLayoutManager(getContext()));
         messageAdapter = new MessageAdapter();
         findRecycler.setAdapter(messageAdapter);
+        refreshLayout = findViewById(R.id.refreshLayout);
+        refreshLayout.addRefreshListener(this);
+        initRecyclerView();
+    }
+
+    private void initRecyclerView() {
+        refeshData(3);
+    }
+
+    private void refeshData(int type) {
+        if (type == 1) {
+            MessageManager.getInstance().queryMessage(new MessageManager.IMessageListener() {
+                @Override
+                public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {
+                    messageAdapter.updateData(messageBeanList);
+                }
+            });
+        } else if (type == 2) {
+            MessageManager.getInstance().queryMessage(new MessageManager.IMessageListener() {
+                @Override
+                public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {
+                    messageAdapter.updateData(messageBeanList);
+                }
+            });
+        } else {
+
+        }
     }
 
     @Override
@@ -90,6 +119,21 @@ public class FindFragment extends BaseFragment<BasePresenter, IView> implements 
 
     @Override
     public void showEmpty() {
+
+    }
+
+    @Override
+    public void onRefresh() {
+        refeshData(0);
+    }
+
+    @Override
+    public void onLoadMore() {
+        refeshData(1);
+    }
+
+    @Override
+    public void onRefreshComplete() {
 
     }
 }

@@ -5,7 +5,6 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,7 +43,6 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
     private TextView tvPrice;
     private TextView tvBottomPrice;
     private Button btBuy;
-    private RelativeLayout llGoodsRoot;
 
     private OderGoodsAdapter adapter;
 
@@ -64,7 +62,6 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
         tvPrice = (TextView) findViewById(R.id.tv_price);
         tvBottomPrice = (TextView) findViewById(R.id.tv_bottom_price);
         btBuy = (Button) findViewById(R.id.bt_buy);
-        llGoodsRoot = (RelativeLayout) findViewById(R.id.ll_goods_root);
 
         btBuy.setOnClickListener(this);
 
@@ -124,7 +121,7 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
 
     @Override
     public void onConfirmServerPayResult(String result) {
-        Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, result, Toast.LENGTH_SHORT).show();
     }
 
     @SuppressLint("HandlerLeak")
@@ -189,9 +186,5 @@ public class OrderActivity extends BaseActivity<OrderContactImpl, OrderContact.I
     @Override
     public void showEmpty() {
 
-    }
-
-    @Override
-    protected void destroy() {
     }
 }
