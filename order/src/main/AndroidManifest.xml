@@ -3,7 +3,8 @@
     package="com.shopmall.bawei.order">
 
     <application>
-        <activity android:name=".ui.activity.OrderPayActivity"></activity>
+        <activity android:name=".ui.activity.WaitdeliverActivity"></activity>
+        <activity android:name=".ui.activity.OrderPayActivity" />
         <activity android:name=".ui.activity.OrderActivity" />
     </application>
 

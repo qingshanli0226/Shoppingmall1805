@@ -140,6 +140,8 @@ public class Constants {
     public static final String CONFIRMSERVERPAYRESULT="confirmServerPayResult";
     //查找待支付的订单
     public static final String FINDFORPAY="findForPay";
+    //查找待发货的订单
+    public static final String FINDFORSEND="findForSend";
 
 
 }

@@ -3,7 +3,6 @@ package com.shopmall.bawei.framework.mvptest.repository;
 import com.shopmall.bawei.framework.callback.IShopcar;
 import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.model.ShopcarModel;
-import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
@@ -73,12 +72,17 @@ public class ShopcarRepository extends Constant.ShopcarConstartRepository {
     }
     // 请求服务端，是否支付成功
     @Override
-    public void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean, IShopcar iShopcar) {
-       mModel.confirmServerPayResult(url,isShop,orderBean,iShopcar);
+    public void confirmServerPayResult(String url,boolean isShop, String OutTradeNo,String OrderInfo, IShopcar iShopcar) {
+       mModel.confirmServerPayResult(url,isShop,OutTradeNo,OrderInfo,iShopcar);
     }
 
     @Override
     public void findForPay(String url, IShopcar iShopcar) {
         mModel.findForPay(url,iShopcar);
+    }
+    //查找待发货的订单
+    @Override
+    public void findForsend(String url, IShopcar iShopcar) {
+       mModel.findForsend(url,iShopcar);
     }
 }

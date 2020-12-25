@@ -31,6 +31,12 @@ public class TagFragmentSort extends BaseFragment<TagPresenter> implements Const
     }
 
     @Override
+    public void connected() {
+        super.connected();
+        mPresenter.Tag(Constants.TAG_URL2,logingPage);
+    }
+
+    @Override
     protected void createData() {
 
         mPresenter.Tag(Constants.TAG_URL2,logingPage);

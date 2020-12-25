@@ -2,6 +2,7 @@ package com.shopmall.bawei.shopmall1805.ui.activity;
 
 import android.content.Intent;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.FrameLayout;
 

@@ -53,6 +53,12 @@ public class ClassFragmentSort extends BaseFragment<SortPresenter> implements Co
     }
 
     @Override
+    public void connected() {
+        super.connected();
+        mPresenter.Sort(Constants.SKIRT_URL2,logingPage);
+    }
+
+    @Override
     protected void createEnvent() {
         mPresenter.Sort(Constants.SKIRT_URL2,logingPage);
         listviewSort.setOnItemClickListener(new AdapterView.OnItemClickListener() {

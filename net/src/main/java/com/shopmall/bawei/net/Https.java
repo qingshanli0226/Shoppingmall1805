@@ -132,5 +132,10 @@ public interface Https {
      */
     @GET
     Observable<OrderPaybean> getfindForPay(@Url String url);
+    /**
+     * 查找待发货的订单
+     */
+    @GET
+    Observable<OrderPaybean> getfindForSend(@Url String url);
 
 }

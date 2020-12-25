@@ -11,6 +11,10 @@ import android.view.ViewGroup;
 import com.shopmall.bawei.framework.logingpage.LogingPage;
 import com.shopmall.bawei.framework.mvp.Presenter;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 public abstract class BaseFragment<P extends Presenter> extends Fragment {
 
          protected P mPresenter;
@@ -19,6 +23,7 @@ public abstract class BaseFragment<P extends Presenter> extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         createPresenter();
+        EventBus.getDefault().register(this);
     }
 
 
@@ -75,5 +80,28 @@ public abstract class BaseFragment<P extends Presenter> extends Fragment {
      */
     protected abstract void createPresenter();
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void getconnect(Boolean connect){
+         if (connect){
+             connected();
+         }else {
+             disconnect();
+         }
+    }
+    //未连接
+    public void connected() {
+        logingPage.showsucessPage();
 
+    }
+     //已连接
+    public void disconnect() {
+        logingPage.showError("网络未连接");
+    }
+
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        EventBus.getDefault().unregister(this);
+    }
 }

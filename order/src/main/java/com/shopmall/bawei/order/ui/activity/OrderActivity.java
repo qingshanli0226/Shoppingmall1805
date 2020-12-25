@@ -143,7 +143,8 @@ public class OrderActivity extends BaseActivity<ShopcarPresenter> implements Con
             alert.setPositiveButton("确定", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
-                    RestName.orderBean=orderBean;
+                    RestName.OrderInfo=orderBean.getResult().getOrderInfo();//订单
+                    RestName.OutTradeNo=orderBean.getResult().getOutTradeNo();//单号
                     ARouter.getInstance().build("/pay/PayMainActivity").navigation();
                     finish();
                 }

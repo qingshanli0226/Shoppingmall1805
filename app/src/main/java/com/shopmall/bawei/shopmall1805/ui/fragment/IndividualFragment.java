@@ -16,6 +16,7 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
     private TextView usersMy;
     private TextView fahuoMy;
     private TextView individualPay;
+    private TextView individualWaitdeliver;
 
     @Override
     protected void createViewid(View inflate) {
@@ -26,6 +27,8 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
         fahuoMy = inflate.findViewById(R.id.fahuo_my);
 
         individualPay = inflate.findViewById(R.id.individual_pay);
+
+        individualWaitdeliver = inflate.findViewById(R.id.individual_waitdeliver);
 
         usersMy = inflate.findViewById(R.id.users_my);
         ShopUserManager.getInstance().RegistUserLogin(this);
@@ -43,14 +46,37 @@ public class IndividualFragment extends BaseFragment implements ShopUserManager.
         fahuoMy.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build("/user/InfoMainActivity").navigation();
+
+                if (ShopUserManager.getInstance().getUserName()!=null){
+                    ARouter.getInstance().build("/user/InfoMainActivity").navigation();
+                }else {
+                    ARouter.getInstance().build("/user/UserMainActivity").navigation();
+                }
+
             }
         });
 
         individualPay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ARouter.getInstance().build("/order/OrderPayActivity").navigation();
+
+                if (ShopUserManager.getInstance().getUserName()!=null){
+                    ARouter.getInstance().build("/order/OrderPayActivity").navigation();
+                }else {
+                    ARouter.getInstance().build("/user/UserMainActivity").navigation();
+                }
+            }
+        });
+        //点击跳转待发货页面
+        individualWaitdeliver.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                if (ShopUserManager.getInstance().getUserName()!=null){
+                    ARouter.getInstance().build("/order/WaitdeliverActivity").navigation();
+                }else {
+                    ARouter.getInstance().build("/user/UserMainActivity").navigation();
+                }
             }
         });
     }

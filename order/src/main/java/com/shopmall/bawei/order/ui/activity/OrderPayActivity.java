@@ -4,16 +4,20 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
 import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseActivity;
+import com.shopmall.bawei.framework.callback.Iorderpayitemlistener;
 import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.mvptest.presenter.ShopcarPresenter;
 import com.shopmall.bawei.order.R;
 import com.shopmall.bawei.order.adapter.OrderPayAdapter;
 import com.shopmall.bean.OrderPaybean;
+import com.shopmall.restname.RestName;
+
 @Route(path = "/order/OrderPayActivity")
 public class OrderPayActivity extends BaseActivity<ShopcarPresenter> implements Constant.ShopcarConstartView {
 
@@ -34,6 +38,18 @@ public class OrderPayActivity extends BaseActivity<ShopcarPresenter> implements 
                 finish();
             }
         });
+        //回调点击事件
+        orderPayAdapter.setIorderpayitemlistener(new Iorderpayitemlistener() {
+            @Override
+            public void orderpayitem(OrderPaybean.ResultBean order, String money, int postion) {
+                Toast.makeText(OrderPayActivity.this, ""+money, Toast.LENGTH_SHORT).show();
+                RestName.money=money;
+                RestName.OutTradeNo=order.getTradeNo();
+                RestName.OrderInfo=order.getOrderInfo();
+                ARouter.getInstance().build("/pay/PayMainActivity").navigation();
+                finish();
+            }
+        });
     }
 
     @Override
@@ -44,6 +60,8 @@ public class OrderPayActivity extends BaseActivity<ShopcarPresenter> implements 
         orderpayRecycle = findViewById(R.id.orderpay_recycle);
 
         orderpayRecycle.setLayoutManager(new LinearLayoutManager(this));
+
+
 
     }
 
@@ -67,6 +85,6 @@ public class OrderPayActivity extends BaseActivity<ShopcarPresenter> implements 
 
     @Override
     public void Error(String s) {
-
+        Toast.makeText(this, ""+s, Toast.LENGTH_SHORT).show();
     }
 }

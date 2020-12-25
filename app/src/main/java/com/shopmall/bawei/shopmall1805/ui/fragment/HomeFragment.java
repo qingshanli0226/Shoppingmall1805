@@ -11,6 +11,7 @@ import com.shopmall.bawei.common.Constants;
 import com.shopmall.bawei.framework.base.BaseFragment;
 import com.shopmall.bawei.framework.constart.Constant;
 import com.shopmall.bawei.framework.manager.GreendaoManager;
+import com.shopmall.bawei.framework.manager.NetConnectManager;
 import com.shopmall.bawei.framework.mvptest.presenter.HomePresenter;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.homeadapter.PrimereAdpter;
@@ -26,7 +27,16 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Constan
 
     @Override
     protected void createViewid(View inflate) {
-
+//        DisplayMetrics metrics=new DisplayMetrics();
+//        getActivity().getWindowManager().getDefaultDisplay().getMetrics(metrics);
+//        int screenHeight=metrics.heightPixels;//屏幕高度像素
+//        int screenWidth=metrics.widthPixels;//屏幕宽度像素
+//        //density = densityDpi / 160
+//        float density=metrics.density;// "屏幕密度"（0.75 / 1.0 / 1.5）
+//        int densityDpi = metrics.densityDpi;// 屏幕密度dpi（120 / 160 / 240）每一英寸的屏幕所包含的像素数.值越高的设备，其屏幕显示画面的效果也就越精细
+//        // 屏幕宽度算法:屏幕宽度（像素）/"屏幕密度"   px = dp * (dpi / 160)
+//        int height = (int) (screenHeight / density);//屏幕高度dp
+//        Log.e("he","高度"+height+"密度"+densityDpi+"宽度"+screenWidth);
 
 
         homeTishi = inflate.findViewById(R.id.home_tishi);
@@ -34,6 +44,12 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Constan
         recycleHome = inflate.findViewById(R.id.recycleHome);
         honeMessage = inflate.findViewById(R.id.hone_message);
 
+        boolean getisconnect = NetConnectManager.getInstance().getisconnect();
+        if (getisconnect){
+            logingPage.showsucessPage();
+        }else {
+            logingPage.showError("网络未连接");
+        }
 
     }
 
@@ -155,6 +171,15 @@ public class HomeFragment extends BaseFragment<HomePresenter> implements Constan
 //        });
 
     }
+
+    @Override
+    public void connected() {
+        super.connected();
+        mPresenter.homec(Constants.HOME_URL2,logingPage);
+    }
+
+
+
 
     @Override
     public void onDestroy() {

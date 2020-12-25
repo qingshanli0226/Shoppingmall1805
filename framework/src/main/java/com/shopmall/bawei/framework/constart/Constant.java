@@ -12,7 +12,6 @@ import com.shopmall.bawei.framework.mvp.IModel;
 import com.shopmall.bawei.framework.mvp.Iview;
 import com.shopmall.bawei.framework.mvp.Presenter;
 import com.shopmall.bawei.framework.mvp.Repository;
-import com.shopmall.bean.OrderBean;
 import com.shopmall.bean.ShopcarBean;
 
 import org.json.JSONObject;
@@ -142,9 +141,11 @@ public interface Constant {
         // 从服务端购物车删除多个产品
         void orderremoveManyProduct(String url,IShopcar iShopcar);
         // 请求服务端，是否支付成功
-        void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean,IShopcar iShopcar);
+        void confirmServerPayResult(String url,boolean isShop,String OutTradeNo,String OrderInfo,IShopcar iShopcar);
         // 查找待支付的订单
         void findForPay(String url,IShopcar iShopcar);
+        // 查找待发货的订单
+        void findForsend(String url,IShopcar iShopcar);
     }
 
 
@@ -215,9 +216,11 @@ public interface Constant {
         // 从服务端购物车删除多个产品
         public abstract void orderremoveManyProduct(String url,IShopcar iShopcar);
         // 请求服务端，是否支付成功
-       public abstract void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean,IShopcar iShopcar);
+       public abstract void confirmServerPayResult(String url,boolean isShop, String OutTradeNo,String OrderInfo,IShopcar iShopcar);
         // 查找待支付的订单
         public abstract void findForPay(String url, IShopcar iShopcar);
+        // 查找待发货的订单
+        public abstract void findForsend(String url,IShopcar iShopcar);
     }
 
 
@@ -323,9 +326,11 @@ public interface Constant {
         // 从服务端购物车删除多个产品
         public abstract void orderremoveManyProduct(String url);
         // 请求服务端，是否支付成功
-        public abstract void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean);
+        public abstract void confirmServerPayResult(String url,boolean isShop, String OutTradeNo,String OrderInfo);
         // 查找待支付的订单
         public abstract void findForPay(String url);
+        // 查找待发货的订单
+        public abstract void findForsend(String url);
     }
 
 

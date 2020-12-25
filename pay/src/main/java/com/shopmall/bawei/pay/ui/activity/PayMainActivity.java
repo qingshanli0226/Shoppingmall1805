@@ -85,11 +85,11 @@ public class PayMainActivity extends BaseActivity<ShopcarPresenter> implements C
                     if (TextUtils.equals(resultStatus, "9000")) {
                         // 该笔订单是否真实支付成功，需要依赖服务端的异步通知。
                         showAlert(PayMainActivity.this, getString(R.string.pay_success) + payResult);
-                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,true,orderBean);
+                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,true,RestName.OutTradeNo,RestName.OrderInfo);
                     } else {
                         // 该笔订单真实的支付结果，需要依赖服务端的异步通知。
 
-                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,false,orderBean);
+                        mPresenter.confirmServerPayResult(Constants.CONFIRMSERVERPAYRESULT,false,RestName.OutTradeNo,RestName.OrderInfo);
                     }
                     break;
                 }
@@ -134,9 +134,8 @@ public class PayMainActivity extends BaseActivity<ShopcarPresenter> implements C
 
     @Override
     protected void initData() {
-        orderBean=RestName.orderBean;
         OrderInfoUtil2_0.setMoney(RestName.money);
-       Log.e("log", RestName.orderBean.getResult().getOutTradeNo());
+       Log.e("log", RestName.OutTradeNo+"   订单"+RestName.OrderInfo);
         payV2();
     }
 

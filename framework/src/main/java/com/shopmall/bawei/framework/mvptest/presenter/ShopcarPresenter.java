@@ -266,8 +266,8 @@ public class ShopcarPresenter extends Constant.ShopcarConstartPresenter {
     }
     // 请求服务端，是否支付成功
     @Override
-    public void confirmServerPayResult(String url, final boolean isShop, OrderBean orderBean) {
-        mRepository.confirmServerPayResult(url,isShop, orderBean, new IShopcar() {
+    public void confirmServerPayResult(String url, final boolean isShop,String OutTradeNo,String OrderInfo) {
+        mRepository.confirmServerPayResult(url,isShop, OutTradeNo,OrderInfo, new IShopcar() {
             @Override
             public void onSucess(Object... objects) {
                   if (objects!=null){
@@ -306,6 +306,25 @@ public class ShopcarPresenter extends Constant.ShopcarConstartPresenter {
                 }
            }
        });
+    }
+    //查找待发货的订单
+    @Override
+    public void findForsend(String url) {
+        mRepository.findForsend(url, new IShopcar() {
+            @Override
+            public void onSucess(Object... objects) {
+                   if (objects!=null){
+                       mView.get().Success(objects);
+                   }
+            }
+
+            @Override
+            public void onError(String mag) {
+                if (mag!=null){
+                    mView.get().Error(mag);
+                }
+            }
+        });
     }
 
 

@@ -464,11 +464,11 @@ public class ShopcarModel implements Constant.ShopcarConstartModel {
     }
     // 请求服务端，是否支付成功
     @Override
-    public void confirmServerPayResult(String url,boolean isShop, OrderBean orderBean, final IShopcar iShopcar) {
+    public void confirmServerPayResult(String url,boolean isShop, String OutTradeNo,String OrderInfo , final IShopcar iShopcar) {
            JSONObject jsonObject=new JSONObject();
         try {
-            jsonObject.put("outTradeNo",orderBean.getResult().getOutTradeNo());
-            jsonObject.put("result",orderBean.getResult().getOrderInfo());
+            jsonObject.put("outTradeNo",OutTradeNo);
+            jsonObject.put("result",OrderInfo);
             jsonObject.put("clientPayResult",isShop);
         } catch (JSONException e) {
             e.printStackTrace();
@@ -529,5 +529,34 @@ public class ShopcarModel implements Constant.ShopcarConstartModel {
 
                       }
                   });
+    }
+   //查找待发货的订单
+    @Override
+    public void findForsend(String url, final IShopcar iShopcar) {
+           HttpsFactory.getHttpsFactory().getinstance(Https.class)
+                     .getfindForSend(url)
+                     .subscribeOn(Schedulers.io())
+                     .observeOn(AndroidSchedulers.mainThread())
+                     .subscribe(new Observer<OrderPaybean>() {
+                         @Override
+                         public void onSubscribe(Disposable d) {
+
+                         }
+
+                         @Override
+                         public void onNext(OrderPaybean orderPaybean) {
+                                iShopcar.onSucess(orderPaybean);
+                         }
+
+                         @Override
+                         public void onError(Throwable e) {
+                               iShopcar.onError(e.getMessage());
+                         }
+
+                         @Override
+                         public void onComplete() {
+
+                         }
+                     });
     }
 }
