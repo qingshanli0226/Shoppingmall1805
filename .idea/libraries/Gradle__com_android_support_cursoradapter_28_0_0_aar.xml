@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:cursoradapter:28.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/a438a2fb91eca90211df8a870316c045/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/a438a2fb91eca90211df8a870316c045/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/cursoradapter-28.0.0.aar/a438a2fb91eca90211df8a870316c045/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/c715789798697e1933e42a851909f239/cursoradapter-28.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/c715789798697e1933e42a851909f239/cursoradapter-28.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/c715789798697e1933e42a851909f239/cursoradapter-28.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

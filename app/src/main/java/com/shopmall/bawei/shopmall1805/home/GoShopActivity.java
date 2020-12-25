@@ -69,7 +69,6 @@ class GoShopActivity extends BaseActivity<JsonPresenter> implements View.OnClick
         Glide.with(GoShopActivity.this).load(Constants.BASE_URl_IMAGE+shopcarBean.getUrl()).into(imiageGoShop);
         tliteGoshop.setText(shopcarBean.getProductName()+"");
         priceShop.setText(shopcarBean.getProductPrice()+"");
-       // CacheManager.getInstance().setShopcarDataChangeListener(this);
         CacheManagerc.getInstance().setiShopcarDataChangeListener(this);
     }
 
@@ -126,17 +125,13 @@ class GoShopActivity extends BaseActivity<JsonPresenter> implements View.OnClick
         startPoint[0] = picWebviewPoint[0]+400;
         startPoint[1] = picWebviewPoint[1];
 
-        Log.i("====","起始坐标是-->>"+startPoint[1]+"===="+startPoint[0]);
-
         int[] shopcarImgPoint  = new int[2];
         shopcarGoShop.getLocationInWindow(shopcarImgPoint);
         endPoint[0] = picWebviewPoint[0]+150;
         endPoint[1] = picWebviewPoint[1]-100;
-        Log.i("====","终点坐标-->>"+endPoint[1]+"===="+endPoint[0]);
 
         controlPoint[0] = startPoint[0]-300;
         controlPoint[1] = startPoint[1]+100;
-        Log.i("====","控制点坐标-->>"+controlPoint[1]+"===="+controlPoint[0]);
 
         final ImageView imageView = new ImageView(this);
         RelativeLayout.LayoutParams animLayoutParams  = new RelativeLayout.LayoutParams(100,100);
@@ -165,7 +160,6 @@ class GoShopActivity extends BaseActivity<JsonPresenter> implements View.OnClick
                 imageView.setTranslationY(nextPosition[1]);
 
                 if (value>=pathMeasure.getLength()){
-                    Log.i("====","userBean1555"+shopcarBean.getProductName()+"价格"+shopcarBean.getProductPrice()+"ID"+shopcarBean.getProductId());
                     boolean isFrist = CacheManagerc.getInstance().updateProductNum(shopcarBean.getProductId(), String.valueOf(shopcarBean.getProductNum()));
                     //判断是否是第一次添加 如果是true  则不是  如果是false 则是第一次添加
                     if (!isFrist){

@@ -1,18 +1,17 @@
-package cn.bw.textprojectone;
+package com.shopmall.bawei.order.adaper;
 
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
+import com.shopmall.bawei.order.R;
 
 import java.util.List;
 
-class MessageAdaper extends BaseAdapter {
+public class MessageAdaper extends BaseAdapter {
     private Context context;
     private List<String> list;
     private LayoutInflater layoutInflater;

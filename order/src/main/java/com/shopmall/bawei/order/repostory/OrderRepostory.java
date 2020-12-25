@@ -3,6 +3,7 @@ package com.shopmall.bawei.order.repostory;
 import com.shopmall.bawei.order.model.OrderModel;
 
 import framework.Contact;
+import framework.IOrderData;
 
 public
 class OrderRepostory extends Contact.CenterOrderReposotry {
@@ -21,5 +22,10 @@ class OrderRepostory extends Contact.CenterOrderReposotry {
     @Override
     public void goBindingPoint(String Url) {
         model.goBindingPoint(Url);
+    }
+
+    @Override
+    public void goUnpaidOrder(IOrderData iOrderData) {
+         model.goUnpaidOrder(iOrderData);
     }
 }

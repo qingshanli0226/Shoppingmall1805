@@ -1,5 +1,7 @@
 package com.shopmall.bawei.order;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,6 +28,7 @@ class IPassBack {
        }
     }
     public void addData(BaseBean baseBean){
+        Log.i("pppp","basebean"+baseBean.toString());
         this.baseBean = baseBean;
     }
     public void Updata(){

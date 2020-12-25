@@ -25,6 +25,7 @@ import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
 import view.ShopmallConstant;
+import view.SkipFinalUlis;
 import view.ToolBar;
 import view.adaper.ShopAdaper;
 import view.contract.ShopcarContractc;
@@ -42,7 +43,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
     private ShopcarPresenterImplc shopcarPresenterImplc;
     private ShopAdaper shopAdaper;
 
-    private boolean isEditMode = true; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
+    private boolean isEditMode = false; //该标记位，当为true时，该页面为编辑模式，可以删除列表的商品时速局。当为false时，当前页面为正常模式，可以支付
     private RelativeLayout normalLayout;//正常模式下的底部布局
     private RelativeLayout editLayout;//编辑模式下的底部布局
     private CheckBox editAllSelectCheckBox;
@@ -55,7 +56,6 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
         @Override
         public void onOneDataChanged(final int position, ShopcarBean shopcarBean) {
-            Log.i("cccc","shopbean///"+shopcarBean.toString());
             if (shopcarRv.isComputingLayout()){
                 shopcarRv.post(new Runnable() {
                     @Override
@@ -108,7 +108,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
         //监听数据 去刷新UI
         CacheManagerc.getInstance().setiShopcarDataChangeListener(iShopcarDataChangeListener);
-        if (!CacheManagerc.getInstance().isAllSelected()){
+        if (CacheManagerc.getInstance().isAllSelected()){
             allSelectCheckBox.setChecked(true);//是否全选 true
         }else {
             allSelectCheckBox.setChecked(false);//是否全选 false
@@ -156,8 +156,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
         }else if (v.getId()==R.id.payBtn){
                 Toast.makeText(getContext(), "支付", Toast.LENGTH_SHORT).show();
-                ARouter.getInstance().build("/pay/PayActivity").navigation();
-
+                shopcarPresenterImplc.checkInventory(CacheManagerc.getInstance().getShopcarBeansList());
         }
     }
 
@@ -184,13 +183,13 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
    @Override
     public void onDeleteProducts(String result) {
-        Toast.makeText(getContext(), "删除购物车数据成功", Toast.LENGTH_SHORT).show();
         //在换粗中，将删除列表中的商品在购物车上删掉
         CacheManagerc.getInstance().processDeleteProducts();
     }
 
    @Override
     public void onInventory(List<InventoryBean> inventoryBean) {
+        //如果判断回来的订单充足，那么我就下订单
         if (checkInventoryIsEnough(inventoryBean)){
             shopcarPresenterImplc.getOrderInfo(CacheManagerc.getInstance()
             .getSelectedPreduceBeanList());
@@ -217,20 +216,8 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
     @Override
     public void onOrderInfo(OrderInfoBean orderInfoBean) {
-        //f服务端已经成功下单 使用支付宝完成支付功能
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                    Toast.makeText(getContext(), "可以支付", Toast.LENGTH_SHORT).show();
-
-            }
-        };
-
-        Thread thread = new Thread(runnable);
-        thread.start();
-
+        ARouter.getInstance().build(SkipFinalUlis.PAY_ACTIVITY).withString("orderInfo",orderInfoBean.getOrderInfo()).navigation();
     }
-
     //初始化控件
     private void initiAlize() {
         shopcarRv = (RecyclerView) findViewById(R.id.shopCarRv);//！！
@@ -252,8 +239,7 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
 
     //Toobar 的左边点击方法右边点击方法
     @Override
-    public void onLeftClick() {
-    }
+    public void onLeftClick() {}
 
     @Override
     public void onRightClick() {
@@ -283,7 +269,6 @@ class FragmentShopcar extends BaseFragment<JsonPresenter> implements ToolBar.ITo
     //页面完善
     @Override
     public void showLoaDing() {
-        //showLodingC();
     }
 
     @Override

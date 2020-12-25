@@ -10,36 +10,58 @@
         android:id="@+id/tooBar"
         android:layout_width="match_parent"
         android:layout_height="@dimen/Pcom_public_heightfour"
-        app:title_text="支付页面"/>
+        app:title_text="支付页面" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:orientation="vertical"
-        android:layout_weight="2">
+        android:layout_weight="2.5">
         <TextView
             android:id="@+id/payText"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
             android:layout_weight="1"
-            android:gravity="center"
             android:textSize="@dimen/Pcom_public_textminsize"
             android:text="地址:山西省长治市沁县XXXXXXX"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
             android:textSize="@dimen/Pcom_public_textminsize"
             android:text="订单编号:1565135134846464645651515"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
+            android:textSize="@dimen/Pcom_public_textminsize"
+            android:text="用户名：XXXX"/>
+        <TextView
+            android:id="@+id/textUserPhone"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
+            android:textSize="@dimen/Pcom_public_textminsize"
+            android:text="手机号："/>
+        <TextView
+            android:id="@+id/textUserAddress"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
+            android:textSize="@dimen/Pcom_public_textminsize"
+            android:text="地址："/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:layout_marginLeft="@dimen/Pcom_public_heightfour"
             android:textSize="@dimen/Pcom_public_textmaxsize"
             android:textColor="#C12E2E"
             android:text="名字：顺丰快递"/>
-
     </LinearLayout>
     <RelativeLayout
         android:layout_width="match_parent"

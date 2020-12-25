@@ -1,37 +1,55 @@
-package cn.bw.textprojectone;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.shopmall.bawei.order.mview;
 
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.MotionEvent;
-import android.view.View;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
+
+
+import com.alibaba.android.arouter.facade.annotation.Route;
+import com.shopmall.bawei.order.R;
+import com.shopmall.bawei.order.adaper.MessageAdaper;
 
 import java.util.ArrayList;
 
-public class MainActivity2 extends AppCompatActivity implements RefreshLayout2.IRefreshListener {
-    private RefreshLayout2 refreshLayout;
+import framework.BaseActivity;
+import view.SkipFinalUlis;
+import view.loadinPage.ErrorBean;
+
+@Route(path = SkipFinalUlis.REFRESH_ACTIVITY)
+public class MainActivity2 extends BaseActivity implements RefreshLayout.IRefreshListener {
+    private RefreshLayout refreshLayout;
     private ListView listView;
     private MessageAdaper messageAdaper ;
     private ArrayList<String> arrayList = new ArrayList<>();
     private int count = 0;
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_refresh);
+    protected void createPresenter() {
 
+    }
 
-        refreshLayout = (RefreshLayout2) findViewById(R.id.refreshLayout);
+    @Override
+    protected void OnClickListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+        refreshLayout = (RefreshLayout) findViewById(R.id.refreshLayout);
         listView = (ListView) findViewById(R.id.listView);
-
-        refreshLayout.addRefreshListener(this);
+        tooBar = findViewById(R.id.tooBar);
+        refreshLayout.AddRefreshListener(this);
 
         messageAdaper = new MessageAdaper(this,arrayList);
         listView.setAdapter(messageAdaper);
         refreshData(0);
+    }
+
+    @Override
+    protected int getlayoutId() {
+        return R.layout.activity_refresh;
     }
 
     @Override
@@ -63,9 +81,33 @@ public class MainActivity2 extends AppCompatActivity implements RefreshLayout2.I
     }
 
     @Override
-    public void onRefreshComplete() {
+    public void onRefreshComPlete() {
 
     }
 
 
+    @Override
+    public void showLoaDing() {
+
+    }
+
+    @Override
+    public void hideLoading(boolean isSuccess, ErrorBean errorBean) {
+
+    }
+
+    @Override
+    public void showEmpty() {
+
+    }
+
+    @Override
+    public void onLeftClick() {
+
+    }
+
+    @Override
+    public void onRightClick() {
+
+    }
 }

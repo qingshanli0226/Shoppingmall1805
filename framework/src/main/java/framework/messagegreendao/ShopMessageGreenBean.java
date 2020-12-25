@@ -14,14 +14,14 @@ class ShopMessageGreenBean {
     String tlite;
     String body;
 
-    long time;
+    String time;
     boolean isRead;
 
     String reserveZiOne;
     String reserveZiTow;
-    @Generated(hash = 1942574036)
+    @Generated(hash = 1188294980)
     public ShopMessageGreenBean(Long id, int type, String tlite, String body,
-            long time, boolean isRead, String reserveZiOne, String reserveZiTow) {
+            String time, boolean isRead, String reserveZiOne, String reserveZiTow) {
         this.id = id;
         this.type = type;
         this.tlite = tlite;
@@ -58,10 +58,10 @@ class ShopMessageGreenBean {
     public void setBody(String body) {
         this.body = body;
     }
-    public long getTime() {
+    public String getTime() {
         return this.time;
     }
-    public void setTime(long time) {
+    public void setTime(String time) {
         this.time = time;
     }
     public boolean getIsRead() {
@@ -82,6 +82,6 @@ class ShopMessageGreenBean {
     public void setReserveZiTow(String reserveZiTow) {
         this.reserveZiTow = reserveZiTow;
     }
-
+   
     
 }

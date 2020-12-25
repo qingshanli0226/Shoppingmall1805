@@ -22,8 +22,8 @@ class PayAdper extends BaseQuickAdapter<ShopcarBean,BaseViewHolder> {
 
     @Override
     protected void convert(BaseViewHolder helper, ShopcarBean item) {
-        helper.setText(R.id.textPayone,item.getProductPrice());
-        helper.setText(R.id.textPayTow,item.getProductName());
+        helper.setText(R.id.textPayonec,item.getProductPrice());
+        helper.setText(R.id.textPayTowc,item.getProductName());
         Glide.with(mContext).load(Constants.BASE_URl_IMAGE+item.getUrl())
                 .into((ImageView)helper.getView(R.id.Image_pay));
     }

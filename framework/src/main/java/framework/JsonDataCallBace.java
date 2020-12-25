@@ -9,6 +9,7 @@ import mode.LableBean;
 import mode.LoginBean;
 import mode.RegisterBean;
 import mode.ShopcarBean;
+import view.loadinPage.UnpaidBean;
 
 public
 interface JsonDataCallBace {

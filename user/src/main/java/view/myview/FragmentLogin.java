@@ -1,7 +1,6 @@
-package view.fragment;
+package view.myview;
 
 
-import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -16,7 +15,7 @@ import view.ShopmallConstant;
 import view.SkipFinalUlis;
 import view.ToolBar;
 import view.UserActivity;
-import view.fragment.callbacklr.JsonDataCallBackLR;
+import view.myview.callbacklr.JsonDataCallBackLR;
 import view.loadinPage.ErrorBean;
 
 public

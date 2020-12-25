@@ -54,6 +54,7 @@ class CacheManagerc {
         return instace;
     }
     public List<ShopcarBean> getShopcarBeansList(){
+
         goShopBeansList.clear();
         for (ShopcarBean shopcarBean:shopcarBeansList){
             if (shopcarBean.getProductSelected()==true){
@@ -65,7 +66,7 @@ class CacheManagerc {
     public float getOrderMoney(){
         float money = 0f;
         float money1 = 0f;
-        for (ShopcarBean shopcarBean:shopcarBeansList){
+        for (ShopcarBean shopcarBean:goShopBeansList){
             if (shopcarBean.getProductPrice()!=null&&shopcarBean.getProductNum()!=null){
                 money = Float.parseFloat(shopcarBean.getProductPrice())*Float.parseFloat(shopcarBean.getProductNum());
                 money1 = money1+money;
@@ -92,7 +93,6 @@ class CacheManagerc {
 
                     @Override
                     public void onNext(BaseBean<List<ShopcarBean>> listBaseBean) {
-                        Log.i("====","购物车后台获取的数据"+listBaseBean);
                         shopcarBeansList.addAll(listBaseBean.getResult());
                         notifyShopcarDataChanged();
                     }
@@ -114,16 +114,15 @@ class CacheManagerc {
             listener.onDataChanged(shopcarBeansList);
         }
     }
+    //更新服务车数据是  如果添加同一商品须要做的是 在重复添加时  再一次请求数据  如果请求成功，及更新数据
     public void add(ShopcarBean shopcarBean){
-        for (ShopcarBean shopcarBeans:shopcarBeansList){
-            if (!shopcarBean.getProductName().equals(shopcarBeans.getProductName())){
-                shopcarBeansList.add(shopcarBean);
-            }
-        }
-        for (IShopcarDataChangeListener dataChangeListener :iShopcarDataChangeListenerList){
-            dataChangeListener.onDataChanged(shopcarBeansList);
+            shopcarBeansList.add(shopcarBean);
+            for (IShopcarDataChangeListener dataChangeListener :iShopcarDataChangeListenerList){
+                dataChangeListener.onDataChanged(shopcarBeansList);
+                Log.i("pppp","当前添加是"+shopcarBeansList.size());
 
-        }
+            }
+
     }
     public List<ShopcarBean> getShopcarBeanList(){
         return shopcarBeansList;
@@ -161,7 +160,6 @@ class CacheManagerc {
             if (shopcarBean.isProductSelected()) {
                 if (shopcarBean.getProductPrice()!=null&&shopcarBean.getProductNum()!=null){
                 float productPrice = Float.parseFloat(shopcarBean.getProductPrice());
-                Log.i("====","product"+productPrice);
                 int productNum = Integer.parseInt(shopcarBean.getProductNum());
                 totalPrice = totalPrice + productPrice*productNum;
             }
@@ -265,7 +263,6 @@ class CacheManagerc {
             iShopcarDataChangeListener.onMoneyChanged(getMoneyValue());
             iShopcarDataChangeListener.onAllSelected(isSelect);
             iShopcarDataChangeListener.onDataChanged(shopcarBeansList);
-            Log.i("pppp","打印此处数据"+shopcarBeansList.toString());
         }
     }
     public void addDeleteShopcarBean(ShopcarBean shopcarBean, int position) {

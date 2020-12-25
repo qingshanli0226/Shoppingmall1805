@@ -16,7 +16,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme.Fullquan"
         tools:replace="android:appComponentFactory">
-        <activity android:name=".home.GoShopActivity"></activity>
+        <activity android:name=".home.PayMessageActivity"></activity>
+        <activity android:name=".home.GoShopActivity" />
         <activity android:name=".WelcomActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +25,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".home.MainActivity"
-            android:launchMode="singleTask"></activity>
-        <service android:name=".service.AutomactionLoginService"/>
+        <activity
+            android:name=".home.MainActivity"
+            android:launchMode="singleTask" />
+
+        <service android:name=".service.AutomactionLoginService" />
     </application>
 
 </manifest>

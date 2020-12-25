@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.support:support-core-utils:28.0.0@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/681aa5da127ec451c7bcc127cc16239e/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/681aa5da127ec451c7bcc127cc16239e/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/support-core-utils-28.0.0.aar/681aa5da127ec451c7bcc127cc16239e/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/eca3adeb120026c508122a8492f7935d/support-core-utils-28.0.0/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/eca3adeb120026c508122a8492f7935d/support-core-utils-28.0.0/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/eca3adeb120026c508122a8492f7935d/support-core-utils-28.0.0/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

@@ -17,23 +17,26 @@
             android:orientation="horizontal"
             android:layout_marginLeft="30dp">
             <EditText
-                android:layout_width="320dp"
-                android:layout_height="40dp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/Pcom_public_heightfive"
+                android:layout_weight="1"
                 android:drawableLeft="@mipmap/home_search_icon"
                 android:background="@drawable/yuan"
                 android:layout_gravity="center"
                 android:hint="请输入"
                 ></EditText>
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.18"
                 android:orientation="vertical">
-                <ImageView
-                    android:layout_marginLeft="20dp"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:background="@mipmap/community_message_icon"/>
-
+                <TextView
+                    android:id="@+id/textMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textColor="#200303"
+                    android:gravity="center"
+                    android:textSize="@dimen/Pcom_public_textminsize"/>
             </LinearLayout>
         </LinearLayout>
     </android.support.v7.widget.Toolbar>

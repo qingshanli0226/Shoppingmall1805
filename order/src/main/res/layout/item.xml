@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="300dp">
+    android:layout_height="@dimen/Ocom_public_heightone">
     <TextView
         android:id="@+id/messageTextTlite"
         android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:textSize="22sp"
+        android:layout_height="@dimen/Ocom_public_heightthree"
+        android:textSize="@dimen/Ocom_public_textmediumsize"
         android:gravity="center_vertical"
-        android:layout_marginLeft="20dp"/>
+        android:layout_marginLeft="@dimen/OView_left_space"/>
 </LinearLayout>

@@ -2,6 +2,7 @@ package net;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.util.Log;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
@@ -60,7 +61,7 @@ class RxjavaRetortUlis {
                 .readTimeout(15, TimeUnit.SECONDS)
                 .connectTimeout(15, TimeUnit.SECONDS)
                 .addInterceptor(CreateTokenIntereptor())
-                .addInterceptor(createToken())
+               // .addInterceptor(createToken())
                 .build();
 
         return build;
@@ -72,9 +73,13 @@ class RxjavaRetortUlis {
         Interceptor interceptor = new Interceptor() {
             @Override
             public Response intercept(Chain chain) throws IOException {
+                String spToken = context.getSharedPreferences(ShopmallConstant.spName, context.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null);
+                Log.i("====","token//sp//"+spToken);
                 Request request = chain.request();
                 Request token = request.newBuilder()
-                        .addHeader("token", context.getSharedPreferences(ShopmallConstant.spName, context.MODE_PRIVATE).getString(ShopmallConstant.tokenName, null)).build();
+
+                        .addHeader("token",spToken)
+                        .build();
                 return chain.proceed(token);
             }
         };

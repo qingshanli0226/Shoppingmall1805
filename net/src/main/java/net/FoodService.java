@@ -23,6 +23,7 @@ import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
+import view.loadinPage.UnpaidBean;
 
 import static view.Constants.BASE_URL_JSON2;
 
@@ -116,8 +117,15 @@ interface FoodService {
     Observable<BaseBean<String>> addOneProduct(@Body RequestBody requestBody);
 
     @POST("/updatePhone")
-    Observable<BaseBean<String>> getUpdatePhone(@Body RequestBody requestBody);
+    Observable<BaseBean<String>> getUpdatePhone(@Query("phone") String phone);
 
     @POST("/updateAddress")
-    Observable<BaseBean<String>> getUpdateAddress(@Body RequestBody requestBody);
+    Observable<BaseBean<String>> getUpdateAddress(@Query("address") String phone);
+
+    @GET("findForPay")
+    Observable<UnpaidBean> getFindForPay();
+
+    @POST("logout")
+    Observable<BaseBean<String>> getLogout();
+
 }

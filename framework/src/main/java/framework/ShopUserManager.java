@@ -10,8 +10,7 @@ import view.ShopmallConstant;
 
 public class ShopUserManager {
 
-    private LoginBean loginBean;
-
+    private LoginBean.ResultBean loginBean;
     private static ShopUserManager instance;
 
     private Context context;
@@ -34,7 +33,17 @@ public class ShopUserManager {
         }
         return instance;
     }
-    public LoginBean getLoginBean(){
+    public void setPhone(String phone){
+        if (phone==null){
+            loginBean.setAddress(phone);
+        }
+    }
+    public void setAddress(String address){
+        if (address!=null){
+           loginBean.setAddress(address);
+        }
+    }
+    public LoginBean.ResultBean getLoginBean(){
         return loginBean;
     }
     public void init(Context context) {
@@ -44,11 +53,10 @@ public class ShopUserManager {
     }
 
     //该函数，将当前应用程序的登录状态由未登录改成已登录
-    public void saveLoginBean(LoginBean loginBean) {
+    public void saveLoginBean(LoginBean.ResultBean loginBean) {
         this.loginBean = loginBean;
         //使用sp存储token
-        Log.i("====","loginbean"+this.loginBean.getResult().toString());
-        editor.putString(ShopmallConstant.tokenName, loginBean.getResult().getToken());
+        editor.putString(ShopmallConstant.tokenName, loginBean.getToken());
         editor.commit();
     }
     //判断当前用户是否登录

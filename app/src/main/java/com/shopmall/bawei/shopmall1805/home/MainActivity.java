@@ -3,6 +3,7 @@ package com.shopmall.bawei.shopmall1805.home;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
@@ -24,19 +25,18 @@ import framework.CacheManagerc;
 import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
 import mode.ShopcarBean;
+import view.SkipFinalUlis;
 import view.sview.FragmentShopcar;
 import view.ShopmallConstant;
 import view.loadinPage.ErrorBean;
 
-@Route(path = "/main/MainActivity")
+@Route(path = SkipFinalUlis.MAIN_ACTIVITY)
 public class MainActivity extends BaseActivity<JsonPresenter> {
     private RadioGroup radioGroupMain;
     private RadioButton radioButtonShopcar;
 
     @Override
-    protected void createPresenter() {
-
-    }
+    protected void createPresenter() { }
 
     @Override
     protected void OnClickListener() {
@@ -95,16 +95,15 @@ public class MainActivity extends BaseActivity<JsonPresenter> {
                 .replace(R.id.fragmentViewLayout,new FragmentHomePage())
                 .commit();
         switchFragmentByIndex(getIntent());
-        //注册listener监听购物车公共数据是否发生改变,改变后，要去刷新购物车数量
-        initShopcarDataChangeListener();
+        CacheManagerc.getInstance().setiShopcarDataChangeListener(iShopcarDataChangeListener);
 
     }
-    //此监听为当获取到数据时，刷新按钮购物车的数据
     private CacheManagerc.IShopcarDataChangeListener  iShopcarDataChangeListener = new CacheManagerc.IShopcarDataChangeListener() {
         @Override
         public void onDataChanged(List<ShopcarBean> shopcarBeanList) {
+            Log.i("pppp","加入购物车返回尺寸"+shopcarBeanList.size());
             int count = shopcarBeanList.size();
-            radioButtonShopcar.setText("购物车:"+count);
+            radioButtonShopcar.setText("购物车"+count);
         }
 
         @Override
@@ -122,10 +121,6 @@ public class MainActivity extends BaseActivity<JsonPresenter> {
 
         }
     };
-
-    private void initShopcarDataChangeListener(){
-        CacheManagerc.getInstance().setiShopcarDataChangeListener(iShopcarDataChangeListener);
-    }
     @Override
     protected void onNewIntent(Intent intent) {
         super.onNewIntent(intent);
@@ -136,9 +131,7 @@ public class MainActivity extends BaseActivity<JsonPresenter> {
         int index = intent.getIntExtra("index", 0);
         setLog(">>",""+index);
         if (index == ShopmallConstant.BUTTON_LOGIN_INDEX1){
-            setLog(">>","进入购物车"+index);
         }else if (index == ShopmallConstant.BUTTON_LOGIN_INDEX2){
-            setLog(">>","进入首页"+index);
         }
     }
 
@@ -175,5 +168,6 @@ public class MainActivity extends BaseActivity<JsonPresenter> {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+
     }
 }

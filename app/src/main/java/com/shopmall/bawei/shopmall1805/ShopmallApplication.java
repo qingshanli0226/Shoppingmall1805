@@ -4,12 +4,12 @@ import android.app.Application;
 import android.content.Context;
 
 import com.alibaba.android.arouter.launcher.ARouter;
-import com.squareup.leakcanary.LeakCanary;
 
 import net.RxjavaRetortUlis;
 
 import framework.CacheManagerc;
 import framework.MessageMangerUlis;
+import framework.NetContentManager;
 import framework.ShopUserManager;
 
 
@@ -27,10 +27,11 @@ public class ShopmallApplication extends Application {
         ShopUserManager.getInstance().init(this);
         MessageMangerUlis.getInstance().init(this);
         RxjavaRetortUlis.getInstance().init(this);
-
+        NetContentManager.getInstance().init(this);
+/*
         if (!LeakCanary.isInAnalyzerProcess(this)){
             LeakCanary.install(this);
-        }
+        }*/
 
     }
 }

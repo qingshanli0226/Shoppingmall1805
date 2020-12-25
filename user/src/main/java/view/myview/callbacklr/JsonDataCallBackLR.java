@@ -1,4 +1,4 @@
-package view.fragment.callbacklr;
+package view.myview.callbacklr;
 
 import java.util.List;
 

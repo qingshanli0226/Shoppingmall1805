@@ -1,6 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<LinearLayout
+    android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
-
-</android.support.constraint.ConstraintLayout>
+    android:layout_height="@dimen/com_public_heightthree">
+    <TextView
+        android:id="@+id/payMessageTlite"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:textSize="@dimen/text_size_max"
+        android:layout_marginLeft="@dimen/OView_left_space"/>
+    <TextView
+        android:id="@+id/payMessageBody"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="0.5"
+        android:layout_marginLeft="@dimen/OView_left_space"
+        android:textSize="@dimen/text_size_min"/>
+</LinearLayout>

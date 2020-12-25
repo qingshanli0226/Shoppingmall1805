@@ -1,9 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".home.PayMessageActivity">
+    <view.ToolBar
+        android:id="@+id/tooBar"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        app:title_text="消息界面"
+        app:right_show_only_text="true"/>
 
-</android.support.constraint.ConstraintLayout>
+    <com.shopmall.bawei.shopmall1805.home.PullToRefreshView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+</LinearLayout>

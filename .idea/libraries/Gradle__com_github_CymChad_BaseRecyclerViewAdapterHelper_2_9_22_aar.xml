@@ -1,12 +1,12 @@
 <component name="libraryTable">
   <library name="Gradle: com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/415e1ffc3b7206d2e55a2055e068d1cc/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/6599c7186dbb1cafd02394ee212bb128/BaseRecyclerViewAdapterHelper-2.9.22/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/415e1ffc3b7206d2e55a2055e068d1cc/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/415e1ffc3b7206d2e55a2055e068d1cc/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/BaseRecyclerViewAdapterHelper-2.9.22.aar/415e1ffc3b7206d2e55a2055e068d1cc/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/6599c7186dbb1cafd02394ee212bb128/BaseRecyclerViewAdapterHelper-2.9.22/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/6599c7186dbb1cafd02394ee212bb128/BaseRecyclerViewAdapterHelper-2.9.22/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/6599c7186dbb1cafd02394ee212bb128/BaseRecyclerViewAdapterHelper-2.9.22/res" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/modules-2/files-2.1/com.github.CymChad/BaseRecyclerViewAdapterHelper/2.9.22/5eb4157033d255980f8214676877c8510fe7bf0e/BaseRecyclerViewAdapterHelper-2.9.22-javadoc.jar!/" />

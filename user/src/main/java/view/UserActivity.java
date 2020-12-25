@@ -3,8 +3,6 @@ package view;
 import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
-import android.util.Log;
-import android.view.View;
 
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.alibaba.android.arouter.launcher.ARouter;
@@ -14,10 +12,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import framework.BaseActivity;
-import framework.ShopUserManager;
 import framework.mvpc.JsonPresenter;
-import view.fragment.FragmentLogin;
-import view.fragment.FragmentRegister;
+import view.myview.FragmentLogin;
+import view.myview.FragmentRegister;
 import view.loadinPage.ErrorBean;
 
 @Route(path = "/usr/LoginRegisterActivity")

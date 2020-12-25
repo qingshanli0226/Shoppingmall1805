@@ -11,6 +11,7 @@ import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
 import retrofit2.http.Url;
+import view.loadinPage.UnpaidBean;
 
 public
 interface Contact {
@@ -70,17 +71,20 @@ interface Contact {
 
     //orderv层
     interface ICenterOrderIview extends Iview{
-
+        void onUnpaidSuccess(UnpaidBean unpaidBean);
+        void onError(String Error);
     }
     //orderm层
     interface ICenterOrderIModel extends Imodel{
         void goBindingPhone(String Url);
         void goBindingPoint(String Url);
+        void goUnpaidOrder(IOrderData iOrderData);
     }
     //order仓库层
     abstract  class CenterOrderReposotry extends Repository<ICenterOrderIModel>{
         public abstract  void goBindingPhone(String Url);
         public abstract  void goBindingPoint(String Url);
+        public abstract  void goUnpaidOrder(IOrderData iOrderData);
     }
     //orderP层
     abstract class CenterOrderPresenter extends Presenter<CenterOrderReposotry,ICenterOrderIview>{
@@ -91,33 +95,33 @@ interface Contact {
 
         public abstract  void goBindingPhone(String Url);
         public abstract  void goBindingPoint(String Url);
+        public abstract  void goUnpaidOrder();
+
     }
 
-
-    //Payv层
-    interface ICenterPayIview extends Iview{
-        void onSuccess(String success);
-        void onEerror(String Error);
+    //orderv层
+    interface ICenterUserIview extends Iview{
+        void onUnpaidSuccess();
+        void onError(String Error);
     }
-    //Paym层
-    interface ICenterPayIModel extends Imodel{
-        void getGoPayOrder(List<ShopcarBean> products);
-        void getCheckInventory(List<ShopcarBean> products);
+    //orderm层
+    interface ICenterUserIModel extends Imodel{
+        void onLogOut(IUserDataReturn iUserDataReturn);
     }
-    //Pay仓库层
-    abstract  class CenterPayReposotry extends Repository<ICenterPayIModel>{
-        public abstract void getGoPayOrder(List<ShopcarBean> products);
-        public abstract void getCheckInventory(List<ShopcarBean> products);
+    //order仓库层
+    abstract  class CenterUserReposotry extends Repository<ICenterUserIModel>{
+        public  abstract  void onLogOut(IUserDataReturn iUserDataReturn);
     }
     //orderP层
-    abstract class CenterPayPresenter extends Presenter<CenterPayReposotry,ICenterPayIview>{
+    abstract class CenterUserPresenter extends Presenter<CenterUserReposotry,ICenterUserIview>{
 
-        public CenterPayPresenter(ICenterPayIview iCenterPayIview) {
-            super(iCenterPayIview);
+        public CenterUserPresenter(ICenterUserIview iCenterUserIview) {
+            super(iCenterUserIview);
         }
-        public abstract void getGoPayOrder(List<ShopcarBean> products);
-        public abstract void getCheckInventory(List<ShopcarBean> products);
+        public  abstract  void onLogOut(IUserDataReturn iUserDataReturn);
+
     }
+
 
 
 }

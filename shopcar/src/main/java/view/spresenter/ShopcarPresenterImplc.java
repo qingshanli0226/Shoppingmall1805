@@ -240,8 +240,8 @@ class ShopcarPresenterImplc extends ShopcarContractc.ShopcarPresenter {
             JSONObject jsonObject = new JSONObject();
             try {
                 jsonObject.put("productId",shopcarBean.getProductId());
-                jsonObject.put("productNum",shopcarBean.getProductNum());
                 jsonObject.put("productName",shopcarBean.getProductName());
+                jsonObject.put("productNum",shopcarBean.getProductNum());
                 jsonObject.put("url",shopcarBean.getUrl());
                 jsonArray.put(jsonObject);
 

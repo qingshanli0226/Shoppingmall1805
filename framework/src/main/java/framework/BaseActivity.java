@@ -28,7 +28,6 @@ class BaseActivity<P extends Presenter> extends AppCompatActivity implements  Co
         tooBar.setToolBarClickListner(this);
         OnClickListener();
 
-
     }
 
     protected abstract void createPresenter();

@@ -53,7 +53,6 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
             initProDuctSeltctCheckBoxClickListener(produectSelectCheckBox,itemData,position);
             initAddDecClickListener(holder,itemData,position);
         }else {//编辑模式下
-            Log.i("pppp","编辑模式下"+itemData.toString());
             initEditModeCheckBoxClicklistener(produectSelectCheckBox,itemData,position);
             if (CacheManagerc.getInstance().checkIfDataInDeleteShopcarBeanList(itemData)){
 
@@ -83,10 +82,8 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
                 @Override
                 public void onClick(View v) {
                     //先获取之前产品的数量
-                    Toast.makeText(holder.itemView.getContext(), "+1", Toast.LENGTH_SHORT).show();
                     int oldNum = Integer.parseInt(itemData.getProductNum());
                     int newNum = oldNum+1;
-                    Log.i("cccc","正常模式吓得添加"+newNum);
                     shopcarPresenter.updateProductNum(itemData.getProductId(), String.valueOf(newNum), itemData.getProductName(), itemData.getUrl(),(String) itemData.getProductPrice(), position, String.valueOf(newNum));
                 }
             });
@@ -99,7 +96,6 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
                     Toast.makeText(holder.itemView.getContext(), "-1", Toast.LENGTH_SHORT).show();
                     if (oldNum>1){
                         int newNum = oldNum-1;
-                        Log.i("cccc","正常模式吓得减小"+newNum);
                         shopcarPresenter.updateProductNum(itemData.getProductId(), String.valueOf(newNum), itemData.getProductName(), itemData.getUrl(), (String) itemData.getProductPrice(),position, String.valueOf(newNum));
                     }
                 }
@@ -111,7 +107,6 @@ public class ShopAdaper extends BaseRvAdper<ShopcarBean> {
         produectSelectCheckBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(produectSelectCheckBox.getContext(), "111", Toast.LENGTH_SHORT).show();
                 if (isshow){
                     isshow =false;
                     shopcarPresenter.updateProductSelected(itemData.getProductId(),isshow,itemData.getProductName(),itemData.getUrl(),(String)itemData.getProductPrice(), position);

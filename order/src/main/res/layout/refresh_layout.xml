@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="200dp"
-    android:background="@android:color/holo_green_light">
+    android:background="#73CFF8">
 
     <TextView
         android:id="@+id/textTv"
@@ -12,8 +12,8 @@
         android:visibility="gone"/>
 
     <ProgressBar
-        android:layout_width="70dp"
-        android:layout_height="70dp"
+        android:layout_width="@dimen/Ocom_public_widthfour"
+        android:layout_height="@dimen/Ocom_public_heightfour"
         android:id="@+id/progressBar"
         android:layout_centerInParent="true"
         android:visibility="gone"/>

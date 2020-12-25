@@ -192,7 +192,6 @@ class JsonModel implements Contact.centerUserImodel {
 
     @Override
     public void addShcarshop(ShopcarBean shopcarBean) {
-        Log.i("====","添加的商品"+shopcarBean.toString());
         JSONObject jsonObject = new JSONObject();
         try {
             jsonObject.put("productId", shopcarBean.getProductId());
@@ -217,12 +216,12 @@ class JsonModel implements Contact.centerUserImodel {
 
                     @Override
                     public void onNext(BaseBean<String> stringBaseBean) {
-                        Log.i("====","返回的数据"+stringBaseBean.toString());
+                        Log.i("pppp","添加购物车"+stringBaseBean.getCode()+"返回"+stringBaseBean.getMessage());
                     }
 
                     @Override
                     public void onError(Throwable e) {
-
+                        Log.i("pppp","添加购物车失败"+e.getMessage());
                     }
 
                     @Override

@@ -1,9 +1,9 @@
 <component name="libraryTable">
   <library name="Gradle: com.youth.banner:banner:1.4.10@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/banner-1.4.10.aar/f850f45b7311148a0f6d98aaf661595b/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/banner-1.4.10.aar/f850f45b7311148a0f6d98aaf661595b/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-1/files-1.1/banner-1.4.10.aar/f850f45b7311148a0f6d98aaf661595b/res" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/8d0bfdaa8d5b9c2057f6e64fd5853fbf/banner-1.4.10/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/8d0bfdaa8d5b9c2057f6e64fd5853fbf/banner-1.4.10/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/wrapper/dists/gradle-6.1.1-all/caches/transforms-2/files-2.1/8d0bfdaa8d5b9c2057f6e64fd5853fbf/banner-1.4.10/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

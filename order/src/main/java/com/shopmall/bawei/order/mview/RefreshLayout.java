@@ -1,4 +1,4 @@
-package cn.bw.textprojectone;
+package com.shopmall.bawei.order.mview;
 
 import android.content.Context;
 import android.os.Handler;
@@ -14,8 +14,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.shopmall.bawei.order.R;
 
 import java.util.ArrayList;
 
@@ -57,7 +58,7 @@ class RefreshLayout extends FrameLayout {
     @Override
     protected void onFinishInflate() {
         super.onFinishInflate();
-        listView = (ListView) getChildAt(0);
+        listView = (ListView) getChildAt(1);
 
         listView.setOnScrollListener(new AbsListView.OnScrollListener() {
             @Override
@@ -95,7 +96,7 @@ class RefreshLayout extends FrameLayout {
         loadingLinnerLayout.addView(loadView,new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         loadingPaddingTop = height;//???
         loadingLinnerLayout.setPadding(0,loadingPaddingTop,0,0);
-        //如果你想显示出来 将padding的顶部从负数增加到0
+
     }
 
     /**

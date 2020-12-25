@@ -30,7 +30,7 @@ import view.loadinPage.ErrorBean;
 import view.ToolBar;
 
 public
-class FragmentClassify2 extends BaseFragment<JsonPresenter> implements ToolBar.IToolBarClickListner {
+class FragmentClassify2 extends BaseFragment<JsonPresenter> {
     private List<String> list = new ArrayList<String>();
     private RecyclerView shopcarOne;
     private RecyclerView shopcarTow;
@@ -79,7 +79,6 @@ class FragmentClassify2 extends BaseFragment<JsonPresenter> implements ToolBar.I
                             public void clothesBean(ClothesBean e) {
                                 clothesBeans.addAll(e.getResult().get(0).getChild());
                                 hotProductListBeans.addAll(e.getResult().get(0).getHot_product_list());
-                                Log.i("====","打印出来的的当前是"+hotProductListBeans.get(0).getName());
                                 classifyUpAdaper.notifyDataSetChanged();
                                 classIfyblowAdaper.notifyDataSetChanged();
                             }
@@ -99,7 +98,7 @@ class FragmentClassify2 extends BaseFragment<JsonPresenter> implements ToolBar.I
             }
         });
 
-        classIfyblowAdaper = new ClassIfyblowAdaper(R.layout.item_channel,hotProductListBeans);
+        classIfyblowAdaper = new ClassIfyblowAdaper(R.layout.item_channell,hotProductListBeans);
         shopcarThree.setAdapter(classIfyblowAdaper);
         classIfyblowAdaper.notifyDataSetChanged();
 
@@ -122,6 +121,7 @@ class FragmentClassify2 extends BaseFragment<JsonPresenter> implements ToolBar.I
         shopcarOne.setLayoutManager(new LinearLayoutManager(getContext()));
         shopcarTow.setLayoutManager(new StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL));
         shopcarThree.setLayoutManager(new StaggeredGridLayoutManager(1,StaggeredGridLayoutManager.HORIZONTAL));
+
 
         presenter.getshopcal(count, new JsonDataBack() {
             @Override

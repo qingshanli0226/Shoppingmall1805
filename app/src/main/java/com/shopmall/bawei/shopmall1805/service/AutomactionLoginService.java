@@ -56,7 +56,7 @@ class AutomactionLoginService extends Service {
                     public void onNext(LoginBean loginBeanBaseBean) {
                         Log.i("====","ccc"+loginBeanBaseBean.getCode());
                         if (loginBeanBaseBean.getCode().equals("200")){
-                            ShopUserManager.getInstance().saveLoginBean(loginBeanBaseBean);
+                            ShopUserManager.getInstance().saveLoginBean(loginBeanBaseBean.getResult());
                             CacheManagerc.getInstance().getShopcarDataFromServer();
                             Toast.makeText(AutomactionLoginService.this, "登录成功", Toast.LENGTH_SHORT).show();
                         }else {

@@ -16,10 +16,12 @@ import com.shopmall.bawei.order.presenter.OrderPresenter;
 import framework.BaseActivity;
 import framework.Contact;
 import mode.BaseBean;
+import view.SkipFinalUlis;
 import view.ToolBar;
 import view.loadinPage.ErrorBean;
+import view.loadinPage.UnpaidBean;
 
-@Route(path = "/path/BindingActivity")
+@Route(path = "/order/BindingActivity")
 public class BindingActivity extends BaseActivity<OrderPresenter> implements View.OnClickListener, ToolBar.IToolBarClickListner, Contact.ICenterOrderIview {
     private EditText editPhone;
     private Button buttonPhone;
@@ -30,7 +32,7 @@ public class BindingActivity extends BaseActivity<OrderPresenter> implements Vie
     private IPassBack.IDataBack iDataBack = new IPassBack.IDataBack() {
         @Override
         public void onJsonData(BaseBean baseBean) {
-            Log.i("====",""+baseBean);
+            Log.i("====","返回"+baseBean);
         }
     };
     @Override
@@ -67,7 +69,7 @@ public class BindingActivity extends BaseActivity<OrderPresenter> implements Vie
             jsonPresenter.goBindingPoint(editSite.getText().toString().trim());
         }else if (v.getId()==R.id.resultButton){
             Toast.makeText(this, "跳转回归支付界面", Toast.LENGTH_SHORT).show();
-            ARouter.getInstance().build("/pay/PayActivity").navigation();
+            ARouter.getInstance().build(SkipFinalUlis.PAY_ACTIVITY).navigation();
         }
     }
     @Override
@@ -100,4 +102,13 @@ public class BindingActivity extends BaseActivity<OrderPresenter> implements Vie
 
     }
 
+    @Override
+    public void onUnpaidSuccess(UnpaidBean unpaidBean) {
+
+    }
+
+    @Override
+    public void onError(String Error) {
+
+    }
 }

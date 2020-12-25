@@ -3,7 +3,9 @@
     package="com.shopmall.bawei.order">
 
     <application>
-        <activity android:name=".mview.BindingActivity"></activity>
+        <activity android:name=".mview.MainActivity2"/>
+        <activity android:name=".mview.UnpaidActivity"></activity>
+        <activity android:name=".mview.BindingActivity" />
     </application>
 
 </manifest>

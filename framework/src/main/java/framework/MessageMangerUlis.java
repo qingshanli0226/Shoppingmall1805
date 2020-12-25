@@ -133,7 +133,7 @@ class MessageMangerUlis {
         });
     }
 
-    interface IMessageListener{
+    public interface IMessageListener{
         void OnResult(boolean isSuccess, List<ShopMessageGreenBean> shopMessageGreenBeans);
     }
 }

@@ -21,12 +21,13 @@ import framework.mvpc.JsonPresenter;
 import mode.InventoryBean;
 import mode.OrderInfoBean;
 import mode.ShopcarBean;
+import view.SkipFinalUlis;
 import view.ToolBar;
 import view.adaper.ShopAdaper;
 import view.contract.ShopcarContractc;
 import view.loadinPage.ErrorBean;
 import view.spresenter.ShopcarPresenterImplc;
-@Route(path = "/shopcar/ShopCarActivity")
+@Route(path = SkipFinalUlis.SHOPCAR_ACTIVITY)
 public class ShopCarActivity extends BaseActivity<JsonPresenter> implements ToolBar.IToolBarClickListner, View.OnClickListener, ShopcarContractc.IShopcarView  {
     private RecyclerView shopcarRv;
     private TextView totalPriceTv;

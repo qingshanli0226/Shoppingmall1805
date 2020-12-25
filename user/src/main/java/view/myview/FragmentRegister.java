@@ -1,4 +1,4 @@
-package view.fragment;
+package view.myview;
 
 
 import android.view.View;
@@ -10,7 +10,7 @@ import framework.BaseFragment;
 import framework.mvpc.JsonPresenter;
 import mode.RegisterBean;
 import view.ToolBar;
-import view.fragment.callbacklr.JsonDataCallBackLR;
+import view.myview.callbacklr.JsonDataCallBackLR;
 import view.UserActivity;
 import view.loadinPage.ErrorBean;
 
