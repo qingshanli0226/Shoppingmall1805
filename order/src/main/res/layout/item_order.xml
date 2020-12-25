@@ -27,7 +27,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:id="@+id/productPrice"
-            android:text="@string/shopcar_productPrice"
+            android:textColor="@color/colorRed"
             android:gravity="left"
             />
 

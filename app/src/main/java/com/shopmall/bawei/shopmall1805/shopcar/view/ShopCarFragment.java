@@ -17,7 +17,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.alipay.sdk.app.EnvUtils;
 import com.alipay.sdk.app.PayTask;
 import com.example.common2.GetShopCarBean;
-import com.shopmall.bawei.order.OrderActivity;
+import com.shopmall.bawei.order.view.OrderActivity;
 import com.shopmall.bawei.shopmall1805.R;
 import com.shopmall.bawei.shopmall1805.shopcar.adapter.ShopCarAdapter;
 import com.shopmall.bawei.shopmall1805.shopcar.contract.ShopCarContract;
@@ -189,7 +189,7 @@ public class ShopCarFragment extends BaseMVPFragment<ShopCarPresenter, ShopCarCo
             public void onClick(View v) {
                 //跳转到订单页面
                 startActivity(new Intent(getContext(), OrderActivity.class));
-              //  ihttpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
+            //  ihttpPresenter.checkInventory(CacheManager.getInstance().getSelectedProductBeanList());
             }
 
         });
