@@ -11,6 +11,7 @@ import com.alibaba.android.arouter.launcher.ARouter;
 import com.bawei.common.view.ErrorBean;
 import com.bawei.framework.BaseFragment;
 import com.bawei.framework.MessageManager;
+import com.bawei.framework.NetConnectManager;
 import com.bawei.framework.greendao.MessageBean;
 import com.bawei.net.mode.HomeBean;
 import com.bawei.shopmall.home.contract.HomeContract;
@@ -29,6 +30,26 @@ public class HomeFragment extends BaseFragment<HomeImpl, HomeContract.IHomeView>
 
     private HomeAdapter homeAdapter;
 
+    @Override
+    protected void initHttpData() {
+        if (NetConnectManager.getInstance().isConnected()) {
+            httpPresenter.getHomeData();
+        } else {
+            showError("当前无网络连接");
+        }
+    }
+
+    @Override
+    protected void onDisConnected() {
+        super.onDisConnected();
+        showError("当前无网络连连接");
+    }
+
+    @Override
+    protected void onConnected() {
+        super.onConnected();
+        httpPresenter.getHomeData();
+    }
 
     @Override
     protected void initView() {

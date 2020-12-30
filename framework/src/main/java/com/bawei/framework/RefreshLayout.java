@@ -3,7 +3,6 @@ package com.bawei.framework;
 import android.content.Context;
 import android.os.Handler;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -17,6 +16,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.LinearLayoutCompat;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class RefreshLayout extends FrameLayout {
@@ -88,15 +88,19 @@ public class RefreshLayout extends FrameLayout {
         super.onFinishInflate();
         recyclerView = (RecyclerView) getChildAt(0);
 
-        recyclerView.setOnScrollListener(new RecyclerView.OnScrollListener() {
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
             public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
             }
 
             @Override
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
-                firstVisiblePosition = dx;
-                if (dx + dy == recyclerView.getChildCount()) {
+                LinearLayoutManager layoutManager = (LinearLayoutManager) recyclerView.getLayoutManager();
+                firstVisiblePosition = layoutManager.findFirstVisibleItemPosition();
+                int lastVisibleItemPosition = layoutManager.findLastVisibleItemPosition();
+                int childCount = layoutManager.getChildCount();
+                int num = lastVisibleItemPosition - firstVisiblePosition;
+                if (firstVisiblePosition + num == childCount) {
                     isNeed = true;
                 } else {
                     isNeed = false;
@@ -116,16 +120,14 @@ public class RefreshLayout extends FrameLayout {
         switch (ev.getAction()) {
             case MotionEvent.ACTION_DOWN:
                 oldY = (int) ev.getY();
-                lastY = ev.getY();//记录当前点击的位置在y轴的坐标
+                lastY = ev.getY();
                 lastListY = recyclerView.getY();
                 lastListX = recyclerView.getX();
                 break;
             case MotionEvent.ACTION_MOVE:
                 if (ev.getY() > oldY && firstVisiblePosition == 0) {
-                    Log.d("LQS ", "下拉刷新拦截成功。。。。");
-                    return true;//如果等于0就拦截事件，显示下拉刷新的headerview
+                    return true;
                 } else if (isNeed && ev.getY() < oldY) {
-                    Log.d("LQS ", "上拉拦截成功。。。。");
                     return true;
                 } else {
                     return false;
@@ -145,7 +147,7 @@ public class RefreshLayout extends FrameLayout {
                     float diffY = event.getY() - lastY;
                     float pTop = paddingTop + diffY;
                     linearLayout.setPadding(0, (int) pTop, 0, 0);
-                    recyclerView.scrollTo((int) lastY, -(int) (lastListY + diffY));
+                    recyclerView.scrollTo((int) lastListX, -(int) (lastListY + diffY));
                 } else if (isNeed && lastY - event.getY() <= LOAD_MAX_TOP) {
                     float loadDiffY = lastY - event.getY();
                     loadingLinearLayout.setPadding(0, (int) (loadingPaddingTop - loadDiffY), 0, 0);
@@ -172,8 +174,8 @@ public class RefreshLayout extends FrameLayout {
                         }
                     }, 2000);
                 } else if (isNeed && event.getY() < lastY) {
-                    if (lastY-event.getY()>LOAD_MAX_TOP/2){
-                        loadingLinearLayout.setPadding(0,loadingPaddingTop-LOAD_MAX_TOP,0,0);
+                    if (lastY - event.getY() > LOAD_MAX_TOP / 2) {
+                        loadingLinearLayout.setPadding(0, loadingPaddingTop - LOAD_MAX_TOP, 0, 0);
                         loadProgressBar.setVisibility(VISIBLE);
                         loadText.setVisibility(VISIBLE);
                         linearLayout.postDelayed(new Runnable() {
@@ -181,18 +183,18 @@ public class RefreshLayout extends FrameLayout {
                             public void run() {
                                 progressBar.setVisibility(GONE);
                                 textTv.setVisibility(GONE);
-                                loadingLinearLayout.setPadding(0,loadingPaddingTop,0,0);
-                                if (iRefreshListener!=null){
+                                loadingLinearLayout.setPadding(0, loadingPaddingTop, 0, 0);
+                                if (iRefreshListener != null) {
                                     iRefreshListener.onLoadMore();
                                 }
                             }
-                        },2000);
-                    }else {
-                        loadingLinearLayout.setPadding(0,loadingPaddingTop,0,0);
+                        }, 2000);
+                    } else {
+                        loadingLinearLayout.setPadding(0, loadingPaddingTop, 0, 0);
                     }
-                }else {
-                    linearLayout.setPadding(0,paddingTop,0,0);
-                    recyclerView.scrollTo((int)lastListX,-(int)(lastListY));
+                } else {
+                    linearLayout.setPadding(0, paddingTop, 0, 0);
+                    recyclerView.scrollTo((int) lastListX, -(int) (lastListY));
                 }
                 break;
         }
@@ -204,7 +206,7 @@ public class RefreshLayout extends FrameLayout {
         return super.onNestedFling(target, velocityX, velocityY, consumed);
     }
 
-    public void addRefreshListener(IRefreshListener iRefreshListener){
+    public void addRefreshListener(IRefreshListener iRefreshListener) {
         this.iRefreshListener = iRefreshListener;
     }
 

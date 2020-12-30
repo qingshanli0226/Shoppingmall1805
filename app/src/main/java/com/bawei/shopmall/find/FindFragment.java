@@ -50,6 +50,7 @@ public class FindFragment extends BaseFragment<BasePresenter, IView> implements 
 
     private void refeshData(int type) {
         if (type == 1) {
+            MessageManager.getInstance().refresh();
             MessageManager.getInstance().queryMessage(new MessageManager.IMessageListener() {
                 @Override
                 public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {
@@ -57,6 +58,7 @@ public class FindFragment extends BaseFragment<BasePresenter, IView> implements 
                 }
             });
         } else if (type == 2) {
+            MessageManager.getInstance().loadShowNum();
             MessageManager.getInstance().queryMessage(new MessageManager.IMessageListener() {
                 @Override
                 public void onResult(boolean isSuccess, List<MessageBean> messageBeanList) {

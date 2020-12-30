@@ -23,6 +23,7 @@ public class MessageManager {
     private SharedPreferences.Editor messageEditor;
 
     private MessageBeanDao messageBeanDao;
+    private int showNum = 10;
 
     private Handler handler = new Handler();
     private ExecutorService executorService = Executors.newCachedThreadPool();
@@ -40,6 +41,14 @@ public class MessageManager {
         return instance;
     }
 
+    public void loadShowNum() {
+        showNum = showNum + 10;
+    }
+
+    public void refresh() {
+        showNum = 10;
+    }
+
     public void init(Context applicationContext) {
         sharedPreferences = applicationContext.getSharedPreferences("count", Context.MODE_PRIVATE);
         messageEditor = sharedPreferences.edit();
@@ -54,7 +63,7 @@ public class MessageManager {
         executorService.execute(new Runnable() {
             @Override
             public void run() {
-                final List<MessageBean> messageBeanList = messageBeanDao.queryBuilder().orderDesc(MessageBeanDao.Properties.Time).limit(10).list();
+                final List<MessageBean> messageBeanList = messageBeanDao.queryBuilder().orderDesc(MessageBeanDao.Properties.Time).limit(showNum).list();
                 handler.post(new Runnable() {
                     @Override
                     public void run() {

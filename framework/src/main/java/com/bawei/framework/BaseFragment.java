@@ -13,6 +13,9 @@ import com.bawei.common.view.ErrorBean;
 import com.bawei.common.view.LoadingPage;
 import com.bawei.common.view.MyToolBar;
 
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 
 public abstract class BaseFragment<P extends BasePresenter, V extends IView> extends Fragment implements MyToolBar.IToolBarClickListner {
 
@@ -84,26 +87,31 @@ public abstract class BaseFragment<P extends BasePresenter, V extends IView> ext
         initData();
     }
 
-    protected void initView() {
+    protected void initView() {}
 
-    }
-
-    protected void initHttpData() {
-
-    }
+    protected void initHttpData() {}
 
     protected abstract void initListener();
 
     protected abstract void initPresenter();
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onConnectChange(boolean isConnected){
+        if (isConnected){
+            onConnected();
+        }else {
+            onDisConnected();
+        }
+    }
+
+    protected void onDisConnected(){}
+
+    protected void onConnected(){}
+
     @Override
-    public void onRightClick() {
+    public void onRightClick() {}
 
-    }
-
-    protected void initData() {
-
-    }
+    protected void initData() {}
 
     @Override
     public void onDestroy() {
